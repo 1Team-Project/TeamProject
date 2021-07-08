@@ -22,7 +22,7 @@
 	<style type="text/css">
 		@FONT-FACE {
 			font-family: 'naBrush';
-			src:url("fonts/BMDOHYEON_ttf.ttf");
+			src:url("/resources/main/fonts/BMDOHYEON_ttf.ttf");
 		}
 		    #footer { 
        clear:both;
