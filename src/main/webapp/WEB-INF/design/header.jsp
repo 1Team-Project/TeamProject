@@ -13,10 +13,6 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
- 	<script src="/resources/main/js/popper.js"></script>
-  	<script src="/resources/main/js/bootstrap.min.js"></script>
- 	<script src="/resources/main/js/main.js"></script>
 	</head>
 	<!-- 폰트 설정하는 스타일 -->
 	<style type="text/css">
@@ -207,3 +203,8 @@
     <!-- END nav -->
 
 	</section>
+	
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+ 	<script src="/resources/main/js/popper.js"></script>
+  	<script src="/resources/main/js/bootstrap.min.js"></script>
+ 	<script src="/resources/main/js/main.js"></script>
