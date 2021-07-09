@@ -81,8 +81,39 @@
 		<dependency>
 		    <groupId>com.oracle.database.jdbc</groupId>
 		    <artifactId>ojdbc8</artifactId>
+		    <version>19.11.0.0</version>
+		</dependency>
+		
+		
+		<!-- 오라클 클라우드 database설정 -->
+		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ucp -->
+	<dependency>
+	    <groupId>com.oracle.database.jdbc</groupId>
+	    <artifactId>ucp</artifactId>
+	    <version>19.11.0.0</version>
+	</dependency>
+
+      <!-- https://mvnrepository.com/artifact/com.oracle.database.security/oraclepki -->
+      <dependency>
+          <groupId>com.oracle.database.security</groupId>
+          <artifactId>oraclepki</artifactId>
+          <version>21.1.0.0</version>
+      </dependency>      
+      <dependency>
+		    <groupId>com.oracle.database.security</groupId>
+		    <artifactId>osdt_core</artifactId>
 		    <version>21.1.0.0</version>
 		</dependency>
+      
+      <dependency>
+          <groupId>com.oracle.database.security</groupId>
+          <artifactId>osdt_cert</artifactId>
+          <version>21.1.0.0</version>
+      </dependency> 
+		
+		
+		
+		
 		
 		<!-- 롬복 -->
 		<dependency>

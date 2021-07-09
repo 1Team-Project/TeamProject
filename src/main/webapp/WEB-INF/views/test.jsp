@@ -293,7 +293,7 @@
                 </li>
                 <li class="mypage-item">
                   <a href="#" class="mypage-link">3</a>
-                </li>
+                </li>`
                 <li class="mypage-item">
                   <a href="#" class="mypage-link"> >> </a>
                 </li>
