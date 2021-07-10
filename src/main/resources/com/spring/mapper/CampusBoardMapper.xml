@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.CampusBoardMapper">
+
+
+	<select id="list" resultType="com.spring.domain.CampusBoardVO">
+		<![CDATA[
+			select * 
+				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate
+					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate from campus_board where b_no>0 order by b_no desc) 
+					where
+		]]>
+	
+		<include refid="criteria"></include>
+		
+		<![CDATA[
+				 rownum <= (#{pageNum}*#{amount})) 
+			where rn > ((#{pageNum}-1)*#{amount})
+		]]>
+	</select>
+
+	<delete id="delete">
+		delete from spring_board where bno = #{bno}
+	</delete>
+	
+	<update id="update">
+		update spring_board set title = #{title}, content = #{content}, updatedate = sysdate where bno = #{bno}
+	</update>
+
+<!--  페이지 나누기 전 list -->
+<!-- 	<select id="list" resultType="com.spring.domain.BoardVO">
+		select * from spring_board where bno>0 order by bno desc,regdate desc
+	</select> -->
+	
+	
+	<!-- 전체 게시물 수 -->
+	<select id="totalCnt" resultType="int">
+		select count(*) from campus_board
+		
+		where
+		
+		<include refid="criteria"></include>
+		
+		b_no > 0
+	</select>
+
+	
+	<select id="read" resultType="com.spring.domain.CampusBoardVO">
+		select * from spring_board where bno = #{bno}
+	</select>
+	
+<!-- T를 선택 
+	<select id="list" resultType="com.spring.domain.BoardVO">
+		<![CDATA[
+			select * 
+			from (select /*+INDEX_DESC(spring_board pk_spring_board)*/
+					rownum rn, bno, title, writer, regdate, updatedate
+				from SPRING_BOARD
+				where rownum <= (#{pageNum}*#{amount})) and (title like %자바%)
+			where rn > ((#{pageNum}-1)*#{amount})
+		]]>
+	</select>
+
+
+	<select id="list" resultType="com.spring.domain.BoardVO">
+		<![CDATA[
+			select * 
+			from (select /*+INDEX_DESC(spring_board pk_spring_board)*/
+					rownum rn, bno, title, writer, regdate, updatedate
+				from SPRING_BOARD
+				where rownum <= (#{pageNum}*#{amount})) and (title like %자바% or content like %자바%)
+			where rn > ((#{pageNum}-1)*#{amount})
+		]]>
+	</select>
+
+
+	<select id="list" resultType="com.spring.domain.BoardVO">
+		<![CDATA[
+			select * 
+			from (select /*+INDEX_DESC(spring_board pk_spring_board)*/
+					rownum rn, bno, title, writer, regdate, updatedate
+				from SPRING_BOARD
+				where rownum <= (#{pageNum}*#{amount})) and (title like %자바% or content like %자바% or writer like %자바%)
+			where rn > ((#{pageNum}-1)*#{amount})
+		]]>
+	</select> -->
+	
+	<!-- 댓글 숫자 수정 : 댓글의 삽입or삭제시 -->
+	<update id="replyCntUpdate">
+		update spring_board set replycnt = replycnt + #{amount} where bno = #{bno}
+	</update>
+	
+	<!-- 동적 SQL -->
+	<sql id = "criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="typeArr" item='type'>
+				<trim prefix="OR">
+					<choose>
+						<when test="type=='T'.toString()">
+							title like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='C'.toString()">
+							content like '%'||#{keyword}||'%'
+						</when>
+						<when test="type=='W'.toString()">
+							writer like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql>
+
+
+</mapper>
