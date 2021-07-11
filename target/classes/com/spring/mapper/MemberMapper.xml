@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.MemberMapper">
+
+	<!-- 회원가입(insert)-->
+	<insert id="insert">
+		insert into CAMPUS_USER(u_userid, u_password, u_username, u_email, u_phone, u_address)
+		values(#{userid}, #{password}, #{username}, #{email}, #{phone}, #{address})
+	</insert>
+	
+	<select id="login" resultType="com.spring.domain.LoginVO">
+		select u_userid as userid, u_password as password from CAMPUS_USER where u_userid = #{userid} and u_password = #{password}
+	</select>
+	
+
+</mapper>

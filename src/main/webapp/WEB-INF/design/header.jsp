@@ -13,6 +13,10 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
+	<!-- 영권 추가 문장 시작 -->
+	<link rel="stylesheet" href="/resources/main/css/bootstrap2.min.css">
+	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<!-- 영권 추가 문장 끝 -->
 	</head>
 	<!-- 폰트 설정하는 스타일 -->
 	<style type="text/css">
@@ -128,14 +132,14 @@
       letter-spacing:0px;
       }
 		
-		</style>
+	</style>
 	<body>
 	<section class="m-3">
 		<!-- 맨 위 관련 (그림, 글씨) -->
 		<div class="container">
 			<div class="row justify-content-center mt-5 " >
 				<!-- 클릭시 메인화면으로 이동하게 하는 링크 (텐트 그림) -->
-				<a href="" class="text-center"><img src="/resources/main/images/header.png" alt=""  ></a>
+				<a href="/" class="text-center"><img src="/resources/main/images/header.png" alt=""  ></a>
 				<div class="col-md-6 text-center mb-3">
 					<h6 class="heading-section" style="font-family: naBrush;">Us Camping</h6>
 					<h1 class="heading-section" style="font-family: naBrush">캠퍼스 Camp us</h1>
@@ -151,7 +155,18 @@
 					<div class="social-media">
 		    		<p class="d-md-flex justify-content-end m-2">
 						<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
-		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
+						
+						<c:choose>
+							<c:when test="${sessionScope.login != null}">
+								<a href="#" id="logout.do" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
+			    			</c:when>
+			    			<c:otherwise>
+			    				<a href="login" class="d-flex align-items-center justify-content-center m-1">
+			    					<img src="/resources/main/images/icon_login.png">
+			    				</a>
+			    			</c:otherwise>
+		    			</c:choose>
+		    			
 		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_mypage.png"></a>
 		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_cart.png"></a>
 		    		</p>
@@ -208,3 +223,18 @@
  	<script src="/resources/main/js/popper.js"></script>
   	<script src="/resources/main/js/bootstrap.min.js"></script>
  	<script src="/resources/main/js/main.js"></script>
+ 	<!-- 영권 추가 문장 시작 -->
+ 	<script>
+ 		$(function() {
+ 			$("#logout.do").click(function(){
+	   			var result = confirm("나가시겠습니까?");
+ 				if(result){
+ 					alert("나가지나 확인");
+ 					location.replace="test";
+ 				} else{
+ 					return false;
+ 				}
+ 			});
+ 		})
+ 	</script>
+	<!-- 영권 추가 문장 끝 -->

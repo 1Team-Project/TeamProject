@@ -11,7 +11,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-		return new Class[] {RootConfig.class, SecurityConfig.class};
+		return new Class[] {RootConfig.class};
 	}
 
 	@Override
@@ -24,11 +24,11 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		return new String[] {"/"};
 	}
 
-	//ÇÑ±Û Ã³¸® ÇÊÅÍ
+	//ï¿½Ñ±ï¿½ Ã³ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();
-		encodingFilter.setEncoding("utf-8");
+		encodingFilter.setEncoding("EUC-KR");
 		encodingFilter.setForceEncoding(true);
 		
 		return new Filter[] {encodingFilter};

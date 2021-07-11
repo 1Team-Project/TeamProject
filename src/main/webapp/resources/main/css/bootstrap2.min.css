@@ -1,0 +1,61 @@
+/* login.jsp */
+.form-control-login{
+	height: 60px;
+	width: 40%;
+	padding: 5px;
+	box-sizing: border-box;
+	border: solid 2px #78c2ad;
+	border-radius: 5px;
+	font-size: 20px;
+	resize: both;
+}
+.login-Form{
+	text-align: center;
+	height: auto;
+}
+.login-margin{
+	margin: 1% 0;
+}
+
+
+
+/* agree.jsp */
+.agreeForm{
+	text-align: center;
+
+}
+textarea.form-yk {
+	width: 60%;
+	height: 250px;
+	padding: 10px;
+	box-sizing: border-box;
+	border: solid 2px #78c2ad;
+	border-radius: 5px;
+	font-size: 16px;
+	resize: both;
+}
+
+
+/* regist.jsp */
+.regist-Form{
+	text-align: center;
+	font-size: 20px;
+}
+
+.form-group{
+	margin: 1% 0;
+}
+.regist-margin{
+	margin: 1% 0;
+}
+
+.form-control-regist{
+	height: 60px;
+	width: 40%;
+	padding: 5px;
+	box-sizing: border-box;
+	border: solid 2px #78c2ad;
+	border-radius: 5px;
+	font-size: 20px;
+	resize: both;
+}
