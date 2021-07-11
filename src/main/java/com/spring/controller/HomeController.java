@@ -49,7 +49,7 @@ public class HomeController {
 		
 		
 		
-		return "/test";
+		return "/mypage";
 	}
 	
 }
