@@ -34,6 +34,7 @@
 		});
 		
 		/* 로그인 버튼 관련 */
+		var result = "${error}";
  		$("#login").click(function(){
  			if($("#userid").val() == ""){
  				alert("아이디를 입력하세요");
@@ -43,9 +44,10 @@
  				alert("비밀번호를 입력하세요")
  				$("#password").focus();
  				return false;
-/* 			} else if(){
+ 			} else if(result=="error"){
 				alert("아이디나 비밀번호를 확인해주세요");
-			} */
+				return false;
+			} 
  		});
 	})
 </script>

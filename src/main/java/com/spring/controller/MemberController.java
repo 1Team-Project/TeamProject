@@ -55,7 +55,7 @@ public class MemberController {
 		
 		LoginVO login = service.login(vo.getUserid(), vo.getPassword());
 		if(login==null) {
-			rttr.addFlashAttribute("error", "아이디나 비밀번호를 확인해주세요");
+			rttr.addFlashAttribute("error", "error");
 			// String msg = "아이디나 비밀번호를 확인하세요";
 			return "redirect:login";
 		} else {
