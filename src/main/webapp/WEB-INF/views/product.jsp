@@ -139,6 +139,9 @@
             font-size:14px;
             color:#222222;
         }
+        span{
+        	color:black;
+        }
        
         
 </style>
@@ -191,7 +194,7 @@
                                         </div>
                                         <div class="product_price">
                                             <span class="price" data-hook="sr-product-item-price-to-pay">가격</span>
-                                            <span data-hook="product-item-price-to-pay" class="">₩15</span>
+                                            <span data-hook="product-item-price-to-pay" class="">$15</span>
                                         </div>
                                     </div>
                                 </li>
