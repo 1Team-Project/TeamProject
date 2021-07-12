@@ -38,7 +38,7 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		
 		// Ã·ºÎÆÄÀÏ µî·Ï
 		vo.getAttachList().forEach(attach -> {
-			attach.setBno(vo.getB_no());
+			attach.setB_no(vo.getB_no());
 			attachMapper.insert(attach);
 		});
 		
@@ -67,7 +67,7 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		//Ã·ºÎÆÄÀÏ »ðÀÔ
 		if(modifyResult && vo.getAttachList().size()>0) {
 			for(CampusAttachFileDTO dto:vo.getAttachList()) {
-				dto.setBno(vo.getB_no());
+				dto.setB_no(vo.getB_no());
 				attachMapper.insert(dto);
 			}
 		}
@@ -82,9 +82,9 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	}
 
 	@Override
-	public CampusBoardVO read(int bno) {
+	public CampusBoardVO view(int bno) {
 		// TODO Auto-generated method stub
-		return mapper.read(bno);
+		return mapper.view(bno);
 	}
 
 	@Override

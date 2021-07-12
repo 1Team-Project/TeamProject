@@ -10,24 +10,22 @@ import lombok.ToString;
 
 public class CampusCriteria {
 	
-	private int pageNum;
-	private int amount;
+	private int page;
 
 	//검색 추가
-	private String type;
+	private String sort;
 	private String keyword;
 	
 	public CampusCriteria() {
-		this(1,20);
+		this(1);
 	}
 	
-	public CampusCriteria(int pageNum, int amount) {
+	public CampusCriteria(int page) {
 		super();
-		this.pageNum = pageNum;
-		this.amount = amount;
+		this.page = page;
 	}
 
-	public String[] getTypeArr() {
-		return type == null?new String[] {}:type.split("");
+	public String[] getSortArr() {
+		return sort == null?new String[] {}:sort.split("");
 	}
 }

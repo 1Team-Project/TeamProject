@@ -12,7 +12,7 @@ public interface CampusBoardService {
 	public boolean delete(int bno);
 	public boolean update(CampusBoardVO vo);
 	public List<CampusBoardVO> list(CampusCriteria cri);	
-	public CampusBoardVO read(int bno);
+	public CampusBoardVO view(int bno);
 	public int total(CampusCriteria cri);
 	
 	public List<CampusAttachFileDTO> getAttachList(int bno);

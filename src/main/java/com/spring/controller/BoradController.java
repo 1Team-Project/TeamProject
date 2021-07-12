@@ -8,9 +8,11 @@ import java.util.Locale;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -46,23 +48,22 @@ public class BoradController {
 		
 		
 		model.addAttribute("list", list);
-		CampusPageVO pageVo = new CampusPageVO(cri, total);
-		model.addAttribute("pageVO", pageVo);
+		CampusPageVO campusPageVO = new CampusPageVO(cri, total);
+		model.addAttribute("CampusPageVO", campusPageVO);
 	}
 	
+	@GetMapping({"/view","/modify"})
+	public void read(int b_no,@ModelAttribute("cri") CampusCriteria cri,Model model) {
+		log.info("글 하나 가져오기 "+b_no+" cri : "+cri);  
+		
+		CampusBoardVO campusVO=service.view(b_no);
+		model.addAttribute("campusVO", campusVO);
+	}
+
+	//@PreAuthorize("isAuthenticated()") //@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@GetMapping("/write")
-	public void write() {
-		log.info("글 작성 이동 실행");
-	}
-	
-	@GetMapping("/modify")
-	public void modify() {
-		log.info("글 수정 이동 실행");
-	}
-	
-	@GetMapping("/view")
-	public void view() {
-		log.info("글 보기 이동 실행");
+	public void register() {
+		log.info("새글 등록 폼 요청");
 	}
 	
 	@GetMapping("/sellwrite")

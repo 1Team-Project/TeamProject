@@ -8,9 +8,9 @@ public interface CampusBoardAttachMapper {
 	
 	public int insert(CampusAttachFileDTO attach);
 	
-	public int delete(int bno);
+	public int delete(int b_no);
 	
-	public List<CampusAttachFileDTO> findByBno(int bno);
+	public List<CampusAttachFileDTO> findByBno(int b_no);
 
 	public List<CampusAttachFileDTO> getOldFiles();
 }

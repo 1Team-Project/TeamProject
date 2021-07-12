@@ -17,9 +17,9 @@ public interface CampusBoardMapper {
 	
 	public List<CampusBoardVO> list(CampusCriteria cri);	
 	
-	public CampusBoardVO read(int bno);
+	public CampusBoardVO view(int bno);
 
 	public int totalCnt(CampusCriteria cri);
 	
-	public int replyCntUpdate(@Param("bno") int bno, @Param("amount") int amount);
+	public int replyCntUpdate(@Param("bno") int bno);
 }

@@ -2,7 +2,7 @@
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"  %>
 <%@include file="../../design/header.jsp"%>
 
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
@@ -87,7 +87,7 @@
 						<tr>
 							<td>${vo.b_no}</td>
 							<td>${vo.b_sort}</td>
-							<td><a href="#" class="blacktext hoverthema">${vo.b_title}<strong class="badgecount">[${vo.replycnt}]</strong></a>
+							<td><a href="${vo.b_no}" class="blacktext hoverthema clickview">${vo.b_title}<strong class="badgecount">[${vo.replycnt}]</strong></a>
 							<td>${vo.b_writer}</td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.b_sysdate}"/></td>
 							<td>${vo.b_views}</td>
@@ -106,28 +106,44 @@
 					</select> <input type="text"
 						class="width30 boldergreen padding5px blacktext" />
 					<button class="btn btn-primary">검색</button>
-					<button class="btn btn-primary float-end">글 쓰기</button>
+					<button class="btn btn-primary float-end" onclick="location.href='write'">글 쓰기</button>
+					<!--<sec:authorize access="isAuthenticated()">-->
+                 	<!--</sec:authorize>-->
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="mypagination justify-content-center">
-						<li class="mypage-item"><a href="#" class="mypage-link">
-								<< </a></li>
-						<li class="mypage-item"><a href="#"
-							class="mypage-link activecolor">1</a></li>
-						<li class="mypage-item"><a href="#" class="mypage-link">2</a>
-						</li>
-						<li class="mypage-item"><a href="#" class="mypage-link">3</a>
-						</li>
-						<li class="mypage-item"><a href="#" class="mypage-link">
-								>> </a></li>
+					
+					<c:if test="${CampusPageVO.prev}">
+						<li class="mypage-item prev"><a href="${CampusPageVO.startPage-1}" class="mypage-link"> << </a></li>
+					</c:if>	
+					
+					<c:forEach var="i" begin="${CampusPageVO.startPage}" end="${CampusPageVO.endPage}">
+						<li class="mypage-item"><a href="${i}" class="mypage-link ${CampusPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
+					</c:forEach>
+					
+					<c:if test="${CampusPageVO.next}">
+						<li class="mypage-item next"><a href="${CampusPageVO.endPage+1}" class="mypage-link"> >> </a></li>
+					</c:if>	
+					
 					</ul>
 				</div>
 			</div>
 		</div>
 		<div class="col-md-1"></div>
 	</div>
+		
+	<form action="list" method="get" id="actionForm">	
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
+		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
+	</form>            
+	
+	
 </div>
-
+<script>
+	let result='${result}';
+</script>
+<script src="/resources/main/js/campuslist.js"></script>
 <%@include file="../../design/footer.jsp"%>

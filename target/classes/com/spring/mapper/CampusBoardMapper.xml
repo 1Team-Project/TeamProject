@@ -14,8 +14,8 @@
 		<include refid="criteria"></include>
 		
 		<![CDATA[
-				 rownum <= (#{pageNum}*#{amount})) 
-			where rn > ((#{pageNum}-1)*#{amount})
+				 rownum <= (#{page}*20)) 
+			where rn > ((#{page}-1)*20)
 		]]>
 	</select>
 
@@ -45,64 +45,28 @@
 	</select>
 
 	
-	<select id="read" resultType="com.spring.domain.CampusBoardVO">
-		select * from spring_board where bno = #{bno}
+	<select id="view" resultType="com.spring.domain.CampusBoardVO">
+		select * from campus_board where b_no = #{b_no}
 	</select>
-	
-<!-- T를 선택 
-	<select id="list" resultType="com.spring.domain.BoardVO">
-		<![CDATA[
-			select * 
-			from (select /*+INDEX_DESC(spring_board pk_spring_board)*/
-					rownum rn, bno, title, writer, regdate, updatedate
-				from SPRING_BOARD
-				where rownum <= (#{pageNum}*#{amount})) and (title like %자바%)
-			where rn > ((#{pageNum}-1)*#{amount})
-		]]>
-	</select>
-
-
-	<select id="list" resultType="com.spring.domain.BoardVO">
-		<![CDATA[
-			select * 
-			from (select /*+INDEX_DESC(spring_board pk_spring_board)*/
-					rownum rn, bno, title, writer, regdate, updatedate
-				from SPRING_BOARD
-				where rownum <= (#{pageNum}*#{amount})) and (title like %자바% or content like %자바%)
-			where rn > ((#{pageNum}-1)*#{amount})
-		]]>
-	</select>
-
-
-	<select id="list" resultType="com.spring.domain.BoardVO">
-		<![CDATA[
-			select * 
-			from (select /*+INDEX_DESC(spring_board pk_spring_board)*/
-					rownum rn, bno, title, writer, regdate, updatedate
-				from SPRING_BOARD
-				where rownum <= (#{pageNum}*#{amount})) and (title like %자바% or content like %자바% or writer like %자바%)
-			where rn > ((#{pageNum}-1)*#{amount})
-		]]>
-	</select> -->
 	
 	<!-- 댓글 숫자 수정 : 댓글의 삽입or삭제시 -->
 	<update id="replyCntUpdate">
-		update spring_board set replycnt = replycnt + #{amount} where bno = #{bno}
+		update spring_board set replycnt = replycnt + 20 where bno = #{bno}
 	</update>
 	
 	<!-- 동적 SQL -->
 	<sql id = "criteria">
 		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
-			<foreach collection="typeArr" item='type'>
+			<foreach collection="sortArr" item='sort'>
 				<trim prefix="OR">
 					<choose>
-						<when test="type=='T'.toString()">
+						<when test="sort=='T'.toString()">
 							title like '%'||#{keyword}||'%'
 						</when>
-						<when test="type=='C'.toString()">
+						<when test="sort=='C'.toString()">
 							content like '%'||#{keyword}||'%'
 						</when>
-						<when test="type=='W'.toString()">
+						<when test="sort=='W'.toString()">
 							writer like '%'||#{keyword}||'%'
 						</when>
 					</choose>

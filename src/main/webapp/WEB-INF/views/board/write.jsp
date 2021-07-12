@@ -28,14 +28,14 @@
 					</select> <label for="campusboard-title " class="label"><h5>
 							제 목</h5></label> <input type="text"
 						class="form-control width70 inlinetest boldergreen"
-						id="campusboard-title" />
+						id="campusboard-title" required/>
 				</div>
 
 				<hr class="one" />
 				<div class="col-md-8 mll20">
 					<h5>내용</h5>
 					<textarea class="form-control boldergreen" cols="30" rows="15"
-						style="resize: none"></textarea>
+						style="resize: none" required></textarea>
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
@@ -56,11 +56,10 @@
 					<button class="btn btn-green1" type="reset">초기화</button>
 					<button class="btn btn-green2" type="reset">리스트</button>
 				</div>
-		</div>
 		</form>
+		</div>
 	</div>
 	<div class="col-md-1 margintb20"></div>
-	</div>
 </section>
-
+<script src="/resources/main/js/campuswrite.js"></script>
 <%@include file="../../design/footer.jsp"%>

@@ -4,22 +4,22 @@
 
 	<!-- insert -->
 	<insert id="insert">
-		insert into spring_attach(uuid, uploadpath, filename, filetype, bno) values(#{uuid}, #{uploadPath}, #{fileName}, #{fileType}, #{bno})
+		insert into campus_attach(a_uuid, a_path, a_name, a_type, b_no) values(#{a_uuid}, #{a_path}, #{a_name}, #{a_type}, #{b_no})
 	</insert>
 	
 	<!-- delete bno 일치시-->
 	<delete id="delete">
-		delete from spring_attach where bno = #{bno}
+		delete from campus_attach where b_no = #{b_no}
 	</delete>	
 	
 	<!-- select (findByBno) bno 일치시 (AttachFileDTO 이용) -->
 	<select id="findByBno" resultType="com.spring.domain.CampusAttachFileDTO">
-		select * from spring_attach where bno = #{bno}
+		select * from campus_attach where b_no = #{b_no}
 	</select>
 	
 	<!-- 전일자 첨부파일 리스트 -->
 	<select id="getOldFiles" resultType="com.spring.domain.CampusAttachFileDTO">
-		select * from spring_attach where uploadPath = to_char(sysdate-1,'yyyy\mm\dd')
+		select * from campus_attach where a_path = to_char(sysdate-1,'yyyy\mm\dd')
 	</select>
 	
 	

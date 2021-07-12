@@ -14,10 +14,10 @@ import lombok.ToString;
 
 public class CampusAttachFileDTO {
 
-	private String uuid;
-	private String uploadPath;
-	private String fileName;
-	private boolean fileType;
-	private int bno;
+	private String a_uuid;
+	private String a_path;
+	private String a_name;
+	private boolean a_type;
+	private int b_no;
 	
 }

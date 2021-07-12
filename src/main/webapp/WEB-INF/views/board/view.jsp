@@ -2,7 +2,8 @@
 	pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
-
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"  %>
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
 
 
@@ -17,20 +18,21 @@
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">글 읽기</h3>
+				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} 번 글</h3>
 			</div>
 			<form action="">
 				<div class="col-md-8 mll20">
-					<span class="hh4">[분류]</span> <input type="text"
+					<span class="hh4">[${campusVO.b_sort}]</span>
+					<input type="text"
 						class="form-control width70 inlinetest mll10"
-						id="campusboard-title" readonly />
+						id="campusboard-title" readonly value="${campusVO.b_title}"/>
 				</div>
 
 				<hr class="one" />
 				<div class="col-md-8 mll20">
 					<h5>내용</h5>
 					<textarea class="form-control" cols="30" rows="15"
-						style="resize: none" readonly></textarea>
+						style="resize: none" readonly >${campusVO.b_content}</textarea>
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
@@ -52,11 +54,12 @@
 				<hr class="one" />
 				<div class="col-md-8 mll20">
 					<button class="btn btn-primary">수정하기</button>
-					<button class="btn btn-green2" type="reset">리스트</button>
+					<button class="btn btn-green2 listbutton" type="button">리스트</button>
 				</div>
+				</form>
 				<hr class="one" />
 		</div>
-		</form>
+
 		<!-- 댓글 폼 -->
 		<div class="col-md-1"></div>
 		<div class="col-md-10 mll10">
@@ -122,13 +125,23 @@
 		</div>
 
 
-		<button class="btn btn-green2 mll20" type="reset">리스트</button>
+		<button class="btn btn-green2 mll20 listbutton" type="button">리스트</button>
 
 	</div>
 	<div class="col-md-1"></div>
 	</div>
 	<div class="col-md-1 margintb20"></div>
 	</div>
+	
+<form action="" id="operForm" method="get">
+	<input type="hidden" name="type" value="${cri.sort}" />
+	<input type="hidden" name="keyword" value="${cri.keyword}" />
+	<input type="hidden" name="page" value="${cri.page}" />
+	<input type="hidden" name="b_no" value="${vo.b_no}"/>
+</form>        
+	
 </section>
+
+<script src="/resources/main/js/campusview.js"></script>
 
 <%@include file="../../design/footer.jsp"%>
