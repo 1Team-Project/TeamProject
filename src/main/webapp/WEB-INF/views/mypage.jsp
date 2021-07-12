@@ -55,6 +55,8 @@
         border:0px solid ;
         box-sizing: border-box;
     }
+    hr{
+    }
 
      
     </style>
@@ -66,13 +68,11 @@
             <div class="table-Area">
                 <div id="mp" class="table">
                     <ul>
-                        <button type="button" class="btn btn-info">구매내역</button>
-                        <br>
-              
-                        <button type="button" class="btn btn-secondary">예약내역</button>
-                        <br>
-                        
-                        <button type="button" class="btn btn-warning">회원정보수정</button>
+                        <button type="button" class="btn btn-info" onclick="">구매내역</button>
+                       	<p></p>
+                        <button type="button" class="btn btn-secondary" onclick="">예약내역</button>
+                        <p></p>
+                        <button type="button" class="btn btn-warning" onclick="">회원정보수정</button>
                     
                     </ul>
                 </div>
