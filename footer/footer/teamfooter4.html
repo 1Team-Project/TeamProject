@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+    #footer { 
+       clear:both;
+       position:relative; 
+       width:100%; 
+       height:auto; }
+	/* 1.하단정보 */
+		.optr_link{
+      display:none;
+      }
+		.f_info {
+      position:relative;
+      width:100%;
+      float:left; 
+      background:#78c2ad; 
+      border-bottom: 1px solid; 
+      min-height:90px; 
+      z-index:10; 
+      }
+		.f_info .f_png{
+      position:absolute; 
+      top:27px;
+      left:0; 
+      width:209px; 
+      height:42px; 
+      }
+		.f_menu {
+      padding:35px  0 12px 247px; 
+      }
+		.f_menu li { 
+      display:inline-block; 
+    }		
+		.f_menu li:first-child{
+      background:none;
+      }
+		.f_menu li a {
+       display:inline-block; 
+       margin: 0 75px 0 75px; 
+       font-size:15px; 
+       color:white; 
+       text-decoration:none;
+       } 
+		.f_menu li.privacy a{
+      color:white !important;
+      }
+
+		.f_info .f_sns{
+      position:absolute; 
+      right:0; 
+      top:36px;
+      list-style: none;
+      }
+		.f_info .f_sns li{
+      float:left; 
+      height:21px; 
+      margin:0 0 0 34px;
+      text-decoration: none;
+      }
+		.f_info .f_sns li:first-child{
+      margin:0 0 0 0;
+      }
+		.f_info .f_sns li a{
+      font-size:0; 
+      line-height:0; 
+      float:left;
+      }
+		.f_info .f_sns li.sns1 a{
+      width:22px; 
+      height:21px; 
+      }
+		.f_info .f_sns li.sns2 a{
+      width:10px; 
+      height:21px; 
+      }
+		.f_info .f_sns li.sns3 a{
+      width:13px; 
+      height:21px; 
+    }
+ 
+	/* 2.주소 및 사이트링크 */
+		.f_link{
+      position:relative; 
+      width:100%; 
+      float:left; 
+      background:#78c2ad;  
+      padding:30px 0;      
+      }
+		.f_addr{
+      font-size:13px; 
+      line-height:22px; 
+      color:white; 
+      padding:0 450px 0 0;
+      }
+		.f_addr .f_mail{
+      font-size:13px; 
+      line-height:22px; 
+      color:white !important; 
+      text-decoration:none; 
+      letter-spacing:0;}
+		.f_addr div{
+      float:left;
+      margin-right:22px; 
+      display:inline-block;
+      }
+		.copyright{
+      clear:both; 
+      letter-spacing:0px;
+      }
+    </style>
+  </head>
+  <body>
+    <!--하단 -->
+    <footer id="footer">
+      <div class="f_info">
+        <div class="layout">
+          <div class="f_png">
+            <img src="tent.png" width="100" height="80"/>
+            <span class="campus">Camp Us</span>
+          </div>
+          <ul class="f_menu">
+            <li class="privacy">
+              <a href="">회사 소개</a>
+            </li>
+            <li>
+              <a href="">개인정보약관</a>
+            </li>
+            <li>
+              <a href="">문의 게시판</a>
+            </li>
+          </ul>
+          <ul class="f_sns">
+            <li class="sns1">
+              <a href="https://www.instagram.com/" target="_blank" title="CampUs 공식 인스타그램 바로가기"><img src="insta.png" width="20" height="20">CampUs 공식 인스타</a>
+            </li>
+            <li class="sns2">
+              <a href="https://www.facebook.com" target="_blank" title="CampUs 공식 페이스북 바로가기"><img src="facebook.png" width="20" height="20">CampUs 공식 페이스북</a>
+            </li>
+            <li class="sns3">
+              <a href="https://blog.naver.com" target="_blank" title="CampUs 공식 블로그 바로가기"><img src="blog.png" width="20" height="20">CampUs 공식 블로그</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+      <!--//하단개인정보 링크영역-->
+      <!--하단주소영역&바로가기 링크-->
+
+      <div class="f_link">
+        <div class="layout">
+          <!--하단주소-->
+          <div class="f_addr">
+            <address class="addr">
+              <div>서울특별시 종로구 코아빌딩 5층</div>
+              <div>TEL : 02-000-0000 (상담시간 : 평일 09:30~18:30)</div>
+              <div>
+                EMAIL :
+                <a href="mailto:CampUs@gmail.com" class="f_mail">mailto:CampUs@gmail.com</a>
+              </div>
+            </address>
+            <p class="copyright">
+              Copyrights(c) 2021 <span>KOREA CAMPUS ORGANIZATION</span>
+               ALL RIGHTS RESERVED.
+            </p>
+          </div>
+          <!--//f_addr-->
+          <!--//하단주소-->
+      <!--//하단주소영역&바로가기 링크-->
+    </footer>
+  </body>
+</html>
