@@ -25,6 +25,9 @@ public class MemberController {
 	@Autowired
 	private MemberService service;
 	
+	/* 로그인 시스템 시작 */
+	
+	
 	// login.jsp 보여주기
 	@GetMapping("/login")
 	public void loginGet() {
@@ -32,20 +35,47 @@ public class MemberController {
 	}
 	
 	// 로그인 정보 가져오기 => post
+//	@PostMapping("/loginForm")
+//	public String loginPost(@ModelAttribute("login") LoginVO vo, HttpSession session, RedirectAttributes rttr) {
+//		log.info("login 요청 : " + vo.getUserid() + " " + vo.getPassword());
+//
+//		LoginVO login = service.login(vo.getUserid(), vo.getPassword());
+//		if(login==null) {
+//			rttr.addFlashAttribute("error", "아이디나 비밀번호를 확인해주세요");
+//			return "redirect:login";
+//		} else {
+//			session.setAttribute("login", login);
+//			return "redirect:/";
+//		}
+//	}
+	
 	@PostMapping("/loginForm")
 	public String loginPost(@ModelAttribute("login") LoginVO vo, HttpSession session, RedirectAttributes rttr) {
 		log.info("login 요청 : " + vo.getUserid() + " " + vo.getPassword());
-
+		
 		LoginVO login = service.login(vo.getUserid(), vo.getPassword());
-		log.info(login==null);
 		if(login==null) {
 			rttr.addFlashAttribute("error", "아이디나 비밀번호를 확인해주세요");
+			// String msg = "아이디나 비밀번호를 확인하세요";
 			return "redirect:login";
 		} else {
 			session.setAttribute("login", login);
 			return "redirect:/";
 		}
 	}
+	
+	// logout => session 해제 후 index 보여주기
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		log.info("logout 요청");
+		
+		// session.invalidate();
+		session.removeAttribute("login");
+		return "redirect:/";
+	}
+	
+	
+	/* 로그인 시스템 종료 */
 	
 //	// member/change-pwd => modify.jsp 보여주기
 //	@GetMapping("/change-pwd")
@@ -72,15 +102,6 @@ public class MemberController {
 //		}
 //	}
 	
-	// logout => session 해제 후 index 보여주기
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		log.info("logout 요청");
-		
-		// session.invalidate();
-		session.removeAttribute("login");
-		return "redirect:/";
-	}
 //	
 //	// leave
 //	@GetMapping("/leave")

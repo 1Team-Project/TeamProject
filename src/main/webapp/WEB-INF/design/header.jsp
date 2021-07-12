@@ -16,6 +16,7 @@
 	<!-- 영권 추가 문장 시작 -->
 	<link rel="stylesheet" href="/resources/main/css/bootstrap2.min.css">
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
+	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	<!-- 영권 추가 문장 끝 -->
 	</head>
 	<!-- 폰트 설정하는 스타일 -->
@@ -156,9 +157,11 @@
 		    		<p class="d-md-flex justify-content-end m-2">
 						<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
 						
+						
+						
 						<c:choose>
 							<c:when test="${sessionScope.login != null}">
-								<a href="#" id="logout.do" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
+								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
 			    			</c:when>
 			    			<c:otherwise>
 			    				<a href="login" class="d-flex align-items-center justify-content-center m-1">
@@ -166,6 +169,8 @@
 			    				</a>
 			    			</c:otherwise>
 		    			</c:choose>
+		    			
+		    			
 		    			
 		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_mypage.png"></a>
 		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_cart.png"></a>
@@ -225,16 +230,23 @@
  	<script src="/resources/main/js/main.js"></script>
  	<!-- 영권 추가 문장 시작 -->
  	<script>
- 		$(function() {
- 			$("#logout.do").click(function(){
-	   			var result = confirm("나가시겠습니까?");
- 				if(result){
- 					alert("나가지나 확인");
- 					location.replace="test";
- 				} else{
- 					return false;
- 				}
+ 		/* $(function() {
+ 			$("#logoutDo").click(function(){
+				alert("alert 확인");
+
  			});
- 		})
+ 		}) */
+ 		$(function() {
+ 			$("#logoutDo").click(function(){
+ 				var logout = confirm("로그아웃 하시겠습니까?");
+				if(logout==true){
+					alert("안녕히가세요")
+					location.href="/logout";
+				} else {
+					alert("로그인이 유지됩니다.")
+					return false;
+				}
+ 			});
+ 		}) 
  	</script>
 	<!-- 영권 추가 문장 끝 -->

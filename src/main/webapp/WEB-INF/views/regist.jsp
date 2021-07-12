@@ -76,7 +76,7 @@
 		var regId = /^[a-zA-Z0-9]{4,12}$/;
 		var regPw = /[a-zA-Z0-9!@#$%^&*]{8,12}$/;
 		var regName = /^[가-힝a-zA-Z]{2,}$/;
-		var regEmail = /[a-z0-9]{2,}@[a-z0-9-]{2,}\.]a-z0-9]{2,}/i;
+		var regEmail = /[a-z0-9]{2,}@[a-z0-9]{2,}\.[a-z0-9]{2,}/i;
 		var regPhone = /[0-9]{3}-[0-9]{3,4}-[0-9]{4}$/;
 		var regAdd = /[가-힝]{2,}$/;
 		
@@ -128,7 +128,7 @@
 			alert("전화번호를 입력하세요");
 			phone.focus();
 			event.preventDefault();
-		} else if(!regEmail.test(phone.value)) {
+		} else if(!regPhone.test(phone.value)) {
 			alert("전화번호 형식을 확인하세요");
 			phone.focus();
 			event.preventDefault();

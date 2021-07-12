@@ -172,6 +172,54 @@
               </div>
             </div>
           </div>
+          
+          
+          
+          
+          
+          <!-- 게시판 추가중 시작 부분 -->
+          <div class="row">
+            <div class="col-md-10"></div>
+            <div class="col-md-2 margintb20"></div>
+          </div>
+          
+          <!-- a태그에 게시판 주소 넣기 -->
+          <div class="" style="text-align: right">
+	          <a href="" class="goBoard" style="text-decoration: none; color: black">전체글보기</a>
+	      </div>
+	      <!-- a태그에 게시판 주소 넣기 -->
+
+			<table class="table">
+				<thead>
+					<tr class="textcenter colorthema">
+						<th class="width10">번호</th>
+						<th class="width10">분류</th>
+						<th class="width40">제목</th>
+						<th class="width10">글쓴이</th>
+						<th class="width20">작성일</th>
+						<th class="width10">조회수</th>
+					</tr>
+				</thead>
+				<tbody class="textcenter">
+					<c:forEach var="vo" items="${list}">
+						<tr>
+							<td>${vo.bno}</td>
+								<td><a href="${vo.bno}" class="move">${vo.title}</a><strong>[${vo.replycnt}]</strong></td>
+								<td>${vo.writer}</td>
+								<td><fmt:formatDate pattern="yyyy-MM-dd HH:mm" value="${vo.sysdate}" /></td>
+							</tr>
+					</c:forEach>
+				</tbody>
+			</table>
+
+			<!-- 게시판 추가중 끝 부분 -->
+          
+          
+          
+          
+          
+          
+          
           <div class="row">
             <div class="col-md-10"></div>
             <div class="col-md-2 margintb20"></div>

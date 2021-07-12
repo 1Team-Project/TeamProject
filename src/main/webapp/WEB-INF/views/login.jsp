@@ -43,7 +43,9 @@
  				alert("비밀번호를 입력하세요")
  				$("#password").focus();
  				return false;
-			}
+/* 			} else if(){
+				alert("아이디나 비밀번호를 확인해주세요");
+			} */
  		});
 	})
 </script>
