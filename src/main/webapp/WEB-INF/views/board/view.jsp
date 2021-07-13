@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -13,25 +13,24 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush">ÅëÇÕ °Ô½ÃÆÇ
+				<h3 class="heading-section" style="font-family: naBrush">í†µí•© ê²Œì‹œíŒ
 				</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} ¹ø ±Û</h3>
+				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} ë²ˆ ê¸€</h3>
 			</div>
 			<form action="">
 				<div class="col-md-8 mll20">
 					<span class="hh4">[${campusVO.b_sort}]</span>
 					<input type="text"
-						class="form-control width70 inlinetest mll10"
+						class="form-control width70 inlinetest readonlycolor hh4"  
 						id="campusboard-title" readonly value="${campusVO.b_title}"/>
 				</div>
 
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<h5>³»¿ë</h5>
-					<textarea class="form-control" cols="30" rows="15"
+					<textarea class="form-control readonlycolor" cols="30" rows="15"
 						style="resize: none" readonly >${campusVO.b_content}</textarea>
 				</div>
 				<hr class="one" />
@@ -39,7 +38,7 @@
 
 					<div class="">
 						<div class="">
-							<i class=""></i> Ã·ºÎ ¸ñ·Ï
+							<i class=""></i> ì²¨ë¶€ ëª©ë¡
 						</div>
 						<div class="panel-body">
 							<div class="uploadResult">
@@ -53,22 +52,22 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<button class="btn btn-primary">¼öÁ¤ÇÏ±â</button>
-					<button class="btn btn-green2 listbutton" type="button">¸®½ºÆ®</button>
+					<button class="btn btn-primary">ìˆ˜ì •í•˜ê¸°</button>
+					<button class="btn btn-green2 listbutton" type="button">ë¦¬ìŠ¤íŠ¸</button>
 				</div>
 				</form>
 				<hr class="one" />
 		</div>
 
-		<!-- ´ñ±Û Æû -->
+		<!-- ëŒ“ê¸€ í¼ -->
 		<div class="col-md-1"></div>
 		<div class="col-md-10 mll10">
 			<form action="">
 				<div class="col-md-8 mll20">
-					<h5>´ñ±Û ÀÛ¼º</h5>
+					<h5>ëŒ“ê¸€ ìž‘ì„±</h5>
 					<textarea class="form-control" cols="30" rows="3"
 						style="resize: none"></textarea>
-					<button class="btn btn-primary float-end m-1 mr-0">´ñ±Û ÀÛ¼º</button>
+					<button class="btn btn-primary float-end m-1 mr-0">ëŒ“ê¸€ ìž‘ì„±</button>
 				</div>
 			</form>
 		</div>
@@ -78,30 +77,30 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-10 mll10">
 		<hr class="one" />
-		<!-- ´ñ±Û ¸®½ºÆ® -->
+		<!-- ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸ -->
 
 		<div class="col-md-8 mll20 margintb20">
-			<h6 class="float-start">ÀÛ¼ºÀÚ</h6>
-			<a href="" class="float-end blacktext hoverthema">[¼öÁ¤]</a> <a href=""
-				class="float-end blacktext hoverthema">[»èÁ¦]</a>
+			<h6 class="float-start">ìž‘ì„±ìž</h6>
+			<a href="" class="float-end blacktext hoverthema">[ìˆ˜ì •]</a> <a href=""
+				class="float-end blacktext hoverthema">[ì‚­ì œ]</a>
 			<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">2020/07/08</h7>
 			<textarea class="form-control" cols="30" rows="3"
 				style="resize: none" readonly></textarea>
 		</div>
 
 		<div class="col-md-8 mll20 margintb20">
-			<h6 class="float-start">ÀÛ¼ºÀÚ</h6>
-			<a href="" class="float-end blacktext hoverthema">[¼öÁ¤]</a> <a href=""
-				class="float-end blacktext hoverthema">[»èÁ¦]</a>
+			<h6 class="float-start">ìž‘ì„±ìž</h6>
+			<a href="" class="float-end blacktext hoverthema">[ìˆ˜ì •]</a> <a href=""
+				class="float-end blacktext hoverthema">[ì‚­ì œ]</a>
 			<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">2020/07/08</h7>
 			<textarea class="form-control" cols="30" rows="3"
 				style="resize: none" readonly></textarea>
 		</div>
 
 		<div class="col-md-8 mll20 margintb20">
-			<h6 class="float-start">ÀÛ¼ºÀÚ</h6>
-			<a href="" class="float-end blacktext hoverthema">[¼öÁ¤]</a> <a href=""
-				class="float-end blacktext hoverthema">[»èÁ¦]</a>
+			<h6 class="float-start">ìž‘ì„±ìž</h6>
+			<a href="" class="float-end blacktext hoverthema">[ìˆ˜ì •]</a> <a href=""
+				class="float-end blacktext hoverthema">[ì‚­ì œ]</a>
 			<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">2020/07/08</h7>
 			<textarea class="form-control" cols="30" rows="3"
 				style="resize: none" readonly></textarea>
@@ -125,7 +124,7 @@
 		</div>
 
 
-		<button class="btn btn-green2 mll20 listbutton" type="button">¸®½ºÆ®</button>
+		<button class="btn btn-green2 mll20 listbutton" type="button">ë¦¬ìŠ¤íŠ¸</button>
 
 	</div>
 	<div class="col-md-1"></div>

@@ -21,5 +21,7 @@ public interface CampusBoardMapper {
 
 	public int totalCnt(CampusCriteria cri);
 	
-	public int replyCntUpdate(@Param("bno") int bno);
+	public int replyCntUpdate(int bno);
+	
+	public int addview(@Param("b_views")int views, @Param("b_no")int bno);
 }

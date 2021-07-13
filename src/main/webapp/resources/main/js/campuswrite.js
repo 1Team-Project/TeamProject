@@ -19,6 +19,7 @@ $(function(){
 			alert("해당 종류의 파일은 업로드 할 수 없습니다 (.jpg, .png)");
 			return false;
 		}
+
 		return true;
 	}
 	
@@ -26,13 +27,18 @@ $(function(){
 	$("input[type='file']").change(function(){
 		
 		//첨부 파일 가져오기
-		var files=$("input[name='uploadFile']")[0].files;
+		var files=$("input[name='campusFile']")[0].files;
 		console.log(files);
 		
 		//첨부파일을 formData 로 만들어 전송
 		var campusFormData = new FormData();
 		for(var i=0;i<files.length;i++){
 			if(!checkExtension(files[i].name,files[i].size)){
+				return false;
+			}
+			if(i>=3){
+				alert("사진은 최대 3개까지 업로드가 가능합니다.");
+				$("input[name='campusFile']").val("");
 				return false;
 			}
 			campusFormData.append("campusFile",files[i]);
@@ -49,7 +55,7 @@ $(function(){
 			success:function(result){
 				console.log(result);
 				showUploadedFile(result);
-				$("input[name='uploadFile']").val("");
+				$("input[name='campusFile']").val("");
 			},
 			error:function(xhr,status,error){
 				console.log("에러");
@@ -62,34 +68,25 @@ $(function(){
 		var uploadResult = $(".uploadResult ul");
 		
 		$(uploadResultArr).each(function(i,obj){
-			if(obj.fileType){ //image
-				// 썸네일 이미지 경로 링크				
-				// 2021\\06\\17\\s_2a7f8a81-525e-4781-a814-970096f42b45_2.png
-				var fileCallPath = encodeURIComponent(obj.uploadPath+"\\s_"+obj.uuid+"_"+obj.fileName);
-			
-				// 원본 이미지 경로
-				var originPath = obj.uploadPath+"\\"+obj.uuid+"_"+obj.fileName;
-				originPath = originPath.replace(new RegExp(/\\/g),"/");
-			
-				str+="<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'";
-				str+=" data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'>";
-				str+="<a href=\"javascript:showImage(\'"+originPath+"\')\">";
-				str+="<span>"+obj.fileName+"</span>";
-				str+=" <button type='button' class='btn btn-warning btn-circle btn-sm' data-file='"+fileCallPath+"' data-type='image'>";
-				str+="<i class='fa fa-times'></i></button><br>";			
-				str+="<img src='/display?fileName="+fileCallPath+"'></a>";
-				str+="</li>";
-			}else{
-				var fileCallPath = encodeURIComponent(obj.uploadPath+"\\"+obj.uuid+"_"+obj.fileName);
-				str+="<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'";
-				str+=" data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'>";
-				str+="<span>"+obj.fileName+"</span>";
-				str+=" <button type='button' class='btn btn-warning btn-circle btn-sm' data-file='"+fileCallPath+"' data-type='file'>";
-				str+="<i class='fa fa-times'></i></button><br>";
-				str+="<a href='/download?fileName="+fileCallPath+"'>";
-				str+="<img src='/resources/img/attach.png'></a>";
-				str+="</li>";				
-			}
+
+			// 썸네일 이미지 경로 링크				
+			// 2021\\06\\17\\s_2a7f8a81-525e-4781-a814-970096f42b45_2.png
+			var fileCallPath = encodeURIComponent(obj.a_path+"\\s_"+obj.a_uuid+"_"+obj.a_name);
+		
+			// 원본 이미지 경로
+			var originPath = obj.a_path+"\\"+obj.a_uuid+"_"+obj.a_name;
+			originPath = originPath.replace(new RegExp(/\\/g),"/");
+			console.log(originPath);
+		
+			str+="<li data-path='"+obj.a_path+"' data-uuid='"+obj.a_uuid+"'";
+			str+=" data-filename='"+obj.a_name+"' data-type='image'>";
+			str+="<a href=\"javascript:showImage(\'"+originPath+"\')\">";
+			str+="<span>"+obj.a_name+"</span>";
+			str+="<button type='button' class='btn btn-primary btn-circle btn-sm' data-file='"+fileCallPath+"' data-type='image'>";
+			str+="<i class='fa fa-times'></i></button><br>";			
+			str+="<img src='/display?fileName="+fileCallPath+"'></a>";
+			str+="</li>";
+
 		})		
 		uploadResult.append(str);
 	}// showUploadedFile 종료	
@@ -99,16 +96,37 @@ $(function(){
 	$("button[type='submit']").click(function(e){
 		e.preventDefault();
 		
+		let sort = $("#sort option:selected").val();
+		let title = $("#campusboard-title").val();
+		let content = $("#campusboard-content").val();
 		
+		console.log(sort)
+
+		if(sort == ""){
+			alert("분류를 선택해 주세요!");
+			$("#sort").focus();
+			return;
+		}
+		if(title == ""){
+			alert("제목을 작성해 주세요!");
+			$("#campusboard-title").focus();
+			return;
+		}
+		if(content == ""){
+			alert("내용을 작성해 주세요!");
+			$("#campusboard-content").focus();
+			return;
+		}
+
 		var str="";
 		$(".uploadResult ul li").each(function(idx,obj){
 			var job = $(obj);
 			//수집된 정보를 hidden 태그로 작성
-			str+="<input type='hidden' name='attachList["+idx+"].uuid' value='"+job.data("uuid")+"'>";
-			str+="<input type='hidden' name='attachList["+idx+"].uploadPath' value='"+job.data("path")+"'>";
-			str+="<input type='hidden' name='attachList["+idx+"].fileName' value='"+job.data("filename")+"'>";
-			str+="<input type='hidden' name='attachList["+idx+"].fileType' value='"+job.data("type")+"'>";
+			str+="<input type='hidden' name='attachList["+idx+"].a_uuid' value='"+job.data("uuid")+"'>";
+			str+="<input type='hidden' name='attachList["+idx+"].a_path' value='"+job.data("path")+"'>";
+			str+="<input type='hidden' name='attachList["+idx+"].a_name' value='"+job.data("filename")+"'>";
 		})
+		
 		
 		console.log(str);
 		
@@ -116,6 +134,7 @@ $(function(){
 		var form = $("form");
 		//수집된 내용 폼에 추가하기
 		form.append(str);
+		form.append("<input type='hidden' name='b_writer' value='홍홍길동'>");
 		//폼 전송하기
 		form.submit();
 	})

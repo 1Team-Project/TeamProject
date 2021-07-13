@@ -20,18 +20,17 @@
 	</select>
 
 	<delete id="delete">
-		delete from spring_board where bno = #{bno}
+		delete from campus_board where b_no = #{b_no}
 	</delete>
 	
 	<update id="update">
-		update spring_board set title = #{title}, content = #{content}, updatedate = sysdate where bno = #{bno}
+		update campus_board set b_title = #{b_title}, b_content = #{b_content} where b_no = #{b_no}
 	</update>
 
-<!--  페이지 나누기 전 list -->
-<!-- 	<select id="list" resultType="com.spring.domain.BoardVO">
-		select * from spring_board where bno>0 order by bno desc,regdate desc
-	</select> -->
 	
+	<update id="addview">
+		update campus_board set b_views = #{b_views} where b_no = #{b_no}
+	</update>
 	
 	<!-- 전체 게시물 수 -->
 	<select id="totalCnt" resultType="int">
@@ -53,6 +52,16 @@
 	<update id="replyCntUpdate">
 		update spring_board set replycnt = replycnt + 20 where bno = #{bno}
 	</update>
+	
+	<insert id="insert">
+		<!-- 주로 pk값을 미리 sql 쿼리문을 통해 처리해 두고 특정한 이름으로 결과를 보관 -->
+		<selectKey keyProperty="b_no" order="BEFORE" resultType="int">
+			select CAMPUS_BOARD_SEQUENCE.nextval from dual
+		</selectKey>
+		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort})
+	</insert>
+	
+	
 	
 	<!-- 동적 SQL -->
 	<sql id = "criteria">

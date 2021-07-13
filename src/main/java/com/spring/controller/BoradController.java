@@ -13,8 +13,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
@@ -52,9 +57,41 @@ public class BoradController {
 		model.addAttribute("CampusPageVO", campusPageVO);
 	}
 	
-	@GetMapping({"/view","/modify"})
-	public void read(int b_no,@ModelAttribute("cri") CampusCriteria cri,Model model) {
+
+	@PostMapping("/viewadd")
+	@ResponseBody
+	public String read2(@RequestBody String bnoval) {
+		
+		log.info("뷰 애드 테스트");
+		log.info(bnoval);
+		int b_no = Integer.parseInt(bnoval);
+		log.info("int 처리된 bno"+b_no);
+		CampusBoardVO campusVO=service.view(b_no);
+		int views = campusVO.getB_views()+1;
+		log.info("views 값 : "+views);
+		String viewsS = Integer.toString(views);
+
+		return viewsS;
+	}
+	
+	@GetMapping("/view")
+	public void read(int b_no,int b_views,@ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("글 하나 가져오기 "+b_no+" cri : "+cri);  
+		
+		CampusBoardVO campusVO=service.view(b_no);
+		int views = campusVO.getB_views();
+		
+		if (b_views - views == 1 || b_views == 1){			
+			service.addview(b_views, b_no);
+		}
+		
+		model.addAttribute("campusVO", campusVO);
+		
+	}
+	
+	@GetMapping("/modify")
+	public void modify(int b_no,@ModelAttribute("cri") CampusCriteria cri,Model model) {
+		log.info("글 수정 "+b_no+" cri : "+cri);  
 		
 		CampusBoardVO campusVO=service.view(b_no);
 		model.addAttribute("campusVO", campusVO);
@@ -64,6 +101,21 @@ public class BoradController {
 	@GetMapping("/write")
 	public void register() {
 		log.info("새글 등록 폼 요청");
+	}
+	
+	@PostMapping("/write")
+	public String registerPost(CampusBoardVO vo, RedirectAttributes rttr) {
+		
+		log.info("글 작성  "+vo);
+		
+		if(service.insert(vo)) {
+			log.info("글 작성 요청 : "+vo.getB_no()+" /// "+vo.getAttachList());
+			rttr.addFlashAttribute("result",vo.getB_no());
+			return "redirect:list";
+		}else {
+			return "redirect:register";
+		}
+		
 	}
 	
 	@GetMapping("/sellwrite")

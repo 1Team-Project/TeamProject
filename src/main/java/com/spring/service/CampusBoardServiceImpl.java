@@ -99,4 +99,12 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		return attachMapper.findByBno(bno);
 	}
 
+	@Override
+	public boolean addview(int views, int bno) {
+		// TODO Auto-generated method stub
+		return mapper.addview(views,bno)>0?true:false;
+	}
+
+	
+	
 }

@@ -41,7 +41,7 @@ public class BoardUploadController {
 	public ResponseEntity<List<CampusAttachFileDTO>> uploadFormPost(MultipartFile[] campusFile) {
 		log.info("파일 업로드 요청");
 		
-		log.info("잘 들어왔나 확인"+campusFile[1]);
+		log.info("잘 들어왔나 확인"+campusFile);
 		
 		String uploadFileName=null;
 		String uploadFolder = "c:\\CampusIMG";

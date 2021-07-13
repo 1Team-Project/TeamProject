@@ -125,14 +125,15 @@
   margin-left: 4%;
 }
 .uploadResult {
+  margin-top: 10px;
   width: 100%;
-  background-color: gray;
+  background-color: #d8f5e7;
 }
 .uploadResult ul {
   display: flex;
   flex-flow: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: left;
+  align-items: left;
 }
 
 .uploadResult ul li {
@@ -173,4 +174,9 @@
   color: #fff;
   background-color: #72c950;
   border-color: #72c950;
+}
+
+.readonlycolor {
+	background-color: #72c950;
+	border: 0px;
 }

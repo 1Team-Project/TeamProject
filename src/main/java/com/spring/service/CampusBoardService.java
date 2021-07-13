@@ -14,6 +14,7 @@ public interface CampusBoardService {
 	public List<CampusBoardVO> list(CampusCriteria cri);	
 	public CampusBoardVO view(int bno);
 	public int total(CampusCriteria cri);
+	public boolean addview(int views, int bno);
 	
 	public List<CampusAttachFileDTO> getAttachList(int bno);
 }
