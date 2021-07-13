@@ -20,7 +20,7 @@
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>
 			<button class="btn btn-lg btn-primary btn-block" id="regist">회원가입</button>
-			<input type="hidden" name="${userid}" value="${password}"/>
+			<input type="hidden" name="${u_userid}" value="${u_password}"/>
 			<div class="error-message">
 				<span>${loginError}</span>
 			</div>
@@ -38,35 +38,20 @@
 		if(error){
 			alert(error);
 			return false;
-		};
+		}
 		
 		$("#login").click(function(){
 			let error = '${error}';
- 			if($("#userid").val() == ""){
+ 			if($("#u_userid").val() == ""){
  				alert("아이디를 입력하세요");
- 				$("#userid").focus();
+ 				$("#u_userid").focus();
  				return false;
- 			} else if($("#password").val() == ""){
- 				alert("비밀번호를 입력하세요")
- 				$("#password").focus();
+ 			} else if($("#u_password").val() == ""){
+ 				alert("비밀번호를 입력하세요");
+ 				$("#u_password").focus();
  				return false;
  			}
 		});
-		/* 로그인 버튼 관련 */
-/* 	 	$("#login").click(function(){
-			let error = '${error}';
- 			if($("#userid").val() == ""){
- 				alert("아이디를 입력하세요");
- 				$("#userid").focus();
- 				return false;
- 			} else if($("#password").val() == ""){
- 				alert("비밀번호를 입력하세요")
- 				$("#password").focus();
- 				return false;
- 			} else if(error){
-				alert(error);
-			} 
-		})*/ 
 
 	})
 

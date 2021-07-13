@@ -19,7 +19,7 @@
 	
 	<!-- 탈퇴 : leave -->
 	<delete id="leave">
-		delete from CAMPUS_USER where u_userid = #{u_userid} and password = #{u_password}
+		delete from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
 	</delete>
 	
 	<!-- 비밀번호 변경 : update -->
