@@ -2,55 +2,56 @@
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
-	<form action="regist2" method="post">
+	<form action="/regist2" method="post">
 		<div class="regist-Form">
 			<div class="form-group">
-		  		<label for="userid" style="font-family: naBrush">아이디</label>
+		  		<label for="u_userid" style="font-family: naBrush">아이디</label>
 		  		<div class="regist-margin">
-		    		<input type="text" name="userid" id="userid" class="form-control-regist" placeholder="영문, 숫자 4 ~12자리" />
-		    		<small id="userid" class="text-info"></small>
+		    		<input type="text" name="u_userid" id="u_userid" class="form-control-regist" placeholder="영문, 숫자 4 ~12자리" />
+		    		<small id="u_userid" class="text-info"></small>
+		    		<button type="text" id="checkId" class="btn btn-primary" style="font-size:20px">중복확인</button>
 		  		</div>
 			</div>
 			<div class="form-group">
-		  		<label for="pass1" style="font-family: naBrush">비밀번호</label>
+		  		<label for="u_password" style="font-family: naBrush">비밀번호</label>
 		  		<div class="regist-margin">
-		    		<input type="password" name="password" id="password" class="form-control-regist" placeholder="영문, 숫자 8 ~12자리, 특수문자 !@#$%^&* 사용가능" />
-		    		<small id="password" class="text-info"></small>
+		    		<input type="password" name="u_password" id="u_password" class="form-control-regist" placeholder="영문, 숫자 8 ~12자리, 특수문자 !@#$%^&* 사용가능" />
+		    		<small id="u_password" class="text-info"></small>
 		  		</div>
 			</div>
 			<div class="form-group">
-		  		<label for="pass2" style="font-family: naBrush">비밀번호 확인</label>
+		  		<label for="confirm_password" style="font-family: naBrush">비밀번호 확인</label>
 		  		<div class="regist-margin">
 		    		<input type="password" name="confirm_password" id="confirm_password" class="form-control-regist" placeholder="영문, 숫자 8 ~12자리, 특수문자 !@#$%^&* 사용가능" />
 		    		<small id="confirm_password" class="text-info"></small>
 		  		</div>
 			</div>
 			<div class="form-group">
-		  		<label for="username" style="font-family: naBrush">이    름</label>
+		  		<label for="u_username" style="font-family: naBrush">이    름</label>
 		  		<div class="regist-margin">
-		    		<input type="text" name="username" id="username" class="form-control-regist" placeholder="이름을 입력하세요" />
-		    		<small id="username" class="text-info"></small>
+		    		<input type="text" name="u_username" id="u_username" class="form-control-regist" placeholder="이름을 입력하세요" />
+		    		<small id="u_username" class="text-info"></small>
 		  		</div>
 			</div>
 			<div class="form-group">
-		  		<label for="email" style="font-family: naBrush">이메일</label>
+		  		<label for="u_email" style="font-family: naBrush">이메일</label>
 		  		<div class="regist-margin">
-		    		<input type="text" name="email" id="email" class="form-control-regist" placeholder="example@gmail.com" />
-		    		<small id="email" class="text-info"></small>
+		    		<input type="text" name="u_email" id="u_email" class="form-control-regist" placeholder="example@gmail.com" />
+		    		<small id="u_email" class="text-info"></small>
 		  		</div>
 			</div>
 			<div class="form-group">
-		  		<label for="phone" style="font-family: naBrush">전화번호</label>
+		  		<label for="u_phone" style="font-family: naBrush">전화번호</label>
 		  		<div class="regist-margin">
-		    		<input type="text" name="phone" id="phone" class="form-control-regist" placeholder="전화번호를 입력하세요" />
-		    		<small id="phone" class="text-info"></small>
+		    		<input type="text" name="u_phone" id="u_phone" class="form-control-regist" placeholder="전화번호를 입력하세요" />
+		    		<small id="u_phone" class="text-info"></small>
 		  		</div>
 			</div>
 			<div class="form-group">
-		  		<label for="address" style="font-family: naBrush">주    소</label>
+		  		<label for="u_address" style="font-family: naBrush">주    소</label>
 		  		<div class="regist-margin">
-		    		<input type="text" name="address" id="address" class="form-control-regist" placeholder="주소를 입력하세요" />
-		    		<small id="address" class="text-info"></small>
+		    		<input type="text" name="u_address" id="u_address" class="form-control-regist" placeholder="주소를 입력하세요" />
+		    		<small id="u_address" class="text-info"></small>
 		  		</div>
 			</div>
 			<div class="form-group">
@@ -59,12 +60,11 @@
 		    </div>
 	    </div>
 	</form>
+
 <script>
 	/* 자바스크립트로 회원가입 양식 제작 */
 	var signup = document.getElementById("signup");
-
- 	signup.addEventListener("click", function() {
-//	signup.onclick = function() {
+	signup.addEventListener("click", function() {
 		var userid = document.getElementById("userid");
 		var password = document.getElementById("password");
 		var confirm_password = document.getElementById("confirm_password");
@@ -77,7 +77,7 @@
 		var regPw = /[a-zA-Z0-9!@#$%^&*]{8,12}$/;
 		var regName = /^[가-힝a-zA-Z]{2,}$/;
 		var regEmail = /[a-z0-9]{2,}@[a-z0-9]{2,}\.[a-z0-9]{2,}/i;
-		var regPhone = /[0-9]{3}-[0-9]{3,4}-[0-9]{4}$/;
+		var regPhone = /^[0-9]{3}-[0-9]{3,4}-[0-9]{4}$/;
 		var regAdd = /[가-힝]{2,}$/;
 		
 		if(userid.value == '') {
@@ -88,7 +88,7 @@
 			alert("아이디를 형식을 확인하세요");
 			userid.focus();
 			event.preventDefault();
- 		} else if(password.value == '') {
+		} else if(password.value == '') {
 			alert("비밀번호를 입력하세요");
 			password.focus();
 			event.preventDefault();
@@ -137,10 +137,42 @@
 			address.focus();
 			event.preventDefault();
 		} else if(!regAdd.test(address.value)) {
-			alert("전화번호 형식을 확인하세요");
+			alert("주소 형식을 확인하세요");
 			address.focus();
 			event.preventDefault();
 		} 
 	})
+
+	$(function(){
+		$("#checkId").onclick(function(){
+			$("#formId").attr("action", "checkId");
+			$.ajax({
+				url: "/checkId",
+				type: "POST",
+				data: userid,
+				success: function(result){
+					if(result=='false'){
+						alert("중복아이디입니다.");
+					} else {
+						alert("사용 가능합니다.");
+						return $("#userid").val();
+					}
+				}
+			})
+		})
+	})
+/* 	$(function(){
+		var overlapError = '${overlapError}';
+		var regiError = '${regiError}'
+		var pass = '${pass}';
+		if(overlapError) {
+			alert(overlapError)
+		} else if(regiError) {
+			alert(regiError)
+		} else if(pass) {
+			alert(pass)
+		}
+	}) */
+	
 </script>
 <%@include file="../design/footer.jsp" %>

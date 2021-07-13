@@ -8,8 +8,8 @@ import com.spring.domain.MemberVO;
 
 public interface MemberMapper {
 	public int insert(MemberVO vo);
-	public MemberVO dupId(String userid);
-	public LoginVO login(@Param("userid") String userid, @Param("password") String password);
-	public int leave(@Param("userid") String userid, @Param("password") String password);
+	public MemberVO dupId(String u_userid);
+	public LoginVO login(@Param("u_userid") String u_userid, @Param("u_password") String u_password);
+	public int leave(@Param("u_userid") String u_userid, @Param("u_password") String u_password);
 	public int update(ChangeVO change);
 }

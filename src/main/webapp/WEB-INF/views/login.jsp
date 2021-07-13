@@ -6,12 +6,12 @@
 		<div class="login-Form">
 			<h1 class="h1" style="font-family: naBrush">로그인</h1>
 			<div class="login-margin">
-				<label for="userid" class="sr-only">로그인 아이디</label>
-				<input type="text" id="userid" name="userid" class="form-control-login" placeholder="아이디를 입력해 주세요" />
+				<label for="u_userid" class="sr-only">로그인 아이디</label>
+				<input type="text" id="u_userid" name="u_userid" class="form-control-login" placeholder="아이디를 입력해 주세요" />
 			</div> 
 			<div class="login-margin">
-				<label for="password" class="sr-only">비밀번호</label>
-				<input type="password" id="password" name="password" class="form-control-login" placeholder="비밀번호를 입력해 주세요" />
+				<label for="u_password" class="sr-only">비밀번호</label>
+				<input type="password" id="u_password" name="u_password" class="form-control-login" placeholder="비밀번호를 입력해 주세요" />
 			</div>
 			<div class="login-margin">
 				<label> 
@@ -34,8 +34,14 @@
 		});
 		
 		/* 로그인 버튼 관련 */
-		var result = "${error}";
- 		$("#login").click(function(){
+		let error = '${error}';
+		if(error){
+			alert(error);
+			return false;
+		};
+		
+		$("#login").click(function(){
+			let error = '${error}';
  			if($("#userid").val() == ""){
  				alert("아이디를 입력하세요");
  				$("#userid").focus();
@@ -44,11 +50,25 @@
  				alert("비밀번호를 입력하세요")
  				$("#password").focus();
  				return false;
- 			} else if(result=="error"){
-				alert("아이디나 비밀번호를 확인해주세요");
-				return false;
+ 			}
+		});
+		/* 로그인 버튼 관련 */
+/* 	 	$("#login").click(function(){
+			let error = '${error}';
+ 			if($("#userid").val() == ""){
+ 				alert("아이디를 입력하세요");
+ 				$("#userid").focus();
+ 				return false;
+ 			} else if($("#password").val() == ""){
+ 				alert("비밀번호를 입력하세요")
+ 				$("#password").focus();
+ 				return false;
+ 			} else if(error){
+				alert(error);
 			} 
- 		});
+		})*/ 
+
 	})
+
 </script>
 <%@include file="../design/footer.jsp" %>

@@ -8,6 +8,6 @@ import lombok.ToString;
 @Getter
 @ToString
 public class leaveVO {
-	private String userid;
-	private String current_password;
+	private String u_userid;
+	private String u_password;
 }

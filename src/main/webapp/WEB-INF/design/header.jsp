@@ -229,13 +229,7 @@
   	<script src="/resources/main/js/bootstrap.min.js"></script>
  	<script src="/resources/main/js/main.js"></script>
  	<!-- 영권 추가 문장 시작 -->
- 	<script>
- 		/* $(function() {
- 			$("#logoutDo").click(function(){
-				alert("alert 확인");
-
- 			});
- 		}) */
+  	<script>
  		$(function() {
  			$("#logoutDo").click(function(){
  				var logout = confirm("로그아웃 하시겠습니까?");

@@ -37,7 +37,6 @@ public class RegisterController {
 	
 	
 	// 회원가입 정보를 가져오는 컨트롤러 생성
-	// domain => MemberVO(memberTBL)
 	@PostMapping("/regist2")
 	public String regist2Post(@ModelAttribute("member") MemberVO vo) {
 		log.info("회원가입 요청 " + vo);
@@ -55,10 +54,59 @@ public class RegisterController {
 			return "regist2";
 		}
 	}
+	// 회원가입 정보를 가져오는 컨트롤러 생성
+	// domain => MemberVO(memberTBL)
+//	@ResponseBody
+//	@PostMapping("/regist2")
+//	public String regist2Post(@ModelAttribute("member") MemberVO vo, RedirectAttributes rttr) {
+//		log.info("회원가입 요청 " + vo);
+//		
+//		log.info("중복아이디 검사 " + vo.getUserid());
+//		log.info("값 확인 : " + vo);
+//		
+//		MemberVO vo1 = service.dupId(vo.getUserid()); 
+//		log.info("값 확인2 : " + vo1);
+//		
+//		if(vo.getUserid().equals(vo1.getUserid())) {
+//			rttr.addFlashAttribute("overlapError", "중복된 아이디입니다.");
+//			return "redirect:regist";
+//		} else if(vo1.equals(null)){
+//			if(service.insert(vo)) {
+//				rttr.addFlashAttribute("pass", "회원가입이 완료되었습니다.");
+//				return "redirect:login";
+//			}
+//		} else {
+//			rttr.addFlashAttribute("regiError", "회원가입 오류");
+//		}
+//		return "redirect:regist";
+//	}
+
+//	// 중복 아이디 검사
+//	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+//	@PostMapping("/checkId")
+//	public String checkId(String userid) {
+//		log.info("중복아이디 검사 " + userid);
+//		MemberVO vo = service.dupId(userid);
+//		if(vo!=null) {
+//			return "false";
+//		}
+//		return "true";
+//	}
 	
+	// 중복 아이디 검사
+	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+	@PostMapping("/checkId")
+	public String checkId(String u_userid) {
+		log.info("중복아이디 검사 " + u_userid);
+		MemberVO vo = service.dupId(u_userid);
+		if(vo!=null) {
+			return "false";
+		}
+		return "true";
+	}
 	
 	// /register, /register2 직접 눌러서 접근하는 경우 - 405에러
-	@GetMapping(value={"/regist", "/regist2"})
+	@GetMapping(value={"/regist"})
 	public String handleStep() {
 		return "redirect:agree";
 	}
@@ -79,17 +127,6 @@ public class RegisterController {
 //		return "step2";
 //	}
 	
-//	// 중복 아이디 검사
-//	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
-//	@PostMapping("/checkId")
-//	public String checkId(String userid) {
-//		log.info("중복아이디 검사 " + userid);
-//		MemberVO vo = service.dupId(userid);
-//		if(vo!=null) {
-//			return "false";
-//		}
-//		return "true";
-//	}
 //	
 //	// 회원가입 정보를 가져오는 컨트롤러 생성
 //	// domain => MemberVO(memberTBL)

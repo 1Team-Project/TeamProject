@@ -12,6 +12,6 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class LoginVO {
-	private String userid;
-	private String password;
+	private String u_userid;
+	private String u_password;
 }

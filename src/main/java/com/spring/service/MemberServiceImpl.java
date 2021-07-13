@@ -20,18 +20,18 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public MemberVO dupId(String userid) {
-		return mapper.dupId(userid);
+	public MemberVO dupId(String u_userid) {
+		return mapper.dupId(u_userid);
 	}
 
 	@Override
-	public LoginVO login(String userid, String password) {
-		return mapper.login(userid, password);
+	public LoginVO login(String u_userid, String u_password) {
+		return mapper.login(u_userid, u_password);
 	}
 
 	@Override
-	public boolean leave(String userid, String password) {
-		return mapper.leave(userid, password)>0? true:false;
+	public boolean leave(String u_userid, String u_password) {
+		return mapper.leave(u_userid, u_password)>0? true:false;
 	}
 
 	@Override

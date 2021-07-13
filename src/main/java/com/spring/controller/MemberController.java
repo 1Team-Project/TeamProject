@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.ChangeVO;
@@ -35,28 +36,13 @@ public class MemberController {
 	}
 	
 	// 로그인 정보 가져오기 => post
-//	@PostMapping("/loginForm")
-//	public String loginPost(@ModelAttribute("login") LoginVO vo, HttpSession session, RedirectAttributes rttr) {
-//		log.info("login 요청 : " + vo.getUserid() + " " + vo.getPassword());
-//
-//		LoginVO login = service.login(vo.getUserid(), vo.getPassword());
-//		if(login==null) {
-//			rttr.addFlashAttribute("error", "아이디나 비밀번호를 확인해주세요");
-//			return "redirect:login";
-//		} else {
-//			session.setAttribute("login", login);
-//			return "redirect:/";
-//		}
-//	}
-	
 	@PostMapping("/loginForm")
 	public String loginPost(@ModelAttribute("login") LoginVO vo, HttpSession session, RedirectAttributes rttr) {
-		log.info("login 요청 : " + vo.getUserid() + " " + vo.getPassword());
-		
-		LoginVO login = service.login(vo.getUserid(), vo.getPassword());
+		log.info("login 요청 : " + vo.getU_userid() + " " + vo.getU_password());
+
+		LoginVO login = service.login(vo.getU_userid(), vo.getU_password());
 		if(login==null) {
-			rttr.addFlashAttribute("error", "error");
-			// String msg = "아이디나 비밀번호를 확인하세요";
+			rttr.addFlashAttribute("error", "아이디 또는 비밀번호를 확인해주세요");
 			return "redirect:login";
 		} else {
 			session.setAttribute("login", login);

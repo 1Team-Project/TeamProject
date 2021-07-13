@@ -192,7 +192,7 @@
 		<input type="checkbox" id="chk2" name="agr_chk"/><br/><br/>
 		<div class="">
 			<button type="submit" id="join" class="btn btn-primary" style="font-size:20px">확 인</button>
-			<button type="button" class="btn btn-danger" style="font-size:20px" onclick="location.href='/'">취 소</button>
+			<button type="button" class="btn btn-danger" style="font-size:20px" onclick="location.href='login'">취 소</button>
 		</div>
 	</div>
 </form>
