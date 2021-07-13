@@ -126,9 +126,7 @@
               <div class="row textcenter">
                 <div class="col-md-4">
                   <div class="card">
-                    <img
-                      class="card-img-top"
-                      src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg"
+                    <img class="card-img-top" src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg"
                     />
                     <div class="card-block">
                       <h5 class="card-title topmargin10">후기입니다</h5>

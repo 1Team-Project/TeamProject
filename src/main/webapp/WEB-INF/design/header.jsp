@@ -22,13 +22,14 @@
 	<style type="text/css">
 		@FONT-FACE {
 			font-family: 'naBrush';
-			src:url("fonts/BMDOHYEON_ttf.ttf");
+			src:url("resources/main/fonts/BMDOHYEON_ttf.ttf");
 		}
 		    #footer { 
        clear:both;
        position:relative; 
        width:100%; 
        height:auto; }
+	
 	/* 1.하단정보 */
     .campus{
       color: white;
