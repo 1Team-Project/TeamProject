@@ -12,7 +12,7 @@ public class CampusCriteria {
 	
 	private int page;
 
-	//°Ë»ö Ãß°¡
+	//ê²€ìƒ‰ ì¶”ê°€
 	private String sort;
 	private String keyword;
 	

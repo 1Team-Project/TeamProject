@@ -29,6 +29,6 @@ public class CampusBoardVO {
 	private int b_rating;
 	private int p_pnumber;
 	
-	//Ã·ºÎÆÄÀÏ
+	//ì²¨ë¶€íŒŒì¼
 	private List<CampusAttachFileDTO> attachList;
 }

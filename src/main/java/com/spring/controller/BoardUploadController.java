@@ -39,9 +39,9 @@ public class BoardUploadController {
 	//@PreAuthorize("isAuthenticated()")
 	@PostMapping("/uploadAjax")
 	public ResponseEntity<List<CampusAttachFileDTO>> uploadFormPost(MultipartFile[] campusFile) {
-		log.info("���� ���ε� ��û");
+		log.info("파일 업로드 요청");
 		
-		log.info("�� ���Գ� Ȯ��"+campusFile);
+		log.info("잘 들어왔나 확인"+campusFile);
 		
 		String uploadFileName=null;
 		String uploadFolder = "c:\\CampusIMG";
@@ -51,7 +51,7 @@ public class BoardUploadController {
 		File uploadPath = new File(uploadFolder,uploadFolderPath);
 		
 		if(!uploadPath.exists()) {
-			uploadPath.mkdirs(); //���� ����
+			uploadPath.mkdirs(); //폴더 생성
 		}
 		
 		List<CampusAttachFileDTO> attachList = new ArrayList<CampusAttachFileDTO>();
@@ -77,7 +77,7 @@ public class BoardUploadController {
 				
 				if(checkImageType(saveFile)) {
 					attach.setA_type(true);
-					//����� ����
+					//썸네일 저장
 					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
 					InputStream in = f.getInputStream();
 					Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
@@ -85,7 +85,7 @@ public class BoardUploadController {
 					thumbnail.close();					
 				}
 				
-				//���� ����(���� �״��)
+				//파일 저장(원본 그대로)
 				f.transferTo(saveFile);
 				attachList.add(attach);
 				
@@ -98,10 +98,10 @@ public class BoardUploadController {
 		return new ResponseEntity<List<CampusAttachFileDTO>>(attachList,HttpStatus.OK);
 	}
 	
-	//����� �����ֱ�
+	//썸네일 보여주기
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(String fileName){
-		log.info("����� ��û "+fileName);
+		log.info("썸네일 요청 "+fileName);
 		
 		File file = new File("c:\\CampusIMG\\"+fileName);
 		
@@ -128,9 +128,9 @@ public class BoardUploadController {
 		
 		HttpHeaders headers = new HttpHeaders();
 		
-		// ��ü ���ϸ��� uuid ���� ���� ���ϸ� ���� 4e3c6543-9c97-4e60-8a40-d0e22df6e869_0610.txt
+		// 전체 파일명에서 uuid 값과 실제 파일명만 추출 4e3c6543-9c97-4e60-8a40-d0e22df6e869_0610.txt
 		String uidFileName = resource.getFilename();
-		// uuid���� ������ ���ϸ� ����
+		// uuid값을 제외한 파일명 추출
 		String resourceName = uidFileName.substring(uidFileName.indexOf("_")+1);
 		
 		try {
@@ -143,23 +143,23 @@ public class BoardUploadController {
 		return new ResponseEntity<Resource>(resource,headers,HttpStatus.OK);
 	}
 	
-	//upload ������ �ִ� ���� ����
+	//upload 폴더에 있는 파일 삭제
 	//@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	public ResponseEntity<String> deleteFile(String fileName,String type){
-		log.info("���� ���� : "+fileName+" type : "+type);
+		log.info("파일 삭제 : "+fileName+" type : "+type);
 		
 		
 		try {
 			File file=new File("c:\\CampusIMG\\"+URLDecoder.decode(fileName,"utf-8"));
 			
-			file.delete(); //�Ϲ� ���� ����, �̹����� ��� ����ϸ� ����
+			file.delete(); //일반 파일 삭제, 이미지인 경우 썸네일만 삭제
 			
 			if(type.equals("image")) {
-				//���� �̹��� ���ϸ� ����
+				//원본 이미지 파일명 추출
 				String largeName = file.getAbsolutePath().replace("s_", "");
 				file = new File(largeName);
-				file.delete(); //���� �̹��� ���� ����
+				file.delete(); //원본 이미지 파일 삭제
 			}	
 			
 		} catch (UnsupportedEncodingException e) {			
@@ -176,7 +176,7 @@ public class BoardUploadController {
 	
 	
 	
-	//÷�� ������ �̹������� �ƴ��� �Ǵ�
+	//첨부 파일이 이미지인지 아닌지 판단
 	private boolean checkImageType(File file) {
 		String contentType;
 		try {
@@ -188,7 +188,7 @@ public class BoardUploadController {
 		return false;
 	}
 	
-	//���� ����
+	//폴더 생성
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
@@ -198,27 +198,3 @@ public class BoardUploadController {
 		return str.replace("-", File.separator); // "2021\06\17"
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
