@@ -1,5 +1,7 @@
 package com.spring.config;
 
+import java.sql.SQLException;
+
 import javax.sql.DataSource;
 
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -15,6 +17,10 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import com.zaxxer.hikari.HikariConfig;
 import com.zaxxer.hikari.HikariDataSource;
 
+import oracle.ucp.jdbc.PoolDataSource;
+import oracle.ucp.jdbc.PoolDataSourceFactory;
+import oracle.ucp.jdbc.PoolDataSourceImpl;
+
 @EnableAspectJAutoProxy // aop
 @EnableTransactionManagement // tx
 @MapperScan("com.spring.mapper")
@@ -22,18 +28,23 @@ import com.zaxxer.hikari.HikariDataSource;
 @Configuration
 public class RootConfig {
 
-	//hikari
+	
 	@Bean
-	public DataSource dataSource() {
+	public DataSource dataSource() throws SQLException {		
 		
-		HikariConfig hikariConfig = new HikariConfig();
-		hikariConfig.setDriverClassName("oracle.jdbc.OracleDriver");
-		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe");
-		hikariConfig.setUsername("javaDB");
-		hikariConfig.setPassword("12345");
 		
-		HikariDataSource datasource = new HikariDataSource(hikariConfig);
-		return datasource;
+		PoolDataSource pool  = PoolDataSourceFactory.getPoolDataSource();
+		
+//		PoolDataSourceImpl pool = new PoolDataSourceImpl();	
+		
+		pool.setConnectionFactoryClassName("oracle.jdbc.pool.OracleDataSource");
+		pool.setURL("jdbc:oracle:thin:@campus_medium?TNS_ADMIN=C://Wallet_CampUs");
+		pool.setUser("ADMIN");
+		pool.setPassword("CampUs1234team1");
+		pool.setMaxPoolSize(20);
+		pool.setInitialPoolSize(5);
+		
+		return pool;
 	}
 	
 	//mybatis
@@ -46,7 +57,7 @@ public class RootConfig {
 	
 	//transaction
 	@Bean
-	public DataSourceTransactionManager txManager() {
+	public DataSourceTransactionManager txManager() throws SQLException {
 		return new DataSourceTransactionManager(dataSource());
 	}
 }
