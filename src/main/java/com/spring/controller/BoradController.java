@@ -47,7 +47,7 @@ public class BoradController {
 	@GetMapping("/list")
 	public void list(Model model, CampusCriteria cri) {
 		
-		log.info("ÀüÃ¼ ¸®½ºÆ® Á¶È¸");
+		log.info("ì „ì²´ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ");
 		List<CampusBoardVO> list = service.list(cri);
 		int total = service.total(cri);
 		
@@ -62,13 +62,13 @@ public class BoradController {
 	@ResponseBody
 	public String read2(@RequestBody String bnoval) {
 		
-		log.info("ºä ¾Öµå Å×½ºÆ®");
+		log.info("ë·° ì• ë“œ í…ŒìŠ¤íŠ¸");
 		log.info(bnoval);
 		int b_no = Integer.parseInt(bnoval);
-		log.info("int Ã³¸®µÈ bno"+b_no);
+		log.info("int ì²˜ë¦¬ëœ bno"+b_no);
 		CampusBoardVO campusVO=service.view(b_no);
 		int views = campusVO.getB_views()+1;
-		log.info("views °ª : "+views);
+		log.info("views ê°’ : "+views);
 		String viewsS = Integer.toString(views);
 
 		return viewsS;
@@ -76,7 +76,7 @@ public class BoradController {
 	
 	@GetMapping("/view")
 	public void read(int b_no,int b_views,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("±Û ÇÏ³ª °¡Á®¿À±â "+b_no+" cri : "+cri);  
+		log.info("ê¸€ í•˜ë‚˜ ê°€ì ¸ì˜¤ê¸° "+b_no+" cri : "+cri);  
 		
 		CampusBoardVO campusVO=service.view(b_no);
 		int views = campusVO.getB_views();
@@ -91,7 +91,7 @@ public class BoradController {
 	
 	@GetMapping("/modify")
 	public void modify(int b_no,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("±Û ¼öÁ¤ "+b_no+" cri : "+cri);  
+		log.info("ê¸€ ìˆ˜ì • "+b_no+" cri : "+cri);  
 		
 		CampusBoardVO campusVO=service.view(b_no);
 		model.addAttribute("campusVO", campusVO);
@@ -100,16 +100,16 @@ public class BoradController {
 	//@PreAuthorize("isAuthenticated()") //@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@GetMapping("/write")
 	public void register() {
-		log.info("»õ±Û µî·Ï Æû ¿äÃ»");
+		log.info("ìƒˆê¸€ ë“±ë¡ í¼ ìš”ì²­");
 	}
 	
 	@PostMapping("/write")
 	public String registerPost(CampusBoardVO vo, RedirectAttributes rttr) {
 		
-		log.info("±Û ÀÛ¼º  "+vo);
+		log.info("ê¸€ ì‘ì„±  "+vo);
 		
 		if(service.insert(vo)) {
-			log.info("±Û ÀÛ¼º ¿äÃ» : "+vo.getB_no()+" /// "+vo.getAttachList());
+			log.info("ê¸€ ì‘ì„± ìš”ì²­ : "+vo.getB_no()+" /// "+vo.getAttachList());
 			rttr.addFlashAttribute("result",vo.getB_no());
 			return "redirect:list";
 		}else {
@@ -120,12 +120,12 @@ public class BoradController {
 	
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
-		log.info("ÆÇ¸Å µî·Ï ÀÌµ¿ ½ÇÇà");
+		log.info("íŒë§¤ ë“±ë¡ ì´ë™ ì‹¤í–‰");
 	}
 	
 	@GetMapping("/sellmodify")
 	public void sellmodify() {
-		log.info("ÆÇ¸Å ¼öÁ¤ ÀÌµ¿ ½ÇÇà");
+		log.info("íŒë§¤ ìˆ˜ì • ì´ë™ ì‹¤í–‰");
 	}
 	
 }
