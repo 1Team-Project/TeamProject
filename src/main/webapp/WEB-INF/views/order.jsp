@@ -203,7 +203,7 @@
         input, textarea, select {
             max-width: 100%;
             font-size: 13px;
-            font-family: 'Nanum Gothic',Helvetica,Arial,sans-serif;
+            /*font-family: 'Nanum Gothic',Helvetica,Arial,sans-serif;*/
             color: #333;
             vertical-align: middle;
             outline: 0;
