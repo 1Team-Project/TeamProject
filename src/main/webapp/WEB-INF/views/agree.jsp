@@ -213,14 +213,7 @@
 				$("#chk2").focus();
 				return false;
 			}
-			/* location.href = 'register'; */
 		});
 	})
-/* 			
-			$(".chk").click(function(){
-		        if($("input[name='check[]']:checked").length == 3){
-		            $("#checkAll").prop("checked", true);
-		        }else{
-		            $("#checkAll").prop("checked", false);
-		        } */
+
 </script>

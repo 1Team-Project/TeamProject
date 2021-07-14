@@ -5,22 +5,22 @@ import org.springframework.stereotype.Service;
 
 import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
-import com.spring.domain.MemberVO;
-import com.spring.mapper.MemberMapper;
+import com.spring.domain.CampusUserVO;
+import com.spring.mapper.CampusUserMapper;
 
 @Service
-public class MemberServiceImpl implements MemberService {
+public class CampusUserServiceImpl implements CampusUserService {
 
 	@Autowired
-	private MemberMapper mapper;
+	private CampusUserMapper mapper;
 	
 	@Override
-	public boolean insert(MemberVO vo) {
+	public boolean insert(CampusUserVO vo) {
 		return mapper.insert(vo)>0? true:false;
 	}
 
 	@Override
-	public MemberVO dupId(String u_userid) {
+	public CampusUserVO dupId(String u_userid) {
 		return mapper.dupId(u_userid);
 	}
 

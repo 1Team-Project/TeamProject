@@ -26,34 +26,5 @@
 			</div>
 		</div>
 	</form>
-<script>
-	$(function(){
-		/* 회원가입 버튼 누르면 페이지 이동 */
-		$("#regist").click(function(){
-			$("#formId").attr("action", "agree");
-		});
-		
-		/* 로그인 버튼 관련 */
-		let error = '${error}';
-		if(error){
-			alert(error);
-			return false;
-		}
-		
-		$("#login").click(function(){
-			let error = '${error}';
- 			if($("#u_userid").val() == ""){
- 				alert("아이디를 입력하세요");
- 				$("#u_userid").focus();
- 				return false;
- 			} else if($("#u_password").val() == ""){
- 				alert("비밀번호를 입력하세요");
- 				$("#u_password").focus();
- 				return false;
- 			}
-		});
-
-	})
-
-</script>
+<script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>

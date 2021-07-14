@@ -1,3 +1,37 @@
+/* main.jsp */
+.selectBoxStyle{
+	width: 10%;
+	border-radius: 3px;
+}
+.searchBox{
+	width: 30%;
+	border-radius: 3px;
+	
+}
+.searchBox::placeholder{
+	text-align: center;
+	color: silver;
+}
+.main_left{
+	width: 50%;
+	float: left;
+	height : 50%;
+	align-items: center;	
+}
+.main_right{
+	width: 50%;
+	float: right;
+	height : 50%;
+}
+
+.row_img{
+	width: 1400px;
+	height: 500px;
+	margin: auto;
+}
+
+
+
 /* login.jsp */
 .form-control-login{
 	height: 60px;

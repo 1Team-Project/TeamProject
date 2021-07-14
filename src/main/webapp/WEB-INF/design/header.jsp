@@ -164,7 +164,7 @@
 								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
 			    			</c:when>
 			    			<c:otherwise>
-			    				<a href="login" class="d-flex align-items-center justify-content-center m-1">
+			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 			    					<img src="/resources/main/images/icon_login.png">
 			    				</a>
 			    			</c:otherwise>
@@ -213,7 +213,7 @@
 					<a class="nav-link dropdown-toggle " href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown03">
 					<!-- 각 카테고리별 이동하는 링크 -->
-					<a class="dropdown-item" href="#">통합 게시판</a>
+					<a class="dropdown-item" href="/board/list">통합 게시판</a>
 				</div>
 				   </li>
 	        </ul>
@@ -229,18 +229,5 @@
   	<script src="/resources/main/js/bootstrap.min.js"></script>
  	<script src="/resources/main/js/main.js"></script>
  	<!-- 영권 추가 문장 시작 -->
-  	<script>
- 		$(function() {
- 			$("#logoutDo").click(function(){
- 				var logout = confirm("로그아웃 하시겠습니까?");
-				if(logout==true){
-					alert("안녕히가세요")
-					location.href="/logout";
-				} else {
-					alert("로그인이 유지됩니다.")
-					return false;
-				}
- 			});
- 		}) 
- 	</script>
-	<!-- 영권 추가 문장 끝 -->
+ 	<script src="/resources/main/js/header_yk.js"></script>
+ 	<!-- 영권 추가 문장 끝 -->

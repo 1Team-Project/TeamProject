@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.LoginVO;
-import com.spring.service.MemberService;
+import com.spring.service.CampusUserService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j2;
 public class MemberController {
 	
 	@Autowired
-	private MemberService service;
+	private CampusUserService service;
 	
 	/* 로그인 시스템 시작 */
 	
