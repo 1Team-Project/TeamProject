@@ -373,5 +373,8 @@
 					</div>
 				</div>
 			</div>
+			</div>
+			</div>
+			</div>
 
 			<%@include file="../design/footer.jsp"%>
