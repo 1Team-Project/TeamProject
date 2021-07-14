@@ -12,9 +12,11 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.spring.service.TestService;
+import com.spring.service.CampusProductService;
+
 
 import lombok.extern.log4j.Log4j2;
+
 
 /**
  * Handles requests for the application home page.
@@ -27,7 +29,7 @@ public class HomeController {
 	
 	
 	@Autowired
-	private TestService service;
+	private CampusProductService service;
 	
 	
 	/**
@@ -44,12 +46,11 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		
 		log.info("Å×½ºÆ®");
-		service.testSelect();
+		service.productList();
 		
-		
-		
-		return "/mypage";
+		return "/modify";
 	}
 	
 }
