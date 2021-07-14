@@ -17,7 +17,7 @@ public interface CampusReplyMapper {
 	
 	public int delete(int rno);
 	
-	//´ñ±Û
+	//ëŒ“ê¸€
 	public int deleteAll(int bno);
 	
 	

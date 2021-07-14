@@ -28,15 +28,15 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	@Transactional
 	@Override
 	public boolean insert(CampusBoardVO vo) {
-		// »õ±Û µî·Ï
+		// ìƒˆê¸€ ë“±ë¡
 		boolean result = mapper.insert(vo)>0?true:false;
 		
-		//Ã·ºÎÆÄÀÏ ¿©ºÎ È®ÀÎ
+		//ì²¨ë¶€íŒŒì¼ ì—¬ë¶€ í™•ì¸
 		if(vo.getAttachList()==null || vo.getAttachList().size()<=0) {
 			return result;
 		}
 		
-		// Ã·ºÎÆÄÀÏ µî·Ï
+		// ì²¨ë¶€íŒŒì¼ ë“±ë¡
 		vo.getAttachList().forEach(attach -> {
 			attach.setB_no(vo.getB_no());
 			attachMapper.insert(attach);
@@ -49,22 +49,22 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	@Override
 	public boolean delete(int bno) {
 		
-		//´ñ±Û »èÁ¦
+		//ëŒ“ê¸€ ì‚­ì œ
 		replyMapper.deleteAll(bno);
-		//Ã·ºÎÆÄÀÏ »èÁ¦
+		//ì²¨ë¶€íŒŒì¼ ì‚­ì œ
 		attachMapper.delete(bno);
-		//°Ô½Ã±Û »èÁ¦
+		//ê²Œì‹œê¸€ ì‚­ì œ
 		return mapper.delete(bno)>0?true:false;
 	}
 
 	@Transactional
 	@Override
 	public boolean update(CampusBoardVO vo) {
-		//±âÁ¸¿¡ Ã·ºÎÆÄÀÏ Á¤º¸ ¸ğµÎ »èÁ¦ ÈÄ »ğÀÔ
+		//ê¸°ì¡´ì— ì²¨ë¶€íŒŒì¼ ì •ë³´ ëª¨ë‘ ì‚­ì œ í›„ ì‚½ì…
 		attachMapper.delete(vo.getB_no());
-		//°Ô½Ã±Û ¼öÁ¤
+		//ê²Œì‹œê¸€ ìˆ˜ì •
 		boolean modifyResult = mapper.update(vo)>0?true:false;
-		//Ã·ºÎÆÄÀÏ »ğÀÔ
+		//ì²¨ë¶€íŒŒì¼ ì‚½ì…
 		if(modifyResult && vo.getAttachList().size()>0) {
 			for(CampusAttachFileDTO dto:vo.getAttachList()) {
 				dto.setB_no(vo.getB_no());

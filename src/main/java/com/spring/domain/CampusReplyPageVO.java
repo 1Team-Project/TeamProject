@@ -14,7 +14,7 @@ import lombok.ToString;
 
 public class CampusReplyPageVO {
 
-	private int replyCnt; //´ñ±Û ÀüÃ¼ °³¼ö
+	private int replyCnt; //ëŒ“ê¸€ ì „ì²´ ê°œìˆ˜
 	private List<CampusReplyVO> list;
 	
 }

@@ -26,10 +26,10 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 
 		
-		log.info("�׽�Ʈ");
+		log.info("test 페이지");
 		
 		
-		return "/index";
+		return "test";
 	}
 	
 }
