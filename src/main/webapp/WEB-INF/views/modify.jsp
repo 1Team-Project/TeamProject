@@ -27,9 +27,9 @@
         .displaynone {
             display: none !important;
         }
-         #editForm {
+         /*#editForm {
             text-align: center;
-        } 
+        } */
         #b-button {
             text-align: center;
         }
@@ -116,6 +116,9 @@
         #postcode1 {
             width: 60px;
             text-align: center;
+        }
+        .ec-base-button gColumn{
+        	text-align: center;
         }
         
     </style>

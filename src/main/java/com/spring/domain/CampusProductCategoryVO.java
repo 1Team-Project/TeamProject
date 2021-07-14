@@ -11,7 +11,7 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CategoryVO {
+public class CampusProductCategoryVO {
 	private String pc_code;
 	private String pc_name;
 	
