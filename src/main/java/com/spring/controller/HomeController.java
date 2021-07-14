@@ -49,7 +49,7 @@ public class HomeController {
 		
 		
 		
-		return "/reservation";
+		return "/modify";
 	}
 	
 }
