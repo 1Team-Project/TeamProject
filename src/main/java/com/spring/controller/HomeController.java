@@ -46,10 +46,9 @@ public class HomeController {
 		
 		model.addAttribute("serverTime", formattedDate );
 		
+		
 		log.info("Å×½ºÆ®");
 		service.productList();
-		
-		
 		
 		return "/modify";
 	}

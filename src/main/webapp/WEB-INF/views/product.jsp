@@ -142,6 +142,11 @@
         span{
         	color:black;
         }
+       #searchProduct{
+            padding: 7px 7px;
+            text-align: right;
+            margin-right: 200px;
+        }
        
         
 </style>
@@ -248,6 +253,23 @@
 
                     <!--상품 구분선-->
                     <hr>
+                    
+                    <!-- 상품 검색창 -->
+                    <form action="" id="searchProduct">
+					
+                        <input type="text" name="keyword" id="keyword" placeholder="상품명 입력" required="" class="form-control">
+                        <button type="button" class="btn btn-default">검색</button>
+                    
+
+						<input type="text" name="keyword" value="${CampusPageVO.cri.keyword}"/>
+                        
+                        <!-- 검색시에도 페이지당 게시물 수와 현재 페이지에 대한 정보가 따라가야 함 -->
+                        <input type="hidden" name="pageNum" value="${CampusPageVO.cri.pageNum}"/>
+                        <input type="hidden" name="amount" value="${CampusPageVO.cri.amount}"/>
+                        
+					
+					</form>
+
 
                     <div id="center_sec">
 
