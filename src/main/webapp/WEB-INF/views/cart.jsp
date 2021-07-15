@@ -5,7 +5,7 @@
 <head>
 <meta charset="EUC-KR">
 <title>Insert title here</title>
-<link href="/resources/main/css/cart.css" rel="stylesheet">
+<link href="/resources/main/css/cart2.css" rel="stylesheet">
 </head>
 <body>
 	<div class="cart_page">
@@ -47,14 +47,9 @@
 												<p class="noti"></p>
 											</div>
 											<div class="stamper count">
-												<button type="button" class="btn minus off"
-													data-item-id="303d2e3f-bb31-4721-9518-a9347df20e5e"
-													data-item-no="3417" data-opt="decrease">감소</button>
-												<input type="number" id="stepperCounter" class="num"
-													readonly="" value="1">
-												<button type="button" class="btn plus"
-													data-item-id="303d2e3f-bb31-4721-9518-a9347df20e5e"
-													data-item-no="3417" data-opt="increase">추가</button>
+												<button type="button" class="btn minus">감소</button>
+												<input type="number" id="stepperCounter" class="num" readonly="" value="1">
+												<button type="button" class="btn plus">추가</button>
 											</div>
 										</div>
 									</div>

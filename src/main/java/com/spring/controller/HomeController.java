@@ -25,11 +25,6 @@ public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 	
-	
-	@Autowired
-	private TestService service;
-	
-	
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */

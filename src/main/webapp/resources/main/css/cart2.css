@@ -1,3 +1,5 @@
+@charset "UTF-8";
+
 .cart_page {
     overflow: hidden;
     width: 1050px;
@@ -279,6 +281,7 @@ input[type="checkbox" i] {
     margin-top: -13px;
 }
 .cartlist .stamper {
+	float:left;
     width: 88px;
     height: 30px;
     border-radius: 3px;
@@ -294,32 +297,32 @@ input[type="checkbox" i] {
     border-radius: 4px;
 }
 .btn.minus.off {
-    background-image: url(https://res.kurly.com/pc/service/common/2009/ico_minus.svg);
+    background-image: url("/resources/main/images/remove.png");
 }
-.cartlist .stamper .btn.minus, .only_pc .stamper .btn.minus.off {
+.cartlist .stamper .btn.minus, .only_pc .stamper .btn.plus {
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 30px 30px;
     background-position: 50% 50%;
 }
-.cartlist .stamper .btn.minus {
-    background-image: url(https://res.kurly.com/pc/service/common/2009/ico_minus_on.svg);
+/* .cartlist .stamper .btn.minus { */
+/*     background-image: url("/resources/main/images/remove.png"); */
+/* } */
+.stamper .btn.minus{
+    background-image: url("/resources/main/images/remove.png");
 }
-.stamper .btn.minus.off {
-    background-image: url(https://res.kurly.com/mobile/service/cart/2010/ico_minus.svg);
-}
-.stamper .btn.minus, .stamper .btn.minus.off {
+.stamper .btn.minus, .stamper .btn.plus {
     background-color: transparent;
     background-repeat: no-repeat;
-    background-size: 36px 36px;
+    background-size: 28px 28px;
     background-position: 50% 50%;
 }
 .cartlist .stamper .btn {
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
-.stamper .btn.minus {
-    background-image: url(https://res.kurly.com/mobile/service/cart/2010/ico_minus_on.svg);
+.stamper .btn.plus {
+    background-image: url("/resources/main/images/plus.png");
 }
 .stamper .btn {
     float: left;
@@ -330,7 +333,7 @@ input[type="checkbox" i] {
 }
 .stamper, .stamper .btn {
     overflow: hidden;
-    height: 36px;
+    height: 20px;
 }
 .btn {
     width: 100%;
@@ -381,30 +384,7 @@ input[type="number" i] {
 ol, ul {
     list-style-type: none;
 }
-.cartlist .stamper .btn.plus, .only_pc .stamper .btn.plus.off {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
-    background-position: 50% 50%;
-}
-.cartlist .stamper .btn.plus {
-    background-image: url(https://res.kurly.com/pc/service/common/2009/ico_plus_on.svg);
-}
-.cartlist .stamper .btn {
-    width: 30px;
-    height: 30px;
-}
-.stamper .btn.plus, .stamper .btn.plus.off {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: 36px 36px;
-    background-position: 50% 50%;
-}
-.stamper .btn.plus {
-    float: right;
-    margin-left: -1px;
-    background-image: url(https://res.kurly.com/mobile/service/cart/2010/ico_plus_on.svg);
-}
+
 .stamper .btn {
     float: left;
     width: 35px;
@@ -436,7 +416,7 @@ ol, ul {
     padding: 0;
     margin-top: -13px;
     border: 0;
-    background-image: url(https://res.kurly.com/pc/service/cart/2007/ico_delete.svg);
+    background-image: url();
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 30px 30px;
@@ -451,7 +431,7 @@ ol, ul {
     height: 56px;
     padding: 22px 24px;
     border: 0;
-    background-image: url(https://res.kurly.com/mobile/service/cart/2007/ico_delete.svg);
+    background-image: url();
     background-color: transparent;
     background-repeat: no-repeat;
     background-size: 12px 12px;

@@ -376,5 +376,7 @@
 			</div>
 			</div>
 			</div>
-
+<script>
+</script>
+<script src="/resources/main/js/pdetail.js"></script>
 			<%@include file="../design/footer.jsp"%>
