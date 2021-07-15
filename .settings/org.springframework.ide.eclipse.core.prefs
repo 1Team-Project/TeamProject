@@ -67,3 +67,4 @@ org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.i
 org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.transition-org.springframework.ide.eclipse.webflow.core.validator=true
 org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.variable-org.springframework.ide.eclipse.webflow.core.validator=true
 org.springframework.ide.eclipse.core.validator.rule.enable.org.springframework.ide.eclipse.webflow.core.validation.webflowstate-org.springframework.ide.eclipse.webflow.core.validator=true
+

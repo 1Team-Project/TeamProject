@@ -1,0 +1,17 @@
+package com.spring.domain;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+@Setter
+@Getter 
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class LoginVO {
+	private String u_userid;
+	private String u_password;
+}

@@ -2020,7 +2020,7 @@ progress {
 }
 .form-control:disabled,
 .form-control[readonly] {
-  background-color: #f7f7f9;
+  background-color: #ffffff;
   opacity: 1;
 }
 .form-control::file-selector-button {

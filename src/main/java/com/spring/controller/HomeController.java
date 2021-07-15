@@ -47,7 +47,7 @@ public class HomeController {
 		model.addAttribute("serverTime", formattedDate );
 		
 		
-		log.info("�׽�Ʈ");
+		log.info("테스트");
 		service.productList();
 		
 		return "/modify";
