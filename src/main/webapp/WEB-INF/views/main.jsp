@@ -142,6 +142,11 @@
 							<div class="col-md-12 colorthema hh4 padding6px margintb20"> 아름다운 캠핑 장소 </div>
 			      			<div class="col-md-12">
 	        					<div class="row_opt">
+	        						<input type="radio" name="img" id="img1" checked/>
+	        						<input type="radio" name="img" id="img2"/>
+	        						<input type="radio" name="img" id="img3"/>
+	        						<input type="radio" name="img" id="img4"/>
+	        						<input type="radio" name="img" id="img5"/>
 	        						<ul id="slide_img">
 	        						<!-- 
 			        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
