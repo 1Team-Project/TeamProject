@@ -56,6 +56,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
+	//loginmypage 이동
+	@GetMapping("/loginmypage")
+	public void mypage() {
+		log.info("loginmypage 요청");
+	}
+	
 	
 	/* 로그인 시스템 종료 */
 	

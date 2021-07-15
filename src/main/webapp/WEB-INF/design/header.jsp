@@ -171,8 +171,19 @@
 		    			</c:choose>
 		    			
 		    			
+		    			<c:choose>
+		    				<c:when test="${sessionScope.login != null}">
+								<a href="/loginmypage" class="d-flex align-items-center justify-content-center m-1">
+		    						<img src="/resources/main/images/icon_mypage.png"></a>
+			    			</c:when>
+			    			<c:otherwise>
+		    					<a href="/login" class="d-flex align-items-center justify-content-center m-1">
+		    						<img src="/resources/main/images/icon_mypage.png">
+		    					</a>
+		    				</c:otherwise>
+		    			</c:choose>
 		    			
-		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_mypage.png"></a>
+		    			
 		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_cart.png"></a>
 		    		</p>
 	      		</div>

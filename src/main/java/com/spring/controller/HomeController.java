@@ -1,22 +1,20 @@
 package com.spring.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
-import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.GetMapping;
 
-import com.spring.service.CampusProductService;
 
+import com.spring.domain.CampusBoardVO;
+import com.spring.domain.CampusCriteria;
+import com.spring.domain.CampusPageVO;
+import com.spring.service.CampusBoardService;
 
 import lombok.extern.log4j.Log4j2;
-
 
 /**
  * Handles requests for the application home page.
@@ -25,32 +23,29 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class HomeController {
 	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	
 	@Autowired
-	private CampusProductService service;
+	private CampusBoardService service;
 	
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(Locale locale, Model model) {
-		logger.info("Welcome home! The client locale is {}.", locale);
+	@GetMapping("/")
+	public String home(Model model, CampusCriteria cri) {
+		log.info("main 페이지");
+		log.info("전체 리스트 요청");
 		
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		// 사용자가 선택한 페이지 게시물
+		List<CampusBoardVO> list = service.list(cri);
+		// 전체 게시물 수
+		int total = service.total(cri);
 		
-		String formattedDate = dateFormat.format(date);
+		model.addAttribute("list", list);
+		model.addAttribute("pageVO", new CampusPageVO(cri, total));
 		
-		model.addAttribute("serverTime", formattedDate );
-		
-		
-		log.info("테스트");
-		service.productList();
-		
-		return "/modify";
+		return "main";
 	}
 	
+	@GetMapping("/access-denied")
+	public String accessDenied() {
+		log.info("error 발생");
+		return "AccessDenied";
+	}
+
 }

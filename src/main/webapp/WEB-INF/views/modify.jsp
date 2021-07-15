@@ -126,7 +126,7 @@
  <div id="titleArea">
         <h2>회원 정보 수정</h2>
     </div>
-    <form id="editForm" name="editForm" action="" method="" target="_self" enctype="multipart/form-data">
+    <form id="editForm" name="editForm" action="modifyForm" method="" target="_self" enctype="multipart/form-data">
         <div id="main" class="ec-base-table typeWrite gClearBorderTop ">
             <table border="1">
                 <caption>회원 기본정보</caption>
@@ -138,15 +138,15 @@
                     <tr>
                         <th scope="row">아이디</th>
                         <td>
-                            <input id="userid" name="userid"
+                            <input id="u_userid" name="u_userid"
                                 fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디"
-                                fw-msg="" class="inputTypeText" placeholder="" readonly="readonly" value="" type="text">
+                                fw-msg="" class="inputTypeText" placeholder="" readonly="readonly" value="${u_userid}" type="text">
                         </td>
                     </tr>
                     <tr>
                         <th scope="row">비밀번호</th>
                         <td>
-                            <input id="password" name="password" fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
+                            <input id="u_password" name="u_password" fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
                                 fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16" 0="disabled" value=""
                                 type="password">
                             <p class="ec-base-help typeDash">(비밀번호조건)</p>
@@ -154,7 +154,7 @@
                     </tr>
                     <tr class="">
                         <th scope="row">비밀번호<br>확인</th>
-                        <td><input id="password_confirm" name="password_confirm" fw-filter="isFill&amp;isMatch[passwd]"
+                        <td><input id="confirm_password" name="confirm_password" fw-filter="isFill&amp;isMatch[passwd]"
                                 fw-label="비밀번호 확인" fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
                                 0="disabled" value="" type="password"> <span id="pwConfirmMsg"></span>
                         </td>
@@ -162,7 +162,7 @@
 
                     <tr style="display:1">
                         <th scope="row" id="">이름</th>
-                        <td><input id="username" name="username" fw-filter="isFill&amp;isMax[30]" fw-label="이름"
+                        <td><input id="u_username" name="u_username" fw-filter="isFill&amp;isMax[30]" fw-label="이름"
                                 fw-msg="" class="ec-member-name" placeholder="" maxlength="30" readonly="readonly"
                                 value="" type="text"></td>
                     </tr>
@@ -175,9 +175,9 @@
                                 value="" type="text"> <button type="button" class="btnBasic"
                                 onclick="ZipcodeFinder.Opener.bind('postBtn', 'postcode1', 'postcode2', 'addr1', 'layer', 'ko_KR');"
                                 id="postBtn">우편번호</button><br>
-                            <input id="addr1" name="addr1" fw-filter="isFill" fw-label="주소" fw-msg=""
+                            <input id="u_address" name="u_address" fw-filter="isFill" fw-label="주소" fw-msg=""
                                 class="inputTypeText" placeholder="" readonly="readonly" value="" type="text"><br>
-                            <input id="addr2" name="addr2" fw-filter="" fw-label="주소" fw-msg="" class="inputTypeText"
+                            <input id="u_address" name="u_address" fw-filter="" fw-label="주소" fw-msg="" class="inputTypeText"
                                 placeholder="" value="" type="text"> <span class="ec-base-help typeDash"></span>
                         </td>
                     </tr>

@@ -2,8 +2,10 @@ package com.spring.service;
 
 import java.util.List;
 
-import com.spring.domain.CampusProductVO;
+import org.springframework.stereotype.Service;
 
+import com.spring.domain.CampusProductVO;
+@Service
 public class CampusProductServiceImpl implements CampusProductService {
 
 	@Override
