@@ -205,26 +205,3 @@
 	</div>
 
 <%@include file="../design/footer.jsp" %>
-
-	<%-- 		    				<c:forEach var="vo" items="${list}">
-			    					<tr>
-			    						<td>${vo.b_no}</td>
-			    						<td>${vo.b_sort}</td>
-			    						<td>
-			    							<a href="${vo.b_no}" class="blacktext hoverthema clickview">${vo.b_title}
-			    								<strong class="badgecount">[${vo.replycnt}]</strong>
-			    							</a>
-			    						<td>${vo.b_writer}</td>
-			    						<td>
-			    							<c:choose>
-			    								<c:when test="${ststest eq bsys}">
-			    									<fmt:formatDate pattern="HH:mm" value="${vo.b_sysdate}" timeZone="Asia/Seoul"/>
-			    								</c:when>
-			    								<c:otherwise>
-			    									<fmt:formatDate pattern="yyyy-MM-dd" value="${vo.b_sysdate}"/>
-			    								</c:otherwise>
-			    							</c:choose>
-			    						</td>
-			    						<td>${vo.b_views}</td>
-			    					</tr>
-			    				</c:forEach> --%>
