@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+ï»¿<%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -17,11 +17,11 @@
 		<div class="col-md-10">
 					<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush;">ÅëÇÕ °Ô½ÃÆÇ</h3>
+				<h3 class="heading-section" style="font-family: naBrush;">í†µí•© ê²Œì‹œíŒ</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12 colorthema hh4 padding6px margintb20">
-				¿À´ÃÀÇ È­Á¦±Û</div>
+				ì˜¤ëŠ˜ì˜ í™”ì œê¸€</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row textcenter">
@@ -30,10 +30,10 @@
 								<img class="card-img-top"
 									src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
 								<div class="card-block">
-									<h5 class="card-title topmargin10">ÈÄ±âÀÔ´Ï´Ù</h5>
-									<p class="card-text">¾È³çÇÏ¼¼¿ä ÈÄ±âÀÔ´Ï´Ù...</p>
+									<h5 class="card-title topmargin10">í›„ê¸°ìž…ë‹ˆë‹¤</h5>
+									<p class="card-text">ì•ˆë…•í•˜ì„¸ìš” í›„ê¸°ìž…ë‹ˆë‹¤...</p>
 									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
+										<a class="btn btn-primary" href="#">ìžì„¸ížˆ ë³´ê¸°</a>
 									</p>
 								</div>
 							</div>
@@ -43,10 +43,10 @@
 								<img class="card-img-top"
 									src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
 								<div class="card-block">
-									<h5 class="card-title topmargin10">¸®ºäÀÔ´Ï´Ù</h5>
-									<p class="card-text">ÀÌ°ÍÀº ¸®ºäÀÔ´Ï´Ù ¸®ºä...</p>
+									<h5 class="card-title topmargin10">ë¦¬ë·°ìž…ë‹ˆë‹¤</h5>
+									<p class="card-text">ì´ê²ƒì€ ë¦¬ë·°ìž…ë‹ˆë‹¤ ë¦¬ë·°...</p>
 									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
+										<a class="btn btn-primary" href="#">ìžì„¸ížˆ ë³´ê¸°</a>
 									</p>
 								</div>
 							</div>
@@ -56,10 +56,10 @@
 								<img class="card-img-top"
 									src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
 								<div class="card-block">
-									<h5 class="card-title topmargin10">Áú¹®ÀÔ´Ï´Ù</h5>
-									<p class="card-text">ÀÌ°ÍÀº Áú¹®ÀÔ´Ï´Ù...</p>
+									<h5 class="card-title topmargin10">ì§ˆë¬¸ìž…ë‹ˆë‹¤</h5>
+									<p class="card-text">ì´ê²ƒì€ ì§ˆë¬¸ìž…ë‹ˆë‹¤...</p>
 									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
+										<a class="btn btn-primary" href="#">ìžì„¸ížˆ ë³´ê¸°</a>
 									</p>
 								</div>
 							</div>
@@ -74,12 +74,12 @@
 			<table class="table">
 				<thead>
 					<tr class="textcenter colorthema">
-						<th class="width10">¹øÈ£</th>
-						<th class="width10">ºÐ·ù</th>
-						<th class="width40">Á¦¸ñ</th>
-						<th class="width10">±Û¾´ÀÌ</th>
-						<th class="width20">ÀÛ¼ºÀÏ</th>
-						<th class="width10">Á¶È¸¼ö</th>
+						<th class="width10">ë²ˆí˜¸</th>
+						<th class="width10">ë¶„ë¥˜</th>
+						<th class="width40">ì œëª©</th>
+						<th class="width10">ê¸€ì“´ì´</th>
+						<th class="width20">ìž‘ì„±ì¼</th>
+						<th class="width10">ì¡°íšŒìˆ˜</th>
 					</tr>
 				</thead>
 				<tbody class="textcenter">
@@ -120,13 +120,13 @@
 				<div class="col-md-12 mb-3">
 					<select name="" id=""
 						class="form-control width10 inlinetest boldergreen">
-						<option value="">ºÐ·ù</option>
-						<option value="ÈÄ±â">ÈÄ±â</option>
-						<option value="Áú¹®">Áú¹®</option>
+						<option value="">ë¶„ë¥˜</option>
+						<option value="í›„ê¸°">í›„ê¸°</option>
+						<option value="ì§ˆë¬¸">ì§ˆë¬¸</option>
 					</select> <input type="text"
 						class="width30 boldergreen padding5px blacktext" />
-					<button class="btn btn-primary">°Ë»ö</button>
-					<button class="btn btn-primary float-end" onclick="location.href='write'">±Û ¾²±â</button>
+					<button class="btn btn-primary">ê²€ìƒ‰</button>
+					<button class="btn btn-primary float-end" onclick="location.href='write'">ê¸€ ì“°ê¸°</button>
 					<!--<sec:authorize access="isAuthenticated()">-->
                  	<!--</sec:authorize>-->
 				</div>

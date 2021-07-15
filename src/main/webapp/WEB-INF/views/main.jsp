@@ -140,24 +140,28 @@
 			    		</div>
 			    		<div class="main_right">
 							<div class="col-md-12 colorthema hh4 padding6px margintb20"> 아름다운 캠핑 장소 </div>
-			      			<div class="col-md-12">
-	        					<div class="row_opt">
+	        					<div class="slide_opt">
 	        						<input type="radio" name="img" id="img1" checked/>
 	        						<input type="radio" name="img" id="img2"/>
 	        						<input type="radio" name="img" id="img3"/>
 	        						<input type="radio" name="img" id="img4"/>
 	        						<input type="radio" name="img" id="img5"/>
-	        						<ul id="slide_img">
-	        						<!-- 
+	        						<ul class="slide_img">
 			        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
 			        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
 			        					<li><img src="../../resources/main/images/car1.jpg"/></li>
 			        					<li><img src="../../resources/main/images/car2.jpg"/></li>
 			        					<li><img src="../../resources/main/images/cabin1.jpg"/></li>
-			        				 -->
 			        				</ul>
+			        				<div class="slide_btn">
+			        					<label for="img1">&nbsp;</label>
+			        					<label for="img2">&nbsp;</label>
+			        					<label for="img3">&nbsp;</label>
+			        					<label for="img4">&nbsp;</label>
+			        					<label for="img5">&nbsp;</label>
+			        				</div>
               					</div>
-            				</div>
+
           				</div>
 					</div>
 			    </div>

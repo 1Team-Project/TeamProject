@@ -23,7 +23,69 @@
 	height : 50%;
 }
 
+.slide_opt{
+	width: 480px;
+	height: 320px;
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.slide_opt input[type=radio]{
+	display: none;
+}
+ul.slide_img{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+ul.slide_img li{
+	position:absolute;
+	transition-delay: 1s;
+	padding: 0;
+	margin: 0;
+}
+.slide_btn{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 20px;
+    z-index: 2;
+}
+.slide_btn label{
+	display: inline-block;
+    border-radius: 50%;
+    background-color: rgba(0,0,0,0.55);
+    width: 5px;
+    height: 5px;
+    cursor: pointer;
+    background-color: white;
+}
 
+.slide_opt input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
+    opacity: 1;
+    transition: 1s;
+    z-index: 1;
+}
+.slide_opt input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
+    opacity: 1;
+    transition: 1s;
+    z-index: 1;
+}
+.slide_opt input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
+    opacity: 1;
+    transition: 1s;
+    z-index: 1;;
+}
+.slide_opt input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
+    opacity: 1;
+    transition: 1s;
+    z-index: 1;
+}
+.slide_opt input[type=radio]:nth-child(5):checked~ul.imgs>li:nth-child(5){
+    opacity: 1;
+    transition: 1s;
+    z-index: 1;
+}
 
 
 /* login.jsp */
