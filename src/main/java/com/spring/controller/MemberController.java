@@ -56,10 +56,12 @@ public class MemberController {
 		return "redirect:/";
 	}
 	
-	//loginmypage 이동
-	@GetMapping("/loginmypage")
-	public void mypage() {
-		log.info("loginmypage 요청");
+	//loginMypage 이동
+	@GetMapping("/loginMypage")
+	public String loginMypage() {
+		log.info("loginMypage 요청");
+		
+		return "loginMypage";
 	}
 	
 	

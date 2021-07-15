@@ -173,7 +173,7 @@
 		    			
 		    			<c:choose>
 		    				<c:when test="${sessionScope.login != null}">
-								<a href="/loginmypage" class="d-flex align-items-center justify-content-center m-1">
+								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>
 			    			</c:when>
 			    			<c:otherwise>
