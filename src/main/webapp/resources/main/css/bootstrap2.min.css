@@ -16,7 +16,6 @@
 	width: 50%;
 	float: left;
 	height : 50%;
-	align-items: center;	
 }
 .main_right{
 	width: 50%;
@@ -24,11 +23,6 @@
 	height : 50%;
 }
 
-.row_img{
-	width: 1400px;
-	height: 500px;
-	margin: auto;
-}
 
 
 

@@ -53,14 +53,7 @@ public class RegisterController {
 			e.printStackTrace();
 			return "AccessDenied";
 		}
-		
-		
-//		// 서비스 작업
-//		if(service.insert(vo)) {
-//			return "redirect:/login";
-//		} else {
-//			return "regist2";
-//		}
+
 	}
 
 	// 중복 아이디 검사

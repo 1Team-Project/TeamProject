@@ -126,11 +126,11 @@
 					        			<div class="row_img">
 					        				<div class="col-md-4">
 					        					<div class="card">
-						        					<img class="card-img-top" src="../../resources/main/images/tent1.jpg"/>
-						        					<img class="card-img-top" src=""/>
-						        					<img class="card-img-top" src=""/>
-						        					<img class="card-img-top" src=""/>
-						        					<img class="card-img-top" src=""/>
+						        					<img src="../../resources/main/images/tent1.jpg"/>
+						        					<img src=""/>
+						        					<img src=""/>
+						        					<img src=""/>
+						        					<img src=""/>
 					            				</div>
 					          				</div>
 					        			</div>
@@ -141,21 +141,19 @@
 			    		<div class="main_right">
 							<div class="col-md-12 colorthema hh4 padding6px margintb20"> 아름다운 캠핑 장소 </div>
 			      			<div class="col-md-12">
-			        			<div class="row_img">
-			        				<div class="col-md-4">
-			        					<div class="card">
-			        						<ul>
-					        					<li><img class="card-img-top" src="../../resources/main/images/tent1.jpg"/></li>
-					        					<li><img class="card-img-top" src="../../resources/main/images/tent2.jpg"/></li>
-					        					<li><img class="card-img-top" src="../../resources/main/images/car1.jpg"/></li>
-					        					<li><img class="card-img-top" src="../../resources/main/images/car2.jpg"/></li>
-					        					<li><img class="card-img-top" src="../../resources/main/images/cabin1.jpg"/></li>
-					        				</ul>
-		              					</div>
-		            				</div>
-		          				</div>
-		        			</div>
-						</div>
+	        					<div class="row_opt">
+	        						<ul id="slide_img">
+	        						<!-- 
+			        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
+			        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
+			        					<li><img src="../../resources/main/images/car1.jpg"/></li>
+			        					<li><img src="../../resources/main/images/car2.jpg"/></li>
+			        					<li><img src="../../resources/main/images/cabin1.jpg"/></li>
+			        				 -->
+			        				</ul>
+              					</div>
+            				</div>
+          				</div>
 					</div>
 			    </div>
 		    </div>
