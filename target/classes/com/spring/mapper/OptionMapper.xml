@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.OptionMapper">
+
+
+	<insert id="insertProductOption">
+		insert into campus_product_option(p_number, po_optiontitle, po_option1, po_option2, po_option3) values(#{p_number}, #{po_optiontitle}, #{po_option1}, #{po_option2}, #{po_option3})
+	</insert>
+	
+	<delete id="deleteProductOption">
+		delete from campus_product_option where p_number = #{p_number}
+	</delete>
+
+</mapper>

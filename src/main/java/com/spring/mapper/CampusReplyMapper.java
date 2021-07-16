@@ -11,17 +11,17 @@ public interface CampusReplyMapper {
 
 	public int insert(CampusReplyVO reply);
 	
-	public CampusReplyVO read(int rno);
+	public CampusReplyVO read(int r_no);
 	
 	public int update(CampusReplyVO reply);
 	
-	public int delete(int rno);
+	public int delete(int r_no);
 	
 	//´ñ±Û
-	public int deleteAll(int bno);
+	public int deleteAll(int b_no);
 	
 	
-	public int getCountByBno(int bno);
+	public int getCountByBno(int b_no);
 	
-	public List<CampusReplyVO> list(@Param("cri")CampusCriteria cri,@Param("bno")int bno);
+	public List<CampusReplyVO> list(@Param("r_page") int r_page, @Param("b_no") int b_no);
 }

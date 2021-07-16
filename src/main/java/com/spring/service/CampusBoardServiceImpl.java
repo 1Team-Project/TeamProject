@@ -47,6 +47,15 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 
 	@Transactional
 	@Override
+	public boolean insert_p(CampusBoardVO vo) {
+		// 새글 등록
+		boolean result = mapper.insert(vo)>0?true:false;
+		
+		return result;
+	}
+	
+	@Transactional
+	@Override
 	public boolean delete(int bno) {
 		
 		//댓글 삭제
@@ -103,6 +112,18 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	public boolean addview(int views, int bno) {
 		// TODO Auto-generated method stub
 		return mapper.addview(views,bno)>0?true:false;
+	}
+
+	@Override
+	public boolean replyadd(int bno, int replycnt) {
+		// TODO Auto-generated method stub
+		return mapper.replyCntUpdate(bno, replycnt)>0?true:false;
+	}
+
+	@Override
+	public boolean delete_p(int p_number) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 	

@@ -11,7 +11,7 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush;">통합
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">통합
 					게시판</h3>
 				<hr class="one" />
 			</div>
@@ -52,7 +52,7 @@
 				<div class="col-md-8 mll20">
 					<button class="btn btn-primary" type="submit">글 작성</button>
 					<button class="btn btn-green1" type="reset">초기화</button>
-					<button class="btn btn-green2" type="reset">리스트</button>
+					<button class="btn btn-green2" type="button" onClick="location.href='/board/list'">리스트</button>
 				</div>
 		</form>
 		</div>

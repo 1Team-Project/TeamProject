@@ -11,9 +11,13 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CategoryVO {
-	private String pc_code;
-	private String pc_name;
-	
+
+public class CampusProductOptionVO {
+
+	private int p_number;
+	private String po_optiontitle;
+	private String po_option1;
+	private String po_option2;
+	private String po_option3;
 	
 }
