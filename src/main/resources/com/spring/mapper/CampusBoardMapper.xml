@@ -62,6 +62,39 @@
 	</insert>
 	
 	
+	<!-- 영권 메인 게시판 10개 보여주기용 -->
+	<select id="mainList" resultType="com.spring.domain.CampusBoardVO">
+		<![CDATA[
+			select * 
+				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate
+					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate from campus_board where b_no>0 order by b_no desc) 
+					where
+		]]>
+				<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+					<foreach collection="sortArr" item='sort'>
+						<trim prefix="OR">
+							<choose>
+								<when test="sort=='T'.toString()">
+									b_sort like '%'||#{keyword}||'%'
+								</when>
+								<when test="sort=='C'.toString()">
+									b_sort like '%'||#{keyword}||'%'
+								</when>
+								<when test="sort=='W'.toString()">
+									b_sort like '%'||#{keyword}||'%'
+								</when>
+							</choose>
+						</trim>
+					</foreach>
+				</trim>
+		
+		<![CDATA[
+				 rownum <= (#{page}*10)) 
+			where rn > ((#{page}-1)*10)
+		]]>
+	</select>
+	
+	
 	
 	<!-- 동적 SQL -->
 	<sql id = "criteria">
@@ -83,6 +116,6 @@
 			</foreach>
 		</trim>
 	</sql>
-
+	
 
 </mapper>

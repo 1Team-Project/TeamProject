@@ -15,7 +15,7 @@ public interface CampusBoardMapper {
 	
 	public int update(CampusBoardVO vo);
 	
-	public List<CampusBoardVO> list(CampusCriteria cri);	
+	public List<CampusBoardVO> list(CampusCriteria cri);
 	
 	public CampusBoardVO view(int bno);
 
@@ -24,4 +24,7 @@ public interface CampusBoardMapper {
 	public int replyCntUpdate(int bno);
 	
 	public int addview(@Param("b_views")int views, @Param("b_no")int bno);
+	
+	// 영권 main 게시판 10개 보기용 추가
+	public List<CampusBoardVO> mainList(CampusCriteria cri);
 }

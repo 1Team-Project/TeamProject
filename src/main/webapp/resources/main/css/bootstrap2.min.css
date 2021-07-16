@@ -47,6 +47,7 @@ ul.slide_img li{
 	list-style: none;
 	transition-delay: 1s;
 	left: 480px;
+	
 }
 .slide_btn{
     position: absolute;

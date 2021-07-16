@@ -30,9 +30,9 @@ public class HomeController {
 		log.info("main 페이지");
 		log.info("전체 리스트 요청");
 		
-		List<CampusBoardVO> list = service.list(cri);
+		List<CampusBoardVO> mainList = service.mainList(cri);
 
-		model.addAttribute("list", list);
+		model.addAttribute("mainList", mainList);
 		return "main";
 	}
 	

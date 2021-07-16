@@ -105,6 +105,12 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		return mapper.addview(views,bno)>0?true:false;
 	}
 
+	@Override
+	public List<CampusBoardVO> mainList(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.mainList(cri);
+	}
+
 	
 	
 }

@@ -119,6 +119,7 @@
 		 	<div class="col-md-1"></div>
 		  	<div class="col-md-10">
 		  		<div class="row">
+		  		<!-- main 윗부분 시작 -->
 		  			<div class="main_left">
 				    	<div class="col-md-12 colorthema hh4 padding6px margintb20"> 추천 상품 </div>
        					<div class="slide_opt">
@@ -171,23 +172,23 @@
 		    </div>
 			<div class="col-md-1"></div>
 		</div>
+		<!-- main 윗부분 끝 -->
+    	<!-- 게시판 추가중 시작 부분 -->
     	<div class="row">
     		<div class="col-md-1"></div>
     		<div class="col-md-10">
-		    	<!-- 게시판 추가중 시작 부분 -->
 				<div style=" float: right; margin-top: 20px;">
-					<form action="" id="searchForm">
-						<select name="type" id="" class="">
+					<form action="" id="main_searchForm">
+						<select name="sort" id="" class="">
 							<option value="">--------</option>
-							<option value="T" <c:out value="${CampusPageVO.cri.type=='T'?'selected':''}"/>>리뷰</option>
-							<option value="C" <c:out value="${CampusPageVO.cri.type=='C'?'selected':''}"/>>질문</option>
-							<option value="W" <c:out value="${CampusPageVO.cri.type=='W'?'selected':''}"/>>후기</option>
+							<option value="T" <c:out value="${CampusPageVO.cri.sort=='T'?'selected':''}"/>>리뷰</option>
+							<option value="C" <c:out value="${CampusPageVO.cri.sort=='C'?'selected':''}"/>>질문</option>
+							<option value="W" <c:out value="${CampusPageVO.cri.sort=='W'?'selected':''}"/>>후기</option>
 						</select>
 						<!-- 검색시에도 페이지당 게시물 수와 현재 페이지에 대한 정보가 따라가야 한다. -->
-						<span class="position_box">
-							<input type="hidden" name="pageNum" value="${CampusPageVO.cri.pageNum}"/>
-							<button type="button" class="btn btn-primary" style="font-size:15px; height: 30px; margin: 2px;">조 회</button>
-						</span>
+						<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
+						<input type="hidden" name="page" value="1"/>
+						<button type="button" class="btn btn-primary" style="font-size:15px; height: 30px; margin: 2px;">조 회</button>
 					</form>
 	    		</div>
 	    		<table class="table">
@@ -200,21 +201,68 @@
 	    				</tr>
 	    			</thead>
 	    			<tbody class="textcenter">
-	    				<c:forEach var="vo" items="${list}">
+	    				<c:forEach var="vo" items="${mainList}">
 	    					<tr>
 	    						<td><fmt:formatDate pattern="MM-dd" value="${vo.b_sysdate}"/></td>
 	    						<td>${vo.b_sort}</td>
 	    						<td>
-	    							<a href="${vo.b_no}" class="blacktext hoverthema clickview">${vo.b_title}</a>
+	    							<a href="${vo.b_no}" class="move" style="text-decoration: none; color: #888;">${vo.b_title}</a>
 	    						</td>
 	    						<td>${vo.b_views}</td>
 	    					</tr>
 	    				</c:forEach>
 	    			</tbody>
 	    		</table>
-				<!-- 게시판 추가중 끝 부분 -->
     		</div>
 			<div class="col-md-1"></div>
 		</div>
+		<!-- 게시판 추가중 끝 부분 -->
 	</div>
+	<form action="" method="get" id="main_actionForm">
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}"/>
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
+		<!-- <input type="hidden" name="page" value="1" /> -->
+	</form>
+	<script>
+	$(function() {
+		// 조회 버튼 클릭 시
+		$(".btn-primary").click(function(e) {
+			e.preventDefault();
+			// 검색 폼 가져오기
+			var main_searchForm = $("#main_searchForm");
+			// sort 가져오기
+			var sort=$("select[name='sort']").val();
+			
+			if(sort==""){
+				return false;
+			}
+
+			// 검색 처음에는 1page 보여주기
+			main_searchForm.find("input[name='page']").val("1");
+			main_searchForm.submit();
+			
+		});
+
+		// 게시글 제목 클릭 시
+		$(".move").click(function(e) {
+			e.preventDefault(); 
+			var main_actionForm = $("#main_actionForm");
+			let bnoval = $(this).attr('href');
+
+			$.ajax({
+				url: "/board/viewadd",
+				type: "POST",
+				processData:false,
+				contentType: false,
+				data: bnoval,
+				success: function(result){
+					main_actionForm.append("<input type='hidden' name='b_views' value='" + result + "'/>");
+					main_actionForm.append("<input type='hidden' name='b_no' value='"+ bnoval +"'/>");
+					main_actionForm.attr("action", "/board/view");
+					main_actionForm.submit();
+				}
+			});
+		});
+	})
+	</script>
 <%@include file="../design/footer.jsp" %>

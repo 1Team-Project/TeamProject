@@ -17,4 +17,7 @@ public interface CampusBoardService {
 	public boolean addview(int views, int bno);
 	
 	public List<CampusAttachFileDTO> getAttachList(int bno);
+	
+	// 영권 메인 게시판 10개 보여주기용
+	public List<CampusBoardVO> mainList(CampusCriteria cri);	
 }

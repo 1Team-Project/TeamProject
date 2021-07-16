@@ -24,4 +24,7 @@ public interface CampusReplyMapper {
 	public int getCountByBno(int bno);
 	
 	public List<CampusReplyVO> list(@Param("cri")CampusCriteria cri,@Param("bno")int bno);
+	
+	// 영권 메인 게시판 10개 보여주기용
+	public List<CampusReplyVO> mainList(@Param("cri")CampusCriteria cri,@Param("bno")int bno);
 }

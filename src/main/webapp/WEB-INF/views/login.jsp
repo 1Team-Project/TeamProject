@@ -20,7 +20,7 @@
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>
 			<button class="btn btn-lg btn-primary btn-block" id="regist">회원가입</button>
-			<input type="hidden" name="${u_userid}" value="${u_password}"/>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<div class="error-message">
 				<span>${loginError}</span>
 			</div>

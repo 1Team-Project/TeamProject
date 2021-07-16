@@ -32,7 +32,7 @@ public class MemberController {
 	
 	// 로그인 정보 가져오기 => post
 	@PostMapping("/loginForm")
-	public String loginPost(@ModelAttribute("login") LoginVO vo, HttpSession session, RedirectAttributes rttr) {
+	public String loginPost(LoginVO vo, HttpSession session, RedirectAttributes rttr) {
 		log.info("login 요청 : " + vo.getU_userid() + " " + vo.getU_password());
 
 		LoginVO login = service.login(vo.getU_userid(), vo.getU_password());
