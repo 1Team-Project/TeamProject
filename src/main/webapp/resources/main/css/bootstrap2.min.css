@@ -23,6 +23,9 @@
 	height : 50%;
 }
 
+
+/* left-img */
+
 .slide_opt{
 	width: 480px;
 	height: 320px;
@@ -34,58 +37,160 @@
 	display: none;
 }
 ul.slide_img{
-	padding: 0;
 	margin: 0;
-	list-style: none;
+	padding: 0;
 }
 ul.slide_img li{
 	position:absolute;
-	transition-delay: 1s;
 	padding: 0;
 	margin: 0;
+	list-style: none;
+	transition-delay: 1s;
+	left: 480px;
 }
 .slide_btn{
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    bottom: 20px;
+    bottom: 5px;
     z-index: 2;
 }
 .slide_btn label{
 	display: inline-block;
     border-radius: 50%;
-    background-color: rgba(0,0,0,0.55);
-    width: 5px;
-    height: 5px;
+	background-color: silver;
+    width: 10px;
+    height: 10px;
     cursor: pointer;
-    background-color: white;
 }
 
-.slide_opt input[type=radio]:nth-child(1):checked~ul.imgs>li:nth-child(1){
-    opacity: 1;
-    transition: 1s;
+.slide_opt input[type=radio]:nth-child(1):checked~.slide_btn>label:nth-child(1){
+    background-color: #fff;
+}
+.slide_opt input[type=radio]:nth-child(2):checked~.slide_btn>label:nth-child(2){
+    background-color: #fff;
+}
+.slide_opt input[type=radio]:nth-child(3):checked~.slide_btn>label:nth-child(3){
+    background-color: #fff;
+}
+.slide_opt input[type=radio]:nth-child(4):checked~.slide_btn>label:nth-child(4){
+    background-color: #fff;
+}
+.slide_opt input[type=radio]:nth-child(5):checked~.slide_btn>label:nth-child(5){
+    background-color: #fff;
+}
+
+.slide_opt input[type=radio]:nth-child(1):checked~ul.slide_img>li:nth-child(1){
+    left: 0;
+    transition: 0.5s;
     z-index: 1;
 }
-.slide_opt input[type=radio]:nth-child(2):checked~ul.imgs>li:nth-child(2){
-    opacity: 1;
-    transition: 1s;
+.slide_opt input[type=radio]:nth-child(2):checked~ul.slide_img>li:nth-child(2){
+    left: 0;
+    transition: 0.5s;
     z-index: 1;
 }
-.slide_opt input[type=radio]:nth-child(3):checked~ul.imgs>li:nth-child(3){
-    opacity: 1;
-    transition: 1s;
-    z-index: 1;;
-}
-.slide_opt input[type=radio]:nth-child(4):checked~ul.imgs>li:nth-child(4){
-    opacity: 1;
-    transition: 1s;
+.slide_opt input[type=radio]:nth-child(3):checked~ul.slide_img>li:nth-child(3){
+    left: 0;
+    transition: 0.5s;
     z-index: 1;
 }
-.slide_opt input[type=radio]:nth-child(5):checked~ul.imgs>li:nth-child(5){
-    opacity: 1;
-    transition: 1s;
+.slide_opt input[type=radio]:nth-child(4):checked~ul.slide_img>li:nth-child(4){
+    left: 0;
+    transition: 0.5s;
     z-index: 1;
 }
+.slide_opt input[type=radio]:nth-child(5):checked~ul.slide_img>li:nth-child(5){
+    left: 0;
+    transition: 0.5s;
+    z-index: 1;
+}
+
+
+/* right-img */
+
+
+.slide_opt2{
+	width: 480px;
+	height: 320px;
+	position: relative;
+	margin: 0 auto;
+	overflow: hidden;
+}
+.slide_opt2 input[type=radio]{
+	display: none;
+}
+ul.slide_img2{
+	margin: 0;
+	padding: 0;
+}
+ul.slide_img2 li{
+	position:absolute;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+	transition-delay: 1s;
+	left: 480px;
+}
+.slide_btn2{
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 5px;
+    z-index: 2;
+}
+.slide_btn2 label{
+	display: inline-block;
+    border-radius: 50%;
+    background-color: silver;
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
+
+}
+
+.slide_opt2 input[type=radio]:nth-child(1):checked~.slide_btn2>label:nth-child(1){
+    background-color: #fff;
+}
+.slide_opt2 input[type=radio]:nth-child(2):checked~.slide_btn2>label:nth-child(2){
+    background-color: #fff;
+}
+.slide_opt2 input[type=radio]:nth-child(3):checked~.slide_btn2>label:nth-child(3){
+    background-color: #fff;
+}
+.slide_opt2 input[type=radio]:nth-child(4):checked~.slide_btn2>label:nth-child(4){
+    background-color: #fff;
+}
+.slide_opt2 input[type=radio]:nth-child(5):checked~.slide_btn2>label:nth-child(5){
+    background-color: #fff;
+}
+
+.slide_opt2 input[type=radio]:nth-child(1):checked~ul.slide_img2>li:nth-child(1){
+    left: 0;
+    transition: 0.5s;
+    z-index: 1;
+}
+.slide_opt2 input[type=radio]:nth-child(2):checked~ul.slide_img2>li:nth-child(2){
+    left: 0;
+    transition: 0.5s;
+    z-index: 1;
+}
+.slide_opt2 input[type=radio]:nth-child(3):checked~ul.slide_img2>li:nth-child(3){
+    left: 0;
+    transition: 0.5s;
+    z-index: 1;
+}
+.slide_opt2 input[type=radio]:nth-child(4):checked~ul.slide_img2>li:nth-child(4){
+    left: 0;
+    transition: 0.5s;
+    z-index: 1;
+}
+.slide_opt2 input[type=radio]:nth-child(5):checked~ul.slide_img2>li:nth-child(5){
+    left: 0;
+    transition: 0.5s;
+    z-index: 1;
+}
+
 
 
 /* login.jsp */

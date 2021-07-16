@@ -146,14 +146,14 @@ select u_userid, u_password from CAMPUS_USER where u_userid = 'hong' and u_passw
 alter table CAMPUS_BOARD drop constraint p_number;
 
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목2', '작성자2', 1, '내용입니당', '후기', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목7', '작성자7', 1, '몰라', '후기', 1, sysdate);
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목3', '작성자3', 5, '내용', '후기', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목8', '작성자8', 5, '안녕하세요', '리뷰', 1, sysdate);
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목4', '작성자4', 3, '엥 머지', '질문', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목9', '작성자9', 3, '넌 누구냐', '리뷰', 1, sysdate);
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목5', '작성자5', 2, '안녕하냐', '질문', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목10', '작성자10', 2, '헬렐레', '질문', 1, sysdate);
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목6', '작성자6', 7, '여기 좋아요', '후기', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목11', '작성자11', 7, '호호', '리뷰', 1, sysdate);
 
 select * from CAMPUS_BOARD;
