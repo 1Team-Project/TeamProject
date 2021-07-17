@@ -74,14 +74,14 @@
 					<foreach collection="sortArr" item='sort'>
 						<trim prefix="OR">
 							<choose>
-								<when test="sort=='T'.toString()">
-									b_sort like '%'||#{keyword}||'%'
+								<when test="sort=='R'.toString()">
+									b_sort like '%'||'리뷰'||'%'
 								</when>
-								<when test="sort=='C'.toString()">
-									b_sort like '%'||#{keyword}||'%'
+								<when test="sort=='Q'.toString()">
+									b_sort like '%'||'질문'||'%'
 								</when>
-								<when test="sort=='W'.toString()">
-									b_sort like '%'||#{keyword}||'%'
+								<when test="sort=='P'.toString()">
+									b_sort like '%'||'후기'||'%'
 								</when>
 							</choose>
 						</trim>

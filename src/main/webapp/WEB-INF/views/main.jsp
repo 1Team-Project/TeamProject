@@ -179,11 +179,11 @@
     		<div class="col-md-10">
 				<div style=" float: right; margin-top: 20px;">
 					<form action="" id="main_searchForm">
-						<select name="sort" id="" class="">
+						<select name="sort">
 							<option value="">--------</option>
-							<option value="T" <c:out value="${CampusPageVO.cri.sort=='T'?'selected':''}"/>>리뷰</option>
-							<option value="C" <c:out value="${CampusPageVO.cri.sort=='C'?'selected':''}"/>>질문</option>
-							<option value="W" <c:out value="${CampusPageVO.cri.sort=='W'?'selected':''}"/>>후기</option>
+							<option value="R">리뷰</option>
+							<option value="Q">질문</option>
+							<option value="P">후기</option>
 						</select>
 						<!-- 검색시에도 페이지당 게시물 수와 현재 페이지에 대한 정보가 따라가야 한다. -->
 						<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
@@ -232,11 +232,6 @@
 			var main_searchForm = $("#main_searchForm");
 			// sort 가져오기
 			var sort=$("select[name='sort']").val();
-			
-			if(sort==""){
-				return false;
-			}
-
 			// 검색 처음에는 1page 보여주기
 			main_searchForm.find("input[name='page']").val("1");
 			main_searchForm.submit();

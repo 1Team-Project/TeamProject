@@ -15,7 +15,7 @@
 			</div>
 			<div class="login-margin">
 				<label> 
-					<input type="checkbox" name="remember-me"> 로그인 기억하기
+					<!-- <input type="checkbox" name="remember-me"> 로그인 기억하기 -->
 				</label>
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>
