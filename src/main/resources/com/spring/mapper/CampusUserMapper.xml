@@ -8,7 +8,12 @@
 		values(#{u_userid}, #{u_password}, #{u_username}, #{u_email}, #{u_phone}, #{u_address})
 	</insert>
 	
+	<!-- 로그인/LoginVO 사용
 	<select id="login" resultType="com.spring.domain.LoginVO">
+		select u_userid, u_password from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
+	</select> -->
+	
+	<select id="login" resultType="com.spring.domain.CampusUserVO">
 		select u_userid, u_password from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
 	</select>
 	
@@ -27,5 +32,12 @@
 		update CAMPUS_USER set u_password = #{new_password} where u_userid = #{u_userid} and u_password = #{u_password}  
 	</update>
 	
+	<!-- 회원정보 수정 -->
+	<update id="userUpdate">
+		UPDATE CAMPUS_USER
+		u_password = #{new_password},
+		u_username = #{u_username}
+		WHERE u_userid = #{u_userid}
+	</update>
 
 </mapper>

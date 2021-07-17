@@ -234,6 +234,12 @@
     <!-- END nav -->
 
 	</section>
+	<form action="" id="mypageForm" method="post">
+<input type="hidden" name="u_userid"  value="${login.u_userid}"/>
+<input type="hidden" name="u_password"  value="${login.u_password}"/>
+
+
+</form>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  	<script src="/resources/main/js/popper.js"></script>

@@ -1,5 +1,6 @@
 package com.spring.service;
 
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,9 +26,10 @@ public class CampusUserServiceImpl implements CampusUserService {
 	}
 
 	@Override
-	public LoginVO login(String u_userid, String u_password) {
+	public CampusUserVO login(String u_userid, String u_password) {
 		return mapper.login(u_userid, u_password);
 	}
+
 
 	@Override
 	public boolean leave(String u_userid, String u_password) {
@@ -37,6 +39,11 @@ public class CampusUserServiceImpl implements CampusUserService {
 	@Override
 	public boolean update(ChangeVO change) {
 		return mapper.update(change)>0? true:false;
+	}
+
+	@Override
+	public boolean userUpdate(CampusUserVO vo) {
+		return mapper.userUpdate(vo)>0? true:false;
 	}
 
 }

@@ -18,6 +18,10 @@
             border: 0px solid;
             margin: 0px auto 0;
         }
+        a{
+        	text-decoration:none;
+        	color:white;
+        }
     
       .title{
           min-height:30px;
@@ -59,30 +63,41 @@
     }
 
      
-    </style>
+    </style> 
+<form action="/loginMypage" id="" method="post">
 <div id="container">
         <div id="contents">
             <div class="title">
-                <h2>My Page</h2>
+            
+                <h2>${login.u_userid}님 My Page</h2>
             </div>
             <div class="table-Area">
+               
                 <div id="mp" class="table">
                     <ul>
-                        <button type="button" class="btn btn-info" onclick="">구매내역</button>
+                        <button type="submit" class="btn btn-info" onclick="location.href='order'"><a href="/order">구매내역</a></button>
                        	<p></p>
-                        <button type="button" class="btn btn-secondary" onclick="">예약내역</button>
+                        <button type="submit" class="btn btn-secondary"><a href="/reservation">예약내역</a></button>
                         <p></p>
-                        <button type="button" class="btn btn-warning" onclick="">회원정보수정</button>
-                    
+                        <button type="submit" id="modify" class="btn btn-warning"><a href="/mypageModify">회원정보수정</a></button>
                     </ul>
                 </div>
+               
+                
             </div>
         </div>
     </div>
+</form>
+
+  
+<!-- <form action="" id="mypageForm" method="post">
+	<input type="hidden" name="u_userid"  value="${u_userid}"/>
+	<input type="hidden" name="u_username"  value="${vo.u_username}"/>
+	<input type="hidden" name="u_address"  value="${vo.u_address}"/>
+	<input type="hidden" name="u_phone"  value="${vo.u_phone}"/>
+
+</form> -->
 
 
-
-
-
-
+<script src="/resources/main/js/loginMypage.js"></script>
 <%@include file="../design/footer.jsp" %>
