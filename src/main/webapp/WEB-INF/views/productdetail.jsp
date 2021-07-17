@@ -5,19 +5,23 @@
 <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 <link href="/resources/main/css/common.css" rel="stylesheet"
 	type="text/css" />
+
 <div class="product_view">
 	<div id="productview">
 		<div class="innerview">
 			<div class="product">
-				<img class="photo" src="/resources/main/images/lamp.jpg" alt="상품 대표 사진">
+				<img class="photo" src="/resources/main/images/lamp.jpg"
+					alt="상품 대표 사진">
 				<ul>
-					<li class="small_img"><a href="">
-					<img src="/resources/main/images/lamp5.png" alt="손전등 상세 사진1"></a></li>
-					<li><a href="">
-					<img src="/resources/main/images/lamp2.jpg"
-							alt="손전등 상세 사진2"></a></li>
-					<li><a href=""><img src="/resources/main/images/lamp3.jpg"
-							alt="손전등 상세 사진3"></a></li>
+					<li class="small_img"><a
+						href="/resources/main/images/lamp.jpg"> <img
+							src="/resources/main/images/lamp.jpg" alt="손전등 상세 사진1"></a></li>
+					<li><a href="/resources/main/images/lamp5.png"> <img
+							src="/resources/main/images/lamp5.png" alt="손전등 상세 사진2"></a></li>
+					<li><a href="/resources/main/images/lamp2.jpg"> <img
+							src="/resources/main/images/lamp2.jpg" alt="손전등 상세 사진3"></a></li>
+					<li><a href="/resources/main/images/lamp3.jpg"><img
+							src="/resources/main/images/lamp3.jpg" alt="손전등 상세 사진4"></a></li>
 				</ul>
 			</div>
 			<p class="p_name">
@@ -56,8 +60,9 @@
 							<td>
 								<div class="option">
 									<span class="opt">
-										<button type="button" class="minus"></button> 
-										<input type="number" readonly="readonly" onfocus="this.blur()" class="inp">
+										<button type="button" class="minus"></button> <input
+										type="number" readonly="readonly" onfocus="this.blur()"
+										class="inp">
 										<button type="button" class="plus"></button>
 									</span>
 								</div>
@@ -72,13 +77,17 @@
 							<th><img src="/resources/main/images/choices.png">&nbsp;옵션선택</th>
 							<td><select>
 									<option>기본 (+0)</option>
+									<option>1 (+0)</option>
+									<option>2 (+0)</option>
+									<option>3 (+0)</option>
 							</select></td>
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
 							<td>무료배송</td>
 						</tr>
 						<tr>
-							<th><img src="/resources/main/images/payment-method.png">&nbsp;배송 안내</th>
+							<th><img src="/resources/main/images/payment-method.png">&nbsp;배송
+								안내</th>
 							<td>본 상품은 국내 배송만 가능합니다.</td>
 						</tr>
 					</tbody>
@@ -93,15 +102,15 @@
 						<div class="option_btn">
 							<button type="button" class="btn btn-primary btn-lg">장바구니</button>
 							<button type="button"
-								class="btn btn-primary btn-secondary btn-lg">구매하기</button>
+								class="btn btn-secondary btn-lg">구매하기</button>
 						</div>
 						<div class="p_detail_info">
 							<div class="p_detail_bar">
-								<ul>
-									<li class="menu"><a href="">상품 상세</a></li>
-									<li class="menu"><a href="">상품 별점</a></li>
-									<li class="menu"><a href="">상품 문의</a></li>
-									<li class="menu"><a href="">교환/반품</a></li>
+								<ul class="menu">
+									<li class="menu1">상품 상세</li>
+									<li class="menu2">상품 별점</li>
+									<li class="menu3">상품 문의</li>
+									<li class="menu4">교환/반품</li>
 								</ul>
 							</div>
 						</div>
@@ -150,9 +159,12 @@
 												class="tipkor"> 상품 활용 팁!</span>
 										</h1>
 										<div class="tip_info">
-											<span class="tip_icon"> <img src="/resources/main/images/camp.png">
-											</span> <span class="tip_icon"> <img src="/resources/main/images/moon.png">
-											</span> <span class="tip_icon"> <img src="/resources/main/images/thumb.png">
+											<span class="tip_icon"> <img
+												src="/resources/main/images/camp.png">
+											</span> <span class="tip_icon"> <img
+												src="/resources/main/images/moon.png">
+											</span> <span class="tip_icon"> <img
+												src="/resources/main/images/thumb.png">
 											</span>
 										</div>
 										<div class="tip_detail">
@@ -167,7 +179,8 @@
 										<div class="size_info">
 											<h1 class="size">
 												<span class="size_title">상품 사이즈</span> <span class="p_size"><img
-													src="/resources/main/images/lamp5.png"></span> <span class="p_size"><img
+													src="/resources/main/images/lamp5.png"></span> <span
+													class="p_size"><img
 													src="/resources/main/images/lamp5.png"></span>
 											</h1>
 										</div>
@@ -341,11 +354,12 @@
 													</tbody>
 												</table>
 												<div class="row">
-												<div class="col-md-12 mb-3">
-													<button class="btn btn-primary float-end">글 쓰기</button>
-													<button class="btn btn-primary float-end">전체 후기 보기</button>
+													<div class="col-md-12 mb-3">
+														<button class="btn btn-primary float-end">글 쓰기</button>
+														<button class="btn btn-primary float-end">전체 후기
+															보기</button>
+													</div>
 												</div>
-											</div>
 												<div class="row">
 													<div class="col-md-12">
 														<ul class="mypagination justify-content-center">
@@ -362,8 +376,7 @@
 														</ul>
 													</div>
 												</div>
-												<div class="change_info">
-												</div>
+												<div class="change_info"></div>
 											</div>
 										</div>
 									</div>
@@ -373,10 +386,14 @@
 					</div>
 				</div>
 			</div>
-			</div>
-			</div>
-			</div>
-<script>
+		</div>
+	</div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"
+	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+	crossorigin="anonymous"></script>
+<!-- <script type= text/javascript> -->
 </script>
 <script src="/resources/main/js/pdetail.js"></script>
-			<%@include file="../design/footer.jsp"%>
+<%@include file="../design/footer.jsp"%>

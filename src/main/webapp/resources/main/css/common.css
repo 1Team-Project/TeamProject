@@ -1,3 +1,4 @@
+@charset "UTF-8";
 /* body { */
 /*     padding:50px; */
 /* } */
@@ -36,9 +37,12 @@
 .product_view .product li img {
     width:68px;
     height: 68px;
-    border: 1px solid black;
-    
 }
+.product_view .product li img:hover {
+    border:1px solid #5ea7ec;
+  
+}
+
 .product_view * {
     font-family: noto sans;
     color: #333;
@@ -116,7 +120,7 @@ p {
     width: 24px;
     height: 24px;
 }
-#productview .option .opt{
+#productview .option .opt .number{
     overflow: hidden;
     float: left;
     width: 88px;
@@ -127,11 +131,18 @@ p {
 #productview .option .opt .minus {
     background-image: url("/resources/main/images/remove.png");
 }
-#productview .option .opt .minus {
-    background: #fff url("/resources/main/images/remove.png") no-repeat 50% 50%;
+
+#productview .option .opt .minus, .plus {
+    background-color: transparent;
+    background-repeat: no-repeat;
     background-size: 30px 30px;
+    background-position: 50% 50%;
 }
-#productview .option .opt .btn {
+
+#productview .option .opt .plus {
+	background-image: url("/resources/main/images/plus.png");
+}
+#productview .option .opt button{
     overflow: hidden;
     float: left;
     width: 28px;
@@ -197,26 +208,23 @@ p {
     position: relative;
     overflow: hidden;
     }
+    
 .p_detail_bar li{
     float: left;
-    margin-right: 4px;
-    list-style: none;
 }
 
-.p_detail_bar .menu a {
-    font-weight: bold;
-    background: #96a3ad;
-    border-radius: 50px;
-    margin-left: 90px;
-}
-.p_detail_bar a {
+.p_detail_bar .menu li {
     display: block;
     height: 30px;
-    padding: 4px 23px;
     color: #fff;
     font-size: 20px;
+    font-weight:700;
     line-height: 30px;
     letter-spacing: -1px;
+    padding: 4px 88px;
+}
+.menu .menu1 {
+	margin-left:10px;
 }
 .p_detail_img img {
     display: block;
@@ -226,6 +234,7 @@ p {
     font-family: noto sans;
     font-weight: 200;
     letter-spacing: 0;
+    
 }
 .p_detail_img .main_img {
     padding-top: 40px;
@@ -277,25 +286,35 @@ p {
     height: 1px;
     background: #b9b9b9;
 }
-.d_wrapper h1 .campustip, .size_info h1 span, .p_reviewbar h1 span, .p_qna h1 span {
+.d_wrapper h1 .campustip, .size_info h1 span, .p_reviewbar h1 span {
     position: relative;
     display: inline-block;
     margin-left: 350px;
     padding: 0 15px;
     background: #fff;
-    text-shadow: 2px 0;
     font-weight: 700;
 }
+
+.p_qna h1 span {
+	margin-left: 450px;
+}
+
 
 .d_wrapper h1 .tipkor , .p_reviewbar .star , .p_qna .qna_subtit{
     position: relative;
     display: inline-block;
-    margin-left: 455px;
     padding: 0 15px;
-    text-shadow: 2px 0;
-    font-size: 30px;
+    font-size: 23px;
     margin-bottom: 40px;
 }
+.p_reivewbar .star {
+	margin-left:350px;
+}
+
+.p_qna .qna_subtit{
+	margin-left:300px;
+}
+
 .tip_info {
     width: 1050px;
     height: 120px;
