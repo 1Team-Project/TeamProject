@@ -120,7 +120,7 @@ p {
     width: 24px;
     height: 24px;
 }
-#productview .option .opt .number{
+#productview .option .opt {
     overflow: hidden;
     float: left;
     width: 88px;
@@ -129,28 +129,41 @@ p {
     border-radius: 3px;
 }
 #productview .option .opt .minus {
-    background-image: url("/resources/main/images/remove.png");
+/*     background-image: url("/resources/main/images/remove.png") no-repeat 50% 50%; */
+    margin-left: -1px;
+/*     background-size: 29px 30px; */
 }
-
-#productview .option .opt .minus, .plus {
-    background-color: transparent;
-    background-repeat: no-repeat;
-    background-size: 30px 30px;
-    background-position: 50% 50%;
-}
-
-#productview .option .opt .plus {
-	background-image: url("/resources/main/images/plus.png");
-}
-#productview .option .opt button{
+#productview .option .opt .minus, .plus{
     overflow: hidden;
     float: left;
     width: 28px;
     height: 28px;
-    border: 0;
+    border: none;
     font-size: 0;
     line-height: 0;
     text-indent: -9999px;
+    background : none;
+}
+#productview .option .opt .inp{
+   float: left;
+    width: 30px;
+    height: 30px;
+    margin-right: -2px;
+    margin-left: 3px;
+    padding: 0 0 4px;
+    border: 0;
+    background-color: #fff;
+    font-size: 14px;
+    color: #000;
+    line-height: 18px;
+    text-align: center;
+}
+
+#productview .option .opt .plus {
+/* 	background-image: url("/resources/main/images/plus.png"); */
+	float:right;
+	margin-left: -1px;
+/* 	background-size: 29px 30px; */
 }
 
 .product_view table td.price{

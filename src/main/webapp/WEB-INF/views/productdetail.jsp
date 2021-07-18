@@ -60,10 +60,9 @@
 							<td>
 								<div class="option">
 									<span class="opt">
-										<button type="button" class="minus"></button> <input
-										type="number" readonly="readonly" onfocus="this.blur()"
-										class="inp">
-										<button type="button" class="plus"></button>
+										<button type="button" class="minus">+</button> 
+										<input type="number" readonly="readonly" onfocus="this.blur()" class="inp">
+										<button type="button" class="plus">-</button>
 									</span>
 								</div>
 							</td>
@@ -376,7 +375,26 @@
 														</ul>
 													</div>
 												</div>
-												<div class="change_info"></div>
+												<div class="change_info">
+												adipisicing elit. Molestiae deserunt illo quaerat officia quia
+										est consequatur dolores corrupti nihil at eligendi ipsam
+										numquam quasi architecto praesentium, dolorum labore quas a.
+										Sapiente tenetur molestiae commodi nobis earum nesciunt.
+										Mollitia, autem molestiae nostrum aut explicabo asperiores
+										aperiam omnis, iusto pariatur veritatis magni quibusdam minus
+										nemo necessitatibus debitis iste accusamus repudiandae atque.
+										Dolores! Pariatur possimus molestias, consequatur eius ullam
+										soluta ut sint eum minima id labore voluptatem. Ducimus cum
+										error, temporibus cumque voluptates nihil? Ipsum optio sed
+										veritatis repellendus sunt aspernatur in explicabo. Facere,
+										eligendi aliquam fuga nemo eos consequatur, provident rerum
+										officia beatae inventore et porro minima aliquid. Placeat
+										beatae facilis voluptatem illo voluptates saepe rem, optio,
+										architecto facere tempore nihil aut! Incidunt, molestias
+										quaerat. Assumenda architecto facere debitis, obcaecati quod
+										distinctio. Dolor, doloremque. Necessitatibus vero voluptatem
+										sit, dolorem fugiat molestiae accusantium cumque illum?
+										Consequatur sit autem perferendis. Voluptate laboriosam quae</div>
 											</div>
 										</div>
 									</div>

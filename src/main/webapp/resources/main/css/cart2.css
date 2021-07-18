@@ -79,15 +79,15 @@ label {
     font-size: 16px;
     line-height: 24px;
 }
-.skin_checkbox input[type=radio], input[type=checkbox] {
-    position: absolute;
-    z-index: -1;
-    opacity: 0;
-}
-input[type=checkbox], input[type=radio] {
-    box-sizing: border-box;
-    padding: 0;
-}
+/* .skin_checkbox input[type=radio], input[type=checkbox] { */
+/*     position: absolute; */
+/*     z-index: -1; */
+/*     opacity: 0; */
+/* } */
+/* input[type=checkbox], input[type=radio] { */
+/*     box-sizing: border-box; */
+/*     padding: 0; */
+/* } */
 body, input, select, textarea, button {
     font-family: noto sans,malgun gothic,AppleGothic,dotum;
     line-height: 1;
@@ -100,16 +100,16 @@ input {
     line-height: normal;
 }
 
-user agent stylesheet
-input[type="checkbox" i] {
-    background-color: initial;
-    cursor: default;
-    appearance: auto;
-    box-sizing: border-box;
-    margin: 3px 3px 3px 4px;
-    padding: initial;
-    border: initial;
-}
+/* user agent stylesheet */
+/* input[type="checkbox" i] { */
+/*     background-color: initial; */
+/*     cursor: default; */
+/*     appearance: auto; */
+/*     box-sizing: border-box; */
+/*     margin: 3px 3px 3px 4px; */
+/*     padding: initial; */
+/*     border: initial; */
+/* } */
 
 .cartlist .c_select .btn_delete {
     padding: 18px 0 17px 20px;

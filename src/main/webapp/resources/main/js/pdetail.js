@@ -111,6 +111,29 @@ $(function() {
 			400);
 	})
 });
+ $(".plus").click(function(){
+                    var num = $(".inp").val();
+                    var plusNum = Number(num) + 1;
+
+                    if (plusNum >= 100) {
+                        $(".inp").val(num);
+                    } else {
+                        $(".inp").val(plusNum);
+                    }
+                });
+
+                $(".minus").click(function(){
+                    var num = $(".inp").val();
+                    var minusNum = Number(num) - 1;
+
+                    if (minusNum <= 0) {
+                        $(".inp").val(num);
+                    } else {
+                        $(".inp").val(minusNum);
+                    }
+                });
+
+
 
 
 
