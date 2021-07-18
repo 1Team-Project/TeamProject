@@ -26,8 +26,8 @@ public class CampusUserServiceImpl implements CampusUserService {
 	}
 
 	@Override
-	public CampusUserVO login(String u_userid, String u_password) {
-		return mapper.login(u_userid, u_password);
+	public CampusUserVO login(CampusUserVO vo) {
+		return mapper.login(vo);
 	}
 
 
@@ -46,4 +46,5 @@ public class CampusUserServiceImpl implements CampusUserService {
 		return mapper.userUpdate(vo)>0? true:false;
 	}
 
+	
 }

@@ -40,13 +40,14 @@ public class MemberController {
 	public String loginPost(CampusUserVO vo, HttpSession session, RedirectAttributes rttr) {
 		log.info("login 요청 : " + vo.getU_userid() + " " + vo.getU_password());
 
-		CampusUserVO login = service.login(vo.getU_userid(), vo.getU_password());
+		CampusUserVO login = service.login(vo);
 		
 		if(login==null) {
 			rttr.addFlashAttribute("error", "아이디 또는 비밀번호를 확인해주세요");
 			return "redirect:login";
 		} else {
 			session.setAttribute("login", login);
+			//session.setAttribute("u_username", vo.getU_username());
 			return "redirect:/";
 		}
 	}
@@ -66,35 +67,71 @@ public class MemberController {
 	
 	//loginMypage 이동
 	@GetMapping("/loginMypage")
-	public String loginMypage() {
+	public void loginMypage() {
+		log.info("마이페이지 요청");
+//		return "loginMypage";
+	}
+	
+	@PostMapping("/loginMypageForm")
+	public String loginMypageForm() {
 		log.info("마이페이지 요청");
 		return "loginMypage";
 	}
 	
+	/*마이페이지 - 회원정보수정*/
+	
+	//회원정보수정 페이지 이동
+//	@GetMapping("/mypageModify")
+//	public String mypageModify(Model model) {
+//		log.info("mypage-modify 요청");
+//		model.addAttribute("u_username",new CampusUserVO());
+//		
+//		return "mypageModify";
+//	}//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
 	
 	//회원정보수정 페이지 이동
 	@GetMapping("/mypageModify")
-	public String mypageModify(Model model) {
+	public String mypageModify(HttpSession session, Model model) {
 		log.info("mypage-modify 요청");
-		//model.addAttribute("user",new CampusUserVO());
+		
 		
 		return "mypageModify";
 	}
+
+	//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
 	
-	//회원정보 수정하기 - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야
+	//회원정보 수정하기 - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야 / 가져오는건 비밀번호 제외 다
 	@PostMapping("/mypageModify")
 	public String mypageModifyForm(CampusUserVO vo, HttpSession session) {
 		log.info("회원정보수정"+vo);
 		
 		
-		service.userUpdate(vo);
-		session.invalidate();
+//		service.userUpdate(vo);
+//		session.invalidate();
 		
-		return "redirect:/";
+		return "mypageModify";
 	}
 
 	
-
+	/*마이페이지 - 구매내역*/
+	@GetMapping("/order")
+	public String order() {
+		log.info("order페이지 요청");
+		
+		return "order";
+	}
+	
+	
+	
+	
+	
+	/*마이페이지 - 예약내역*/
+	@GetMapping("/reservation")
+	public String reservation() {
+		log.info("order페이지 요청");
+		
+		return "reservation";
+	}
 	
 	
 //	// member/change-pwd => modify.jsp 보여주기

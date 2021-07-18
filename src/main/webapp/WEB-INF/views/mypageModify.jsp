@@ -178,7 +178,7 @@
                             <input id="u_address" name="u_address" fw-filter="isFill" fw-label="주소" fw-msg=""
                                 class="inputTypeText" placeholder="" readonly="readonly" value="${vo.u_address}" type="text"><br>
                             <input id="u_address" name="u_address" fw-filter="" fw-label="주소" fw-msg="" class="inputTypeText"
-                                placeholder="" value="${vo.u_address}" type="text"> <span class="ec-base-help typeDash"></span>
+                                placeholder="" value="${login.u_address}" type="text"> <span class="ec-base-help typeDash"></span>
                         </td>
                     </tr>
                     <tr>
@@ -205,7 +205,7 @@
                                 fw-label="휴대전화" fw-alone="N" fw-msg="" value="${vo.u_phone}" type="text">
                             -<input id="mobile3"
                                 name="mobile[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="휴대전화"
-                                fw-alone="N" fw-msg="" value="${vo.u_phone}" type="text">
+                                fw-alone="N" fw-msg="" value="${login.u_phone}" type="text">
                         </td>
                     </tr>
                 </tbody>

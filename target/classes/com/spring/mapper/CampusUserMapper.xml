@@ -14,7 +14,9 @@
 	</select> -->
 	
 	<select id="login" resultType="com.spring.domain.CampusUserVO">
-		select u_userid, u_password from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
+		select u_userid, u_password, u_username, u_email, u_phone, u_address 
+		from CAMPUS_USER 
+		where u_userid = #{u_userid} and u_password = #{u_password}
 	</select>
 	
 	<!-- 중복된 아이디 검사: dupId -->
@@ -31,6 +33,8 @@
 	<update id="update">
 		update CAMPUS_USER set u_password = #{new_password} where u_userid = #{u_userid} and u_password = #{u_password}  
 	</update>
+	
+	
 	
 	<!-- 회원정보 수정 -->
 	<update id="userUpdate">

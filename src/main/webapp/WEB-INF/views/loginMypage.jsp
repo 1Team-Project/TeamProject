@@ -64,6 +64,7 @@
 
      
     </style> 
+
 <form action="/loginMypage" id="" method="post">
 <div id="container">
         <div id="contents">
@@ -80,6 +81,7 @@
                         <button type="submit" class="btn btn-secondary"><a href="/reservation">예약내역</a></button>
                         <p></p>
                         <button type="submit" id="modify" class="btn btn-warning"><a href="/mypageModify">회원정보수정</a></button>
+                   	
                     </ul>
                 </div>
                
