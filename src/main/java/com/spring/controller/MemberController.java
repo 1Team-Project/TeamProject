@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,8 +23,8 @@ public class MemberController {
 	private CampusUserService service;
 	
 	/* 로그인 시스템 시작 */
-	
-	
+	/* 기본 시스템 */
+	/*
 	// login.jsp 보여주기
 	@GetMapping("/login")
 	public void loginGet() {
@@ -55,7 +56,36 @@ public class MemberController {
 		session.removeAttribute("login");
 		return "redirect:/";
 	}
+	*/
+	/* 기본 시스템 종료*/
+	/* security 시작 */
+
+	@GetMapping("/login")
+	public String loginGet() {
+		log.info("로그인 폼 요청");
+		
+		return "/login";
+	}
 	
+	@GetMapping("/admin-page")
+	public String adminPage() {
+		log.info("admin");
+		
+		return "/AdminPage";
+	}
+	@GetMapping("/user-page")
+	public String user() {
+		log.info("user");
+		
+		return "/UserPage";
+	}
+	
+	
+	@GetMapping("/login-error")
+	public String loginError(Model model) {
+		model.addAttribute("loginError", "아이디나 비밀번호가 올바르지 않습니다.");
+		return "/login";
+	}
 	
 	/* 로그인 시스템 종료 */
 	
