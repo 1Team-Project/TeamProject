@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.CampusBoardMapper">
+
+
+	<select id="list" resultType="com.spring.domain.CampusBoardVO">
+		<![CDATA[
+			select * 
+				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate, replycnt, b_content
+					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate,replycnt,b_content from campus_board where b_no>0 order by b_no desc) 
+					where b_sort != '상품' and
+		]]>
+	
+		<include refid="criteria"></include>
+		
+		<![CDATA[
+				 rownum <= (#{page}*20)) 
+			where rn > ((#{page}-1)*20)
+		]]>
+	</select>
+
+
+	<delete id="delete">
+		delete from campus_board where b_no = #{b_no}
+	</delete>
+	
+	<delete id="delete_p">
+		delete from campus_board where p_number = #{p_number}
+	</delete>
+	
+	<update id="update">
+		update campus_board set b_sort = #{b_sort}, b_title = #{b_title}, b_content = #{b_content} where b_no = #{b_no}
+	</update>
+
+	
+	<update id="addview">
+		update campus_board set b_views = #{b_views} where b_no = #{b_no}
+	</update>
+	
+	<!-- 전체 게시물 수 -->
+	<select id="totalCnt" resultType="int">
+		select count(*) from campus_board
+		
+		where
+		
+		<include refid="criteria"></include>
+		
+		b_no > 0
+	</select>
+
+	
+	<select id="view" resultType="com.spring.domain.CampusBoardVO">
+		select * from campus_board where b_no = #{b_no}
+	</select>
+	
+	<select id="selectpnumber" resultType="com.spring.domain.CampusBoardVO">
+		select * from campus_board where p_number = #{p_number}
+	</select>
+	
+	<!-- 댓글 숫자 수정 : 댓글의 삽입or삭제시 -->
+	<update id="replyCntUpdate">
+		update campus_board set replycnt = #{replycnt} where b_no = #{b_no}
+	</update>
+	
+	<insert id="insert">
+		<!-- 주로 pk값을 미리 sql 쿼리문을 통해 처리해 두고 특정한 이름으로 결과를 보관 -->
+		<selectKey keyProperty="b_no" order="BEFORE" resultType="int">
+			select CAMPUS_BOARD_SEQUENCE.nextval from dual
+		</selectKey>
+		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort})
+	</insert>
+	
+	<insert id="insert_p">
+		<!-- 주로 pk값을 미리 sql 쿼리문을 통해 처리해 두고 특정한 이름으로 결과를 보관 -->
+		<selectKey keyProperty="b_no" order="BEFORE" resultType="int">
+			select CAMPUS_BOARD_SEQUENCE.nextval from dual
+		</selectKey>
+		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort, p_number) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort}, #{p_number})
+	</insert>
+	
+	
+	
+	<!-- 동적 SQL -->
+	<sql id = "criteria">
+		<if test="sort != null || sort == ''">
+			<if test="sort=='제목'.toString()">
+				b_title like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='내용'.toString()">
+				b_content like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='작성자'.toString()">
+				b_writer like '%'||#{keyword}||'%' and
+			</if>
+		</if>
+	</sql>
+
+
+</mapper>
