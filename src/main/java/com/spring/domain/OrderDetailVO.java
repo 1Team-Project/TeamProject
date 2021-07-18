@@ -13,10 +13,10 @@ import lombok.ToString;
 @ToString
 
 public class OrderDetailVO {
-	public int d_number;
-	public int p_number;
-	public int o_number;
-	public int d_count;
-	public int d_price;
+	private int d_number;
+	private int p_number;
+	private int o_number;
+	private int d_count;
+	private int d_price;
 	
 }

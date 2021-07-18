@@ -18,4 +18,5 @@ public class CampusProductVO {
 	private String p_option;
 	private int p_stock;
 	private String pc_code;
+	private String p_manufact;
 }

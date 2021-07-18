@@ -1,15 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@include file="../design/header.jsp"%>
 <html>
 <head>
-<meta charset="EUC-KR">
+<meta charset="UTF-8">
 <title>Insert title here</title>
 <link href="/resources/main/css/cart2.css" rel="stylesheet">
 </head>
 <body>
 	<div class="cart_page">
-		<h2 class="cart">Àå¹Ù±¸´Ï</h2>
+		<h2 class="cart">ìž¥ë°”êµ¬ë‹ˆ</h2>
 	</div>
 	<form>
 		<div id="cartItemList" class="cartlist" style="min-height: 561px;">
@@ -20,9 +20,9 @@
 							<label class="check">
 							<input type="checkbox" name="checkAll" checked="">
 								<span class="icon"></span>
-								ÀüÃ¼¼±ÅÃ(1/1)
+								ì „ì²´ì„ íƒ(1/1)
 								</label>
-								<a href="#none" class="btn_delete">¼±ÅÃ»èÁ¦</a>
+								<a href="#none" class="btn_delete">ì„ íƒì‚­ì œ</a>
 						</div>
 					</div>
 					<div class="box">
@@ -35,25 +35,25 @@
 										</label>
 									<div class="c_name">
 										<div class="innername">
-											<a href="#" class="package ">°­·Â ¼ÕÀüµî</a>
-											<div class="info">´âÁö ¾Ê´Â ¼ÕÀüµî</div>
+											<a href="#" class="package ">ê°•ë ¥ ì†ì „ë“±</a>
+											<div class="info">ë‹³ì§€ ì•ŠëŠ” ì†ì „ë“±</div>
 										</div>
 									</div>
 									<div class="goods">
-										<a href="#" class="c_img ">»óÇ°ÀÌ¹ÌÁö</a>
+										<a href="#" class="c_img ">ìƒí’ˆì´ë¯¸ì§€</a>
 										<div class="price">
 											<div class="in_price">
-												<span class="selling">15,000<span class="unit">¿ø</span></span>
+												<span class="selling">15,000<span class="unit">ì›</span></span>
 												<p class="noti"></p>
 											</div>
 											<div class="stamper count">
-												<button type="button" class="btn minus off">°¨¼Ò</button>
+												<button type="button" class="btn minus off">ê°ì†Œ</button>
 												<input type="number" id="stepperCounter" class="num" readonly="" value="1">
-												<button type="button" class="btn plus">Ãß°¡</button>
+												<button type="button" class="btn plus">ì¶”ê°€</button>
 											</div>
 										</div>
 									</div>
-									<button type="button" class="btn_delete" data-type="cold">»óÇ° »èÁ¦</button>
+									<button type="button" class="btn_delete" data-type="cold">ìƒí’ˆ ì‚­ì œ</button>
 								</div></li>
 						</ul>
 					</div>
@@ -61,34 +61,34 @@
 						<div class="inner_select">
 							<label class="check">
 							<input type="checkbox" name="checkAll" checked="">
-							<span class="ico"></span>ÀüÃ¼¼±ÅÃ (1/1)</label>
-							<a href="#none" class="btn_delete">¼±ÅÃ»èÁ¦</a>
+							<span class="ico"></span>ì „ì²´ì„ íƒ (1/1)</label>
+							<a href="#none" class="btn_delete">ì„ íƒì‚­ì œ</a>
 						</div>
 					</div>
 				</div>
 				<div class="cart_result">
 					<div class="innerresult" style="top: 60px;">
 						<div class="cart_delivery">
-							<h3 class="addr">¹è¼ÛÁö</h3>
+							<h3 class="addr">ë°°ì†¡ì§€</h3>
 							<div class="address">
-								<span class="put_addr">¹è¼ÛÁö¸¦</span><br>ÀÔ·ÂÇØÁÖ¼¼¿ä!<a href="#" class="btn default">
+								<span class="put_addr">ë°°ì†¡ì§€ë¥¼</span><br>ìž…ë ¥í•´ì£¼ì„¸ìš”!<a href="#" class="btn default">
 								<span class="icon"></span>
-									ÁÖ¼Ò °Ë»ö</a>
+									ì£¼ì†Œ ê²€ìƒ‰</a>
 							</div>
 						</div>
 						<div class="amount_view">
 							<dl class="amount">
-								<dt class="tit">°áÁ¦¿¹Á¤±Ý¾×</dt>
+								<dt class="tit">ê²°ì œì˜ˆì •ê¸ˆì•¡</dt>
 								<dd class="price">
-									<span class="num">15,000</span><span class="unit">¿ø</span>
+									<span class="num">15,000</span><span class="unit">ì›</span>
 								</dd>
 							</dl>
 						</div>
 						<div class="btn_submit">
-							<button type="submit" class="btn btn-primary">±¸¸ÅÇÏ±â</button>
+							<button type="submit" class="btn btn-primary">êµ¬ë§¤í•˜ê¸°</button>
 						</div>
 						<div class="notice">
-						±¸¸ÅÇÏ´Â ¹°Ç°ÀÌ ¸Â´Â Áö ²À È®ÀÎÇØ ÁÖ¼¼¿ä!
+						êµ¬ë§¤í•˜ëŠ” ë¬¼í’ˆì´ ë§žëŠ” ì§€ ê¼­ í™•ì¸í•´ ì£¼ì„¸ìš”!
 						</div>
 					</div>
 				</div>

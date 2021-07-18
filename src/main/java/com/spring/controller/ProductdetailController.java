@@ -5,6 +5,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.service.ProductDetailService;
 
@@ -14,15 +16,18 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ProductdetailController {
 	
-	@GetMapping("/productdetail")
-	public void productdetail() {
-		log.info("»óÇ° »ó¼¼ ÆäÀÌÁö Å×½ºÆ®");
+//	@GetMapping("/productdetail")
+//	public void productdetail() {
+//		log.info("ìƒí’ˆ ìƒì„¸ í˜ì´ì§€ ì´ë™");
+//	}
+	@PostMapping("/productdetail")
+	public ModelAndView productdetail() {
+		
 	}
-
-
+	
 	@GetMapping("/cart")
 	public void cartput() {
-		log.info("Àå¹Ù±¸´Ï ÆäÀÌÁö Å×½ºÆ®");
+		log.info("ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®");
 	}
 
 }

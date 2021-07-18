@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
 
@@ -113,13 +113,13 @@
     <div class="container-fluid">
       <div class="row topmargin30">
         <div class="col-md-12"></div>
-        <h3 class="heading-section ml20" style="font-family: naBrush;">���� �Խ���</h3>
+        <h3 class="heading-section ml20" style="font-family: naBrush;">통합 게시판</h3>
       </div>
       <div class="row">
         <div class="col-md-1"></div>
         <div class="col-md-10">
           <div class="col-md-12 colorthema hh4 padding6px margintb20">
-            ������ ȭ����
+            오늘의 화제글
           </div>
           <div class="row">
             <div class="col-md-12">
@@ -129,10 +129,10 @@
                     <img class="card-img-top" src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg"
                     />
                     <div class="card-block">
-                      <h5 class="card-title topmargin10">�ı��Դϴ�</h5>
-                      <p class="card-text">�ȳ��ϼ��� �ı��Դϴ�...</p>
+                      <h5 class="card-title topmargin10">후기입니다</h5>
+                      <p class="card-text">안녕하세요 후기입니다...</p>
                       <p>
-                        <a class="btn btn-primary" href="#">�ڼ��� ����</a>
+                        <a class="btn btn-primary" href="#">자세히 보기</a>
                       </p>
                     </div>
                   </div>
@@ -144,10 +144,10 @@
                       src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg"
                     />
                     <div class="card-block">
-                      <h5 class="card-title topmargin10">�����Դϴ�</h5>
-                      <p class="card-text">�̰��� �����Դϴ� ����...</p>
+                      <h5 class="card-title topmargin10">리뷰입니다</h5>
+                      <p class="card-text">이것은 리뷰입니다 리뷰...</p>
                       <p>
-                        <a class="btn btn-primary" href="#">�ڼ��� ����</a>
+                        <a class="btn btn-primary" href="#">자세히 보기</a>
                       </p>
                     </div>
                   </div>
@@ -159,10 +159,10 @@
                       src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg"
                     />
                     <div class="card-block">
-                      <h5 class="card-title topmargin10">�����Դϴ�</h5>
-                      <p class="card-text">�̰��� �����Դϴ�...</p>
+                      <h5 class="card-title topmargin10">질문입니다</h5>
+                      <p class="card-text">이것은 질문입니다...</p>
                       <p>
-                        <a class="btn btn-primary" href="#">�ڼ��� ����</a>
+                        <a class="btn btn-primary" href="#">자세히 보기</a>
                       </p>
                     </div>
                   </div>
@@ -177,82 +177,82 @@
           <table class="table">
             <thead>
               <tr class="textcenter colorthema">
-                <th class="width10">��ȣ</th>
-                <th class="width10">�з�</th>
-                <th class="width40">����</th>
-                <th class="width10">�۾���</th>
-                <th class="width20">�ۼ���</th>
-                <th class="width10">��ȸ��</th>
+                <th class="width10">번호</th>
+                <th class="width10">분류</th>
+                <th class="width40">제목</th>
+                <th class="width10">글쓴이</th>
+                <th class="width20">작성일</th>
+                <th class="width10">조회수</th>
               </tr>
             </thead>
             <tbody class="textcenter">
               <tr>
                 <td>5</td>
-                <td>�ı�</td>
+                <td>후기</td>
                 <td>
                   <a href="#" class="blacktext hoverthema"
-                    >�ȳ��ϼ��� �ı��Դϴ�<strong class="badgecount"
+                    >안녕하세요 후기입니다<strong class="badgecount"
                       >[1]</strong
                     ></a
                   >
                 </td>
-                <td>ȫ�浿</td>
+                <td>홍길동</td>
                 <td>2021/07/07</td>
                 <td>0</td>
               </tr>
               <tr>
                 <td>4</td>
-                <td>�ı�</td>
+                <td>후기</td>
                 <td>
                   <a href="#" class="blacktext hoverthema"
-                    >�ȳ��ϼ��� �ı��Դϴ�<strong class="badgecount"
+                    >안녕하세요 후기입니다<strong class="badgecount"
                       >[1]</strong
                     ></a
                   >
                 </td>
-                <td>ȫ�浿</td>
+                <td>홍길동</td>
                 <td>2021/07/07</td>
                 <td>0</td>
               </tr>
               <tr>
                 <td>3</td>
-                <td>����</td>
+                <td>질문</td>
                 <td>
                   <a href="#" class="blacktext hoverthema"
-                    >�ȳ��ϼ��� �����Դϴ�<strong class="badgecount"
+                    >안녕하세요 질문입니다<strong class="badgecount"
                       >[1]</strong
                     ></a
                   >
                 </td>
-                <td>ȫ�浿</td>
+                <td>홍길동</td>
                 <td>2021/07/07</td>
                 <td>0</td>
               </tr>
               <tr>
                 <td>2</td>
-                <td>�ı�</td>
+                <td>후기</td>
                 <td>
                   <a href="#" class="blacktext hoverthema"
-                    >�ȳ��ϼ��� �ı��Դϴ�<strong class="badgecount"
+                    >안녕하세요 후기입니다<strong class="badgecount"
                       >[1]</strong
                     ></a
                   >
                 </td>
-                <td>ȫ�浿</td>
+                <td>홍길동</td>
                 <td>2021/07/07</td>
                 <td>0</td>
               </tr>
               <tr>
                 <td>1</td>
-                <td>����</td>
+                <td>질문</td>
                 <td>
                   <a href="#" class="blacktext hoverthema"
-                    >�ȳ��ϼ��� �����Դϴ�<strong class="badgecount"
+                    >안녕하세요 질문입니다<strong class="badgecount"
                       >[1]</strong
                     ></a
                   >
                 </td>
-                <td>ȫ�浿</td>
+                <td>홍길동</td>
                 <td>2021/07/07</td>
                 <td>0</td>
               </tr>
@@ -265,16 +265,16 @@
                 id=""
                 class="form-control width10 inlinetest boldergreen"
               >
-                <option value="">�з�</option>
-                <option value="�ı�">�ı�</option>
-                <option value="����">����</option>
+                <option value="">분류</option>
+                <option value="후기">후기</option>
+                <option value="질문">질문</option>
               </select>
               <input
                 type="text"
                 class="width30 boldergreen padding5px blacktext"
               />
-              <button class="btn btn-primary">�˻�</button>
-              <button class="btn btn-primary float-end">�� ����</button>
+              <button class="btn btn-primary">검색</button>
+              <button class="btn btn-primary float-end">글 쓰기</button>
             </div>
           </div>
           <div class="row">

@@ -56,7 +56,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 		boolean result = false;
 
 		
-		//Ã·ºÎÆÄÀÏ ¿©ºÎ È®ÀÎ
+		//Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
 		if(vob.getAttachList()==null || vob.getAttachList().size()<=0) {
 			
 			if (test1 == test2 == test3) {
@@ -66,7 +66,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 			return result;
 		}
 		
-		// Ã·ºÎÆÄÀÏ µî·Ï
+		// Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
 		vob.getAttachList().forEach(attach -> {
 			attach.setB_no(vob.getB_no());
 			attachMapper.insert(attach);
@@ -105,6 +105,12 @@ public class CampusProductServiceImpl implements CampusProductService {
 	public CampusProductVO viewProduct(int p_number) {
 		// TODO Auto-generated method stub
 		return productmapper.viewProduct(p_number);
+	}
+
+	@Override
+	public CampusProductVO detailproduct(int p_number) {
+		// TODO Auto-generated method stub
+		return productmapper.productdetail(p_number);
 	}
 
 }

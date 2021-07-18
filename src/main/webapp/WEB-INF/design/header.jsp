@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -207,10 +207,6 @@
     <!-- END nav -->
 
 	</section>
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
   <head>
   	<title>Website menu 07</title>
 	  <meta charset="utf-8">
@@ -414,4 +410,4 @@
  	<script src="/resources/main/js/popper.js"></script>
   	<script src="/resources/main/js/bootstrap.min.js"></script>
  	<script src="/resources/main/js/main.js"></script>
->>>>>>> 379ad0f1b939755f0e84fe779b193569ac8778cf
+
