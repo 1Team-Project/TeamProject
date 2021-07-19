@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.CampusProduct">
+	
+	<!-- 상품 조회 : 목록 보기-->
+		<select id="productList" resultType="com.spring.domain.CampusProductVO">
+			select * from campus_product
+		</select>
+		
+	<!-- 상품 조회 : 카테고리 분류? -->
+		<select id="productCategory" resultType="com.spring.domain.CampusProductVO">
+			select * from campus_product where pc_code=#{pc_code}
+		</select>
+	
+	<!-- 상품 조회 : 검색? -->
+		<select id="searchProduct" resultType="com.spring.domain.CampusProductVO">
+			select * from campus_product where p_name=#{p_name}
+		</select>
+	
+	
+	<!-- 관리자 권한 -->
+	<!-- 상품 추가 -->
+		<insert id="insertProduct">
+			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,pc_code)
+			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{pc_code})
+		</insert>
+	<!-- 상품 삭제 -->
+		<delete id="deleteProduct">
+			delete from campus_product where p_number=#{p_number}
+		</delete>
+	
+	<!-- 상품 수정 : 가격, 재고 수정 -->
+		<update id="updateProduct">
+			update campus_product
+			set p_price=#{p_price}, p_stock=#{p_stock}
+			where p_number=#{p_number}
+		</update>
+
+
+
+
+</mapper>
