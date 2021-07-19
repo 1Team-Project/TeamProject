@@ -47,6 +47,15 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 
 	@Transactional
 	@Override
+	public boolean insert_p(CampusBoardVO vo) {
+		// »õ±Û µî·Ï
+		boolean result = mapper.insert(vo)>0?true:false;
+		
+		return result;
+	}
+	
+	@Transactional
+	@Override
 	public boolean delete(int bno) {
 		
 		//ëŒ“ê¸€ ì‚­ì œ
@@ -103,6 +112,23 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	public boolean addview(int views, int bno) {
 		// TODO Auto-generated method stub
 		return mapper.addview(views,bno)>0?true:false;
+	}
+
+	@Override
+	public boolean replyadd(int bno, int replycnt) {
+		// TODO Auto-generated method stub
+		return mapper.replyCntUpdate(bno, replycnt)>0?true:false;
+	}
+
+	@Override
+	public boolean delete_p(int p_number) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<CampusBoardVO> topdate() {
+		return mapper.topdate();
 	}
 
 	

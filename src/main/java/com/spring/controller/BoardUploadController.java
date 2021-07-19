@@ -75,6 +75,7 @@ public class BoardUploadController {
 			try {
 				File saveFile = new File(uploadPath,uploadFileName);
 				
+<<<<<<< HEAD
 				if(checkImageType(saveFile)) {
 					attach.setA_type(true);
 					//ì¸ë„¤ì¼ ì €ì¥
@@ -86,6 +87,17 @@ public class BoardUploadController {
 				}
 				
 				//íŒŒì¼ ì €ì¥(ì›ë³¸ ê·¸ëŒ€ë¡œ)
+=======
+				attach.setA_type(true);
+				//½æ³×ÀÏ ÀúÀå
+				FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
+				InputStream in = f.getInputStream();
+				Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
+				in.close();
+				thumbnail.close();					
+
+				//ÆÄÀÏ ÀúÀå(¿øº» ±×´ë·Î)
+>>>>>>> refs/remotes/origin/hanjung
 				f.transferTo(saveFile);
 				attachList.add(attach);
 				
@@ -146,21 +158,33 @@ public class BoardUploadController {
 	//upload í´ë”ì— ìˆëŠ” íŒŒì¼ ì‚­ì œ
 	//@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
+<<<<<<< HEAD
 	public ResponseEntity<String> deleteFile(String fileName,String type){
 		log.info("íŒŒì¼ ì‚­ì œ : "+fileName+" type : "+type);
+=======
+	public ResponseEntity<String> deleteFile(String a_name){
+		log.info("ÆÄÀÏ »èÁ¦ : "+a_name+"");
+>>>>>>> refs/remotes/origin/hanjung
 		
 		
 		try {
-			File file=new File("c:\\CampusIMG\\"+URLDecoder.decode(fileName,"utf-8"));
+			File file=new File("c:\\CampusIMG\\"+URLDecoder.decode(a_name,"utf-8"));
 			
 			file.delete(); //ì¼ë°˜ íŒŒì¼ ì‚­ì œ, ì´ë¯¸ì§€ì¸ ê²½ìš° ì¸ë„¤ì¼ë§Œ ì‚­ì œ
 			
+<<<<<<< HEAD
 			if(type.equals("image")) {
 				//ì›ë³¸ ì´ë¯¸ì§€ íŒŒì¼ëª… ì¶”ì¶œ
 				String largeName = file.getAbsolutePath().replace("s_", "");
 				file = new File(largeName);
 				file.delete(); //ì›ë³¸ ì´ë¯¸ì§€ íŒŒì¼ ì‚­ì œ
 			}	
+=======
+			//¿øº» ÀÌ¹ÌÁö ÆÄÀÏ¸í ÃßÃâ
+			String largeName = file.getAbsolutePath().replace("s_", "");
+			file = new File(largeName);
+			file.delete(); //¿øº» ÀÌ¹ÌÁö ÆÄÀÏ »èÁ¦
+>>>>>>> refs/remotes/origin/hanjung
 			
 		} catch (UnsupportedEncodingException e) {			
 			e.printStackTrace();
@@ -170,6 +194,7 @@ public class BoardUploadController {
 	}
 	
 	
+<<<<<<< HEAD
 	
 	
 	
@@ -189,6 +214,10 @@ public class BoardUploadController {
 	}
 	
 	//í´ë” ìƒì„±
+=======
+
+	//Æú´õ »ı¼º
+>>>>>>> refs/remotes/origin/hanjung
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		

@@ -71,6 +71,38 @@ $(function(){
 		
 		searchForm.submit();
 	})
+	
+	//검색
+	$(".searchbutton").click(function(e){
+		
+		e.preventDefault();
+		
+		let searchForm = $("#searchForm");
+		
+		var sort = $("select[name='sort']").val();
+		
+		var keyword = $("input[name='keyword']").val();
+		
+		if(sort === ''){
+			alert("검색 기준을 다시 한번 확인해 주세요!");
+			$("select[name='sort']").focus();
+			return false;
+		}
+		if(keyword === ''){
+			alert("검색어를 확인해 주세요!");
+			$("input[name='keyword']").focus();
+			return false;
+		}	
+		
+		searchForm.find("input[name='page']").val("1");
+		
+		searchForm.submit();
+		
+	})
+	
+	
+	
+	
 })
 
 	

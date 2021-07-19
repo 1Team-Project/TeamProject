@@ -17,7 +17,11 @@
 		<div class="col-md-10">
 					<div class="col-md-12">
 				<hr class="one" />
+<<<<<<< HEAD
 				<h3 class="heading-section" style="font-family: naBrush;">ÅëÇÕ °Ô½ÃÆÇ</h3>
+=======
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">í†µí•© ê²Œì‹œíŒ</h3>
+>>>>>>> refs/remotes/origin/hanjung
 				<hr class="one" />
 			</div>
 			<div class="col-md-12 colorthema hh4 padding6px margintb20">
@@ -25,19 +29,35 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row textcenter">
+
+					
+					<c:forEach var="top" items="${CampusTopVO}">
 						<div class="col-md-4">
 							<div class="card">
 								<img class="card-img-top"
-									src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
+									src="${top.urllink}" style="width:100%; height:200px"/>
 								<div class="card-block">
+<<<<<<< HEAD
 									<h5 class="card-title topmargin10">ÈÄ±âÀÔ´Ï´Ù</h5>
 									<p class="card-text">¾È³çÇÏ¼¼¿ä ÈÄ±âÀÔ´Ï´Ù...</p>
+=======
+									<h5 class="card-title topmargin10">${top.b_title_10}</h5>
+									<p class="card-text">${top.b_content_15}</p>
+									<c:if test="${top.rank != 999}">
+									<p>
+										<a class="btn btn-primary clickview" href="${top.b_no}">ìì„¸íˆ ë³´ê¸°</a>
+									</p>
+									</c:if>
+									<c:if test="${top.rank == 999}">
+>>>>>>> refs/remotes/origin/hanjung
 									<p>
 										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
 									</p>
+									</c:if>
 								</div>
 							</div>
 						</div>
+<<<<<<< HEAD
 						<div class="col-md-4">
 							<div class="card">
 								<img class="card-img-top"
@@ -64,6 +84,11 @@
 								</div>
 							</div>
 						</div>
+=======
+					</c:forEach>
+			
+						
+>>>>>>> refs/remotes/origin/hanjung
 					</div>
 				</div>
 			</div>
@@ -118,6 +143,7 @@
 			</table>
 			<div class="row">
 				<div class="col-md-12 mb-3">
+<<<<<<< HEAD
 					<select name="" id=""
 						class="form-control width10 inlinetest boldergreen">
 						<option value="">ºĞ·ù</option>
@@ -127,8 +153,23 @@
 						class="width30 boldergreen padding5px blacktext" />
 					<button class="btn btn-primary">°Ë»ö</button>
 					<button class="btn btn-primary float-end" onclick="location.href='write'">±Û ¾²±â</button>
+=======
+				
+                <form action="" id="searchForm" class="">
+					<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
+						<option value="">----</option>
+						<option value="ì œëª©"<c:out value="${pageVO.cri.sort=='ì œëª©'?'selected':''}"/>>ì œëª©</option>
+						<option value="ë‚´ìš©"<c:out value="${pageVO.cri.sort=='ë‚´ìš©'?'selected':''}"/>>ë‚´ìš©</option>
+						<option value="ì‘ì„±ì"<c:out value="${pageVO.cri.sort=='ì‘ì„±ì'?'selected':''}"/>>ì‘ì„±ì</option>
+					</select>
+					<input type="text" name="keyword" class="width40 boldergreen padding5px blacktext" value="${pageVO.cri.keyword}"/>
+					<input type="hidden" name="page" value="${pageVO.cri.page}"/>
+					<button class="btn btn-primary searchbutton" type="submit">ê²€ìƒ‰</button>
+               </form>
+>>>>>>> refs/remotes/origin/hanjung
 					<!--<sec:authorize access="isAuthenticated()">-->
                  	<!--</sec:authorize>-->
+					<button class="btn btn-primary float-end" onclick="location.href='write'">ê¸€ ì“°ê¸°</button>
 				</div>
 			</div>
 			<div class="row">
@@ -153,12 +194,12 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div>
-		
+</div>
 	<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
 		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		
+		<input type="hidden" name="r_page" value="1"/>
 	</form>            
 	
 	

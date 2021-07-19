@@ -34,5 +34,6 @@ public class CampusPageVO {
 		this.next = this.endPage < realEnd;
 		
 		
+		
 	}
 }

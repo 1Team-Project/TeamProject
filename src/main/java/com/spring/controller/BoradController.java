@@ -1,30 +1,41 @@
 package com.spring.controller;
 
-import java.text.DateFormat;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.CampusAttachFileDTO;
+import com.spring.domain.CampusBoardTopVO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
+import com.spring.domain.CampusProductOptionVO;
+import com.spring.domain.CampusProductVO;
+import com.spring.domain.CampusReplyPageVO;
+import com.spring.domain.CampusReplyVO;
 import com.spring.service.CampusBoardService;
+import com.spring.service.CampusProductService;
+import com.spring.service.CampusReplyService;
 
 //import com.spring.domain.CampusBoardPage;
 //import com.spring.domain.CampusBoardVO;
@@ -41,19 +52,91 @@ import lombok.extern.log4j.Log4j2;
 @RequestMapping("/board/*")
 public class BoradController {
 	
+
 	@Autowired
 	private CampusBoardService service;
+
+	@Autowired
+	private CampusReplyService reply;
 	
+	@Autowired
+	private CampusProductService product;
+
 	@GetMapping("/list")
 	public void list(Model model, CampusCriteria cri) {
 		
+<<<<<<< HEAD
 		log.info("ì „ì²´ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ");
+=======
+		log.info("ÀüÃ¼ ¸®½ºÆ® Á¶È¸");
+		//¸®½ºÆ® Á¶È¸
+>>>>>>> refs/remotes/origin/hanjung
 		List<CampusBoardVO> list = service.list(cri);
 		int total = service.total(cri);
-		
-		
+
+		//list ÀÌ¸§À¸·Î Á¶È¸µÈ ÀÚ·á ¸ðµ¨¿¡ µî·Ï (¸®½ºÆ® »Ñ·ÁÁÖ±â)
 		model.addAttribute("list", list);
+
+		List<CampusBoardTopVO> top = new ArrayList<CampusBoardTopVO>();
+		
+		//¿À´ÃÀÇ È­Á¦±Û
+
+		List<CampusBoardVO> datelist = service.topdate();
+		int rank = 0;
+		String imgurl = "";
+		for(CampusBoardVO vo:datelist) {
+			rank ++;
+			
+			List<CampusAttachFileDTO> dto = service.getAttachList(vo.getB_no());
+			
+			if (dto == null || dto.isEmpty()) {
+				imgurl = "/resources/main/images/default-img.jpg";
+			}else {
+				for(CampusAttachFileDTO ddto:dto) {
+					String path = ddto.getA_path().replace("\\", "%5C");
+					log.info("url Å×½ºÆ®Áß : "+path);
+					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
+					break;
+				}
+			}
+			
+			CampusBoardTopVO tovo = new CampusBoardTopVO();
+			if (vo.getB_content().length() >= 15) {						
+				tovo.setB_content_15(vo.getB_content().substring(0, 14));					
+			}else {
+				tovo.setB_content_15(vo.getB_content());											
+			}
+			if (vo.getB_title().length() >= 10) {
+				tovo.setB_title_10(vo.getB_title().substring(0, 9));						
+			}else {
+				tovo.setB_title_10(vo.getB_title());
+			}
+			tovo.setB_no(vo.getB_no());
+			tovo.setUrllink(imgurl);
+			tovo.setRank(rank);
+			
+			top.add(tovo);
+
+			log.info("Å×½ºÆ® È®ÀÎ Å×½ºÆ® È®ÀÎ : "+top);
+		}
+		if (rank <= 2) {
+			for(int i = 1; i <= 3-rank; i++) {				
+				CampusBoardTopVO tovo = new CampusBoardTopVO();
+				tovo.setB_title_10("¿À´ÃÀÇ È­Á¦±Û!");
+				tovo.setB_content_15("¿À´ÃÀÇ È­Á¦±ÛÀÌ ¾ø½À´Ï´Ù!");
+				tovo.setRank(999);
+				tovo.setUrllink("/resources/main/images/default-img.jpg");
+				top.add(tovo);
+			}
+		}
+		
+		//¿À´ÃÀÇ È­Á¦±Û
+		model.addAttribute("CampusTopVO", top);
+		
+		//ÆäÀÌÁö ³ª´©±â
 		CampusPageVO campusPageVO = new CampusPageVO(cri, total);
+		
+		//ÆäÀÌÁö ³ª´©±â °ü·Ã
 		model.addAttribute("CampusPageVO", campusPageVO);
 	}
 	
@@ -65,8 +148,14 @@ public class BoradController {
 		log.info("ë·° ì• ë“œ í…ŒìŠ¤íŠ¸");
 		log.info(bnoval);
 		int b_no = Integer.parseInt(bnoval);
+<<<<<<< HEAD
 		log.info("int ì²˜ë¦¬ëœ bno"+b_no);
+=======
+		log.info("int Ã³¸®µÈ bno"+b_no);
+		//ÇöÀç Á¶È¸¼ö¸¦ °¡Á®¿È
+>>>>>>> refs/remotes/origin/hanjung
 		CampusBoardVO campusVO=service.view(b_no);
+		//+1 ÇÑ »óÅÂ·Î ÀÔ·Â
 		int views = campusVO.getB_views()+1;
 		log.info("views ê°’ : "+views);
 		String viewsS = Integer.toString(views);
@@ -75,17 +164,30 @@ public class BoradController {
 	}
 	
 	@GetMapping("/view")
+<<<<<<< HEAD
 	public void read(int b_no,int b_views,@ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("ê¸€ í•˜ë‚˜ ê°€ì ¸ì˜¤ê¸° "+b_no+" cri : "+cri);  
+=======
+	public void read(int b_no,int b_views, int r_page,@ModelAttribute("cri") CampusCriteria cri,Model model) {
+		log.info("±Û ÇÏ³ª °¡Á®¿À±â "+b_no+" cri : "+cri);  
+>>>>>>> refs/remotes/origin/hanjung
 		
 		CampusBoardVO campusVO=service.view(b_no);
 		int views = campusVO.getB_views();
 		
+		//¸¸¾à, Á¶È¸¼ö°¡ +1ÀÌ ¾Æ´Ñ ÀÓÀÇ·Î ´©±º°¡ ¹Ù²åÀ»¶§, ¸·±â
 		if (b_views - views == 1 || b_views == 1){			
 			service.addview(b_views, b_no);
 		}
 		
+		List<CampusReplyVO> replyVO = reply.list(r_page, b_no);
+
 		model.addAttribute("campusVO", campusVO);
+		int countreply = reply.getCountByBno(b_no);
+		CampusReplyPageVO campusReplyPageVO = new CampusReplyPageVO(r_page, countreply);
+		model.addAttribute("replyVO", replyVO);
+		model.addAttribute("campusReplyPageVO", campusReplyPageVO);
+		model.addAttribute("r_page",r_page);
 		
 	}
 	
@@ -95,6 +197,29 @@ public class BoradController {
 		
 		CampusBoardVO campusVO=service.view(b_no);
 		model.addAttribute("campusVO", campusVO);
+	}
+	
+	@PostMapping("/modify")
+	public String modifyPost(CampusBoardVO vo, CampusCriteria cri, RedirectAttributes rttr) {
+		
+		log.info("±Û ¼öÁ¤"+cri);
+
+		//Ã·ºÎ ÆÄÀÏ È®ÀÎ
+		if(vo.getAttachList()!=null) {
+			vo.getAttachList().forEach(attach -> log.info(""+attach));
+		}
+		
+		if(service.update(vo)) {
+			rttr.addFlashAttribute("result", "¼º°ø");
+			
+			rttr.addAttribute("sort",cri.getSort());
+			rttr.addAttribute("keyword",cri.getKeyword());
+			rttr.addAttribute("page",cri.getPage());
+			
+			return "redirect:list"; // redirect:/board/list
+		}else {
+			return "redirect:modify?b_no="+vo.getB_no()+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
+		}
 	}
 
 	//@PreAuthorize("isAuthenticated()") //@PreAuthorize("hasAnyAuthority('ROLE_USER')")
@@ -117,15 +242,233 @@ public class BoradController {
 		}
 		
 	}
+
+	@PostMapping("/remove")
+	public String remove(int b_no, String writer, CampusCriteria cri, RedirectAttributes rttr) {
+		
+		log.info("»èÁ¦ ¿äÃ»   "+b_no);
+		
+		//¼­¹ö¿¡ ÀúÀåµÈ Ã·ºÎÆÄÀÏ »èÁ¦
+		//1. bno¿¡ ÇØ´çµÇ´Â Ã·ºÎÆÄÀÏ ¸ñ·Ï ¾Ë¾Æ³»±â
+		List<CampusAttachFileDTO> attachList = service.getAttachList(b_no);
+		
+		//°Ô½Ã±Û »èÁ¦ + Ã·ºÎÆÄÀÏ »èÁ¦
+		if(service.delete(b_no)) {
+
+			//2. Æú´õ ÆÄÀÏ »èÁ¦
+			deleteFiles(attachList);
+			
+			rttr.addFlashAttribute("result", "¼º°ø");
+			
+			rttr.addAttribute("keyword",cri.getKeyword());
+			rttr.addAttribute("page",cri.getPage());
+			rttr.addAttribute("sort",cri.getSort());
+			
+			return "redirect:list";
+		}else {
+			return "redirect:modify?b_no="+b_no+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
+		}
+		
+		
+	}
+	
+	@PostMapping("/replyadd")
+	public String replyadd(int b_no, int b_views, CampusReplyVO vo, CampusCriteria cri) {
+		
+		log.info("´ñ±Û ÀÛ¼º  "+vo);
+		
+		if(reply.insert(vo)) {
+			log.info("´ñ±Û ÀÛ¼º ¿äÃ» : "+vo.getB_no());
+			
+			int replycnt = reply.getCountByBno(b_no);
+			
+			service.replyadd(b_no, replycnt);
+	
+			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&r_page=1&b_views="+b_views+"&b_no="+b_no;
+		}else {
+			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&r_page=1&b_views="+b_views+"&b_no="+b_no;
+		}
+		
+	}
+	
+	@PostMapping("/replymodify")
+	public String replymodify(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
+		
+		log.info("´ñ±Û ¼öÁ¤ "+vo);
+		
+		if(reply.update(vo)) {
+			log.info("´ñ±Û ¼öÁ¤ ¿äÃ» : "+vo.getB_no());
+
+			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+		}else {
+			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+		}
+		
+	}
+	
+	
+	@PostMapping("/replyremove")
+	public String replyremove(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
+		
+		log.info("´ñ±Û »èÁ¦ "+vo);
+		
+		if(reply.delete(vo.getR_no())) {
+			log.info("´ñ±Û »èÁ¦ ¿äÃ» : "+vo.getB_no()+" / "+vo.getR_no());
+			
+			int replycnt = reply.getCountByBno(b_no);
+			
+			service.replyadd(b_no, replycnt);
+
+			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+		}else {
+			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+		}
+		
+	}
+	
 	
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
+<<<<<<< HEAD
 		log.info("íŒë§¤ ë“±ë¡ ì´ë™ ì‹¤í–‰");
+=======
+		log.info("ÆÇ¸Å ÀÌµ¿");
+>>>>>>> refs/remotes/origin/hanjung
 	}
 	
+<<<<<<< HEAD
 	@GetMapping("/sellmodify")
 	public void sellmodify() {
 		log.info("íŒë§¤ ìˆ˜ì • ì´ë™ ì‹¤í–‰");
+=======
+	@PostMapping("/sellwrite")
+	public String sellwritePost(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob,RedirectAttributes rttr) {
+		log.info("ÆÇ¸Å µî·Ï ¿äÃ»");
+		
+		//po_optiontitle ¿¡ °ªÀÌ µé¾î¿ÔÀ»¶§ (productoption Å×ÀÌºíÀÇ optiontitle)
+		//product ÀÇ option¿¡´Â °ªÀÌ ¾Èµé¾î¿À±â ¶§¹®¿¡, °­Á¦·Î °ªÀ» Áý¾î³Ö¾îÁÜ.
+		if (voo.getPo_optiontitle() != null && voo.getPo_optiontitle() != "") {
+			vo.setP_option(voo.getPo_optiontitle());
+		//º¸ÇèÃ³¸® (ÀÌ»óÇÏ°Ô Àû¾úÀ» °æ¿ì)
+		}else if(voo.getPo_option1() != null || voo.getPo_option2() != null || voo.getPo_option3() != null){
+			voo.setPo_option1("-");
+			voo.setPo_option2("-");
+			voo.setPo_option3("-");
+		}
+		if (voo.getPo_optiontitle() == null || voo.getPo_optiontitle() == "") {
+			vo.setP_option("-");
+			voo.setPo_optiontitle("-");
+		}
+		//º¸ÇèÃ³¸® (null ¸ø¹Þ¾Æ¿Ã °æ¿ì ´ëºñ)
+		if (voo.getPo_option1() == null && voo.getPo_option1() == "") {
+			voo.setPo_option1("-");
+		}
+		if (voo.getPo_option2() == null && voo.getPo_option2() == "") {
+			voo.setPo_option2("-");
+		}
+		if (voo.getPo_option3() == null && voo.getPo_option3() == "") {
+			voo.setPo_option3("-");
+		}
+		
+		//°ªµéÀÌ Á¤»óÀûÀ¸·Î µé¾î¿Ô³ª È®ÀÎ¿ë
+		log.info("productVO Å×½ºÆ® : "+vo);
+		log.info("productVO (option) Å×½ºÆ® : "+voo);
+		log.info("productVO (board) Å×½ºÆ® : "+vob);
+		
+		//board => b_no, b_content ³Ö±â
+		//option => p_number, po_optiontitle, po_option1,2,3
+		//category => pc_code, pc_name
+		//product => p_name, p_price, p_option, p_stock, pc_code
+		
+		if(product.insertProduct(vo, voo, vob)) {
+			rttr.addFlashAttribute("result",vob.getB_no());
+			return "redirect:list";
+		}else {
+			return "redirect:list";
+		}
+
+>>>>>>> refs/remotes/origin/hanjung
 	}
+
+	@GetMapping("/sellmodify")
+	public void sellmodify(int p_number, int b_no, Model model) {
+		log.info("»óÇ° ¼öÁ¤ "+p_number);  
+		
+		CampusProductVO campusProductVO = product.viewProduct(p_number);
+		CampusBoardVO campusBoardVO = service.view(b_no);
+		model.addAttribute("campusBoardVO", campusBoardVO);
+		model.addAttribute("campusProductVO", campusProductVO);
+	}
+	
+	@PostMapping("/sellmodify")
+	public String sellmodifyPost(CampusProductVO vo) {
+		
+		log.info("»óÇ° ¼öÁ¤");
+
+		if(product.updateProduct(vo.getP_price(), vo.getP_stock(), vo.getP_number())) {
+			return "redirect:list";
+		}else {
+			return "redirect:index";
+		}
+	}
+	
+	@PostMapping("/sellremove")
+	public String sellremove(int b_no, int p_number, RedirectAttributes rttr) {
+		
+		log.info("»óÇ° »èÁ¦ ¿äÃ»   "+b_no);
+		
+		//¼­¹ö¿¡ ÀúÀåµÈ Ã·ºÎÆÄÀÏ »èÁ¦
+		//1. bno¿¡ ÇØ´çµÇ´Â Ã·ºÎÆÄÀÏ ¸ñ·Ï ¾Ë¾Æ³»±â
+		List<CampusAttachFileDTO> attachList = service.getAttachList(b_no);
+		
+		//°Ô½Ã±Û »èÁ¦ + Ã·ºÎÆÄÀÏ »èÁ¦
+		if(product.deleteProduct(p_number, b_no)) {
+			
+			//2. Æú´õ ÆÄÀÏ »èÁ¦
+			deleteFiles(attachList);
+			
+			rttr.addFlashAttribute("result", "¼º°ø");
+
+			return "redirect:list";
+		}else {
+			return "redirect:index";
+		}
+		
+		
+	}
+	
+	
+	//Ã·ºÎ¹° °¡Á®¿À±â
+	@GetMapping("/getAttachList")
+	public ResponseEntity<List<CampusAttachFileDTO>> getAttachList(int b_no){
+		log.info("Ã·ºÎ¹° °¡Á®¿À±â "+b_no);
+		
+		return new ResponseEntity<List<CampusAttachFileDTO>>(service.getAttachList(b_no),HttpStatus.OK);
+	}
+	
+	private void deleteFiles(List<CampusAttachFileDTO> attachList) {
+		log.info("Ã·ºÎÆÄÀÏ »èÁ¦ ¿äÃ» "+attachList);
+		
+		if(attachList == null || attachList.size()<=0) {
+			return;
+		}
+		
+		for(CampusAttachFileDTO dto:attachList) {
+			Path path = Paths.get("c:\\CampusIMG\\",dto.getA_path()+"\\"+dto.getA_uuid()+"_"+dto.getA_name());
+			try {
+				Files.deleteIfExists(path);
+
+				Path thumbnail = Paths.get("c:\\CampusIMG\\",
+						dto.getA_path()+"\\s_"+dto.getA_uuid()+"_"+dto.getA_name());
+				Files.delete(thumbnail);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+	}
+	
+	
+	
 	
 }

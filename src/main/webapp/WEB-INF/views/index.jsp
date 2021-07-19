@@ -14,5 +14,12 @@
 <p>
 	<a href="/member/login">로그인</a>
 </p>
+
+<form action="/board/sellmodify" method="get">
+	<input type="hidden" name="p_number" value="4444"/>
+	<input type="hidden" name="b_no" value="355"/>
+	<button type="submit">sell modify</button>
+</form>
+
 </body>
 </html>

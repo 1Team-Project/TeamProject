@@ -12,6 +12,7 @@ public interface CampusProductMapper {
 	public List<CampusProductVO> productCategory(@Param("pc_code") String pc_code);
 	public List<CampusProductVO> searchProduct(@Param("p_name") String p_name);
 	
+<<<<<<< HEAD
 	public int insertProduct(CampusProductVO vo);
 	public int deleteProduct(int p_number);
 	public int updateProduct(@Param("p_price") int p_price,@Param("p_stock") int p_stock);
@@ -19,3 +20,12 @@ public interface CampusProductMapper {
 }
 
 
+=======
+	public CampusProductVO viewProduct(int p_number);
+	
+	public int insertProduct(CampusProductVO vo);
+	public int deleteProduct(int p_number);
+	public int updateProduct(@Param("p_price") int p_price,@Param("p_stock") int p_stock,@Param("p_number") int p_number);
+
+}
+>>>>>>> refs/remotes/origin/hanjung
