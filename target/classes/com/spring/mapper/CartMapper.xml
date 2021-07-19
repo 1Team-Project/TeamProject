@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.CartMapper">
+
+<insert id="addCart">
+  insert into campus_cart(c_cartnumber, u_userid, p_number, c_count) 
+  values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count})
+</insert>
+
+</mapper>

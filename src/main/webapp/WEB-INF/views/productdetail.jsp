@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp"%>
 <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
@@ -45,15 +47,15 @@
 					</colgroup>
 					<tbody>
 						<tr>
-							<td class="price">15,000원</td>
+							<td class="price">${vo.p_price}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
-							<td>123456789</td>
+							<td>${vo.p_number}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
-							<td>SONY/ 자강 정보 통신</td>
+							<td>${vo.p_manufact}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
@@ -61,7 +63,7 @@
 								<div class="option">
 									<span class="opt">
 										<button type="button" class="minus">+</button> 
-										<input type="number" readonly="readonly" onfocus="this.blur()" class="inp">
+										<input type="number" readonly="readonly" min="1" max="${vo.p_stock}"onfocus="this.blur()" class="inp">
 										<button type="button" class="plus">-</button>
 									</span>
 								</div>
@@ -75,10 +77,10 @@
 						<tr>
 							<th><img src="/resources/main/images/choices.png">&nbsp;옵션선택</th>
 							<td><select>
-									<option>기본 (+0)</option>
-									<option>1 (+0)</option>
-									<option>2 (+0)</option>
-									<option>3 (+0)</option>
+									<option>${vo.p_option}</option>
+									<option>${vo.p_option}</option>
+									<option>${vo.p_option}</option>
+									<option>${vo.p_option}</option>
 							</select></td>
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
@@ -94,8 +96,10 @@
 				<div id="cartput">
 					<div class="total">
 						<div class="price">
-							<strong class="tot">총 상품금액 : </strong> <span class="sum">
-								<span class="num">15,000</span> <span class="unit">원</span>
+							<strong class="tot">총 상품금액 : </strong> 
+							<span class="sum">
+								<span class="num">${vo.p_price}</span> 
+								<span class="unit">원</span>
 							</span>
 						</div>
 						<div class="option_btn">
