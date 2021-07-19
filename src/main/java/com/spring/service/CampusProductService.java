@@ -31,5 +31,11 @@ public interface CampusProductService {
 	public boolean insertProduct(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob);
 	public boolean deleteProduct(int p_number, int b_no);
 	public boolean updateProduct(int p_price, int p_stock, int p_number);
+<<<<<<< HEAD
 }
 >>>>>>> refs/remotes/origin/hanjung
+=======
+	
+	public CampusProductVO detailproduct(int p_number);
+}
+>>>>>>> refs/remotes/origin/seunghyun

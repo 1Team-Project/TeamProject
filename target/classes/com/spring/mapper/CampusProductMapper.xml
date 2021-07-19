@@ -40,6 +40,10 @@
 			where p_number=#{p_number}
 		</update>
 
+<!-- 상품 상세 페이지 -->
+<select id="productdetail" resultType="com.spring.domain.CampusProductVO">
+select * from campus_product where p_number=#{p_number}
+</select>
 
 
 

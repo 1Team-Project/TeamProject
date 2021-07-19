@@ -1,0 +1,328 @@
+@charset "utf-8";
+
+body {
+    padding:50px;
+}
+div {
+    display: block;
+}
+
+.product_view {
+    width: 1050px;
+    margin: 0 auto;
+    padding-top: 20px;
+}
+#productview .product .photo {
+    width: 430px;
+    height: 552px;
+}
+
+#productview .product {
+    float: left;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.product_view .product li :after {
+    content: "";
+    display: block;
+    clear: both;
+}
+.product_view .product li{
+    float: left;
+    padding: 20px 20px 0 0;
+    list-style: none;
+}
+
+.product_view .product li img {
+    width:68px;
+    height: 68px;
+    border: 1px solid black;
+    
+}
+.product_view * {
+    font-family: noto sans;
+    color: #333;
+    letter-spacing: -.5px;
+}
+
+#productview .p_name{
+    float: right;
+    width: 560px;
+    padding: 0 10px 15px 0;
+}
+
+#productview .p_name .name{
+    display: block;
+    padding-right: 60px;
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 34px;
+    word-break: break-all;
+}
+p {
+    display: block;
+    margin-block-start: 1em;
+    margin-block-end: 1em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+}
+.p_name {
+    border-bottom: 2px solid #333;
+}
+.p_name strong{
+    font-size: 24px;
+    color: black;
+    line-height: 26px;
+    margin: 0 0 3px;
+}
+.p_name .name_detail{
+    font-size: 12px;
+    color: gray;
+}
+
+html {
+    font-family: sans-serif;
+    -ms-text-size-adjust: 100%;
+    -webkit-text-size-adjust: 100%;
+}
+
+.product_view table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  th, td {
+    border-bottom: 1px solid #f4f4f4;
+    padding: 10px;
+  }
+.product_view table {
+    float: right;
+    width: 560px;
+    border-bottom: 1px #f4f4f4;
+}
+.product_view table th, 
+.product_view table td{
+    padding:14px 0;
+    font-size: 15px;
+    color: #444;
+    text-align: left;
+}
+.product_view table th{
+    font-size: 15px;
+    color: #444;
+    text-align: left;
+}
+.product_view table td{
+    font-size: 15px;
+    color: #444;
+}
+.product_view table th img{
+    position: relative;
+    top: 0;
+    left: 0;
+    width: 24px;
+    height: 24px;
+}
+#productview .option .opt .minus {
+    background-image: url("/product/remove.png");
+}
+
+#cartPut .cart_option .list .down {
+    background: #fff url(/product/plus.png) no-repeat 50% 50%;
+    background-size: 30px 30px;
+}
+#cartPut .cart_option .list .btn {
+    overflow: hidden;
+    float: left;
+    width: 28px;
+    height: 28px;
+    border: 0;
+    font-size: 0;
+    line-height: 0;
+    text-indent: -9999px;
+} 
+.product_view table td.price{
+    font-size: 28px;
+    color: blue;
+    font-weight: 700;
+}
+
+#cartput .total .price {
+    float: right;
+    width: 560px;
+    text-align: right;
+    margin-top: 50px;
+}
+#cartput .total .price .tot{
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 20px;
+    vertical-align: 2px;
+}
+#cartput .total .price .sum{
+    font-size: 28px;
+    font-weight: 700;
+    padding-left: 8px;
+    line-height: 28px;
+}
+.option_btn {
+    float: right;
+    margin-top: 20px;
+    margin-right: 15px;
+    margin-bottom: 100px;
+}
+.p_detail_info {
+    min-width: 1050px;
+    margin: 0 auto;
+    padding-top: 56px;
+    position: relative;
+    clear: both;
+}
+
+.p_detail_info .p_detail_bar{
+    position: absolute;
+    width: 100%;
+    height: 55px;
+    clear: both;
+    background:  #96a3ad;
+    border-bottom: 1px solid #96a3ad;
+    top: 0;
+    left: 0;
+    }
+
+.p_detail_info .p_detail_bar ul {
+    padding: 9px 0 0;
+    height: 46px;
+    position: relative;
+    overflow: hidden;
+    }
+.p_detail_bar li{
+    float: left;
+    margin-right: 4px;
+    list-style: none;
+}
+
+.p_detail_bar .menu a {
+    font-weight: bold;
+    background: #96a3ad;
+    border-radius: 50px;
+    margin-left: 90px;
+}
+.p_detail_bar a {
+    display: block;
+    height: 30px;
+    padding: 4px 23px;
+    color: #fff;
+    font-size: 20px;
+    line-height: 30px;
+    letter-spacing: -1px;
+}
+.p_detail_img img {
+    display: block;
+    width: 1010px;
+    height: 670px;
+    margin-bottom: 100px;
+    font-family: noto sans;
+    font-weight: 200;
+    letter-spacing: 0;
+}
+.p_detail_img .main_img {
+    padding-top: 40px;
+    min-height: 500px;
+    margin-bottom: 50px;
+}
+
+.description .d_wrapper {
+    margin-bottom: 170px;   
+}
+
+.description .d_wrapper .d_title {
+    display: block;
+    margin: 75px 0 0;
+    font-size: 40px;
+    text-align: center;
+   
+}
+
+.description .d_wrapper .d_subtitle{
+  display: block;
+  font-size: 30px; 
+  text-align: center;
+  border-bottom: 1px solid #c1c1c1;
+  color: #666;
+  padding-bottom: 30px;
+} 
+
+.description .d_wrapper .descript {
+    font-size: 18px;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.description .d_wrapper .when_use h1, .size_info h1{
+    display: inline-block;
+    position: relative;
+    font-size: 50px;
+    font-family: noto sans;
+    color: #666;
+}
+
+.d_wrapper .when_use h1:before , .size_info h1:before {
+    content: " ";
+    position: absolute;
+    top: 28px;
+    width: 1050px;
+    height: 1px;
+    background: #b9b9b9;
+}
+.d_wrapper h1 .campustip, .size_info h1 span {
+    position: relative;
+    display: inline-block;
+    margin-left: 350px;
+    padding: 0 15px;
+    background: #fff;
+    text-shadow: 2px 0;
+    font-weight: 700;
+}
+
+.d_wrapper h1 .tipkor{
+    position: relative;
+    display: inline-block;
+    margin-left: 455px;
+    padding: 0 15px;
+    text-shadow: 2px 0;
+    font-size: 30px;
+    margin-bottom: 40px;
+}
+.tip_info {
+    width: 1050px;
+    height: 120px;
+}
+.tip_info .tip_icon img{
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    margin-left: 200px;
+}
+.tip_detail {
+    margin-bottom: 50px;
+}
+
+.size_info img {
+    width: 400px;
+    height: 400px;
+}
+.tip_detail {
+    font-size: 20px;
+    font-weight: 600;
+    text-align: center;
+}
+.tip_detail .detail1 {
+    margin-right: 5px;
+}
+.tip_detail .detail2 {
+    margin-right: 30px;
+    margin-left: 10px;
+}
