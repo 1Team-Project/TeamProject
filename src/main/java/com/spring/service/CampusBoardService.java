@@ -18,6 +18,7 @@ public interface CampusBoardService {
 	public int total(CampusCriteria cri);
 	public boolean addview(int views, int bno);
 	public boolean replyadd(int bno, int replycnt);
+	public List<CampusBoardVO> topdate();
 	
 	public List<CampusAttachFileDTO> getAttachList(int bno);
 }

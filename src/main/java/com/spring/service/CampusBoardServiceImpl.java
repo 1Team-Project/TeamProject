@@ -126,6 +126,11 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		return false;
 	}
 
+	@Override
+	public List<CampusBoardVO> topdate() {
+		return mapper.topdate();
+	}
+
 	
 	
 }

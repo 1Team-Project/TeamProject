@@ -19,6 +19,8 @@ public interface CampusBoardMapper {
 	
 	public CampusBoardVO selectpnumber(int p_number);
 	
+	public List<CampusBoardVO> topdate();
+	
 	public int update(CampusBoardVO vo);
 	
 	public List<CampusBoardVO> list(CampusCriteria cri);	

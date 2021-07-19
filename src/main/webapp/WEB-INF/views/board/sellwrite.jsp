@@ -38,6 +38,11 @@
 						id="campusboard-product-stock" placeholder="재고 입력" />
 				</div>
 				<hr class="one" />
+				<div class="col-md-10"> <input type="text"
+						class="form-control width70 inlinetest " name="p_manufact"
+						id="campusboard-product-stock" placeholder="제조사 입력" />
+				</div>
+				<hr class="one" />
 				<div class="col-md-8">
 
 					<div class="blacktext">상품 이미지 등록</div>

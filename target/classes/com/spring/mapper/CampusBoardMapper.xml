@@ -19,6 +19,16 @@
 		]]>
 	</select>
 
+	<select id="topdate" resultType="com.spring.domain.CampusBoardVO">
+		<![CDATA[
+		select * from (
+			select row_number() over( order by b_views desc ) as rank,
+			b_no,b_title,b_writer,b_views,b_content,b_sort,b_sysdate,replycnt
+			from campus_board
+			where b_sysdate >= sysdate-0.2 )
+		where rank <= 3
+		]]>
+	</select>
 
 	<delete id="delete">
 		delete from campus_board where b_no = #{b_no}

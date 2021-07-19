@@ -25,45 +25,32 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row textcenter">
+
+					
+					<c:forEach var="top" items="${CampusTopVO}">
 						<div class="col-md-4">
 							<div class="card">
 								<img class="card-img-top"
-									src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
+									src="${top.urllink}" style="width:100%; height:200px"/>
 								<div class="card-block">
-									<h5 class="card-title topmargin10">후기입니다</h5>
-									<p class="card-text">안녕하세요 후기입니다...</p>
+									<h5 class="card-title topmargin10">${top.b_title_10}</h5>
+									<p class="card-text">${top.b_content_15}</p>
+									<c:if test="${top.rank != 999}">
+									<p>
+										<a class="btn btn-primary clickview" href="${top.b_no}">자세히 보기</a>
+									</p>
+									</c:if>
+									<c:if test="${top.rank == 999}">
 									<p>
 										<a class="btn btn-primary" href="#">자세히 보기</a>
 									</p>
+									</c:if>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top"
-									src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
-								<div class="card-block">
-									<h5 class="card-title topmargin10">리뷰입니다</h5>
-									<p class="card-text">이것은 리뷰입니다 리뷰...</p>
-									<p>
-										<a class="btn btn-primary" href="#">자세히 보기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top"
-									src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
-								<div class="card-block">
-									<h5 class="card-title topmargin10">질문입니다</h5>
-									<p class="card-text">이것은 질문입니다...</p>
-									<p>
-										<a class="btn btn-primary" href="#">자세히 보기</a>
-									</p>
-								</div>
-							</div>
-						</div>
+					</c:forEach>
+			
+						
 					</div>
 				</div>
 			</div>

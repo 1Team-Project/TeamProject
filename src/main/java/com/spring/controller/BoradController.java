@@ -3,7 +3,11 @@ package com.spring.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -21,6 +25,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.spring.domain.CampusAttachFileDTO;
+import com.spring.domain.CampusBoardTopVO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
@@ -56,7 +61,6 @@ public class BoradController {
 	
 	@Autowired
 	private CampusProductService product;
-	
 
 	@GetMapping("/list")
 	public void list(Model model, CampusCriteria cri) {
@@ -68,7 +72,66 @@ public class BoradController {
 
 		//list 이름으로 조회된 자료 모델에 등록 (리스트 뿌려주기)
 		model.addAttribute("list", list);
+
+		List<CampusBoardTopVO> top = new ArrayList<CampusBoardTopVO>();
+		
+		//오늘의 화제글
+
+		List<CampusBoardVO> datelist = service.topdate();
+		int rank = 0;
+		String imgurl = "";
+		for(CampusBoardVO vo:datelist) {
+			rank ++;
+			
+			List<CampusAttachFileDTO> dto = service.getAttachList(vo.getB_no());
+			
+			if (dto == null || dto.isEmpty()) {
+				imgurl = "/resources/main/images/default-img.jpg";
+			}else {
+				for(CampusAttachFileDTO ddto:dto) {
+					String path = ddto.getA_path().replace("\\", "%5C");
+					log.info("url 테스트중 : "+path);
+					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
+					break;
+				}
+			}
+			
+			CampusBoardTopVO tovo = new CampusBoardTopVO();
+			if (vo.getB_content().length() >= 15) {						
+				tovo.setB_content_15(vo.getB_content().substring(0, 14));					
+			}else {
+				tovo.setB_content_15(vo.getB_content());											
+			}
+			if (vo.getB_title().length() >= 10) {
+				tovo.setB_title_10(vo.getB_title().substring(0, 9));						
+			}else {
+				tovo.setB_title_10(vo.getB_title());
+			}
+			tovo.setB_no(vo.getB_no());
+			tovo.setUrllink(imgurl);
+			tovo.setRank(rank);
+			
+			top.add(tovo);
+
+			log.info("테스트 확인 테스트 확인 : "+top);
+		}
+		if (rank <= 2) {
+			for(int i = 1; i <= 3-rank; i++) {				
+				CampusBoardTopVO tovo = new CampusBoardTopVO();
+				tovo.setB_title_10("오늘의 화제글!");
+				tovo.setB_content_15("오늘의 화제글이 없습니다!");
+				tovo.setRank(999);
+				tovo.setUrllink("/resources/main/images/default-img.jpg");
+				top.add(tovo);
+			}
+		}
+		
+		//오늘의 화제글
+		model.addAttribute("CampusTopVO", top);
+		
+		//페이지 나누기
 		CampusPageVO campusPageVO = new CampusPageVO(cri, total);
+		
 		//페이지 나누기 관련
 		model.addAttribute("CampusPageVO", campusPageVO);
 	}
