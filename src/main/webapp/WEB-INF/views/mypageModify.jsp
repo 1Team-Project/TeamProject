@@ -126,7 +126,7 @@
  <div id="titleArea">
         <h2>회원 정보 수정</h2>
     </div>
-    <form id="modifyForm" name="modifyForm" action="/mypageModify" method="post" target="_self" enctype="multipart/form-data">
+    <form id="modifyForm" name="modifyForm" action="" method="post" target="_self" enctype="multipart/form-data">
         <div id="main" class="ec-base-table typeWrite gClearBorderTop ">
             <table border="1">
                 <caption>회원 기본정보</caption>
@@ -149,7 +149,7 @@
                             <input id="u_password" name="u_password" fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
                                 fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16" "disabled" value=""
                                 type="password">
-                            <p class="ec-base-help typeDash">(비밀번호조건)</p>
+                            <p class="ec-base-help typeDash">영문, 숫자 8~12자리, 특수문자 !@#$%^&* 사용가능</p>
                         </td>
                     </tr>
                     <tr class="">
@@ -176,7 +176,7 @@
                                 onclick="ZipcodeFinder.Opener.bind('postBtn', 'postcode1', 'postcode2', 'addr1', 'layer', 'ko_KR');"
                                 id="postBtn">우편번호</button><br>
                             <input id="u_address" name="u_address" fw-filter="isFill" fw-label="주소" fw-msg=""
-                                class="inputTypeText" placeholder="" readonly="readonly" value="${vo.u_address}" type="text"><br>
+                                class="inputTypeText" placeholder="" readonly="readonly" value="${login.u_address}" type="text"><br>
                             <input id="u_address" name="u_address" fw-filter="" fw-label="주소" fw-msg="" class="inputTypeText"
                                 placeholder="" value="${login.u_address}" type="text"> <span class="ec-base-help typeDash"></span>
                         </td>
@@ -202,7 +202,7 @@
                                 <option value="019">019</option>
                             </select>
                             -<input id="mobile2" name="mobile[]" maxlength="4" fw-filter="isNumber&amp;isFill"
-                                fw-label="휴대전화" fw-alone="N" fw-msg="" value="${vo.u_phone}" type="text">
+                                fw-label="휴대전화" fw-alone="N" fw-msg="" value="${login.u_phone}" type="text">
                             -<input id="mobile3"
                                 name="mobile[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="휴대전화"
                                 fw-alone="N" fw-msg="" value="${login.u_phone}" type="text">
@@ -212,13 +212,15 @@
             </table>
         </div>
         <br>
+        <form class="container" id="" action="" method="post">
         <div id="b-button" class="ec-base-button gColumn">
-            <a href="mypage.html" class="btnSubmit" onclick="memberEditAction()">회원정보수정</a>
-            <a href="mypage.html" class="btnEm">취소</a>
-            <a href="mypage.html" class="btnEm">회원탈퇴</a>
+        	<button class="btn btn-lg btn-primary btn-block" id="edit" type="submit" >회원정보수정</button>
+			<button class="btn btn-lg btn-warning btn-block" id="cancel">취소</button>
+        	<button class="btn btn-lg btn-danger btn-block" id="leave" type="submit" onclick="javascript: form.action='/leaveForm';">회원탈퇴</button>
         </div>
-<!--<input type="hidden"  name="u_userid" value="${vo.u_userid}"/>
-<input type="hidden" name="u_username" value="${vo.u_username}"/>  -->
+        </form>
+        
+
 
     </form>
 <%@include file="../design/footer.jsp" %>

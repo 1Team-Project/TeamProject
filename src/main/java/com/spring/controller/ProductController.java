@@ -6,7 +6,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusProductVO;
 import com.spring.service.CampusProductService;
 
@@ -14,34 +17,40 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
+@RequestMapping("/product/*")
 public class ProductController {
 
 	@Autowired
 	private CampusProductService service;
 	
-	//»óÇ° ¸®½ºÆ® ÀüÃ¼ ³ª¿­?
-	@GetMapping("/product")
+	//ìƒí’ˆ ë¦¬ìŠ¤íŠ¸ ì „ì²´ ë‚˜ì—´ + best3ê¹Œì§€
+	@GetMapping("/productlist")
 	public void getList(Model model) {
-		log.info("Å×½ºÆ®");
-		List<CampusProductVO> list=service.productList();
+		log.info("í…ŒìŠ¤íŠ¸");
+		//ì „ì²´ ë¦¬ìŠ¤íŠ¸
+//		List<CampusProductVO> prolist=service.prolist();
+//		log.info("ë¦¬ìŠ¤íŠ¸" +prolist);
+		//ë² ìŠ¤íŠ¸3
+		List<CampusProductVO> bestlist=service.bestlist();
+		log.info("bestë¦¬ìŠ¤íŠ¸" +bestlist);
 		
-		
-		model.addAttribute("list",list);
+//		model.addAttribute("prolist",prolist);
+		model.addAttribute("bestlist",bestlist);
 	}
 	
 	
-	//»óÇ° Ä«Å×°í¸®·Î ºĞ·ù ³ª¿­?Á¶È¸?
+	//ìƒí’ˆ ì¹´í…Œê³ ë¦¬ë¡œ ë¶„ë¥˜ ë‚˜ì—´?ì¡°íšŒ?
 	
 	
-	//»óÇ° Ã£±â
-	
-	public void getSearchList(String p_name, Model model) {
-		log.info("»óÇ°¸í ÀÌ¿ë, »óÇ° Á¶È¸");
+		//ìƒí’ˆ ì°¾ê¸°
 		
-		List<CampusProductVO> list=service.searchProduct(p_name);
-		
-		model.addAttribute("list",list);
-	}
+		public void getSearchList(String p_name, @ModelAttribute("cri") CampusCriteria cri,Model model) {
+			log.info("ìƒí’ˆëª… ì´ìš© - ìƒí’ˆ ì¡°íšŒ"+p_name);
+			
+			List<CampusProductVO> findlist=service.searchProduct(p_name);
+			
+			model.addAttribute(" findlist", findlist);
+		}
 	
 	
 		

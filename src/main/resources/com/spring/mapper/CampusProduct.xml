@@ -2,40 +2,64 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.CampusProduct">
 	
-	<!-- 상품 조회 : 목록 보기-->
-		<select id="productList" resultType="com.spring.domain.CampusProductVO">
-			select * from campus_product
+	<!-- 상품 조회 : 목록 보기, 상품번호순-->
+		<select id="prolist" resultType="com.spring.domain.CampusProductVO">
+			select p_number,p_name,p_price,p_option,p_stock,pc_code 
+			from campus_product 
+			order by p_number DESC
 		</select>
 		
-	<!-- 상품 조회 : 카테고리 분류? -->
+	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 
+		<select id="bestList" resultType="com.spring.domain.CampusProductVO">
+			select *
+			from ( select p.p_number, p.p_name, p_price, rank() over (order by count(o.p_number) desc, p.p_price desc) rank
+       				from campus_product p, CAMPUS_ORDER_DETAIL o
+       				where p.p_number=o.p_number
+        			group by p.p_number , p.p_name, p_price
+        			order by count(o.p_number) desc, p.p_price desc
+        		)
+			where rownum <=3
+		</select>-->
+		
+		
+	<!-- 상품 조회 : 카테고리별 분류 -->
 		<select id="productCategory" resultType="com.spring.domain.CampusProductVO">
 			select * from campus_product where pc_code=#{pc_code}
 		</select>
 	
-	<!-- 상품 조회 : 검색? -->
+	<!-- 상품 조회 : 검색(상품명 이용) -->
 		<select id="searchProduct" resultType="com.spring.domain.CampusProductVO">
-			select * from campus_product where p_name=#{p_name}
+			select * from campus_product where p_name LIKE '%'||#{p_name}||'%' 
 		</select>
 	
+	<!-- 전체 게시물 수 -->
+	<select id="totalCnt" resultType="int">
+		select count(*) from campus_product
+		
+		where
+		
+		<include refid="criteria"></include>
+		
+		p_number > 0
+	</select>
 	
-	<!-- 관리자 권한 -->
-	<!-- 상품 추가 -->
-		<insert id="insertProduct">
-			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,pc_code)
-			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{pc_code})
-		</insert>
-	<!-- 상품 삭제 -->
-		<delete id="deleteProduct">
-			delete from campus_product where p_number=#{p_number}
-		</delete>
+	<!-- 동적 SQL
+	<sql id = "criteria">
+		<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+			<foreach collection="sortArr" item='sort'>
+				<trim prefix="OR">
+					<choose>
+							p_name like '%'||#{keyword}||'%'
+						</when>
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+	</sql> -->
 	
-	<!-- 상품 수정 : 가격, 재고 수정 -->
-		<update id="updateProduct">
-			update campus_product
-			set p_price=#{p_price}, p_stock=#{p_stock}
-			where p_number=#{p_number}
-		</update>
-
+	
+	
+	
 
 
 

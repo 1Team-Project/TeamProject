@@ -65,7 +65,7 @@
      
     </style> 
 
-<form action="/loginMypage" id="" method="post">
+<form action="" id="" method="post">
 <div id="container">
         <div id="contents">
             <div class="title">
@@ -76,11 +76,11 @@
                
                 <div id="mp" class="table">
                     <ul>
-                        <button type="submit" class="btn btn-info" onclick="location.href='order'"><a href="/order">구매내역</a></button>
+                        <button type="submit" id="order" class="btn btn-info" onclick="javascript: form.action='/order';">구매내역</button>
                        	<p></p>
-                        <button type="submit" class="btn btn-secondary"><a href="/reservation">예약내역</a></button>
+                        <button type="submit" id="reservation" class="btn btn-secondary" onclick="javascript: form.action='/reservation';">예약내역</button>
                         <p></p>
-                        <button type="submit" id="modify" class="btn btn-warning"><a href="/mypageModify">회원정보수정</a></button>
+                        <button type="submit" id="modify" class="btn btn-warning" onclick="javascript: form.action='/mypageModify';">회원정보수정</button>
                    	
                     </ul>
                 </div>
@@ -91,14 +91,7 @@
     </div>
 </form>
 
-  
-<!-- <form action="" id="mypageForm" method="post">
-	<input type="hidden" name="u_userid"  value="${u_userid}"/>
-	<input type="hidden" name="u_username"  value="${vo.u_username}"/>
-	<input type="hidden" name="u_address"  value="${vo.u_address}"/>
-	<input type="hidden" name="u_phone"  value="${vo.u_phone}"/>
 
-</form> -->
 
 
 <script src="/resources/main/js/loginMypage.js"></script>

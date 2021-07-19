@@ -143,5 +143,19 @@ signup.addEventListener("click", function(event) {
 		$('i[id="u_address"]').html("");
 		event.preventDefault();	
 	}*/
+	
+	
+	
+	/*leave.jsp*/
+	$("#leave").click(function(){
+		$("#formleave").attr("action", "agree");
+	});
+	//비밀번호 작성x=>회원탈퇴 버튼 누르면
+	$("#leave").click(function(){
+		if($("#u_password").val() == ""){
+			alert("비밀번호를 입력하세요");
+			return false;
+		}
+	});
 })
 

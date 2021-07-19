@@ -29,19 +29,21 @@
 		delete from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
 	</delete>
 	
-	<!-- 비밀번호 변경 : update -->
+	<!-- 비밀번호 변경 : update 
 	<update id="update">
 		update CAMPUS_USER set u_password = #{new_password} where u_userid = #{u_userid} and u_password = #{u_password}  
-	</update>
+	</update>-->
 	
 	
 	
 	<!-- 회원정보 수정 -->
 	<update id="userUpdate">
-		UPDATE CAMPUS_USER
-		u_password = #{new_password},
-		u_username = #{u_username}
-		WHERE u_userid = #{u_userid}
+		UPDATE CAMPUS_USER 
+		set u_password = #{u_password},
+			u_address=#{u_address},
+			u_email=#{u_email},
+			u_phone=#{u_phone}
+		WHERE u_userid = #{u_userid} and u_password = #{u_password} 
 	</update>
 
 </mapper>

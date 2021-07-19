@@ -11,7 +11,7 @@ public interface CampusUserMapper {
 	public CampusUserVO dupId(String u_userid);
 	public CampusUserVO login(CampusUserVO vo);
 	public int leave(@Param("u_userid") String u_userid, @Param("u_password") String u_password);
-	public int update(ChangeVO change);
-	public int userUpdate(CampusUserVO vo);
+	public int userUpdate(ChangeVO change);
+//	public int userUpdate(CampusUserVO vo);
 
 }

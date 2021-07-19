@@ -75,16 +75,14 @@ public class BoardUploadController {
 			try {
 				File saveFile = new File(uploadPath,uploadFileName);
 				
-				if(checkImageType(saveFile)) {
-					attach.setA_type(true);
-					//썸네일 저장
-					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
-					InputStream in = f.getInputStream();
-					Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
-					in.close();
-					thumbnail.close();					
-				}
-				
+				attach.setA_type(true);
+				//썸네일 저장
+				FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
+				InputStream in = f.getInputStream();
+				Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
+				in.close();
+				thumbnail.close();					
+
 				//파일 저장(원본 그대로)
 				f.transferTo(saveFile);
 				attachList.add(attach);
@@ -146,21 +144,19 @@ public class BoardUploadController {
 	//upload 폴더에 있는 파일 삭제
 	//@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
-	public ResponseEntity<String> deleteFile(String fileName,String type){
-		log.info("파일 삭제 : "+fileName+" type : "+type);
+	public ResponseEntity<String> deleteFile(String a_name){
+		log.info("파일 삭제 : "+a_name+"");
 		
 		
 		try {
-			File file=new File("c:\\CampusIMG\\"+URLDecoder.decode(fileName,"utf-8"));
+			File file=new File("c:\\CampusIMG\\"+URLDecoder.decode(a_name,"utf-8"));
 			
 			file.delete(); //일반 파일 삭제, 이미지인 경우 썸네일만 삭제
 			
-			if(type.equals("image")) {
-				//원본 이미지 파일명 추출
-				String largeName = file.getAbsolutePath().replace("s_", "");
-				file = new File(largeName);
-				file.delete(); //원본 이미지 파일 삭제
-			}	
+			//원본 이미지 파일명 추출
+			String largeName = file.getAbsolutePath().replace("s_", "");
+			file = new File(largeName);
+			file.delete(); //원본 이미지 파일 삭제
 			
 		} catch (UnsupportedEncodingException e) {			
 			e.printStackTrace();
@@ -170,24 +166,7 @@ public class BoardUploadController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	//첨부 파일이 이미지인지 아닌지 판단
-	private boolean checkImageType(File file) {
-		String contentType;
-		try {
-			contentType = Files.probeContentType(file.toPath());
-			return contentType.startsWith("image");
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
+
 	//폴더 생성
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");

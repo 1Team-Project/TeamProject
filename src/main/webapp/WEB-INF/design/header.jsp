@@ -51,7 +51,6 @@
       }
 		.f_info .f_png{
       position:absolute; 
-
       left:0; 
       width:209px; 
       height:42px; 
@@ -74,7 +73,6 @@
 		.f_menu li.privacy a{
       color:white !important;
       }
-
 		.f_info .f_sns{
       position:absolute; 
       right:0; 
@@ -116,7 +114,6 @@
       font-size:13px; 
       line-height:22px; 
       color:white; 
-
       text-align: center;
       }
 		.f_addr .f_mail{
@@ -202,7 +199,7 @@
              	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">상품 정보</a>
              	 <div class="dropdown-menu" aria-labelledby="dropdown01">
 				<!-- 각 카테고리별 이동하는 링크 -->
-              	<a class="dropdown-item" href="#">카테고리1</a>
+              	<a class="dropdown-item" href="/product/productlist">상품 전체</a>
                 <a class="dropdown-item" href="#">카테고리2</a>
                 <a class="dropdown-item" href="#">카테고리3</a>
                 <a class="dropdown-item" href="#">카테고리4</a>

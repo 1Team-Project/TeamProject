@@ -9,6 +9,6 @@ public interface CampusUserService {
 	public CampusUserVO dupId(String u_userid);
 	public CampusUserVO login(CampusUserVO vo);
 	public boolean leave(String u_userid, String u_password);
-	public boolean update(ChangeVO change);
-	public boolean userUpdate(CampusUserVO vo);
+	public boolean userUpdate(ChangeVO change);
+//	public boolean userUpdate(CampusUserVO vo);
 }
