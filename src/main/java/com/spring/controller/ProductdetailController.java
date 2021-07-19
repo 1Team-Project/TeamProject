@@ -18,16 +18,16 @@ public class ProductdetailController {
 	
 //	@GetMapping("/productdetail")
 //	public void productdetail() {
-//		log.info("ìƒí’ˆ ìƒì„¸ í˜ì´ì§€ ì´ë™");
+//		log.info("»óÇ° »ó¼¼ ÆäÀÌÁö ÀÌµ¿");
 //	}
 	@PostMapping("/productdetail")
 	public ModelAndView productdetail() {
-		
+		return null; // ÀÌ°Å ¾ÈÀûÇôÀÖ¾î¼­ ¿À·ù»ı°Ü¼­ null Àû¾î³õÀº°ÅÀÓ merge ÇÒ¶§ ¹Ù²ãÁÖ¼À..
 	}
 	
 	@GetMapping("/cart")
 	public void cartput() {
-		log.info("ï¿½ï¿½Ù±ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½×½ï¿½Æ®");
+		log.info("¸ÓÁö? ÀÌ°Å ±êÇãºêºÎÅÍ ±úÁ®ÀÖ´Âµ¥??");
 	}
 
 }

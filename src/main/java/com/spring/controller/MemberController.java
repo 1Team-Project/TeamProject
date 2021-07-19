@@ -26,24 +26,23 @@ public class MemberController {
 	@Autowired
 	private CampusUserService service;
 	
-	/* ë¡œê·¸ì¸ ì‹œìŠ¤í…œ ì‹œì‘ */
-	/* ê¸°ë³¸ ì‹œìŠ¤í…œ */
+	/* ·Î±×ÀÎ ½Ã½ºÅÛ ½ÃÀÛ */
+	/* ±âº» ½Ã½ºÅÛ */
 	/*
-	// login.jsp ë³´ì—¬ì£¼ê¸°
+	// login.jsp º¸¿©ÁÖ±â
 	@GetMapping("/login")
 	public void loginGet() {
-		log.info("login í˜ì´ì§€ ìš”ì²­");
+		log.info("login ÆäÀÌÁö ¿äÃ»");
 	}
 	
-	// ë¡œê·¸ì¸ ì •ë³´ ê°€ì ¸ì˜¤ê¸° => post
+	// ·Î±×ÀÎ Á¤º¸ °¡Á®¿À±â => post
 	@PostMapping("/loginForm")
 	public String loginPost(CampusUserVO vo, HttpSession session, RedirectAttributes rttr) {
-		log.info("login ìš”ì²­ : " + vo.getU_userid() + " " + vo.getU_password());
-
+		log.info("login ¿äÃ» : " + vo.getU_userid() + " " + vo.getU_password());
 		CampusUserVO login = service.login(vo);
 		
 		if(login==null) {
-			rttr.addFlashAttribute("error", "ì•„ì´ë”” ë˜ëŠ” ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•´ì£¼ì„¸ìš”");
+			rttr.addFlashAttribute("error", "¾ÆÀÌµğ ¶Ç´Â ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇØÁÖ¼¼¿ä");
 			return "redirect:login";
 		} else {
 			session.setAttribute("login", login);
@@ -52,22 +51,22 @@ public class MemberController {
 		}
 	}
 	
-	// logout => session í•´ì œ í›„ index ë³´ì—¬ì£¼ê¸°
+	// logout => session ÇØÁ¦ ÈÄ index º¸¿©ÁÖ±â
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		log.info("logout ìš”ì²­");		
+		log.info("logout ¿äÃ»");		
 		// session.invalidate();
 		session.removeAttribute("login");
 		return "redirect:/";
 	}
 	*/
 	
-	/* ê¸°ë³¸ ì‹œìŠ¤í…œ ì¢…ë£Œ*/
-	/* security ì‹œì‘ */
+	/* ±âº» ½Ã½ºÅÛ Á¾·á*/
+	/* security ½ÃÀÛ */
 
 	@GetMapping("/login")
 	public String loginGet() {
-		log.info("ë¡œê·¸ì¸ í¼ ìš”ì²­");
+		log.info("·Î±×ÀÎ Æû ¿äÃ»");
 		
 		return "/login";
 	}
@@ -88,54 +87,54 @@ public class MemberController {
 	
 	@GetMapping("/login-error")
 	public String loginError(Model model) {
-		model.addAttribute("loginError", "ì•„ì´ë””ë‚˜ ë¹„ë°€ë²ˆí˜¸ê°€ ì˜¬ë°”ë¥´ì§€ ì•ŠìŠµë‹ˆë‹¤.");
+		model.addAttribute("loginError", "¾ÆÀÌµğ³ª ºñ¹Ğ¹øÈ£°¡ ¿Ã¹Ù¸£Áö ¾Ê½À´Ï´Ù.");
 		return "/login";
 	}
 
-	/* ë¡œê·¸ì¸ ì‹œìŠ¤í…œ ì¢…ë£Œ */
+	/* ·Î±×ÀÎ ½Ã½ºÅÛ Á¾·á */
 	
 	
-	/*ë§ˆì´í˜ì´ì§€~êµ¬ë§¤ë‚´ì—­, ì˜ˆì•½ë‚´ì—­, íšŒì›ì •ë³´ìˆ˜ì •*/
+	/*¸¶ÀÌÆäÀÌÁö~±¸¸Å³»¿ª, ¿¹¾à³»¿ª, È¸¿øÁ¤º¸¼öÁ¤*/
 	
-	//loginMypage ì´ë™
+	//loginMypage ÀÌµ¿
 	@GetMapping("/loginMypage")
 	public void loginMypage() {
-		log.info("ë§ˆì´í˜ì´ì§€ ìš”ì²­");
+		log.info("¸¶ÀÌÆäÀÌÁö ¿äÃ»");
 //		return "loginMypage";
 	}
 	
 	@PostMapping("/loginMypageForm")
 	public String loginMypageForm() {
-		log.info("ë§ˆì´í˜ì´ì§€ ìš”ì²­");
+		log.info("¸¶ÀÌÆäÀÌÁö ¿äÃ»");
 		return "loginMypage";
 	}
 	
-	/*ë§ˆì´í˜ì´ì§€ - íšŒì›ì •ë³´ìˆ˜ì •*/
+	/*¸¶ÀÌÆäÀÌÁö - È¸¿øÁ¤º¸¼öÁ¤*/
 	
-	//íšŒì›ì •ë³´ìˆ˜ì • í˜ì´ì§€ ì´ë™
+	//È¸¿øÁ¤º¸¼öÁ¤ ÆäÀÌÁö ÀÌµ¿
 //	@GetMapping("/mypageModify")
 //	public String mypageModify(Model model) {
-//		log.info("mypage-modify ìš”ì²­");
+//		log.info("mypage-modify ¿äÃ»");
 //		model.addAttribute("u_username",new CampusUserVO());
 //		
 //		return "mypageModify";
-//	}//ë¡œê·¸ì¸ ì •ë³´ì˜ ë¡œê·¸ì¸, ë¹„ë°€ë²ˆí˜¸ëŠ” ê°€ì ¸ì˜´ã…‡
+//	}//·Î±×ÀÎ Á¤º¸ÀÇ ·Î±×ÀÎ, ºñ¹Ğ¹øÈ£´Â °¡Á®¿È¤·
 	
-	//íšŒì›ì •ë³´ìˆ˜ì • í˜ì´ì§€ ì´ë™
+	//È¸¿øÁ¤º¸¼öÁ¤ ÆäÀÌÁö ÀÌµ¿
 	@GetMapping("/mypageModify")
 	public String mypageModify(HttpSession session, Model model) {
-		log.info("mypage-modify ìš”ì²­");
+		log.info("mypage-modify ¿äÃ»");
 		
 		
 		return "mypageModify";
 	}
 
-	//ë¡œê·¸ì¸ ì •ë³´ì˜ ë¡œê·¸ì¸, ë¹„ë°€ë²ˆí˜¸ëŠ” ê°€ì ¸ì˜´ã…‡
+	//·Î±×ÀÎ Á¤º¸ÀÇ ·Î±×ÀÎ, ºñ¹Ğ¹øÈ£´Â °¡Á®¿È¤·
 	
-	//íšŒì›ì •ë³´ ìˆ˜ì •í•˜ê¸° - ë¹„ë°€ë²ˆí˜¸, ì£¼ì†Œ, ë²ˆí˜¸, ì´ë©”ì¼ ìˆ˜ì •í•  ìˆ˜ ìˆì–´ì•¼ / ê°€ì ¸ì˜¤ëŠ”ê±´ ë¹„ë°€ë²ˆí˜¸ ì œì™¸ ë‹¤
+	//È¸¿øÁ¤º¸ ¼öÁ¤ÇÏ±â - ºñ¹Ğ¹øÈ£, ÁÖ¼Ò, ¹øÈ£, ÀÌ¸ŞÀÏ ¼öÁ¤ÇÒ ¼ö ÀÖ¾î¾ß / °¡Á®¿À´Â°Ç ºñ¹Ğ¹øÈ£ Á¦¿Ü ´Ù
 	@PostMapping("/mypageModify")
 	public String mypageModifyForm(CampusUserVO vo, HttpSession session) {
-		log.info("íšŒì›ì •ë³´ìˆ˜ì •"+vo);
+		log.info("È¸¿øÁ¤º¸¼öÁ¤"+vo);
 		
 		
 //		service.userUpdate(vo);
@@ -145,10 +144,10 @@ public class MemberController {
 	}
 
 	
-	/*ë§ˆì´í˜ì´ì§€ - êµ¬ë§¤ë‚´ì—­*/
+	/*¸¶ÀÌÆäÀÌÁö - ±¸¸Å³»¿ª*/
 	@GetMapping("/order")
 	public String order() {
-		log.info("orderí˜ì´ì§€ ìš”ì²­");
+		log.info("orderÆäÀÌÁö ¿äÃ»");
 		
 		return "order";
 	}
@@ -157,36 +156,36 @@ public class MemberController {
 	
 	
 	
-	/*ë§ˆì´í˜ì´ì§€ - ì˜ˆì•½ë‚´ì—­*/
+	/*¸¶ÀÌÆäÀÌÁö - ¿¹¾à³»¿ª*/
 	@GetMapping("/reservation")
 	public String reservation() {
-		log.info("orderí˜ì´ì§€ ìš”ì²­");
+		log.info("orderÆäÀÌÁö ¿äÃ»");
 		
 		return "reservation";
 	}
 	
 	
-//	// member/change-pwd => modify.jsp ë³´ì—¬ì£¼ê¸°
+//	// member/change-pwd => modify.jsp º¸¿©ÁÖ±â
 //	@GetMapping("/change-pwd")
 //	public String changPwd() {
-//		log.info("ë¹„ë°€ë²ˆí˜¸ ìˆ˜ì • í˜ì´ì§€ ìš”ì²­");
+//		log.info("ºñ¹Ğ¹øÈ£ ¼öÁ¤ ÆäÀÌÁö ¿äÃ»");
 //		return "/member/modify";
 //	}
 //		
 //	@PostMapping("/change-pwd")
 //	public String changePwd(ChangeVO change, HttpSession session, RedirectAttributes rttr) {
-//		log.info("ë¹„ë°€ë²ˆí˜¸ ìˆ˜ì •" + change);
+//		log.info("ºñ¹Ğ¹øÈ£ ¼öÁ¤" + change);
 //		
 //		if(change.newPasswordEqualsConfirmPassword()) {
-//			if(service.update(change)) { // ë¹„ë°€ë²ˆí˜¸ ìˆ˜ì • ì„±ê³µ
+//			if(service.update(change)) { // ºñ¹Ğ¹øÈ£ ¼öÁ¤ ¼º°ø
 //				session.invalidate();
 //				return "redirect:/member/login";
-//			} else { // í˜„ì¬ ë¹„ë°€ë²ˆí˜¸ ì˜¤ë¥˜
-//				rttr.addFlashAttribute("error", "í˜„ì¬ ë¹„ë°€ë²ˆí˜¸ë¥¼ í™•ì¸í•´ ì£¼ì„¸ìš”");
+//			} else { // ÇöÀç ºñ¹Ğ¹øÈ£ ¿À·ù
+//				rttr.addFlashAttribute("error", "ÇöÀç ºñ¹Ğ¹øÈ£¸¦ È®ÀÎÇØ ÁÖ¼¼¿ä");
 //				return "redirect:/member/change-pwd";
 //			}
-//		} else { // ë³€ê²½ë¹„ë°€ë²ˆí˜¸ì™€ í™•ì • ë³€ê²½ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¥¸ ê²½ìš°
-//			rttr.addFlashAttribute("error", "ë³€ê²½ ë¹„ë°€ë²ˆí˜¸ê°€ ë‹¤ë¦…ë‹ˆë‹¤.");
+//		} else { // º¯°æºñ¹Ğ¹øÈ£¿Í È®Á¤ º¯°æ ºñ¹Ğ¹øÈ£°¡ ´Ù¸¥ °æ¿ì
+//			rttr.addFlashAttribute("error", "º¯°æ ºñ¹Ğ¹øÈ£°¡ ´Ù¸¨´Ï´Ù.");
 //			return "redirect:/member/change-pwd";
 //		}
 //	}
@@ -195,13 +194,13 @@ public class MemberController {
 //	// leave
 //	@GetMapping("/leave")
 //	public void leave() {
-//		log.info("íšŒì›íƒˆí‡´ í¼ ìš”ì²­");
+//		log.info("È¸¿øÅ»Åğ Æû ¿äÃ»");
 //		
 //	}
 //	
 //	@PostMapping("/leave")
 //	public String leavePost(String userid, @RequestParam("current_password") String password, HttpSession session) {
-//		log.info("íšŒì›íƒˆí‡´ ìš”ì²­ " + userid + " " + password);
+//		log.info("È¸¿øÅ»Åğ ¿äÃ» " + userid + " " + password);
 //		
 //		if(service.leave(userid, password)) {
 //			session.invalidate();

@@ -39,9 +39,9 @@ public class BoardUploadController {
 	//@PreAuthorize("isAuthenticated()")
 	@PostMapping("/uploadAjax")
 	public ResponseEntity<List<CampusAttachFileDTO>> uploadFormPost(MultipartFile[] campusFile) {
-		log.info("íŒŒì¼ ì—…ë¡œë“œ ìš”ì²­");
+		log.info("ÆÄÀÏ ¾÷·Îµå ¿äÃ»");
 		
-		log.info("ì˜ ë“¤ì–´ì™”ë‚˜ í™•ì¸"+campusFile);
+		log.info("Àß µé¾î¿Ô³ª È®ÀÎ"+campusFile);
 		
 		String uploadFileName=null;
 		String uploadFolder = "c:\\CampusIMG";
@@ -51,7 +51,7 @@ public class BoardUploadController {
 		File uploadPath = new File(uploadFolder,uploadFolderPath);
 		
 		if(!uploadPath.exists()) {
-			uploadPath.mkdirs(); //í´ë” ìƒì„±
+			uploadPath.mkdirs(); //Æú´õ »ı¼º
 		}
 		
 		List<CampusAttachFileDTO> attachList = new ArrayList<CampusAttachFileDTO>();
@@ -62,8 +62,8 @@ public class BoardUploadController {
 //			log.info("upload File Size : "+f.getSize());	
 			
 			
-			//ì„œë²„ í´ë”ì— ì „ì†¡ëœ íŒŒì¼ ì €ì¥í•˜ê¸°
-			//UUID ê°’ ìƒì„±
+			//¼­¹ö Æú´õ¿¡ Àü¼ÛµÈ ÆÄÀÏ ÀúÀåÇÏ±â
+			//UUID °ª »ı¼º
 			UUID uuid = UUID.randomUUID();			
 			uploadFileName = uuid.toString()+"_"+f.getOriginalFilename();	
 			
@@ -75,19 +75,6 @@ public class BoardUploadController {
 			try {
 				File saveFile = new File(uploadPath,uploadFileName);
 				
-<<<<<<< HEAD
-				if(checkImageType(saveFile)) {
-					attach.setA_type(true);
-					//ì¸ë„¤ì¼ ì €ì¥
-					FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
-					InputStream in = f.getInputStream();
-					Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
-					in.close();
-					thumbnail.close();					
-				}
-				
-				//íŒŒì¼ ì €ì¥(ì›ë³¸ ê·¸ëŒ€ë¡œ)
-=======
 				attach.setA_type(true);
 				//½æ³×ÀÏ ÀúÀå
 				FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
@@ -97,7 +84,6 @@ public class BoardUploadController {
 				thumbnail.close();					
 
 				//ÆÄÀÏ ÀúÀå(¿øº» ±×´ë·Î)
->>>>>>> refs/remotes/origin/hanjung
 				f.transferTo(saveFile);
 				attachList.add(attach);
 				
@@ -110,10 +96,10 @@ public class BoardUploadController {
 		return new ResponseEntity<List<CampusAttachFileDTO>>(attachList,HttpStatus.OK);
 	}
 	
-	//ì¸ë„¤ì¼ ë³´ì—¬ì£¼ê¸°
+	//½æ³×ÀÏ º¸¿©ÁÖ±â
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(String fileName){
-		log.info("ì¸ë„¤ì¼ ìš”ì²­ "+fileName);
+		log.info("½æ³×ÀÏ ¿äÃ» "+fileName);
 		
 		File file = new File("c:\\CampusIMG\\"+fileName);
 		
@@ -140,9 +126,9 @@ public class BoardUploadController {
 		
 		HttpHeaders headers = new HttpHeaders();
 		
-		// ì „ì²´ íŒŒì¼ëª…ì—ì„œ uuid ê°’ê³¼ ì‹¤ì œ íŒŒì¼ëª…ë§Œ ì¶”ì¶œ 4e3c6543-9c97-4e60-8a40-d0e22df6e869_0610.txt
+		// ÀüÃ¼ ÆÄÀÏ¸í¿¡¼­ uuid °ª°ú ½ÇÁ¦ ÆÄÀÏ¸í¸¸ ÃßÃâ 4e3c6543-9c97-4e60-8a40-d0e22df6e869_0610.txt
 		String uidFileName = resource.getFilename();
-		// uuidê°’ì„ ì œì™¸í•œ íŒŒì¼ëª… ì¶”ì¶œ
+		// uuid°ªÀ» Á¦¿ÜÇÑ ÆÄÀÏ¸í ÃßÃâ
 		String resourceName = uidFileName.substring(uidFileName.indexOf("_")+1);
 		
 		try {
@@ -155,36 +141,22 @@ public class BoardUploadController {
 		return new ResponseEntity<Resource>(resource,headers,HttpStatus.OK);
 	}
 	
-	//upload í´ë”ì— ìˆëŠ” íŒŒì¼ ì‚­ì œ
+	//upload Æú´õ¿¡ ÀÖ´Â ÆÄÀÏ »èÁ¦
 	//@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
-<<<<<<< HEAD
-	public ResponseEntity<String> deleteFile(String fileName,String type){
-		log.info("íŒŒì¼ ì‚­ì œ : "+fileName+" type : "+type);
-=======
 	public ResponseEntity<String> deleteFile(String a_name){
 		log.info("ÆÄÀÏ »èÁ¦ : "+a_name+"");
->>>>>>> refs/remotes/origin/hanjung
 		
 		
 		try {
 			File file=new File("c:\\CampusIMG\\"+URLDecoder.decode(a_name,"utf-8"));
 			
-			file.delete(); //ì¼ë°˜ íŒŒì¼ ì‚­ì œ, ì´ë¯¸ì§€ì¸ ê²½ìš° ì¸ë„¤ì¼ë§Œ ì‚­ì œ
+			file.delete(); //ÀÏ¹İ ÆÄÀÏ »èÁ¦, ÀÌ¹ÌÁöÀÎ °æ¿ì ½æ³×ÀÏ¸¸ »èÁ¦
 			
-<<<<<<< HEAD
-			if(type.equals("image")) {
-				//ì›ë³¸ ì´ë¯¸ì§€ íŒŒì¼ëª… ì¶”ì¶œ
-				String largeName = file.getAbsolutePath().replace("s_", "");
-				file = new File(largeName);
-				file.delete(); //ì›ë³¸ ì´ë¯¸ì§€ íŒŒì¼ ì‚­ì œ
-			}	
-=======
 			//¿øº» ÀÌ¹ÌÁö ÆÄÀÏ¸í ÃßÃâ
 			String largeName = file.getAbsolutePath().replace("s_", "");
 			file = new File(largeName);
 			file.delete(); //¿øº» ÀÌ¹ÌÁö ÆÄÀÏ »èÁ¦
->>>>>>> refs/remotes/origin/hanjung
 			
 		} catch (UnsupportedEncodingException e) {			
 			e.printStackTrace();
@@ -194,30 +166,8 @@ public class BoardUploadController {
 	}
 	
 	
-<<<<<<< HEAD
-	
-	
-	
-	
-	
-	
-	//ì²¨ë¶€ íŒŒì¼ì´ ì´ë¯¸ì§€ì¸ì§€ ì•„ë‹Œì§€ íŒë‹¨
-	private boolean checkImageType(File file) {
-		String contentType;
-		try {
-			contentType = Files.probeContentType(file.toPath());
-			return contentType.startsWith("image");
-		} catch (IOException e) {			
-			e.printStackTrace();
-		}
-		return false;
-	}
-	
-	//í´ë” ìƒì„±
-=======
 
 	//Æú´õ »ı¼º
->>>>>>> refs/remotes/origin/hanjung
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		

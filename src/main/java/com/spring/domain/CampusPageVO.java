@@ -10,7 +10,7 @@ import lombok.ToString;
 
 public class CampusPageVO {
 
-	//í˜ì´ì§€ ë‚˜ëˆ„ê¸°ì™€ ê´€ë ¨ëœ ì •ë³´ë¥¼ ë‹´ê³  ìˆëŠ” ê°ì²´
+	//ÆäÀÌÁö ³ª´©±â °ü·Ã
 	
 	private int startPage;
 	private int endPage;

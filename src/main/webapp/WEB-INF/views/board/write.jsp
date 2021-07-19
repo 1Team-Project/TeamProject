@@ -11,13 +11,8 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-<<<<<<< HEAD
-				<h3 class="heading-section" style="font-family: naBrush;">ÅëÇÕ
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">ÅëÇÕ
 					°Ô½ÃÆÇ</h3>
-=======
-				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">í†µí•©
-					ê²Œì‹œíŒ</h3>
->>>>>>> refs/remotes/origin/hanjung
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
@@ -55,15 +50,9 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-<<<<<<< HEAD
 					<button class="btn btn-primary" type="submit">±Û ÀÛ¼º</button>
 					<button class="btn btn-green1" type="reset">ÃÊ±âÈ­</button>
-					<button class="btn btn-green2" type="reset">¸®½ºÆ®</button>
-=======
-					<button class="btn btn-primary" type="submit">ê¸€ ì‘ì„±</button>
-					<button class="btn btn-green1" type="reset">ì´ˆê¸°í™”</button>
-					<button class="btn btn-green2" type="button" onClick="location.href='/board/list'">ë¦¬ìŠ¤íŠ¸</button>
->>>>>>> refs/remotes/origin/hanjung
+					<button class="btn btn-green2" type="button" onClick="location.href='/board/list'">¸®½ºÆ®</button>
 				</div>
 		</form>
 		</div>

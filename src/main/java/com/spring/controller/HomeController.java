@@ -1,3 +1,4 @@
+  
 package com.spring.controller;
 
 import java.util.List;
@@ -20,43 +21,20 @@ import lombok.extern.log4j.Log4j2;
  */
 @Controller
 @Log4j2
-<<<<<<< HEAD
 public class HomeController {
 	
 	@Autowired
 	private CampusBoardService service;
 	
-=======
-public class HomeController {	
-	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
-	
-	/**
-	 * Simply selects the home view to render by returning its name.
-	 */
-	@RequestMapping(value = "/", method = RequestMethod.GET)
-
-
->>>>>>> refs/remotes/origin/seunghyun
 	@GetMapping("/")
-<<<<<<< HEAD
 	public String home(Model model, CampusCriteria cri) {
 		log.info("main 페이지");
 		log.info("전체 리스트 요청");
 		
 		List<CampusBoardVO> mainList = service.mainList(cri);
-=======
 
-	public String home(Locale locale, Model model) {
->>>>>>> refs/remotes/origin/seunghyun
-
-<<<<<<< HEAD
 		model.addAttribute("mainList", mainList);
 		return "main";
-=======
-		log.info("�׽�Ʈ");
-	
-		return "/index";
->>>>>>> refs/remotes/origin/seunghyun
 	}
 	
 	

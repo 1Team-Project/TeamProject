@@ -17,11 +17,7 @@
 		<div class="col-md-10">
 					<div class="col-md-12">
 				<hr class="one" />
-<<<<<<< HEAD
-				<h3 class="heading-section" style="font-family: naBrush;">ÅëÇÕ °Ô½ÃÆÇ</h3>
-=======
-				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">í†µí•© ê²Œì‹œíŒ</h3>
->>>>>>> refs/remotes/origin/hanjung
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">ÅëÇÕ °Ô½ÃÆÇ</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12 colorthema hh4 padding6px margintb20">
@@ -37,19 +33,14 @@
 								<img class="card-img-top"
 									src="${top.urllink}" style="width:100%; height:200px"/>
 								<div class="card-block">
-<<<<<<< HEAD
-									<h5 class="card-title topmargin10">ÈÄ±âÀÔ´Ï´Ù</h5>
-									<p class="card-text">¾È³çÇÏ¼¼¿ä ÈÄ±âÀÔ´Ï´Ù...</p>
-=======
 									<h5 class="card-title topmargin10">${top.b_title_10}</h5>
 									<p class="card-text">${top.b_content_15}</p>
 									<c:if test="${top.rank != 999}">
 									<p>
-										<a class="btn btn-primary clickview" href="${top.b_no}">ìì„¸íˆ ë³´ê¸°</a>
+										<a class="btn btn-primary clickview" href="${top.b_no}">ÀÚ¼¼È÷ º¸±â</a>
 									</p>
 									</c:if>
 									<c:if test="${top.rank == 999}">
->>>>>>> refs/remotes/origin/hanjung
 									<p>
 										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
 									</p>
@@ -57,38 +48,9 @@
 								</div>
 							</div>
 						</div>
-<<<<<<< HEAD
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top"
-									src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
-								<div class="card-block">
-									<h5 class="card-title topmargin10">¸®ºäÀÔ´Ï´Ù</h5>
-									<p class="card-text">ÀÌ°ÍÀº ¸®ºäÀÔ´Ï´Ù ¸®ºä...</p>
-									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top"
-									src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
-								<div class="card-block">
-									<h5 class="card-title topmargin10">Áú¹®ÀÔ´Ï´Ù</h5>
-									<p class="card-text">ÀÌ°ÍÀº Áú¹®ÀÔ´Ï´Ù...</p>
-									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
-									</p>
-								</div>
-							</div>
-						</div>
-=======
 					</c:forEach>
 			
 						
->>>>>>> refs/remotes/origin/hanjung
 					</div>
 				</div>
 			</div>
@@ -143,33 +105,21 @@
 			</table>
 			<div class="row">
 				<div class="col-md-12 mb-3">
-<<<<<<< HEAD
-					<select name="" id=""
-						class="form-control width10 inlinetest boldergreen">
-						<option value="">ºĞ·ù</option>
-						<option value="ÈÄ±â">ÈÄ±â</option>
-						<option value="Áú¹®">Áú¹®</option>
-					</select> <input type="text"
-						class="width30 boldergreen padding5px blacktext" />
-					<button class="btn btn-primary">°Ë»ö</button>
-					<button class="btn btn-primary float-end" onclick="location.href='write'">±Û ¾²±â</button>
-=======
 				
                 <form action="" id="searchForm" class="">
 					<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
 						<option value="">----</option>
-						<option value="ì œëª©"<c:out value="${pageVO.cri.sort=='ì œëª©'?'selected':''}"/>>ì œëª©</option>
-						<option value="ë‚´ìš©"<c:out value="${pageVO.cri.sort=='ë‚´ìš©'?'selected':''}"/>>ë‚´ìš©</option>
-						<option value="ì‘ì„±ì"<c:out value="${pageVO.cri.sort=='ì‘ì„±ì'?'selected':''}"/>>ì‘ì„±ì</option>
+						<option value="Á¦¸ñ"<c:out value="${pageVO.cri.sort=='Á¦¸ñ'?'selected':''}"/>>Á¦¸ñ</option>
+						<option value="³»¿ë"<c:out value="${pageVO.cri.sort=='³»¿ë'?'selected':''}"/>>³»¿ë</option>
+						<option value="ÀÛ¼ºÀÚ"<c:out value="${pageVO.cri.sort=='ÀÛ¼ºÀÚ'?'selected':''}"/>>ÀÛ¼ºÀÚ</option>
 					</select>
 					<input type="text" name="keyword" class="width40 boldergreen padding5px blacktext" value="${pageVO.cri.keyword}"/>
 					<input type="hidden" name="page" value="${pageVO.cri.page}"/>
-					<button class="btn btn-primary searchbutton" type="submit">ê²€ìƒ‰</button>
+					<button class="btn btn-primary searchbutton" type="submit">°Ë»ö</button>
                </form>
->>>>>>> refs/remotes/origin/hanjung
 					<!--<sec:authorize access="isAuthenticated()">-->
                  	<!--</sec:authorize>-->
-					<button class="btn btn-primary float-end" onclick="location.href='write'">ê¸€ ì“°ê¸°</button>
+					<button class="btn btn-primary float-end" onclick="location.href='write'">±Û ¾²±â</button>
 				</div>
 			</div>
 			<div class="row">
@@ -206,7 +156,6 @@
 </div>
 <script>
 	let result='${result}';
-
 </script>
 <script src="/resources/main/js/campuslist.js"></script>
 <%@include file="../../design/footer.jsp"%>

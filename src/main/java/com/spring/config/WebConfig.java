@@ -11,12 +11,10 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 
 	@Override
 	protected Class<?>[] getRootConfigClasses() {
-<<<<<<< HEAD
+
 		return new Class[] {RootConfig.class, SecurityConfig.class};
 		//return new Class[] {RootConfig.class};
-=======
-		return new Class[] {RootConfig.class };
->>>>>>> refs/remotes/origin/seunghyun
+
 	}
 
 	@Override
@@ -29,7 +27,7 @@ public class WebConfig extends AbstractAnnotationConfigDispatcherServletInitiali
 		return new String[] {"/"};
 	}
 
-	//한글 처리 필터
+
 	@Override
 	protected Filter[] getServletFilters() {
 		CharacterEncodingFilter encodingFilter = new CharacterEncodingFilter();

@@ -17,23 +17,14 @@ public interface CampusReplyMapper {
 	
 	public int delete(int r_no);
 	
-<<<<<<< HEAD
-	//ëŒ“ê¸€
-	public int deleteAll(int bno);
-=======
 	//´ñ±Û
 	public int deleteAll(int b_no);
->>>>>>> refs/remotes/origin/hanjung
-	
-	
+
 	public int getCountByBno(int b_no);
 	
-<<<<<<< HEAD
+
 	public List<CampusReplyVO> list(@Param("r_page") int r_page, @Param("b_no") int b_no);
-=======
-	public List<CampusReplyVO> list(@Param("cri")CampusCriteria cri,@Param("bno")int bno);
-	
-	// ì˜ê¶Œ ë©”ì¸ ê²Œì‹œíŒ 10ê°œ ë³´ì—¬ì£¼ê¸°ìš©
+
+	// ¿µ±Ç ¸ŞÀÎ °Ô½ÃÆÇ 10°³ º¸¿©ÁÖ±â¿ë
 	public List<CampusReplyVO> mainList(@Param("cri")CampusCriteria cri,@Param("bno")int bno);
->>>>>>> refs/remotes/origin/youngkwon
 }

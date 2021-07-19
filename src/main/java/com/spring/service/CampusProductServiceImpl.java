@@ -2,51 +2,6 @@ package com.spring.service;
 
 import java.util.List;
 
-<<<<<<< HEAD
-import org.springframework.stereotype.Service;
-
-import com.spring.domain.CampusProductVO;
-@Service
-public class CampusProductServiceImpl implements CampusProductService {
-
-	@Override
-	public List<CampusProductVO> productList() {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<CampusProductVO> productCategory(String pc_code) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public List<CampusProductVO> searchProduct(String p_name) {
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public boolean insertProduct(CampusProductVO vo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean deleteProduct(int p_number) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-	@Override
-	public boolean updateProduct(int p_price, int p_stock) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
-}
-=======
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -101,7 +56,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 		boolean result = false;
 
 		
-		//Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ È®ï¿½ï¿½
+		//Ã·ºÎÆÄÀÏ ¿©ºÎ È®ÀÎ
 		if(vob.getAttachList()==null || vob.getAttachList().size()<=0) {
 			
 			if (test1 == test2 == test3) {
@@ -111,7 +66,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 			return result;
 		}
 		
-		// Ã·ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
+		// Ã·ºÎÆÄÀÏ µî·Ï
 		vob.getAttachList().forEach(attach -> {
 			attach.setB_no(vob.getB_no());
 			attachMapper.insert(attach);
@@ -152,10 +107,6 @@ public class CampusProductServiceImpl implements CampusProductService {
 		return productmapper.viewProduct(p_number);
 	}
 
-<<<<<<< HEAD
-}
->>>>>>> refs/remotes/origin/hanjung
-=======
 	@Override
 	public CampusProductVO detailproduct(int p_number) {
 		// TODO Auto-generated method stub
@@ -163,4 +114,4 @@ public class CampusProductServiceImpl implements CampusProductService {
 	}
 
 }
->>>>>>> refs/remotes/origin/seunghyun
+

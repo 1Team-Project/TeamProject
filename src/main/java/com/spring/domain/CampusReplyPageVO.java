@@ -14,10 +14,6 @@ import lombok.ToString;
 
 public class CampusReplyPageVO {
 
-<<<<<<< HEAD
-	private int replyCnt; //ëŒ“ê¸€ ì „ì²´ ê°œìˆ˜
-	private List<CampusReplyVO> list;
-=======
 	//ÆäÀÌÁö ³ª´©±â¿Í °ü·ÃµÈ Á¤º¸¸¦ ´ã°í ÀÖ´Â °´Ã¼
 	
 	private int startPage;
@@ -43,6 +39,5 @@ public class CampusReplyPageVO {
 		
 		
 	}
->>>>>>> refs/remotes/origin/hanjung
 	
 }

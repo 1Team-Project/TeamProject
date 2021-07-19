@@ -65,12 +65,8 @@ public class BoradController {
 	@GetMapping("/list")
 	public void list(Model model, CampusCriteria cri) {
 		
-<<<<<<< HEAD
-		log.info("ì „ì²´ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ");
-=======
 		log.info("ÀüÃ¼ ¸®½ºÆ® Á¶È¸");
 		//¸®½ºÆ® Á¶È¸
->>>>>>> refs/remotes/origin/hanjung
 		List<CampusBoardVO> list = service.list(cri);
 		int total = service.total(cri);
 
@@ -145,32 +141,23 @@ public class BoradController {
 	@ResponseBody
 	public String read2(@RequestBody String bnoval) {
 		
-		log.info("ë·° ì• ë“œ í…ŒìŠ¤íŠ¸");
+		log.info("ºä ¾Öµå Å×½ºÆ®");
 		log.info(bnoval);
 		int b_no = Integer.parseInt(bnoval);
-<<<<<<< HEAD
-		log.info("int ì²˜ë¦¬ëœ bno"+b_no);
-=======
 		log.info("int Ã³¸®µÈ bno"+b_no);
 		//ÇöÀç Á¶È¸¼ö¸¦ °¡Á®¿È
->>>>>>> refs/remotes/origin/hanjung
 		CampusBoardVO campusVO=service.view(b_no);
 		//+1 ÇÑ »óÅÂ·Î ÀÔ·Â
 		int views = campusVO.getB_views()+1;
-		log.info("views ê°’ : "+views);
+		log.info("views °ª : "+views);
 		String viewsS = Integer.toString(views);
 
 		return viewsS;
 	}
 	
 	@GetMapping("/view")
-<<<<<<< HEAD
-	public void read(int b_no,int b_views,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("ê¸€ í•˜ë‚˜ ê°€ì ¸ì˜¤ê¸° "+b_no+" cri : "+cri);  
-=======
 	public void read(int b_no,int b_views, int r_page,@ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("±Û ÇÏ³ª °¡Á®¿À±â "+b_no+" cri : "+cri);  
->>>>>>> refs/remotes/origin/hanjung
 		
 		CampusBoardVO campusVO=service.view(b_no);
 		int views = campusVO.getB_views();
@@ -193,7 +180,7 @@ public class BoradController {
 	
 	@GetMapping("/modify")
 	public void modify(int b_no,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("ê¸€ ìˆ˜ì • "+b_no+" cri : "+cri);  
+		log.info("±Û ¼öÁ¤ "+b_no+" cri : "+cri);  
 		
 		CampusBoardVO campusVO=service.view(b_no);
 		model.addAttribute("campusVO", campusVO);
@@ -225,16 +212,16 @@ public class BoradController {
 	//@PreAuthorize("isAuthenticated()") //@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@GetMapping("/write")
 	public void register() {
-		log.info("ìƒˆê¸€ ë“±ë¡ í¼ ìš”ì²­");
+		log.info("»õ±Û µî·Ï Æû ¿äÃ»");
 	}
 	
 	@PostMapping("/write")
 	public String registerPost(CampusBoardVO vo, RedirectAttributes rttr) {
 		
-		log.info("ê¸€ ì‘ì„±  "+vo);
+		log.info("±Û ÀÛ¼º  "+vo);
 		
 		if(service.insert(vo)) {
-			log.info("ê¸€ ì‘ì„± ìš”ì²­ : "+vo.getB_no()+" /// "+vo.getAttachList());
+			log.info("±Û ÀÛ¼º ¿äÃ» : "+vo.getB_no()+" /// "+vo.getAttachList());
 			rttr.addFlashAttribute("result",vo.getB_no());
 			return "redirect:list";
 		}else {
@@ -329,18 +316,9 @@ public class BoradController {
 	
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
-<<<<<<< HEAD
-		log.info("íŒë§¤ ë“±ë¡ ì´ë™ ì‹¤í–‰");
-=======
 		log.info("ÆÇ¸Å ÀÌµ¿");
->>>>>>> refs/remotes/origin/hanjung
 	}
 	
-<<<<<<< HEAD
-	@GetMapping("/sellmodify")
-	public void sellmodify() {
-		log.info("íŒë§¤ ìˆ˜ì • ì´ë™ ì‹¤í–‰");
-=======
 	@PostMapping("/sellwrite")
 	public String sellwritePost(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob,RedirectAttributes rttr) {
 		log.info("ÆÇ¸Å µî·Ï ¿äÃ»");
@@ -387,7 +365,6 @@ public class BoradController {
 			return "redirect:list";
 		}
 
->>>>>>> refs/remotes/origin/hanjung
 	}
 
 	@GetMapping("/sellmodify")

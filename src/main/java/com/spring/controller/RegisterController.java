@@ -19,29 +19,29 @@ public class RegisterController {
 	@Autowired
 	private CampusUserService service;
 	
-	// íšŒì›ê°€ì… ë²„íŠ¼ ëˆ„ë¥¼ ì‹œ ì´ë™
+	// È¸¿ø°¡ÀÔ ¹öÆ° ´©¸¦ ½Ã ÀÌµ¿
 	@PostMapping("/agree")
 	public void agreeGet() {
-		log.info("ì•½ê´€ ë™ì˜ í˜ì´ì§€ ìš”ì²­");
+		log.info("¾à°ü µ¿ÀÇ ÆäÀÌÁö ¿äÃ»");
 	}
 	
 	@GetMapping("/mypage")
 	public String mypage() {
-		log.info("ì•½ê´€ ë™ì˜ í˜ì´ì§€ ìš”ì²­");
+		log.info("¾à°ü µ¿ÀÇ ÆäÀÌÁö ¿äÃ»");
 		return "mypage";
 	}
 	
-	// ì•½ê´€ ë™ì˜ ì‹œ ì´ë™
+	// ¾à°ü µ¿ÀÇ ½Ã ÀÌµ¿
 	@PostMapping("/regist")
 	public void registerPost() {
-		log.info("íšŒì›ê°€ì… í˜ì´ì§€ ìš”ì²­");
+		log.info("È¸¿ø°¡ÀÔ ÆäÀÌÁö ¿äÃ»");
 	}
 	
 	
-	// íšŒì›ê°€ì… ì •ë³´ë¥¼ ê°€ì ¸ì˜¤ëŠ” ì»¨íŠ¸ë¡¤ëŸ¬ ìƒì„±
+	// È¸¿ø°¡ÀÔ Á¤º¸¸¦ °¡Á®¿À´Â ÄÁÆ®·Ñ·¯ »ı¼º
 	@PostMapping("/regist2")
 	public String regist2Post(@ModelAttribute("member") CampusUserVO vo) {
-		log.info("íšŒì›ê°€ì… ìš”ì²­ " + vo);
+		log.info("È¸¿ø°¡ÀÔ ¿äÃ» " + vo);
 		
 		try {
 			if(service.insert(vo)) {
@@ -56,11 +56,11 @@ public class RegisterController {
 
 	}
 
-	// ì¤‘ë³µ ì•„ì´ë”” ê²€ì‚¬
-	@ResponseBody // ë¦¬í„´ê°’ì˜ ì˜ë¯¸ê°€ jspë¥¼ ì°¾ìœ¼ë¼ëŠ” ì˜ë¯¸ê°€ ì•„ë‹ˆê³  ê²°ê³¼ê°’ì˜ ì˜ë¯¸
+	// Áßº¹ ¾ÆÀÌµğ °Ë»ç
+	@ResponseBody // ¸®ÅÏ°ªÀÇ ÀÇ¹Ì°¡ jsp¸¦ Ã£À¸¶ó´Â ÀÇ¹Ì°¡ ¾Æ´Ï°í °á°ú°ªÀÇ ÀÇ¹Ì
 	@PostMapping("/checkId")
 	public String checkId(String u_userid) {
-		log.info("ì¤‘ë³µì•„ì´ë”” ê²€ì‚¬ " + u_userid);
+		log.info("Áßº¹¾ÆÀÌµğ °Ë»ç " + u_userid);
 		CampusUserVO vo = service.dupId(u_userid);
 		if(vo!=null) {
 			return "false";
@@ -68,7 +68,7 @@ public class RegisterController {
 		return "true";
 	}
 	
-	// /register ì§ì ‘ ëˆŒëŸ¬ì„œ ì ‘ê·¼í•˜ëŠ” ê²½ìš° - 405ì—ëŸ¬
+	// /register Á÷Á¢ ´­·¯¼­ Á¢±ÙÇÏ´Â °æ¿ì - 405¿¡·¯
 	@GetMapping(value={"/regist"})
 	public String handleStep() {
 		return "redirect:agree";
