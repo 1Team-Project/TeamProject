@@ -194,6 +194,7 @@
 			<button type="submit" id="join" class="btn btn-primary" style="font-size:20px">확 인</button>
 			<button type="button" class="btn btn-danger" style="font-size:20px" onclick="location.href='login'">취 소</button>
 		</div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</div>
 </form>
 <%@include file="../design/footer.jsp" %>

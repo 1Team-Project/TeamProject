@@ -251,6 +251,7 @@
 				contentType: false,
 				data: bnoval,
 				success: function(result){
+					main_actionForm.append("<input type='hidden' name='r_page' value='" + "1" + "'/>");
 					main_actionForm.append("<input type='hidden' name='b_views' value='" + result + "'/>");
 					main_actionForm.append("<input type='hidden' name='b_no' value='"+ bnoval +"'/>");
 					main_actionForm.attr("action", "/board/view");

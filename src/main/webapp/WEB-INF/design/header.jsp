@@ -15,6 +15,7 @@
 	<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 	<!-- 영권 추가 문장 시작 -->
 	<link rel="stylesheet" href="/resources/main/css/bootstrap2.min.css">
+	<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	<!-- 영권 추가 문장 끝 -->

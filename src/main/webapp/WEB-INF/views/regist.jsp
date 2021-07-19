@@ -2,7 +2,7 @@
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
-	<form id="formId" action="/regist2" method="post">
+	<form id="formId" action="regist2" method="post">
 		<div class="regist-Form">
 			<div class="form-group">
 		  		<label for="u_userid" style="font-family: naBrush">아이디</label>
@@ -65,6 +65,7 @@
 		  		<button type="reset" class="btn btn-danger" style="font-size:20px" onclick="location.href='/'">취 소</button>
 		    </div>
 		</div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 <script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>
