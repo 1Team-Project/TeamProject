@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,11 +11,11 @@
 <body>
 	<div class="container center-contents">
 		<div class="row">
-			<h1 class="title display-5">admin í˜ì´ì§€</h1>
+			<h1 class="title display-5">admin ÆäÀÌÁö</h1>
 		</div>
 		<div class="links">
 			<div class="link">
-				<a href="/">ë©”ì¸</a>
+				<a href="/">¸ŞÀÎ</a>
 			</div>
 		</div>
 	</div>

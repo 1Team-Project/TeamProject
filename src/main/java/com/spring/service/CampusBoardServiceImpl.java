@@ -28,15 +28,15 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	@Transactional
 	@Override
 	public boolean insert(CampusBoardVO vo) {
-		// ìƒˆê¸€ ë“±ë¡
+		// »õ±Û µî·Ï
 		boolean result = mapper.insert(vo)>0?true:false;
 		
-		//ì²¨ë¶€íŒŒì¼ ì—¬ë¶€ í™•ì¸
+		//Ã·ºÎÆÄÀÏ ¿©ºÎ È®ÀÎ
 		if(vo.getAttachList()==null || vo.getAttachList().size()<=0) {
 			return result;
 		}
 		
-		// ì²¨ë¶€íŒŒì¼ ë“±ë¡
+		// Ã·ºÎÆÄÀÏ µî·Ï
 		vo.getAttachList().forEach(attach -> {
 			attach.setB_no(vo.getB_no());
 			attachMapper.insert(attach);
@@ -47,24 +47,33 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 
 	@Transactional
 	@Override
+	public boolean insert_p(CampusBoardVO vo) {
+		// »õ±Û µî·Ï
+		boolean result = mapper.insert(vo)>0?true:false;
+		
+		return result;
+	}
+	
+	@Transactional
+	@Override
 	public boolean delete(int bno) {
 		
-		//ëŒ“ê¸€ ì‚­ì œ
+		//´ñ±Û »èÁ¦
 		replyMapper.deleteAll(bno);
-		//ì²¨ë¶€íŒŒì¼ ì‚­ì œ
+		//Ã·ºÎÆÄÀÏ »èÁ¦
 		attachMapper.delete(bno);
-		//ê²Œì‹œê¸€ ì‚­ì œ
+		//°Ô½Ã±Û »èÁ¦
 		return mapper.delete(bno)>0?true:false;
 	}
 
 	@Transactional
 	@Override
 	public boolean update(CampusBoardVO vo) {
-		//ê¸°ì¡´ì— ì²¨ë¶€íŒŒì¼ ì •ë³´ ëª¨ë‘ ì‚­ì œ í›„ ì‚½ì…
+		//±âÁ¸¿¡ Ã·ºÎÆÄÀÏ Á¤º¸ ¸ğµÎ »èÁ¦ ÈÄ »ğÀÔ
 		attachMapper.delete(vo.getB_no());
-		//ê²Œì‹œê¸€ ìˆ˜ì •
+		//°Ô½Ã±Û ¼öÁ¤
 		boolean modifyResult = mapper.update(vo)>0?true:false;
-		//ì²¨ë¶€íŒŒì¼ ì‚½ì…
+		//Ã·ºÎÆÄÀÏ »ğÀÔ
 		if(modifyResult && vo.getAttachList().size()>0) {
 			for(CampusAttachFileDTO dto:vo.getAttachList()) {
 				dto.setB_no(vo.getB_no());
@@ -106,11 +115,27 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	}
 
 	@Override
+	public boolean replyadd(int bno, int replycnt) {
+		// TODO Auto-generated method stub
+		return mapper.replyCntUpdate(bno, replycnt)>0?true:false;
+	}
+
+	@Override
+	public boolean delete_p(int p_number) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<CampusBoardVO> topdate() {
+		return mapper.topdate();
+	}
+	
+	// ¿µ±Ç ¸ŞÀÎ °Ô½ÃÆÇ 10°³ º¸¿©ÁÖ±â¿ë
+	@Override
 	public List<CampusBoardVO> mainList(CampusCriteria cri) {
 		// TODO Auto-generated method stub
 		return mapper.mainList(cri);
 	}
-
-	
 	
 }

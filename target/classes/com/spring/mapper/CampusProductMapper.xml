@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.spring.mapper.CampusProduct">
+<mapper namespace="com.spring.mapper.CampusProductMapper">
 	
 	<!-- 상품 조회 : 목록 보기-->
 		<select id="productList" resultType="com.spring.domain.CampusProductVO">
@@ -15,6 +15,10 @@
 	<!-- 상품 조회 : 검색? -->
 		<select id="searchProduct" resultType="com.spring.domain.CampusProductVO">
 			select * from campus_product where p_name=#{p_name}
+		</select>
+	<!-- 상품 조회 : 하나 찾아오기 -->
+		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
+			select * from campus_product where p_number=#{p_number}
 		</select>
 	
 	
@@ -36,6 +40,10 @@
 			where p_number=#{p_number}
 		</update>
 
+<!-- 상품 상세 페이지 -->
+<select id="productdetail" resultType="com.spring.domain.CampusProductVO">
+select * from campus_product where p_number=#{p_number}
+</select>
 
 
 

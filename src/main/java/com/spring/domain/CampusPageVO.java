@@ -10,7 +10,7 @@ import lombok.ToString;
 
 public class CampusPageVO {
 
-	//íŽ˜ì´ì§€ ë‚˜ëˆ„ê¸°ì™€ ê´€ë ¨ëœ ì •ë³´ë¥¼ ë‹´ê³  ìžˆëŠ” ê°ì²´
+	//ÆäÀÌÁö ³ª´©±â °ü·Ã
 	
 	private int startPage;
 	private int endPage;
@@ -32,6 +32,7 @@ public class CampusPageVO {
 		}
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEnd;
+		
 		
 		
 	}

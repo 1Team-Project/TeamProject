@@ -3,37 +3,34 @@
 <mapper namespace="com.spring.mapper.CampusReplyMapper">
 
 	<insert id="insert">
-		insert into spring_reply(rno, bno, reply, replyer) values(seq_reply.nextval,#{bno},#{reply},#{replyer})
+		insert into campus_reply(r_no, b_no, r_content, r_replyer, r_sysdate) values(CAMPUS_REPLY_SEQUENCE.nextval,#{b_no},#{r_content},#{r_replyer},sysdate)
 	</insert>
 
 	<select id="read" resultType="com.spring.domain.CampusReplyVO">
-		select * from spring_reply where rno = #{rno}
+		select * from campus_reply where r_no = #{r_no}
 	</select>
 
 	<update id="update">
-		update spring_reply set reply = #{reply}, updatedate = sysdate where rno = #{rno}
+		update campus_reply set r_content = #{r_content} where r_no = #{r_no}
 	</update>
 
 	<delete id="delete">
-		delete from spring_reply where rno = #{rno}
+		delete from campus_reply where r_no = #{r_no}
 	</delete>
 
 	<delete id="deleteAll">
-		delete from spring_reply where bno=#{bno}
+		delete from campus_reply where b_no=#{b_no}
 	</delete>
 
 	<!-- 댓글 페이지 처리 -->
 	<select id="list" resultType="com.spring.domain.CampusReplyVO">
 	
 	<![CDATA[
-		select rno,bno,reply,replyer,replydate,updatedate
-		from(
-			select /*+INDEX(spring_reply idx_reply)*/
-				rownum rn, rno, bno, reply, replyer, replydate, updatedate
-			from spring_reply
-			where bno=#{bno} and rno > 0 and rownum <= #{cri.pageNum} * #{cri.amount}
-		)
-		where rn > (#{cri.pageNum}-1) * #{cri.amount}
+		select * 
+		from (select rownum rn, b_no, r_no, r_replyer, r_content, r_sysdate
+			from(select b_no, r_no, r_replyer, r_content, r_sysdate from campus_reply where r_no > 0 AND b_no = #{b_no} order by r_no desc) 
+			where rownum <= (#{r_page}*10))
+		where rn > ((#{r_page}-1)*10)
 	]]>
 	
 	</select>
@@ -41,7 +38,7 @@
 <!-- 하나의 글번호에 대한 전체 댓글 게시물 수 -->
 
 	<select id="getCountByBno" resultType="int">
-		select count(*) from spring_reply where bno = #{bno}
+		select count(*) from campus_reply where b_no = #{b_no}
 	</select>
 	
 </mapper>

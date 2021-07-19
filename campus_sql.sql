@@ -19,7 +19,7 @@ CREATE TABLE CAMPUS_USER(
 );
 
 --����� ����
-CREATE TABLE CAMPUS_USER_AUTH(
+CREATE TABLE CAMPUS_USER_AUTH
     u_userid VARCHAR2(100) PRIMARY KEY,
     u_auth VARCHAR2(50) DEFAULT 'ROLE_USER' NOT NULL,
     constraint campus_user_auth foreign key(u_userid) references CAMPUS_USER(u_userid)
@@ -175,3 +175,5 @@ values('user1', 'ROLE_USER');
 	select camp.u_userid, u_password, u_username, u_email, u_phone, u_address, u_auth
 	from campus_user camp left outer join campus_user_auth auth on camp.u_userid = auth.u_userid
 	where camp.u_userid = 'user1';
+	
+select * from CAMPUS_USER_AUTH;

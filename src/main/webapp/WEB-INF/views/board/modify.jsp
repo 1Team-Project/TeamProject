@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 
@@ -11,33 +11,33 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush;">í†µí•©
-					ê²Œì‹œíŒ</h3>
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">ÅëÇÕ
+					°Ô½ÃÆÇ</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">ê¸€ ìˆ˜ì •</h3>
+				<h3 class="colorthema margintb20 padding6px">±Û ¼öÁ¤</h3>
 			</div>
-			<form action="">
+			<form action="" method="post" role="form">
 				<div class="col-md-8 mll20">
-					<select name="form-select" id=""
+					<select name="b_sort" id="sort"
 						class="form-control width15 inlinetest">
-						<option value="">ë¶„ë¥˜</option>
-						<option value="í›„ê¸°">í›„ê¸°</option>
-						<option value="ì§ˆë¬¸">ì§ˆë¬¸</option>
+						<option value="">ºÐ·ù</option>
+						<option value="ÈÄ±â">ÈÄ±â</option>
+						<option value="Áú¹®">Áú¹®</option>
 					</select><input type="text"
-						class="form-control width70 inlinetest mll10"
-						id="campusboard-title" placeholder="ì œëª©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”"/>
+						class="form-control width70 inlinetest mll10" name="b_title"
+						id="campusboard-title" placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä" value="${campusVO.b_title}"/>
 				</div>
 
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<textarea class="form-control" cols="30" rows="15"
-						style="resize: none" placeholder="ë‚´ìš©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”"></textarea>
+					<textarea class="form-control" cols="30" rows="15" id="campusboard-content" name="b_content" 
+						style="resize: none" placeholder="³»¿ëÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä">${campusVO.b_content}</textarea>
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<div class="blacktext">íŒŒì¼ ì²¨ë¶€ (jpg/png, ìµœëŒ€ 20MB, ìµœëŒ€ 3ìž¥)</div>
+					<div class="blacktext">ÆÄÀÏ Ã·ºÎ (jpg/png, ÃÖ´ë 20MB, ÃÖ´ë 3Àå)</div>
 					<div class="">
 						<div class="form-group">
 							<input type="file" name="campusFile" multiple
@@ -50,17 +50,31 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<button class="btn btn-primary">ê¸€ ìˆ˜ì •</button>
-					<button class="btn btn-green1" type="reset">ì‚­ì œ</button>
-					<button class="btn btn-green2" type="reset">ë¦¬ìŠ¤íŠ¸</button>
+					<button class="btn btn-primary" type="button" data-oper="modify" type="submit">±Û ¼öÁ¤</button>
+					<button class="btn btn-green1" type="button" data-oper="remove" type="submit">»èÁ¦</button>
+					<button class="btn btn-green2" type="button" data-oper="list" type="submit">¸®½ºÆ®</button>
 				</div>
 		</form>
 		</div>
 	</div>
 	<div class="col-md-1 margintb20"></div>
+	
+	<%-- remove¿Í list¸¦ À§ÇÑ Æû--%>
+	<form action="" id="operForm" method="POST">
+		<input type="hidden" name="keyword" value="${cri.keyword}" />
+		<input type="hidden" name="page" value="${cri.page}" />
+		<input type="hidden" name="sort" value="${cri.sort}" />
+		<input type="hidden" name = "b_no" value="${campusVO.b_no}"/>
+		
+		<%-- spring security csrf°ª Ãß°¡ --%>
 
+	</form>
+	
 </section>
+<script>
+	let b_no = ${campusVO.b_no};
+	let catchnum = 0;
+</script>
 
-
-
+<script src="/resources/main/js/campusmodify.js"></script>
 <%@include file="../../design/footer.jsp"%>

@@ -17,7 +17,7 @@
 		<div class="col-md-10">
 					<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush;">통합 게시판</h3>
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">통합 게시판</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12 colorthema hh4 padding6px margintb20">
@@ -25,45 +25,32 @@
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row textcenter">
+
+					
+					<c:forEach var="top" items="${CampusTopVO}">
 						<div class="col-md-4">
 							<div class="card">
 								<img class="card-img-top"
-									src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
+									src="${top.urllink}" style="width:100%; height:200px"/>
 								<div class="card-block">
-									<h5 class="card-title topmargin10">후기입니다</h5>
-									<p class="card-text">안녕하세요 후기입니다...</p>
+									<h5 class="card-title topmargin10">${top.b_title_10}</h5>
+									<p class="card-text">${top.b_content_15}</p>
+									<c:if test="${top.rank != 999}">
+									<p>
+										<a class="btn btn-primary clickview" href="${top.b_no}">자세히 보기</a>
+									</p>
+									</c:if>
+									<c:if test="${top.rank == 999}">
 									<p>
 										<a class="btn btn-primary" href="#">자세히 보기</a>
 									</p>
+									</c:if>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top"
-									src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
-								<div class="card-block">
-									<h5 class="card-title topmargin10">리뷰입니다</h5>
-									<p class="card-text">이것은 리뷰입니다 리뷰...</p>
-									<p>
-										<a class="btn btn-primary" href="#">자세히 보기</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top"
-									src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
-								<div class="card-block">
-									<h5 class="card-title topmargin10">질문입니다</h5>
-									<p class="card-text">이것은 질문입니다...</p>
-									<p>
-										<a class="btn btn-primary" href="#">자세히 보기</a>
-									</p>
-								</div>
-							</div>
-						</div>
+					</c:forEach>
+			
+						
 					</div>
 				</div>
 			</div>
@@ -118,17 +105,21 @@
 			</table>
 			<div class="row">
 				<div class="col-md-12 mb-3">
-					<select name="" id=""
-						class="form-control width10 inlinetest boldergreen">
-						<option value="">분류</option>
-						<option value="후기">후기</option>
-						<option value="질문">질문</option>
-					</select> <input type="text"
-						class="width30 boldergreen padding5px blacktext" />
-					<button class="btn btn-primary">검색</button>
-					<button class="btn btn-primary float-end" onclick="location.href='write'">글 쓰기</button>
+				
+                <form action="" id="searchForm" class="">
+					<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
+						<option value="">----</option>
+						<option value="제목"<c:out value="${pageVO.cri.sort=='제목'?'selected':''}"/>>제목</option>
+						<option value="내용"<c:out value="${pageVO.cri.sort=='내용'?'selected':''}"/>>내용</option>
+						<option value="작성자"<c:out value="${pageVO.cri.sort=='작성자'?'selected':''}"/>>작성자</option>
+					</select>
+					<input type="text" name="keyword" class="width40 boldergreen padding5px blacktext" value="${pageVO.cri.keyword}"/>
+					<input type="hidden" name="page" value="${pageVO.cri.page}"/>
+					<button class="btn btn-primary searchbutton" type="submit">검색</button>
+               </form>
 					<!--<sec:authorize access="isAuthenticated()">-->
                  	<!--</sec:authorize>-->
+					<button class="btn btn-primary float-end" onclick="location.href='write'">글 쓰기</button>
 				</div>
 			</div>
 			<div class="row">
@@ -153,19 +144,18 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div>
-		
+</div>
 	<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
 		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		
+		<input type="hidden" name="r_page" value="1"/>
 	</form>            
 	
 	
 </div>
 <script>
 	let result='${result}';
-
 </script>
 <script src="/resources/main/js/campuslist.js"></script>
 <%@include file="../../design/footer.jsp"%>

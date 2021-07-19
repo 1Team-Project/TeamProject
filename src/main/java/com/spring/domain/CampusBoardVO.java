@@ -27,8 +27,8 @@ public class CampusBoardVO {
 	private int b_views;
 	private String b_sort;
 	private int b_rating;
-	private int p_pnumber;
+	private int p_number;
 	
-	//ì²¨ë¶€íŒŒì¼
+	//Ã·ºÎ ÆÄÀÏ
 	private List<CampusAttachFileDTO> attachList;
 }
