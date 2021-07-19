@@ -115,6 +115,7 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	}
 
 	@Override
+<<<<<<< HEAD
 	public boolean replyadd(int bno, int replycnt) {
 		// TODO Auto-generated method stub
 		return mapper.replyCntUpdate(bno, replycnt)>0?true:false;
@@ -129,6 +130,11 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	@Override
 	public List<CampusBoardVO> topdate() {
 		return mapper.topdate();
+=======
+	public List<CampusBoardVO> mainList(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.mainList(cri);
+>>>>>>> refs/remotes/origin/youngkwon
 	}
 
 	

@@ -13,17 +13,17 @@
 				<label for="u_password" class="sr-only">비밀번호</label>
 				<input type="password" id="u_password" name="u_password" class="form-control-login" placeholder="비밀번호를 입력해 주세요" />
 			</div>
-			<div class="login-margin">
+	 		<div class="login-margin">
 				<label> 
 					<input type="checkbox" name="remember-me"> 로그인 기억하기
 				</label>
 			</div>
-			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>
-			<button class="btn btn-lg btn-primary btn-block" id="regist">회원가입</button>
-			<input type="hidden" name="${u_userid}" value="${u_password}"/>
-			<div class="error-message">
+			<div class="error-message" style="color: red; margin-bottom: 10px;">
 				<span>${loginError}</span>
 			</div>
+			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>
+			<button class="btn btn-lg btn-primary btn-block" id="regist">회원가입</button>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</div>
 	</form>
 <script src="/resources/main/js/register_yk.js"></script>

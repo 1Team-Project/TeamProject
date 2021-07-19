@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -14,12 +14,16 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
+<<<<<<< HEAD
 				<h3 class="heading-section hoverthema" style="font-family: naBrush" onclick="location.href='list'">í†µí•© ê²Œì‹œíŒ
+=======
+				<h3 class="heading-section" style="font-family: naBrush">ÅëÇÕ °Ô½ÃÆÇ
+>>>>>>> refs/remotes/origin/youngkwon
 				</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} ë²ˆ ê¸€</h3>
+				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} ¹ø ±Û</h3>
 			</div>
 			<form action="">
 				<div class="col-md-8 mll20">
@@ -44,7 +48,7 @@
 
 					<div class="">
 						<div class="">
-							<i class=""></i> ì²¨ë¶€ ëª©ë¡
+							<i class=""></i> Ã·ºÎ ¸ñ·Ï
 						</div>
 						<div class="panel-body">
 							<div class="uploadResult">
@@ -58,18 +62,24 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
+<<<<<<< HEAD
 					<button class="btn btn-primary modifybutton" type="button">ìˆ˜ì •í•˜ê¸°</button>
 					<button class="btn btn-green2 listbutton" type="button">ë¦¬ìŠ¤íŠ¸</button>
+=======
+					<button class="btn btn-primary">¼öÁ¤ÇÏ±â</button>
+					<button class="btn btn-green2 listbutton" type="button">¸®½ºÆ®</button>
+>>>>>>> refs/remotes/origin/youngkwon
 				</div>
 				</form>
 				<hr class="one" />
 		</div>
 
-		<!-- ëŒ“ê¸€ í¼ -->
+		<!-- ´ñ±Û Æû -->
 		<div class="col-md-1"></div>
 		<div class="col-md-10 mll10">
 			<form action="/board/replyadd" method="post">
 				<div class="col-md-8 mll20">
+<<<<<<< HEAD
 								
 					<input type="hidden" name = "r_replyer" value="ê¹€ê¸°ê¸°ë™"/>
 					
@@ -81,8 +91,16 @@
 					
 					<h5>ëŒ“ê¸€ ì‘ì„±</h5>
 					<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
+=======
+					<h5>´ñ±Û ÀÛ¼º</h5>
+					<textarea class="form-control" cols="30" rows="3"
+>>>>>>> refs/remotes/origin/youngkwon
 						style="resize: none"></textarea>
+<<<<<<< HEAD
 					<button class="btn btn-primary float-end m-1 mr-0" type="submit">ëŒ“ê¸€ ì‘ì„±</button>
+=======
+					<button class="btn btn-primary float-end m-1 mr-0">´ñ±Û ÀÛ¼º</button>
+>>>>>>> refs/remotes/origin/youngkwon
 				</div>
 			</form>
 		</div>
@@ -92,14 +110,30 @@
 	<div class="col-md-1"></div>
 	<div class="col-md-10 mll10">
 		<hr class="one" />
+<<<<<<< HEAD
 		
 		
 		<!-- ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸ -->
+=======
+		<!-- ´ñ±Û ¸®½ºÆ® -->
+>>>>>>> refs/remotes/origin/youngkwon
 
+<<<<<<< HEAD
 		<c:set var="now" value="<%=new java.util.Date()%>" />
 		<c:set var="systest"><fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/></c:set>
 		<c:forEach var="revo" items="${replyVO}">
+=======
+		<div class="col-md-8 mll20 margintb20">
+			<h6 class="float-start">ÀÛ¼ºÀÚ</h6>
+			<a href="" class="float-end blacktext hoverthema">[¼öÁ¤]</a> <a href=""
+				class="float-end blacktext hoverthema">[»èÁ¦]</a>
+			<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">2020/07/08</h7>
+			<textarea class="form-control" cols="30" rows="3"
+				style="resize: none" readonly></textarea>
+		</div>
+>>>>>>> refs/remotes/origin/youngkwon
 
+<<<<<<< HEAD
 			<div class="col-md-8 mll20 margintb20 divreply">
 				<h6 class="float-start">${revo.r_replyer}</h6>
 				<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[ìˆ˜ì •]</a>
@@ -119,7 +153,18 @@
 					
 				</c:choose>
 				</h7>
+=======
+		<div class="col-md-8 mll20 margintb20">
+			<h6 class="float-start">ÀÛ¼ºÀÚ</h6>
+			<a href="" class="float-end blacktext hoverthema">[¼öÁ¤]</a> <a href=""
+				class="float-end blacktext hoverthema">[»èÁ¦]</a>
+			<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">2020/07/08</h7>
+			<textarea class="form-control" cols="30" rows="3"
+				style="resize: none" readonly></textarea>
+		</div>
+>>>>>>> refs/remotes/origin/youngkwon
 
+<<<<<<< HEAD
 				
 				<div class="${revo.r_no}_btn"></div>
 				<div class="${revo.r_no}_btn_X"></div>
@@ -128,6 +173,16 @@
 			</div>
 
 		</c:forEach>
+=======
+		<div class="col-md-8 mll20 margintb20">
+			<h6 class="float-start">ÀÛ¼ºÀÚ</h6>
+			<a href="" class="float-end blacktext hoverthema">[¼öÁ¤]</a> <a href=""
+				class="float-end blacktext hoverthema">[»èÁ¦]</a>
+			<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">2020/07/08</h7>
+			<textarea class="form-control" cols="30" rows="3"
+				style="resize: none" readonly></textarea>
+		</div>
+>>>>>>> refs/remotes/origin/youngkwon
 
 		<div class="row">
 			<div class="col-md-12">
@@ -150,7 +205,7 @@
 		</div>
 
 
-		<button class="btn btn-green2 mll20 listbutton" type="button">ë¦¬ìŠ¤íŠ¸</button>
+		<button class="btn btn-green2 mll20 listbutton" type="button">¸®½ºÆ®</button>
 
 	</div>
 	<div class="col-md-1"></div>

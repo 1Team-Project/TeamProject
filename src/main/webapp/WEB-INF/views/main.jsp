@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
@@ -109,99 +110,154 @@
 		margin-left: 7%;
 	}
 </style>
-	<div class="container-fluid">
+	<div class="container-fluid" style="overflow-x:hidden;">
 		<div class="row topmargin30">
 			<div class="col-md-12"></div>
 			<h3 class="heading-section ml20" style="font-family: naBrush;">즐거운 여행 공간 Camp us</h3>
 		</div>
 		<div class="row">
 		 	<div class="col-md-1"></div>
-			  	<div class="col-md-10">
-			  		<div class="row">
-			  			<div class="main_left">
-					    	<div class="col-md-12 colorthema hh4 padding6px margintb20"> 여행 추천 상품 </div>
-				    		<div class="row">
-				    			<div class="">
-					      			<div class="col-md-12">
-					        			<div class="row_img">
-					        				<div class="col-md-4">
-					        					<div class="card">
-						        					<img src="../../resources/main/images/tent1.jpg"/>
-						        					<img src=""/>
-						        					<img src=""/>
-						        					<img src=""/>
-						        					<img src=""/>
-					            				</div>
-					          				</div>
-					        			</div>
-									</div>
-								</div>
-				    		</div>
-			    		</div>
-			    		<div class="main_right">
-							<div class="col-md-12 colorthema hh4 padding6px margintb20"> 아름다운 캠핑 장소 </div>
-			      			<div class="col-md-12">
-	        					<div class="row_opt">
-	        						<input type="radio" name="img" id="img1" checked/>
-	        						<input type="radio" name="img" id="img2"/>
-	        						<input type="radio" name="img" id="img3"/>
-	        						<input type="radio" name="img" id="img4"/>
-	        						<input type="radio" name="img" id="img5"/>
-	        						<ul id="slide_img">
-	        						<!-- 
-			        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
-			        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
-			        					<li><img src="../../resources/main/images/car1.jpg"/></li>
-			        					<li><img src="../../resources/main/images/car2.jpg"/></li>
-			        					<li><img src="../../resources/main/images/cabin1.jpg"/></li>
-			        				 -->
-			        				</ul>
-              					</div>
-            				</div>
-          				</div>
-					</div>
-			    </div>
+		  	<div class="col-md-10">
+		  		<div class="row">
+		  		<!-- main 윗부분 시작 -->
+		  			<div class="main_left">
+				    	<div class="col-md-12 colorthema hh4 padding6px margintb20"> 추천 상품 </div>
+       					<div class="slide_opt">
+       						<input type="radio" name="img" id="img1" checked/>
+       						<input type="radio" name="img" id="img2"/>
+       						<input type="radio" name="img" id="img3"/>
+       						<input type="radio" name="img" id="img4"/>
+       						<input type="radio" name="img" id="img5"/>
+       						<ul class="slide_img">
+	        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
+	        					<li><img src="../../resources/main/images/car1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/car2.jpg"/></li>
+	        					<li><img src="../../resources/main/images/cabin1.jpg"/></li>
+	        				</ul>
+	        				<div class="slide_btn">
+	        					<label for="img1">&nbsp;</label>
+	        					<label for="img2">&nbsp;</label>
+	        					<label for="img3">&nbsp;</label>
+	        					<label for="img4">&nbsp;</label>
+	        					<label for="img5">&nbsp;</label>
+	        				</div>
+            			</div>
+		    		</div>
+		    		<div class="main_right">
+						<div class="col-md-12 colorthema hh4 padding6px margintb20"> 아름다운 캠핑 장소 </div>
+       					<div class="slide_opt2">
+       						<input type="radio" name="img2" id="img6" checked/>
+       						<input type="radio" name="img2" id="img7"/>
+       						<input type="radio" name="img2" id="img8"/>
+       						<input type="radio" name="img2" id="img9"/>
+       						<input type="radio" name="img2" id="img10"/>
+       						<ul class="slide_img2">
+	        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
+	        					<li><img src="../../resources/main/images/car1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/car2.jpg"/></li>
+	        					<li><img src="../../resources/main/images/cabin1.jpg"/></li>
+	        				</ul>
+	        				<div class="slide_btn2">
+	        					<label for="img6">&nbsp;</label>
+	        					<label for="img7">&nbsp;</label>
+	        					<label for="img8">&nbsp;</label>
+	        					<label for="img9">&nbsp;</label>
+	        					<label for="img10">&nbsp;</label>
+	        				</div>
+            			</div>
+         			</div>
+				</div>
 		    </div>
-	    	<div class="row">
-	    		<div class="col-md-1"></div>
-	    		<div class="col-md-10">
-			    	<!-- 게시판 추가중 시작 부분 -->
-					<p style="text-align: left;	margin-top: 20px;">
-						<select class="selectBoxStyle">
-							<option selected>-------</option>
-							<option>후  기</option>
-							<option>리  뷰</option>
-							<option>질  문</option>
+			<div class="col-md-1"></div>
+		</div>
+		<!-- main 윗부분 끝 -->
+    	<!-- 게시판 추가중 시작 부분 -->
+    	<div class="row">
+    		<div class="col-md-1"></div>
+    		<div class="col-md-10">
+				<div style=" float: right; margin-top: 20px;">
+					<form action="" id="main_searchForm">
+						<select name="sort">
+							<option value="">--------</option>
+							<option value="R">리뷰</option>
+							<option value="Q">질문</option>
+							<option value="P">후기</option>
 						</select>
-						<input type="text" class="searchBox" placeholder="검색어 입력"/>
-						<button type="button" class="btn btn-primary" style="font-size:15px; height: 35px;">조 회</button>
-		    		</p>
-		    		<table class="table">
-		    			<thead>
-		    				<tr class="textcenter colorthema">
-		    					<th class="width10">작성일</th>
-		    					<th class="width10">분류</th>
-		    					<th class="width10">제목</th>
-		    					<th class="width10">조회수</th>
-		    				</tr>
-		    			</thead>
-		    			<tbody class="textcenter">
-		    				<c:forEach var="vo" items="${list}">
-		    					<tr>
-		    						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.b_sysdate}"/></td>
-		    						<td>${vo.b_sort}</td>
-		    						<td>
-		    							<a href="${vo.b_no}" class="blacktext hoverthema clickview">${vo.b_title}</a>
-		    						</td>
-		    						<td>${vo.b_views}</td>
-		    					</tr>
-		    				</c:forEach>
-		    			</tbody>
-		    		</table>
-					<!-- 게시판 추가중 끝 부분 -->
+						<!-- 검색시에도 페이지당 게시물 수와 현재 페이지에 대한 정보가 따라가야 한다. -->
+						<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
+						<input type="hidden" name="page" value="1"/>
+						<button type="button" class="btn btn-primary" style="font-size:15px; height: 30px; margin: 2px;">조 회</button>
+					</form>
 	    		</div>
-				<div class="col-md-1"></div>
-			</div>
+	    		<table class="table">
+	    			<thead>
+	    				<tr class="textcenter colorthema" >
+	    					<th class="width_list" style="width=3%;">작성일</th>
+	    					<th class="width_list" style="width=3%;">분류</th>
+	    					<th class="width_list" style="width=80%;">제목</th>
+	    					<th class="width_list" style="width=3%;">조회수</th>
+	    				</tr>
+	    			</thead>
+	    			<tbody class="textcenter">
+	    				<c:forEach var="vo" items="${mainList}">
+	    					<tr>
+	    						<td><fmt:formatDate pattern="MM-dd" value="${vo.b_sysdate}"/></td>
+	    						<td>${vo.b_sort}</td>
+	    						<td>
+	    							<a href="${vo.b_no}" class="move" style="text-decoration: none; color: #888;">${vo.b_title}</a>
+	    						</td>
+	    						<td>${vo.b_views}</td>
+	    					</tr>
+	    				</c:forEach>
+	    			</tbody>
+	    		</table>
+    		</div>
+			<div class="col-md-1"></div>
+		</div>
+		<!-- 게시판 추가중 끝 부분 -->
 	</div>
+	<form action="" method="get" id="main_actionForm">
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}"/>
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
+		<!-- <input type="hidden" name="page" value="1" /> -->
+	</form>
+	<script>
+	$(function() {
+		// 조회 버튼 클릭 시
+		$(".btn-primary").click(function(e) {
+			e.preventDefault();
+			// 검색 폼 가져오기
+			var main_searchForm = $("#main_searchForm");
+			// sort 가져오기
+			var sort=$("select[name='sort']").val();
+			// 검색 처음에는 1page 보여주기
+			main_searchForm.find("input[name='page']").val("1");
+			main_searchForm.submit();
+			
+		});
 
+		// 게시글 제목 클릭 시
+		$(".move").click(function(e) {
+			e.preventDefault(); 
+			var main_actionForm = $("#main_actionForm");
+			let bnoval = $(this).attr('href');
+
+			$.ajax({
+				url: "/board/viewadd",
+				type: "POST",
+				processData:false,
+				contentType: false,
+				data: bnoval,
+				success: function(result){
+					main_actionForm.append("<input type='hidden' name='b_views' value='" + result + "'/>");
+					main_actionForm.append("<input type='hidden' name='b_no' value='"+ bnoval +"'/>");
+					main_actionForm.attr("action", "/board/view");
+					main_actionForm.submit();
+				}
+			});
+		});
+	})
+	</script>
 <%@include file="../design/footer.jsp" %>

@@ -19,6 +19,12 @@
 		where u_userid = #{u_userid} and u_password = #{u_password}
 	</select>
 	
+	<select id="login" resultType="com.spring.domain.CampusUserVO">
+		select u_userid, u_password, u_username, u_email, u_phone, u_address 
+		from CAMPUS_USER 
+		where u_userid = #{u_userid} and u_password = #{u_password}
+	</select>
+	
 	<!-- 중복된 아이디 검사: dupId -->
 	<select id="dupId" resultType="com.spring.domain.CampusUserVO">
 		select u_userid from CAMPUS_USER where u_userid = #{u_userid}
@@ -34,8 +40,6 @@
 		update CAMPUS_USER set u_password = #{new_password} where u_userid = #{u_userid} and u_password = #{u_password}  
 	</update>
 	
-	
-	
 	<!-- 회원정보 수정 -->
 	<update id="userUpdate">
 		UPDATE CAMPUS_USER
@@ -43,5 +47,27 @@
 		u_username = #{u_username}
 		WHERE u_userid = #{u_userid}
 	</update>
+
+	<resultMap type="com.spring.domain.CampusUserVO" id="campusMap">
+		<id property="u_userid" column="u_userid"/>
+		<result property="u_userid" column="u_userid"/>
+		<result property="u_password" column="u_password"/>
+		<result property="u_username" column="u_username"/>
+		<result property="u_email" column="u_email"/>
+		<result property="u_phone" column="u_phone"/>
+		<result property="u_address" column="u_address"/>
+		<collection property="authList" resultMap="campusAuthMap"/>
+	</resultMap>
+		
+	<resultMap type="com.spring.domain.CampusAuthVO" id="campusAuthMap">
+		<result property="u_userid" column="u_userid"/>
+		<result property="u_auth" column="u_auth"/>
+	</resultMap>
+	
+	<select id="read" resultMap="campusMap">
+		select camp.u_userid, u_password, u_username, u_email, u_phone, u_address, u_auth
+		from campus_user camp left outer join campus_user_auth auth on camp.u_userid = auth.u_userid
+		where camp.u_userid = #{u_userid}
+	</select>
 
 </mapper>
