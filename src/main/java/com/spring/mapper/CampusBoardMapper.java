@@ -19,9 +19,11 @@ public interface CampusBoardMapper {
 	
 	public CampusBoardVO selectpnumber(int p_number);
 	
+	public List<CampusBoardVO> topdate();
+	
 	public int update(CampusBoardVO vo);
 	
-	public List<CampusBoardVO> list(CampusCriteria cri);	
+	public List<CampusBoardVO> list(CampusCriteria cri);
 	
 	public CampusBoardVO view(int bno);
 
@@ -30,4 +32,7 @@ public interface CampusBoardMapper {
 	public int replyCntUpdate(@Param("b_no")int bno, @Param("replycnt")int replycnt);
 	
 	public int addview(@Param("b_views")int views, @Param("b_no")int bno);
+	
+	// 영권 main 게시판 10개 보기용 추가
+	public List<CampusBoardVO> mainList(CampusCriteria cri);
 }

@@ -6,8 +6,9 @@ function showImage(fileCallPath){
 	$(".bigPictureWrapper").css("display","flex").show();
 
 	$(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>")
-	                .animate({width:'100%', height:'100%'},1000);
+	                .animate({width:'100%', height:'100%'},300);
 	$("#campusboard-title").focus();
+	console.log(fileCallPath);
 }
 
 $(function(){
@@ -127,26 +128,18 @@ $(function(){
 
 		})
 	)
-	
-		
-	
+
 	//확대된 사진 영역 없애기
 	$(".bigPictureWrapper").click(function(){
 		//원본 사진 줄이기
-		$(".bigPicture").animate({width:'0%', height:'0%'},1000);
+		$(".bigPicture").animate({width:'0%', height:'0%'},300);
 		
 		//확대된 영역 없애기
 		setTimeout(function(){
 			$(".bigPictureWrapper").hide();
-		},1000);		
+		},300);		
 	})
-	
-	
-	
-	
-	
-	
-	
+
 	
 	//operForm 가져온 후 전송하기
 	

@@ -45,6 +45,15 @@ public class RootConfig {
 		pool.setInitialPoolSize(5);
 		
 		return pool;
+		
+//		HikariConfig hikariConfig = new HikariConfig();
+//		hikariConfig.setDriverClassName("oracle.jdbc.OracleDriver");
+//		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe");
+//		hikariConfig.setUsername("javadb");
+//		hikariConfig.setPassword("12345");
+//		
+//		HikariDataSource datasource = new HikariDataSource(hikariConfig);
+//		return datasource;
 	}
 	
 	//mybatis

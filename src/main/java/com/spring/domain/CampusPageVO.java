@@ -10,7 +10,7 @@ import lombok.ToString;
 
 public class CampusPageVO {
 
-	//페이지 나누기와 관련된 정보를 담고 있는 객체
+	//페이지 나누기 관련
 	
 	private int startPage;
 	private int endPage;

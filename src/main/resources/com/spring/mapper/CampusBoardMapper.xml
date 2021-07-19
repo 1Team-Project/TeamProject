@@ -19,6 +19,16 @@
 		]]>
 	</select>
 
+	<select id="topdate" resultType="com.spring.domain.CampusBoardVO">
+		<![CDATA[
+		select * from (
+			select row_number() over( order by b_views desc ) as rank,
+			b_no,b_title,b_writer,b_views,b_content,b_sort,b_sysdate,replycnt
+			from campus_board
+			where b_sysdate >= sysdate-0.2 )
+		where rank <= 3
+		]]>
+	</select>
 
 	<delete id="delete">
 		delete from campus_board where b_no = #{b_no}
@@ -79,6 +89,39 @@
 	</insert>
 	
 	
+	<!-- 영권 메인 게시판 10개 보여주기용 -->
+	<select id="mainList" resultType="com.spring.domain.CampusBoardVO">
+		<![CDATA[
+			select * 
+				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate
+					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate from campus_board where b_no>0 order by b_no desc) 
+					where
+		]]>
+				<trim prefix="(" suffix=") AND" prefixOverrides="OR">
+					<foreach collection="sortArr" item='sort'>
+						<trim prefix="OR">
+							<choose>
+								<when test="sort=='R'.toString()">
+									b_sort like '%'||'리뷰'||'%'
+								</when>
+								<when test="sort=='Q'.toString()">
+									b_sort like '%'||'질문'||'%'
+								</when>
+								<when test="sort=='P'.toString()">
+									b_sort like '%'||'후기'||'%'
+								</when>
+							</choose>
+						</trim>
+					</foreach>
+				</trim>
+		
+		<![CDATA[
+				 rownum <= (#{page}*10)) 
+			where rn > ((#{page}-1)*10)
+		]]>
+	</select>
+	
+	
 	
 	<!-- 동적 SQL -->
 	<sql id = "criteria">
@@ -94,6 +137,6 @@
 			</if>
 		</if>
 	</sql>
-
+	
 
 </mapper>

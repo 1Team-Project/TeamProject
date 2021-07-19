@@ -126,6 +126,16 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		return false;
 	}
 
+	@Override
+	public List<CampusBoardVO> topdate() {
+		return mapper.topdate();
+	}
 	
+	// 영권 메인 게시판 10개 보여주기용
+	@Override
+	public List<CampusBoardVO> mainList(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.mainList(cri);
+	}
 	
 }

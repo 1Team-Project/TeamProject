@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -14,12 +14,12 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section hoverthema" style="font-family: naBrush" onclick="location.href='list'">í†µí•© ê²Œì‹œíŒ
+				<h3 class="heading-section hoverthema" style="font-family: naBrush" onclick="location.href='list'">ÅëÇÕ °Ô½ÃÆÇ
 				</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} ë²ˆ ê¸€</h3>
+				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} ¹ø ±Û</h3>
 			</div>
 			<form action="">
 				<div class="col-md-8 mll20">
@@ -44,7 +44,7 @@
 
 					<div class="">
 						<div class="">
-							<i class=""></i> ì²¨ë¶€ ëª©ë¡
+							<i class=""></i> Ã·ºÎ ¸ñ·Ï
 						</div>
 						<div class="panel-body">
 							<div class="uploadResult">
@@ -58,20 +58,20 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<button class="btn btn-primary modifybutton" type="button">ìˆ˜ì •í•˜ê¸°</button>
-					<button class="btn btn-green2 listbutton" type="button">ë¦¬ìŠ¤íŠ¸</button>
+					<button class="btn btn-primary modifybutton" type="button">¼öÁ¤ÇÏ±â</button>
+					<button class="btn btn-green2 listbutton" type="button">¸®½ºÆ®</button>
 				</div>
 				</form>
 				<hr class="one" />
 		</div>
 
-		<!-- ëŒ“ê¸€ í¼ -->
+		<!-- ´ñ±Û Æû -->
 		<div class="col-md-1"></div>
 		<div class="col-md-10 mll10">
 			<form action="/board/replyadd" method="post">
 				<div class="col-md-8 mll20">
 								
-					<input type="hidden" name = "r_replyer" value="ê¹€ê¸°ê¸°ë™"/>
+					<input type="hidden" name = "r_replyer" value="±è±â±âµ¿"/>
 					
 					<input type="hidden" name="sort" value="${cri.sort}" />
 					<input type="hidden" name="keyword" value="${cri.keyword}" />
@@ -79,10 +79,10 @@
 					<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 					<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
 					
-					<h5>ëŒ“ê¸€ ìž‘ì„±</h5>
+					<h5>´ñ±Û ÀÛ¼º</h5>
 					<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
 						style="resize: none"></textarea>
-					<button class="btn btn-primary float-end m-1 mr-0" type="submit">ëŒ“ê¸€ ìž‘ì„±</button>
+					<button class="btn btn-primary float-end m-1 mr-0" type="submit">´ñ±Û ÀÛ¼º</button>
 				</div>
 			</form>
 		</div>
@@ -94,7 +94,7 @@
 		<hr class="one" />
 		
 		
-		<!-- ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸ -->
+		<!-- ´ñ±Û ¸®½ºÆ® -->
 
 		<c:set var="now" value="<%=new java.util.Date()%>" />
 		<c:set var="systest"><fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/></c:set>
@@ -102,8 +102,8 @@
 
 			<div class="col-md-8 mll20 margintb20 divreply">
 				<h6 class="float-start">${revo.r_replyer}</h6>
-				<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[ìˆ˜ì •]</a>
-				<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[ì‚­ì œ]</a>
+				<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[¼öÁ¤]</a>
+				<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[»èÁ¦]</a>
 					
 				<c:set var="bsys"><fmt:formatDate pattern="yyyy-MM-dd" value="${revo.r_sysdate}"/></c:set>
 				<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">
@@ -150,7 +150,7 @@
 		</div>
 
 
-		<button class="btn btn-green2 mll20 listbutton" type="button">ë¦¬ìŠ¤íŠ¸</button>
+		<button class="btn btn-green2 mll20 listbutton" type="button">¸®½ºÆ®</button>
 
 	</div>
 	<div class="col-md-1"></div>
@@ -187,9 +187,7 @@
 </section>
 <script>
 	let b_no = ${campusVO.b_no};
-
 	$(document).ready(function(){
-
 		if(r_page > 1){
 			
 			var offset = $(".lineview").offset();

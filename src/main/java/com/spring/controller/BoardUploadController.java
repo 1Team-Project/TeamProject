@@ -177,27 +177,3 @@ public class BoardUploadController {
 		return str.replace("-", File.separator); // "2021\06\17"
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
