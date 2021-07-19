@@ -1,9 +1,11 @@
 package com.spring.controller;
 
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,12 +25,16 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class MemberController {
 	
+	
 	@Autowired
 	private CampusUserService service;
 	
+	@Inject
+	BCryptPasswordEncoder pwEncoder;
+	
 	/* 로그인 시스템 시작 */
 	/* 기본 시스템 */
-	/*
+
 	// login.jsp 보여주기
 	@GetMapping("/login")
 	public void loginGet() {
@@ -52,6 +58,12 @@ public class MemberController {
 		}
 	}
 	
+	@GetMapping("/login-error")
+	public String loginError(Model model) {
+		model.addAttribute("loginError", "아이디나 비밀번호가 올바르지 않습니다.");
+		return "/login";
+	}
+	
 	// logout => session 해제 후 index 보여주기
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
@@ -60,11 +72,11 @@ public class MemberController {
 		session.removeAttribute("login");
 		return "redirect:/";
 	}
-	*/
+
 	
 	/* 기본 시스템 종료*/
 	/* security 시작 */
-
+/*
 	@GetMapping("/login")
 	public String loginGet() {
 		log.info("로그인 폼 요청");
@@ -91,7 +103,7 @@ public class MemberController {
 		model.addAttribute("loginError", "아이디나 비밀번호가 올바르지 않습니다.");
 		return "/login";
 	}
-
+*/
 	/* 로그인 시스템 종료 */
 	
 	

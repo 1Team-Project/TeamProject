@@ -19,12 +19,6 @@
 		where u_userid = #{u_userid} and u_password = #{u_password}
 	</select>
 	
-	<select id="login" resultType="com.spring.domain.CampusUserVO">
-		select u_userid, u_password, u_username, u_email, u_phone, u_address 
-		from CAMPUS_USER 
-		where u_userid = #{u_userid} and u_password = #{u_password}
-	</select>
-	
 	<!-- 중복된 아이디 검사: dupId -->
 	<select id="dupId" resultType="com.spring.domain.CampusUserVO">
 		select u_userid from CAMPUS_USER where u_userid = #{u_userid}

@@ -33,27 +33,27 @@ public class RootConfig {
 	public DataSource dataSource() throws SQLException {		
 		
 		
-		PoolDataSource pool  = PoolDataSourceFactory.getPoolDataSource();
+//		PoolDataSource pool  = PoolDataSourceFactory.getPoolDataSource();
 		
-//		PoolDataSourceImpl pool = new PoolDataSourceImpl();	
+		PoolDataSourceImpl pool = new PoolDataSourceImpl();	
 		
-		pool.setConnectionFactoryClassName("oracle.jdbc.pool.OracleDataSource");
-		pool.setURL("jdbc:oracle:thin:@campus_medium?TNS_ADMIN=C://Wallet_CampUs");
-		pool.setUser("ADMIN");
-		pool.setPassword("CampUs1234team1");
-		pool.setMaxPoolSize(20);
-		pool.setInitialPoolSize(5);
-		
-		return pool;
-		
-//		HikariConfig hikariConfig = new HikariConfig();
-//		hikariConfig.setDriverClassName("oracle.jdbc.OracleDriver");
-//		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe");
-//		hikariConfig.setUsername("javadb");
-//		hikariConfig.setPassword("12345");
+//		pool.setConnectionFactoryClassName("oracle.jdbc.pool.OracleDataSource");
+//		pool.setURL("jdbc:oracle:thin:@campus_medium?TNS_ADMIN=C://Wallet_CampUs");
+//		pool.setUser("ADMIN");
+//		pool.setPassword("CampUs1234team1");
+//		pool.setMaxPoolSize(20);
+//		pool.setInitialPoolSize(5);
 //		
-//		HikariDataSource datasource = new HikariDataSource(hikariConfig);
-//		return datasource;
+//		return pool;
+		
+		HikariConfig hikariConfig = new HikariConfig();
+		hikariConfig.setDriverClassName("oracle.jdbc.OracleDriver");
+		hikariConfig.setJdbcUrl("jdbc:oracle:thin:@localhost:1521:xe");
+		hikariConfig.setUsername("javadb");
+		hikariConfig.setPassword("12345");
+		
+		HikariDataSource datasource = new HikariDataSource(hikariConfig);
+		return datasource;
 	}
 	
 	//mybatis

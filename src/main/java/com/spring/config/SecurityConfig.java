@@ -82,8 +82,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		// 모든 사람이 접근할 수 있는 url 지정
 		http.authorizeRequests()
 			.antMatchers("/login").permitAll()
-			.antMatchers("/UserPage").access("hasRole('USER')")
-			.antMatchers("/AdminPage").access("hasRole('ADMIN')");
+			.antMatchers("/UserPage").access("hasRole('ROLE_USER', 'ROLE_ADMIN')")
+			.antMatchers("/AdminPage").access("hasRole('ROLE_ADMIN')");
 		
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
 		filter.setEncoding("utf-8");
@@ -104,10 +104,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.formLogin()
 			.loginPage("/login")
 			.loginProcessingUrl("/loginForm")
-			.failureUrl("/login-error")
 			.usernameParameter("u_userid")
 			.passwordParameter("u_password")
-			.successHandler(loginSuccessHandler());
+			.successHandler(loginSuccessHandler())
+			.failureUrl("/login-error");
 		
 		/*
 		<!-- 로그 아웃 담당 -->
