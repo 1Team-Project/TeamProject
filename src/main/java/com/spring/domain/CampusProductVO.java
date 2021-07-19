@@ -6,14 +6,16 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-@Getter
 @Setter
+@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CategoryVO {
+public class CampusProductVO {
+	private int p_number;
+	private String p_name;
+	private int p_price;
+	private String p_option;
+	private int p_stock;
 	private String pc_code;
-	private String pc_name;
-	
-	
 }

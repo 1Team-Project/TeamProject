@@ -1,3 +1,8 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=test
 eclipse.preferences.version=1
+encoding//src/main/java/com/spring/controller/HomeController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/product.jsp=UTF-8
 encoding//src/main/webapp/resources/main/js/header_yk.js=euc-kr
 encoding//src/main/webapp/resources/main/js/register_yk.js=euc-kr

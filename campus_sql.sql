@@ -136,6 +136,7 @@ drop table CAMPUS_RESERVATION;
 drop table CAMPUS_ATTACH;
 
 select * from CAMPUS_USER;
+select * from CAMPUS_USER_AUTH;
 
 insert into CAMPUS_USER(u_userid, u_password, u_username, u_email, u_phone, u_address)
 values('hong', 12345, '홍길동', 'hong@gamil.com', '010-1234-5678', '서울시');
@@ -146,14 +147,31 @@ select u_userid, u_password from CAMPUS_USER where u_userid = 'hong' and u_passw
 alter table CAMPUS_BOARD drop constraint p_number;
 
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목7', '작성자7', 1, '몰라', '후기', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목17', '작성자17', 14, '몰라', '후기', 1, sysdate);
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목8', '작성자8', 5, '안녕하세요', '리뷰', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목18', '작성자18', 25, '안녕하세요', '질문', 1, sysdate);
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목9', '작성자9', 3, '넌 누구냐', '리뷰', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목19', '작성자19', 124, '넌 누구냐', '리뷰', 1, sysdate);
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목10', '작성자10', 2, '헬렐레', '질문', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목20', '작성자20', 23, '헬렐레', '후기', 1, sysdate);
 insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
-values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목11', '작성자11', 7, '호호', '리뷰', 1, sysdate);
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목21', '작성자21', 45, '호호', '리뷰', 1, sysdate);
+insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목22', '작성자22', 37, '몰라', '후기', 1, sysdate);
+insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목23', '작성자23', 29, '안녕하세요', '질문', 1, sysdate);
+insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목24', '작성자24', 42, '넌 누구냐', '리뷰', 1, sysdate);
+insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목25', '작성자25', 31, '헬렐레', '후기', 1, sysdate);
+insert into CAMPUS_BOARD (b_no, b_title, b_writer, b_views, b_content, b_sort, b_rating, b_sysdate)
+values(CAMPUS_BOARD_SEQUENCE.nextval, '게시글 제목26', '작성자26', 33, '호호', '질문', 1, sysdate);
 
 select * from CAMPUS_BOARD;
+
+insert into CAMPUS_USER_AUTH (u_userid, u_auth)
+values('user1', 'ROLE_USER');
+
+	select camp.u_userid, u_password, u_username, u_email, u_phone, u_address, u_auth
+	from campus_user camp left outer join campus_user_auth auth on camp.u_userid = auth.u_userid
+	where camp.u_userid = 'user1';

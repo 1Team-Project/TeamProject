@@ -171,8 +171,19 @@
 		    			</c:choose>
 		    			
 		    			
+		    			<c:choose>
+		    				<c:when test="${sessionScope.login != null}">
+								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
+		    						<img src="/resources/main/images/icon_mypage.png"></a>
+			    			</c:when>
+			    			<c:otherwise>
+		    					<a href="/login" class="d-flex align-items-center justify-content-center m-1">
+		    						<img src="/resources/main/images/icon_mypage.png">
+		    					</a>
+		    				</c:otherwise>
+		    			</c:choose>
 		    			
-		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_mypage.png"></a>
+		    			
 		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_cart.png"></a>
 		    		</p>
 	      		</div>
@@ -223,6 +234,12 @@
     <!-- END nav -->
 
 	</section>
+	<form action="/loginMypage" id="mypageForm" method="post">
+<input type="hidden" name="u_userid"  value="${login.u_userid}"/>
+<input type="hidden" name="u_password"  value="${login.u_password}"/>
+
+
+</form>
 	
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  	<script src="/resources/main/js/popper.js"></script>

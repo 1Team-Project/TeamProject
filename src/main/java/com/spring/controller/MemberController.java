@@ -2,14 +2,18 @@ package com.spring.controller;
 
 import javax.servlet.http.HttpSession;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.CampusUserVO;
+import com.spring.domain.ChangeVO;
 import com.spring.domain.LoginVO;
 import com.spring.service.CampusUserService;
 
@@ -33,16 +37,17 @@ public class MemberController {
 	
 	// 로그인 정보 가져오기 => post
 	@PostMapping("/loginForm")
-	public String loginPost(LoginVO vo, HttpSession session, RedirectAttributes rttr) {
+	public String loginPost(CampusUserVO vo, HttpSession session, RedirectAttributes rttr) {
 		log.info("login 요청 : " + vo.getU_userid() + " " + vo.getU_password());
 
-		LoginVO login = service.login(vo.getU_userid(), vo.getU_password());
+		CampusUserVO login = service.login(vo);
 		
 		if(login==null) {
 			rttr.addFlashAttribute("error", "아이디 또는 비밀번호를 확인해주세요");
 			return "redirect:login";
 		} else {
 			session.setAttribute("login", login);
+			//session.setAttribute("u_username", vo.getU_username());
 			return "redirect:/";
 		}
 	}
@@ -50,13 +55,13 @@ public class MemberController {
 	// logout => session 해제 후 index 보여주기
 	@GetMapping("/logout")
 	public String logout(HttpSession session) {
-		log.info("logout 요청");
-		
+		log.info("logout 요청");		
 		// session.invalidate();
 		session.removeAttribute("login");
 		return "redirect:/";
 	}
 	*/
+	
 	/* 기본 시스템 종료*/
 	/* security 시작 */
 
@@ -86,8 +91,80 @@ public class MemberController {
 		model.addAttribute("loginError", "아이디나 비밀번호가 올바르지 않습니다.");
 		return "/login";
 	}
-	
+
 	/* 로그인 시스템 종료 */
+	
+	
+	/*마이페이지~구매내역, 예약내역, 회원정보수정*/
+	
+	//loginMypage 이동
+	@GetMapping("/loginMypage")
+	public void loginMypage() {
+		log.info("마이페이지 요청");
+//		return "loginMypage";
+	}
+	
+	@PostMapping("/loginMypageForm")
+	public String loginMypageForm() {
+		log.info("마이페이지 요청");
+		return "loginMypage";
+	}
+	
+	/*마이페이지 - 회원정보수정*/
+	
+	//회원정보수정 페이지 이동
+//	@GetMapping("/mypageModify")
+//	public String mypageModify(Model model) {
+//		log.info("mypage-modify 요청");
+//		model.addAttribute("u_username",new CampusUserVO());
+//		
+//		return "mypageModify";
+//	}//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
+	
+	//회원정보수정 페이지 이동
+	@GetMapping("/mypageModify")
+	public String mypageModify(HttpSession session, Model model) {
+		log.info("mypage-modify 요청");
+		
+		
+		return "mypageModify";
+	}
+
+	//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
+	
+	//회원정보 수정하기 - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야 / 가져오는건 비밀번호 제외 다
+	@PostMapping("/mypageModify")
+	public String mypageModifyForm(CampusUserVO vo, HttpSession session) {
+		log.info("회원정보수정"+vo);
+		
+		
+//		service.userUpdate(vo);
+//		session.invalidate();
+		
+		return "mypageModify";
+	}
+
+	
+	/*마이페이지 - 구매내역*/
+	@GetMapping("/order")
+	public String order() {
+		log.info("order페이지 요청");
+		
+		return "order";
+	}
+	
+	
+	
+	
+	
+	/*마이페이지 - 예약내역*/
+	@GetMapping("/reservation")
+	public String reservation() {
+		log.info("order페이지 요청");
+		
+		return "reservation";
+	}
+	
 	
 //	// member/change-pwd => modify.jsp 보여주기
 //	@GetMapping("/change-pwd")
