@@ -58,7 +58,11 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
+	  			<sec:authorize access="isAuthenticated()">
+	  				<c:if test="${info.username == campusVO.b_writer}">
 					<button class="btn btn-primary modifybutton" type="button">수정하기</button>
+	                </c:if>
+	            </sec:authorize>
 					<button class="btn btn-green2 listbutton" type="button">리스트</button>
 				</div>
 				</form>
@@ -79,10 +83,18 @@
 					<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 					<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
 					
-					<h5>댓글 작성</h5>
-					<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
-						style="resize: none"></textarea>
-					<button class="btn btn-primary float-end m-1 mr-0" type="submit">댓글 작성</button>
+					<sec:authorize access="isAuthenticated()">
+						<h5>댓글 작성</h5>
+						<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
+							style="resize: none"></textarea>
+						<button class="btn btn-primary float-end m-1 mr-0" type="submit">댓글 작성</button>
+					</sec:authorize>
+					<sec:authorize access="isAnonymous()">
+						<h5>댓글 작성</h5>
+						<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
+							style="resize: none" placeholder="로그인 후 작성해 주세요." readonly></textarea>
+					</sec:authorize>
+					
 				</div>
 			</form>
 		</div>
@@ -95,16 +107,18 @@
 		
 		
 		<!-- 댓글 리스트 -->
-
+		<h5 class="mll20">댓글 목록</h5>
+		<hr class="one" />
 		<c:set var="now" value="<%=new java.util.Date()%>" />
 		<c:set var="systest"><fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/></c:set>
 		<c:forEach var="revo" items="${replyVO}">
 
 			<div class="col-md-8 mll20 margintb20 divreply">
 				<h6 class="float-start">${revo.r_replyer}</h6>
+				<sec:authorize access="isAuthenticated()">
 				<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
 				<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
-					
+				</sec:authorize>
 				<c:set var="bsys"><fmt:formatDate pattern="yyyy-MM-dd" value="${revo.r_sysdate}"/></c:set>
 				<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">
 				<c:choose>
@@ -180,6 +194,7 @@
 	<input type="hidden" name="page" value="${cri.page}" />
 	<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 	<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
+	<input type="hidden" name="rewriter" value="${info.username}"/>
 	<input type="hidden" name="r_page" value="${r_page}"/>
 </form>
 
@@ -194,6 +209,9 @@
 			$('html, body').animate({scrollTop : offset.top}, 0);
 		}		
 	});
+
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
 	
 </script>
 <script src="/resources/main/js/campusview.js"></script>

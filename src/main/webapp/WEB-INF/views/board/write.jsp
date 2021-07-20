@@ -50,6 +50,8 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					
 					<button class="btn btn-primary" type="submit">글 작성</button>
 					<button class="btn btn-green1" type="reset">초기화</button>
 					<button class="btn btn-green2" type="button" onClick="location.href='/board/list'">리스트</button>
@@ -59,5 +61,9 @@
 	</div>
 	<div class="col-md-1 margintb20"></div>
 </section>
+<script>
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+</script>
 <script src="/resources/main/js/campuswrite.js"></script>
 <%@include file="../../design/footer.jsp"%>

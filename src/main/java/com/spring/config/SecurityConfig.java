@@ -45,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	/*
-	<!-- ì•”í˜¸í™” -->
+	<!-- ¾ÏÈ£È­ -->
 	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	*/
 	@Bean
@@ -56,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	/*
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDetailService">
-			<!-- jdbc ì¸ì¦ ë°©ì‹ -->
+			<!-- jdbc ÀÎÁõ ¹æ½Ä -->
 			<security:password-encoder ref="bCryptPasswordEncoder"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
@@ -79,11 +79,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// <security:http>
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// ëª¨ë“  ì‚¬ëŒì´ ì ‘ê·¼í•  ìˆ˜ ìˆëŠ” url ì§€ì •
+		// ¸ğµç »ç¶÷ÀÌ Á¢±ÙÇÒ ¼ö ÀÖ´Â url ÁöÁ¤
 		http.authorizeRequests()
 			.antMatchers("/login").permitAll()
-			.antMatchers("/UserPage").access("hasRole('USER')")
-			.antMatchers("/AdminPage").access("hasRole('ADMIN')");
+			.antMatchers("/board/viewadd").permitAll()
+			.antMatchers("/UserPage").access("hasRole('ROLE_USER', 'ROLE_ADMIN')")
+			.antMatchers("/AdminPage").access("hasRole('ROLE_ADMIN')");
 		
 		CharacterEncodingFilter filter = new CharacterEncodingFilter();
 		filter.setEncoding("utf-8");
@@ -91,33 +92,33 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.addFilterBefore(filter, CsrfFilter.class);
 		
 		/*
-		<!-- ì ‘ê·¼ ì œí•œ ì‹œ handlerë¥¼ ê±°ì³ ì»¨íŠ¸ë¡¤ëŸ¬ë¡œ ì´ë™í•˜ëŠ” í˜•íƒœ -->
+		<!-- Á¢±Ù Á¦ÇÑ ½Ã handler¸¦ °ÅÃÄ ÄÁÆ®·Ñ·¯·Î ÀÌµ¿ÇÏ´Â ÇüÅÂ -->
 		<security:access-denied-handler ref="customAccessDeniedHandler"/>
 		 */
 		http.exceptionHandling(exception -> exception.accessDeniedHandler(accessDeniedHandler()));
 
 		/*
-		<!-- ë¡œê·¸ì¸ ë‹´ë‹¹ : ê¸°ë³¸ í•„í„° -->
+		<!-- ·Î±×ÀÎ ´ã´ç : ±âº» ÇÊÅÍ -->
 		<security:form-login login-page="/login" authentication-failure-url="/login-error" 
 		authentication-success-handler-ref="customLoginSuccessHandler"/>
 		 */
 		http.formLogin()
 			.loginPage("/login")
 			.loginProcessingUrl("/loginForm")
-			.failureUrl("/login-error")
 			.usernameParameter("u_userid")
 			.passwordParameter("u_password")
-			.successHandler(loginSuccessHandler());
+			.successHandler(loginSuccessHandler())
+			.failureUrl("/login-error");
 		
 		/*
-		<!-- ë¡œê·¸ ì•„ì›ƒ ë‹´ë‹¹ -->
+		<!-- ·Î±× ¾Æ¿ô ´ã´ç -->
 		<security:logout invalidate-session="true" logout-success-url="/"/>
 		*/
 		http.logout()
 			.invalidateHttpSession(true)
 			.logoutSuccessUrl("/");
 		/*
-		<!-- remember-me í™œì„±í™” -->
+		<!-- remember-me È°¼ºÈ­ -->
 		<security:remember-me data-source-ref="ds" token-validity-seconds="604800"/>
 		*/
 		http.rememberMe()

@@ -117,9 +117,9 @@
 					<input type="hidden" name="page" value="${pageVO.cri.page}"/>
 					<button class="btn btn-primary searchbutton" type="submit">검색</button>
                </form>
-					<!--<sec:authorize access="isAuthenticated()">-->
-                 	<!--</sec:authorize>-->
+               		<sec:authorize access="isAuthenticated()">
 					<button class="btn btn-primary float-end" onclick="location.href='write'">글 쓰기</button>
+					</sec:authorize>
 				</div>
 			</div>
 			<div class="row">
@@ -156,6 +156,9 @@
 </div>
 <script>
 	let result='${result}';
+	
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
 </script>
 <script src="/resources/main/js/campuslist.js"></script>
 <%@include file="../../design/footer.jsp"%>

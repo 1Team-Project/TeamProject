@@ -4,6 +4,8 @@
 <%@include file="../../design/header.jsp"%>
 
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <section>
 	<div class="row topmargin30">
@@ -50,8 +52,13 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<button class="btn btn-primary" type="button" data-oper="modify" type="submit">글 수정</button>
-					<button class="btn btn-green1" type="button" data-oper="remove" type="submit">삭제</button>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	  				<sec:authorize access="isAuthenticated()">
+	  					<c:if test="${info.username == campusVO.b_writer}">
+						<button class="btn btn-primary" type="button" data-oper="modify" type="submit">글 수정</button>
+						<button class="btn btn-green1" type="button" data-oper="remove" type="submit">삭제</button>
+	                	</c:if>
+	                </sec:authorize>
 					<button class="btn btn-green2" type="button" data-oper="list" type="submit">리스트</button>
 				</div>
 		</form>
@@ -64,14 +71,17 @@
 		<input type="hidden" name="keyword" value="${cri.keyword}" />
 		<input type="hidden" name="page" value="${cri.page}" />
 		<input type="hidden" name="sort" value="${cri.sort}" />
-		<input type="hidden" name = "b_no" value="${campusVO.b_no}"/>
-		
+		<input type="hidden" name ="b_no" value="${campusVO.b_no}"/>
+		<input type="hidden" name ="b_writer" value="${campusVO.b_writer}"/>
 		<%-- spring security csrf값 추가 --%>
 
 	</form>
 	
 </section>
 <script>
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
 	let b_no = ${campusVO.b_no};
 	let catchnum = 0;
 </script>

@@ -48,26 +48,13 @@ $(function(){
 	let superstr = "";
 	let reform = $("#replyselfform");
 	
-	$(".cbcontent").on("click","li",function(){
-		var liObj = $(this);
-		
-		
-		var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
-		
-		if(liObj.data("type")){
-			showImage(path.replace(new RegExp(/\\/g),"/"));			
-		}else{
-			self.location="/download?a_name="+path;
-		}
-	})
-	
 	$(".replyremove").click(function(e){
 		
 		e.preventDefault();
 
 		let r_no = $(this).attr("href");
 
-		if(confirm("정말로 파일을 삭제하시겠습니까?")){
+		if(confirm("정말로 댓글을 삭제하시겠습니까?")){
 
 			reform.attr('action','/board/replyremove');
 			reform.append('<input type="hidden" name="r_no" value="'+r_no+'"/>');

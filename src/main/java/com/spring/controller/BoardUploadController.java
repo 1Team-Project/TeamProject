@@ -36,7 +36,7 @@ import net.coobird.thumbnailator.Thumbnailator;
 @Log4j2
 public class BoardUploadController {	
 	
-	//@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/uploadAjax")
 	public ResponseEntity<List<CampusAttachFileDTO>> uploadFormPost(MultipartFile[] campusFile) {
 		log.info("파일 업로드 요청");
@@ -114,35 +114,9 @@ public class BoardUploadController {
 		}
 		return entity;
 	}
-	
-	
-	@GetMapping(value="/download",produces = MediaType.APPLICATION_OCTET_STREAM_VALUE)
-	public ResponseEntity<Resource> downloadFile(String fileName){
-		log.info("download file "+fileName);
-		
-		Resource resource = new FileSystemResource("c:\\CampusIMG\\"+fileName);
-		
-		//  2021_06_17_4e3c6543-9c97-4e60-8a40-d0e22df6e869_0610.txt
-		
-		HttpHeaders headers = new HttpHeaders();
-		
-		// 전체 파일명에서 uuid 값과 실제 파일명만 추출 4e3c6543-9c97-4e60-8a40-d0e22df6e869_0610.txt
-		String uidFileName = resource.getFilename();
-		// uuid값을 제외한 파일명 추출
-		String resourceName = uidFileName.substring(uidFileName.indexOf("_")+1);
-		
-		try {
-			headers.add("Content-Disposition", "attachment;filename="+URLEncoder.encode(resourceName, "utf-8"));
-			
-		} catch (UnsupportedEncodingException e) {			
-			e.printStackTrace();
-		}		
-				
-		return new ResponseEntity<Resource>(resource,headers,HttpStatus.OK);
-	}
-	
+
 	//upload 폴더에 있는 파일 삭제
-	//@PreAuthorize("isAuthenticated()")
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	public ResponseEntity<String> deleteFile(String a_name){
 		log.info("파일 삭제 : "+a_name+"");
