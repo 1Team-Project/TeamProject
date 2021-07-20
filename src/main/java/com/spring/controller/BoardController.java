@@ -3,18 +3,14 @@ package com.spring.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,16 +33,8 @@ import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
 import com.spring.service.CampusReplyService;
 
-//import com.spring.domain.CampusBoardPage;
-//import com.spring.domain.CampusBoardVO;
-//import com.spring.service.CampusBoardService;
-//import com.spring.domain.CampusBoardPageVO;
-
 import lombok.extern.log4j.Log4j2;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 @Log4j2
 @RequestMapping("/board/*")
@@ -64,19 +52,11 @@ public class BoardController {
 
 	@GetMapping("/list")
 	public void list(Model model, CampusCriteria cri) {
-		
-		log.info("전체 리스트 조회");
-		//리스트 조회
-		List<CampusBoardVO> list = service.list(cri);
-		int total = service.total(cri);
+		log.info("※※※※※ list ※※※※※");  
 
-		//list 이름으로 조회된 자료 모델에 등록 (리스트 뿌려주기)
-		model.addAttribute("list", list);
-
+		//오늘의 화제글
 		List<CampusBoardTopVO> top = new ArrayList<CampusBoardTopVO>();
 		
-		//오늘의 화제글
-
 		List<CampusBoardVO> datelist = service.topdate();
 		int rank = 0;
 		String imgurl = "";
@@ -96,6 +76,7 @@ public class BoardController {
 				}
 			}
 			
+			//오늘의 화제글 제목/내용이 길면 각각 10/15자 만큼 자르기
 			CampusBoardTopVO tovo = new CampusBoardTopVO();
 			if (vo.getB_content().length() >= 15) {						
 				tovo.setB_content_15(vo.getB_content().substring(0, 14));					
@@ -112,9 +93,8 @@ public class BoardController {
 			tovo.setRank(rank);
 			
 			top.add(tovo);
-
-			log.info("테스트 확인 테스트 확인 : "+top);
 		}
+		//만약, 오늘 쓴 글이 3개 미만일 경우, 빈 페이지 올리기
 		if (rank <= 2) {
 			for(int i = 1; i <= 3-rank; i++) {				
 				CampusBoardTopVO tovo = new CampusBoardTopVO();
@@ -126,13 +106,16 @@ public class BoardController {
 			}
 		}
 		
-		//오늘의 화제글
+		//전체 리스트 조회 및 모델에 등록
+		List<CampusBoardVO> list = service.list(cri);
+		int total = service.total(cri);
+		model.addAttribute("list", list);
+		
+		//오늘의 화제글 값 모델에 등록
 		model.addAttribute("CampusTopVO", top);
 		
-		//페이지 나누기
+		//페이지 나누기 값 모델에 등록
 		CampusPageVO campusPageVO = new CampusPageVO(cri, total);
-		
-		//페이지 나누기 관련
 		model.addAttribute("CampusPageVO", campusPageVO);
 	}
 	
@@ -140,38 +123,43 @@ public class BoardController {
 	@PostMapping("/viewadd")
 	@ResponseBody
 	public String read2(@RequestBody String bnoval) {
+		log.info("※※※※※ view add ※※※※※");  
 		
-		log.info("뷰 애드 테스트");
-		log.info(bnoval);
+		//bno 를 가져와서, int형으로 캐스팅
 		int b_no = Integer.parseInt(bnoval);
-		log.info("int 처리된 bno"+b_no);
+
 		//현재 조회수를 가져옴
 		CampusBoardVO campusVO=service.view(b_no);
+		
 		//+1 한 상태로 입력
 		int views = campusVO.getB_views()+1;
-		log.info("views 값 : "+views);
-		String viewsS = Integer.toString(views);
 
+		//다시 String 형태로 변환하여 리턴
+		String viewsS = Integer.toString(views);
 		return viewsS;
 	}
 	
 	@GetMapping("/view")
 	public void read(int b_no,int b_views, int r_page,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("글 하나 가져오기 "+b_no+" cri : "+cri);  
+		log.info("※※※※※ view ※※※※※");  
 		
+		//조회수 가져오기
 		CampusBoardVO campusVO=service.view(b_no);
 		int views = campusVO.getB_views();
 		
-		//만약, 조회수가 +1이 아닌 임의로 누군가 바꿨을때, 막기
+		//만약, 조회수가 +1이 아닌 임의로 누군가 바꿨을때도 올라가는 현상 막기
 		if (b_views - views == 1 || b_views == 1){			
 			service.addview(b_views, b_no);
 		}
 		
+		//댓글 관련
 		List<CampusReplyVO> replyVO = reply.list(r_page, b_no);
 
-		model.addAttribute("campusVO", campusVO);
 		int countreply = reply.getCountByBno(b_no);
 		CampusReplyPageVO campusReplyPageVO = new CampusReplyPageVO(r_page, countreply);
+		
+		//모델에 값 등록
+		model.addAttribute("campusVO", campusVO);
 		model.addAttribute("replyVO", replyVO);
 		model.addAttribute("campusReplyPageVO", campusReplyPageVO);
 		model.addAttribute("r_page",r_page);
@@ -180,8 +168,9 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify")
 	public void modify(int b_no,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("글 수정 "+b_no+" cri : "+cri);  
+		log.info("※※※※※ get modify ※※※※※");  
 		
+		//글 하나에 대한 값 모델에 등록
 		CampusBoardVO campusVO=service.view(b_no);
 		model.addAttribute("campusVO", campusVO);
 	}
@@ -190,13 +179,14 @@ public class BoardController {
 	@PostMapping("/modify")
 	public String modifyPost(CampusBoardVO vo, CampusCriteria cri, RedirectAttributes rttr) {
 		
-		log.info("글 수정"+cri);
+		log.info("※※※※※ post modify ※※※※※");  
 
 		//첨부 파일 확인
 		if(vo.getAttachList()!=null) {
 			vo.getAttachList().forEach(attach -> log.info(""+attach));
 		}
 		
+		//글 수정 성공시
 		if(service.update(vo)) {
 			rttr.addFlashAttribute("result", "성공");
 			
@@ -204,7 +194,8 @@ public class BoardController {
 			rttr.addAttribute("keyword",cri.getKeyword());
 			rttr.addAttribute("page",cri.getPage());
 			
-			return "redirect:list"; // redirect:/board/list
+			return "redirect:list";
+		//글 수정 실패시
 		}else {
 			return "redirect:modify?b_no="+vo.getB_no()+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
 		}
@@ -212,18 +203,18 @@ public class BoardController {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/write")
-	public void register() {
-		log.info("새글 등록 폼 요청");
+	public void write() {
+		log.info("※※※※※ get write ※※※※※");  
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/write")
-	public String registerPost(CampusBoardVO vo, RedirectAttributes rttr) {
+	public String writePost(CampusBoardVO vo, RedirectAttributes rttr) {
 		
-		log.info("글 작성  "+vo);
+		log.info("※※※※※ post write ※※※※※");  
 		
+		//글 작성 요청 및 성공/실패시
 		if(service.insert(vo)) {
-			log.info("글 작성 요청 : "+vo.getB_no()+" /// "+vo.getAttachList());
 			rttr.addFlashAttribute("result",vo.getB_no());
 			return "redirect:list";
 		}else {
@@ -235,16 +226,15 @@ public class BoardController {
 	@PostMapping("/remove")
 	public String remove(int b_no, String b_writer, CampusCriteria cri, RedirectAttributes rttr) {
 		
-		log.info("삭제 요청   "+b_no);
+		log.info("※※※※※ post remove ※※※※※");  
 		
-		//서버에 저장된 첨부파일 삭제
-		//1. bno에 해당되는 첨부파일 목록 알아내기
+		//bno에 해당되는 첨부파일 목록 알아내기
 		List<CampusAttachFileDTO> attachList = service.getAttachList(b_no);
 		
-		//게시글 삭제 + 첨부파일 삭제
+		//성공시 게시글 삭제 + 첨부파일 삭제
 		if(service.delete(b_no)) {
 
-			//2. 폴더 파일 삭제
+			//폴더 파일 삭제
 			deleteFiles(attachList);
 			
 			rttr.addFlashAttribute("result", "성공");
@@ -264,10 +254,10 @@ public class BoardController {
 	@PostMapping("/replyadd")
 	public String replyadd(int b_no, int b_views, CampusReplyVO vo, CampusCriteria cri) {
 		
-		log.info("댓글 작성  "+vo);
+		log.info("※※※※※ post replyadd ※※※※※");  
 		
+		//댓글 등록 성공시
 		if(reply.insert(vo)) {
-			log.info("댓글 작성 요청 : "+vo.getB_no());
 			
 			int replycnt = reply.getCountByBno(b_no);
 			
@@ -281,18 +271,12 @@ public class BoardController {
 	}
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replymodify")
-	public String replymodify(int b_no, int b_views, int r_page, String rewriter, CampusReplyVO vo, CampusCriteria cri) {
+	public String replymodify(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
 		
-		CampusReplyVO revo =  reply.read(vo.getR_no());
-		String replyer  = revo.getR_replyer();
-		if (!replyer.equals(rewriter)) {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
-		}
+		log.info("※※※※※ post replymodify ※※※※※");  
 		
-		log.info("댓글 수정 "+vo);
-		
+		//댓글 수정 요청
 		if(reply.update(vo)) {
-			log.info("댓글 수정 요청 : "+vo.getB_no());
 
 			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
 		}else {
@@ -303,18 +287,12 @@ public class BoardController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replyremove")
-	public String replyremove(int b_no, int b_views, int r_page, String rewriter, CampusReplyVO vo, CampusCriteria cri) {
+	public String replyremove(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
 		
-		log.info("댓글 삭제 "+vo);
+		log.info("※※※※※ post replyremove ※※※※※");  
 		
-		CampusReplyVO revo =  reply.read(vo.getR_no());
-		String replyer  = revo.getR_replyer();
-		if (!replyer.equals(rewriter)) {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
-		}
-		
+		//댓글 삭제 요청
 		if(reply.delete(vo.getR_no())) {
-			log.info("댓글 삭제 요청 : "+vo.getB_no()+" / "+vo.getR_no());
 			
 			int replycnt = reply.getCountByBno(b_no);
 			
@@ -330,13 +308,13 @@ public class BoardController {
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
-		log.info("판매 이동");
+		log.info("※※※※※ get sellwrite ※※※※※");
 	}
 	
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellwrite")
 	public String sellwritePost(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob,RedirectAttributes rttr) {
-		log.info("판매 등록 요청");
+		log.info("※※※※※ post sellwrite ※※※※※");  
 		
 		//po_optiontitle 에 값이 들어왔을때 (productoption 테이블의 optiontitle)
 		//product 의 option에는 값이 안들어오기 때문에, 강제로 값을 집어넣어줌.
@@ -384,8 +362,9 @@ public class BoardController {
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellmodify")
 	public void sellmodify(int p_number, int b_no, Model model) {
-		log.info("상품 수정 "+p_number);  
+		log.info("※※※※※ get sellmodify ※※※※※");
 		
+		//상품 정보, 게시글(상품) 정보 가져오기
 		CampusProductVO campusProductVO = product.viewProduct(p_number);
 		CampusBoardVO campusBoardVO = service.view(b_no);
 		model.addAttribute("campusBoardVO", campusBoardVO);
@@ -394,9 +373,9 @@ public class BoardController {
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellmodify")
 	public String sellmodifyPost(CampusProductVO vo) {
-		
-		log.info("상품 수정");
+		log.info("※※※※※ post sellmodify ※※※※※");
 
+		//수정하기
 		if(product.updateProduct(vo.getP_price(), vo.getP_stock(), vo.getP_number())) {
 			return "redirect:list";
 		}else {
@@ -406,17 +385,15 @@ public class BoardController {
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellremove")
 	public String sellremove(int b_no, int p_number, RedirectAttributes rttr) {
+		log.info("※※※※※ post sellremove ※※※※※");
 		
-		log.info("상품 삭제 요청   "+b_no);
-		
-		//서버에 저장된 첨부파일 삭제
-		//1. bno에 해당되는 첨부파일 목록 알아내기
+		//bno에 해당되는 첨부파일 목록 알아내기
 		List<CampusAttachFileDTO> attachList = service.getAttachList(b_no);
 		
 		//게시글 삭제 + 첨부파일 삭제
 		if(product.deleteProduct(p_number, b_no)) {
 			
-			//2. 폴더 파일 삭제
+			//폴더 파일 삭제
 			deleteFiles(attachList);
 			
 			rttr.addFlashAttribute("result", "성공");
@@ -433,7 +410,7 @@ public class BoardController {
 	//첨부물 가져오기
 	@GetMapping("/getAttachList")
 	public ResponseEntity<List<CampusAttachFileDTO>> getAttachList(int b_no){
-		log.info("첨부물 가져오기 "+b_no);
+		log.info("※※※※※ getAttachList ※※※※※");
 		
 		return new ResponseEntity<List<CampusAttachFileDTO>>(service.getAttachList(b_no),HttpStatus.OK);
 	}

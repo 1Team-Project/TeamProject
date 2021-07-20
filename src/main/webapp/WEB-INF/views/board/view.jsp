@@ -115,10 +115,14 @@
 
 			<div class="col-md-8 mll20 margintb20 divreply">
 				<h6 class="float-start">${revo.r_replyer}</h6>
+				
 				<sec:authorize access="isAuthenticated()">
-				<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
-				<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
+					<c:if test="${info.username == revo.r_replyer}">
+					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
+					<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
+					</c:if>
 				</sec:authorize>
+				
 				<c:set var="bsys"><fmt:formatDate pattern="yyyy-MM-dd" value="${revo.r_sysdate}"/></c:set>
 				<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">
 				<c:choose>
@@ -194,7 +198,6 @@
 	<input type="hidden" name="page" value="${cri.page}" />
 	<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 	<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
-	<input type="hidden" name="rewriter" value="${info.username}"/>
 	<input type="hidden" name="r_page" value="${r_page}"/>
 </form>
 

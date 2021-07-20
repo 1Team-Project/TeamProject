@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,11 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -39,10 +35,8 @@ public class BoardUploadController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/uploadAjax")
 	public ResponseEntity<List<CampusAttachFileDTO>> uploadFormPost(MultipartFile[] campusFile) {
-		log.info("파일 업로드 요청");
-		
-		log.info("잘 들어왔나 확인"+campusFile);
-		
+		log.info("※※※※※ uploadAjax ※※※※※");
+
 		String uploadFileName=null;
 		String uploadFolder = "c:\\CampusIMG";
 		
@@ -58,10 +52,7 @@ public class BoardUploadController {
 		
 		
 		for(MultipartFile f:campusFile) {
-//			log.info("upload File Name : "+f.getOriginalFilename());
-//			log.info("upload File Size : "+f.getSize());	
-			
-			
+
 			//서버 폴더에 전송된 파일 저장하기
 			//UUID 값 생성
 			UUID uuid = UUID.randomUUID();			
@@ -99,7 +90,7 @@ public class BoardUploadController {
 	//썸네일 보여주기
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(String fileName){
-		log.info("썸네일 요청 "+fileName);
+		log.info("※※※※※ view thumbnail ※※※※※");
 		
 		File file = new File("c:\\CampusIMG\\"+fileName);
 		
@@ -119,7 +110,7 @@ public class BoardUploadController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	public ResponseEntity<String> deleteFile(String a_name){
-		log.info("파일 삭제 : "+a_name+"");
+		log.info("※※※※※ deleteFile ※※※※※");
 		
 		
 		try {
@@ -146,8 +137,8 @@ public class BoardUploadController {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date date = new Date();
-		String str = sdf.format(date); // "2021-06-17"
+		String str = sdf.format(date);
 		
-		return str.replace("-", File.separator); // "2021\06\17"
+		return str.replace("-", File.separator);
 	}
 }
