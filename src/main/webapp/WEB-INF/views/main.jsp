@@ -1,5 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@page import="java.util.List"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
 
@@ -109,99 +110,154 @@
 		margin-left: 7%;
 	}
 </style>
-	<div class="container-fluid">
+	<div class="container-fluid" style="overflow-x:hidden;">
 		<div class="row topmargin30">
 			<div class="col-md-12"></div>
-			<h3 class="heading-section ml20" style="font-family: naBrush;">¡Ò∞≈øÓ ø©«‡ ∞¯∞£ Camp us</h3>
+			<h3 class="heading-section ml20" style="font-family: naBrush;">Ï¶êÍ±∞Ïö¥ Ïó¨Ìñâ Í≥µÍ∞Ñ Camp us</h3>
 		</div>
 		<div class="row">
 		 	<div class="col-md-1"></div>
-			  	<div class="col-md-10">
-			  		<div class="row">
-			  			<div class="main_left">
-					    	<div class="col-md-12 colorthema hh4 padding6px margintb20"> ø©«‡ √ﬂ√µ ªÛ«∞ </div>
-				    		<div class="row">
-				    			<div class="">
-					      			<div class="col-md-12">
-					        			<div class="row_img">
-					        				<div class="col-md-4">
-					        					<div class="card">
-						        					<img src="../../resources/main/images/tent1.jpg"/>
-						        					<img src=""/>
-						        					<img src=""/>
-						        					<img src=""/>
-						        					<img src=""/>
-					            				</div>
-					          				</div>
-					        			</div>
-									</div>
-								</div>
-				    		</div>
-			    		</div>
-			    		<div class="main_right">
-							<div class="col-md-12 colorthema hh4 padding6px margintb20"> æ∆∏ß¥ŸøÓ ƒ∑«Œ ¿Âº“ </div>
-			      			<div class="col-md-12">
-	        					<div class="row_opt">
-	        						<input type="radio" name="img" id="img1" checked/>
-	        						<input type="radio" name="img" id="img2"/>
-	        						<input type="radio" name="img" id="img3"/>
-	        						<input type="radio" name="img" id="img4"/>
-	        						<input type="radio" name="img" id="img5"/>
-	        						<ul id="slide_img">
-	        						<!-- 
-			        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
-			        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
-			        					<li><img src="../../resources/main/images/car1.jpg"/></li>
-			        					<li><img src="../../resources/main/images/car2.jpg"/></li>
-			        					<li><img src="../../resources/main/images/cabin1.jpg"/></li>
-			        				 -->
-			        				</ul>
-              					</div>
-            				</div>
-          				</div>
-					</div>
-			    </div>
+		  	<div class="col-md-10">
+		  		<div class="row">
+		  		<!-- main ÏúóÎ∂ÄÎ∂Ñ ÏãúÏûë -->
+		  			<div class="main_left">
+				    	<div class="col-md-12 colorthema hh4 padding6px margintb20"> Ï∂îÏ≤ú ÏÉÅÌíà </div>
+       					<div class="slide_opt">
+       						<input type="radio" name="img" id="img1" checked/>
+       						<input type="radio" name="img" id="img2"/>
+       						<input type="radio" name="img" id="img3"/>
+       						<input type="radio" name="img" id="img4"/>
+       						<input type="radio" name="img" id="img5"/>
+       						<ul class="slide_img">
+	        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
+	        					<li><img src="../../resources/main/images/car1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/car2.jpg"/></li>
+	        					<li><img src="../../resources/main/images/cabin1.jpg"/></li>
+	        				</ul>
+	        				<div class="slide_btn">
+	        					<label for="img1">&nbsp;</label>
+	        					<label for="img2">&nbsp;</label>
+	        					<label for="img3">&nbsp;</label>
+	        					<label for="img4">&nbsp;</label>
+	        					<label for="img5">&nbsp;</label>
+	        				</div>
+            			</div>
+		    		</div>
+		    		<div class="main_right">
+						<div class="col-md-12 colorthema hh4 padding6px margintb20"> ÏïÑÎ¶ÑÎã§Ïö¥ Ï∫†Ìïë Ïû•ÏÜå </div>
+       					<div class="slide_opt2">
+       						<input type="radio" name="img2" id="img6" checked/>
+       						<input type="radio" name="img2" id="img7"/>
+       						<input type="radio" name="img2" id="img8"/>
+       						<input type="radio" name="img2" id="img9"/>
+       						<input type="radio" name="img2" id="img10"/>
+       						<ul class="slide_img2">
+	        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
+	        					<li><img src="../../resources/main/images/car1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/car2.jpg"/></li>
+	        					<li><img src="../../resources/main/images/cabin1.jpg"/></li>
+	        				</ul>
+	        				<div class="slide_btn2">
+	        					<label for="img6">&nbsp;</label>
+	        					<label for="img7">&nbsp;</label>
+	        					<label for="img8">&nbsp;</label>
+	        					<label for="img9">&nbsp;</label>
+	        					<label for="img10">&nbsp;</label>
+	        				</div>
+            			</div>
+         			</div>
+				</div>
 		    </div>
-	    	<div class="row">
-	    		<div class="col-md-1"></div>
-	    		<div class="col-md-10">
-			    	<!-- ∞‘Ω√∆« √ﬂ∞°¡ﬂ Ω√¿€ ∫Œ∫– -->
-					<p style="text-align: left;	margin-top: 20px;">
-						<select class="selectBoxStyle">
-							<option selected>-------</option>
-							<option>»ƒ  ±‚</option>
-							<option>∏Æ  ∫‰</option>
-							<option>¡˙  πÆ</option>
+			<div class="col-md-1"></div>
+		</div>
+		<!-- main ÏúóÎ∂ÄÎ∂Ñ ÎÅù -->
+    	<!-- Í≤åÏãúÌåê Ï∂îÍ∞ÄÏ§ë ÏãúÏûë Î∂ÄÎ∂Ñ -->
+    	<div class="row">
+    		<div class="col-md-1"></div>
+    		<div class="col-md-10">
+				<div style=" float: right; margin-top: 20px;">
+					<form action="" id="main_searchForm">
+						<select name="sort">
+							<option value="">--------</option>
+							<option value="Q">ÏßàÎ¨∏</option>
+							<option value="R">ÌõÑÍ∏∞</option>
 						</select>
-						<input type="text" class="searchBox" placeholder="∞ÀªˆæÓ ¿‘∑¬"/>
-						<button type="button" class="btn btn-primary" style="font-size:15px; height: 35px;">¡∂ »∏</button>
-		    		</p>
-		    		<table class="table">
-		    			<thead>
-		    				<tr class="textcenter colorthema">
-		    					<th class="width10">¿€º∫¿œ</th>
-		    					<th class="width10">∫–∑˘</th>
-		    					<th class="width10">¡¶∏Ò</th>
-		    					<th class="width10">¡∂»∏ºˆ</th>
-		    				</tr>
-		    			</thead>
-		    			<tbody class="textcenter">
-		    				<c:forEach var="vo" items="${list}">
-		    					<tr>
-		    						<td><fmt:formatDate pattern="yyyy-MM-dd" value="${vo.b_sysdate}"/></td>
-		    						<td>${vo.b_sort}</td>
-		    						<td>
-		    							<a href="${vo.b_no}" class="blacktext hoverthema clickview">${vo.b_title}</a>
-		    						</td>
-		    						<td>${vo.b_views}</td>
-		    					</tr>
-		    				</c:forEach>
-		    			</tbody>
-		    		</table>
-					<!-- ∞‘Ω√∆« √ﬂ∞°¡ﬂ ≥° ∫Œ∫– -->
+						<!-- Í≤ÄÏÉâÏãúÏóêÎèÑ ÌéòÏù¥ÏßÄÎãπ Í≤åÏãúÎ¨º ÏàòÏôÄ ÌòÑÏû¨ ÌéòÏù¥ÏßÄÏóê ÎåÄÌïú Ï†ïÎ≥¥Í∞Ä Îî∞ÎùºÍ∞ÄÏïº ÌïúÎã§. -->
+						<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
+						<input type="hidden" name="page" value="1"/>
+						<button type="button" class="btn btn-primary" style="font-size:15px; height: 30px; margin: 2px;">Ï°∞ Ìöå</button>
+					</form>
 	    		</div>
-				<div class="col-md-1"></div>
-			</div>
+	    		<table class="table">
+	    			<thead>
+	    				<tr class="textcenter colorthema" >
+	    					<th class="width_list" style="width=3%;">ÏûëÏÑ±Ïùº</th>
+	    					<th class="width_list" style="width=3%;">Î∂ÑÎ•ò</th>
+	    					<th class="width_list" style="width=80%;">Ï†úÎ™©</th>
+	    					<th class="width_list" style="width=3%;">Ï°∞ÌöåÏàò</th>
+	    				</tr>
+	    			</thead>
+	    			<tbody class="textcenter">
+	    				<c:forEach var="vo" items="${mainList}">
+	    					<tr>
+	    						<td><fmt:formatDate pattern="MM-dd" value="${vo.b_sysdate}"/></td>
+	    						<td>${vo.b_sort}</td>
+	    						<td>
+	    							<a href="${vo.b_no}" class="move" style="text-decoration: none; color: #888;">${vo.b_title}</a>
+	    						</td>
+	    						<td>${vo.b_views}</td>
+	    					</tr>
+	    				</c:forEach>
+	    			</tbody>
+	    		</table>
+    		</div>
+			<div class="col-md-1"></div>
+		</div>
+		<!-- Í≤åÏãúÌåê Ï∂îÍ∞ÄÏ§ë ÎÅù Î∂ÄÎ∂Ñ -->
 	</div>
+	<form action="" method="get" id="main_actionForm">
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}"/>
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
+		<!-- <input type="hidden" name="page" value="1" /> -->
+	</form>
+	<script>
+	$(function() {
+		// Ï°∞Ìöå Î≤ÑÌäº ÌÅ¥Î¶≠ Ïãú
+		$(".btn-primary").click(function(e) {
+			e.preventDefault();
+			// Í≤ÄÏÉâ Ìèº Í∞ÄÏ†∏Ïò§Í∏∞
+			var main_searchForm = $("#main_searchForm");
+			// sort Í∞ÄÏ†∏Ïò§Í∏∞
+			var sort=$("select[name='sort']").val();
+			// Í≤ÄÏÉâ Ï≤òÏùåÏóêÎäî 1page Î≥¥Ïó¨Ï£ºÍ∏∞
+			main_searchForm.find("input[name='page']").val("1");
+			main_searchForm.submit();
+			
+		});
 
+		// Í≤åÏãúÍ∏Ä Ï†úÎ™© ÌÅ¥Î¶≠ Ïãú
+		$(".move").click(function(e) {
+			e.preventDefault(); 
+			var main_actionForm = $("#main_actionForm");
+			let bnoval = $(this).attr('href');
+
+			$.ajax({
+				url: "/board/viewadd",
+				type: "POST",
+				processData:false,
+				contentType: false,
+				data: bnoval,
+				success: function(result){
+					main_actionForm.append("<input type='hidden' name='r_page' value='" + "1" + "'/>");
+					main_actionForm.append("<input type='hidden' name='b_views' value='" + result + "'/>");
+					main_actionForm.append("<input type='hidden' name='b_no' value='"+ bnoval +"'/>");
+					main_actionForm.attr("action", "/board/view");
+					main_actionForm.submit();
+				}
+			});
+		});
+	})
+	</script>
 <%@include file="../design/footer.jsp" %>

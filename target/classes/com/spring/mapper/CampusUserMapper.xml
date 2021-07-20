@@ -29,21 +29,39 @@
 		delete from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
 	</delete>
 	
-	<!-- 비밀번호 변경 : update 
+	<!-- 비밀번호 변경 : update -->
 	<update id="update">
 		update CAMPUS_USER set u_password = #{new_password} where u_userid = #{u_userid} and u_password = #{u_password}  
-	</update>-->
-	
-	
+	</update>
 	
 	<!-- 회원정보 수정 -->
 	<update id="userUpdate">
-		UPDATE CAMPUS_USER 
-		set u_password = #{u_password},
-			u_address=#{u_address},
-			u_email=#{u_email},
-			u_phone=#{u_phone}
-		WHERE u_userid = #{u_userid} and u_password = #{u_password} 
+		UPDATE CAMPUS_USER
+		u_password = #{new_password},
+		u_username = #{u_username}
+		WHERE u_userid = #{u_userid}
 	</update>
+	
+	<resultMap type="com.spring.domain.CampusUserVO" id="campusUserMap">
+		<id property="u_userid" column="u_userid"/>
+		<result property="u_userid" column="u_userid"/>
+		<result property="u_password" column="u_password"/>
+		<result property="u_username" column="u_username"/>
+		<result property="u_email" column="u_email"/>
+		<result property="u_phone" column="u_phone"/>
+		<result property="u_address" column="u_address"/>
+		<collection property="authList" resultMap="authMap"/>
+	</resultMap>
+		
+	<resultMap type="com.spring.domain.CampusAuthVO" id="authMap">
+		<result property="u_userid" column="u_userid"/>
+		<result property="u_auth" column="u_auth"/>
+	</resultMap>
+	
+	<select id="read" resultMap="campusUserMap">
+		select camp.u_userid, u_password, u_username, u_email, u_phone, u_address, u_auth
+		from campus_user camp left outer join campus_user_auth auth on camp.u_userid = auth.u_userid
+		where camp.u_userid = #{u_userid}
+	</select>
 
 </mapper>

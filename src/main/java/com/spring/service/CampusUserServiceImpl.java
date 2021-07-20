@@ -36,14 +36,14 @@ public class CampusUserServiceImpl implements CampusUserService {
 		return mapper.leave(u_userid, u_password)>0? true:false;
 	}
 
-//	@Override
-//	public boolean update(ChangeVO change) {
-//		return mapper.update(change)>0? true:false;
-//	}
+	@Override
+	public boolean update(ChangeVO change) {
+		return mapper.update(change)>0? true:false;
+	}
 
 	@Override
-	public boolean userUpdate(ChangeVO change) {
-		return mapper.userUpdate(change)>0? true:false;
+	public boolean userUpdate(CampusUserVO vo) {
+		return mapper.userUpdate(vo)>0? true:false;
 	}
 
 	

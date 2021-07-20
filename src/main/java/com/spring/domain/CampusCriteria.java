@@ -12,7 +12,7 @@ public class CampusCriteria {
 	
 	private int page;
 
-	//검색 추가
+	//페이지 나누기
 	private String sort;
 	private String keyword;
 	

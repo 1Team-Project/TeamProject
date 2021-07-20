@@ -28,19 +28,68 @@ public class MemberController {
 	private CampusUserService service;
 	
 	/* 로그인 시스템 시작 */
+	/* 기본 시스템 */
+
+//	// login.jsp 보여주기
+//	@GetMapping("/login")
+//	public void loginGet() {
+//		log.info("login 페이지 요청");
+//	}
+//	
+//	// 로그인 정보 가져오기 => post
+//	@PostMapping("/loginForm")
+//	public String loginPost(CampusUserVO vo, HttpSession session, RedirectAttributes rttr) {
+//		log.info("login 요청 : " + vo.getU_userid() + " " + vo.getU_password());
+//		CampusUserVO login = service.login(vo);
+//		
+//		if(login==null) {
+//			rttr.addFlashAttribute("error", "아이디 또는 비밀번호를 확인해주세요");
+//			return "redirect:login";
+//		} else {
+//			session.setAttribute("login", login);
+//			//session.setAttribute("u_username", vo.getU_username());
+//			return "redirect:/";
+//		}
+//	}
+//	
+//	// logout => session 해제 후 index 보여주기
+//	@GetMapping("/logout")
+//	public String logout(HttpSession session) {
+//		log.info("logout 요청");		
+//		// session.invalidate();
+//		session.removeAttribute("login");
+//		return "redirect:/";
+//	}
+
 	
-	
-	// login.jsp 보여주기
+	/* 기본 시스템 종료*/
+	/* security 시작 */
+
 	@GetMapping("/login")
-	public void loginGet() {
-		log.info("login 페이지 요청");
+	public String loginGet() {
+		log.info("로그인 폼 요청");
+		
+		return "/login";
 	}
 	
+	@GetMapping("/admin-page")
+	public String adminPage() {
+		log.info("admin");
+		
+		return "/AdminPage";
+	}
+	
+	@GetMapping("/user-page")
+	public String user() {
+		log.info("user");
+		
+		return "/UserPage";
+	}
+		
 	// 로그인 정보 가져오기 => post
 	@PostMapping("/loginForm")
 	public String loginPost(CampusUserVO vo, HttpSession session, RedirectAttributes rttr) {
 		log.info("login 요청 : " + vo.getU_userid() + " " + vo.getU_password());
-
 		CampusUserVO login = service.login(vo);
 		
 		if(login==null) {
@@ -52,15 +101,14 @@ public class MemberController {
 			return "redirect:/";
 		}
 	}
-	
-	// logout => session 해제 후 index 보여주기
-	@GetMapping("/logout")
-	public String logout(HttpSession session) {
-		log.info("logout 요청");		
-		// session.invalidate();
-		session.removeAttribute("login");
-		return "redirect:/";
-	}
+//	
+//	
+//	@GetMapping("/login-error")
+//	public String loginError(Model model) {
+//		model.addAttribute("loginError", "아이디나 비밀번호가 올바르지 않습니다.");
+//		return "/login";
+//	}
+
 	/* 로그인 시스템 종료 */
 	
 	

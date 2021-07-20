@@ -1,5 +1,7 @@
 package com.spring.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,4 +20,6 @@ public class CampusUserVO {
 	private String u_email;
 	private String u_phone;
 	private String u_address;
+	
+	private List<CampusAuthVO> authList;
 }

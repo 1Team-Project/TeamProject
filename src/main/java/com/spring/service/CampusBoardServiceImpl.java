@@ -47,6 +47,15 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 
 	@Transactional
 	@Override
+	public boolean insert_p(CampusBoardVO vo) {
+		// 새글 등록
+		boolean result = mapper.insert(vo)>0?true:false;
+		
+		return result;
+	}
+	
+	@Transactional
+	@Override
 	public boolean delete(int bno) {
 		
 		//댓글 삭제
@@ -105,6 +114,28 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		return mapper.addview(views,bno)>0?true:false;
 	}
 
+	@Override
+	public boolean replyadd(int bno, int replycnt) {
+		// TODO Auto-generated method stub
+		return mapper.replyCntUpdate(bno, replycnt)>0?true:false;
+	}
+
+	@Override
+	public boolean delete_p(int p_number) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public List<CampusBoardVO> topdate() {
+		return mapper.topdate();
+	}
 	
+	// 영권 메인 게시판 10개 보여주기용
+	@Override
+	public List<CampusBoardVO> mainList(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.mainList(cri);
+	}
 	
 }

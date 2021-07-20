@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 
@@ -11,33 +11,33 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush;">ÅëÇÕ
-					°Ô½ÃÆÇ</h3>
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">í†µí•©
+					ê²Œì‹œíŒ</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">»õ ±Û ÀÛ¼º</h3>
+				<h3 class="colorthema margintb20 padding6px">ìƒˆ ê¸€ ìž‘ì„±</h3>
 			</div>
 			<form action="write" method="post" role="form">
 				<div class="col-md-8 mll20">
 					<select name="b_sort" id="sort"
 						class="form-control width15 inlinetest">
-						<option value="">¼±ÅÃ</option>
-						<option value="ÈÄ±â">ÈÄ±â</option>
-						<option value="Áú¹®">Áú¹®</option>
+						<option value="">ì„ íƒ</option>
+						<option value="í›„ê¸°">í›„ê¸°</option>
+						<option value="ì§ˆë¬¸">ì§ˆë¬¸</option>
 					</select><input type="text"
 						class="form-control width70 mll10 inlinetest"
-						id="campusboard-title" required placeholder="Á¦¸ñÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä" name="b_title"/>
+						id="campusboard-title" required placeholder="ì œëª©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”" name="b_title"/>
 				</div>
 
 				<hr class="one" />
 				<div class="col-md-8 mll20">
 					<textarea class="form-control" cols="30" rows="15" id="campusboard-content" 
-						style="resize: none" required placeholder="³»¿ëÀ» ÀÔ·ÂÇØ ÁÖ¼¼¿ä" name="b_content"></textarea>
+						style="resize: none" required placeholder="ë‚´ìš©ì„ ìž…ë ¥í•´ ì£¼ì„¸ìš”" name="b_content"></textarea>
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<div class="blacktext">ÆÄÀÏ Ã·ºÎ (jpg/png, ÃÖ´ë 20MB, ÃÖ´ë 3Àå)</div>
+					<div class="blacktext">íŒŒì¼ ì²¨ë¶€ (jpg/png, ìµœëŒ€ 20MB, ìµœëŒ€ 3ìž¥)</div>
 					<div class="">
 						<div class="form-group">
 							<input type="file" name="campusFile" multiple
@@ -50,14 +50,20 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-					<button class="btn btn-primary" type="submit">±Û ÀÛ¼º</button>
-					<button class="btn btn-green1" type="reset">ÃÊ±âÈ­</button>
-					<button class="btn btn-green2" type="reset">¸®½ºÆ®</button>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					
+					<button class="btn btn-primary" type="submit">ê¸€ ìž‘ì„±</button>
+					<button class="btn btn-green1" type="reset">ì´ˆê¸°í™”</button>
+					<button class="btn btn-green2" type="button" onClick="location.href='/board/list'">ë¦¬ìŠ¤íŠ¸</button>
 				</div>
 		</form>
 		</div>
 	</div>
 	<div class="col-md-1 margintb20"></div>
 </section>
+<script>
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+</script>
 <script src="/resources/main/js/campuswrite.js"></script>
 <%@include file="../../design/footer.jsp"%>

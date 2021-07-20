@@ -4,47 +4,125 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
+import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
+import com.spring.mapper.CampusBoardAttachMapper;
+import com.spring.mapper.CampusBoardMapper;
 import com.spring.mapper.CampusProductMapper;
+import com.spring.mapper.OptionMapper;
 
 @Service
 public class CampusProductServiceImpl implements CampusProductService {
 
 	@Autowired
-	private CampusProductMapper mapper;
+	CampusProductMapper productmapper;
+	
+	@Autowired
+	CampusBoardMapper boardmapper;
+	
+	@Autowired
+	OptionMapper optionmapper;
+	
+	@Autowired
+	private CampusBoardAttachMapper attachMapper;
 	
 	@Override
 	public List<CampusProductVO> prolist(CampusCriteria cri) {
-		return mapper.prolist(cri);
+		return productmapper.prolist(cri);
 	}
 	@Override
 	public List<CampusProductVO> bestlist() {
-		return mapper.bestlist();
+		return productmapper.bestlist();
 	}
 
 	@Override
 	public List<CampusProductVO> catelist(String pc_code) {
-		return mapper.catelist(pc_code);
+		return productmapper.catelist(pc_code);
 	}
 
 	@Override
 	public List<CampusProductVO> searchProduct(String p_name) {
-		return mapper.searchProduct(p_name);
+		return productmapper.searchProduct(p_name);
 	}
 	
 	@Override
 	public CampusProductVO viewProduct(int p_number) {
-		return mapper.viewProduct(p_number);
+		return productmapper.viewProduct(p_number);
 	}
 	@Override
 	public int total(CampusCriteria cri) {
-		return mapper.totalPro(cri);
+		return productmapper.totalPro(cri);
 	}
 	
-
 	
+	
+	//관리자용
+	@Override
+	@Transactional
+	public boolean insertProduct(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob) {
+		
+		boolean test1 = productmapper.insertProduct(vo)>0;
+		boolean test2 = boardmapper.insert_p(vob)>0;
+		boolean test3 = optionmapper.insertProductOption(voo)>0;
+		boolean result = false;
+
+		
+		//첨부파일 여부 확인
+		if(vob.getAttachList()==null || vob.getAttachList().size()<=0) {
+			
+			if (test1 == test2 == test3) {
+				result = true;
+			}
+			
+			return result;
+		}
+		
+		// 첨부파일 등록
+		vob.getAttachList().forEach(attach -> {
+			attach.setB_no(vob.getB_no());
+			attachMapper.insert(attach);
+		});
+
+		return result;
+		
+		
+	}
+
+	@Override
+	@Transactional
+	public boolean deleteProduct(int p_number, int b_no) {
+		
+		boolean test1 = optionmapper.deleteProductOption(p_number)>0;
+		boolean test2 = boardmapper.delete_p(p_number)>0;
+		boolean test3 = productmapper.deleteProduct(p_number)>0;
+		boolean test4 = attachMapper.delete(b_no)>0;
+		boolean result = false;
+
+		
+		if (test1 == test2 == test3 == test4) {
+			result = true;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public boolean updateProduct(int p_price, int p_stock, int p_number) {
+		// TODO Auto-generated method stub
+		return productmapper.updateProduct(p_price, p_stock, p_number)>0?true:false;
+	}
+
+
+
+	@Override
+	public CampusProductVO detailproduct(int p_number) {
+		// TODO Auto-generated method stub
+		return productmapper.productdetail(p_number);
+	}
 	
 
 

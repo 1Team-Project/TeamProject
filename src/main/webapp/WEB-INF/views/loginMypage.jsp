@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
 
@@ -61,26 +61,25 @@
     }
     hr{
     }
-
      
     </style> 
 
-<form action="" id="" method="post">
+<form action="/loginMypage" id="" method="post">
 <div id="container">
         <div id="contents">
             <div class="title">
             
-                <h2>${login.u_userid}´Ô My Page</h2>
+                <h2>${login.u_userid}ë‹˜ My Page</h2>
             </div>
             <div class="table-Area">
                
                 <div id="mp" class="table">
                     <ul>
-                        <button type="submit" id="order" class="btn btn-info" onclick="javascript: form.action='/order';">±¸¸Å³»¿ª</button>
+                        <button type="submit" class="btn btn-info" onclick="location.href='order'"><a href="/order">êµ¬ë§¤ë‚´ì—­</a></button>
                        	<p></p>
-                        <button type="submit" id="reservation" class="btn btn-secondary" onclick="javascript: form.action='/reservation';">¿¹¾à³»¿ª</button>
+                        <button type="submit" class="btn btn-secondary"><a href="/reservation">ì˜ˆì•½ë‚´ì—­</a></button>
                         <p></p>
-                        <button type="submit" id="modify" class="btn btn-warning" onclick="javascript: form.action='/mypageModify';">È¸¿øÁ¤º¸¼öÁ¤</button>
+                        <button type="submit" id="modify" class="btn btn-warning"><a href="/mypageModify">íšŒì›ì •ë³´ìˆ˜ì •</a></button>
                    	
                     </ul>
                 </div>
@@ -91,7 +90,13 @@
     </div>
 </form>
 
-
+  
+<!-- <form action="" id="mypageForm" method="post">
+	<input type="hidden" name="u_userid"  value="${u_userid}"/>
+	<input type="hidden" name="u_username"  value="${vo.u_username}"/>
+	<input type="hidden" name="u_address"  value="${vo.u_address}"/>
+	<input type="hidden" name="u_phone"  value="${vo.u_phone}"/>
+</form> -->
 
 
 <script src="/resources/main/js/loginMypage.js"></script>

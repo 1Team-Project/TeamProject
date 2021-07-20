@@ -19,6 +19,14 @@ public interface CampusProductMapper {
 	public int totalPro(CampusCriteria cri);
 	
 
+
+	
+	
+	//관리자용
+	public int insertProduct(CampusProductVO vo);
+	public int deleteProduct(int p_number);
+	public int updateProduct(@Param("p_price") int p_price,@Param("p_stock") int p_stock,@Param("p_number") int p_number);
+	public CampusProductVO productdetail(int p_number);
+	
+
 }
-
-

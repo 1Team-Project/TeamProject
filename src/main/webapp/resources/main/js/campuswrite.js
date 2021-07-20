@@ -51,6 +51,9 @@ $(function(){
 			type:'post',
 			processData:false,
 			contentType:false,
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			data:campusFormData,
 			success:function(result){
 				console.log(result);
@@ -70,7 +73,7 @@ $(function(){
 		$(uploadResultArr).each(function(i,obj){
 
 			// 썸네일 이미지 경로 링크				
-			// 2021\\06\\17\\s_2a7f8a81-525e-4781-a814-970096f42b45_2.png
+			// 2021\\07\\17\\s_2a7f8a81-525e-4781-a814-970096f42b45_2.png
 			var fileCallPath = encodeURIComponent(obj.a_path+"\\s_"+obj.a_uuid+"_"+obj.a_name);
 		
 			// 원본 이미지 경로
@@ -143,7 +146,7 @@ $(function(){
 	$(".uploadResult").on("click","button",function(){
 		//목록에 있는 첨부파일 삭제,서버 폴더 첨부파일 삭제
 		var targetFile = $(this).data("file");
-		var type = $(this).data("type");
+		console.log(targetFile)
 		
 		//li 태그 가져오기
 		var targetLi = $(this).closest("li");
@@ -154,8 +157,7 @@ $(function(){
 				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 			},
 			data:{
-				fileName:targetFile,
-				type:type
+				a_name:targetFile,
 			},
 			type:'post',
 			success:function(result){

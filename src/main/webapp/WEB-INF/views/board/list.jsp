@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -17,53 +17,40 @@
 		<div class="col-md-10">
 					<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush;">ÅëÇÕ °Ô½ÃÆÇ</h3>
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">í†µí•© ê²Œì‹œíŒ</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12 colorthema hh4 padding6px margintb20">
-				¿À´ÃÀÇ È­Á¦±Û</div>
+				ì˜¤ëŠ˜ì˜ í™”ì œê¸€</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row textcenter">
+
+					
+					<c:forEach var="top" items="${CampusTopVO}">
 						<div class="col-md-4">
 							<div class="card">
 								<img class="card-img-top"
-									src="https://www.layoutit.com/img/people-q-c-600-200-1.jpg" />
+									src="${top.urllink}" style="width:100%; height:200px"/>
 								<div class="card-block">
-									<h5 class="card-title topmargin10">ÈÄ±âÀÔ´Ï´Ù</h5>
-									<p class="card-text">¾È³çÇÏ¼¼¿ä ÈÄ±âÀÔ´Ï´Ù...</p>
+									<h5 class="card-title topmargin10">${top.b_title_10}</h5>
+									<p class="card-text">${top.b_content_15}</p>
+									<c:if test="${top.rank != 999}">
 									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
+										<a class="btn btn-primary clickview" href="${top.b_no}">ìžì„¸ížˆ ë³´ê¸°</a>
 									</p>
+									</c:if>
+									<c:if test="${top.rank == 999}">
+									<p>
+										<a class="btn btn-primary" href="#">ìžì„¸ížˆ ë³´ê¸°</a>
+									</p>
+									</c:if>
 								</div>
 							</div>
 						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top"
-									src="https://www.layoutit.com/img/city-q-c-600-200-1.jpg" />
-								<div class="card-block">
-									<h5 class="card-title topmargin10">¸®ºäÀÔ´Ï´Ù</h5>
-									<p class="card-text">ÀÌ°ÍÀº ¸®ºäÀÔ´Ï´Ù ¸®ºä...</p>
-									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
-									</p>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4">
-							<div class="card">
-								<img class="card-img-top"
-									src="https://www.layoutit.com/img/sports-q-c-600-200-1.jpg" />
-								<div class="card-block">
-									<h5 class="card-title topmargin10">Áú¹®ÀÔ´Ï´Ù</h5>
-									<p class="card-text">ÀÌ°ÍÀº Áú¹®ÀÔ´Ï´Ù...</p>
-									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
-									</p>
-								</div>
-							</div>
-						</div>
+					</c:forEach>
+			
+						
 					</div>
 				</div>
 			</div>
@@ -74,12 +61,12 @@
 			<table class="table">
 				<thead>
 					<tr class="textcenter colorthema">
-						<th class="width10">¹øÈ£</th>
-						<th class="width10">ºÐ·ù</th>
-						<th class="width40">Á¦¸ñ</th>
-						<th class="width10">±Û¾´ÀÌ</th>
-						<th class="width20">ÀÛ¼ºÀÏ</th>
-						<th class="width10">Á¶È¸¼ö</th>
+						<th class="width10">ë²ˆí˜¸</th>
+						<th class="width10">ë¶„ë¥˜</th>
+						<th class="width40">ì œëª©</th>
+						<th class="width10">ê¸€ì“´ì´</th>
+						<th class="width20">ìž‘ì„±ì¼</th>
+						<th class="width10">ì¡°íšŒìˆ˜</th>
 					</tr>
 				</thead>
 				<tbody class="textcenter">
@@ -118,17 +105,21 @@
 			</table>
 			<div class="row">
 				<div class="col-md-12 mb-3">
-					<select name="" id=""
-						class="form-control width10 inlinetest boldergreen">
-						<option value="">ºÐ·ù</option>
-						<option value="ÈÄ±â">ÈÄ±â</option>
-						<option value="Áú¹®">Áú¹®</option>
-					</select> <input type="text"
-						class="width30 boldergreen padding5px blacktext" />
-					<button class="btn btn-primary">°Ë»ö</button>
-					<button class="btn btn-primary float-end" onclick="location.href='write'">±Û ¾²±â</button>
-					<!--<sec:authorize access="isAuthenticated()">-->
-                 	<!--</sec:authorize>-->
+				
+                <form action="" id="searchForm" class="">
+					<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
+						<option value="">----</option>
+						<option value="ì œëª©"<c:out value="${pageVO.cri.sort=='ì œëª©'?'selected':''}"/>>ì œëª©</option>
+						<option value="ë‚´ìš©"<c:out value="${pageVO.cri.sort=='ë‚´ìš©'?'selected':''}"/>>ë‚´ìš©</option>
+						<option value="ìž‘ì„±ìž"<c:out value="${pageVO.cri.sort=='ìž‘ì„±ìž'?'selected':''}"/>>ìž‘ì„±ìž</option>
+					</select>
+					<input type="text" name="keyword" class="width40 boldergreen padding5px blacktext" value="${pageVO.cri.keyword}"/>
+					<input type="hidden" name="page" value="${pageVO.cri.page}"/>
+					<button class="btn btn-primary searchbutton" type="submit">ê²€ìƒ‰</button>
+               </form>
+               		<sec:authorize access="isAuthenticated()">
+					<button class="btn btn-primary float-end" onclick="location.href='write'">ê¸€ ì“°ê¸°</button>
+					</sec:authorize>
 				</div>
 			</div>
 			<div class="row">
@@ -153,19 +144,21 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div>
-		
+</div>
 	<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
 		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		
+		<input type="hidden" name="r_page" value="1"/>
 	</form>            
 	
 	
 </div>
 <script>
 	let result='${result}';
-
+	
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
 </script>
 <script src="/resources/main/js/campuslist.js"></script>
 <%@include file="../../design/footer.jsp"%>
