@@ -6,6 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.domain.CampusProductVO;
 import com.spring.service.CampusProductService;
@@ -19,24 +24,16 @@ public class ProductController {
 	@Autowired
 	private CampusProductService service;
 	
-	//»óÇ° ¸®½ºÆ® ÀüÃ¼ ³ª¿­?
+	//ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½?
 	@GetMapping("/product")
 	public void getList(Model model) {
-		log.info("Å×½ºÆ®");
+		log.info("ìƒí’ˆ ìƒì„¸");
 		List<CampusProductVO> list=service.productList();
 		
-		
 		model.addAttribute("list",list);
-	}
-	
-	
-	//»óÇ° Ä«Å×°í¸®·Î ºĞ·ù ³ª¿­?Á¶È¸?
-	
-	
-	//»óÇ° Ã£±â
-	
+	}	
 	public void getSearchList(String p_name, Model model) {
-		log.info("»óÇ°¸í ÀÌ¿ë, »óÇ° Á¶È¸");
+		log.info("ï¿½ï¿½Ç°ï¿½ï¿½ ï¿½Ì¿ï¿½, ï¿½ï¿½Ç° ï¿½ï¿½È¸");
 		
 		List<CampusProductVO> list=service.searchProduct(p_name);
 		
@@ -44,6 +41,11 @@ public class ProductController {
 	}
 	
 	
+	@RequestMapping("/productdetail/{p_number}")
+	public void productdetail(@PathVariable(value="p_number") int p_number, Model model) throws Exception {
+		log.info("ìƒí’ˆ í•˜ë‚˜ ì„ íƒí•´ì„œ ë³´ì—¬ì£¼ê¸°");
 		
-	
+		CampusProductVO vo = service.detailproduct(p_number);
+		model.addAttribute("vo",vo);
+	}		
 }

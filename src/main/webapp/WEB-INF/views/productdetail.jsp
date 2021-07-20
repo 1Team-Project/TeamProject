@@ -1,18 +1,16 @@
-<<<<<<< HEAD
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-=======
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
->>>>>>> 7e1ce9d71c2986711ce8d918f3b4a8912573c219
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp"%>
 <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 <link href="/resources/main/css/common.css" rel="stylesheet"
 	type="text/css" />
-
+	
+<!-- <form action="/productdetail" method="post"> -->
+ <input type="hidden" name="pnumb" value="${vo.p_number}" />
+<!-- </form>	 -->
 <div class="product_view">
 	<div id="productview">
 		<div class="innerview">
@@ -35,14 +33,6 @@
 				<strong class="name">강력 손전등</strong> <span class="name_detail">배터리가
 					잘 닳지 않는 강력 손전등</span>
 			</p>
-			<!--<p class="p_price">
-                    <span class="position">
-                        <span class=price>
-                            15,000
-                            <span class="unit">원</span>
-                        </span>
-                    </span>
-                </p>-->
 			<div class="p_info">
 				<table>
 					<colgroup>
@@ -52,35 +42,25 @@
 					</colgroup>
 					<tbody>
 						<tr>
-<<<<<<< HEAD
-							<td class="price">${vo.p_price}</td>
-						</tr>
-						<tr>
-							<th><img src="/resources/main/images/gift.png">&nbsp;����肄���</th>
-							<td>${vo.p_number}</td>
-						</tr>
-						<tr>
-							<th><img src="/resources/main/images/manufacture.png">&nbsp;��議곗��/怨듦���</th>
-							<td>${vo.p_manufact}</td>
-=======
-							<td class="price">15,000원</td>
+							<td class="price"><fmt:formatNumber value="${vo.p_price}"
+									pattern="###,###,###"></fmt:formatNumber></td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
-							<td>123456789</td>
+							<td>${vo.p_number}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
-							<td>SONY/ 자강 정보 통신</td>
->>>>>>> 7e1ce9d71c2986711ce8d918f3b4a8912573c219
+							<td>${vo.manufact}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
 							<td>
 								<div class="option">
 									<span class="opt">
-										<button type="button" class="minus">+</button> 
-										<input type="number" readonly="readonly" min="1" max="${vo.p_stock}"onfocus="this.blur()" class="inp">
+										<button type="button" class="minus">+</button> <input
+										type="number" readonly="readonly" min="1" max="${vo.p_stock}"
+										onfocus="this.blur()" class="inp">
 										<button type="button" class="plus">-</button>
 									</span>
 								</div>
@@ -98,11 +78,6 @@
 									<option>${vo.p_option}</option>
 									<option>${vo.p_option}</option>
 									<option>${vo.p_option}</option>
-									<option>기본 (+0)</option>
-									<option>1 (+0)</option>
-									<option>2 (+0)</option>
-									<option>3 (+0)</option>
-
 							</select></td>
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
@@ -118,19 +93,18 @@
 				<div id="cartput">
 					<div class="total">
 						<div class="price">
-							<strong class="tot">珥� ����湲��� : </strong> 
-							<span class="sum">
-								<span class="num">${vo.p_price}</span> 
-								<span class="unit">��</span>
 							<strong class="tot">총 상품금액 : </strong> <span class="sum">
-								<span class="num">15,000</span> <span class="unit">원</span>
+								<span class="num"><fmt:formatNumber value="${vo.p_price}"
+										pattern="###,###,###"></fmt:formatNumber></span> <span class="unit">원</span>
 
 							</span>
 						</div>
 						<div class="option_btn">
+							<form name="cart1" method="post" action="/cart">
+								<input type="hidden" class="p_number" value="${p_number}">
+							</form>
 							<button type="button" class="btn btn-primary btn-lg">장바구니</button>
-							<button type="button"
-								class="btn btn-secondary btn-lg">구매하기</button>
+							<button type="button" class="btn btn-secondary btn-lg">구매하기</button>
 						</div>
 						<div class="p_detail_info">
 							<div class="p_detail_bar">
@@ -404,26 +378,28 @@
 														</ul>
 													</div>
 												</div>
-												<div class="change_info">
-												adipisicing elit. Molestiae deserunt illo quaerat officia quia
-										est consequatur dolores corrupti nihil at eligendi ipsam
-										numquam quasi architecto praesentium, dolorum labore quas a.
-										Sapiente tenetur molestiae commodi nobis earum nesciunt.
-										Mollitia, autem molestiae nostrum aut explicabo asperiores
-										aperiam omnis, iusto pariatur veritatis magni quibusdam minus
-										nemo necessitatibus debitis iste accusamus repudiandae atque.
-										Dolores! Pariatur possimus molestias, consequatur eius ullam
-										soluta ut sint eum minima id labore voluptatem. Ducimus cum
-										error, temporibus cumque voluptates nihil? Ipsum optio sed
-										veritatis repellendus sunt aspernatur in explicabo. Facere,
-										eligendi aliquam fuga nemo eos consequatur, provident rerum
-										officia beatae inventore et porro minima aliquid. Placeat
-										beatae facilis voluptatem illo voluptates saepe rem, optio,
-										architecto facere tempore nihil aut! Incidunt, molestias
-										quaerat. Assumenda architecto facere debitis, obcaecati quod
-										distinctio. Dolor, doloremque. Necessitatibus vero voluptatem
-										sit, dolorem fugiat molestiae accusantium cumque illum?
-										Consequatur sit autem perferendis. Voluptate laboriosam quae</div>
+												<div class="change_info">adipisicing elit. Molestiae
+													deserunt illo quaerat officia quia est consequatur dolores
+													corrupti nihil at eligendi ipsam numquam quasi architecto
+													praesentium, dolorum labore quas a. Sapiente tenetur
+													molestiae commodi nobis earum nesciunt. Mollitia, autem
+													molestiae nostrum aut explicabo asperiores aperiam omnis,
+													iusto pariatur veritatis magni quibusdam minus nemo
+													necessitatibus debitis iste accusamus repudiandae atque.
+													Dolores! Pariatur possimus molestias, consequatur eius
+													ullam soluta ut sint eum minima id labore voluptatem.
+													Ducimus cum error, temporibus cumque voluptates nihil?
+													Ipsum optio sed veritatis repellendus sunt aspernatur in
+													explicabo. Facere, eligendi aliquam fuga nemo eos
+													consequatur, provident rerum officia beatae inventore et
+													porro minima aliquid. Placeat beatae facilis voluptatem
+													illo voluptates saepe rem, optio, architecto facere tempore
+													nihil aut! Incidunt, molestias quaerat. Assumenda
+													architecto facere debitis, obcaecati quod distinctio.
+													Dolor, doloremque. Necessitatibus vero voluptatem sit,
+													dolorem fugiat molestiae accusantium cumque illum?
+													Consequatur sit autem perferendis. Voluptate laboriosam
+													quae</div>
 											</div>
 										</div>
 									</div>

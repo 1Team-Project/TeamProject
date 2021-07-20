@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
   <head>
@@ -13,13 +13,13 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
-	<!-- ¿µ±Ç Ãß°¡ ¹®Àå ½ÃÀÛ -->
+	<!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
 	<link rel="stylesheet" href="/resources/main/css/bootstrap2.min.css">
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-	<!-- ¿µ±Ç Ãß°¡ ¹®Àå ³¡ -->
+	<!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ -->
 	</head>
-	<!-- ÆùÆ® ¼³Á¤ÇÏ´Â ½ºÅ¸ÀÏ -->
+	<!-- ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å¸ï¿½ï¿½ -->
 	<style type="text/css">
 		@FONT-FACE {
 			font-family: 'naBrush';
@@ -30,7 +30,7 @@
        position:relative; 
        width:100%; 
        height:auto; }
-	/* 1.ÇÏ´ÜÁ¤º¸ */
+	/* 1.ï¿½Ï´ï¿½ï¿½ï¿½ï¿½ï¿½ */
     .campus{
       color: white;
     }
@@ -102,7 +102,7 @@
       height:21px; 
     }
  
-	/* 2.ÁÖ¼Ò ¹× »çÀÌÆ®¸µÅ© */
+	/* 2.ï¿½Ö¼ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½Å© */
 		.f_link{
       position:relative; 
       width:100%; 
@@ -133,14 +133,14 @@
 	</style>
 	<body>
 	<section class="m-3">
-		<!-- ¸Ç À§ °ü·Ã (±×¸², ±Û¾¾) -->
+		<!-- ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½×¸ï¿½, ï¿½Û¾ï¿½) -->
 		<div class="container">
 			<div class="row justify-content-center mt-5 " >
-				<!-- Å¬¸¯½Ã ¸ÞÀÎÈ­¸éÀ¸·Î ÀÌµ¿ÇÏ°Ô ÇÏ´Â ¸µÅ© (ÅÙÆ® ±×¸²) -->
+				<!-- Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½È­ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï°ï¿½ ï¿½Ï´ï¿½ ï¿½ï¿½Å© (ï¿½ï¿½Æ® ï¿½×¸ï¿½) -->
 				<a href="/" class="text-center"><img src="/resources/main/images/header.png" alt=""  ></a>
 				<div class="col-md-6 text-center mb-3">
 					<h6 class="heading-section" style="font-family: naBrush;">Us Camping</h6>
-					<h1 class="heading-section" style="font-family: naBrush">Ä·ÆÛ½º Camp us</h1>
+					<h1 class="heading-section" style="font-family: naBrush">Ä·ï¿½Û½ï¿½ Camp us</h1>
 				</div>
 			</div>
 		</div>
@@ -148,11 +148,11 @@
 		<div class="container-fluid px-md-5">
 			<div class="row justify-content-between">
 
-				<!-- ¾ÆÀÌÄÜ °ü·Ã -->
+				<!-- ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
 				<div class="col-md-12 order-md-last fixed-top">
 					<div class="social-media">
 		    		<p class="d-md-flex justify-content-end m-2">
-						<!-- °¢ ¾ÆÀÌÄÜ Å¬¸¯½Ã ÀÌµ¿µÇ´Â ¸µÅ© (login , mypage , cart) -->
+						<!-- ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ç´ï¿½ ï¿½ï¿½Å© (login , mypage , cart) -->
 						
 						
 						
@@ -190,38 +190,38 @@
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-primary" >
 	    <div class="container-fluid">
 	    
-		<!-- Ä«Å×°í¸® °ü·Ã -->
+		<!-- Ä«ï¿½×°ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
 	      <div class="collapse navbar-collapse justify-content-center " id="ftco-nav">
 	        <ul class="navbar-nav">
 
 	        	<li class="nav-item dropdown m-6 mb-0 mt-0 ">
-				<!-- Ä«Å×°í¸®(»óÇ° Á¤º¸)¿¡ ¸¶¿ì½º ¿Ã¸®Áö ¾Ê°í, Å¬¸¯ÇÒ ¶§ °¥ ¸µÅ© ¼³Á¤ÇÏ´Â aÅÂ±× -->
-             	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">»óÇ° Á¤º¸</a>
+				<!-- Ä«ï¿½×°ï¿½(ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½, Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ aï¿½Â±ï¿½ -->
+             	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½</a>
              	 <div class="dropdown-menu" aria-labelledby="dropdown01">
-				<!-- °¢ Ä«Å×°í¸®º° ÀÌµ¿ÇÏ´Â ¸µÅ© -->
-              	<a class="dropdown-item" href="#">Ä«Å×°í¸®1</a>
-                <a class="dropdown-item" href="#">Ä«Å×°í¸®2</a>
-                <a class="dropdown-item" href="#">Ä«Å×°í¸®3</a>
-                <a class="dropdown-item" href="#">Ä«Å×°í¸®4</a>
+				<!-- ï¿½ï¿½ Ä«ï¿½×°ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å© -->
+              	<a class="dropdown-item" href="#">Ä«ï¿½×°ï¿½1</a>
+                <a class="dropdown-item" href="#">Ä«ï¿½×°ï¿½2</a>
+                <a class="dropdown-item" href="#">Ä«ï¿½×°ï¿½3</a>
+                <a class="dropdown-item" href="#">Ä«ï¿½×°ï¿½4</a>
               </div>
            	  </li>
 
 				 <li class="nav-item dropdown m-6 mb-0 mt-0">
-					<!-- Ä«Å×°í¸®(»óÇ° Á¤º¸)¿¡ ¸¶¿ì½º ¿Ã¸®Áö ¾Ê°í, Å¬¸¯ÇÒ ¶§ °¥ ¸µÅ© ¼³Á¤ÇÏ´Â aÅÂ±× -->
-					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ä·ÇÎÀå Á¤º¸</a>
+					<!-- Ä«ï¿½×°ï¿½(ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½, Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ aï¿½Â±ï¿½ -->
+					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Ä·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown02">
-					<!-- °¢ Ä«Å×°í¸®º° ÀÌµ¿ÇÏ´Â ¸µÅ© -->
-					<a class="dropdown-item" href="#">Ä·ÇÎÀå ¸ñ·Ï</a>
+					<!-- ï¿½ï¿½ Ä«ï¿½×°ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å© -->
+					<a class="dropdown-item" href="#">Ä·ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½</a>
 				</div>
 				   </li>
 
 
 				   <li class="nav-item dropdown m-6 mb-0 mt-0">
-					<!-- Ä«Å×°í¸®(»óÇ° Á¤º¸)¿¡ ¸¶¿ì½º ¿Ã¸®Áö ¾Ê°í, Å¬¸¯ÇÒ ¶§ °¥ ¸µÅ© ¼³Á¤ÇÏ´Â aÅÂ±× -->
-					<a class="nav-link dropdown-toggle " href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">°Ô½ÃÆÇ</a>
+					<!-- Ä«ï¿½×°ï¿½(ï¿½ï¿½Ç° ï¿½ï¿½ï¿½ï¿½)ï¿½ï¿½ ï¿½ï¿½ï¿½ì½º ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½Ê°ï¿½, Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½Å© ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ aï¿½Â±ï¿½ -->
+					<a class="nav-link dropdown-toggle " href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ï¿½Ô½ï¿½ï¿½ï¿½</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown03">
-					<!-- °¢ Ä«Å×°í¸®º° ÀÌµ¿ÇÏ´Â ¸µÅ© -->
-					<a class="dropdown-item" href="/board/list">ÅëÇÕ °Ô½ÃÆÇ</a>
+					<!-- ï¿½ï¿½ Ä«ï¿½×°ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Å© -->
+					<a class="dropdown-item" href="/board/list">ï¿½ï¿½ï¿½ï¿½ ï¿½Ô½ï¿½ï¿½ï¿½</a>
 				</div>
 				   </li>
 	        </ul>
@@ -242,6 +242,6 @@
  	<script src="/resources/main/js/popper.js"></script>
   	<script src="/resources/main/js/bootstrap.min.js"></script>
  	<script src="/resources/main/js/main.js"></script>
- 	<!-- ¿µ±Ç Ãß°¡ ¹®Àå ½ÃÀÛ -->
+ 	<!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ -->
  	<script src="/resources/main/js/header_yk.js"></script>
- 	<!-- ¿µ±Ç Ãß°¡ ¹®Àå ³¡ -->
+ 	<!-- ï¿½ï¿½ï¿½ï¿½ ï¿½ß°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ -->

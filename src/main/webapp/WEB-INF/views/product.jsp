@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
 <style>
@@ -186,20 +188,32 @@
                                     <span>1st</span>
                                     <div class="thumbnail">
                                         <div class="prdImg">
-                                            <a href="상품1상세페이지" name="boxname">
+                                            <a class="move" href='<c:out value = "${list.p_number}"></c:out>' name="boxname">
                                                 <img src="img/루피.jpg" id="bestprod1" alt="상품1"></a>
+                                                
+                                                <script>
+//                                                 $(".move").on("click",function(e)){
+//                                                 	e.preventDefault();
+                                                
+//                                                 	moveForm.mappend("")
+//                                                 	moveForm.attr();
+//                                                 	moveForm.submit();
+//                                                 }
+                                                </script>
                                         </div>
                                     </div>
                                     <div class="description">
                                         <div class="product_name">
                                             <strong class="name"><a href="상품1상세페이지" class="">
                                                 <span>상품명 :</span>
-                                                <span>상품1</span>
+                                                <span>${list.p_name}</span>
                                             </a></strong>
                                         </div>
                                         <div class="product_price">
                                             <span class="price" data-hook="sr-product-item-price-to-pay">가격</span>
-                                            <span data-hook="product-item-price-to-pay" class="">$15</span>
+                                            <span data-hook="product-item-price-to-pay" class="">
+                                            <fmt:formatNumber value="${list.p_price}" pattern = "###,###,###"></fmt:formatNumber>
+                                            </span>
                                         </div>
                                     </div>
                                 </li>
@@ -216,7 +230,7 @@
                                         <div class="product_name">
                                             <strong class="name"><a href="상품2상세페이지" class="">
                                                 <span>상품명 :</span>
-                                                <span>상품2</span>
+                                                <span>$</span>
                                             </a></strong>
                                         </div>        
                                         <div class="product_price">
@@ -272,8 +286,6 @@
 
 
                     <div id="center_sec">
-
-
                         <!-- 상품 -->
                         <div class="campus product allproduct">
 

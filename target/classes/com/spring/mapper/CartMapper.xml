@@ -1,10 +1,45 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.CartMapper">
+<!-- 장바구니 추가 -->
+	<insert id="addCart">
+	  <![CDATA[
+		insert into campus_cart(c_cartnumber, u_userid, p_number, c_count)
+		values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count})
+		]]>
+	</insert>
+	
+    <!-- 장바구니 목록 --> 
+   <select id="listCart" resultType="com.spring.domain.CartVO">
+      select p.p_number, m.u_userid, c.c_cartnumber, m.u_username, m.u_username,
+      p.p_name,c.c_count, p.p_price, (p_price * c_count) money
+      from campus_cart c, campus_member m , campus_product p
+      where m.userid = c.userid
+      and p.p_number = c.p_number
+      and c.userid=#{u_userid}
+      order by c.c_cartnumber
+   </select>
 
-<insert id="addCart">
-  insert into campus_cart(c_cartnumber, u_userid, p_number, c_count) 
-  values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count})
-</insert>
+   <!-- 장바구니 전체 금액 --> 
+   <select id="sum" resultType="int">
+      select NVL(SUM(p_price * c_count),0) money
+      from campus_cart c, campus_product p
+      where c.p_number = p.p_number and c.u_userid = #{u_userid}
+   </select>
+
+    <!-- 장바구니 수정 --> 
+   <update id="modifyCart">
+      update campus_cart
+      set c_count = #{c_count}
+      where u_userid = #{u_userid}
+      and p_name = #{p_name}
+   </update>
+
+    <!-- 장바구니 삭제 --> 
+   <delete id="delete">
+      delete from campus_cart
+      where c_cartnumber = #{c_cartnumber}
+
+   </delete>
 
 </mapper>
