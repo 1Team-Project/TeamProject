@@ -20,7 +20,7 @@
                 <!-- 중앙영역 시작 -->
                 <div id="titleArea" class="campus product headcategory ">
                     <h2>
-                        <a href="/product/productlist">PRODUCT</a>
+                        <a href="/product/product">PRODUCT</a>
                     </h2>
 
 
@@ -36,9 +36,9 @@
                             <ul class="prdList grid3">
 
                                 <!--@@@list id에 추후 db적용@@@-->
-                                <c:forEach var="best" items="${bestlist}" >
+                                <c:forEach var="best" items="${bestList}" >
                                 <li id="boxid" class="prolist">
-                                    <span>${best.p_rank}위</span>
+                                    <span>${best.rank}</span>
                                     <div class="thumbnail">
                                         <div class="prdImg">
                                             <a href="${best.p_number}" name="boxname" class="viewpro">
@@ -48,19 +48,16 @@
                                     <div class="description">
                                         <div class="product_name">
                                             <strong class="name"><a href="${best.p_number}" class="viewpro">
-                                                <span>[</span>
-                                               	<span>${best.p_manufact}</span>
-                                                <span>]</span>
+                                                <span>상품명 :</span>
                                                 <span>${best.p_name}</span>
                                             </a></strong>
                                         </div>
                                         <div class="product_price">
+                                            <span class="price" data-hook="sr-product-item-price-to-pay">가격</span>
                                             <span data-hook="product-item-price-to-pay" class="">${best.p_price}</span>
-                                            <span class="price" data-hook="sr-product-item-price-to-pay"> 원</span>
                                         </div>
                                     </div>
                                 </li>
-                                
 								</c:forEach>
 								
                                
@@ -75,18 +72,19 @@
                     <form action="search" id="searchProduct">
 						<div class="row">
 							<div class="col-md-12 mb-3">
-							<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
-									<option value="">분류</option>
-									<option value="상품명"<c:out value="${pageVO.cri.sort=='상품명'?'selected':''}"/>>상품명</option>
-									<option value="제조사"<c:out value="${pageVO.cri.sort=='제조사'?'selected':''}"/>>제조사</option>
-							</select> 
 								<input type="text" name="keyword" class="width30 boldergreen padding5px blacktext">
 								<button class="btn btn-primary" id="searchBtn">검색</button>
 								
 							</div>
 						</div>
 
+						 <!--<input type="text" name="keyword" value="${CampusPageVO.cri.keyword}"/>
                         
+                        검색시에도 페이지당 게시물 수와 현재 페이지에 대한 정보가 따라가야 함 -->
+                        <input type="hidden" name="pageNum" value="${CampusPageVO.cri.pageNum}"/>
+                        <input type="hidden" name="amount" value="${CampusPageVO.cri.amount}"/>
+                        
+					
 					</form>
 
 
@@ -103,30 +101,23 @@
                                     <li id="boxid" class="prolist">
                                         <div class="thumbnail">
                                             <div class="prdImg">
-                                                <a href="${pro.p_number}" name="boxname" class="viewpro">
+                                                <a href="${top.b_no}" name="boxname" class="viewpro">
                                                     <img src="${top.urllink}" id="prod1" alt="상품1"></a>
                                             </div>
                                         </div>
                                         <div class="description">
                                             <div class="product_name">
-                                                <strong class="name"><a href="${pro.p_number}" class="viewpro">
-                                                        <span>[</span>
-                                                        <span>${pro.p_manufact}</span>
-                                                        <span>]</span>
-                                                        <span>${pro.p_name}</span>
+                                                <strong class="name"><a href="${product.p_number}" class="viewpro">
+                                                        <span>상품명 :</span>
+                                                        <span>${product.p_name}</span>
                                                 </a></strong>
                                             </div>        
                                             <div class="product_price">
-                                                <span data-hook="product-item-price-to-pay" class="">${pro.p_price}</span>
+                                                <span data-hook="product-item-price-to-pay" class="">${product.p_price}</span>
                                                 <span class="price" data-hook="sr-product-item-price-to-pay"> 원</span>
                                             </div>
                                         </div>
                                     </li>
-                                   <!-- <form action="list" method="get" id="productForm">	
-									<input type="hidden" name="p_option" value="${CampusProductVO.p_option}" />
-									<input type="hidden" name="p_stock" value="${CampusProductVO.p_stock}" />
-									<input type="hidden" name="pc_code " value="${CampusProductVO.pc_code }" />
-								</form>-->
 									</c:forEach>
 									
                                     <!--상품 반복 ~~ -->
@@ -138,36 +129,34 @@
 
 
                         <!-- 하단 페이지 넘기기 부분-->
-                        <div class="row">
-							<div class="col-md-12">
-								<ul class="mypagination justify-content-center">
-								
-								<c:if test="${CampusPageVO.prev}">
-									<li class="mypage-item prev"><a href="${CampusPageVO.startPage-1}" class="mypage-link"> << </a></li>
-								</c:if>	
-								
-								<c:forEach var="i" begin="${CampusPageVO.startPage}" end="${CampusPageVO.endPage}">
-									<li class="mypage-item"><a href="${i}" class="mypage-link ${CampusPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
-								</c:forEach>
-								
-								<c:if test="${CampusPageVO.next}">
-									<li class="mypage-item next"><a href="${CampusPageVO.endPage+1}" class="mypage-link"> >> </a></li>
-								</c:if>	
-								
-								</ul>
-							</div>
-						</div>
+                        <div class="row" id="row">
+                            <div class="col-md-12">
+                                <ul class="mypagination justify-content-center">
+                                   <c:if test="${CampusPageVO.prev}">
+										<li class="mypage-item prev"><a href="${CampusPageVO.startPage-1}" class="mypage-link"> << </a></li>
+									</c:if>	
+									
+									<c:forEach var="i" begin="${CampusPageVO.startPage}" end="${CampusPageVO.endPage}">
+										<li class="mypage-item"><a href="${i}" class="mypage-link ${CampusPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
+									</c:forEach>
+									
+									<c:if test="${CampusPageVO.next}">
+										<li class="mypage-item next"><a href="${CampusPageVO.endPage+1}" class="mypage-link"> >> </a></li>
+									</c:if>	
+                                </ul>
+                            </div>
+                        </div>
 
                     </div>
 
                 </div>
             </div>
 		<form action="list" method="get" id="actionForm">	
-			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
-			<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
-			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
+		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
 		
-		</form> 
+	</form>
         </div>
 
 <script>

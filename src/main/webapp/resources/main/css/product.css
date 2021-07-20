@@ -159,6 +159,15 @@
 		    border: 4px solid #78c2ad;
 		    border-radius: 15px;
 		}
+		.width10 {
+		    width: 10%;
+		}
+		.inlinetest {
+		    display: inline-block;
+		}
+		.product_name{
+		margin-bottom: 1rem !important;
+		}
         
        
         

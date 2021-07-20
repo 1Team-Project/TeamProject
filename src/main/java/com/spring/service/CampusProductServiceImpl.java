@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusProductVO;
 import com.spring.mapper.CampusProductMapper;
 
@@ -15,8 +16,8 @@ public class CampusProductServiceImpl implements CampusProductService {
 	private CampusProductMapper mapper;
 	
 	@Override
-	public List<CampusProductVO> prolist() {
-		return mapper.prolist();
+	public List<CampusProductVO> prolist(CampusCriteria cri) {
+		return mapper.prolist(cri);
 	}
 	@Override
 	public List<CampusProductVO> bestlist() {
@@ -24,8 +25,8 @@ public class CampusProductServiceImpl implements CampusProductService {
 	}
 
 	@Override
-	public List<CampusProductVO> productCategory(String pc_code) {
-		return mapper.productCategory(pc_code);
+	public List<CampusProductVO> catelist(String pc_code) {
+		return mapper.catelist(pc_code);
 	}
 
 	@Override
@@ -35,27 +36,16 @@ public class CampusProductServiceImpl implements CampusProductService {
 	
 	@Override
 	public CampusProductVO viewProduct(int p_number) {
-		// TODO Auto-generated method stub
-		return null;
+		return mapper.viewProduct(p_number);
 	}
-
 	@Override
-	public int updateProduct(int p_price, int p_stock, int p_number) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int total(CampusCriteria cri) {
+		return mapper.totalPro(cri);
 	}
+	
 
-	@Override
-	public int insertProduct(CampusProductVO vo) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int deleteProduct(int p_number) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+	
+	
 
 
 }
