@@ -51,6 +51,9 @@ $(function(){
 			type:'post',
 			processData:false,
 			contentType:false,
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			data:campusFormData,
 			success:function(result){
 				console.log(result);
@@ -150,6 +153,9 @@ $(function(){
 		
 		$.ajax({
 			url:'/deleteFile',
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			data:{
 				a_name:targetFile,
 			},

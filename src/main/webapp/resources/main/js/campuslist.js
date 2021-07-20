@@ -28,6 +28,9 @@ $(function(){
 			type:'post',
 			processData:false,
 			contentType:false,
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			data:bnoval,
 			success:function(result){
 				console.log("아작스성공"+result);

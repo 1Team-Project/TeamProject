@@ -38,7 +38,7 @@
 				
 				<input type="hidden" name="p_number" value="${campusProductVO.p_number}"/>
 				<input type="hidden" name="b_no" value="${campusBoardVO.b_no}"/>
-				
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<button class="btn btn-primary" type="submit" data-oper="modify">수정</button>
 				<button class="btn btn-primary" type="submit" data-oper="remove">삭제</button>
 				
@@ -54,7 +54,10 @@
 	<div class="col-md-1 margintb20"></div>
 
 </section>
-
+<script>
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+</script>
 <script src="/resources/main/js/campus_sellmodify.js"></script>
 
 <%@include file="../../design/footer.jsp"%>

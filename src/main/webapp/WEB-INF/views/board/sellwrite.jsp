@@ -112,7 +112,7 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20"></div>
-				
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<button class="btn btn-primary" type="submit">µî·Ï</button>
 				
 		</form>
@@ -121,6 +121,10 @@
 	<div class="col-md-1 margintb20"></div>
 
 </section>
+<script>
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+</script>
 <script src="/resources/main/js/campus_sellwrite.js"></script>
 
 

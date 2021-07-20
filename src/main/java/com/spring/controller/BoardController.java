@@ -177,7 +177,7 @@ public class BoardController {
 		model.addAttribute("r_page",r_page);
 		
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify")
 	public void modify(int b_no,@ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("글 수정 "+b_no+" cri : "+cri);  
@@ -186,6 +186,7 @@ public class BoardController {
 		model.addAttribute("campusVO", campusVO);
 	}
 	
+	@PreAuthorize("principal.username == #vo.b_writer")
 	@PostMapping("/modify")
 	public String modifyPost(CampusBoardVO vo, CampusCriteria cri, RedirectAttributes rttr) {
 		
@@ -209,12 +210,13 @@ public class BoardController {
 		}
 	}
 
-	//@PreAuthorize("isAuthenticated()") //@PreAuthorize("hasAnyAuthority('ROLE_USER')")
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/write")
 	public void register() {
 		log.info("새글 등록 폼 요청");
 	}
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/write")
 	public String registerPost(CampusBoardVO vo, RedirectAttributes rttr) {
 		
@@ -229,9 +231,9 @@ public class BoardController {
 		}
 		
 	}
-
+	@PreAuthorize("principal.username == #b_writer")
 	@PostMapping("/remove")
-	public String remove(int b_no, String writer, CampusCriteria cri, RedirectAttributes rttr) {
+	public String remove(int b_no, String b_writer, CampusCriteria cri, RedirectAttributes rttr) {
 		
 		log.info("삭제 요청   "+b_no);
 		
@@ -258,7 +260,7 @@ public class BoardController {
 		
 		
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replyadd")
 	public String replyadd(int b_no, int b_views, CampusReplyVO vo, CampusCriteria cri) {
 		
@@ -277,9 +279,15 @@ public class BoardController {
 		}
 		
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replymodify")
-	public String replymodify(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
+	public String replymodify(int b_no, int b_views, int r_page, String rewriter, CampusReplyVO vo, CampusCriteria cri) {
+		
+		CampusReplyVO revo =  reply.read(vo.getR_no());
+		String replyer  = revo.getR_replyer();
+		if (!replyer.equals(rewriter)) {
+			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+		}
 		
 		log.info("댓글 수정 "+vo);
 		
@@ -293,11 +301,17 @@ public class BoardController {
 		
 	}
 	
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replyremove")
-	public String replyremove(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
+	public String replyremove(int b_no, int b_views, int r_page, String rewriter, CampusReplyVO vo, CampusCriteria cri) {
 		
 		log.info("댓글 삭제 "+vo);
+		
+		CampusReplyVO revo =  reply.read(vo.getR_no());
+		String replyer  = revo.getR_replyer();
+		if (!replyer.equals(rewriter)) {
+			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+		}
 		
 		if(reply.delete(vo.getR_no())) {
 			log.info("댓글 삭제 요청 : "+vo.getB_no()+" / "+vo.getR_no());
@@ -313,12 +327,13 @@ public class BoardController {
 		
 	}
 	
-	
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
 		log.info("판매 이동");
 	}
 	
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellwrite")
 	public String sellwritePost(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob,RedirectAttributes rttr) {
 		log.info("판매 등록 요청");
@@ -366,7 +381,7 @@ public class BoardController {
 		}
 
 	}
-
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellmodify")
 	public void sellmodify(int p_number, int b_no, Model model) {
 		log.info("상품 수정 "+p_number);  
@@ -376,7 +391,7 @@ public class BoardController {
 		model.addAttribute("campusBoardVO", campusBoardVO);
 		model.addAttribute("campusProductVO", campusProductVO);
 	}
-	
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellmodify")
 	public String sellmodifyPost(CampusProductVO vo) {
 		
@@ -388,7 +403,7 @@ public class BoardController {
 			return "redirect:index";
 		}
 	}
-	
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellremove")
 	public String sellremove(int b_no, int p_number, RedirectAttributes rttr) {
 		

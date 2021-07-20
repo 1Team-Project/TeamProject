@@ -95,15 +95,12 @@
 			select * 
 				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate
 					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate from campus_board where b_no>0 order by b_no desc) 
-					where
+					where b_sort != '상품' and
 		]]>
 				<trim prefix="(" suffix=") AND" prefixOverrides="OR">
 					<foreach collection="sortArr" item='sort'>
 						<trim prefix="OR">
 							<choose>
-								<when test="sort=='R'.toString()">
-									b_sort like '%'||'리뷰'||'%'
-								</when>
 								<when test="sort=='Q'.toString()">
 									b_sort like '%'||'질문'||'%'
 								</when>

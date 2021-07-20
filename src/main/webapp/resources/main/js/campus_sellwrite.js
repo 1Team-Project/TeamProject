@@ -49,6 +49,9 @@ $(function(){
 		$.ajax({
 			url:'/uploadAjax', //도착지
 			type:'post',
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			processData:false,
 			contentType:false,
 			data:campusFormData,
@@ -196,6 +199,9 @@ $(function(){
 		
 		$.ajax({
 			url:'/deleteFile',
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			data:{
 				a_name:targetFile,
 			},
