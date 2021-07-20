@@ -6,7 +6,7 @@
 		<div class="regist-Form">
 			<div class="form-group">
 		  		<label for="u_userid" style="font-family: naBrush">아이디</label>
-		  		<button type="button" id="checkId" class="btn btn-primary" style="font-size:20px">입 력</button>
+		  		<button type="button" id="chkId" class="btn btn-primary" style="font-size:20px">입 력</button>
 		  		<div class="regist-margin">
 		    		<input type="text" name="u_userid" id="u_userid" class="form-control-regist" placeholder="영문, 숫자 4 ~12자리" />
 		  		</div>
@@ -65,7 +65,7 @@
 		  		<button type="reset" class="btn btn-danger" style="font-size:20px" onclick="location.href='/'">취 소</button>
 		    </div>
 		</div>
-		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
 	</form>
 <script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>

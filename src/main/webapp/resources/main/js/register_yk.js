@@ -15,8 +15,8 @@ $(function() {
 	});
 	
 	/* register.jsp */
-	$("#checkId").click(function(){
-		var chkId = $('input[name="u_userid"]').val();
+	$("#chkId").click(function(){
+		var chkId = $('input[id="u_userid"]').val();
 		var regId = /^[a-zA-Z0-9]{4,12}$/;
 		alert("아이디 : " + chkId);
 		if(chkId == '') {
