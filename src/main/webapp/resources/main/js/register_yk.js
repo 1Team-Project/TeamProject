@@ -43,6 +43,14 @@ $(function() {
 			}
 		});
 	});
+	// ajax에서 csrf 사용을 위한 부분
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        if(token && header) {
+            xhr.setRequestHeader(header, token);
+        }
+    });
 })
 
 

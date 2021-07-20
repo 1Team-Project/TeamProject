@@ -65,7 +65,7 @@
 		  		<button type="reset" class="btn btn-danger" style="font-size:20px" onclick="location.href='/'">√Î º“</button>
 		    </div>
 		</div>
-		<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 <script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>
