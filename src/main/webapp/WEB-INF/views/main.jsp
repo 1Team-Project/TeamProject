@@ -181,7 +181,6 @@
 					<form action="" id="main_searchForm">
 						<select name="sort">
 							<option value="">--------</option>
-							<option value="P">상품</option>
 							<option value="Q">질문</option>
 							<option value="R">후기</option>
 						</select>

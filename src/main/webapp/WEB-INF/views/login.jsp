@@ -23,7 +23,7 @@
 			</div>
 			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>
 			<button class="btn btn-lg btn-primary btn-block" id="regist">회원가입</button>
-			<%-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> --%>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</div>
 	</form>
 <script src="/resources/main/js/register_yk.js"></script>

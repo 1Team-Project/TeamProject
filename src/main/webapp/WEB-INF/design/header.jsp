@@ -232,7 +232,7 @@
     <!-- END nav -->
 
 	</section>
-	<form action="/loginMypage" id="mypageForm" method="post">
+ 	<form action="/loginMypage" id="mypageForm" method="post">
 <input type="hidden" name="u_userid"  value="${login.u_userid}"/>
 <input type="hidden" name="u_password"  value="${login.u_password}"/>
 

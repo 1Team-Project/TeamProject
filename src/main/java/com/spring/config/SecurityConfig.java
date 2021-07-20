@@ -16,8 +16,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.spring.handler.CustomAccessDeniedHandler;
 import com.spring.handler.CustomLoginSuccessHandler;
@@ -48,9 +46,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// 모든 사람이 접근할 수 있는 url 지정
-		http.csrf().disable().authorizeRequests()
-			.antMatchers("/UserPage").access("hasRole('ROLE_USER', 'ROLE_ADMIN')")
-			.antMatchers("/AdminPage").access("hasRole('ROLE_ADMIN')");
+		http.csrf().disable().authorizeRequests();
+//			.antMatchers("/UserPage").access("hasRole('ROLE_USER', 'ROLE_ADMIN')")
+//			.antMatchers("/AdminPage").access("hasRole('ROLE_ADMIN')");
 			
 
 		/*
@@ -62,7 +60,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.loginPage("/login")
 			.loginProcessingUrl("/loginForm")
 			.usernameParameter("u_userid")
-			.successHandler(new CustomLoginSuccessHandler())
+			.successHandler(loginSuccessHandler())
 			.failureUrl("/login-error");
 		
 		/*
@@ -77,7 +75,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		<!-- 접근 제한 시 handler를 거쳐 컨트롤러로 이동하는 형태 -->
 		<security:access-denied-handler ref="customAccessDeniedHandler"/>
 		 */
-		http.exceptionHandling(exception -> exception.accessDeniedHandler(new CustomAccessDeniedHandler()));
+		http.exceptionHandling(exception -> exception.accessDeniedHandler(accessDeniedHandler()));
 		
 		/*
 		<!-- remember-me 활성화 -->
@@ -92,7 +90,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //		filter.setForceEncoding(true);
 //		http.addFilterBefore(filter, CsrfFilter.class);
 	}
+	// <bean id="customLoginSuccessHandler" class="com.spring.handler.CustomLoginSuccessHandler" />
+	@Bean
+	public AuthenticationSuccessHandler loginSuccessHandler() {
+		return new CustomLoginSuccessHandler();
+	}
 	
+	// <bean id="customAccessDeniedHandler" class="com.spring.handler.CustomAccessDeniedHandler" />
+	@Bean
+	public AccessDeniedHandler accessDeniedHandler() {
+		return new CustomAccessDeniedHandler();
+	}
 	/*
 	<!-- UserDetailService -->
 	<bean id="customUserDetailService" class="com.spring.service.CustomUserDetailService"/>
@@ -101,8 +109,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	*/
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(new CustomUserDetailService())
-			.passwordEncoder(new BCryptPasswordEncoder());
+		auth.userDetailsService(customUserDetailService())
+			.passwordEncoder(passwordEncoder());
 	}
 	
+	@Bean
+	public UserDetailsService customUserDetailService() {
+		return new CustomUserDetailService();
+	}
+	
+	@Bean 
+	public PasswordEncoder passwordEncoder(){ 
+		return new BCryptPasswordEncoder(); 
+	}
+
 }

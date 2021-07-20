@@ -101,9 +101,6 @@
 					<foreach collection="sortArr" item='sort'>
 						<trim prefix="OR">
 							<choose>
-								<when test="sort=='P'.toString()">
-									b_sort like '%'||'상품'||'%'
-								</when>
 								<when test="sort=='Q'.toString()">
 									b_sort like '%'||'질문'||'%'
 								</when>
