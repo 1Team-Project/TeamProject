@@ -56,7 +56,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 		boolean result = false;
 
 		
-		//梅何颇老 咯何 犬牢
+		//觳秬韺岇澕 鞐秬 頇曥澑
 		if(vob.getAttachList()==null || vob.getAttachList().size()<=0) {
 			
 			if (test1 == test2 == test3) {
@@ -66,7 +66,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 			return result;
 		}
 		
-		// 梅何颇老 殿废
+		// 觳秬韺岇澕 霌彪
 		vob.getAttachList().forEach(attach -> {
 			attach.setB_no(vob.getB_no());
 			attachMapper.insert(attach);
@@ -114,4 +114,3 @@ public class CampusProductServiceImpl implements CampusProductService {
 	}
 
 }
-

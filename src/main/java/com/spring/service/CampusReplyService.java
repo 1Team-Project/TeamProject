@@ -18,7 +18,6 @@ public interface CampusReplyService {
 	
 	public boolean delete(int rno);
 	
-	//´ñ±Û
 	public boolean deleteAll(int bno);
 	
 	public int getCountByBno(int b_no);

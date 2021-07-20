@@ -17,7 +17,6 @@ public interface CampusReplyMapper {
 	
 	public int delete(int r_no);
 	
-	//´ñ±Û
 	public int deleteAll(int b_no);
 
 	public int getCountByBno(int b_no);
@@ -25,6 +24,6 @@ public interface CampusReplyMapper {
 
 	public List<CampusReplyVO> list(@Param("r_page") int r_page, @Param("b_no") int b_no);
 
-	// ¿µ±Ç ¸ŞÀÎ °Ô½ÃÆÇ 10°³ º¸¿©ÁÖ±â¿ë
+	// ì˜ê¶Œ ë©”ì¸ ê²Œì‹œíŒ 10ê°œ ë³´ì—¬ì£¼ê¸°ìš©
 	public List<CampusReplyVO> mainList(@Param("cri")CampusCriteria cri,@Param("bno")int bno);
 }

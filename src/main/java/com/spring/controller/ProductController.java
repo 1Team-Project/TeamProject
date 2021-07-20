@@ -19,10 +19,10 @@ public class ProductController {
 	@Autowired
 	private CampusProductService service;
 	
-	//»óÇ° ¸®½ºÆ® ÀüÃ¼ ³ª¿­?
+	//ìƒí’ˆ ë¦¬ìŠ¤íŠ¸ ì „ì²´ ë‚˜ì—´?
 	@GetMapping("/product")
 	public void getList(Model model) {
-		log.info("Å×½ºÆ®");
+		log.info("í…ŒìŠ¤íŠ¸");
 		List<CampusProductVO> list=service.productList();
 		
 		
@@ -30,13 +30,13 @@ public class ProductController {
 	}
 	
 	
-	//»óÇ° Ä«Å×°í¸®·Î ºĞ·ù ³ª¿­?Á¶È¸?
+	//ìƒí’ˆ ì¹´í…Œê³ ë¦¬ë¡œ ë¶„ë¥˜ ë‚˜ì—´?ì¡°íšŒ?
 	
 	
-	//»óÇ° Ã£±â
+	//ìƒí’ˆ ì°¾ê¸°
 	
 	public void getSearchList(String p_name, Model model) {
-		log.info("»óÇ°¸í ÀÌ¿ë, »óÇ° Á¶È¸");
+		log.info("ìƒí’ˆëª… ì´ìš©, ìƒí’ˆ ì¡°íšŒ");
 		
 		List<CampusProductVO> list=service.searchProduct(p_name);
 		

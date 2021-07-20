@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
 
@@ -113,15 +113,15 @@
 	<div class="container-fluid" style="overflow-x:hidden;">
 		<div class="row topmargin30">
 			<div class="col-md-12"></div>
-			<h3 class="heading-section ml20" style="font-family: naBrush;">Áñ°Å¿î ¿©Çà °ø°£ Camp us</h3>
+			<h3 class="heading-section ml20" style="font-family: naBrush;">ì¦ê±°ìš´ ì—¬í–‰ ê³µê°„ Camp us</h3>
 		</div>
 		<div class="row">
 		 	<div class="col-md-1"></div>
 		  	<div class="col-md-10">
 		  		<div class="row">
-		  		<!-- main À­ºÎºĞ ½ÃÀÛ -->
+		  		<!-- main ìœ—ë¶€ë¶„ ì‹œì‘ -->
 		  			<div class="main_left">
-				    	<div class="col-md-12 colorthema hh4 padding6px margintb20"> ÃßÃµ »óÇ° </div>
+				    	<div class="col-md-12 colorthema hh4 padding6px margintb20"> ì¶”ì²œ ìƒí’ˆ </div>
        					<div class="slide_opt">
        						<input type="radio" name="img" id="img1" checked/>
        						<input type="radio" name="img" id="img2"/>
@@ -145,7 +145,7 @@
             			</div>
 		    		</div>
 		    		<div class="main_right">
-						<div class="col-md-12 colorthema hh4 padding6px margintb20"> ¾Æ¸§´Ù¿î Ä·ÇÎ Àå¼Ò </div>
+						<div class="col-md-12 colorthema hh4 padding6px margintb20"> ì•„ë¦„ë‹¤ìš´ ìº í•‘ ì¥ì†Œ </div>
        					<div class="slide_opt2">
        						<input type="radio" name="img2" id="img6" checked/>
        						<input type="radio" name="img2" id="img7"/>
@@ -172,8 +172,8 @@
 		    </div>
 			<div class="col-md-1"></div>
 		</div>
-		<!-- main À­ºÎºĞ ³¡ -->
-    	<!-- °Ô½ÃÆÇ Ãß°¡Áß ½ÃÀÛ ºÎºĞ -->
+		<!-- main ìœ—ë¶€ë¶„ ë -->
+    	<!-- ê²Œì‹œíŒ ì¶”ê°€ì¤‘ ì‹œì‘ ë¶€ë¶„ -->
     	<div class="row">
     		<div class="col-md-1"></div>
     		<div class="col-md-10">
@@ -181,22 +181,22 @@
 					<form action="" id="main_searchForm">
 						<select name="sort">
 							<option value="">--------</option>
-							<option value="Q">Áú¹®</option>
-							<option value="R">ÈÄ±â</option>
+							<option value="Q">ì§ˆë¬¸</option>
+							<option value="R">í›„ê¸°</option>
 						</select>
-						<!-- °Ë»ö½Ã¿¡µµ ÆäÀÌÁö´ç °Ô½Ã¹° ¼ö¿Í ÇöÀç ÆäÀÌÁö¿¡ ´ëÇÑ Á¤º¸°¡ µû¶ó°¡¾ß ÇÑ´Ù. -->
+						<!-- ê²€ìƒ‰ì‹œì—ë„ í˜ì´ì§€ë‹¹ ê²Œì‹œë¬¼ ìˆ˜ì™€ í˜„ì¬ í˜ì´ì§€ì— ëŒ€í•œ ì •ë³´ê°€ ë”°ë¼ê°€ì•¼ í•œë‹¤. -->
 						<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
 						<input type="hidden" name="page" value="1"/>
-						<button type="button" class="btn btn-primary" style="font-size:15px; height: 30px; margin: 2px;">Á¶ È¸</button>
+						<button type="button" class="btn btn-primary" style="font-size:15px; height: 30px; margin: 2px;">ì¡° íšŒ</button>
 					</form>
 	    		</div>
 	    		<table class="table">
 	    			<thead>
 	    				<tr class="textcenter colorthema" >
-	    					<th class="width_list" style="width=3%;">ÀÛ¼ºÀÏ</th>
-	    					<th class="width_list" style="width=3%;">ºĞ·ù</th>
-	    					<th class="width_list" style="width=80%;">Á¦¸ñ</th>
-	    					<th class="width_list" style="width=3%;">Á¶È¸¼ö</th>
+	    					<th class="width_list" style="width=3%;">ì‘ì„±ì¼</th>
+	    					<th class="width_list" style="width=3%;">ë¶„ë¥˜</th>
+	    					<th class="width_list" style="width=80%;">ì œëª©</th>
+	    					<th class="width_list" style="width=3%;">ì¡°íšŒìˆ˜</th>
 	    				</tr>
 	    			</thead>
 	    			<tbody class="textcenter">
@@ -215,7 +215,7 @@
     		</div>
 			<div class="col-md-1"></div>
 		</div>
-		<!-- °Ô½ÃÆÇ Ãß°¡Áß ³¡ ºÎºĞ -->
+		<!-- ê²Œì‹œíŒ ì¶”ê°€ì¤‘ ë ë¶€ë¶„ -->
 	</div>
 	<form action="" method="get" id="main_actionForm">
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}"/>
@@ -224,20 +224,20 @@
 	</form>
 	<script>
 	$(function() {
-		// Á¶È¸ ¹öÆ° Å¬¸¯ ½Ã
+		// ì¡°íšŒ ë²„íŠ¼ í´ë¦­ ì‹œ
 		$(".btn-primary").click(function(e) {
 			e.preventDefault();
-			// °Ë»ö Æû °¡Á®¿À±â
+			// ê²€ìƒ‰ í¼ ê°€ì ¸ì˜¤ê¸°
 			var main_searchForm = $("#main_searchForm");
-			// sort °¡Á®¿À±â
+			// sort ê°€ì ¸ì˜¤ê¸°
 			var sort=$("select[name='sort']").val();
-			// °Ë»ö Ã³À½¿¡´Â 1page º¸¿©ÁÖ±â
+			// ê²€ìƒ‰ ì²˜ìŒì—ëŠ” 1page ë³´ì—¬ì£¼ê¸°
 			main_searchForm.find("input[name='page']").val("1");
 			main_searchForm.submit();
 			
 		});
 
-		// °Ô½Ã±Û Á¦¸ñ Å¬¸¯ ½Ã
+		// ê²Œì‹œê¸€ ì œëª© í´ë¦­ ì‹œ
 		$(".move").click(function(e) {
 			e.preventDefault(); 
 			var main_actionForm = $("#main_actionForm");

@@ -1,10 +1,14 @@
 package com.spring.controller;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.service.ProductDetailService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -14,16 +18,16 @@ public class ProductdetailController {
 	
 //	@GetMapping("/productdetail")
 //	public void productdetail() {
-//		log.info("»óÇ° »ó¼¼ ÆäÀÌÁö ÀÌµ¿");
+//		log.info("ìƒí’ˆ ìƒì„¸ í˜ì´ì§€ ì´ë™");
 //	}
 	@PostMapping("/productdetail")
 	public ModelAndView productdetail() {
-		return null; // ÀÌ°Å ¾ÈÀûÇôÀÖ¾î¼­ ¿À·ù»ı°Ü¼­ null Àû¾î³õÀº°ÅÀÓ merge ÇÒ¶§ ¹Ù²ãÁÖ¼À..
+		return null; // ì´ê±° ì•ˆì í˜€ìˆì–´ì„œ ì˜¤ë¥˜ìƒê²¨ì„œ null ì ì–´ë†“ì€ê±°ì„ merge í• ë•Œ ë°”ê¿”ì£¼ì…ˆ..
 	}
 	
 	@GetMapping("/cart")
 	public void cartput() {
-		log.info("¸ÓÁö? ÀÌ°Å ±êÇãºêºÎÅÍ ±úÁ®ÀÖ´Âµ¥??");
+		log.info("ë¨¸ì§€? ì´ê±° ê¹ƒí—ˆë¸Œë¶€í„° ê¹¨ì ¸ìˆëŠ”ë°??");
 	}
 
 }

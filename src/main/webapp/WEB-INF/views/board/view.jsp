@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
@@ -14,12 +14,12 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section hoverthema" style="font-family: naBrush" onclick="location.href='list'">ÅëÇÕ °Ô½ÃÆÇ
+				<h3 class="heading-section hoverthema" style="font-family: naBrush" onclick="location.href='list'">í†µí•© ê²Œì‹œíŒ
 				</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} ¹ø ±Û</h3>
+				<h3 class="colorthema margintb20 padding6px">${campusVO.b_no} ë²ˆ ê¸€</h3>
 			</div>
 			<form action="">
 				<div class="col-md-8 mll20">
@@ -44,7 +44,7 @@
 
 					<div class="">
 						<div class="">
-							<i class=""></i> Ã·ºÎ ¸ñ·Ï
+							<i class=""></i> ì²¨ë¶€ ëª©ë¡
 						</div>
 						<div class="panel-body">
 							<div class="uploadResult">
@@ -60,22 +60,22 @@
 				<div class="col-md-8 mll20">
 	  			<sec:authorize access="isAuthenticated()">
 	  				<c:if test="${info.username == campusVO.b_writer}">
-					<button class="btn btn-primary modifybutton" type="button">¼öÁ¤ÇÏ±â</button>
+					<button class="btn btn-primary modifybutton" type="button">ìˆ˜ì •í•˜ê¸°</button>
 	                </c:if>
 	            </sec:authorize>
-					<button class="btn btn-green2 listbutton" type="button">¸®½ºÆ®</button>
+					<button class="btn btn-green2 listbutton" type="button">ë¦¬ìŠ¤íŠ¸</button>
 				</div>
 				</form>
 				<hr class="one" />
 		</div>
 
-		<!-- ´ñ±Û Æû -->
+		<!-- ëŒ“ê¸€ í¼ -->
 		<div class="col-md-1"></div>
 		<div class="col-md-10 mll10">
 			<form action="/board/replyadd" method="post">
 				<div class="col-md-8 mll20">
 								
-					<input type="hidden" name = "r_replyer" value="±è±â±âµ¿"/>
+					<input type="hidden" name = "r_replyer" value="ê¹€ê¸°ê¸°ë™"/>
 					
 					<input type="hidden" name="sort" value="${cri.sort}" />
 					<input type="hidden" name="keyword" value="${cri.keyword}" />
@@ -84,15 +84,15 @@
 					<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
 					
 					<sec:authorize access="isAuthenticated()">
-						<h5>´ñ±Û ÀÛ¼º</h5>
+						<h5>ëŒ“ê¸€ ìž‘ì„±</h5>
 						<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
 							style="resize: none"></textarea>
-						<button class="btn btn-primary float-end m-1 mr-0" type="submit">´ñ±Û ÀÛ¼º</button>
+						<button class="btn btn-primary float-end m-1 mr-0" type="submit">ëŒ“ê¸€ ìž‘ì„±</button>
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
-						<h5>´ñ±Û ÀÛ¼º</h5>
+						<h5>ëŒ“ê¸€ ìž‘ì„±</h5>
 						<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
-							style="resize: none" placeholder="·Î±×ÀÎ ÈÄ ÀÛ¼ºÇØ ÁÖ¼¼¿ä." readonly></textarea>
+							style="resize: none" placeholder="ë¡œê·¸ì¸ í›„ ìž‘ì„±í•´ ì£¼ì„¸ìš”." readonly></textarea>
 					</sec:authorize>
 					
 				</div>
@@ -106,8 +106,8 @@
 		<hr class="one" />
 		
 		
-		<!-- ´ñ±Û ¸®½ºÆ® -->
-		<h5 class="mll20">´ñ±Û ¸ñ·Ï</h5>
+		<!-- ëŒ“ê¸€ ë¦¬ìŠ¤íŠ¸ -->
+		<h5 class="mll20">ëŒ“ê¸€ ëª©ë¡</h5>
 		<hr class="one" />
 		<c:set var="now" value="<%=new java.util.Date()%>" />
 		<c:set var="systest"><fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/></c:set>
@@ -118,8 +118,8 @@
 				
 				<sec:authorize access="isAuthenticated()">
 					<c:if test="${info.username == revo.r_replyer}">
-					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[¼öÁ¤]</a>
-					<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[»èÁ¦]</a>
+					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[ìˆ˜ì •]</a>
+					<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[ì‚­ì œ]</a>
 					</c:if>
 				</sec:authorize>
 				
@@ -168,7 +168,7 @@
 		</div>
 
 
-		<button class="btn btn-green2 mll20 listbutton" type="button">¸®½ºÆ®</button>
+		<button class="btn btn-green2 mll20 listbutton" type="button">ë¦¬ìŠ¤íŠ¸</button>
 
 	</div>
 	<div class="col-md-1"></div>

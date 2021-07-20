@@ -2,13 +2,4 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/1Team-Project/TeamProject.git
 eclipse.preferences.version=1
-encoding//src/main/java/com/spring/controller/BoardController.java=euc-kr
-encoding//src/main/java/com/spring/controller/BoardUploadController.java=euc-kr
-encoding//src/main/java/com/spring/controller/HomeController.java=EUC-KR
-encoding//src/main/java/com/spring/controller/MemberController.java=euc-kr
-encoding//src/main/java/com/spring/controller/RegisterController.java=EUC-KR
-encoding//src/main/java/com/spring/handler/CustomAccessDeniedHandler.java=UTF-8
-encoding//src/main/java/com/spring/service/CustomUserDetailService.java=EUC-KR
-encoding//src/main/webapp/WEB-INF/views/product.jsp=UTF-8
-encoding/<project>=EUC-KR
-encoding/campus_sql.sql=UTF-8
+encoding/<project>=UTF-8

@@ -33,6 +33,6 @@ public interface CampusBoardMapper {
 	
 	public int addview(@Param("b_views")int views, @Param("b_no")int bno);
 	
-	// ¿µ±Ç main °Ô½ÃÆÇ 10°³ º¸±â¿ë Ãß°¡
+	// ì˜ê¶Œ main ê²Œì‹œíŒ 10ê°œ ë³´ê¸°ìš© ì¶”ê°€
 	public List<CampusBoardVO> mainList(CampusCriteria cri);
 }

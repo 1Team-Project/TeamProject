@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
@@ -17,11 +17,11 @@
 		<div class="col-md-10">
 					<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">ÅëÇÕ °Ô½ÃÆÇ</h3>
+				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">í†µí•© ê²Œì‹œíŒ</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12 colorthema hh4 padding6px margintb20">
-				¿À´ÃÀÇ È­Á¦±Û</div>
+				ì˜¤ëŠ˜ì˜ í™”ì œê¸€</div>
 			<div class="row">
 				<div class="col-md-12">
 					<div class="row textcenter">
@@ -37,12 +37,12 @@
 									<p class="card-text">${top.b_content_15}</p>
 									<c:if test="${top.rank != 999}">
 									<p>
-										<a class="btn btn-primary clickview" href="${top.b_no}">ÀÚ¼¼È÷ º¸±â</a>
+										<a class="btn btn-primary clickview" href="${top.b_no}">ìžì„¸ížˆ ë³´ê¸°</a>
 									</p>
 									</c:if>
 									<c:if test="${top.rank == 999}">
 									<p>
-										<a class="btn btn-primary" href="#">ÀÚ¼¼È÷ º¸±â</a>
+										<a class="btn btn-primary" href="#">ìžì„¸ížˆ ë³´ê¸°</a>
 									</p>
 									</c:if>
 								</div>
@@ -61,12 +61,12 @@
 			<table class="table">
 				<thead>
 					<tr class="textcenter colorthema">
-						<th class="width10">¹øÈ£</th>
-						<th class="width10">ºÐ·ù</th>
-						<th class="width40">Á¦¸ñ</th>
-						<th class="width10">±Û¾´ÀÌ</th>
-						<th class="width20">ÀÛ¼ºÀÏ</th>
-						<th class="width10">Á¶È¸¼ö</th>
+						<th class="width10">ë²ˆí˜¸</th>
+						<th class="width10">ë¶„ë¥˜</th>
+						<th class="width40">ì œëª©</th>
+						<th class="width10">ê¸€ì“´ì´</th>
+						<th class="width20">ìž‘ì„±ì¼</th>
+						<th class="width10">ì¡°íšŒìˆ˜</th>
 					</tr>
 				</thead>
 				<tbody class="textcenter">
@@ -109,16 +109,16 @@
                 <form action="" id="searchForm" class="">
 					<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
 						<option value="">----</option>
-						<option value="Á¦¸ñ"<c:out value="${pageVO.cri.sort=='Á¦¸ñ'?'selected':''}"/>>Á¦¸ñ</option>
-						<option value="³»¿ë"<c:out value="${pageVO.cri.sort=='³»¿ë'?'selected':''}"/>>³»¿ë</option>
-						<option value="ÀÛ¼ºÀÚ"<c:out value="${pageVO.cri.sort=='ÀÛ¼ºÀÚ'?'selected':''}"/>>ÀÛ¼ºÀÚ</option>
+						<option value="ì œëª©"<c:out value="${pageVO.cri.sort=='ì œëª©'?'selected':''}"/>>ì œëª©</option>
+						<option value="ë‚´ìš©"<c:out value="${pageVO.cri.sort=='ë‚´ìš©'?'selected':''}"/>>ë‚´ìš©</option>
+						<option value="ìž‘ì„±ìž"<c:out value="${pageVO.cri.sort=='ìž‘ì„±ìž'?'selected':''}"/>>ìž‘ì„±ìž</option>
 					</select>
 					<input type="text" name="keyword" class="width40 boldergreen padding5px blacktext" value="${pageVO.cri.keyword}"/>
 					<input type="hidden" name="page" value="${pageVO.cri.page}"/>
-					<button class="btn btn-primary searchbutton" type="submit">°Ë»ö</button>
+					<button class="btn btn-primary searchbutton" type="submit">ê²€ìƒ‰</button>
                </form>
                		<sec:authorize access="isAuthenticated()">
-					<button class="btn btn-primary float-end" onclick="location.href='write'">±Û ¾²±â</button>
+					<button class="btn btn-primary float-end" onclick="location.href='write'">ê¸€ ì“°ê¸°</button>
 					</sec:authorize>
 				</div>
 			</div>

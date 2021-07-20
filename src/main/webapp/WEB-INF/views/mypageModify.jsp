@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
     <style>
@@ -124,75 +124,75 @@
     </style>
 
  <div id="titleArea">
-        <h2>ȸ�� ���� ����</h2>
+        <h2>회원 정보 수정</h2>
     </div>
     <form id="modifyForm" name="modifyForm" action="/mypageModify" method="post" target="_self" enctype="multipart/form-data">
         <div id="main" class="ec-base-table typeWrite gClearBorderTop ">
             <table border="1">
-                <caption>ȸ�� �⺻����</caption>
+                <caption>회원 기본정보</caption>
                 <colgroup>
                     <col style="width:100px;">
                     <col style="width:auto;">
                 </colgroup>
                 <tbody>
                     <tr>
-                        <th scope="row">���̵�</th>
+                        <th scope="row">아이디</th>
                         <td>
                             <input id="u_userid" name="u_userid"
-                                fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="���̵�"
+                                fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디"
                                 fw-msg="" class="inputTypeText" placeholder="" value="${login.u_userid}" type="text" readonly="readonly">
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">��й�ȣ</th>
+                        <th scope="row">비밀번호</th>
                         <td>
                             <input id="u_password" name="u_password" fw-filter="isFill&amp;isMin[4]&amp;isMax[16]"
-                                fw-label="��й�ȣ" fw-msg="" autocomplete="off" maxlength="16" "disabled" value=""
+                                fw-label="비밀번호" fw-msg="" autocomplete="off" maxlength="16" "disabled" value=""
                                 type="password">
-                            <p class="ec-base-help typeDash">(��й�ȣ����)</p>
+                            <p class="ec-base-help typeDash">(비밀번호조건)</p>
                         </td>
                     </tr>
                     <tr class="">
-                        <th scope="row">��й�ȣ<br>Ȯ��</th>
+                        <th scope="row">비밀번호<br>확인</th>
                         <td><input id="confirm_password" name="confirm_password" fw-filter="isFill&amp;isMatch[passwd]"
-                                fw-label="��й�ȣ Ȯ��" fw-msg="��й�ȣ�� ��ġ���� �ʽ��ϴ�." autocomplete="off" maxlength="16"
+                                fw-label="비밀번호 확인" fw-msg="비밀번호가 일치하지 않습니다." autocomplete="off" maxlength="16"
                                 0="disabled" value="" type="password"> <span id="pwConfirmMsg"></span>
                         </td>
                     </tr>
 
                     <tr style="display:1">
-                        <th scope="row" id="">�̸�</th>
-                        <td><input id="u_username" name="u_username" fw-filter="isFill&amp;isMax[30]" fw-label="�̸�"
+                        <th scope="row" id="">이름</th>
+                        <td><input id="u_username" name="u_username" fw-filter="isFill&amp;isMax[30]" fw-label="이름"
                                 fw-msg="" class="ec-member-name" placeholder="" maxlength="30"
                                 value="${login.u_username}" type="text" readonly></td>
                     </tr>
 
                     <tr class="">
-                        <th scope="row">�ּ�</th>
+                        <th scope="row">주소</th>
                         <td>
-                            <input id="postcode1" name="postcode1" fw-filter="isLengthRange[1][14]" fw-label="������ȣ1"
+                            <input id="postcode1" name="postcode1" fw-filter="isLengthRange[1][14]" fw-label="우편번호1"
                                 fw-msg="" class="inputTypeText" placeholder="" readonly="readonly" maxlength="14"
                                 value="" type="text"> <button type="button" class="btnBasic"
                                 onclick="ZipcodeFinder.Opener.bind('postBtn', 'postcode1', 'postcode2', 'addr1', 'layer', 'ko_KR');"
-                                id="postBtn">������ȣ</button><br>
-                            <input id="u_address" name="u_address" fw-filter="isFill" fw-label="�ּ�" fw-msg=""
+                                id="postBtn">우편번호</button><br>
+                            <input id="u_address" name="u_address" fw-filter="isFill" fw-label="주소" fw-msg=""
                                 class="inputTypeText" placeholder="" readonly="readonly" value="${vo.u_address}" type="text"><br>
-                            <input id="u_address" name="u_address" fw-filter="" fw-label="�ּ�" fw-msg="" class="inputTypeText"
+                            <input id="u_address" name="u_address" fw-filter="" fw-label="주소" fw-msg="" class="inputTypeText"
                                 placeholder="" value="${login.u_address}" type="text"> <span class="ec-base-help typeDash"></span>
                         </td>
                     </tr>
                     <tr>
-                        <th scope="row">�̸���</th>
+                        <th scope="row">이메일</th>
                         <td>
                             <input id="u_email" name="u_email"
-                                fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="�̸���"
+                                fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="이메일"
                                 fw-msg="" class="inputTypeText" placeholder="" value="${login.u_email}" type="text">
                         </td>
                     </tr>
                     <tr class="">
-                        <th scope="row">�޴���ȭ</th>
+                        <th scope="row">휴대전화</th>
                         <td class="mobile">
-                            <select id="mobile1" name="mobile[]" fw-filter="isNumber&amp;isFill" fw-label="�޴���ȭ"
+                            <select id="mobile1" name="mobile[]" fw-filter="isNumber&amp;isFill" fw-label="휴대전화"
                                 fw-alone="N" fw-msg="">
                                 <option value="010">010</option>
                                 <option value="011">011</option>
@@ -202,9 +202,9 @@
                                 <option value="019">019</option>
                             </select>
                             -<input id="mobile2" name="mobile[]" maxlength="4" fw-filter="isNumber&amp;isFill"
-                                fw-label="�޴���ȭ" fw-alone="N" fw-msg="" value="${vo.u_phone}" type="text">
+                                fw-label="휴대전화" fw-alone="N" fw-msg="" value="${vo.u_phone}" type="text">
                             -<input id="mobile3"
-                                name="mobile[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="�޴���ȭ"
+                                name="mobile[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="휴대전화"
                                 fw-alone="N" fw-msg="" value="${login.u_phone}" type="text">
                         </td>
                     </tr>
@@ -213,9 +213,9 @@
         </div>
         <br>
         <div id="b-button" class="ec-base-button gColumn">
-            <a href="mypage.html" class="btnSubmit" onclick="memberEditAction()">ȸ����������</a>
-            <a href="mypage.html" class="btnEm">���</a>
-            <a href="mypage.html" class="btnEm">ȸ��Ż��</a>
+            <a href="mypage.html" class="btnSubmit" onclick="memberEditAction()">회원정보수정</a>
+            <a href="mypage.html" class="btnEm">취소</a>
+            <a href="mypage.html" class="btnEm">회원탈퇴</a>
         </div>
 <!--<input type="hidden"  name="u_userid" value="${vo.u_userid}"/>
 <input type="hidden" name="u_username" value="${vo.u_username}"/>  -->

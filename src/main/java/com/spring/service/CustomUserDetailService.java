@@ -21,12 +21,12 @@ public class CustomUserDetailService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String u_userid) throws UsernameNotFoundException {
-		// username => userid °ª
+		// username => userid ê°’
 		log.info("u_userid : " + u_userid);
 		
 		CampusUserVO CampusUser = mapper.read(u_userid);
 		
-		log.info("ÀÎÁõÁ¤º¸ " + CampusUser);
+		log.info("ì¸ì¦ì •ë³´ " + CampusUser);
 		
 		return new CampusCustomUser(CampusUser);
 	}

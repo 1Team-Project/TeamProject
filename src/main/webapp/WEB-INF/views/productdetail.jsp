@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp"%>
 <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
@@ -11,52 +11,52 @@
 		<div class="innerview">
 			<div class="product">
 				<img class="photo" src="/resources/main/images/lamp.jpg"
-					alt="��ǰ ��ǥ ����">
+					alt="상품 대표 사진">
 				<ul>
 					<li class="small_img"><a
 						href="/resources/main/images/lamp.jpg"> <img
-							src="/resources/main/images/lamp.jpg" alt="������ �� ����1"></a></li>
+							src="/resources/main/images/lamp.jpg" alt="손전등 상세 사진1"></a></li>
 					<li><a href="/resources/main/images/lamp5.png"> <img
-							src="/resources/main/images/lamp5.png" alt="������ �� ����2"></a></li>
+							src="/resources/main/images/lamp5.png" alt="손전등 상세 사진2"></a></li>
 					<li><a href="/resources/main/images/lamp2.jpg"> <img
-							src="/resources/main/images/lamp2.jpg" alt="������ �� ����3"></a></li>
+							src="/resources/main/images/lamp2.jpg" alt="손전등 상세 사진3"></a></li>
 					<li><a href="/resources/main/images/lamp3.jpg"><img
-							src="/resources/main/images/lamp3.jpg" alt="������ �� ����4"></a></li>
+							src="/resources/main/images/lamp3.jpg" alt="손전등 상세 사진4"></a></li>
 				</ul>
 			</div>
 			<p class="p_name">
-				<strong class="name">���� ������</strong> <span class="name_detail">���͸���
-					�� ���� �ʴ� ���� ������</span>
+				<strong class="name">강력 손전등</strong> <span class="name_detail">배터리가
+					잘 닳지 않는 강력 손전등</span>
 			</p>
 			<!--<p class="p_price">
                     <span class="position">
                         <span class=price>
                             15,000
-                            <span class="unit">��</span>
+                            <span class="unit">원</span>
                         </span>
                     </span>
                 </p>-->
 			<div class="p_info">
 				<table>
 					<colgroup>
-						<!--���������� �ֱ�-->
+						<!--가변형으로 넣기-->
 						<col style="width: 173px;">
 						<col>
 					</colgroup>
 					<tbody>
 						<tr>
-							<td class="price">15,000��</td>
+							<td class="price">15,000원</td>
 						</tr>
 						<tr>
-							<th><img src="/resources/main/images/gift.png">&nbsp;��ǰ�ڵ�</th>
+							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
 							<td>123456789</td>
 						</tr>
 						<tr>
-							<th><img src="/resources/main/images/manufacture.png">&nbsp;������/���޻�</th>
-							<td>SONY/ �ڰ� ���� ���</td>
+							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
+							<td>SONY/ 자강 정보 통신</td>
 						</tr>
 						<tr>
-							<th><img src="/resources/main/images/money-bag.png">&nbsp;���ż���</th>
+							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
 							<td>
 								<div class="option">
 									<span class="opt">
@@ -68,48 +68,48 @@
 							</td>
 						</tr>
 						<!--<tr>
-                                <th>��밡������</th>
-                                <td>0��</td>
+                                <th>사용가능쿠폰</th>
+                                <td>0개</td>
                             </tr>
                         -->
 						<tr>
-							<th><img src="/resources/main/images/choices.png">&nbsp;�ɼǼ���</th>
+							<th><img src="/resources/main/images/choices.png">&nbsp;옵션선택</th>
 							<td><select>
-									<option>�⺻ (+0)</option>
+									<option>기본 (+0)</option>
 									<option>1 (+0)</option>
 									<option>2 (+0)</option>
 									<option>3 (+0)</option>
 							</select></td>
 						<tr>
-							<th><img src="/resources/main/images/shipped.png">&nbsp;��ۺ�</th>
-							<td>������</td>
+							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
+							<td>무료배송</td>
 						</tr>
 						<tr>
-							<th><img src="/resources/main/images/payment-method.png">&nbsp;���
-								�ȳ�</th>
-							<td>�� ��ǰ�� ���� ��۸� �����մϴ�.</td>
+							<th><img src="/resources/main/images/payment-method.png">&nbsp;배송
+								안내</th>
+							<td>본 상품은 국내 배송만 가능합니다.</td>
 						</tr>
 					</tbody>
 				</table>
 				<div id="cartput">
 					<div class="total">
 						<div class="price">
-							<strong class="tot">�� ��ǰ�ݾ� : </strong> <span class="sum">
-								<span class="num">15,000</span> <span class="unit">��</span>
+							<strong class="tot">총 상품금액 : </strong> <span class="sum">
+								<span class="num">15,000</span> <span class="unit">원</span>
 							</span>
 						</div>
 						<div class="option_btn">
-							<button type="button" class="btn btn-primary btn-lg">��ٱ���</button>
+							<button type="button" class="btn btn-primary btn-lg">장바구니</button>
 							<button type="button"
-								class="btn btn-secondary btn-lg">�����ϱ�</button>
+								class="btn btn-secondary btn-lg">구매하기</button>
 						</div>
 						<div class="p_detail_info">
 							<div class="p_detail_bar">
 								<ul class="menu">
-									<li class="menu1">��ǰ ��</li>
-									<li class="menu2">��ǰ ����</li>
-									<li class="menu3">��ǰ ����</li>
-									<li class="menu4">��ȯ/��ǰ</li>
+									<li class="menu1">상품 상세</li>
+									<li class="menu2">상품 별점</li>
+									<li class="menu3">상품 문의</li>
+									<li class="menu4">교환/반품</li>
 								</ul>
 							</div>
 						</div>
@@ -119,8 +119,8 @@
 							</p>
 							<div class="description">
 								<div class="d_wrapper">
-									<strong class="d_title"> <span>�ٽ� ���ƿ� ���� ������!!</span>
-										<span class="d_subtitle">[���� �ð� ���� ����]</span>
+									<strong class="d_title"> <span>다시 돌아온 강력 손전등!!</span>
+										<span class="d_subtitle">[오랜 시간 지속 가능]</span>
 									</strong>
 									<p class="descript">Lorem ipsum dolor sit amet consectetur,
 										adipisicing elit. Molestiae deserunt illo quaerat officia quia
@@ -155,7 +155,7 @@
 									<div class="when_use">
 										<h1>
 											<span class="campustip"> Camp Us's Tip!</span><br> <span
-												class="tipkor"> ��ǰ Ȱ�� ��!</span>
+												class="tipkor"> 상품 활용 팁!</span>
 										</h1>
 										<div class="tip_info">
 											<span class="tip_icon"> <img
@@ -167,17 +167,17 @@
 											</span>
 										</div>
 										<div class="tip_detail">
-											<span class="detail1">��Ʈ �ȿ� ������ �ɱ� ���� &nbsp;</span> <span
-												class="detail2">��ο� �ǿܿ��� ��� ���� &nbsp;</span> <span
-												class="detail3">���� ������� ��õ��!</span>
+											<span class="detail1">텐트 안에 손전등 걸기 가능 &nbsp;</span> <span
+												class="detail2">어두운 실외에서 사용 가능 &nbsp;</span> <span
+												class="detail3">많은 사람들의 추천템!</span>
 										</div>
 										<div class="tip_detail2">
-											<span class="">������ �ڿ� ������ �޷��־� �޾Ƶα� ����</span> <span class="">�߱���
-												����</span> <span class="">���� �αⰡ ���� ��ǰ</span>
+											<span class="">손전등 뒤에 고리가 달려있어 달아두기 가능</span> <span class="">발광력
+												좋음</span> <span class="">가장 인기가 좋은 제품</span>
 										</div>
 										<div class="size_info">
 											<h1 class="size">
-												<span class="size_title">��ǰ ������</span> <span class="p_size"><img
+												<span class="size_title">상품 사이즈</span> <span class="p_size"><img
 													src="/resources/main/images/lamp5.png"></span> <span
 													class="p_size"><img
 													src="/resources/main/images/lamp5.png"></span>
@@ -186,7 +186,7 @@
 										<div class="p_reviewbar">
 											<h1>
 												<span class="rivew">Product's Review</span><br> <span
-													class="star">�ش� ��ǰ�� ������ �˷��帳�ϴ�!</span>
+													class="star">해당 상품의 별점을 알려드립니다!</span>
 											</h1>
 											<div class="row">
 												<div class="col-md-10"></div>
@@ -195,62 +195,62 @@
 											<table class="table">
 												<thead>
 													<tr class="textcenter colorthema">
-														<th class="width10">��ȣ</th>
-														<th class="width10">�з�</th>
-														<th class="width40">����</th>
-														<th class="width10">�۾���</th>
-														<th class="width20">�ۼ���</th>
-														<th class="width10">����</th>
+														<th class="width10">번호</th>
+														<th class="width10">분류</th>
+														<th class="width40">제목</th>
+														<th class="width10">글쓴이</th>
+														<th class="width20">작성일</th>
+														<th class="width10">평점</th>
 													</tr>
 												</thead>
 												<tbody class="textcenter">
 													<tr>
 														<td>5</td>
-														<td>�ı�</td>
-														<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																�ı��Դϴ�<strong class="badgecount">[1]</strong>
+														<td>후기</td>
+														<td><a href="#" class="blacktext hoverthema">안녕하세요
+																후기입니다<strong class="badgecount">[1]</strong>
 														</a></td>
-														<td>ȫ�浿</td>
+														<td>홍길동</td>
 														<td>2021/07/07</td>
 														<td>0</td>
 													</tr>
 													<tr>
 														<td>4</td>
-														<td>�ı�</td>
-														<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																�ı��Դϴ�<strong class="badgecount">[1]</strong>
+														<td>후기</td>
+														<td><a href="#" class="blacktext hoverthema">안녕하세요
+																후기입니다<strong class="badgecount">[1]</strong>
 														</a></td>
-														<td>ȫ�浿</td>
+														<td>홍길동</td>
 														<td>2021/07/07</td>
 														<td>0</td>
 													</tr>
 													<tr>
 														<td>3</td>
-														<td>����</td>
-														<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																�����Դϴ�<strong class="badgecount">[1]</strong>
+														<td>질문</td>
+														<td><a href="#" class="blacktext hoverthema">안녕하세요
+																질문입니다<strong class="badgecount">[1]</strong>
 														</a></td>
-														<td>ȫ�浿</td>
+														<td>홍길동</td>
 														<td>2021/07/07</td>
 														<td>0</td>
 													</tr>
 													<tr>
 														<td>2</td>
-														<td>�ı�</td>
-														<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																�ı��Դϴ�<strong class="badgecount">[1]</strong>
+														<td>후기</td>
+														<td><a href="#" class="blacktext hoverthema">안녕하세요
+																후기입니다<strong class="badgecount">[1]</strong>
 														</a></td>
-														<td>ȫ�浿</td>
+														<td>홍길동</td>
 														<td>2021/07/07</td>
 														<td>0</td>
 													</tr>
 													<tr>
 														<td>1</td>
-														<td>����</td>
-														<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																�����Դϴ�<strong class="badgecount">[1]</strong>
+														<td>질문</td>
+														<td><a href="#" class="blacktext hoverthema">안녕하세요
+																질문입니다<strong class="badgecount">[1]</strong>
 														</a></td>
-														<td>ȫ�浿</td>
+														<td>홍길동</td>
 														<td>2021/07/07</td>
 														<td>0</td>
 													</tr>
@@ -258,8 +258,8 @@
 											</table>
 											<div class="row">
 												<div class="col-md-12 mb-3">
-													<button class="btn btn-primary float-end">�� ����</button>
-													<button class="btn btn-primary float-end">��ü �ı� ����</button>
+													<button class="btn btn-primary float-end">글 쓰기</button>
+													<button class="btn btn-primary float-end">전체 후기 보기</button>
 												</div>
 											</div>
 											<div class="row">
@@ -282,7 +282,7 @@
 											<div class="p_qna">
 												<h1>
 													<span class="qna_tit"> Q&A </span><br> <span
-														class="qna_subtit"> ��ǰ ���Ǹ� �����ּ���!</span>
+														class="qna_subtit"> 상품 문의를 남겨주세요!</span>
 												</h1>
 												<div class="row">
 													<div class="col-md-10"></div>
@@ -291,62 +291,62 @@
 												<table class="table">
 													<thead>
 														<tr class="textcenter colorthema">
-															<th class="width10">��ȣ</th>
-															<th class="width10">�з�</th>
-															<th class="width40">����</th>
-															<th class="width10">�۾���</th>
-															<th class="width20">�ۼ���</th>
-															<th class="width10">��ȸ��</th>
+															<th class="width10">번호</th>
+															<th class="width10">분류</th>
+															<th class="width40">제목</th>
+															<th class="width10">글쓴이</th>
+															<th class="width20">작성일</th>
+															<th class="width10">조회수</th>
 														</tr>
 													</thead>
 													<tbody class="textcenter">
 														<tr>
 															<td>5</td>
-															<td>�ı�</td>
-															<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																	�ı��Դϴ�<strong class="badgecount">[1]</strong>
+															<td>후기</td>
+															<td><a href="#" class="blacktext hoverthema">안녕하세요
+																	후기입니다<strong class="badgecount">[1]</strong>
 															</a></td>
-															<td>ȫ�浿</td>
+															<td>홍길동</td>
 															<td>2021/07/07</td>
 															<td>0</td>
 														</tr>
 														<tr>
 															<td>4</td>
-															<td>�ı�</td>
-															<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																	�ı��Դϴ�<strong class="badgecount">[1]</strong>
+															<td>후기</td>
+															<td><a href="#" class="blacktext hoverthema">안녕하세요
+																	후기입니다<strong class="badgecount">[1]</strong>
 															</a></td>
-															<td>ȫ�浿</td>
+															<td>홍길동</td>
 															<td>2021/07/07</td>
 															<td>0</td>
 														</tr>
 														<tr>
 															<td>3</td>
-															<td>����</td>
-															<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																	�����Դϴ�<strong class="badgecount">[1]</strong>
+															<td>질문</td>
+															<td><a href="#" class="blacktext hoverthema">안녕하세요
+																	질문입니다<strong class="badgecount">[1]</strong>
 															</a></td>
-															<td>ȫ�浿</td>
+															<td>홍길동</td>
 															<td>2021/07/07</td>
 															<td>0</td>
 														</tr>
 														<tr>
 															<td>2</td>
-															<td>�ı�</td>
-															<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																	�ı��Դϴ�<strong class="badgecount">[1]</strong>
+															<td>후기</td>
+															<td><a href="#" class="blacktext hoverthema">안녕하세요
+																	후기입니다<strong class="badgecount">[1]</strong>
 															</a></td>
-															<td>ȫ�浿</td>
+															<td>홍길동</td>
 															<td>2021/07/07</td>
 															<td>0</td>
 														</tr>
 														<tr>
 															<td>1</td>
-															<td>����</td>
-															<td><a href="#" class="blacktext hoverthema">�ȳ��ϼ���
-																	�����Դϴ�<strong class="badgecount">[1]</strong>
+															<td>질문</td>
+															<td><a href="#" class="blacktext hoverthema">안녕하세요
+																	질문입니다<strong class="badgecount">[1]</strong>
 															</a></td>
-															<td>ȫ�浿</td>
+															<td>홍길동</td>
 															<td>2021/07/07</td>
 															<td>0</td>
 														</tr>
@@ -354,9 +354,9 @@
 												</table>
 												<div class="row">
 													<div class="col-md-12 mb-3">
-														<button class="btn btn-primary float-end">�� ����</button>
-														<button class="btn btn-primary float-end">��ü �ı�
-															����</button>
+														<button class="btn btn-primary float-end">글 쓰기</button>
+														<button class="btn btn-primary float-end">전체 후기
+															보기</button>
 													</div>
 												</div>
 												<div class="row">

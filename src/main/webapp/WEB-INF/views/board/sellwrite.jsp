@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
@@ -10,42 +10,42 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush;">»óÇ° µî·Ï</h3>
+				<h3 class="heading-section" style="font-family: naBrush;">ìƒí’ˆ ë“±ë¡</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">»õ »óÇ° µî·Ï</h3>
+				<h3 class="colorthema margintb20 padding6px">ìƒˆ ìƒí’ˆ ë“±ë¡</h3>
 			</div>
 			<form action="" method="post">
 				<hr class="one" />
 				<div class="col-md-10"> <input type="text"
 						class="form-control inlinetest " name="p_name"
-						id="campusboard-product-name" placeholder="»óÇ° ÀÌ¸§ ÀÔ·Â" />
+						id="campusboard-product-name" placeholder="ìƒí’ˆ ì´ë¦„ ìž…ë ¥" />
 				</div>
 				<hr class="one" />
 				<div class="col-md-10"> <input type="text"
 						class="form-control width70 inlinetest " name="p_number"
-						id="campusboard-product-code" placeholder="»óÇ° ¹øÈ£ ÀÔ·Â" />
+						id="campusboard-product-code" placeholder="ìƒí’ˆ ë²ˆí˜¸ ìž…ë ¥" />
 				</div>
 				<hr class="one" />
 				<div class="col-md-10"> <input type="text"
 						class="form-control width70 inlinetest " name="pc_code"
-						id="campusboard-product-pccode" placeholder="Ä«Å×°í¸® ¹øÈ£ ÀÔ·Â" />
+						id="campusboard-product-pccode" placeholder="ì¹´í…Œê³ ë¦¬ ë²ˆí˜¸ ìž…ë ¥" />
 				</div>
 				<hr class="one" />
 				<div class="col-md-10"> <input type="text"
 						class="form-control width70 inlinetest " name="p_stock"
-						id="campusboard-product-stock" placeholder="Àç°í ÀÔ·Â" />
+						id="campusboard-product-stock" placeholder="ìž¬ê³  ìž…ë ¥" />
 				</div>
 				<hr class="one" />
 				<div class="col-md-10"> <input type="text"
 						class="form-control width70 inlinetest " name="p_manufact"
-						id="campusboard-product-stock" placeholder="Á¦Á¶»ç ÀÔ·Â" />
+						id="campusboard-product-stock" placeholder="ì œì¡°ì‚¬ ìž…ë ¥" />
 				</div>
 				<hr class="one" />
 				<div class="col-md-8">
 
-					<div class="blacktext">»óÇ° ÀÌ¹ÌÁö µî·Ï</div>
+					<div class="blacktext">ìƒí’ˆ ì´ë¯¸ì§€ ë“±ë¡</div>
 					<div class="">
 						<div class="form-group">
 							<input type="file" name="campusFile" multiple
@@ -59,47 +59,47 @@
 				<hr class="one" />
 				<div class="col-md-10"><input type="text"
 						class="form-control width70 inlinetest " name="p_price"
-						id="campusboard-product-price" placeholder="»óÇ° °¡°Ý ÀÔ·Â (¼ýÀÚ·Î¸¸)" />
+						id="campusboard-product-price" placeholder="ìƒí’ˆ ê°€ê²© ìž…ë ¥ (ìˆ«ìžë¡œë§Œ)" />
 				</div>
 				<hr class="one" />
 				<div class="col-md-10">
-					<label for="campusboard-title " class="label"><h5>¿É¼Ç
-							ÀÌ¸§</h5></label> <input type="text"
+					<label for="campusboard-title " class="label"><h5>ì˜µì…˜
+							ì´ë¦„</h5></label> <input type="text"
 						class="form-control width70 inlinetest " name="po_optiontitle"
-						id="campusboard-product-optiontitle" placeholder=" ¾øÀ» ½Ã °ø¶õ" />
+						id="campusboard-product-optiontitle" placeholder=" ì—†ì„ ì‹œ ê³µëž€" />
 					<hr class="one" />
 
 
 					<div class="col-md-10 mll20 optionadd">
-						<label for="campusboard-title " class="label"><h5>¿É¼Ç
+						<label for="campusboard-title " class="label"><h5>ì˜µì…˜
 							</h5></label> <input type="text"
 							class="form-control width70 inlinetest " name="po_option1"
-							id="campusboard-product-option-1" placeholder=" ¾øÀ» ½Ã °ø¶õ" />
+							id="campusboard-product-option-1" placeholder=" ì—†ì„ ì‹œ ê³µëž€" />
 					</div>
 					<div class="col-md-10 mll20 optionadd margintb20">
-						<label for="campusboard-title " class="label"><h5>¿É¼Ç
+						<label for="campusboard-title " class="label"><h5>ì˜µì…˜
 							</h5></label> <input type="text"
 							class="form-control width70 inlinetest " name="po_option2"
-							id="campusboard-product-ption-2" placeholder=" ¾øÀ» ½Ã °ø¶õ" />
+							id="campusboard-product-ption-2" placeholder=" ì—†ì„ ì‹œ ê³µëž€" />
 					</div>
 					<div class="col-md-10 mll20 optionadd margintb20">
-						<label for="campusboard-title " class="label"><h5>¿É¼Ç
+						<label for="campusboard-title " class="label"><h5>ì˜µì…˜
 							</h5></label> <input type="text"
 							class="form-control width70 inlinetest " name="po_option3"
-							id="campusboard-product-option-3" placeholder=" ¾øÀ» ½Ã °ø¶õ" />
+							id="campusboard-product-option-3" placeholder=" ì—†ì„ ì‹œ ê³µëž€" />
 					</div>
 
 
 				</div>
 				<hr class="one" />
 				<div class="col-md-12">
-					<h5>¼³¸í ³»¿ë</h5>
+					<h5>ì„¤ëª… ë‚´ìš©</h5>
 					<textarea class="form-control " cols="50" rows="50" id ="campusboard-product-content" name="b_content"
-						style="resize: none" placeholder="¼³¸í ³»¿ëÀ» Ãß°¡ÇØ ÁÖ¼¼¿ä" ></textarea>
+						style="resize: none" placeholder="ì„¤ëª… ë‚´ìš©ì„ ì¶”ê°€í•´ ì£¼ì„¸ìš”" ></textarea>
 				</div>
 				<hr class="one" />
 				<div class="col-md-8">
-					<div class="blacktext">¼³¸í¿¡ Ãß°¡ÇÒ ÆÄÀÏ µî·Ï (jpg/png)</div>
+					<div class="blacktext">ì„¤ëª…ì— ì¶”ê°€í•  íŒŒì¼ ë“±ë¡ (jpg/png)</div>
 					<div class="">
 						<div class="form-group">
 							<input type="file" name="uploadFile" multiple
@@ -113,7 +113,7 @@
 				<hr class="one" />
 				<div class="col-md-8 mll20"></div>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<button class="btn btn-primary" type="submit">µî·Ï</button>
+				<button class="btn btn-primary" type="submit">ë“±ë¡</button>
 				
 		</form>
 		</div>
