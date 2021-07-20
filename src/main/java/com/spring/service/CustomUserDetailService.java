@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.spring.domain.CampusCustomUser;
 import com.spring.domain.CampusUserVO;
@@ -11,7 +12,7 @@ import com.spring.mapper.CampusUserMapper;
 
 import lombok.extern.log4j.Log4j2;
 
-
+@Service
 @Log4j2
 public class CustomUserDetailService implements UserDetailsService {
 	

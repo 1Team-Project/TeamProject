@@ -15,8 +15,10 @@
 	<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 	<!-- 영권 추가 문장 시작 -->
 	<link rel="stylesheet" href="/resources/main/css/bootstrap2.min.css">
+	<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+	<sec:csrfMetaTags/>
 	<!-- 영권 추가 문장 끝 -->
 	</head>
 	<!-- 폰트 설정하는 스타일 -->
@@ -231,7 +233,7 @@
     <!-- END nav -->
 
 	</section>
-	<form action="/loginMypage" id="mypageForm" method="post">
+ 	<form action="/loginMypage" id="mypageForm" method="post">
 <input type="hidden" name="u_userid"  value="${login.u_userid}"/>
 <input type="hidden" name="u_password"  value="${login.u_password}"/>
 

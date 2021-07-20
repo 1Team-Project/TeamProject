@@ -28,8 +28,8 @@ public class HomeController {
 	
 	@GetMapping("/")
 	public String home(Model model, CampusCriteria cri) {
-		log.info("main í˜ì´ì§€");
-		log.info("ì „ì²´ ë¦¬ìŠ¤íŠ¸ ìš”ì²­");
+		log.info("main ÆäÀÌÁö");
+		log.info("ÀüÃ¼ ¸®½ºÆ® ¿äÃ»");
 		
 		List<CampusBoardVO> mainList = service.mainList(cri);
 
@@ -40,7 +40,7 @@ public class HomeController {
 	
 	@GetMapping("/access-denied")
 	public String accessDenied() {
-		log.info("error ë°œìƒ");
+		log.info("error ¹ß»ı");
 		return "AccessDenied";
 	}
 
