@@ -1,29 +1,58 @@
 package com.spring.controller;
 
+import java.sql.ResultSet;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
 import com.spring.domain.CampusAttachFileDTO;
+import com.spring.domain.CampusCampingjang;
+import com.spring.service.CampusBoardService;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
+import lombok.extern.log4j.Log4j2;
 
-@NoArgsConstructor
-@AllArgsConstructor
-@Getter
-@Setter
-@ToString
+@Controller
+@Log4j2
+
 public class CampController {
 
+	@Autowired
+	private CampusBoardService service;
+
 	
-	private int c_number;
-	private int c_area;
-	private Date c_sysdate;
-	private Date c_rsysdate;
-	private String c_name;
-	private String c_content;
+	@GetMapping("/campingjang")
+	public String total() {
+		log.info("캠핑장");
+		//service.insert(number, area,sysdata,rsysdata);
+		return "camp";
+	}
+
+	
+////	@Autowired
+////	private CampusBoardService service;
+//	
+//	//@Autowired
+//	//private CampingjangService service;
+//	
+//	@GetMapping("/campingjang")
+//	public String registerCampingjang(int number, int area,Date sysdata,Date rsysdata ) {
+//		log.info("캠핑장");
+//		//service.insert(number, area,sysdata,rsysdata);
+//		return "camp";
+//	}
+//	
+////	public boolean insert(int number, int area) {
+////		//sql구문
+////		
+////		ResultSet
+////	}
 	
 }

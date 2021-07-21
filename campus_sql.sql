@@ -94,7 +94,7 @@ CREATE TABLE CAMPUS_ORDER_DETAIL(
     constraint campus_detail_o foreign key(o_number) references CAMPUS_ORDER(o_number)
 );
 
---ķ����
+--캠핑장예약
 CREATE TABLE CAMPUS_CAMPING(
     c_number NUMBER(10) PRIMARY KEY,
     c_name VARCHAR2(100) NOT NULL,
