@@ -16,14 +16,14 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class ProductdetailController {
 	
-//	@GetMapping("/productdetail")
-//	public void productdetail() {
-//		log.info("상품 상세 페이지 이동");
-//	}
-	@PostMapping("/productdetail")
-	public ModelAndView productdetail() {
-		return null; // 이거 안적혀있어서 오류생겨서 null 적어놓은거임 merge 할때 바꿔주셈..
+	@GetMapping("/productdetail")
+	public void productdetail() {
+		log.info("상품 상세 페이지 이동");
 	}
+//	@PostMapping("/productdetail")
+//	public ModelAndView productdetail() {
+//		return null; // 이거 안적혀있어서 오류생겨서 null 적어놓은거임 merge 할때 바꿔주셈..
+//	}
 	
 	@GetMapping("/cart")
 	public void cartput() {
