@@ -89,6 +89,15 @@ public class MemberController {
 		
 		return "/UserPage";
 	}
+	
+	// logout => session 해제 후 index 보여주기
+	@GetMapping("/logout")
+	public String logout(HttpSession session) {
+		log.info("logout 요청");		
+		// session.invalidate();
+		session.removeAttribute("login");
+		return "redirect:/";
+	}
 		
 	// 로그인 정보 가져오기 => post ======> 시큐리티가 자동으로 해줌
 //	@PostMapping("/loginForm")
@@ -146,31 +155,47 @@ public class MemberController {
 
 	//회원정보수정  - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야 / 가져오는건 비밀번호 제외 다
 	@PostMapping("/mypageModify")
-	public String mypageModify(HttpSession session,RedirectAttributes rttr) {
+	public String mypageModify(ChangeVO vo, HttpSession session,RedirectAttributes rttr) {
 		log.info("회원정보수정");
 		
-		
-		
-		
+		if(vo.newPasswordEqualsConfirmPassword()) {
+			if(service.update(vo)) { // 비밀번호 수정 성공
+				session.invalidate();
+				return "redirect:/login";
+			} else { // 현재 비밀번호 오류
+				rttr.addFlashAttribute("error", "현재 비밀번호를 확인해 주세요");
+				return "redirect:/mypageModify";
+			}
+		} else { // 변경비밀번호와 확정 변경 비밀번호가 다른 경우
+			rttr.addFlashAttribute("error", "변경 비밀번호가 다릅니다.");
+			return "redirect:/mypageModify";
+		}
+	
 //		service.userUpdate(vo);
 //		session.invalidate();
 		
-		return "mypageModify";
 	}
+
+	// leave
+	@PostMapping("/leave")
+	public void leave() {
+		log.info("회원탈퇴 폼 요청");
+	}
+		
 	
-	//회원탈퇴
-//	@PostMapping("/leaveForm")
-//	public String leaveForm(CampusUserVO vo, HttpSession session,RedirectAttributes rttr) {
-//		log.info("회원탈퇴 요청 " + vo.getU_userid() + " " + vo.getU_password());
-//		
-//		if(service.leave(vo.getU_userid(), vo.getU_password())) {
-//			session.invalidate();
-//			return "redirect:/";
-//		} else {
-//			rttr.addFlashAttribute("error", "비밀번호를 확인해 주세요");
-//			return "/leave";
-//		}
-//	}
+	// 회원탈퇴
+	@PostMapping("/leaveForm")
+	public String leaveForm(CampusUserVO vo, HttpSession session,RedirectAttributes rttr) {
+		log.info("회원탈퇴 요청 " + vo.getU_userid() + " " + vo.getU_password());
+
+		if(service.leave(vo.getU_userid(), vo.getU_password())) {
+			session.invalidate();
+			return "redirect:/";
+		} else {
+			rttr.addFlashAttribute("error", "비밀번호를 확인해 주세요");
+			return "/leave";
+		}
+	}
 
 	
 	/*마이페이지 - 구매내역*/
