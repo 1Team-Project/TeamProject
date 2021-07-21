@@ -9,9 +9,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.domain.CampusAttachFileDTO;
+import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
 import com.spring.domain.CampusProductVO;
+import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
 
 import lombok.extern.log4j.Log4j2;
@@ -24,14 +27,44 @@ public class ProductController {
 	@Autowired
 	private CampusProductService service;
 	
+	@Autowired
+	private CampusBoardService board;
+	
+	@Autowired
+	private CampusAttachFileDTO attach;
+	
 	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
 	public void getList(Model model,CampusCriteria cri) {
 		log.info("전체 리스트 조회");
 		//전체 리스트, CampusPageVO vo
+		
+		//상품사진
+		
+		String imgurl="";
+		
+		List<CampusAttachFileDTO> dto = service.getImg();
+		for(CampusAttachFileDTO img:dto) {
+			
+			if (dto == null || dto.isEmpty()) {
+				imgurl = "/resources/main/images/default-img.jpg";
+			}else {
+				for(CampusAttachFileDTO ddto:dto) {
+					String path = ddto.getA_path().replace("\\", "%5C");
+					log.info("url 테스트중 : "+path);
+					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
+					break;
+					}
+				}
+			
+		CampusProductVO pvo=new CampusProductVO();
+		pvo.setUrllink(imgurl);
+		
+		}
 		List<CampusProductVO> prolist=service.prolist(cri);
 		
-//		log.info("리스트" +prolist); //테스트용
+		
+		
 		int total = service.total(cri);
 		
 		//베스트3

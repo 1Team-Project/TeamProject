@@ -13,4 +13,6 @@ public interface CampusBoardAttachMapper {
 	public List<CampusAttachFileDTO> findByBno(int b_no);
 
 	public List<CampusAttachFileDTO> getOldFiles();
+	
+	public List<CampusAttachFileDTO> getImg();
 }

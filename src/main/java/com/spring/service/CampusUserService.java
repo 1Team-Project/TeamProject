@@ -1,7 +1,6 @@
 package com.spring.service;
 
 import com.spring.domain.ChangeVO;
-import com.spring.domain.LoginVO;
 import com.spring.domain.CampusUserVO;
 
 public interface CampusUserService {

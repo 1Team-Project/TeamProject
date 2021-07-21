@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.spring.domain.ChangeVO;
-import com.spring.domain.LoginVO;
 import com.spring.domain.CampusUserVO;
 import com.spring.mapper.CampusUserMapper;
 
