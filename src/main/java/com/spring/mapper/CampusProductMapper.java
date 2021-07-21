@@ -18,8 +18,7 @@ public interface CampusProductMapper {
 	public CampusProductVO viewProduct(@Param("p_number") int p_number);
 	public int totalPro(CampusCriteria cri);
 	
-
-
+	
 	
 	
 	//관리자용

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusProductOptionVO;
@@ -30,10 +31,19 @@ public class CampusProductServiceImpl implements CampusProductService {
 	@Autowired
 	private CampusBoardAttachMapper attachMapper;
 	
+	//전체리스트
 	@Override
 	public List<CampusProductVO> prolist(CampusCriteria cri) {
 		return productmapper.prolist(cri);
 	}
+	
+	//사진불러오기
+	@Override
+	public List<CampusAttachFileDTO> getImg() {
+		return attachMapper.getImg();
+	}
+	
+	//베스트3리스트
 	@Override
 	public List<CampusProductVO> bestlist() {
 		return productmapper.bestlist();

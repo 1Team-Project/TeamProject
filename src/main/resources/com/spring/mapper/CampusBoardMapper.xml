@@ -119,6 +119,8 @@
 	</select>
 	
 	
+
+	
 	
 	<!-- 동적 SQL -->
 	<sql id = "criteria">

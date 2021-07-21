@@ -83,5 +83,86 @@
          </if>
       </if>
    </sql>
+	<!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용-->
+		
+		 
+		<select id="prolist" resultType="com.spring.domain.CampusProductVO">
+		  <![CDATA[
+		 select p_number,p_name,p_price,p_option,p_stock,pc_code ,p_manufact
+		 from(select /*+INDEX_DESC(campus_product pk_campus_product)*/
+		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact
+		      from campus_product
+		      where
+		       ]]>
+		  <include refid="criteria"></include>
+		   <![CDATA[
+		  		rownum <= (#{page}*25)) 
+		   where rn > ((#{page}-1)*25)
+		 ]]>
+		</select>
+		
+	 
+	 
+		
+		
+	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
+		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
+		<![CDATA[
+			select p_rank,p_number, p_name,p_price,p_manufact
+			from ( select p.p_number, p.p_name, p.p_price,p.p_manufact, rank() over (order by count(o.p_number) DESC, p.p_price DESC) as p_rank
+       				from campus_product p, CAMPUS_ORDER_DETAIL o
+       				where p.p_number=o.p_number
+        			group by p.p_number , p.p_name, p.p_price,p.p_manufact
+        			order by count(o.p_number) DESC, p.p_price DESC
+        		)
+        	]]> 
+        	  <![CDATA[ 
+			where ROWNUM <=3
+			]]> 
+		</select>
+		
+		
+	<!-- 상품 조회 : 카테고리별 분류 -->
+		<select id="catelist" resultType="com.spring.domain.CampusProductVO">
+			select * from campus_product where pc_code=#{pc_code}
+		</select>
+	
+	<!-- 상품 조회 : 검색(상품명 이용) -->
+		<select id="searchProduct" resultType="com.spring.domain.CampusProductVO">
+			select * 
+			from campus_product 
+			where 
+			<include refid="criteria"></include>
+		</select>
+	
+	<!-- 상품 조회 : 상품 클릭 후 조회 -->
+		<select id="viewproduct" resultType="com.spring.domain.CampusProductVO">
+			select * from campus_product where p_number=#{p_number}
+		</select>
+	
+	
+	<!-- 전체 상품 수 -->
+	<select id="totalPro" resultType="int">
+		select count(*) from campus_product
+		
+		where 
+		<include refid="criteria"></include>
+		 p_number > 0
+	</select>
+	
+	
+	
+	
+	<!-- 동적 SQL -->
+	<sql id = "criteria">
+		<if test="sort != null || sort == ''">
+			<if test="sort=='상품명'.toString()">
+				p_name like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='제조사'.toString()">
+				p_manufact like '%'||#{keyword}||'%' and
+			</if>
+		</if>
+	</sql>
 
 </mapper>

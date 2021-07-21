@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusProductOptionVO;
@@ -19,7 +20,7 @@ public interface CampusProductService {
 	public CampusProductVO viewProduct(int p_number);
 	public int total(CampusCriteria cri);
 	
-	
+	public List<CampusAttachFileDTO> getImg();
 
 	
 	public boolean insertProduct(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob);

@@ -35,14 +35,17 @@
                         <div class="campus product product-bestlist listproduct">
                             <ul class="prdList grid3">
 
-                                <!--@@@list id에 추후 db적용@@@-->
+                                <!--@@@list id에 추후 db적용@@@   -->
                                 <c:forEach var="best" items="${bestlist}" >
                                 <li id="boxid" class="prolist">
                                     <span>${best.p_rank}위</span>
                                     <div class="thumbnail">
                                         <div class="prdImg">
                                             <a href="${best.p_number}" name="boxname" class="viewpro">
-                                                <img src="${top.urllink}" id="bestprod1" alt="상품1"></a>
+                                            	<c:forEach var="" items=""> 
+                                                <img src="${top.urllink}" id="bestprod1" alt="상품1">
+                                         		  </c:forEach>
+                                                </a>
                                         </div>
                                     </div>
                                     <div class="description">
