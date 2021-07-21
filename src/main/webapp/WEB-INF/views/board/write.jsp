@@ -68,6 +68,8 @@
 <script>
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
+	
+	let catchnum = 0;
 </script>
 <script src="/resources/main/js/campuswrite.js"></script>
 <%@include file="../../design/footer.jsp"%>

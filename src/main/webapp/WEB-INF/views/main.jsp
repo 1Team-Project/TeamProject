@@ -217,12 +217,16 @@
 		</div>
 		<!-- 게시판 추가중 끝 부분 -->
 	</div>
-	<form action="" method="get" id="main_actionForm">
-		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}"/>
-		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>
-		<!-- <input type="hidden" name="page" value="1" /> -->
-	</form>
+	<form action="list" method="get" id="mainActionForm">	
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
+		<input type="hidden" name="page" value="1" />
+		<input type="hidden" name="r_page" value="1"/>
+	</form>            
 	<script>
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+	
 	$(function() {
 		// 조회 버튼 클릭 시
 		$(".btn-primary").click(function(e) {
@@ -237,27 +241,7 @@
 			
 		});
 
-		// 게시글 제목 클릭 시
-		$(".move").click(function(e) {
-			e.preventDefault(); 
-			var main_actionForm = $("#main_actionForm");
-			let bnoval = $(this).attr('href');
-
-			$.ajax({
-				url: "/board/viewadd",
-				type: "POST",
-				processData:false,
-				contentType: false,
-				data: bnoval,
-				success: function(result){
-					main_actionForm.append("<input type='hidden' name='r_page' value='" + "1" + "'/>");
-					main_actionForm.append("<input type='hidden' name='b_views' value='" + result + "'/>");
-					main_actionForm.append("<input type='hidden' name='b_no' value='"+ bnoval +"'/>");
-					main_actionForm.attr("action", "/board/view");
-					main_actionForm.submit();
-				}
-			});
-		});
 	})
 	</script>
+<script src="/resources/main/js/main.js"></script>
 <%@include file="../design/footer.jsp" %>

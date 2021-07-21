@@ -36,11 +36,6 @@ $(function(){
 			if(!checkExtension(files[i].name,files[i].size)){
 				return false;
 			}
-			if(i>=3){
-				alert("사진은 최대 3개까지 업로드가 가능합니다.");
-				$("input[name='campusFile']").val("");
-				return false;
-			}
 			campusFormData.append("campusFile",files[i]);
 		}		
 		
@@ -72,6 +67,12 @@ $(function(){
 		
 		$(uploadResultArr).each(function(i,obj){
 
+			catchnum += 1;
+			if(catchnum > 3){
+				alert("사진은 최대 3개까지 업로드가 가능합니다.");
+				catchnum -= 1;
+				return false;
+			}
 			// 썸네일 이미지 경로 링크				
 			// 2021\\07\\17\\s_2a7f8a81-525e-4781-a814-970096f42b45_2.png
 			var fileCallPath = encodeURIComponent(obj.a_path+"\\s_"+obj.a_uuid+"_"+obj.a_name);
@@ -146,7 +147,7 @@ $(function(){
 		//목록에 있는 첨부파일 삭제,서버 폴더 첨부파일 삭제
 		var targetFile = $(this).data("file");
 		console.log(targetFile)
-		
+		catchnum -= 1;
 		//li 태그 가져오기
 		var targetLi = $(this).closest("li");
 		

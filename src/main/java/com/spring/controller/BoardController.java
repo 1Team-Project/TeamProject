@@ -79,12 +79,12 @@ public class BoardController {
 			//오늘의 화제글 제목/내용이 길면 각각 10/15자 만큼 자르기
 			CampusBoardTopVO tovo = new CampusBoardTopVO();
 			if (vo.getB_content().length() >= 15) {						
-				tovo.setB_content_15(vo.getB_content().substring(0, 14));					
+				tovo.setB_content_15(vo.getB_content().substring(0, 14)+"...");					
 			}else {
 				tovo.setB_content_15(vo.getB_content());											
 			}
 			if (vo.getB_title().length() >= 10) {
-				tovo.setB_title_10(vo.getB_title().substring(0, 9));						
+				tovo.setB_title_10(vo.getB_title().substring(0, 9)+"...");						
 			}else {
 				tovo.setB_title_10(vo.getB_title());
 			}

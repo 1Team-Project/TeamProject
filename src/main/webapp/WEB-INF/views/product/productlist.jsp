@@ -102,7 +102,7 @@
                             <div class="campus product product-normallist listproduct">
 
                                 <ul class="prdList grid3">
-									<c:forEach var="pro" items="${prolist}">
+									<%-- <c:forEach var="pro" items="${prolist}">
                                     <li id="boxid" class="prolist">
                                         <div class="thumbnail">
                                             <div class="prdImg">
@@ -130,7 +130,7 @@
 									<input type="hidden" name="p_stock" value="${CampusProductVO.p_stock}" />
 									<input type="hidden" name="pc_code " value="${CampusProductVO.pc_code }" />
 								</form>-->
-									</c:forEach>
+									</c:forEach> --%>
 									
                                     <!--상품 반복 ~~ -->
                                      
