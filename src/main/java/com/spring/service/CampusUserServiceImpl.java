@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.ChangeVO;
-import com.spring.domain.LoginVO;
 import com.spring.domain.CampusUserVO;
 import com.spring.mapper.CampusUserAuthMapper;
 import com.spring.mapper.CampusUserMapper;

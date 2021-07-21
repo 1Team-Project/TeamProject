@@ -3,7 +3,6 @@ package com.spring.mapper;
 import org.apache.ibatis.annotations.Param;
 
 import com.spring.domain.ChangeVO;
-import com.spring.domain.LoginVO;
 import com.spring.domain.CampusUserVO;
 
 public interface CampusUserMapper {

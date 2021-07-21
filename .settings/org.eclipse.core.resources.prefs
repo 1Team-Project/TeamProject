@@ -2,6 +2,16 @@
 <<<<<<<=HEAD
 >>>>>>>=branch 'master' of https\://github.com/1Team-Project/TeamProject.git
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/java/com/spring/config/SecurityConfig.java=UTF-8
 encoding//src/main/java/com/spring/controller/HomeController.java=UTF-8
+=======
+<<<<<<< HEAD
+encoding//src/main/java/com/spring/controller/HomeController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/product/productlist.jsp=UTF-8
+encoding//src/main/webapp/resources/main/js/header_yk.js=euc-kr
+encoding//src/main/webapp/resources/main/js/register_yk.js=euc-kr
+=======
+>>>>>>> refs/remotes/origin/master
 encoding/<project>=UTF-8
+>>>>>>> ed52d0a05c0ce52606aa3f5fdb4961dcb86a1b9e

@@ -12,4 +12,10 @@ $(function() {
 			return false;
 		}
 	});
+	//버튼 클릭시
+	$("#move-to-mypage").click(function(){
+		
+		
+		location.href='loginMypage';
+	});
 }) 

@@ -1,3 +1,4 @@
+  
 package com.spring.mapper;
 
 import java.util.List;
@@ -35,4 +36,5 @@ public interface CampusBoardMapper {
 	
 	// 영권 main 게시판 10개 보기용 추가
 	public List<CampusBoardVO> mainList(CampusCriteria cri);
+	
 }
