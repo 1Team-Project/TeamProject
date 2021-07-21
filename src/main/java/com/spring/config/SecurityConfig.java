@@ -16,8 +16,6 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
-import org.springframework.security.web.csrf.CsrfFilter;
-import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.spring.handler.CustomAccessDeniedHandler;
 import com.spring.handler.CustomLoginSuccessHandler;
@@ -80,16 +78,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		// 모든 사람이 접근할 수 있는 url 지정
-		http.authorizeRequests()
-			.antMatchers("/login").permitAll()
-			.antMatchers("/board/viewadd").permitAll()
-			.antMatchers("/UserPage").access("hasRole('ROLE_USER', 'ROLE_ADMIN')")
-			.antMatchers("/AdminPage").access("hasRole('ROLE_ADMIN')");
-		
-		CharacterEncodingFilter filter = new CharacterEncodingFilter();
-		filter.setEncoding("utf-8");
-		filter.setForceEncoding(true);
-		http.addFilterBefore(filter, CsrfFilter.class);
+//		http.authorizeRequests()
+//			.antMatchers("/login")
+//			.permitAll();
 		
 		/*
 		<!-- 접근 제한 시 handler를 거쳐 컨트롤러로 이동하는 형태 -->
@@ -103,12 +94,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		authentication-success-handler-ref="customLoginSuccessHandler"/>
 		 */
 		http.formLogin()
-			.loginPage("/login")
-			.loginProcessingUrl("/loginForm")
 			.usernameParameter("u_userid")
 			.passwordParameter("u_password")
-			.successHandler(loginSuccessHandler())
-			.failureUrl("/login-error");
+			.loginPage("/login")
+			.loginProcessingUrl("/loginForm")
+			.failureUrl("/access-denied")
+			.successHandler(loginSuccessHandler());
 		
 		/*
 		<!-- 로그 아웃 담당 -->

@@ -3,18 +3,14 @@ package com.spring.controller;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.Locale;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -37,16 +33,8 @@ import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
 import com.spring.service.CampusReplyService;
 
-//import com.spring.domain.CampusBoardPage;
-//import com.spring.domain.CampusBoardVO;
-//import com.spring.service.CampusBoardService;
-//import com.spring.domain.CampusBoardPageVO;
-
 import lombok.extern.log4j.Log4j2;
 
-/**
- * Handles requests for the application home page.
- */
 @Controller
 @Log4j2
 @RequestMapping("/board/*")
@@ -64,19 +52,11 @@ public class BoardController {
 
 	@GetMapping("/list")
 	public void list(Model model, CampusCriteria cri) {
-		
-		log.info("ÀüÃ¼ ¸®½ºÆ® Á¶È¸");
-		//¸®½ºÆ® Á¶È¸
-		List<CampusBoardVO> list = service.list(cri);
-		int total = service.total(cri);
+		log.info("â€»â€»â€»â€»â€» list â€»â€»â€»â€»â€»");  
 
-		//list ÀÌ¸§À¸·Î Á¶È¸µÈ ÀÚ·á ¸ğµ¨¿¡ µî·Ï (¸®½ºÆ® »Ñ·ÁÁÖ±â)
-		model.addAttribute("list", list);
-
+		//ì˜¤ëŠ˜ì˜ í™”ì œê¸€
 		List<CampusBoardTopVO> top = new ArrayList<CampusBoardTopVO>();
 		
-		//¿À´ÃÀÇ È­Á¦±Û
-
 		List<CampusBoardVO> datelist = service.topdate();
 		int rank = 0;
 		String imgurl = "";
@@ -90,12 +70,13 @@ public class BoardController {
 			}else {
 				for(CampusAttachFileDTO ddto:dto) {
 					String path = ddto.getA_path().replace("\\", "%5C");
-					log.info("url Å×½ºÆ®Áß : "+path);
+					log.info("url í…ŒìŠ¤íŠ¸ì¤‘ : "+path);
 					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
 					break;
 				}
 			}
 			
+			//ì˜¤ëŠ˜ì˜ í™”ì œê¸€ ì œëª©/ë‚´ìš©ì´ ê¸¸ë©´ ê°ê° 10/15ì ë§Œí¼ ìë¥´ê¸°
 			CampusBoardTopVO tovo = new CampusBoardTopVO();
 			if (vo.getB_content().length() >= 15) {						
 				tovo.setB_content_15(vo.getB_content().substring(0, 14));					
@@ -112,27 +93,29 @@ public class BoardController {
 			tovo.setRank(rank);
 			
 			top.add(tovo);
-
-			log.info("Å×½ºÆ® È®ÀÎ Å×½ºÆ® È®ÀÎ : "+top);
 		}
+		//ë§Œì•½, ì˜¤ëŠ˜ ì“´ ê¸€ì´ 3ê°œ ë¯¸ë§Œì¼ ê²½ìš°, ë¹ˆ í˜ì´ì§€ ì˜¬ë¦¬ê¸°
 		if (rank <= 2) {
 			for(int i = 1; i <= 3-rank; i++) {				
 				CampusBoardTopVO tovo = new CampusBoardTopVO();
-				tovo.setB_title_10("¿À´ÃÀÇ È­Á¦±Û!");
-				tovo.setB_content_15("¿À´ÃÀÇ È­Á¦±ÛÀÌ ¾ø½À´Ï´Ù!");
+				tovo.setB_title_10("ì˜¤ëŠ˜ì˜ í™”ì œê¸€!");
+				tovo.setB_content_15("ì˜¤ëŠ˜ì˜ í™”ì œê¸€ì´ ì—†ìŠµë‹ˆë‹¤!");
 				tovo.setRank(999);
 				tovo.setUrllink("/resources/main/images/default-img.jpg");
 				top.add(tovo);
 			}
 		}
 		
-		//¿À´ÃÀÇ È­Á¦±Û
+		//ì „ì²´ ë¦¬ìŠ¤íŠ¸ ì¡°íšŒ ë° ëª¨ë¸ì— ë“±ë¡
+		List<CampusBoardVO> list = service.list(cri);
+		int total = service.total(cri);
+		model.addAttribute("list", list);
+		
+		//ì˜¤ëŠ˜ì˜ í™”ì œê¸€ ê°’ ëª¨ë¸ì— ë“±ë¡
 		model.addAttribute("CampusTopVO", top);
 		
-		//ÆäÀÌÁö ³ª´©±â
+		//í˜ì´ì§€ ë‚˜ëˆ„ê¸° ê°’ ëª¨ë¸ì— ë“±ë¡
 		CampusPageVO campusPageVO = new CampusPageVO(cri, total);
-		
-		//ÆäÀÌÁö ³ª´©±â °ü·Ã
 		model.addAttribute("CampusPageVO", campusPageVO);
 	}
 	
@@ -140,38 +123,43 @@ public class BoardController {
 	@PostMapping("/viewadd")
 	@ResponseBody
 	public String read2(@RequestBody String bnoval) {
+		log.info("â€»â€»â€»â€»â€» view add â€»â€»â€»â€»â€»");  
 		
-		log.info("ºä ¾Öµå Å×½ºÆ®");
-		log.info(bnoval);
+		//bno ë¥¼ ê°€ì ¸ì™€ì„œ, intí˜•ìœ¼ë¡œ ìºìŠ¤íŒ…
 		int b_no = Integer.parseInt(bnoval);
-		log.info("int Ã³¸®µÈ bno"+b_no);
-		//ÇöÀç Á¶È¸¼ö¸¦ °¡Á®¿È
-		CampusBoardVO campusVO=service.view(b_no);
-		//+1 ÇÑ »óÅÂ·Î ÀÔ·Â
-		int views = campusVO.getB_views()+1;
-		log.info("views °ª : "+views);
-		String viewsS = Integer.toString(views);
 
+		//í˜„ì¬ ì¡°íšŒìˆ˜ë¥¼ ê°€ì ¸ì˜´
+		CampusBoardVO campusVO=service.view(b_no);
+		
+		//+1 í•œ ìƒíƒœë¡œ ì…ë ¥
+		int views = campusVO.getB_views()+1;
+
+		//ë‹¤ì‹œ String í˜•íƒœë¡œ ë³€í™˜í•˜ì—¬ ë¦¬í„´
+		String viewsS = Integer.toString(views);
 		return viewsS;
 	}
 	
 	@GetMapping("/view")
 	public void read(int b_no,int b_views, int r_page,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("±Û ÇÏ³ª °¡Á®¿À±â "+b_no+" cri : "+cri);  
+		log.info("â€»â€»â€»â€»â€» view â€»â€»â€»â€»â€»");  
 		
+		//ì¡°íšŒìˆ˜ ê°€ì ¸ì˜¤ê¸°
 		CampusBoardVO campusVO=service.view(b_no);
 		int views = campusVO.getB_views();
 		
-		//¸¸¾à, Á¶È¸¼ö°¡ +1ÀÌ ¾Æ´Ñ ÀÓÀÇ·Î ´©±º°¡ ¹Ù²åÀ»¶§, ¸·±â
+		//ë§Œì•½, ì¡°íšŒìˆ˜ê°€ +1ì´ ì•„ë‹Œ ì„ì˜ë¡œ ëˆ„êµ°ê°€ ë°”ê¿¨ì„ë•Œë„ ì˜¬ë¼ê°€ëŠ” í˜„ìƒ ë§‰ê¸°
 		if (b_views - views == 1 || b_views == 1){			
 			service.addview(b_views, b_no);
 		}
 		
+		//ëŒ“ê¸€ ê´€ë ¨
 		List<CampusReplyVO> replyVO = reply.list(r_page, b_no);
 
-		model.addAttribute("campusVO", campusVO);
 		int countreply = reply.getCountByBno(b_no);
 		CampusReplyPageVO campusReplyPageVO = new CampusReplyPageVO(r_page, countreply);
+		
+		//ëª¨ë¸ì— ê°’ ë“±ë¡
+		model.addAttribute("campusVO", campusVO);
 		model.addAttribute("replyVO", replyVO);
 		model.addAttribute("campusReplyPageVO", campusReplyPageVO);
 		model.addAttribute("r_page",r_page);
@@ -180,8 +168,9 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/modify")
 	public void modify(int b_no,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("±Û ¼öÁ¤ "+b_no+" cri : "+cri);  
+		log.info("â€»â€»â€»â€»â€» get modify â€»â€»â€»â€»â€»");  
 		
+		//ê¸€ í•˜ë‚˜ì— ëŒ€í•œ ê°’ ëª¨ë¸ì— ë“±ë¡
 		CampusBoardVO campusVO=service.view(b_no);
 		model.addAttribute("campusVO", campusVO);
 	}
@@ -190,21 +179,23 @@ public class BoardController {
 	@PostMapping("/modify")
 	public String modifyPost(CampusBoardVO vo, CampusCriteria cri, RedirectAttributes rttr) {
 		
-		log.info("±Û ¼öÁ¤"+cri);
+		log.info("â€»â€»â€»â€»â€» post modify â€»â€»â€»â€»â€»");  
 
-		//Ã·ºÎ ÆÄÀÏ È®ÀÎ
+		//ì²¨ë¶€ íŒŒì¼ í™•ì¸
 		if(vo.getAttachList()!=null) {
 			vo.getAttachList().forEach(attach -> log.info(""+attach));
 		}
 		
+		//ê¸€ ìˆ˜ì • ì„±ê³µì‹œ
 		if(service.update(vo)) {
-			rttr.addFlashAttribute("result", "¼º°ø");
+			rttr.addFlashAttribute("result", "ì„±ê³µ");
 			
 			rttr.addAttribute("sort",cri.getSort());
 			rttr.addAttribute("keyword",cri.getKeyword());
 			rttr.addAttribute("page",cri.getPage());
 			
-			return "redirect:list"; // redirect:/board/list
+			return "redirect:list";
+		//ê¸€ ìˆ˜ì • ì‹¤íŒ¨ì‹œ
 		}else {
 			return "redirect:modify?b_no="+vo.getB_no()+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
 		}
@@ -212,18 +203,18 @@ public class BoardController {
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/write")
-	public void register() {
-		log.info("»õ±Û µî·Ï Æû ¿äÃ»");
+	public void write() {
+		log.info("â€»â€»â€»â€»â€» get write â€»â€»â€»â€»â€»");  
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/write")
-	public String registerPost(CampusBoardVO vo, RedirectAttributes rttr) {
+	public String writePost(CampusBoardVO vo, RedirectAttributes rttr) {
 		
-		log.info("±Û ÀÛ¼º  "+vo);
+		log.info("â€»â€»â€»â€»â€» post write â€»â€»â€»â€»â€»");  
 		
+		//ê¸€ ì‘ì„± ìš”ì²­ ë° ì„±ê³µ/ì‹¤íŒ¨ì‹œ
 		if(service.insert(vo)) {
-			log.info("±Û ÀÛ¼º ¿äÃ» : "+vo.getB_no()+" /// "+vo.getAttachList());
 			rttr.addFlashAttribute("result",vo.getB_no());
 			return "redirect:list";
 		}else {
@@ -235,19 +226,18 @@ public class BoardController {
 	@PostMapping("/remove")
 	public String remove(int b_no, String b_writer, CampusCriteria cri, RedirectAttributes rttr) {
 		
-		log.info("»èÁ¦ ¿äÃ»   "+b_no);
+		log.info("â€»â€»â€»â€»â€» post remove â€»â€»â€»â€»â€»");  
 		
-		//¼­¹ö¿¡ ÀúÀåµÈ Ã·ºÎÆÄÀÏ »èÁ¦
-		//1. bno¿¡ ÇØ´çµÇ´Â Ã·ºÎÆÄÀÏ ¸ñ·Ï ¾Ë¾Æ³»±â
+		//bnoì— í•´ë‹¹ë˜ëŠ” ì²¨ë¶€íŒŒì¼ ëª©ë¡ ì•Œì•„ë‚´ê¸°
 		List<CampusAttachFileDTO> attachList = service.getAttachList(b_no);
 		
-		//°Ô½Ã±Û »èÁ¦ + Ã·ºÎÆÄÀÏ »èÁ¦
+		//ì„±ê³µì‹œ ê²Œì‹œê¸€ ì‚­ì œ + ì²¨ë¶€íŒŒì¼ ì‚­ì œ
 		if(service.delete(b_no)) {
 
-			//2. Æú´õ ÆÄÀÏ »èÁ¦
+			//í´ë” íŒŒì¼ ì‚­ì œ
 			deleteFiles(attachList);
 			
-			rttr.addFlashAttribute("result", "¼º°ø");
+			rttr.addFlashAttribute("result", "ì„±ê³µ");
 			
 			rttr.addAttribute("keyword",cri.getKeyword());
 			rttr.addAttribute("page",cri.getPage());
@@ -264,10 +254,10 @@ public class BoardController {
 	@PostMapping("/replyadd")
 	public String replyadd(int b_no, int b_views, CampusReplyVO vo, CampusCriteria cri) {
 		
-		log.info("´ñ±Û ÀÛ¼º  "+vo);
+		log.info("â€»â€»â€»â€»â€» post replyadd â€»â€»â€»â€»â€»");  
 		
+		//ëŒ“ê¸€ ë“±ë¡ ì„±ê³µì‹œ
 		if(reply.insert(vo)) {
-			log.info("´ñ±Û ÀÛ¼º ¿äÃ» : "+vo.getB_no());
 			
 			int replycnt = reply.getCountByBno(b_no);
 			
@@ -281,18 +271,12 @@ public class BoardController {
 	}
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replymodify")
-	public String replymodify(int b_no, int b_views, int r_page, String rewriter, CampusReplyVO vo, CampusCriteria cri) {
+	public String replymodify(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
 		
-		CampusReplyVO revo =  reply.read(vo.getR_no());
-		String replyer  = revo.getR_replyer();
-		if (!replyer.equals(rewriter)) {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
-		}
+		log.info("â€»â€»â€»â€»â€» post replymodify â€»â€»â€»â€»â€»");  
 		
-		log.info("´ñ±Û ¼öÁ¤ "+vo);
-		
+		//ëŒ“ê¸€ ìˆ˜ì • ìš”ì²­
 		if(reply.update(vo)) {
-			log.info("´ñ±Û ¼öÁ¤ ¿äÃ» : "+vo.getB_no());
 
 			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
 		}else {
@@ -303,18 +287,12 @@ public class BoardController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replyremove")
-	public String replyremove(int b_no, int b_views, int r_page, String rewriter, CampusReplyVO vo, CampusCriteria cri) {
+	public String replyremove(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
 		
-		log.info("´ñ±Û »èÁ¦ "+vo);
+		log.info("â€»â€»â€»â€»â€» post replyremove â€»â€»â€»â€»â€»");  
 		
-		CampusReplyVO revo =  reply.read(vo.getR_no());
-		String replyer  = revo.getR_replyer();
-		if (!replyer.equals(rewriter)) {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
-		}
-		
+		//ëŒ“ê¸€ ì‚­ì œ ìš”ì²­
 		if(reply.delete(vo.getR_no())) {
-			log.info("´ñ±Û »èÁ¦ ¿äÃ» : "+vo.getB_no()+" / "+vo.getR_no());
 			
 			int replycnt = reply.getCountByBno(b_no);
 			
@@ -330,19 +308,19 @@ public class BoardController {
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
-		log.info("ÆÇ¸Å ÀÌµ¿");
+		log.info("â€»â€»â€»â€»â€» get sellwrite â€»â€»â€»â€»â€»");
 	}
 	
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellwrite")
 	public String sellwritePost(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob,RedirectAttributes rttr) {
-		log.info("ÆÇ¸Å µî·Ï ¿äÃ»");
+		log.info("â€»â€»â€»â€»â€» post sellwrite â€»â€»â€»â€»â€»");  
 		
-		//po_optiontitle ¿¡ °ªÀÌ µé¾î¿ÔÀ»¶§ (productoption Å×ÀÌºíÀÇ optiontitle)
-		//product ÀÇ option¿¡´Â °ªÀÌ ¾Èµé¾î¿À±â ¶§¹®¿¡, °­Á¦·Î °ªÀ» Áı¾î³Ö¾îÁÜ.
+		//po_optiontitle ì— ê°’ì´ ë“¤ì–´ì™”ì„ë•Œ (productoption í…Œì´ë¸”ì˜ optiontitle)
+		//product ì˜ optionì—ëŠ” ê°’ì´ ì•ˆë“¤ì–´ì˜¤ê¸° ë•Œë¬¸ì—, ê°•ì œë¡œ ê°’ì„ ì§‘ì–´ë„£ì–´ì¤Œ.
 		if (voo.getPo_optiontitle() != null && voo.getPo_optiontitle() != "") {
 			vo.setP_option(voo.getPo_optiontitle());
-		//º¸ÇèÃ³¸® (ÀÌ»óÇÏ°Ô Àû¾úÀ» °æ¿ì)
+		//ë³´í—˜ì²˜ë¦¬ (ì´ìƒí•˜ê²Œ ì ì—ˆì„ ê²½ìš°)
 		}else if(voo.getPo_option1() != null || voo.getPo_option2() != null || voo.getPo_option3() != null){
 			voo.setPo_option1("-");
 			voo.setPo_option2("-");
@@ -352,7 +330,7 @@ public class BoardController {
 			vo.setP_option("-");
 			voo.setPo_optiontitle("-");
 		}
-		//º¸ÇèÃ³¸® (null ¸ø¹Ş¾Æ¿Ã °æ¿ì ´ëºñ)
+		//ë³´í—˜ì²˜ë¦¬ (null ëª»ë°›ì•„ì˜¬ ê²½ìš° ëŒ€ë¹„)
 		if (voo.getPo_option1() == null && voo.getPo_option1() == "") {
 			voo.setPo_option1("-");
 		}
@@ -363,12 +341,12 @@ public class BoardController {
 			voo.setPo_option3("-");
 		}
 		
-		//°ªµéÀÌ Á¤»óÀûÀ¸·Î µé¾î¿Ô³ª È®ÀÎ¿ë
-		log.info("productVO Å×½ºÆ® : "+vo);
-		log.info("productVO (option) Å×½ºÆ® : "+voo);
-		log.info("productVO (board) Å×½ºÆ® : "+vob);
+		//ê°’ë“¤ì´ ì •ìƒì ìœ¼ë¡œ ë“¤ì–´ì™”ë‚˜ í™•ì¸ìš©
+		log.info("productVO í…ŒìŠ¤íŠ¸ : "+vo);
+		log.info("productVO (option) í…ŒìŠ¤íŠ¸ : "+voo);
+		log.info("productVO (board) í…ŒìŠ¤íŠ¸ : "+vob);
 		
-		//board => b_no, b_content ³Ö±â
+		//board => b_no, b_content ë„£ê¸°
 		//option => p_number, po_optiontitle, po_option1,2,3
 		//category => pc_code, pc_name
 		//product => p_name, p_price, p_option, p_stock, pc_code
@@ -384,8 +362,9 @@ public class BoardController {
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellmodify")
 	public void sellmodify(int p_number, int b_no, Model model) {
-		log.info("»óÇ° ¼öÁ¤ "+p_number);  
+		log.info("â€»â€»â€»â€»â€» get sellmodify â€»â€»â€»â€»â€»");
 		
+		//ìƒí’ˆ ì •ë³´, ê²Œì‹œê¸€(ìƒí’ˆ) ì •ë³´ ê°€ì ¸ì˜¤ê¸°
 		CampusProductVO campusProductVO = product.viewProduct(p_number);
 		CampusBoardVO campusBoardVO = service.view(b_no);
 		model.addAttribute("campusBoardVO", campusBoardVO);
@@ -394,9 +373,9 @@ public class BoardController {
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellmodify")
 	public String sellmodifyPost(CampusProductVO vo) {
-		
-		log.info("»óÇ° ¼öÁ¤");
+		log.info("â€»â€»â€»â€»â€» post sellmodify â€»â€»â€»â€»â€»");
 
+		//ìˆ˜ì •í•˜ê¸°
 		if(product.updateProduct(vo.getP_price(), vo.getP_stock(), vo.getP_number())) {
 			return "redirect:list";
 		}else {
@@ -406,20 +385,18 @@ public class BoardController {
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellremove")
 	public String sellremove(int b_no, int p_number, RedirectAttributes rttr) {
+		log.info("â€»â€»â€»â€»â€» post sellremove â€»â€»â€»â€»â€»");
 		
-		log.info("»óÇ° »èÁ¦ ¿äÃ»   "+b_no);
-		
-		//¼­¹ö¿¡ ÀúÀåµÈ Ã·ºÎÆÄÀÏ »èÁ¦
-		//1. bno¿¡ ÇØ´çµÇ´Â Ã·ºÎÆÄÀÏ ¸ñ·Ï ¾Ë¾Æ³»±â
+		//bnoì— í•´ë‹¹ë˜ëŠ” ì²¨ë¶€íŒŒì¼ ëª©ë¡ ì•Œì•„ë‚´ê¸°
 		List<CampusAttachFileDTO> attachList = service.getAttachList(b_no);
 		
-		//°Ô½Ã±Û »èÁ¦ + Ã·ºÎÆÄÀÏ »èÁ¦
+		//ê²Œì‹œê¸€ ì‚­ì œ + ì²¨ë¶€íŒŒì¼ ì‚­ì œ
 		if(product.deleteProduct(p_number, b_no)) {
 			
-			//2. Æú´õ ÆÄÀÏ »èÁ¦
+			//í´ë” íŒŒì¼ ì‚­ì œ
 			deleteFiles(attachList);
 			
-			rttr.addFlashAttribute("result", "¼º°ø");
+			rttr.addFlashAttribute("result", "ì„±ê³µ");
 
 			return "redirect:list";
 		}else {
@@ -430,16 +407,16 @@ public class BoardController {
 	}
 	
 	
-	//Ã·ºÎ¹° °¡Á®¿À±â
+	//ì²¨ë¶€ë¬¼ ê°€ì ¸ì˜¤ê¸°
 	@GetMapping("/getAttachList")
 	public ResponseEntity<List<CampusAttachFileDTO>> getAttachList(int b_no){
-		log.info("Ã·ºÎ¹° °¡Á®¿À±â "+b_no);
+		log.info("â€»â€»â€»â€»â€» getAttachList â€»â€»â€»â€»â€»");
 		
 		return new ResponseEntity<List<CampusAttachFileDTO>>(service.getAttachList(b_no),HttpStatus.OK);
 	}
 	
 	private void deleteFiles(List<CampusAttachFileDTO> attachList) {
-		log.info("Ã·ºÎÆÄÀÏ »èÁ¦ ¿äÃ» "+attachList);
+		log.info("ì²¨ë¶€íŒŒì¼ ì‚­ì œ ìš”ì²­ "+attachList);
 		
 		if(attachList == null || attachList.size()<=0) {
 			return;

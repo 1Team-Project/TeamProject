@@ -4,16 +4,14 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 
-@Setter
 @Getter
+@Setter
 @ToString
-
 public class CampusPageVO {
 
-	//ÆäÀÌÁö ³ª´©±â °ü·Ã
-	
-	private int startPage;
-	private int endPage;
+	//íŽ˜ì´ì§€ ë‚˜ëˆ„ê¸°ì™€ ê´€ë ¨ëœ ì •ë³´ë¥¼ ë‹´ê³  ìžˆëŠ” ê°ì²´
+	private int startPage;	
+	private int endPage;  
 	private boolean prev;
 	private boolean next;
 	private int total;
@@ -32,8 +30,7 @@ public class CampusPageVO {
 		}
 		this.prev = this.startPage > 1;
 		this.next = this.endPage < realEnd;
-		
-		
-		
 	}
+	
+	
 }

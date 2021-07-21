@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -14,11 +13,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
-import org.springframework.core.io.FileSystemResource;
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -39,10 +35,8 @@ public class BoardUploadController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/uploadAjax")
 	public ResponseEntity<List<CampusAttachFileDTO>> uploadFormPost(MultipartFile[] campusFile) {
-		log.info("ÆÄÀÏ ¾÷·Îµå ¿äÃ»");
-		
-		log.info("Àß µé¾î¿Ô³ª È®ÀÎ"+campusFile);
-		
+		log.info("â€»â€»â€»â€»â€» uploadAjax â€»â€»â€»â€»â€»");
+
 		String uploadFileName=null;
 		String uploadFolder = "c:\\CampusIMG";
 		
@@ -51,19 +45,16 @@ public class BoardUploadController {
 		File uploadPath = new File(uploadFolder,uploadFolderPath);
 		
 		if(!uploadPath.exists()) {
-			uploadPath.mkdirs(); //Æú´õ »ı¼º
+			uploadPath.mkdirs(); //í´ë” ìƒì„±
 		}
 		
 		List<CampusAttachFileDTO> attachList = new ArrayList<CampusAttachFileDTO>();
 		
 		
 		for(MultipartFile f:campusFile) {
-//			log.info("upload File Name : "+f.getOriginalFilename());
-//			log.info("upload File Size : "+f.getSize());	
-			
-			
-			//¼­¹ö Æú´õ¿¡ Àü¼ÛµÈ ÆÄÀÏ ÀúÀåÇÏ±â
-			//UUID °ª »ı¼º
+
+			//ì„œë²„ í´ë”ì— ì „ì†¡ëœ íŒŒì¼ ì €ì¥í•˜ê¸°
+			//UUID ê°’ ìƒì„±
 			UUID uuid = UUID.randomUUID();			
 			uploadFileName = uuid.toString()+"_"+f.getOriginalFilename();	
 			
@@ -76,14 +67,14 @@ public class BoardUploadController {
 				File saveFile = new File(uploadPath,uploadFileName);
 				
 				attach.setA_type(true);
-				//½æ³×ÀÏ ÀúÀå
+				//ì¸ë„¤ì¼ ì €ì¥
 				FileOutputStream thumbnail = new FileOutputStream(new File(uploadPath,"s_"+uploadFileName));
 				InputStream in = f.getInputStream();
 				Thumbnailator.createThumbnail(in, thumbnail, 100, 100);
 				in.close();
 				thumbnail.close();					
 
-				//ÆÄÀÏ ÀúÀå(¿øº» ±×´ë·Î)
+				//íŒŒì¼ ì €ì¥(ì›ë³¸ ê·¸ëŒ€ë¡œ)
 				f.transferTo(saveFile);
 				attachList.add(attach);
 				
@@ -96,10 +87,10 @@ public class BoardUploadController {
 		return new ResponseEntity<List<CampusAttachFileDTO>>(attachList,HttpStatus.OK);
 	}
 	
-	//½æ³×ÀÏ º¸¿©ÁÖ±â
+	//ì¸ë„¤ì¼ ë³´ì—¬ì£¼ê¸°
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(String fileName){
-		log.info("½æ³×ÀÏ ¿äÃ» "+fileName);
+		log.info("â€»â€»â€»â€»â€» view thumbnail â€»â€»â€»â€»â€»");
 		
 		File file = new File("c:\\CampusIMG\\"+fileName);
 		
@@ -115,22 +106,26 @@ public class BoardUploadController {
 		return entity;
 	}
 
-	//upload Æú´õ¿¡ ÀÖ´Â ÆÄÀÏ »èÁ¦
+	//upload í´ë”ì— ìˆëŠ” íŒŒì¼ ì‚­ì œ
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	public ResponseEntity<String> deleteFile(String a_name){
-		log.info("ÆÄÀÏ »èÁ¦ : "+a_name+"");
+
+		log.info("íŒŒì¼ ì‚­ì œ : "+a_name+"");
+
+		log.info("â€»â€»â€»â€»â€» deleteFile â€»â€»â€»â€»â€»");
+
 		
 		
 		try {
 			File file=new File("c:\\CampusIMG\\"+URLDecoder.decode(a_name,"utf-8"));
 			
-			file.delete(); //ÀÏ¹İ ÆÄÀÏ »èÁ¦, ÀÌ¹ÌÁöÀÎ °æ¿ì ½æ³×ÀÏ¸¸ »èÁ¦
+			file.delete(); //ì¼ë°˜ íŒŒì¼ ì‚­ì œ, ì´ë¯¸ì§€ì¸ ê²½ìš° ì¸ë„¤ì¼ë§Œ ì‚­ì œ
 			
-			//¿øº» ÀÌ¹ÌÁö ÆÄÀÏ¸í ÃßÃâ
+			//ì›ë³¸ ì´ë¯¸ì§€ íŒŒì¼ëª… ì¶”ì¶œ
 			String largeName = file.getAbsolutePath().replace("s_", "");
 			file = new File(largeName);
-			file.delete(); //¿øº» ÀÌ¹ÌÁö ÆÄÀÏ »èÁ¦
+			file.delete(); //ì›ë³¸ ì´ë¯¸ì§€ íŒŒì¼ ì‚­ì œ
 			
 		} catch (UnsupportedEncodingException e) {			
 			e.printStackTrace();
@@ -141,13 +136,13 @@ public class BoardUploadController {
 	
 	
 
-	//Æú´õ »ı¼º
+	//í´ë” ìƒì„±
 	private String getFolder() {
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		Date date = new Date();
-		String str = sdf.format(date); // "2021-06-17"
+		String str = sdf.format(date);
 		
-		return str.replace("-", File.separator); // "2021\06\17"
+		return str.replace("-", File.separator);
 	}
 }

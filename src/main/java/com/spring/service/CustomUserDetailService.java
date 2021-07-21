@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.stereotype.Service;
 
 import com.spring.domain.CampusCustomUser;
 import com.spring.domain.CampusUserVO;
@@ -11,7 +12,7 @@ import com.spring.mapper.CampusUserMapper;
 
 import lombok.extern.log4j.Log4j2;
 
-
+@Service
 @Log4j2
 public class CustomUserDetailService implements UserDetailsService {
 	
@@ -20,12 +21,12 @@ public class CustomUserDetailService implements UserDetailsService {
 	
 	@Override
 	public UserDetails loadUserByUsername(String u_userid) throws UsernameNotFoundException {
-		// username => userid °ª
+		// username => userid ê°’
 		log.info("u_userid : " + u_userid);
 		
 		CampusUserVO CampusUser = mapper.read(u_userid);
 		
-		log.info("ÀÎÁõÁ¤º¸ " + CampusUser);
+		log.info("ì¸ì¦ì •ë³´ " + CampusUser);
 		
 		return new CampusCustomUser(CampusUser);
 	}

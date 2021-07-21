@@ -7,12 +7,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.CampusBoardVO;
+import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
 import com.spring.mapper.CampusBoardAttachMapper;
 import com.spring.mapper.CampusBoardMapper;
 import com.spring.mapper.CampusProductMapper;
 import com.spring.mapper.OptionMapper;
+
 @Service
 public class CampusProductServiceImpl implements CampusProductService {
 
@@ -29,23 +31,36 @@ public class CampusProductServiceImpl implements CampusProductService {
 	private CampusBoardAttachMapper attachMapper;
 	
 	@Override
-	public List<CampusProductVO> productList() {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CampusProductVO> prolist(CampusCriteria cri) {
+		return productmapper.prolist(cri);
+	}
+	@Override
+	public List<CampusProductVO> bestlist() {
+		return productmapper.bestlist();
 	}
 
 	@Override
-	public List<CampusProductVO> productCategory(String pc_code) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<CampusProductVO> catelist(String pc_code) {
+		return productmapper.catelist(pc_code);
 	}
 
 	@Override
 	public List<CampusProductVO> searchProduct(String p_name) {
-		// TODO Auto-generated method stub
-		return null;
+		return productmapper.searchProduct(p_name);
 	}
-
+	
+	@Override
+	public CampusProductVO viewProduct(int p_number) {
+		return productmapper.viewProduct(p_number);
+	}
+	@Override
+	public int total(CampusCriteria cri) {
+		return productmapper.totalPro(cri);
+	}
+	
+	
+	
+	//Í¥ÄÎ¶¨ÏûêÏö©
 	@Override
 	@Transactional
 	public boolean insertProduct(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob) {
@@ -56,7 +71,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 		boolean result = false;
 
 		
-		//√∑∫Œ∆ƒ¿œ ø©∫Œ »Æ¿Œ
+		//Ï≤®Î∂ÄÌååÏùº Ïó¨Î∂Ä ÌôïÏù∏
 		if(vob.getAttachList()==null || vob.getAttachList().size()<=0) {
 			
 			if (test1 == test2 == test3) {
@@ -66,7 +81,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 			return result;
 		}
 		
-		// √∑∫Œ∆ƒ¿œ µÓ∑œ
+		// Ï≤®Î∂ÄÌååÏùº Îì±Î°ù
 		vob.getAttachList().forEach(attach -> {
 			attach.setB_no(vob.getB_no());
 			attachMapper.insert(attach);
@@ -101,17 +116,14 @@ public class CampusProductServiceImpl implements CampusProductService {
 		return productmapper.updateProduct(p_price, p_stock, p_number)>0?true:false;
 	}
 
-	@Override
-	public CampusProductVO viewProduct(int p_number) {
-		// TODO Auto-generated method stub
-		return productmapper.viewProduct(p_number);
-	}
+
 
 	@Override
 	public CampusProductVO detailproduct(int p_number) {
 		// TODO Auto-generated method stub
 		return productmapper.productdetail(p_number);
 	}
+	
+
 
 }
-

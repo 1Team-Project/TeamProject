@@ -1,44 +1,44 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
-	<form id="formId" action="/regist2" method="post">
+	<form id="formId" action="regist2" method="post">
 		<div class="regist-Form">
 			<div class="form-group">
-		  		<label for="u_userid" style="font-family: naBrush">¾ÆÀÌµð</label>
-		  		<button type="button" id="checkId" class="btn btn-primary" style="font-size:20px">ÀÔ ·Â</button>
+		  		<label for="u_userid" style="font-family: naBrush">ì•„ì´ë””</label>
+		  		<button type="button" id="chkId" class="btn btn-primary" style="font-size:20px">ìž… ë ¥</button>
 		  		<div class="regist-margin">
-		    		<input type="text" name="u_userid" id="u_userid" class="form-control-regist" placeholder="¿µ¹®, ¼ýÀÚ 4 ~12ÀÚ¸®" />
+		    		<input type="text" name="u_userid" id="u_userid" class="form-control-regist" placeholder="ì˜ë¬¸, ìˆ«ìž 4 ~12ìžë¦¬" />
 		  		</div>
 		    	<i id="u_userid" class="text-info"></i>
 			</div>
 
 			<div class="form-group">
-		  		<label for="u_password" style="font-family: naBrush">ºñ¹Ð¹øÈ£</label>
+		  		<label for="u_password" style="font-family: naBrush">ë¹„ë°€ë²ˆí˜¸</label>
 		  		<div class="regist-margin">
-		    		<input type="password" name="u_password" id="u_password" class="form-control-regist" placeholder="¿µ¹®, ¼ýÀÚ 8 ~12ÀÚ¸®, Æ¯¼ö¹®ÀÚ !@#$%^&* »ç¿ë°¡´É" />
+		    		<input type="password" name="u_password" id="u_password" class="form-control-regist" placeholder="ì˜ë¬¸, ìˆ«ìž 8 ~12ìžë¦¬, íŠ¹ìˆ˜ë¬¸ìž !@#$%^&* ì‚¬ìš©ê°€ëŠ¥" />
 		  		</div>
 	    		<i id="u_password" class="text-info"></i>
 			</div>
 			
 			<div class="form-group">
-		  		<label for="confirm_password" style="font-family: naBrush">ºñ¹Ð¹øÈ£ È®ÀÎ</label>
+		  		<label for="confirm_password" style="font-family: naBrush">ë¹„ë°€ë²ˆí˜¸ í™•ì¸</label>
 		  		<div class="regist-margin">
-		    		<input type="password" name="confirm_password" id="confirm_password" class="form-control-regist" placeholder="¿µ¹®, ¼ýÀÚ 8 ~12ÀÚ¸®, Æ¯¼ö¹®ÀÚ !@#$%^&* »ç¿ë°¡´É" />
+		    		<input type="password" name="confirm_password" id="confirm_password" class="form-control-regist" placeholder="ì˜ë¬¸, ìˆ«ìž 8 ~12ìžë¦¬, íŠ¹ìˆ˜ë¬¸ìž !@#$%^&* ì‚¬ìš©ê°€ëŠ¥" />
 		  		</div>
 	    		<i id="confirm_password" class="text-info"></i>
 			</div>
 			
 			<div class="form-group">
-		  		<label for="u_username" style="font-family: naBrush">ÀÌ    ¸§</label>
+		  		<label for="u_username" style="font-family: naBrush">ì´    ë¦„</label>
 		  		<div class="regist-margin">
-		    		<input type="text" name="u_username" id="u_username" class="form-control-regist" placeholder="ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä" />
+		    		<input type="text" name="u_username" id="u_username" class="form-control-regist" placeholder="ì´ë¦„ì„ ìž…ë ¥í•˜ì„¸ìš”" />
 		  		</div>
 	    		<i id="u_username" class="text-info"></i>
 			</div>
 			
 			<div class="form-group">
-		  		<label for="u_email" style="font-family: naBrush">ÀÌ¸ÞÀÏ</label>
+		  		<label for="u_email" style="font-family: naBrush">ì´ë©”ì¼</label>
 		  		<div class="regist-margin">
 		    		<input type="text" name="u_email" id="u_email" class="form-control-regist" placeholder="example@gmail.com" />
 		  		</div>
@@ -46,25 +46,26 @@
 			</div>
 			
 			<div class="form-group">
-		  		<label for="u_phone" style="font-family: naBrush">ÀüÈ­¹øÈ£</label>
+		  		<label for="u_phone" style="font-family: naBrush">ì „í™”ë²ˆí˜¸</label>
 		  		<div class="regist-margin">
-		    		<input type="text" name="u_phone" id="u_phone" class="form-control-regist" placeholder="ÀüÈ­¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä" />
+		    		<input type="text" name="u_phone" id="u_phone" class="form-control-regist" placeholder="ì „í™”ë²ˆí˜¸ë¥¼ ìž…ë ¥í•˜ì„¸ìš”" />
 		  		</div>
 	    		<i id="u_phone" class="text-info"></i>
 			</div>
 			
 			<div class="form-group">
-		  		<label for="u_address" style="font-family: naBrush">ÁÖ    ¼Ò</label>
+		  		<label for="u_address" style="font-family: naBrush">ì£¼    ì†Œ</label>
 		  		<div class="regist-margin">
-		    		<input type="text" name="u_address" id="u_address" class="form-control-regist" placeholder="ÁÖ¼Ò¸¦ ÀÔ·ÂÇÏ¼¼¿ä" />
+		    		<input type="text" name="u_address" id="u_address" class="form-control-regist" placeholder="ì£¼ì†Œë¥¼ ìž…ë ¥í•˜ì„¸ìš”" />
 		  		</div>
 	    		<i id="u_address" class="text-info"></i>
 			</div>
 			<div class="form-group">
-		  		<button type="submit" id="signup" class="btn btn-primary" style="font-size:20px">ÀÔ ·Â</button>
-		  		<button type="reset" class="btn btn-danger" style="font-size:20px" onclick="location.href='/'">Ãë ¼Ò</button>
+		  		<button type="submit" id="signup" class="btn btn-primary" style="font-size:20px">ìž… ë ¥</button>
+		  		<button type="reset" class="btn btn-danger" style="font-size:20px" onclick="location.href='/'">ì·¨ ì†Œ</button>
 		    </div>
 		</div>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
 <script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>

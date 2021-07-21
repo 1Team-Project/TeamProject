@@ -14,12 +14,18 @@
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 	<!-- ���� �߰� ���� ���� -->
+	<!-- 영권 추가 문장 시작 -->
 	<link rel="stylesheet" href="/resources/main/css/bootstrap2.min.css">
+	<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 	<!-- ���� �߰� ���� �� -->
 	</head>
 	<!-- ��Ʈ �����ϴ� ��Ÿ�� -->
+	<sec:csrfMetaTags/>
+	<!-- 영권 추가 문장 끝 -->
+	</head>
+	<!-- 폰트 설정하는 스타일 -->
 	<style type="text/css">
 		@FONT-FACE {
 			font-family: 'naBrush';
@@ -31,6 +37,7 @@
        width:100%; 
        height:auto; }
 	/* 1.�ϴ����� */
+	/* 1.하단정보 */
     .campus{
       color: white;
     }
@@ -103,6 +110,7 @@
     }
  
 	/* 2.�ּ� �� ����Ʈ��ũ */
+	/* 2.주소 및 사이트링크 */
 		.f_link{
       position:relative; 
       width:100%; 
@@ -137,6 +145,10 @@
 		<div class="container">
 			<div class="row justify-content-center mt-5 " >
 				<!-- Ŭ���� ����ȭ������ �̵��ϰ� �ϴ� ��ũ (��Ʈ �׸�) -->
+		<!-- 맨 위 관련 (그림, 글씨) -->
+		<div class="container">
+			<div class="row justify-content-center mt-5 " >
+				<!-- 클릭시 메인화면으로 이동하게 하는 링크 (텐트 그림) -->
 				<a href="/" class="text-center"><img src="/resources/main/images/header.png" alt=""  ></a>
 				<div class="col-md-6 text-center mb-3">
 					<h6 class="heading-section" style="font-family: naBrush;">Us Camping</h6>
@@ -153,6 +165,11 @@
 					<div class="social-media">
 		    		<p class="d-md-flex justify-content-end m-2">
 						<!-- �� ������ Ŭ���� �̵��Ǵ� ��ũ (login , mypage , cart) -->
+				<!-- 아이콘 관련 -->
+				<div class="col-md-12 order-md-last fixed-top">
+					<div class="social-media">
+		    		<p class="d-md-flex justify-content-end m-2">
+						<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
 						
 						
 						
@@ -191,6 +208,7 @@
 	    <div class="container-fluid">
 	    
 		<!-- ī�װ� ���� -->
+		<!-- 카테고리 관련 -->
 	      <div class="collapse navbar-collapse justify-content-center " id="ftco-nav">
 	        <ul class="navbar-nav">
 
@@ -203,6 +221,14 @@
                 <a class="dropdown-item" href="#">ī�װ�2</a>
                 <a class="dropdown-item" href="#">ī�װ�3</a>
                 <a class="dropdown-item" href="#">ī�װ�4</a>
+				<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
+             	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑 상품</a>
+             	 <div class="dropdown-menu" aria-labelledby="dropdown01">
+				<!-- 각 카테고리별 이동하는 링크 -->
+              	<a class="dropdown-item" href="product/productlist">상품 전체</a>
+                <a class="dropdown-item" href="product/catelist">카테고리1</a>
+                <a class="dropdown-item" href="product/catelist">카테고리2</a>
+                <a class="dropdown-item" href="product/catelist">카테고리3</a>
               </div>
            	  </li>
 
@@ -212,6 +238,11 @@
 					<div class="dropdown-menu" aria-labelledby="dropdown02">
 					<!-- �� ī�װ��� �̵��ϴ� ��ũ -->
 					<a class="dropdown-item" href="#">ķ���� ���</a>
+					<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
+					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑장 정보</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown02">
+					<!-- 각 카테고리별 이동하는 링크 -->
+					<a class="dropdown-item" href="#">캠핑장 목록</a>
 				</div>
 				   </li>
 
@@ -222,6 +253,11 @@
 					<div class="dropdown-menu" aria-labelledby="dropdown03">
 					<!-- �� ī�װ��� �̵��ϴ� ��ũ -->
 					<a class="dropdown-item" href="/board/list">���� �Խ���</a>
+					<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
+					<a class="nav-link dropdown-toggle " href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
+					<div class="dropdown-menu" aria-labelledby="dropdown03">
+					<!-- 각 카테고리별 이동하는 링크 -->
+					<a class="dropdown-item" href="/board/list">통합 게시판</a>
 				</div>
 				   </li>
 	        </ul>
@@ -231,7 +267,7 @@
     <!-- END nav -->
 
 	</section>
-	<form action="/loginMypage" id="mypageForm" method="post">
+ 	<form action="/loginMypage" id="mypageForm" method="post">
 <input type="hidden" name="u_userid"  value="${login.u_userid}"/>
 <input type="hidden" name="u_password"  value="${login.u_password}"/>
 
@@ -245,3 +281,6 @@
  	<!-- ���� �߰� ���� ���� -->
  	<script src="/resources/main/js/header_yk.js"></script>
  	<!-- ���� �߰� ���� �� -->
+ 	<!-- 영권 추가 문장 시작 -->
+ 	<script src="/resources/main/js/header_yk.js"></script>
+ 	<!-- 영권 추가 문장 끝 -->

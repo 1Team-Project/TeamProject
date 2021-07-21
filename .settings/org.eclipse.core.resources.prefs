@@ -1,5 +1,8 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=2dd278e8b3ed4d54cf3fea4467cb5094abb0673d
+>>>>>>>=f35d89c5c863c3786003bd61e9005908fa69c371
 eclipse.preferences.version=1
 encoding//src/main/java/com/spring/controller/HomeController.java=UTF-8
+encoding//src/main/webapp/WEB-INF/views/product/productlist.jsp=UTF-8
+encoding//src/main/webapp/resources/main/js/header_yk.js=euc-kr
+encoding//src/main/webapp/resources/main/js/register_yk.js=euc-kr

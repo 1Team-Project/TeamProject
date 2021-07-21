@@ -104,7 +104,7 @@
 								<when test="sort=='Q'.toString()">
 									b_sort like '%'||'질문'||'%'
 								</when>
-								<when test="sort=='P'.toString()">
+								<when test="sort=='R'.toString()">
 									b_sort like '%'||'후기'||'%'
 								</when>
 							</choose>

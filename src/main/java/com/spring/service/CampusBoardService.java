@@ -22,6 +22,6 @@ public interface CampusBoardService {
 	
 	public List<CampusAttachFileDTO> getAttachList(int bno);
 	
-	// ¿µ±Ç ¸ŞÀÎ °Ô½ÃÆÇ 10°³ º¸¿©ÁÖ±â¿ë
+	// ì˜ê¶Œ ë©”ì¸ ê²Œì‹œíŒ 10ê°œ ë³´ì—¬ì£¼ê¸°ìš©
 	public List<CampusBoardVO> mainList(CampusCriteria cri);
 }

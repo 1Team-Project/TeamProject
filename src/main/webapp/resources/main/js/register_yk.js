@@ -15,8 +15,8 @@ $(function() {
 	});
 	
 	/* register.jsp */
-	$("#checkId").click(function(){
-		var chkId = $('input[name="u_userid"]').val();
+	$("#chkId").click(function(){
+		var chkId = $('input[id="u_userid"]').val();
 		var regId = /^[a-zA-Z0-9]{4,12}$/;
 		alert("아이디 : " + chkId);
 		if(chkId == '') {
@@ -43,6 +43,14 @@ $(function() {
 			}
 		});
 	});
+	// ajax에서 csrf 사용을 위한 부분
+    var token = $("meta[name='_csrf']").attr("content");
+    var header = $("meta[name='_csrf_header']").attr("content");
+    $(document).ajaxSend(function(e, xhr, options) {
+        if(token && header) {
+            xhr.setRequestHeader(header, token);
+        }
+    });
 })
 
 
@@ -144,4 +152,3 @@ signup.addEventListener("click", function(event) {
 		event.preventDefault();	
 	}*/
 })
-

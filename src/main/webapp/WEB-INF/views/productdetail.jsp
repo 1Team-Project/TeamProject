@@ -33,6 +33,14 @@
 				<strong class="name">강력 손전등</strong> <span class="name_detail">배터리가
 					잘 닳지 않는 강력 손전등</span>
 			</p>
+			<!--<p class="p_price">
+                    <span class="position">
+                        <span class=price>
+                            15,000
+                            <span class="unit">원</span>
+                        </span>
+                    </span>
+                </p>-->
 			<div class="p_info">
 				<table>
 					<colgroup>
@@ -52,6 +60,15 @@
 						<tr>
 							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
 							<td>${vo.manufact}</td>
+							<td class="price">15,000원</td>
+						</tr>
+						<tr>
+							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
+							<td>123456789</td>
+						</tr>
+						<tr>
+							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
+							<td>SONY/ 자강 정보 통신</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
@@ -81,6 +98,11 @@
 									<option value="${i}">${i}</option>
 									<option value="${i}">${i}</option>
 						     </c:forEach>
+							<td><select>
+									<option>기본 (+0)</option>
+									<option>1 (+0)</option>
+									<option>2 (+0)</option>
+									<option>3 (+0)</option>
 							</select></td>
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
@@ -108,6 +130,13 @@
 							</form>
 							<button type="button" class="btn btn-primary btn-lg">장바구니</button>
 							<button type="button" class="btn btn-secondary btn-lg">구매하기</button>
+								<span class="num">15,000</span> <span class="unit">원</span>
+							</span>
+						</div>
+						<div class="option_btn">
+							<button type="button" class="btn btn-primary btn-lg">장바구니</button>
+							<button type="button"
+								class="btn btn-secondary btn-lg">구매하기</button>
 						</div>
 						<div class="p_detail_info">
 							<div class="p_detail_bar">

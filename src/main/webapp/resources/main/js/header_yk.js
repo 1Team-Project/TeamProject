@@ -1,13 +1,19 @@
 /* header.jsp */
 $(function() {
 	$("#logoutDo").click(function(){
-		var logout = confirm("·Î±×¾Æ¿ô ÇÏ½Ã°Ú½À´Ï±î?");
+		var logout = confirm("ë¡œê·¸ì•„ì›ƒ í•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
 		if(logout==true){
-			alert("¾È³çÈ÷°¡¼¼¿ä")
+			alert("ì•ˆë…•íˆê°€ì„¸ìš”")
 			location.href="/logout";
 		} else {
-			alert("·Î±×ÀÎÀÌ À¯ÁöµË´Ï´Ù.")
+			alert("ë¡œê·¸ì¸ì´ ìœ ì§€ë©ë‹ˆë‹¤.")
 			return false;
 		}
+	});
+	//¹öÆ° Å¬¸¯½Ã
+	$("#move-to-mypage").click(function(){
+		
+		
+		location.href='loginMypage';
 	});
 }) 
