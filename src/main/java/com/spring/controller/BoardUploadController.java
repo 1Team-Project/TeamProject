@@ -110,7 +110,11 @@ public class BoardUploadController {
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/deleteFile")
 	public ResponseEntity<String> deleteFile(String a_name){
+
+		log.info("파일 삭제 : "+a_name+"");
+
 		log.info("※※※※※ deleteFile ※※※※※");
+
 		
 		
 		try {

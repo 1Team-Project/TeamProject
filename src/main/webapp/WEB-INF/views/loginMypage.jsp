@@ -61,7 +61,6 @@
     }
     hr{
     }
-
      
     </style> 
 
@@ -97,7 +96,6 @@
 	<input type="hidden" name="u_username"  value="${vo.u_username}"/>
 	<input type="hidden" name="u_address"  value="${vo.u_address}"/>
 	<input type="hidden" name="u_phone"  value="${vo.u_phone}"/>
-
 </form> -->
 
 

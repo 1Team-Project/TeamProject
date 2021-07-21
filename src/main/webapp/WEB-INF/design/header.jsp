@@ -198,13 +198,13 @@
 
 	        	<li class="nav-item dropdown m-6 mb-0 mt-0 ">
 				<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
-             	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">상품 정보</a>
+             	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑 상품</a>
              	 <div class="dropdown-menu" aria-labelledby="dropdown01">
 				<!-- 각 카테고리별 이동하는 링크 -->
-              	<a class="dropdown-item" href="#">카테고리1</a>
-                <a class="dropdown-item" href="#">카테고리2</a>
-                <a class="dropdown-item" href="#">카테고리3</a>
-                <a class="dropdown-item" href="#">카테고리4</a>
+              	<a class="dropdown-item" href="product/productlist">상품 전체</a>
+                <a class="dropdown-item" href="product/catelist">카테고리1</a>
+                <a class="dropdown-item" href="product/catelist">카테고리2</a>
+                <a class="dropdown-item" href="product/catelist">카테고리3</a>
               </div>
            	  </li>
 

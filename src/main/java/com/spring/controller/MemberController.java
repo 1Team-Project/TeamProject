@@ -18,6 +18,7 @@ import com.spring.domain.LoginVO;
 import com.spring.service.CampusUserService;
 
 import lombok.extern.log4j.Log4j2;
+import oracle.jdbc.proxy.annotation.Post;
 
 @Controller
 @Log4j2
@@ -115,43 +116,35 @@ public class MemberController {
 	
 	//loginMypage 이동
 	@GetMapping("/loginMypage")
-	public void loginMypage() {
+	public String loginMypage() {
 		log.info("마이페이지 요청");
-//		return "loginMypage";
+		return "loginMypage";
 	}
 	
 	@PostMapping("/loginMypageForm")
-	public String loginMypageForm() {
-		log.info("마이페이지 요청");
+	public String loginMypageForm(CampusUserVO vo) {
+		log.info("마이페이지 요청"+vo.getU_userid());
 		return "loginMypage";
 	}
 	
 	/*마이페이지 - 회원정보수정*/
 	
 	//회원정보수정 페이지 이동
-//	@GetMapping("/mypageModify")
-//	public String mypageModify(Model model) {
-//		log.info("mypage-modify 요청");
-//		model.addAttribute("u_username",new CampusUserVO());
-//		
-//		return "mypageModify";
-//	}//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
-	
-	//회원정보수정 페이지 이동
 	@GetMapping("/mypageModify")
-	public String mypageModify(HttpSession session, Model model) {
-		log.info("mypage-modify 요청");
+	public String mypageModify() {
+		log.info("mypage-modify 페이지 요청");
 		
 		
 		return "mypageModify";
-	}
-
-	//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
+	}//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
 	
-	//회원정보 수정하기 - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야 / 가져오는건 비밀번호 제외 다
+
+	//회원정보수정  - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야 / 가져오는건 비밀번호 제외 다
 	@PostMapping("/mypageModify")
-	public String mypageModifyForm(CampusUserVO vo, HttpSession session) {
-		log.info("회원정보수정"+vo);
+	public String mypageModify(HttpSession session,RedirectAttributes rttr) {
+		log.info("회원정보수정");
+		
+		
 		
 		
 //		service.userUpdate(vo);
@@ -159,10 +152,24 @@ public class MemberController {
 		
 		return "mypageModify";
 	}
+	
+	//회원탈퇴
+//	@PostMapping("/leaveForm")
+//	public String leaveForm(CampusUserVO vo, HttpSession session,RedirectAttributes rttr) {
+//		log.info("회원탈퇴 요청 " + vo.getU_userid() + " " + vo.getU_password());
+//		
+//		if(service.leave(vo.getU_userid(), vo.getU_password())) {
+//			session.invalidate();
+//			return "redirect:/";
+//		} else {
+//			rttr.addFlashAttribute("error", "비밀번호를 확인해 주세요");
+//			return "/leave";
+//		}
+//	}
 
 	
 	/*마이페이지 - 구매내역*/
-	@GetMapping("/order")
+	@PostMapping("/order")
 	public String order() {
 		log.info("order페이지 요청");
 		
@@ -174,9 +181,9 @@ public class MemberController {
 	
 	
 	/*마이페이지 - 예약내역*/
-	@GetMapping("/reservation")
+	@PostMapping("/reservation")
 	public String reservation() {
-		log.info("order페이지 요청");
+		log.info("reservation 페이지 요청");
 		
 		return "reservation";
 	}
