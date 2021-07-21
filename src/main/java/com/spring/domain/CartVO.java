@@ -16,6 +16,9 @@ public class CartVO {
 	private int c_cartnumber;
 	private String u_userid;
 	private int p_number;
+	private String p_name;
+	private int price;
+	private int money;
 	private int c_count;
 
 }

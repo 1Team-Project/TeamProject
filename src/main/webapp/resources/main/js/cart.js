@@ -21,14 +21,12 @@ $(".minus").click(function() {
 	}
 });
 
-//
-//$(".btn_delete").click(function() {
-//	var confirm_val = confirm("정말 삭제하시겠습니까?")
-//
-//	if (confirm_val) {
-//		var checkArr = new Array();
-//
-//		$("input[class='chkbox']:checked").each(function() {
-//			checkArr.push($(this).attr("data-cartNum"))
-//		});
-//	
+
+$(".btn_delete").click(function() {
+	var chk = $("#checkAll").prop("checked");
+	if(chk){
+		$(".chBox").prop("checked",true);
+	}else{
+		$(".chBox").prop("checked",false);
+	}
+});

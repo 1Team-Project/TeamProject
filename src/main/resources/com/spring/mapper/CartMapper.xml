@@ -3,11 +3,15 @@
 <mapper namespace="com.spring.mapper.CartMapper">
 <!-- 장바구니 추가 -->
 	<insert id="addCart">
-	  <![CDATA[
 		insert into campus_cart(c_cartnumber, u_userid, p_number, c_count)
 		values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count})
-		]]>
 	</insert>
+	
+	<!--  장바구니에 기존 상품이 있는지  -->
+	<select id="countCart" resultType="int">
+	select count(*) from cart
+	where u_userid=#{u_userid} and p_number=#{p_number}
+	</select>
 	
     <!-- 장바구니 목록 --> 
    <select id="listCart" resultType="com.spring.domain.CartVO">
@@ -20,7 +24,7 @@
       order by c.c_cartnumber
    </select>
 
-   <!-- 장바구니 전체 금액 --> 
+   <!-- 장바구니 전체 금액 -->  
    <select id="sum" resultType="int">
       select NVL(SUM(p_price * c_count),0) money
       from campus_cart c, campus_product p
@@ -34,12 +38,21 @@
       where u_userid = #{u_userid}
       and p_name = #{p_name}
    </update>
+   <update id="update">
+   update campus_cart
+   set c_count = #{c_count}
+   where u_userid = #{u_userid}
+   and c_cartnumber = #{c_cartnumber}
+   </update>
 
     <!-- 장바구니 삭제 --> 
    <delete id="delete">
       delete from campus_cart
       where c_cartnumber = #{c_cartnumber}
-
+   </delete>
+   <delete id="deleteAll">
+   delete from campus_cart
+   where u_userid=#{u_userid}
    </delete>
 
 </mapper>

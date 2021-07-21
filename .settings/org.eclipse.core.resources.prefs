@@ -1,10 +1,5 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=2dd278e8b3ed4d54cf3fea4467cb5094abb0673d
 eclipse.preferences.version=1
-<<<<<<< HEAD
-encoding//src/main/webapp/WEB-INF/design/header.jsp=UTF-8
-encoding//src/main/webapp/WEB-INF/views/productdetail.jsp=UTF-8
-=======
 encoding//src/main/java/com/spring/controller/HomeController.java=UTF-8
-encoding//src/main/webapp/WEB-INF/views/product.jsp=UTF-8
-encoding//src/main/webapp/resources/main/js/header_yk.js=euc-kr
-encoding//src/main/webapp/resources/main/js/register_yk.js=euc-kr
->>>>>>> 2dd278e8b3ed4d54cf3fea4467cb5094abb0673d

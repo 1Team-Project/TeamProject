@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
@@ -10,11 +10,11 @@
 		<div class="col-md-10">
 			<div class="col-md-12">
 				<hr class="one" />
-				<h3 class="heading-section" style="font-family: naBrush;">»óÇ° ¼öÁ¤</h3>
+				<h3 class="heading-section" style="font-family: naBrush;">ìƒí’ˆ ìˆ˜ì •</h3>
 				<hr class="one" />
 			</div>
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">»óÇ° ¼öÁ¤</h3>
+				<h3 class="colorthema margintb20 padding6px">ìƒí’ˆ ìˆ˜ì •</h3>
 			</div>
 			<form action="" method="post" id="operForm">
 			
@@ -26,21 +26,21 @@
 				<hr class="one" />
 				<div class="col-md-10"> <input type="text"
 						class="form-control width70 inlinetest " name="p_stock"
-						id="campusboard-product-stock" placeholder="Àç°í ÀÔ·Â"  value="${campusProductVO.p_stock}"/>
+						id="campusboard-product-stock" placeholder="ìž¬ê³  ìž…ë ¥"  value="${campusProductVO.p_stock}"/>
 				</div>
 				
 				<hr class="one" />
 				<div class="col-md-10"><input type="text"
 						class="form-control width70 inlinetest " name="p_price"
-						id="campusboard-product-price" placeholder="»óÇ° °¡°Ý ÀÔ·Â (¼ýÀÚ·Î¸¸)"  value="${campusProductVO.p_price}"/>
+						id="campusboard-product-price" placeholder="ìƒí’ˆ ê°€ê²© ìž…ë ¥ (ìˆ«ìžë¡œë§Œ)"  value="${campusProductVO.p_price}"/>
 				</div>
 				<hr class="one" />
 				
 				<input type="hidden" name="p_number" value="${campusProductVO.p_number}"/>
 				<input type="hidden" name="b_no" value="${campusBoardVO.b_no}"/>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				<button class="btn btn-primary" type="submit" data-oper="modify">¼öÁ¤</button>
-				<button class="btn btn-primary" type="submit" data-oper="remove">»èÁ¦</button>
+				<button class="btn btn-primary" type="submit" data-oper="modify">ìˆ˜ì •</button>
+				<button class="btn btn-primary" type="submit" data-oper="remove">ì‚­ì œ</button>
 				
 				<div class="col-md-8 mll20"></div>
 				

@@ -38,7 +38,7 @@ public class RootConfig {
 //		PoolDataSourceImpl pool = new PoolDataSourceImpl();	
 		
 		pool.setConnectionFactoryClassName("oracle.jdbc.pool.OracleDataSource");
-		pool.setURL("jdbc:oracle:thin:@campus_medium?TNS_ADMIN=C://Wallet_CampUs");
+		pool.setURL("jdbc:oracle:thin:@campus_medium?TNS_ADMIN=C:/Wallet_CampUs");
 		pool.setUser("ADMIN");
 		pool.setPassword("CampUs1234team1");
 		pool.setMaxPoolSize(20);

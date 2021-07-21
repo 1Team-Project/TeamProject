@@ -10,10 +10,10 @@
 <link href="/resources/main/css/cart2.css" rel="stylesheet">
 </head>
 <body>
+<form action ="/order" id="orderform" method="post">
 	<div class="cart_page">
 		<h2 class="cart">장바구니</h2>
 	</div>
-	<form>
 		<div id="cartItemList" class="cartlist" style="min-height: 561px;">
 			<div class="">
 				<div class="c_item ">
@@ -64,7 +64,7 @@
 					<div class="c_select">
 						<div class="inner_select">
 							<label class="check">
-							<input type="checkbox" name="checkAll" checked>
+							<input type="checkbox" name="checkAll" checked="">
 							<span class="ico"></span>전체선택 (1/1)</label>
 							<a href="#" class="btn_delete">선택삭제</a>
 						</div>

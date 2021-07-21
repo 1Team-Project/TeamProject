@@ -140,7 +140,7 @@
 				<a href="/" class="text-center"><img src="/resources/main/images/header.png" alt=""  ></a>
 				<div class="col-md-6 text-center mb-3">
 					<h6 class="heading-section" style="font-family: naBrush;">Us Camping</h6>
-					<h1 class="heading-section" style="font-family: naBrush">ķ�۽� Camp us</h1>
+					<h1 class="heading-section" style="font-family: naBrush">캠퍼스 Camp us</h1>
 				</div>
 			</div>
 		</div>

@@ -140,30 +140,23 @@ $(".minus").click(function() {
 $(".btn-primary").click(function() {
 	var pnum = $(".p_number").val();
 	var cartStock = $(".inp").val();
-
-
+	
+	
 	var data = {
 		pnum: pnum,
 		cartStock: cartStock
-
 	};
 
 	$.ajax({
 		url: "/cart",
 		type: "post",
 		data: data,
-		success: function(result) {
-
-			if (result == 1) {
-				alert("장바구니에 담았습니다.");
+		success: function() {
+			alert("장바구니에 담았습니다.");
 				$(".inp").val("1");
-			} else {
-				alert("로그인이 필요합니다.")
-				$(".inp").val("1");
+			},
+			error:function(){
+				alert("카트 담기 실패");
 			}
-		},
-		error: function() {
-			alert("장바구니에 담기지 못했습니다.");
-		}
-	});
-});
+			});
+		});

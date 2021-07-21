@@ -19,6 +19,7 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
+//@RequestMapping()
 public class ProductController {
 
 	@Autowired
@@ -41,11 +42,17 @@ public class ProductController {
 	}
 	
 	
-	@RequestMapping("/productdetail/{p_number}")
-	public void productdetail(@PathVariable(value="p_number") int p_number, Model model) throws Exception {
-		log.info("상품 하나 선택해서 보여주기");
-		
-		CampusProductVO vo = service.detailproduct(p_number);
-		model.addAttribute("vo",vo);
-	}		
+//	@RequestMapping("/productdetail/{p_number}")
+//	public void productdetail(@PathVariable(value="p_number") int p_number, Model model) throws Exception {
+//		log.info("상품 하나 선택해서 보여주기");
+//		
+//		CampusProductVO vo = service.detailproduct(p_number);
+//		model.addAttribute("vo",vo);
+//	}
+	
+	
+	@GetMapping("/productdetail")
+	public void productdetail() {
+		log.info("상품 상세");
+	}
 }

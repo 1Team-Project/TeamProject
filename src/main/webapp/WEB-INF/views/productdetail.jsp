@@ -73,11 +73,14 @@
                         -->
 						<tr>
 							<th><img src="/resources/main/images/choices.png">&nbsp;옵션선택</th>
-							<td><select>
-									<option>${vo.p_option}</option>
-									<option>${vo.p_option}</option>
-									<option>${vo.p_option}</option>
-									<option>${vo.p_option}</option>
+							<td>
+							<select>
+							<c:forEach begin="" end="" var="i">
+									<option value="${i}">${i}</option>
+									<option value="${i}">${i}</option>
+									<option value="${i}">${i}</option>
+									<option value="${i}">${i}</option>
+						     </c:forEach>
 							</select></td>
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
@@ -100,8 +103,8 @@
 							</span>
 						</div>
 						<div class="option_btn">
-							<form name="cart1" method="post" action="/cart">
-								<input type="hidden" class="p_number" value="${p_number}">
+							<form name="cart1" method="post" action="/addcart">
+							<input type="hidden" class="p_number" value="${cart.p_number}">
 							</form>
 							<button type="button" class="btn btn-primary btn-lg">장바구니</button>
 							<button type="button" class="btn btn-secondary btn-lg">구매하기</button>

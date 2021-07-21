@@ -3,10 +3,12 @@ package com.spring.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.spring.domain.CartVO;
 import com.spring.mapper.CartMapper;
 
+@Service
 public class CartServiceImpl implements CartService {
 
 	@Autowired
@@ -37,9 +39,39 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public boolean sum(String u_userid) {
+	public int sum(String u_userid) {
 		// TODO Auto-generated method stub
-		return mapper.sum(u_userid) > 0 ? true: false;
+		return mapper.sum(u_userid);
+	}
+
+	@Override
+	public List<CartVO> cartMoney() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public boolean deleteAll(String u_userid) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	public int countCart(String u_userid, int p_number) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public void update(int c_cartnumber) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public boolean updateCart(CartVO vo) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
