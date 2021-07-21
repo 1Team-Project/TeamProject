@@ -103,8 +103,10 @@
 								<span class="unit">원</span>
 							</span>
 						</div>
+						
 						<div class="option_btn">
-							<button type="button" class="btn btn-primary btn-lg">장바구니</button>
+						<input type="hidden" name="p_number" value="${product.p_number}">
+							<button type="button" class="btn btn-primary btn-lg" id="">장바구니</button>
 							<button type="button" class="btn btn-secondary btn-lg">구매하기</button>
 								<span class="num"><fmt:formatNumber value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span>
 								<span class="unit">원</span>
@@ -267,7 +269,7 @@
 											<div class="row">
 												<div class="col-md-12 mb-3">
 													<button class="btn btn-primary float-end">글 쓰기</button>
-													<button class="btn btn-primary float-end">전체 후기 보기</button>
+													<button class="btn btn-primary float-end" onclick="location.href='/board/list'">전체 후기 보기</button>
 												</div>
 											</div>
 											<div class="row">
@@ -363,7 +365,7 @@
 												<div class="row">
 													<div class="col-md-12 mb-3">
 														<button class="btn btn-primary float-end">글 쓰기</button>
-														<button class="btn btn-primary float-end">전체 후기
+														<button class="btn btn-primary float-end" id="btn3">전체 후기
 															보기</button>
 													</div>
 												</div>
@@ -416,14 +418,7 @@
 			</div>
 		</div>
 	</div>
-<!-- 	<form action="" id="operForm" method="get"> -->
-<%-- 	<input type="hidden" name="sort" value="${cri.sort}" /> --%>
-<%-- 	<input type="hidden" name="keyword" value="${cri.keyword}" /> --%>
-<%-- 	<input type="hidden" name="page" value="${cri.page}" /> --%>
-<%-- 	<input type="hidden" name="p_number" value="${product.p_number}"/> --%>
-<!-- </form> -->
 </div>
-</form>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
