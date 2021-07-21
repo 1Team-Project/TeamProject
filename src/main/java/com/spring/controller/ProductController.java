@@ -6,13 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
 import com.spring.domain.CampusProductVO;
@@ -22,25 +18,13 @@ import lombok.extern.log4j.Log4j2;
 
 @Log4j2
 @Controller
-//@RequestMapping()
 @RequestMapping("/product/*")
 public class ProductController {
 
 	@Autowired
 	private CampusProductService service;
 	
-	//��ǰ ����Ʈ ��ü ����?
-	@GetMapping("/product")
-	public void getList(Model model) {
-		log.info("상품 상세");
-		List<CampusProductVO> list=service.productList();
-		
-		model.addAttribute("list",list);
-	}	
-	public void getSearchList(String p_name, Model model) {
-		log.info("��ǰ�� �̿�, ��ǰ ��ȸ");
-
-		//상품 리스트 전체 나열 + best3까지
+	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
 	public void getList(Model model,CampusCriteria cri) {
 		log.info("전체 리스트 조회");
@@ -93,18 +77,10 @@ public class ProductController {
 		model.addAttribute("product", product);
 	}
 	
-	
-//	@RequestMapping("/productdetail/{p_number}")
-//	public void productdetail(@PathVariable(value="p_number") int p_number, Model model) throws Exception {
-//		log.info("상품 하나 선택해서 보여주기");
-//		
-//		CampusProductVO vo = service.detailproduct(p_number);
-//		model.addAttribute("vo",vo);
-//	}
-	
-	
 	@GetMapping("/productdetail")
-	public void productdetail() {
+		public void productdetail() {
+			
 		log.info("상품 상세");
+		}
 	}
-}
+		
