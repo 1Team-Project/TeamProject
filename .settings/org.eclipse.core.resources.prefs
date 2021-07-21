@@ -1,8 +1,20 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
+<<<<<<< HEAD
 >>>>>>>=ed52d0a05c0ce52606aa3f5fdb4961dcb86a1b9e
+=======
+>>>>>>>=f35d89c5c863c3786003bd61e9005908fa69c371
+>>>>>>> refs/remotes/origin/seunghyun
 eclipse.preferences.version=1
+<<<<<<< HEAD
 encoding//src/main/java/com/spring/config/SecurityConfig.java=UTF-8
+=======
+>>>>>>> refs/remotes/origin/seunghyun
 encoding//src/main/java/com/spring/controller/HomeController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/product/productlist.jsp=UTF-8
+<<<<<<< HEAD
 encoding/<project>=UTF-8
+=======
+encoding//src/main/webapp/resources/main/js/header_yk.js=euc-kr
+encoding//src/main/webapp/resources/main/js/register_yk.js=euc-kr
+>>>>>>> refs/remotes/origin/seunghyun

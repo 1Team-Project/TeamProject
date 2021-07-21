@@ -20,7 +20,7 @@ public class CampusProductVO {
 	private String pc_code;
 	private String p_manufact;
 	private int p_rank;
-	
+
 	//상품사진
 	private String urllink;
 }

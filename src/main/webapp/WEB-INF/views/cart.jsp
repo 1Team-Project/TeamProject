@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../design/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,20 +10,23 @@
 <link href="/resources/main/css/cart2.css" rel="stylesheet">
 </head>
 <body>
+<form action ="/order" id="orderform" method="post">
 	<div class="cart_page">
 		<h2 class="cart">장바구니</h2>
 	</div>
-	<form>
 		<div id="cartItemList" class="cartlist" style="min-height: 561px;">
 			<div class="">
 				<div class="c_item ">
 					<div class="c_select">
 						<div class="innerselect">
 							<label class="check">
-							<input type="checkbox" name="checkAll" checked="">
+							<input type="checkbox" name="checkAll" checked>
 								<span class="icon"></span>
 								전체선택(1/1)
 								</label>
+								<c:if test="${not empty cartList}">
+								<a href="" class="btn_delete">선택삭제</a>
+								</c:if>
 								<a href="#none" class="btn_delete">선택삭제</a>
 						</div>
 					</div>
@@ -35,6 +40,7 @@
 										</label>
 									<div class="c_name">
 										<div class="innername">
+											<a href="#" class="package ">${cart.p_name}</a>
 											<a href="#" class="package ">강력 손전등</a>
 											<div class="info">닳지 않는 손전등</div>
 										</div>
@@ -43,6 +49,7 @@
 										<a href="#" class="c_img ">상품이미지</a>
 										<div class="price">
 											<div class="in_price">
+												<span class="selling"><fmt:formatNumber value="${cart.p_price}"/><span class="unit">원</span></span>
 												<span class="selling">15,000<span class="unit">원</span></span>
 												<p class="noti"></p>
 											</div>
@@ -62,6 +69,7 @@
 							<label class="check">
 							<input type="checkbox" name="checkAll" checked="">
 							<span class="ico"></span>전체선택 (1/1)</label>
+							<a href="#" class="btn_delete">선택삭제</a>
 							<a href="#none" class="btn_delete">선택삭제</a>
 						</div>
 					</div>
@@ -80,12 +88,17 @@
 							<dl class="amount">
 								<dt class="tit">결제예정금액</dt>
 								<dd class="price">
+									<span class="num"><fmt:formatNumber value="${cart.p_price}"
+									pattern="###,###,###"></fmt:formatNumber></span><span class="unit">원</span>
 									<span class="num">15,000</span><span class="unit">원</span>
 								</dd>
 							</dl>
 						</div>
 						<div class="btn_submit">
 							<button type="submit" class="btn btn-primary">구매하기</button>
+							<script>
+							
+							</script>
 						</div>
 						<div class="notice">
 						구매하는 물품이 맞는 지 꼭 확인해 주세요!

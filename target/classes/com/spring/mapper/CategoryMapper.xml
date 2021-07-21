@@ -4,6 +4,4 @@
 	<select id="list" resultType="com.spring.domain.CampusProductCategoryVO">
 		select * from CAMPUS_PRODUCT_CATEGORY;
 	</select>
-
-
 </mapper>

@@ -161,7 +161,6 @@
 
 <script>
 	let result='${result}';
-
 </script>
 <script src="/resources/main/js/productlist.js"></script>
 <%@include file="../../design/footer.jsp" %>
