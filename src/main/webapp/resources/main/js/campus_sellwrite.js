@@ -252,6 +252,9 @@ $(function(){
 			type:'post',
 			processData:false,
 			contentType:false,
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			data:campusFormData,
 			success:function(result){
 				console.log(result);

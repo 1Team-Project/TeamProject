@@ -4,6 +4,7 @@ import javax.servlet.http.HttpSession;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -71,6 +72,7 @@ public class MemberController {
 		return "/login";
 	}
 	
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/admin-page")
 	public String adminPage() {
 		log.info("admin");
@@ -78,6 +80,7 @@ public class MemberController {
 		return "/AdminPage";
 	}
 	
+	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
 	@GetMapping("/user-page")
 	public String user() {
 		log.info("user");
@@ -85,21 +88,22 @@ public class MemberController {
 		return "/UserPage";
 	}
 		
-	// 로그인 정보 가져오기 => post
-	@PostMapping("/loginForm")
-	public String loginPost(CampusUserVO vo, HttpSession session, RedirectAttributes rttr) {
-		log.info("login 요청 : " + vo.getU_userid() + " " + vo.getU_password());
-		CampusUserVO login = service.login(vo);
-		
-		if(login==null) {
-			rttr.addFlashAttribute("error", "아이디 또는 비밀번호를 확인해주세요");
-			return "redirect:login";
-		} else {
-			session.setAttribute("login", login);
-			//session.setAttribute("u_username", vo.getU_username());
-			return "redirect:/";
-		}
-	}
+	// 로그인 정보 가져오기 => post ======> 시큐리티가 자동으로 해줌
+//	@PostMapping("/loginForm")
+//	public String loginPost(CampusUserVO vo, HttpSession session, RedirectAttributes rttr) {
+//		log.info("login 요청 : " + vo.getU_userid() + " " + vo.getU_password());
+//		log.info("login 요청 테스트"+vo);
+//		CampusUserVO login = service.login(vo);
+//		
+//		if(login==null) {
+//			rttr.addFlashAttribute("error", "아이디 또는 비밀번호를 확인해주세요");
+//			return "redirect:login";
+//		} else {
+//			session.setAttribute("login", login);
+//			//session.setAttribute("u_username", vo.getU_username());
+//			return "redirect:/";
+//		}
+//	}
 //	
 //	
 //	@GetMapping("/login-error")

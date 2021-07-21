@@ -1,8 +1,10 @@
 package com.spring.controller;
 
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,6 +21,9 @@ public class RegisterController {
 	
 	@Autowired
 	private CampusUserService service;
+	
+	@Inject
+	BCryptPasswordEncoder pwdEncoder;
 	
 	// 회원가입 버튼 누를 시 이동
 	@PostMapping("/agree")
@@ -45,6 +50,10 @@ public class RegisterController {
 		log.info("회원가입 요청 " + vo);
 		
 		try {
+			String pwd = vo.getU_password();
+			pwd = pwdEncoder.encode(pwd);
+			vo.setU_password(pwd);
+			
 			if(service.insert(vo)) {
 				return "redirect:/login";
 			} else {

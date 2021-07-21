@@ -25,7 +25,7 @@
 			select row_number() over( order by b_views desc ) as rank,
 			b_no,b_title,b_writer,b_views,b_content,b_sort,b_sysdate,replycnt
 			from campus_board
-			where b_sysdate >= sysdate-0.2 )
+			where b_sysdate >= sysdate-0.2 AND b_sort != '상품')
 		where rank <= 3
 		]]>
 	</select>

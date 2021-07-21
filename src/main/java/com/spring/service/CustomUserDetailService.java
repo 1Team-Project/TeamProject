@@ -10,9 +10,9 @@ import com.spring.domain.CampusCustomUser;
 import com.spring.domain.CampusUserVO;
 import com.spring.mapper.CampusUserMapper;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 
-@Service
 @Log4j2
 public class CustomUserDetailService implements UserDetailsService {
 	
@@ -20,11 +20,11 @@ public class CustomUserDetailService implements UserDetailsService {
 	private CampusUserMapper mapper;
 	
 	@Override
-	public UserDetails loadUserByUsername(String u_userid) throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		// username => userid 값
-		log.info("u_userid : " + u_userid);
+		log.info("u_userid : " + username);
 		
-		CampusUserVO CampusUser = mapper.read(u_userid);
+		CampusUserVO CampusUser = mapper.read(username);
 		
 		log.info("인증정보 " + CampusUser);
 		

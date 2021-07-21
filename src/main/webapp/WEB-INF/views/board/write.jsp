@@ -50,7 +50,11 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
+
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+					<sec:authentication property="principal" var="user"/>
+					<input type="hidden" name="b_writer" value="${user.username}"/>
+					
 					
 					<button class="btn btn-primary" type="submit">글 작성</button>
 					<button class="btn btn-green1" type="reset">초기화</button>

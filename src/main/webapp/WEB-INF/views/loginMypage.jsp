@@ -70,7 +70,10 @@
         <div id="contents">
             <div class="title">
             
-                <h2>${login.u_userid}님 My Page</h2>
+<%-- 			<p>principal : <sec:authentication property="principal"/> </p>
+			<p>MemberVO : <sec:authentication property="principal.campusUser"/></p> --%>
+            
+                <h2><sec:authentication property="principal.campusUser.u_username"/>님 My Page</h2>
             </div>
             <div class="table-Area">
                

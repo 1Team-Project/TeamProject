@@ -59,7 +59,9 @@
 				<hr class="one" />
 				<div class="col-md-8 mll20">
 	  			<sec:authorize access="isAuthenticated()">
-	  				<c:if test="${info.username == campusVO.b_writer}">
+	  			<sec:authentication property="principal" var="user"/>
+	  				<c:if test="${user.username == campusVO.b_writer}">
+	  				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="btn btn-primary modifybutton" type="button">수정하기</button>
 	                </c:if>
 	            </sec:authorize>
@@ -75,14 +77,15 @@
 			<form action="/board/replyadd" method="post">
 				<div class="col-md-8 mll20">
 								
-					<input type="hidden" name = "r_replyer" value="김기기동"/>
-					
 					<input type="hidden" name="sort" value="${cri.sort}" />
 					<input type="hidden" name="keyword" value="${cri.keyword}" />
 					<input type="hidden" name="page" value="${cri.page}" />
 					<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 					<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
-					
+					<sec:authentication property="principal" var="user"/>
+					<input type="hidden" name="r_replyer" value="${user.username}"/>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
 					<sec:authorize access="isAuthenticated()">
 						<h5>댓글 작성</h5>
 						<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
@@ -117,7 +120,8 @@
 				<h6 class="float-start">${revo.r_replyer}</h6>
 				
 				<sec:authorize access="isAuthenticated()">
-					<c:if test="${info.username == revo.r_replyer}">
+				<sec:authentication property="principal" var="user"/>
+					<c:if test="${user.username == revo.r_replyer}">
 					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
 					<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
 					</c:if>
@@ -199,6 +203,7 @@
 	<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 	<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
 	<input type="hidden" name="r_page" value="${r_page}"/>
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 
 

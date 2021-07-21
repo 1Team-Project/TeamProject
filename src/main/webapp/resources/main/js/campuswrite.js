@@ -137,7 +137,6 @@ $(function(){
 		var form = $("form");
 		//수집된 내용 폼에 추가하기
 		form.append(str);
-		form.append("<input type='hidden' name='b_writer' value='홍홍길동'>");
 		//폼 전송하기
 		form.submit();
 	})

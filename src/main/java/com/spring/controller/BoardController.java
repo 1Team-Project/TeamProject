@@ -119,7 +119,6 @@ public class BoardController {
 		model.addAttribute("CampusPageVO", campusPageVO);
 	}
 	
-
 	@PostMapping("/viewadd")
 	@ResponseBody
 	public String read2(@RequestBody String bnoval) {
@@ -138,7 +137,7 @@ public class BoardController {
 		String viewsS = Integer.toString(views);
 		return viewsS;
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/view")
 	public void read(int b_no,int b_views, int r_page,@ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("※※※※※ view ※※※※※");  
@@ -197,7 +196,7 @@ public class BoardController {
 			return "redirect:list";
 		//글 수정 실패시
 		}else {
-			return "redirect:modify?b_no="+vo.getB_no()+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
+			return "redirect:view?b_no="+vo.getB_no()+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
 		}
 	}
 

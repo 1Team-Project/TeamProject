@@ -71,10 +71,12 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	public boolean update(CampusBoardVO vo) {
 		//기존에 첨부파일 정보 모두 삭제 후 삽입
 		attachMapper.delete(vo.getB_no());
+		
 		//게시글 수정
 		boolean modifyResult = mapper.update(vo)>0?true:false;
+		
 		//첨부파일 삽입
-		if(modifyResult && vo.getAttachList().size()>0) {
+		if(vo.getAttachList() != null) {
 			for(CampusAttachFileDTO dto:vo.getAttachList()) {
 				dto.setB_no(vo.getB_no());
 				attachMapper.insert(dto);
