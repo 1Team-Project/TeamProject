@@ -27,11 +27,11 @@ public class ProductController {
 	@Autowired
 	private CampusProductService service;
 	
-	@Autowired
-	private CampusBoardService board;
-	
-	@Autowired
-	private CampusAttachFileDTO attach;
+//	@Autowired
+//	private CampusBoardService board;
+//	
+//	@Autowired
+//	private CampusAttachFileDTO attach;
 	
 	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
@@ -41,26 +41,26 @@ public class ProductController {
 		
 		//상품사진
 		
-		String imgurl="";
-		
-		List<CampusAttachFileDTO> dto = service.getImg();
-		for(CampusAttachFileDTO img:dto) {
-			
-			if (dto == null || dto.isEmpty()) {
-				imgurl = "/resources/main/images/default-img.jpg";
-			}else {
-				for(CampusAttachFileDTO ddto:dto) {
-					String path = ddto.getA_path().replace("\\", "%5C");
-					log.info("url 테스트중 : "+path);
-					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
-					break;
-					}
-				}
-			
-		CampusProductVO pvo=new CampusProductVO();
-		pvo.setUrllink(imgurl);
-		
-		}
+//		String imgurl="";
+//		
+//		List<CampusAttachFileDTO> dto = service.getImg();
+//		for(CampusAttachFileDTO img:dto) {
+//			
+//			if (dto == null || dto.isEmpty()) {
+//				imgurl = "/resources/main/images/default-img.jpg";
+//			}else {
+//				for(CampusAttachFileDTO ddto:dto) {
+//					String path = ddto.getA_path().replace("\\", "%5C");
+//					log.info("url 테스트중 : "+path);
+//					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
+//					break;
+//					}
+//				}
+//			
+//		CampusProductVO pvo=new CampusProductVO();
+//		pvo.setUrllink(imgurl);
+//		
+//		}
 		List<CampusProductVO> prolist=service.prolist(cri);
 		
 		
@@ -101,7 +101,7 @@ public class ProductController {
 	
 	//게시판 글번호 읽어서 보는것처럼
 	//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp
-	@GetMapping("/viewproduct")
+	@GetMapping("/productdetail")
 	public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
 			
@@ -110,10 +110,10 @@ public class ProductController {
 		model.addAttribute("product", product);
 	}
 	
-	@GetMapping("/productdetail")
-		public void productdetail() {
-			
-		log.info("상품 상세");
-		}
+//	@GetMapping("/productdetail")
+//		public void productdetail() {
+//			
+//		log.info("상품 상세");
+//		}
 	}
 		

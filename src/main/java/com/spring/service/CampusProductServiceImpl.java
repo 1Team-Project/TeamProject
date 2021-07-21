@@ -38,10 +38,10 @@ public class CampusProductServiceImpl implements CampusProductService {
 	}
 	
 	//사진불러오기
-	@Override
-	public List<CampusAttachFileDTO> getImg() {
-		return attachMapper.getImg();
-	}
+//	@Override
+//	public List<CampusAttachFileDTO> getImg() {
+//		return attachMapper.getImg();
+//	}
 	
 	//베스트3리스트
 	@Override
@@ -128,12 +128,12 @@ public class CampusProductServiceImpl implements CampusProductService {
 
 
 
-	@Override
-	public CampusProductVO detailproduct(int p_number) {
-		// TODO Auto-generated method stub
-		return productmapper.productdetail(p_number);
-	}
-	
+//	@Override
+//	public CampusProductVO detailproduct(int p_number) {
+//		// TODO Auto-generated method stub
+//		return productmapper.productdetail(p_number);
+//	}
+//	
 
 
 }
