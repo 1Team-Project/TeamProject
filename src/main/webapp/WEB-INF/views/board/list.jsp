@@ -63,9 +63,10 @@
 					<tr class="textcenter colorthema">
 						<th class="width10">번호</th>
 						<th class="width10">분류</th>
-						<th class="width40">제목</th>
+						<th class="width20">상품</th>
+						<th class="width30">제목</th>
 						<th class="width10">글쓴이</th>
-						<th class="width20">작성일</th>
+						<th class="width10">작성일</th>
 						<th class="width10">조회수</th>
 					</tr>
 				</thead>
@@ -79,6 +80,7 @@
 						<tr>
 							<td>${vo.b_no}</td>
 							<td>${vo.b_sort}</td>
+							<td>${vo.p_number}</td>
 							<td><a href="${vo.b_no}" class="blacktext hoverthema clickview">${vo.b_title}<strong class="badgecount">[${vo.replycnt}]</strong></a>
 							<td>${vo.b_writer}</td>
 							<td>

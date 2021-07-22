@@ -135,7 +135,7 @@ $(function(){
 		}
 		if(price == ""){
 			alert("가격을 작성해 주세요!");
-			$("#campusboard-product-title").focus();
+			$("#campusboard-product-price").focus();
 			return;
 		}
 		if(content == ""){
@@ -180,7 +180,7 @@ $(function(){
 		var form = $("form");
 		//수집된 내용 폼에 추가하기
 		form.append(str);
-		form.append("<input type='hidden' name='b_writer' value='홍홍길동'>");
+
 		form.append("<input type='hidden' name='b_sort' value='상품'>");
 		form.append("<input type='hidden' name='b_title' value='상품'>");
 		//폼 전송하기

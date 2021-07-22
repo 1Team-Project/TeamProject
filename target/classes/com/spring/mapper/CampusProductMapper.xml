@@ -68,7 +68,23 @@
        p_number > 0
    </select>
    
-   
+   	<!-- 관리자 권한 -->
+	<!-- 상품 추가 -->
+		<insert id="insertProduct">
+			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code)
+			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code})
+		</insert>
+	<!-- 상품 삭제 -->
+		<delete id="deleteProduct">
+			delete from campus_product where p_number=#{p_number}
+		</delete>
+	
+	<!-- 상품 수정 : 가격, 재고 수정 -->
+		<update id="updateProduct">
+			update campus_product
+			set p_price=#{p_price}, p_stock=#{p_stock}
+			where p_number=#{p_number}
+		</update>
    
    
    <!-- 동적 SQL -->

@@ -3,6 +3,88 @@
  */
 $(function(){
 	
+		let checkistrue = false;
+	
+		$(".checkbtn").click(function(){
+		
+		var pnumber = $("#campusboard-pnumber").val();
+
+		$.ajax({
+			url: "/board/checkpnumber",
+			type: "POST",
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
+			data: {
+				 p_number : pnumber
+			},
+			success: function(result){
+				if(result=='not'){
+
+					$('.checkpnumbermsg').html("<p>해당 상품 번호와 동일한 상품이 존재하지 않습니다.</p>");
+					checkistrue = false;
+					return false;
+				} else {
+
+					$('.checkpnumbermsg').html("<p>상품명 : "+result+"</p>");
+					checkistrue = true;
+					return false;
+				}
+			}
+		})
+	})
+	
+	
+	$("#sort").change(function(){
+		var star = ""
+		if($("#sort option:selected").val() == '후기'){
+			
+			star += '<div class="warning_msg">해당 상품의 별점을 선택해 주세요</div>'
+			star += '<input type="checkbox" name="b_rating" id="rating1" value="1" class="rate_radio" title="1점"><label for="rating1"></label>'
+			star += '<input type="checkbox" name="b_rating" id="rating2" value="2" class="rate_radio" title="2점"><label for="rating2"></label>'
+			star += '<input type="checkbox" name="b_rating" id="rating3" value="3" class="rate_radio" title="3점"><label for="rating3"></label>'
+			star += '<input type="checkbox" name="b_rating" id="rating4" value="4" class="rate_radio" title="4점"><label for="rating4"></label>'
+			star += '<input type="checkbox" name="b_rating" id="rating5" value="5" class="rate_radio" title="5점"><label for="rating5"></label>'
+			
+			$(".rating").html(star)
+			
+		}else{
+			
+			$(".warning_msg").remove();
+			$("#rating1").remove();
+			$("#rating2").remove();
+			$("#rating3").remove();
+			$("#rating4").remove();
+			$("#rating5").remove();
+			
+		}
+	})
+	
+	function Rating(){};
+	Rating.prototype.rate = 0;
+	Rating.prototype.setRate = function(newrate){
+	    //별점 마킹 - 클릭한 별 이하 모든 별 체크 처리
+	    this.rate = newrate;
+	    let items = document.querySelectorAll('.rate_radio');
+	    items.forEach(function(item, idx){
+	        if(idx < newrate){
+	            item.checked = true;
+	        }else{
+	            item.checked = false;
+	        }
+	    });
+	}
+	let rating = new Rating();
+	
+    $('.rating').click(function(e){
+    let elem = e.target;
+    if(elem.classList.contains('rate_radio'))
+		{
+        rating.setRate(parseInt(elem.value));
+   		}
+	})
+
+	
 	//업로드 되는 파일의 종류와 크기 제한
 	function checkExtension(fileName,fileSize){
 		
@@ -103,6 +185,7 @@ $(function(){
 		let sort = $("#sort option:selected").val();
 		let title = $("#campusboard-title").val();
 		let content = $("#campusboard-content").val();
+		let pnumberis = $("#campusboard-pnumber").val();
 		
 		console.log(sort)
 
@@ -121,7 +204,17 @@ $(function(){
 			$("#campusboard-content").focus();
 			return;
 		}
-
+		if(pnumberis == ""){
+			alert("상품 번호를 작성해 주세요!");
+			$("#campusboard-pnumber").focus();
+			return;
+		}
+		if(checkistrue == false){
+			alert("상품 번호를 확인해 주세요!");
+			$("#campusboard-pnumber").focus();
+			return;
+		}
+		
 		var str="";
 		$(".uploadResult ul li").each(function(idx,obj){
 			var job = $(obj);
@@ -139,7 +232,7 @@ $(function(){
 		//수집된 내용 폼에 추가하기
 		form.append(str);
 		//폼 전송하기
-		form.submit();
+		//form.submit();
 	})
 	
 	//X버튼 클릭시 동작

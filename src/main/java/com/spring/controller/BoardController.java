@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,6 +30,7 @@ import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
 import com.spring.domain.CampusReplyPageVO;
 import com.spring.domain.CampusReplyVO;
+import com.spring.domain.CampusUserVO;
 import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
 import com.spring.service.CampusReplyService;
@@ -304,13 +306,13 @@ public class BoardController {
 		
 	}
 	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
 		log.info("※※※※※ get sellwrite ※※※※※");
 	}
 	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellwrite")
 	public String sellwritePost(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob,RedirectAttributes rttr) {
 		log.info("※※※※※ post sellwrite ※※※※※");  
@@ -358,7 +360,7 @@ public class BoardController {
 		}
 
 	}
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellmodify")
 	public void sellmodify(int p_number, int b_no, Model model) {
 		log.info("※※※※※ get sellmodify ※※※※※");
@@ -369,7 +371,7 @@ public class BoardController {
 		model.addAttribute("campusBoardVO", campusBoardVO);
 		model.addAttribute("campusProductVO", campusProductVO);
 	}
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellmodify")
 	public String sellmodifyPost(CampusProductVO vo) {
 		log.info("※※※※※ post sellmodify ※※※※※");
@@ -404,6 +406,27 @@ public class BoardController {
 		
 		
 	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value="/checkpnumber", produces="application/text;charset=utf8", method = RequestMethod.POST)
+	@ResponseBody
+	public String checkpnumber(int p_number) {
+		
+		log.info("※※※※※ post checkpnumber ※※※※※");  
+		
+		CampusProductVO vo = product.viewProduct(p_number);
+		
+		String proName = "not";
+		log.info("체크넘버 : "+vo);
+		if(vo!=null) {
+			proName = vo.getP_name();
+		}
+		log.info("체크넘버스트링 : "+proName);
+		
+		return proName;
+	}
+	
+	
 	
 	
 	//첨부물 가져오기

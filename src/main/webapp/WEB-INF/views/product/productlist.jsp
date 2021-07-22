@@ -94,33 +94,6 @@
 
 				<div id="center_sec">
 
-<<<<<<< HEAD
-                                <ul class="prdList grid3">
-									<%-- <c:forEach var="pro" items="${prolist}">
-                                    <li id="boxid" class="prolist">
-                                        <div class="thumbnail">
-                                            <div class="prdImg">
-                                                <a href="${pro.p_number}" name="boxname" class="viewpro">
-                                                    <img src="${top.urllink}" id="prod1" alt="상품1"></a>
-                                            </div>
-                                        </div>
-                                        <div class="description">
-                                            <div class="product_name">
-                                                <strong class="name"><a href="${pro.p_number}" class="viewpro">
-                                                        <span>[</span>
-                                                        <span>${pro.p_manufact}</span>
-                                                        <span>]</span>
-                                                        <span>${pro.p_name}</span>
-                                                </a></strong>
-                                            </div>        
-                                            <div class="product_price">
-                                                <span data-hook="product-item-price-to-pay" class="">${pro.p_price}</span>
-                                                <span class="price" data-hook="sr-product-item-price-to-pay"> 원</span>
-                                            </div>
-                                        </div>
-                                    </li>
-                                   <!-- <form action="list" method="get" id="productForm">	
-=======
 
 					<!-- 상품 -->
 					<div class="campus product allproduct">
@@ -153,35 +126,10 @@
 										</div>
 									</li>
 									<!-- <form action="list" method="get" id="productForm">	
->>>>>>> refs/remotes/origin/seunghyun
 									<input type="hidden" name="p_option" value="${CampusProductVO.p_option}" />
 									<input type="hidden" name="p_stock" value="${CampusProductVO.p_stock}" />
 									<input type="hidden" name="pc_code " value="${CampusProductVO.pc_code }" />
 								</form>-->
-<<<<<<< HEAD
-									</c:forEach> --%>
-									
-                                    <!--상품 반복 ~~ -->
-                                     
-                                </ul>
-                            </div>
-                        </div>
-
-
-
-                        <!-- 하단 페이지 넘기기 부분-->
-                        <div class="row">
-							<div class="col-md-12">
-								<ul class="mypagination justify-content-center">
-								
-								<c:if test="${CampusPageVO.prev}">
-									<li class="mypage-item prev"><a href="${CampusPageVO.startPage-1}" class="mypage-link"> << </a></li>
-								</c:if>	
-								
-								<c:forEach var="i" begin="${CampusPageVO.startPage}" end="${CampusPageVO.endPage}">
-									<li class="mypage-item"><a href="${i}" class="mypage-link ${CampusPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
-=======
->>>>>>> refs/remotes/origin/seunghyun
 								</c:forEach>
 
 								<!--상품 반복 ~~ -->

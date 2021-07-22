@@ -101,18 +101,15 @@ public class ProductController {
 	
 	//게시판 글번호 읽어서 보는것처럼
 	//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp
-//	@GetMapping("/productdetail")
-//	public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {
-//		log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
-//			
-//		CampusProductVO product=service.viewProduct(p_number);
-//			
-//		model.addAttribute("product", product);
-//	}
-	
 	@GetMapping("/productdetail")
-		public void productdetail() {
+	public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {
+		log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
 			
-		log.info("상품 상세");
-		}
+		CampusProductVO product=service.viewProduct(p_number);
+			
+		model.addAttribute("product", product);
 	}
+	
+
+
+}
