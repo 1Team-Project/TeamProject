@@ -236,12 +236,12 @@
 
 
 </form>
-<<<<<<< HEAD
 
-<form action="/logoutForm" method="post" id="logoutForm">
-	 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
-=======
+
+	<form action="/logoutForm" method="post" id="logoutForm">
+		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	</form>
+
 	<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
@@ -255,7 +255,6 @@
 		var csrfHeaderName = "${_csrf.headerName}";
 		var csrfTokenValue = "${_csrf.token}";
 	</script>
->>>>>>> refs/remotes/origin/nahyun
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  	<script src="/resources/main/js/popper.js"></script>

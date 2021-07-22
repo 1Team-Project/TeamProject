@@ -40,11 +40,11 @@ $(function(){
 		if($("#sort option:selected").val() == '후기'){
 			
 			star += '<div class="warning_msg">해당 상품의 별점을 선택해 주세요</div>'
-			star += '<input type="checkbox" name="b_rating" id="rating1" value="1" class="rate_radio" title="1점"><label for="rating1"></label>'
-			star += '<input type="checkbox" name="b_rating" id="rating2" value="2" class="rate_radio" title="2점"><label for="rating2"></label>'
-			star += '<input type="checkbox" name="b_rating" id="rating3" value="3" class="rate_radio" title="3점"><label for="rating3"></label>'
-			star += '<input type="checkbox" name="b_rating" id="rating4" value="4" class="rate_radio" title="4점"><label for="rating4"></label>'
-			star += '<input type="checkbox" name="b_rating" id="rating5" value="5" class="rate_radio" title="5점"><label for="rating5"></label>'
+			star += '<input type="checkbox" name="b_rating1" id="rating1" value="1" class="rate_radio" title="1점"><label for="rating1"></label>'
+			star += '<input type="checkbox" name="b_rating2" id="rating2" value="2" class="rate_radio" title="2점"><label for="rating2"></label>'
+			star += '<input type="checkbox" name="b_rating3" id="rating3" value="3" class="rate_radio" title="3점"><label for="rating3"></label>'
+			star += '<input type="checkbox" name="b_rating4" id="rating4" value="4" class="rate_radio" title="4점"><label for="rating4"></label>'
+			star += '<input type="checkbox" name="b_rating5" id="rating5" value="5" class="rate_radio" title="5점"><label for="rating5"></label>'
 			
 			$(".rating").html(star)
 			
@@ -223,8 +223,30 @@ $(function(){
 			str+="<input type='hidden' name='attachList["+idx+"].a_path' value='"+job.data("path")+"'>";
 			str+="<input type='hidden' name='attachList["+idx+"].a_name' value='"+job.data("filename")+"'>";
 		})
+		var ratingpoint = 0;
 		
-		
+		if($("input:checkbox[name=b_rating1]").is(":checked") == true) {
+			ratingpoint += 1;
+			if($("input:checkbox[name=b_rating2]").is(":checked") == true) {
+				ratingpoint += 1;
+				if($("input:checkbox[name=b_rating3]").is(":checked") == true) {
+					ratingpoint += 1;
+					if($("input:checkbox[name=b_rating4]").is(":checked") == true) {
+						ratingpoint += 1;
+						if($("input:checkbox[name=b_rating5]").is(":checked") == true) {
+						ratingpoint += 1;
+						}
+					}
+				}
+			}
+		}
+		if(ratingpoint == 0){
+			alert("별점을 확인해 주세요!");
+			$("#campusboard-title").focus();
+			return;
+		}
+		str+="<input type='hidden' name='b_rating' value='"+ratingpoint+"'>";
+		console.log("별점 : "+ratingpoint)
 		console.log(str);
 		
 		//게시글 등록 폼 가져오기
@@ -232,7 +254,7 @@ $(function(){
 		//수집된 내용 폼에 추가하기
 		form.append(str);
 		//폼 전송하기
-		//form.submit();
+		form.submit();
 	})
 	
 	//X버튼 클릭시 동작

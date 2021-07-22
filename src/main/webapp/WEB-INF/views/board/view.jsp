@@ -6,8 +6,36 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"  %>
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
-
-
+<style>
+.rating .rate_radio {
+    position: relative;
+    display: inline-block;
+    z-index: 20;
+    opacity: 0.001;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: top;
+    display: none;
+}
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-image: url('/resources/main/images/starrate.png');
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+.rating .yellow + label {
+    background-color: #ff8;
+}
+</style>
 <section>
 	<div class="row topmargin30">
 		<div class="col-md-1"></div>
@@ -23,6 +51,18 @@
 			</div>
 			<form action="">
 				<div class="col-md-8 mll20">
+				
+				<c:if test="${campusVO.b_sort eq '후기'}">
+				<div class="rating">
+				<div class="warning_msg">해당 상품의 별점</div>
+					<input name="b_rating1" id="rating1" value="1" class="rate_radio <c:if test="${campusVO.b_rating >= 1}">yellow</c:if>" title="1점"/><label for="rating1"></label>
+					<input name="b_rating2" id="rating2" value="2" class="rate_radio <c:if test="${campusVO.b_rating >= 2}">yellow</c:if>" title="2점"/><label for="rating2"></label>
+					<input name="b_rating3" id="rating3" value="3" class="rate_radio <c:if test="${campusVO.b_rating >= 3}">yellow</c:if>" title="3점"/><label for="rating3"></label>
+					<input name="b_rating4" id="rating4" value="4" class="rate_radio <c:if test="${campusVO.b_rating >= 4}">yellow</c:if>" title="4점"/><label for="rating4"></label>
+					<input name="b_rating5" id="rating5" value="5" class="rate_radio <c:if test="${campusVO.b_rating == 5}">yellow</c:if>" title="5점"/><label for="rating5"></label>
+	            </div>
+	            </c:if>
+	            
 					<span class="hh4">[${campusVO.b_sort}]</span>
 					<input type="text"
 						class="form-control width70 inlinetest readonlycolor hh4"  

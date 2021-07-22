@@ -6,8 +6,8 @@
 	<select id="list" resultType="com.spring.domain.CampusBoardVO">
 		<![CDATA[
 			select * 
-				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate, replycnt, b_content
-					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate,replycnt,b_content from campus_board where b_no>0 order by b_no desc) 
+				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate, replycnt, b_content, b_rating, p_number, p_name
+					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate,replycnt,b_content,b_rating,p_number,p_name from campus_board where b_no>0 order by b_no desc) 
 					where b_sort != '상품' and
 		]]>
 	
@@ -77,7 +77,7 @@
 		<selectKey keyProperty="b_no" order="BEFORE" resultType="int">
 			select CAMPUS_BOARD_SEQUENCE.nextval from dual
 		</selectKey>
-		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort})
+		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort, b_rating, p_number) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort}, #{b_rating}, #{p_number})
 	</insert>
 	
 	<insert id="insert_p">
@@ -88,6 +88,13 @@
 		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort, p_number) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort}, #{p_number})
 	</insert>
 	
+	<select id="productfindboard" resultType="string">
+		select p_name from campus_product where p_number = #{p_number}
+	</select>
+	
+	<update id="productinsertboard">
+		update campus_board set p_name = #{p_name} where b_no = #{b_no}
+	</update>
 	
 	<!-- 영권 메인 게시판 10개 보여주기용 -->
 	<select id="mainList" resultType="com.spring.domain.CampusBoardVO">
@@ -133,6 +140,9 @@
 			</if>
 			<if test="sort=='작성자'.toString()">
 				b_writer like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='상품명'.toString()">
+				p_name like '%'||#{keyword}||'%' and
 			</if>
 		</if>
 	</sql>

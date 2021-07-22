@@ -3,15 +3,10 @@ $(function() {
 	$("#logoutDo").click(function(){
 		var logout = confirm("濡�洹몄���� ����寃��듬��源�?");
 		if(logout==true){
-<<<<<<< HEAD
+
 			alert("안녕히가세요")
 			$("#logoutForm").submit();
-			
-			
-=======
-			alert("������媛��몄��")
-			location.href="/logout";
->>>>>>> refs/remotes/origin/nahyun
+
 		} else {
 			alert("濡�洹몄�몄�� ��吏��⑸����.")
 			return false;

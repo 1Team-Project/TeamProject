@@ -19,6 +19,8 @@ public interface CampusBoardService {
 	public boolean addview(int views, int bno);
 	public boolean replyadd(int bno, int replycnt);
 	public List<CampusBoardVO> topdate();
+	public String productfindboard(int p_number);
+	public boolean productinsertboard(int b_no, String p_name);
 	
 	public List<CampusAttachFileDTO> getAttachList(int bno);
 	

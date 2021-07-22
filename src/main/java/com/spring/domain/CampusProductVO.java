@@ -26,9 +26,6 @@ public class CampusProductVO {
 	private String a_path;
 	private String a_name;
 	private String urllink;
-<<<<<<< HEAD
-}
-=======
+
 	private String path;
 }
->>>>>>> refs/remotes/origin/nahyun

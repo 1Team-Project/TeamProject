@@ -139,5 +139,17 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		// TODO Auto-generated method stub
 		return mapper.mainList(cri);
 	}
+
+	@Override
+	public String productfindboard(int p_number) {
+		// TODO Auto-generated method stub
+		return mapper.productfindboard(p_number);
+	}
+
+	@Override
+	public boolean productinsertboard(int b_no, String p_name) {
+		// TODO Auto-generated method stub
+		return mapper.productinsertboard(b_no,p_name)>0?true:false;
+	}
 	
 }

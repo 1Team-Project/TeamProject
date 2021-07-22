@@ -29,19 +29,6 @@ public class ProductController {
 	@Autowired
 	private CampusProductService service;
 
-	
-<<<<<<< HEAD
-//	@Autowired
-//	private CampusBoardService board;
-//	
-//	@Autowired
-//	private CampusAttachFileDTO attach;
-	
-=======
-	
-
-
->>>>>>> refs/remotes/origin/nahyun
 	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
 	public void getList(Model model,CampusCriteria cri) {
@@ -49,43 +36,24 @@ public class ProductController {
 		//전체 리스트, CampusPageVO vo
 		
 		//상품사진
-		
-<<<<<<< HEAD
-//		String imgurl="";
-//		
-//		List<CampusAttachFileDTO> dto = service.getImg();
-//		for(CampusAttachFileDTO img:dto) {
-//			
-//			if (dto == null || dto.isEmpty()) {
-//				imgurl = "/resources/main/images/default-img.jpg";
-//			}else {
-//				for(CampusAttachFileDTO ddto:dto) {
-//					String path = ddto.getA_path().replace("\\", "%5C");
-//					log.info("url 테스트중 : "+path);
-//					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
-//					break;
-//					}
-//				}
-//			
-//		CampusProductVO pvo=new CampusProductVO();
-//		pvo.setUrllink(imgurl);
-//		
-//		}
-=======
 		String imgurl="";	
->>>>>>> refs/remotes/origin/nahyun
+
 		List<CampusProductVO> prolist=service.prolist(cri);
 		
+		log.info("시작부분 prolist : "+prolist);
+		
 		for(CampusProductVO img:prolist) {
-			if(img.getA_uuid()==null) {
-				imgurl="/resources/main/images/default-img.jpg";
-			}else {
+			String test = img.getUrllink();
+
+			if(test == null || test.isEmpty()) {
 				String path=img.getA_path().replace("\\", "%5C");
-			log.info("url 테스트중 : "+path);
-			imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-			img.setUrllink(imgurl);
+				log.info("url 테스트중 : "+path);
+				imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+				img.setUrllink(imgurl);
+			}else {
+				imgurl="/resources/main/images/default-img.jpg";
+				img.setUrllink(imgurl);
 			}
-			break;
 		}
 		
 		
@@ -96,24 +64,28 @@ public class ProductController {
 		log.info("best리스트" +bestlist);
 		
 			for(CampusProductVO img:bestlist) {
-					
-					if(img.getA_uuid()==null) {
-						imgurl="/resources/main/images/default-img.jpg";
-					}else {
+				String test = img.getUrllink();
+
+				if(test == null || test.isEmpty()) {
 						String path=img.getA_path().replace("\\", "%5C");
-					log.info("url 테스트중 : "+path);
-					imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-					img.setUrllink(imgurl);
+						imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+						log.info("url 테스트중 : "+path);
+						img.setUrllink(imgurl);
+					}else {
+						imgurl="/resources/main/images/default-img.jpg";
+						img.setUrllink(imgurl);
 					}
-					break;
 				}
 
 		
 		
 		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
 		model.addAttribute("CampusPageVO", campusPageVO);
+		log.info("campusVO 확인하기  "+campusPageVO);
 		model.addAttribute("prolist",prolist);
+		log.info("prolist 확인하기  "+prolist);
 		model.addAttribute("bestlist",bestlist);
+		log.info("bestlist 확인하기  "+bestlist);
 	}
 	
 	

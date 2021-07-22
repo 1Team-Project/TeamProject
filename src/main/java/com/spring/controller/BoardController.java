@@ -109,6 +109,7 @@ public class BoardController {
 			}
 		}
 		
+		
 		//전체 리스트 조회 및 모델에 등록
 		List<CampusBoardVO> list = service.list(cri);
 		int total = service.total(cri);
@@ -206,17 +207,23 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/write")
 	public void write() {
-		log.info("※※※※※ get write ※※※※※");  
+		log.info("※※※※※ get write ※※※※※");
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/write")
 	public String writePost(CampusBoardVO vo, RedirectAttributes rttr) {
 		
-		log.info("※※※※※ post write ※※※※※");  
+		log.info("※※※※※ post write ※※※※※");
 		
 		//글 작성 요청 및 성공/실패시
 		if(service.insert(vo)) {
+			
+			// 등록된 p_number 의 p_name 을 추가
+			String pfb = service.productfindboard(vo.getP_number());
+			vo.setP_name(pfb);
+			service.productinsertboard(vo.getB_no(), vo.getP_name());
+			
 			rttr.addFlashAttribute("result",vo.getB_no());
 			return "redirect:list";
 		}else {
