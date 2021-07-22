@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
+import com.spring.domain.CampusProductCategoryVO;
 import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
 
@@ -27,4 +28,6 @@ public interface CampusProductService {
 	public boolean updateProduct(int p_price, int p_stock, int p_number);
 	
 	public CampusProductVO detailproduct(int p_number);
+	
+	public  List<CampusProductCategoryVO> category(CampusCriteria cri);
 }

@@ -114,6 +114,7 @@
 		<div class="row topmargin30">
 			<div class="col-md-12"></div>
 			<h3 class="heading-section ml20" style="font-family: naBrush;">즐거운 여행 공간 Camp us</h3>
+		
 		</div>
 		<div class="row">
 		 	<div class="col-md-1"></div>
@@ -215,6 +216,7 @@
     		</div>
 			<div class="col-md-1"></div>
 		</div>
+		
 		<!-- 게시판 추가중 끝 부분 -->
 	</div>
 	<form action="" method="get" id="main_actionForm">
@@ -259,5 +261,7 @@
 			});
 		});
 	})
+	
+	
 	</script>
 <%@include file="../design/footer.jsp" %>
