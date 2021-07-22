@@ -215,8 +215,8 @@
         <br>
         <div id="b-button" class="ec-base-button gColumn">
             <button type="submit" id="mo_update"class="btn btn-info">회원정보수정</button>
-            <button type="submit" id="mo_cancel" class="btn btn-warning">취 소</button>
-            <button type="submit" id="mo_leave"class="btn btn-secondary">회원탈퇴</button>
+            <button type="button" id="mo_cancel" class="btn btn-warning">취 소</button>
+            <button type="button" id="mo_leave"class="btn btn-secondary">회원탈퇴</button>
         </div>
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <!--<input type="hidden"  name="u_userid" value="${vo.u_userid}"/>
@@ -227,10 +227,11 @@
     $(function(){
     	$("#mo_cancel").click(function(){
     		alert("정보 수정을 취소합니다.");
-    		$("#modifyForm").attr("action", "loginMypageForm");
+    		location.href="/loginMypage";
     	});
-    	$("#mo_leave").click(function(){
-    		$("#modifyForm").attr("action", "leave");
+     	$("#mo_leave").click(function(){
+    		/* $("#modifyForm").attr("action", "leave"); */
+    		location.href="/leave";
     	});
     	
     })

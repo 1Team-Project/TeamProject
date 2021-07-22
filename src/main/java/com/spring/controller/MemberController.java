@@ -1,22 +1,31 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
-
-
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.CampusCustomUser;
 import com.spring.domain.CampusUserVO;
 import com.spring.domain.ChangeVO;
-
 import com.spring.service.CampusUserService;
 
 import lombok.extern.log4j.Log4j2;
@@ -28,6 +37,9 @@ public class MemberController {
 	
 	@Autowired
 	private CampusUserService service;
+	
+	@Inject
+	BCryptPasswordEncoder pwdEncoder;
 	
 	/* 로그인 시스템 시작 */
 	/* 기본 시스템 */
@@ -177,24 +189,65 @@ public class MemberController {
 	}
 
 	// leave
-	@PostMapping("/leave")
-	public void leave() {
+	@GetMapping("/leave")
+	public String leaveGet() {
 		log.info("회원탈퇴 폼 요청");
+		return "/leave";
 	}
-		
 	
-	// 회원탈퇴
-	@PostMapping("/leaveForm")
-	public String leaveForm(CampusUserVO vo, HttpSession session,RedirectAttributes rttr) {
-		log.info("회원탈퇴 요청 " + vo.getU_userid() + " " + vo.getU_password());
+	@ResponseBody
+	@PostMapping("/pwdCheck")
+	public int pwdCheck(CampusUserVO vo, HttpSession session, Authentication authentication) {
+		
+		Object authDoc = authentication.getPrincipal();
+		CampusCustomUser userAuth = (CampusCustomUser)authDoc;
+		String chk_pass = userAuth.getCampusUser().getU_password();
 
-		if(service.leave(vo.getU_userid(), vo.getU_password())) {
-			session.invalidate();
-			return "redirect:/";
+		log.info("값 확인 : " + chk_pass);
+		
+		log.info("비밀번호 확인 : " + vo.getU_userid() + " " + vo.getU_password());
+
+	
+		pwdEncoder = new BCryptPasswordEncoder();
+		log.info("비교값 확인 : " + pwdEncoder.matches(vo.getU_password(), chk_pass));
+		int result;
+		if(pwdEncoder.matches(vo.getU_password(), chk_pass)) {
+			result = 1;
 		} else {
-			rttr.addFlashAttribute("error", "비밀번호를 확인해 주세요");
-			return "/leave";
+			result = 0;
 		}
+		log.info("비밀번호 같으면 1 아니면 0 : " + result);
+		return result;
+	}
+	
+	@PostMapping("/leaveForm")
+	public String leavePost(CampusUserVO vo, HttpSession session, Authentication authentication) {
+		log.info("회원탈퇴 요청 " + vo.getU_userid() + " 회원탈퇴 비밀번호 : " + vo.getU_password());
+		
+		Object authDoc = authentication.getPrincipal();
+		CampusCustomUser userAuth = (CampusCustomUser)authDoc;
+		String chk_pass = userAuth.getCampusUser().getU_password();
+		
+		if(pwdEncoder.matches(vo.getU_password(), chk_pass)) {
+			vo.setU_password(chk_pass);
+			boolean flag = false;
+			
+			if(service.leaveAuth(vo)) {
+				session.invalidate();
+				log.info("권한 삭제 확인 true 1, false 0 : " + service.leaveAuth(vo));
+				flag = true;
+			} else {
+				return "/leave";
+			}
+			if(flag) {
+				service.leaveCamp(vo);
+				log.info("정보 삭제 확인 true 1, false 0 : " + service.leaveCamp(vo));
+				return "redirect:/";
+			} else {
+				return "/leave";
+			}
+		}
+		return "/leave";
 	}
 
 	
@@ -205,10 +258,6 @@ public class MemberController {
 		
 		return "order";
 	}
-	
-	
-	
-	
 	
 	/*마이페이지 - 예약내역*/
 	@PostMapping("/reservation")

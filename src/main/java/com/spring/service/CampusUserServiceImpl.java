@@ -33,18 +33,27 @@ public class CampusUserServiceImpl implements CampusUserService {
 	public CampusUserVO dupId(String u_userid) {
 		return mapper.dupId(u_userid);
 	}
-
+	
 	@Override
 	public CampusUserVO login(CampusUserVO vo) {
 		return mapper.login(vo);
 	}
-
-
+	
 	@Override
-	public boolean leave(String u_userid, String u_password) {
-		return mapper.leave(u_userid, u_password)>0? true:false;
+	public boolean leaveAuth(CampusUserVO vo) {
+		return mapper.leaveAuth(vo)>0? true:false;
 	}
-
+	
+	@Override
+	public boolean leaveCamp(CampusUserVO vo) {
+		return mapper.leaveCamp(vo)>0? true:false;
+	}
+	
+	@Override
+	public int pwdCheck(CampusUserVO vo) {
+		return mapper.pwdCheck(vo);
+	}
+	
 	@Override
 	public boolean update(ChangeVO change) {
 		return mapper.update(change)>0? true:false;
@@ -54,6 +63,5 @@ public class CampusUserServiceImpl implements CampusUserService {
 	public boolean userUpdate(CampusUserVO vo) {
 		return mapper.userUpdate(vo)>0? true:false;
 	}
-
 	
 }
