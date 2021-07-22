@@ -120,14 +120,10 @@
 				<h6 class="float-start">${revo.r_replyer}</h6>
 				
 				<sec:authorize access="isAuthenticated()">
-<<<<<<< HEAD
+
 				<sec:authentication property="principal" var="user"/>
 					<c:if test="${user.username == revo.r_replyer}">
-=======
-				<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
-				<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
-					<c:if test="${info.username == revo.r_replyer}">
->>>>>>> refs/remotes/origin/seunghyun
+
 					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
 					<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
 					</c:if>
