@@ -175,7 +175,7 @@
         </div>
 
 <script>
-	let result='${result}';
+
 	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";

@@ -45,9 +45,7 @@
 			where rn > ((#{page}-1)*20) and b.b_no=a.b_no and a.p_number=p.p_number and pc_code=#{pc_code} 
 			]]>
 	</select>	
-	
-	
-	
+
 	
 	<!-- 상품 조회 : 상품 클릭 후 조회 -->
 		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
