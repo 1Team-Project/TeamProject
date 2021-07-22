@@ -121,21 +121,11 @@ public class ProductController {
 	@GetMapping("/productdetail")
 	public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
-<<<<<<< HEAD
-=======
-//			
-		CampusProductVO product=service.viewProduct(p_number);
->>>>>>> refs/remotes/origin/seunghyun
-			
-<<<<<<< HEAD
+
 		CampusProductVO product=service.viewProduct(p_number);
 			
 		model.addAttribute("product", product);
-=======
-		model.addAttribute("product", product);
-	}
-	
->>>>>>> refs/remotes/origin/seunghyun
+
 	}
 	
 

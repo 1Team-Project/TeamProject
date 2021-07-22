@@ -28,18 +28,6 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class CartController {
 //	
-<<<<<<< HEAD
-//	@Autowired
-//	private CartService service;
-//	
-//	//카트
-//	@GetMapping("/cart")
-//	public void getCartList() throws Exception{
-//		log.info("장바구니 페이지");		
-//	}
-}
-//	
-=======
 	@Autowired
 	private CartService service;
 	
@@ -49,7 +37,6 @@ public class CartController {
 	}
 
 	//장바구니 목록
->>>>>>> refs/remotes/origin/seunghyun
 	
 //	@RequestMapping("/cart")
 //	public ModelAndView list(HttpSession session, ModelAndView view){

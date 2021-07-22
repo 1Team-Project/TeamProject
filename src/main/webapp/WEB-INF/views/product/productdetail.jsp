@@ -55,11 +55,6 @@
 						<tr>
 							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
 							<td>${product.p_manufact}</td>
-<<<<<<< HEAD
-							<td class="price"><fmt:formatNumber value="${product.p_price}"
-									pattern="###,###,###"></fmt:formatNumber>원</td>
-=======
->>>>>>> refs/remotes/origin/seunghyun
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
