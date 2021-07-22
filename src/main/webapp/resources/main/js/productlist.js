@@ -24,14 +24,9 @@ $(function(){
       actionForm.attr("action","productdetail");
       actionForm.submit();
 	})
-<<<<<<< HEAD
-})
-=======
+
 	
-	
-	
-		
-	
+
 	//검색
 	$(".searchbutton").click(function(e){
 		
@@ -75,6 +70,5 @@ $(function(){
       actionForm.submit();
 	})
 		
-	})
+})
 
->>>>>>> refs/remotes/origin/nahyun

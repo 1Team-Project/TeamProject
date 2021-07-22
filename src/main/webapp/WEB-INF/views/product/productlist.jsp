@@ -42,12 +42,8 @@
                                         <div class="prdImg">
                                             <a href="${best.p_number}" name="boxname" class="viewpro">
                                             	
-<<<<<<< HEAD
-                                                <img src="${best.urllink}" id="bestprod1" alt="상품1" >
-=======
                                                 <img src="${best.urllink}" id="bestprod1" alt="상품1">
->>>>>>> refs/remotes/origin/nahyun
-                                         		
+   		
                                                 </a>
                                         </div>
                                     </div>
