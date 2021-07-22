@@ -7,19 +7,20 @@
 <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 <link href="/resources/main/css/common.css" rel="stylesheet"
 	type="text/css" />
-	
+
 <div class="product_view">
 
 	<div id="productview">
 		<div class="innerview">
-		
+
 			<div class="product">
-				<img class="photo" src="/resources/main/images/lamp.jpg" alt="상품 대표 사진"/>
+				<img class="photo" src="/resources/main/images/lamp.jpg"
+					alt="상품 대표 사진" />
 				<ul>
-				
-					<li class="small_img">
-					<a href="/resources/main/images/lamp.jpg"> 
-					<img src="/resources/main/images/lamp.jpg" alt="손전등 상세 사진1"></a></li>
+
+					<li class="small_img"><a
+						href="/resources/main/images/lamp.jpg"> <img
+							src="/resources/main/images/lamp.jpg" alt="손전등 상세 사진1"></a></li>
 					<li><a href="/resources/main/images/lamp5.png"> <img
 							src="/resources/main/images/lamp5.png" alt="손전등 상세 사진2"></a></li>
 					<li><a href="/resources/main/images/lamp2.jpg"> <img
@@ -30,9 +31,8 @@
 			</div>
 
 			<p class="p_name">
-				<strong class="name">${product.p_name}</strong> 
-				<span class="name_detail">배터리가
-					잘 닳지 않는 강력 손전등</span>
+				<strong class="name">${product.p_name}</strong> <span
+					class="name_detail">배터리가 잘 닳지 않는 강력 손전등</span>
 			</p>
 
 			<div class="p_info">
@@ -44,8 +44,9 @@
 
 					<tbody>
 						<tr>
-							<td class="price"><fmt:formatNumber value="${product.p_price}"
-									pattern="###,###,###"></fmt:formatNumber></td>
+							<td class="price"><fmt:formatNumber
+									value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber>
+								<span class="unit">원</span></td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
@@ -53,9 +54,7 @@
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
-							<td>${product.manufact}</td>
-							<td class="price"><fmt:formatNumber value="${product.p_price}"
-									pattern="###,###,###"></fmt:formatNumber>원</td>
+							<td>${product.p_manufact}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
@@ -63,8 +62,8 @@
 								<div class="option">
 									<span class="opt">
 										<button type="button" class="minus">+</button> <input
-										type="number" readonly="readonly" min="1" max="${product.p_stock}"
-										onfocus="this.blur()" class="inp">
+										type="number" readonly="readonly" min="1"
+										max="${product.p_stock}" onfocus="this.blur()" class="inp">
 										<button type="button" class="plus">-</button>
 									</span>
 								</div>
@@ -72,46 +71,66 @@
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/choices.png">&nbsp;옵션선택</th>
-							<td>
-							<select>
-							<c:forEach begin="" end="" var="i">
-									<option value="${i}">${i}</option>
-									<option value="${i}">${i}</option>
-									<option value="${i}">${i}</option>
-									<option value="${i}">${i}</option>
-						     </c:forEach>
-							
-						<tr>
-							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
-							<td>무료배송</td>
-						</tr>
-						<tr>
-							<th><img src="/resources/main/images/payment-method.png">&nbsp;배송
-								안내</th>
-							<td>본 상품은 국내 배송만 가능합니다.</td>
-						</tr>
+							<td><select>
+									<c:forEach begin="" end="" var="i">
+										<option value="${i}">${i}</option>
+										<option value="${i}">${i}</option>
+										<option value="${i}">${i}</option>
+										<option value="${i}">${i}</option>
+									</c:forEach>
+
+									<tr>
+										<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
+										<td>무료배송</td>
+									</tr>
+									<tr>
+										<th><img src="/resources/main/images/payment-method.png">&nbsp;배송
+											안내</th>
+										<td>본 상품은 국내 배송만 가능합니다.</td>
+									</tr>
 					</tbody>
 				</table>
-				
+
 				<div id="cartput">
 					<div class="total">
 						<div class="price">
-							<strong class="tot">총 상품금액 : </strong>
-							 <span class="sum">
-								<span class="num">
-								<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span> 
+							<strong class="tot">총 상품금액 : </strong> <span class="sum">
+								<span class="num"> <fmt:formatNumber
+										value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span>
 								<span class="unit">원</span>
 							</span>
 						</div>
-						
+
 						<div class="option_btn">
-						<input type="hidden" name="p_number" value="${product.p_number}">
-							<button type="button" class="btn btn-primary btn-lg" id="">장바구니</button>
-							<button type="button" class="btn btn-secondary btn-lg">구매하기</button>
-								<span class="num"><fmt:formatNumber value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span>
-								<span class="unit">원</span>
+							<form action="addcart" method="post" id="">
+								<input type="hidden" name="p_number" value="${product.p_number}">
+							</form>
+							<button type="button" class="btn btn-primary btn-lg" id="btn_cart">장바구니</button>
+							<button type="button" class="btn btn-secondary btn-lg" id="btn_order">구매하기</button>
 						</div>
-						
+
+						<!-- 모달창 -->
+						<div class="modal" tabindex="-1">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<div class="modal-header">
+										<h5 class="modal-title">장바구니 담기</h5>
+										<button type="button" class="close" data-dismiss="modal"
+											aria-label="Close">
+											<span aria-hidden="true">&times;</span>
+										</button>
+									</div>
+									<div class="modal-body">
+										<p>상품을 담았습니다!</p>
+									</div>
+<!-- 									<div class="modal-footer"> -->
+<!-- <!-- 										<button type="button" class="btn btn-secondary" id="btnmodal" --> 
+<!-- 											data-dismiss="modal">장바구니로</button> -->
+<!-- <!-- 										<button type="button" class="btn btn-primary" id="btnmodal2"></button> --> 
+<!-- 									</div> -->
+								</div>
+							</div>
+						</div>
 						<div class="p_detail_info">
 							<div class="p_detail_bar">
 								<ul class="menu">
@@ -122,7 +141,7 @@
 								</ul>
 							</div>
 						</div>
-						
+
 						<div class="p_detail_img">
 							<p class="main_img">
 								<img src="/resources/main/images/lamp.jpg">
@@ -269,7 +288,8 @@
 											<div class="row">
 												<div class="col-md-12 mb-3">
 													<button class="btn btn-primary float-end">글 쓰기</button>
-													<button class="btn btn-primary float-end" onclick="location.href='/board/list'">전체 후기 보기</button>
+													<button class="btn btn-primary float-end"
+														onclick="location.href='/board/list'">전체 후기 보기</button>
 												</div>
 											</div>
 											<div class="row">
@@ -365,8 +385,8 @@
 												<div class="row">
 													<div class="col-md-12 mb-3">
 														<button class="btn btn-primary float-end">글 쓰기</button>
-														<button class="btn btn-primary float-end" id="btn3">전체 후기
-															보기</button>
+														<button class="btn btn-primary float-end" id="btn3">전체
+															후기 보기</button>
 													</div>
 												</div>
 												<div class="row">
@@ -423,6 +443,5 @@
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
 <!-- <script type= text/javascript> -->
-</script>
 <script src="/resources/main/js/pdetail.js"></script>
 <%@include file="../../design/footer.jsp"%>
