@@ -14,8 +14,7 @@ public interface CampusProductService {
 
 	public List<CampusProductVO> prolist(CampusCriteria cri);
 	public List<CampusProductVO> bestlist();
-	public List<CampusProductVO> catelist(String pc_code);
-	public List<CampusProductVO> searchProduct(String p_name);
+	public List<CampusProductVO> catelist(CampusCriteria cri,String pc_code);
 	
 	public CampusProductVO viewProduct(int p_number);
 	public int total(CampusCriteria cri);

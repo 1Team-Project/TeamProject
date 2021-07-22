@@ -13,8 +13,7 @@ public interface CampusProductMapper {
 
 	public List<CampusProductVO> prolist(CampusCriteria cri);
 	public List<CampusProductVO> bestlist();
-	public List<CampusProductVO> catelist(String pc_code);
-	public List<CampusProductVO> searchProduct(String p_name);
+	public List<CampusProductVO> catelist(CampusCriteria cri,@Param("pc_code") String pc_code);
 	public CampusProductVO viewProduct(@Param("p_number") int p_number);
 	public int totalPro(CampusCriteria cri);
 	

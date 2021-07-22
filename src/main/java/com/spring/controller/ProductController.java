@@ -2,6 +2,7 @@ package com.spring.controller;
 
 import java.util.List;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -17,6 +18,7 @@ import com.spring.domain.CampusProductVO;
 import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
 
+
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
@@ -26,13 +28,11 @@ public class ProductController {
 
 	@Autowired
 	private CampusProductService service;
+
 	
-	@Autowired
-	private CampusBoardService board;
 	
-	@Autowired
-	private CampusAttachFileDTO attach;
-	
+
+
 	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
 	public void getList(Model model,CampusCriteria cri) {
@@ -41,35 +41,42 @@ public class ProductController {
 		
 		//상품사진
 		
-		String imgurl="";
-		
-		List<CampusAttachFileDTO> dto = service.getImg();
-		for(CampusAttachFileDTO img:dto) {
-			
-			if (dto == null || dto.isEmpty()) {
-				imgurl = "/resources/main/images/default-img.jpg";
-			}else {
-				for(CampusAttachFileDTO ddto:dto) {
-					String path = ddto.getA_path().replace("\\", "%5C");
-					log.info("url 테스트중 : "+path);
-					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
-					break;
-					}
-				}
-			
-		CampusProductVO pvo=new CampusProductVO();
-		pvo.setUrllink(imgurl);
-		
-		}
+		String imgurl="";	
 		List<CampusProductVO> prolist=service.prolist(cri);
 		
+		for(CampusProductVO img:prolist) {
+			if(img.getA_uuid()==null) {
+				imgurl="/resources/main/images/default-img.jpg";
+			}else {
+				String path=img.getA_path().replace("\\", "%5C");
+			log.info("url 테스트중 : "+path);
+			imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+			img.setUrllink(imgurl);
+			}
+			break;
+		}
 		
 		
 		int total = service.total(cri);
 		
-		//베스트3
+		//베스트3 사진 
 		List<CampusProductVO> bestlist=service.bestlist();
 		log.info("best리스트" +bestlist);
+		
+			for(CampusProductVO img:bestlist) {
+					
+					if(img.getA_uuid()==null) {
+						imgurl="/resources/main/images/default-img.jpg";
+					}else {
+						String path=img.getA_path().replace("\\", "%5C");
+					log.info("url 테스트중 : "+path);
+					imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+					img.setUrllink(imgurl);
+					}
+					break;
+				}
+
+		
 		
 		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
 		model.addAttribute("CampusPageVO", campusPageVO);
@@ -78,25 +85,29 @@ public class ProductController {
 	}
 	
 	
-	//상품 카테고리로 분류 나열?조회?
+	//카테고리별 조회
 	@GetMapping("/catelist")
-	public void cateList(String pc_code,Model model) {
+	public void cateList(CampusCriteria cri,String pc_code,Model model) {
 		log.info("카테고리 조회");
+		String imgurl="";	
 		
-		List<CampusProductVO> catelist=service.catelist(pc_code);
-		log.info("cagtegory 리스트" +catelist);
+		List<CampusProductVO> catelist=service.catelist(cri,pc_code);
+		
+		for(CampusProductVO img:catelist) {
+			if(img.getA_uuid()==null) {
+				imgurl="/resources/main/images/default-img.jpg";
+			}else {
+				String path=img.getA_path().replace("\\", "%5C");
+			log.info("url 테스트중 : "+path);
+			imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+			img.setUrllink(imgurl);
+			}
+			break;
+		}
 		
 		model.addAttribute("catelist",catelist);
 	}//
 	
-	@GetMapping("/")
-	public void getSearchList(String p_name, @ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("상품명 이용 - 상품 조회"+p_name);
-		
-		List<CampusProductVO> findlist=service.searchProduct(p_name);
-		
-		model.addAttribute(" findlist", findlist);
-	}
 	
 	
 	//게시판 글번호 읽어서 보는것처럼

@@ -42,9 +42,9 @@
                                     <div class="thumbnail">
                                         <div class="prdImg">
                                             <a href="${best.p_number}" name="boxname" class="viewpro">
-                                            	<c:forEach var="" items=""> 
+                                            	
                                                 <img src="${top.urllink}" id="bestprod1" alt="상품1">
-                                         		  </c:forEach>
+                                         		
                                                 </a>
                                         </div>
                                     </div>
@@ -75,7 +75,7 @@
                     <hr>
                     
                     <!-- 상품 검색창 -->
-                    <form action="search" id="searchProduct">
+                     <form action="" id="searchProduct">
 						<div class="row">
 							<div class="col-md-12 mb-3">
 							<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
@@ -84,7 +84,8 @@
 									<option value="제조사"<c:out value="${pageVO.cri.sort=='제조사'?'selected':''}"/>>제조사</option>
 							</select> 
 								<input type="text" name="keyword" class="width30 boldergreen padding5px blacktext">
-								<button class="btn btn-primary" id="searchBtn">검색</button>
+								<input type="hidden" name="page" value="${pageVO.cri.page}"/>
+								<button class="btn btn-primary searchbutton" id="searchBtn" type="submit">검색</button>
 								
 							</div>
 						</div>
@@ -107,7 +108,7 @@
                                         <div class="thumbnail">
                                             <div class="prdImg">
                                                 <a href="${pro.p_number}" name="boxname" class="viewpro">
-                                                    <img src="${top.urllink}" id="prod1" alt="상품1"></a>
+                                                    <img src="${pro.urllink}" id="prod1" alt="${pro.p_number}"></a>
                                             </div>
                                         </div>
                                         <div class="description">
@@ -175,6 +176,9 @@
 
 <script>
 	let result='${result}';
+	
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
 
 </script>
 <script src="/resources/main/js/productlist.js"></script>
