@@ -13,15 +13,12 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
-	<!-- ���� �߰� ���� ���� -->
 	<!-- 영권 추가 문장 시작 -->
 	<link rel="stylesheet" href="/resources/main/css/bootstrap2.min.css">
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-	<!-- ���� �߰� ���� �� -->
-	</head>
-	<!-- ��Ʈ �����ϴ� ��Ÿ�� -->
+
 	<sec:csrfMetaTags/>
 	<!-- 영권 추가 문장 끝 -->
 	</head>
@@ -36,7 +33,6 @@
        position:relative; 
        width:100%; 
        height:auto; }
-	/* 1.�ϴ����� */
 	/* 1.하단정보 */
     .campus{
       color: white;
@@ -109,7 +105,6 @@
       height:21px; 
     }
  
-	/* 2.�ּ� �� ����Ʈ��ũ */
 	/* 2.주소 및 사이트링크 */
 		.f_link{
       position:relative; 
@@ -141,10 +136,6 @@
 	</style>
 	<body>
 	<section class="m-3">
-		<!-- �� �� ���� (�׸�, �۾�) -->
-		<div class="container">
-			<div class="row justify-content-center mt-5 " >
-				<!-- Ŭ���� ����ȭ������ �̵��ϰ� �ϴ� ��ũ (��Ʈ �׸�) -->
 		<!-- 맨 위 관련 (그림, 글씨) -->
 		<div class="container">
 			<div class="row justify-content-center mt-5 " >
@@ -160,45 +151,36 @@
 		<div class="container-fluid px-md-5">
 			<div class="row justify-content-between">
 
-				<!-- ������ ���� -->
-				<div class="col-md-12 order-md-last fixed-top">
-					<div class="social-media">
-		    		<p class="d-md-flex justify-content-end m-2">
-						<!-- �� ������ Ŭ���� �̵��Ǵ� ��ũ (login , mypage , cart) -->
 				<!-- 아이콘 관련 -->
 				<div class="col-md-12 order-md-last fixed-top">
 					<div class="social-media">
 		    		<p class="d-md-flex justify-content-end m-2">
 						<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
-						
-						
-						
-						<c:choose>
-							<c:when test="${sessionScope.login != null}">
+	
+
+							<sec:authorize access="isAuthenticated()">
 								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
 			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 			    					<img src="/resources/main/images/icon_login.png">
 			    				</a>
-			    			</c:otherwise>
-		    			</c:choose>
+			    			</sec:authorize>
 		    			
 		    			
-		    			<c:choose>
-		    				<c:when test="${sessionScope.login != null}">
+							<sec:authorize access="isAuthenticated()">
 								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
 		    					<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png">
 		    					</a>
-		    				</c:otherwise>
-		    			</c:choose>
+			    			</sec:authorize>
 		    			
 		    			
-		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_cart.png"></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center m-1">
+		    				<img src="/resources/main/images/icon_cart.png"></a>
 		    		</p>
 	      		</div>
 				</div>
@@ -207,52 +189,35 @@
 		<nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-primary" >
 	    <div class="container-fluid">
 	    
-		<!-- ī�װ� ���� -->
 		<!-- 카테고리 관련 -->
 	      <div class="collapse navbar-collapse justify-content-center " id="ftco-nav">
 	        <ul class="navbar-nav">
 
 	        	<li class="nav-item dropdown m-6 mb-0 mt-0 ">
-				<!-- ī�װ�(��ǰ ����)�� ���콺 �ø��� �ʰ�, Ŭ���� �� �� ��ũ �����ϴ� a�±� -->
-             	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">��ǰ ����</a>
-             	 <div class="dropdown-menu" aria-labelledby="dropdown01">
-				<!-- �� ī�װ��� �̵��ϴ� ��ũ -->
-              	<a class="dropdown-item" href="#">ī�װ�1</a>
-                <a class="dropdown-item" href="#">ī�װ�2</a>
-                <a class="dropdown-item" href="#">ī�װ�3</a>
-                <a class="dropdown-item" href="#">ī�װ�4</a>
 				<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
              	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑 상품</a>
              	 <div class="dropdown-menu" aria-labelledby="dropdown01">
 				<!-- 각 카테고리별 이동하는 링크 -->
               	<a class="dropdown-item" href="product/productlist">상품 전체</a>
-                <a class="dropdown-item" href="product/catelist">카테고리1</a>
-                <a class="dropdown-item" href="product/catelist">카테고리2</a>
-                <a class="dropdown-item" href="product/catelist">카테고리3</a>
+              	
+	           	<a class="dropdown-item clickview" href="">카테고리1</a>
+	           	<a class="dropdown-item clickview" href="">카테고리2</a>
+	           	<a class="dropdown-item clickview" href="">카테고리3</a>
+              	
               </div>
            	  </li>
 
 				 <li class="nav-item dropdown m-6 mb-0 mt-0">
-					<!-- ī�װ�(��ǰ ����)�� ���콺 �ø��� �ʰ�, Ŭ���� �� �� ��ũ �����ϴ� a�±� -->
-					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">ķ���� ����</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown02">
-					<!-- �� ī�װ��� �̵��ϴ� ��ũ -->
-					<a class="dropdown-item" href="#">ķ���� ���</a>
 					<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
 					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑장 정보</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown02">
 					<!-- 각 카테고리별 이동하는 링크 -->
-					<a class="dropdown-item" href="#">캠핑장 목록</a>
+					<a class="dropdown-item" href="campingjang">캠핑장 목록</a>
 				</div>
 				   </li>
 
 
 				   <li class="nav-item dropdown m-6 mb-0 mt-0">
-					<!-- ī�װ�(��ǰ ����)�� ���콺 �ø��� �ʰ�, Ŭ���� �� �� ��ũ �����ϴ� a�±� -->
-					<a class="nav-link dropdown-toggle " href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">�Խ���</a>
-					<div class="dropdown-menu" aria-labelledby="dropdown03">
-					<!-- �� ī�װ��� �̵��ϴ� ��ũ -->
-					<a class="dropdown-item" href="/board/list">���� �Խ���</a>
 					<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
 					<a class="nav-link dropdown-toggle " href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown03">
@@ -273,14 +238,30 @@
 
 
 </form>
+
+
+	<form action="/logoutForm" method="post" id="logoutForm">
+		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	</form>
+
+	<form action="list" method="get" id="actionForm">	
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
+		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
+		<input type="hidden" name="r_page" value="1"/>
+	</form> 
 	
+	<script>
+		let result='${result}';
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+	</script>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  	<script src="/resources/main/js/popper.js"></script>
   	<script src="/resources/main/js/bootstrap.min.js"></script>
  	<script src="/resources/main/js/main.js"></script>
- 	<!-- ���� �߰� ���� ���� -->
- 	<script src="/resources/main/js/header_yk.js"></script>
- 	<!-- ���� �߰� ���� �� -->
  	<!-- 영권 추가 문장 시작 -->
  	<script src="/resources/main/js/header_yk.js"></script>
  	<!-- 영권 추가 문장 끝 -->

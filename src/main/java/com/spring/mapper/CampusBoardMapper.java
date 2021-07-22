@@ -18,6 +18,10 @@ public interface CampusBoardMapper {
 
 	public int delete_p(int p_number);
 	
+	public String productfindboard(int p_number);
+	
+	public int productinsertboard(@Param("b_no")int b_no, @Param("p_name")String p_name);
+	
 	public CampusBoardVO selectpnumber(int p_number);
 	
 	public List<CampusBoardVO> topdate();

@@ -1,6 +1,8 @@
 package com.spring.config;
 
+import java.nio.charset.Charset;
 import java.sql.SQLException;
+import java.util.Arrays;
 
 import javax.sql.DataSource;
 
@@ -11,6 +13,9 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
+import org.springframework.http.MediaType;
+import org.springframework.http.converter.HttpMessageConverter;
+import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
@@ -68,5 +73,12 @@ public class RootConfig {
 	@Bean
 	public DataSourceTransactionManager txManager() throws SQLException {
 		return new DataSourceTransactionManager(dataSource());
+	}
+	
+	@Bean
+	public HttpMessageConverter<String> responseBodyConverter() {
+	    StringHttpMessageConverter converter = new StringHttpMessageConverter();
+	    converter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", Charset.forName("UTF-8"))));
+	    return converter;
 	}
 }

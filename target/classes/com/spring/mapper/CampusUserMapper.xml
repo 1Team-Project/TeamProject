@@ -7,7 +7,7 @@
 		insert into CAMPUS_USER(u_userid, u_password, u_username, u_email, u_phone, u_address)
 		values(#{u_userid}, #{u_password}, #{u_username}, #{u_email}, #{u_phone}, #{u_address})
 	</insert>
-	
+
 	<!-- 로그인/LoginVO 사용
 	<select id="login" resultType="com.spring.domain.LoginVO">
 		select u_userid, u_password from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}

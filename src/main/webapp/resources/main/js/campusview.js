@@ -48,6 +48,19 @@ $(function(){
 	let superstr = "";
 	let reform = $("#replyselfform");
 	
+	$(".cbcontent").on("click","li",function(){
+		var liObj = $(this);
+		
+		
+		var path = encodeURIComponent(liObj.data("path")+"/"+liObj.data("uuid")+"_"+liObj.data("filename"));
+		
+		if(liObj.data("type")){
+			showImage(path.replace(new RegExp(/\\/g),"/"));			
+		}else{
+			self.location="/download?a_name="+path;
+		}
+	})
+	
 	$(".replyremove").click(function(e){
 		
 		e.preventDefault();

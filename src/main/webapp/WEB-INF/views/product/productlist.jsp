@@ -34,57 +34,59 @@
 					<div class="campus product product-bestlist listproduct">
 						<ul class="prdList grid3">
 
-							<!--@@@list id에 추후 db적용@@@   -->
-							<c:forEach var="best" items="${bestlist}">
-								<li id="boxid" class="prolist"><span>${best.p_rank}위</span>
-									<div class="thumbnail">
-										<div class="prdImg">
-											<a href="${best.p_number}" name="boxname" class="viewpro">
-												<%--                                             	<c:forEach var="" items="">  --%>
-												<img src="${top.urllink}" id="bestprod1" alt="상품1"> <%--                                          		  </c:forEach> <--%></--%>
-											</a>
-										</div>
-									</div>
-									<div class="description">
-										<div class="product_name">
-											<strong class="name"><a href="${best.p_number}"
-												class="viewpro"> <span>[</span> <span>${best.p_manufact}</span>
-													<span>]</span> <span>${best.p_name}</span>
-											</a></strong>
-										</div>
-										<div class="product_price">
-											<span data-hook="product-item-price-to-pay" class="">${best.p_price}</span>
-											<span class="price" data-hook="sr-product-item-price-to-pay">
-												원</span>
-										</div>
-									</div>
-									</li>
+                                <!--@@@list id에 추후 db적용@@@   -->
+                                <c:forEach var="best" items="${bestlist}" >
+                                <li id="boxid" class="prolist">
+                                    <span>${best.p_rank}위</span>
+                                    <div class="thumbnail">
+                                        <div class="prdImg">
+                                            <a href="${best.p_number}" name="boxname" class="viewpro">
+                                            	
+                                                <img src="${best.urllink}" id="bestprod1" alt="상품1">
+   		
+                                                </a>
+                                        </div>
+                                    </div>
+                                    <div class="description">
+                                        <div class="product_name">
+                                            <strong class="name"><a href="${best.p_number}" class="viewpro">
+                                                <span>[</span>
+                                               	<span>${best.p_manufact}</span>
+                                                <span>]</span>
+                                                <span>${best.p_name}</span>
+                                            </a></strong>
+                                        </div>
+                                        <div class="product_price">
+                                            <span data-hook="product-item-price-to-pay" class="">${best.p_price}</span>
+                                            <span class="price" data-hook="sr-product-item-price-to-pay"> 원</span>
+                                        </div>
+                                    </div>
+                                </li>
+                                
+								</c:forEach>
+								
+                               
+                            </ul>
+                        </div>
+                    </div>
 
-							</c:forEach>
-
-
-						</ul>
-					</div>
-				</div>
-
-				<!--상품 구분선-->
-				<hr>
-
-				<!-- 상품 검색창 -->
-				<form action="search" id="searchProduct">
-					<div class="row">
-						<div class="col-md-12 mb-3">
-							<select name="sort" id=""
-								class="form-control width10 inlinetest boldergreen">
-								<option value="">분류</option>
-								<option value="상품명"
-									<c:out value="${pageVO.cri.sort=='상품명'?'selected':''}"/>>상품명</option>
-								<option value="제조사"
-									<c:out value="${pageVO.cri.sort=='제조사'?'selected':''}"/>>제조사</option>
-							</select> <input type="text" name="keyword"
-								class="width30 boldergreen padding5px blacktext">
-							<button class="btn btn-primary" id="searchBtn">검색</button>
-
+                    <!--상품 구분선-->
+                    <hr>
+                    
+                    <!-- 상품 검색창 -->
+                     <form action="" id="searchProduct">
+						<div class="row">
+							<div class="col-md-12 mb-3">
+							<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
+									<option value="">분류</option>
+									<option value="상품명"<c:out value="${pageVO.cri.sort=='상품명'?'selected':''}"/>>상품명</option>
+									<option value="제조사"<c:out value="${pageVO.cri.sort=='제조사'?'selected':''}"/>>제조사</option>
+							</select> 
+								<input type="text" name="keyword" class="width30 boldergreen padding5px blacktext">
+								<input type="hidden" name="page" value="${pageVO.cri.page}"/>
+								<button class="btn btn-primary searchbutton" id="searchBtn" type="submit">검색</button>
+								
+							</div>
 						</div>
 					</div>
 
@@ -93,39 +95,31 @@
 
 
 				<div id="center_sec">
-
-
-					<!-- 상품 -->
-					<div class="campus product allproduct">
-
-						<div class="campus product product-normallist listproduct">
-
-							<ul class="prdList grid3">
-								<c:forEach var="pro" items="${prolist}">
-									<li id="boxid" class="prolist">
-										<div class="thumbnail">
-											<div class="prdImg">
-												<a href="${pro.p_number}" name="boxname" class="viewpro">
-													<img src="${top.urllink}" id="prod1" alt="상품1">
-												</a>
-											</div>
-										</div>
-										<div class="description">
-											<div class="product_name">
-												<strong class="name"><a href="${pro.p_number}"
-													class="viewpro"> <span>[</span> <span>${pro.p_manufact}</span>
-														<span>]</span> <span>${pro.p_name}</span>
-												</a></strong>
-											</div>
-											<div class="product_price">
-												<span data-hook="product-item-price-to-pay" class="">${pro.p_price}</span>
-												<span class="price" data-hook="sr-product-item-price-to-pay">
-													원</span>
-												<input type="hidden" id="p_number" name="p_number" value="${pro.p_number}">
-											</div>
-										</div>
-									</li>
-									<!-- <form action="list" method="get" id="productForm">	
+                                <ul class="prdList grid3">
+									<c:forEach var="pro" items="${prolist}">
+                                    <li id="boxid" class="prolist">
+                                        <div class="thumbnail">
+                                            <div class="prdImg">
+                                                <a href="${pro.p_number}" name="boxname" class="viewpro">
+                                                    <img src="${pro.urllink}" id="prod1" alt="${pro.p_number}"></a>
+                                            </div>
+                                        </div>
+                                        <div class="description">
+                                            <div class="product_name">
+                                                <strong class="name"><a href="${pro.p_number}" class="viewpro">
+                                                        <span>[</span>
+                                                        <span>${pro.p_manufact}</span>
+                                                        <span>]</span>
+                                                        <span>${pro.p_name}</span>
+                                                </a></strong>
+                                            </div>        
+                                            <div class="product_price">
+                                                <span data-hook="product-item-price-to-pay" class="">${pro.p_price}</span>
+                                                <span class="price" data-hook="sr-product-item-price-to-pay"> 원</span>
+                                            </div>
+                                        </div>
+                                    </li>
+                                   <!-- <form action="list" method="get" id="productForm">	
 									<input type="hidden" name="p_option" value="${CampusProductVO.p_option}" />
 									<input type="hidden" name="p_stock" value="${CampusProductVO.p_stock}" />
 									<input type="hidden" name="pc_code " value="${CampusProductVO.pc_code }" />
@@ -174,13 +168,15 @@
 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		</form>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-		crossorigin="anonymous"></script>
-	<script>	
-	let result = '${result}';
+		</form> 
+        </div>
+
+<script>
+
+	
+	var csrfHeaderName = "${_csrf.headerName}";
+	var csrfTokenValue = "${_csrf.token}";
+
 </script>
 	<script src="/resources/main/js/productlist.js"></script>
 	<%@include file="../../design/footer.jsp"%>

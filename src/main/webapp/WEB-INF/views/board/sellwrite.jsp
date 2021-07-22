@@ -112,6 +112,8 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20"></div>
+				<sec:authentication property="principal" var="user"/>
+				<input type="hidden" name="b_writer" value="${user.username}"/>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				<button class="btn btn-primary" type="submit">등록</button>
 				

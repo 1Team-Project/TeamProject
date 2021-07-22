@@ -91,12 +91,7 @@ $(function(){
 			$("select[name='sort']").focus();
 			return false;
 		}
-		if(keyword === ''){
-			alert("검색어를 확인해 주세요!");
-			$("input[name='keyword']").focus();
-			return false;
-		}	
-		
+
 		searchForm.find("input[name='page']").val("1");
 		
 		searchForm.submit();

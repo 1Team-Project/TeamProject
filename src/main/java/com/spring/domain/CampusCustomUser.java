@@ -14,8 +14,8 @@ public class CampusCustomUser extends User {
 
 	private CampusUserVO campusUser;
 	
-	public CampusCustomUser(String u_userid, String u_password, Collection<? extends GrantedAuthority> authorities) {
-		super(u_userid, u_password, authorities);
+	public CampusCustomUser(String username, String password, Collection<? extends GrantedAuthority> authorities) {
+		super(username, password, authorities);
 
 	} 
 	

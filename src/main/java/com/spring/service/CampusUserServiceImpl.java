@@ -3,9 +3,11 @@ package com.spring.service;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.ChangeVO;
 import com.spring.domain.CampusUserVO;
+import com.spring.mapper.CampusUserAuthMapper;
 import com.spring.mapper.CampusUserMapper;
 
 @Service
@@ -14,9 +16,17 @@ public class CampusUserServiceImpl implements CampusUserService {
 	@Autowired
 	private CampusUserMapper mapper;
 	
+	@Autowired
+	private CampusUserAuthMapper authmapper;
+	
 	@Override
+	@Transactional
 	public boolean insert(CampusUserVO vo) {
-		return mapper.insert(vo)>0? true:false;
+		boolean result = false;
+		if(mapper.insert(vo)>0) {
+			result = authmapper.insertAuth(vo.getU_userid())>0?true:false;
+		}
+		return result;
 	}
 
 	@Override

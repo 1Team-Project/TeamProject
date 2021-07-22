@@ -29,6 +29,8 @@ public class CampusBoardVO {
 	private int b_rating;
 	private int p_number;
 	
+	private String p_name;
+	
 	//첨부파일 리스트
 	private List<CampusAttachFileDTO> attachList;
 }
