@@ -102,8 +102,11 @@
 						</div>
 
 						<div class="option_btn">
-							<form action="addcart" method="post" id="">
-								<input type="hidden" name="p_number" value="${product.p_number}">
+							<form role="form" method="post">
+								<input type="hidden" id="p_number" value="${product.p_number}">
+<%-- 								<input type="hidden" id="p_name" value="${product.p_number}"> --%>
+<%-- 								<input type="hidden" id="p_price" value="${product.p_number}"> --%>
+<%-- 								<input type="hidden" id="p_number" value="${product.p_number}"> --%>
 							</form>
 							<button type="button" class="btn btn-primary btn-lg" id="btn_cart">장바구니</button>
 							<button type="button" class="btn btn-secondary btn-lg" id="btn_order">구매하기</button>

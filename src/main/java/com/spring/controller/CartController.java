@@ -38,53 +38,51 @@ public class CartController {
 
 	//장바구니 목록
 	
-//	@RequestMapping("/cart")
-//	public ModelAndView list(HttpSession session, ModelAndView view){
-//		
-//		log.info("장바구니 목록");
-//		
-////		String viewName = (String)request
-//		
-//		Map<String, Object> map = new HashMap<>();		
-//		
-//		String u_userid = (String) session.getAttribute("u_userid");
-//		
-//		if(u_userid != null) { //로그인한 경우
-//			
-//			List<CartVO> list = service.listCart(u_userid);
-//			
-//			int sumMoney = service.sum(u_userid); //금액 합계
-//			
-//			map.put("sum", sumMoney); //전체 금액
-//			map.put("list",list); //장바구니 목록
-//			map.put("count", list.size()); //레코드 갯수
-////			map.setViewName("/cart"); //이동할 페이지
-////			map.addObject("map",map); //데이터 저장
-//			return view; //화면 이동
-//		
-//		}else { //로그인하지 않은 경우
-//			return new ModelAndView("/login");
-//			
-//		}
-//	}
-//}
-	//장바구니 추가
-	@PostMapping("/addcart")
-	public String insert(@ModelAttribute CartVO cart, HttpSession session){
+	@RequestMapping("/cartlist")
+	public ModelAndView list(HttpSession session, ModelAndView view){
 		
+		log.info("장바구니 목록");
+		
+//		String viewName = (String)request
+		
+		Map<String, Object> map = new HashMap<>();		
+		
+		String u_userid = (String) session.getAttribute("u_userid");
+		
+		if(u_userid != null) { //로그인한 경우
+			
+			List<CartVO> list = service.listCart(u_userid);
+			
+			int sumMoney = service.sum(u_userid); //금액 합계
+			
+			map.put("sum", sumMoney); //전체 금액
+			map.put("list",list); //장바구니 목록
+			map.put("count", list.size()); //레코드 갯수
+//			map.setViewName("/cart"); //이동할 페이지
+//			map.addObject("map",map); //데이터 저장
+			return view; //화면 이동
+		
+		}else { //로그인하지 않은 경우
+			return new ModelAndView("/login");
+			
+		}
+	}
+
+	//장바구니 담기
+	@ResponseBody
+	@RequestMapping("/addcart")
+	public String insert(HttpSession session, @ModelAttribute CartVO cart){
+
 		log.info("장바구니 추가");
 		
-		String u_userid=(String)session.getAttribute("u_userid");
+		CampusUserVO user = (CampusUserVO)session.getAttribute("user");
+		cart.setU_userid(user.getU_userid());
 		
-		if(u_userid == null) {
-			return "redirect:/login";
-		}
-		
-		cart.setU_userid(u_userid);
 		service.addCart(cart);
 		
 		return "redirect:/cart"; //장바구니 목록으로 이동
-	}}
+	}
+}
 	
 //	@RequestMapping("/delete")
 //	public String delete(@RequestParam int c_cartnumber) {

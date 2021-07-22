@@ -66,13 +66,13 @@ $(function() {
 
 
 $(function() {
-	$("#btn_cart").click(function() {
-		$(".modal").fadeIn();
-	});
-	$(".close").click(function() {
-		$(".modal").fadeOut();
-	});
-	
+//	$("#btn_cart").click(function() {
+//		$(".modal").fadeIn();
+//	});
+//	$(".close").click(function() {
+//		$(".modal").fadeOut();
+//	});
+//	
 	$("#btn_order").click(function() {
 		var order = confirm("상품을 바로 구매하시겠습니까?");
 		if (order) {
@@ -146,3 +146,31 @@ $(".inp").change(function() {
 
 	$(".num").text(price * quantity);
 });
+
+
+
+$("#btn_cart").click(function() {
+	if(confirm("선택한 제품을 장바구니에 추가하겠습니까?")){
+		var pnum = $("#p_number").val();
+		var stock = $(".inp").val();
+		var data = {
+			pnum : pnum,
+			stock : stock
+		};
+		
+		$.ajax({
+			type : "post",
+			url : "/addcart",
+			data: "data",
+			success:function(){
+				alert("장바구니에 추가되었습니다!")
+			},
+			error:function(){
+				alert("Error!!!")
+			}
+		})
+	}
+})
+
+
+
