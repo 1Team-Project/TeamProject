@@ -43,7 +43,7 @@
                                         <div class="prdImg">
                                             <a href="${best.p_number}" name="boxname" class="viewpro">
                                             	
-                                                <img src="${top.urllink}" id="bestprod1" alt="상품1">
+                                                <img src="${best.urllink}" id="bestprod1" alt="상품1">
                                          		
                                                 </a>
                                         </div>

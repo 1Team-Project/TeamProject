@@ -5,8 +5,7 @@
 	 <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 +상품 이미지 불러오기  -->
 	<select id="prolist" resultType="com.spring.domain.CampusProductVO">
 		 <![CDATA[
-		 select distinct p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact,
-		 		first_value(a.a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,first_value(a.a_name)over(PARTITION BY p.p_number)as  a_name
+		 select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact, a.a_uuid , a.a_path,a.a_name
 		 from(select /*+INDEX_DESC(campus_product pk_campus_product)*/
 		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact
 		      from campus_product
@@ -14,19 +13,19 @@
 		       ]]>
 		  <include refid="criteria"></include>
 		   <![CDATA[
-		  		rownum <= (#{page}*25)) p, campus_attach a
-			where rn > ((#{page}-1)*20) and a.p_number=p.p_number
+		  		rownum <= (#{page}*25)) p,  (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
+			where rn > ((#{page}-1)*20) and a.p_number=p.p_number 
 			]]>
 	</select>	
-		
+	
 		
 	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
 		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
 
-			 select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,
+			 select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,
 			 		first_value(a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,first_value(a_name)over(PARTITION BY p.p_number)as  a_name
 			from b_product p, campus_attach a
-			where a.p_number=p.p_number order by p.p_rank
+			where a.p_number=p.p_number)order by p_rank
 		</select>
 		
 		
