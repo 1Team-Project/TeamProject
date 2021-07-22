@@ -8,7 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
@@ -119,10 +121,21 @@ public class ProductController {
 	@GetMapping("/productdetail")
 	public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
+<<<<<<< HEAD
+=======
+//			
+		CampusProductVO product=service.viewProduct(p_number);
+>>>>>>> refs/remotes/origin/seunghyun
 			
+<<<<<<< HEAD
 		CampusProductVO product=service.viewProduct(p_number);
 			
 		model.addAttribute("product", product);
+=======
+		model.addAttribute("product", product);
+	}
+	
+>>>>>>> refs/remotes/origin/seunghyun
 	}
 	
 

@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,6 +28,7 @@ import lombok.extern.log4j.Log4j2;
 @Log4j2
 public class CartController {
 //	
+<<<<<<< HEAD
 //	@Autowired
 //	private CartService service;
 //	
@@ -37,9 +39,19 @@ public class CartController {
 //	}
 }
 //	
+=======
+	@Autowired
+	private CartService service;
 	
-//	//장바구니 목록
-//	@RequestMapping("/listCart")
+	@GetMapping("/cart")
+	public void cart() {	
+		log.info("장바구니로");
+	}
+
+	//장바구니 목록
+>>>>>>> refs/remotes/origin/seunghyun
+	
+//	@RequestMapping("/cart")
 //	public ModelAndView list(HttpSession session, ModelAndView view){
 //		
 //		log.info("장바구니 목록");
@@ -68,27 +80,25 @@ public class CartController {
 //			
 //		}
 //	}
-//	
-//	//장바구니 추가
-//	@ResponseBody
-//	@RequestMapping("/addCart")
-//	public String insert(@ModelAttribute CartVO cart, HttpSession session){
-//		
-//		log.info("장바구니 추가");
-//		String u_userid=(String)session.getAttribute("u_userid");
-//		
-//		if(u_userid == null) {
-//			return "redirect:/login";
-//		}
-//		cart.setU_userid(u_userid);
-//		service.addCart(cart);
-//		
-//		return "redirect:/cart"; //장바구니 목록으로 이동
-//		
-//		//장바구니가 기존 상품이 있는지 검사
-//		
-//	}
-//	
+//}
+	//장바구니 추가
+	@PostMapping("/addcart")
+	public String insert(@ModelAttribute CartVO cart, HttpSession session){
+		
+		log.info("장바구니 추가");
+		
+		String u_userid=(String)session.getAttribute("u_userid");
+		
+		if(u_userid == null) {
+			return "redirect:/login";
+		}
+		
+		cart.setU_userid(u_userid);
+		service.addCart(cart);
+		
+		return "redirect:/cart"; //장바구니 목록으로 이동
+	}}
+	
 //	@RequestMapping("/delete")
 //	public String delete(@RequestParam int c_cartnumber) {
 //		
