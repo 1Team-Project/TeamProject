@@ -19,7 +19,7 @@ import lombok.extern.log4j.Log4j2;
 @Getter
 @Setter
 @ToString
-public class CampusCampingjang {
+public class CampusCampingjangVO {
 
 	
 	private int c_number;

@@ -9,8 +9,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 import com.spring.domain.CampusAttachFileDTO;
-import com.spring.domain.CampusCampingjang;
+import com.spring.domain.CampusCampingjangVO;
 import com.spring.service.CampusBoardService;
+import com.spring.service.CampusCampingjangService;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -24,10 +25,6 @@ import lombok.extern.log4j.Log4j2;
 
 public class CampController {
 
-	@Autowired
-	private CampusBoardService service;
-
-	
 	@GetMapping("/campingjang")
 	public String total() {
 		log.info("캠핑장");
@@ -35,24 +32,20 @@ public class CampController {
 		return "camp";
 	}
 
-	
-////	@Autowired
-////	private CampusBoardService service;
-//	
-//	//@Autowired
-//	//private CampingjangService service;
+//	@Autowired
+//	private CampusCampingjangService service;
 //	
 //	@GetMapping("/campingjang")
-//	public String registerCampingjang(int number, int area,Date sysdata,Date rsysdata ) {
+//	public String registerCampingjang(int number, int area,Date sysdata,Date rsysdata,string contant ) {
 //		log.info("캠핑장");
 //		//service.insert(number, area,sysdata,rsysdata);
 //		return "camp";
 //	}
-//	
-////	public boolean insert(int number, int area) {
-////		//sql구문
-////		
-////		ResultSet
-////	}
 	
-}
+	//public boolean insert(int number, int area) {
+		//sql구문
+		
+		//ResultSet
+	}
+	
+

@@ -44,11 +44,13 @@ const renderCalender = ()=>{
    
      document.querySelector('.dates').innerHTML = dates.join('');
    
-     const today = new Date();
-     if(viewMonth === today.getMonth()&& viewYear ===today.getFullYear()){
-         for(let date of document.querySelectorAll('.this')){
-             date.classList.add('today');
-             break;
+      const today = new Date();
+	  if (viewMonth === today.getMonth() && viewYear === today.getFullYear()) {
+	    for (let date of document.querySelectorAll('.this')) {
+	      if (+date.innerText === today.getDate()) {
+	        date.classList.add('today');
+	        break;
+	        }
          }
      }
 };
