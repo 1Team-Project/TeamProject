@@ -48,21 +48,20 @@ public class CampusProductServiceImpl implements CampusProductService {
 	public List<CampusProductVO> bestlist() {
 		return productmapper.bestlist();
 	}
-
-	@Override
-	public List<CampusProductVO> catelist(String pc_code) {
-		return productmapper.catelist(pc_code);
-	}
-
-	@Override
-	public List<CampusProductVO> searchProduct(String p_name) {
-		return productmapper.searchProduct(p_name);
-	}
 	
+	//카테고리 통한 조회
+	@Override
+	public List<CampusProductVO> catelist(CampusCriteria cri,String pc_code) {
+		return productmapper.catelist(cri,pc_code);
+	}
+
+	//개별 상품 조회
 	@Override
 	public CampusProductVO viewProduct(int p_number) {
 		return productmapper.viewProduct(p_number);
 	}
+	
+	
 	@Override
 	public int total(CampusCriteria cri) {
 		return productmapper.totalPro(cri);

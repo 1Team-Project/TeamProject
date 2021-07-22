@@ -22,5 +22,13 @@ public class CampusProductVO {
 	private int p_rank;
 
 	//상품사진
+	private String a_uuid;
+	private String a_path;
+	private String a_name;
 	private String urllink;
+<<<<<<< HEAD
 }
+=======
+	private String path;
+}
+>>>>>>> refs/remotes/origin/nahyun

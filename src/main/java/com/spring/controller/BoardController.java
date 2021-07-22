@@ -88,6 +88,7 @@ public class BoardController {
 			if (vo.getB_title().length() >= 10) {
 				tovo.setB_title_10(vo.getB_title().substring(0, 9)+"...");						
 			}else {
+			
 				tovo.setB_title_10(vo.getB_title());
 			}
 			tovo.setB_no(vo.getB_no());

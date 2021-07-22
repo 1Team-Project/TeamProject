@@ -179,7 +179,8 @@
 			    			</sec:authorize>
 		    			
 		    			
-		    			<a href="#" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_cart.png"></a>
+		    			<a href="#" class="d-flex align-items-center justify-content-center m-1">
+		    				<img src="/resources/main/images/icon_cart.png"></a>
 		    		</p>
 	      		</div>
 				</div>
@@ -198,9 +199,9 @@
              	 <div class="dropdown-menu" aria-labelledby="dropdown01">
 				<!-- 각 카테고리별 이동하는 링크 -->
               	<a class="dropdown-item" href="product/productlist">상품 전체</a>
-                <a class="dropdown-item" href="product/catelist">카테고리1</a>
-                <a class="dropdown-item" href="product/catelist">카테고리2</a>
-                <a class="dropdown-item" href="product/catelist">카테고리3</a>
+              	<c:forEach var="pc" items="${catelist}">
+	                <a class="dropdown-item clickview" href="${pc.pc_code}">${pc.pc_name}</a>
+              	</c:forEach>
               </div>
            	  </li>
 
@@ -235,10 +236,26 @@
 
 
 </form>
+<<<<<<< HEAD
 
 <form action="/logoutForm" method="post" id="logoutForm">
 	 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
+=======
+	<form action="list" method="get" id="actionForm">	
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
+		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
+		<input type="hidden" name="r_page" value="1"/>
+	</form> 
+	
+	<script>
+		let result='${result}';
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+	</script>
+>>>>>>> refs/remotes/origin/nahyun
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  	<script src="/resources/main/js/popper.js"></script>
