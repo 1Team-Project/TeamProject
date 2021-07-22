@@ -199,9 +199,11 @@
              	 <div class="dropdown-menu" aria-labelledby="dropdown01">
 				<!-- 각 카테고리별 이동하는 링크 -->
               	<a class="dropdown-item" href="product/productlist">상품 전체</a>
-              	<c:forEach var="pc" items="${catelist}">
-	                <a class="dropdown-item clickview" href="${pc.pc_code}">${pc.pc_name}</a>
-              	</c:forEach>
+              	
+	           	<a class="dropdown-item clickview" href="">카테고리1</a>
+	           	<a class="dropdown-item clickview" href="">카테고리2</a>
+	           	<a class="dropdown-item clickview" href="">카테고리3</a>
+              	
               </div>
            	  </li>
 

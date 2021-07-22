@@ -4,7 +4,6 @@
 
 /*function showImage(fileCallPath){
    $(".bigPictureWrapper").css("display","flex").show();
-
    $(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>")
 			   .animate({width:'100%', height:'100%'},1000);
    }
@@ -66,6 +65,7 @@ $(function() {
 
 
 $(function() {
+<<<<<<< HEAD
 	$("#btn_cart").click(function() {
 		$(".modal").fadeIn();
 	});
@@ -77,6 +77,20 @@ $(function() {
 		var order = confirm("상품을 바로 구매하시겠습니까?");
 		if (order) {
 			$(location).attr("href", "../buy")
+=======
+	//	$(".btn-primary").click(function() {
+	//		var cart = confirm("장바구니로 바로 이동하시겠습니까?");
+	//		if (cart) {
+	//			$(location).attr("href", "cart")
+	//		} else {
+	//
+	//		}
+	$(".btn-secondary").click(function(e) {
+		e.preventDefault();
+		var order = confirm("상품을 바로 구매하시겠습니까?");
+		if (order) {
+			$(location).attr("href", "buy")
+>>>>>>> refs/remotes/origin/nahyun
 		} else {
 
 		}
@@ -124,7 +138,10 @@ $(".plus").click(function() {
 		$(".inp").val(num);
 	} else {
 		$(".inp").val(plusNum);
+<<<<<<< HEAD
 		$(".")
+=======
+>>>>>>> refs/remotes/origin/nahyun
 	}
 });
 
@@ -138,11 +155,41 @@ $(".minus").click(function() {
 		$(".inp").val(minusNum);
 	}
 });
+<<<<<<< HEAD
 
 $(".inp").change(function() {
+=======
+>>>>>>> refs/remotes/origin/nahyun
 
 	var price = $('.price').val();
 	var quantity = $('.inp').val();
 
+<<<<<<< HEAD
 	$(".num").text(price * quantity);
 });
+=======
+$("#btn1").click(function(e) {
+	e.preventDefault();
+	var pnum = $(".p_number").val();
+	var cartStock = $(".inp").val();
+	
+	
+	var data = {
+		pnum: pnum,
+		cartStock: cartStock
+	};
+
+	$.ajax({
+		url: "/cart",
+		type: "post",
+		data: data,
+		success: function() {
+			alert("장바구니에 담았습니다.");
+				$(".inp").val("1");
+			},
+			error:function(){
+				alert("카트 담기 실패");
+			}
+			});
+		});
+>>>>>>> refs/remotes/origin/nahyun
