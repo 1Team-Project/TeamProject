@@ -65,26 +65,10 @@ $(function() {
 
 
 $(function() {
-<<<<<<< HEAD
-//	$("#btn_cart").click(function() {
-//		$(".modal").fadeIn();
-//	});
-//	$(".close").click(function() {
-//		$(".modal").fadeOut();
-//	});
-//	
-	$("#btn_order").click(function() {
-=======
-	//	$(".btn-primary").click(function() {
-	//		var cart = confirm("장바구니로 바로 이동하시겠습니까?");
-	//		if (cart) {
-	//			$(location).attr("href", "cart")
-	//		} else {
-	//
-	//		}
+
 	$(".btn-secondary").click(function(e) {
 		e.preventDefault();
->>>>>>> 930bc1e5b350884ff98b5d9f04011d1642380894
+
 		var order = confirm("상품을 바로 구매하시겠습니까?");
 		if (order) {
 			$(location).attr("href", "buy")
