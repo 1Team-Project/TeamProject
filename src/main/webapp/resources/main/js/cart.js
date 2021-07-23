@@ -1,4 +1,4 @@
-
+//클래스명 같기 때문에 x => 현재의 값
 $(".plus").click(function() {
 	var num = $(".num").val();
 	var plusNum = Number(num) + 1;
@@ -11,7 +11,7 @@ $(".plus").click(function() {
 });
 
 $(".minus").click(function() {
-	var num = $(".num").val();
+	var num = $("").val();
 	var minusNum = Number(num) - 1;
 
 	if (minusNum <= 0) {
@@ -40,9 +40,19 @@ $(".minus").click(function() {
 	}
   });
 
-$(".btn_delete").click(function(){
+$("#deleteall").click(function(){
 	
-	var result = confirm("정말 삭제하시겠습니까?");
+	var result = confirm("정말 전체를 삭제하시겠습니까?");
+		
+	if(result){
+		location.replace('main');
+	}
+
+});
+
+$("#delete").click(function(){
+	
+	var result = confirm("해당 항목을 삭제하시겠습니까?");
 		
 	if(result){
 		location.replace('main');

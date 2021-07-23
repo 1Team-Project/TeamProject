@@ -178,9 +178,15 @@
 		    					</a>
 			    			</sec:authorize>
 		    			
-		    			
-		    			<a href="#" class="d-flex align-items-center justify-content-center m-1">
-		    				<img src="/resources/main/images/icon_cart.png"></a>
+							<sec:authorize access="isAuthenticated()">
+								<a href="#" class="d-flex align-items-center justify-content-center m-1">
+								<img src="/resources/main/images/icon_login.png"></a>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
+			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
+			    					<img src="/resources/main/images/icon_login.png">
+			    				</a>
+			    			</sec:authorize>
 		    		</p>
 	      		</div>
 				</div>
@@ -250,6 +256,7 @@
 		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
 		<input type="hidden" name="r_page" value="1"/>
 	</form> 
+	
 	
 	<script>
 		let result='${result}';
