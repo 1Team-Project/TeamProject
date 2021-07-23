@@ -30,7 +30,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 	OptionMapper optionmapper;
 	
 	@Autowired
-	CampusBoardAttachMapper attachMapper;
+	private CampusBoardAttachMapper attachMapper;
 	
 	//전체리스트
 	@Override
@@ -39,10 +39,10 @@ public class CampusProductServiceImpl implements CampusProductService {
 	}
 	
 	//사진불러오기
-//	@Override
-//	public List<CampusAttachFileDTO> getImg() {
-//		return attachMapper.getImg();
-//	}
+	@Override
+	public List<CampusAttachFileDTO> getImg() {
+		return attachMapper.getImg();
+	}
 	
 	//베스트3리스트
 	@Override
@@ -94,9 +94,7 @@ public class CampusProductServiceImpl implements CampusProductService {
 		// 첨부파일 등록
 		vob.getAttachList().forEach(attach -> {
 			attach.setB_no(vob.getB_no());
-			
-			attachMapper.insert_p(attach.getA_uuid(),attach.getA_path(),attach.getA_name(),1,attach.getB_no(),vo.getP_number());
-			
+			attachMapper.insert(attach);
 		});
 
 		return result;
@@ -142,6 +140,17 @@ public class CampusProductServiceImpl implements CampusProductService {
 		// TODO Auto-generated method stub
 		return productmapper.category(cri);
 	}
+
+	@Override
+	public List<CampusAttachFileDTO> getAttachList(int p_number) {
+		return attachMapper.findByBno(p_number);
+	}
+
+	@Override
+	public List<CampusProductOptionVO> optionlist(String op_optiontitle) {
+		return productmapper.optionlist(op_optiontitle);
+	}
+	
 
 
 }
