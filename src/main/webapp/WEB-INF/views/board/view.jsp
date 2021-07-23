@@ -37,6 +37,7 @@
 }
 </style>
 <section>
+<sec:authentication property="principal" var="user"/>
 	<div class="row topmargin30">
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
@@ -99,7 +100,6 @@
 				<hr class="one" />
 				<div class="col-md-8 mll20">
 	  			<sec:authorize access="isAuthenticated()">
-	  			<sec:authentication property="principal" var="user"/>
 	  				<c:if test="${user.username == campusVO.b_writer}">
 	  				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="btn btn-primary modifybutton" type="button">수정하기</button>
@@ -116,21 +116,11 @@
 		<div class="col-md-10 mll10">
 			<form action="/board/replyadd" method="post">
 				<div class="col-md-8 mll20">
-								
-					<input type="hidden" name="sort" value="${cri.sort}" />
-					<input type="hidden" name="keyword" value="${cri.keyword}" />
-					<input type="hidden" name="page" value="${cri.page}" />
-					<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
-					<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
-					<sec:authentication property="principal" var="user"/>
-					<input type="hidden" name="r_replyer" value="${user.username}"/>
-					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-
 					<sec:authorize access="isAuthenticated()">
 						<h5>댓글 작성</h5>
-						<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
+						<textarea class="form-control lineview reply_content_add" cols="30" rows="3" name="r_content"
 							style="resize: none"></textarea>
-						<button class="btn btn-primary float-end m-1 mr-0" type="submit">댓글 작성</button>
+						<button class="btn btn-primary float-end m-1 mr-0 btn-reply-submit" type="submit">댓글 작성</button>
 					</sec:authorize>
 					<sec:authorize access="isAnonymous()">
 						<h5>댓글 작성</h5>
@@ -161,7 +151,6 @@
 				
 				<sec:authorize access="isAuthenticated()">
 
-				<sec:authentication property="principal" var="user"/>
 					<c:if test="${user.username == revo.r_replyer}">
 
 					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
@@ -252,18 +241,26 @@
 </section>
 <script>
 	let b_no = ${campusVO.b_no};
-	$(document).ready(function(){
+	
+/* 	$(document).ready(function(){
 		if(r_page > 1){
 			
 			var offset = $(".lineview").offset();
 			$('html, body').animate({scrollTop : offset.top}, 0);
 		}		
-	});
+	}); */
+	
+	
+	
+	
+	var replyername = "${user.username}";
+	var bno = "${campusVO.b_no}";
 
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 	
 </script>
 <script src="/resources/main/js/campusview.js"></script>
+<script src="/resources/main/js/campusreply.js"></script>
 
 <%@include file="../../design/footer.jsp"%>

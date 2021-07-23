@@ -13,6 +13,8 @@ function showImage(fileCallPath){
 
 $(function(){
 
+	showList(1);
+
 	//첨부 파일 가져오기
 	$.getJSON({
 		url:'/board/getAttachList',
@@ -169,6 +171,152 @@ $(function(){
 		replyForm.attr('action','/board/view');
 		replyForm.submit();
 	})
+	
+	//댓글 작성 ajax
+	$(".btn-reply-submit").click(function(e){
+		
+		e.preventDefault();
+		var rcontent = $(".reply_content_add").val();
+		
+		$.ajax({
+			url: "/board/replyadd",
+			type: "POST",
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
+			data: "b_no="+bno+"&r_replyer="+replyername+"&r_content="+rcontent,
+			success: function(result){
+				if (result === 'OK'){
+					alert("댓글을 작성하셨습니다.");
+					//댓글 불러오기
+					var param = {
+						
+					}
+					
+					
+				}else if (result === 'NO'){
+					alert("댓글 작성에 실패하였습니다.");
+				}
+		
+			}
+		})
+		
+	})
+
+	
+	function showList(page){
+	
+	console.log("작동은 하나")
+	
+	replyService.getList({b_no:bno,r_page:page||1},function(total,data){
+		console.log(data);
+		console.log(total);
+		console.log("테스트테스트");
+		
+		if(page == -1){
+			//마지막 페이지 계산
+			pageNum = Math.ceil(total/10.0);
+			showList(pageNum);
+			return;
+		}
+		//댓글이 없는 경우
+		if(data==null || data.length==0){
+			replyUl.html("");
+			return;
+		}
+		
+		//댓글이 있는 경우
+		var str="";
+		for(var i=0,len=data.length||0;i<len;i++){
+					str += "<li class='left clearfix' data-rno='"+data[i].rno+"'>";
+					str += "<div>"
+					str += "<div class='header'>"
+					str += "<strong class='primary-font'>"+data[i].replyer+"</strong>"
+					str += "<small class='pull-right text-muted'>"+replyService.displayTime(data[i].replydate)+"</small>"
+					str += "<p>"+data[i].reply+"</p>"
+					str += "</div>"
+					str += "</div>"
+					str += "</li>"
+					
+				<div class="col-md-8 mll20 margintb20 divreply">
+				<h6 class="float-start">${revo.r_replyer}</h6>
+				<sec:authorize access="isAuthenticated()">
+					<c:if test="${user.username == revo.r_replyer}">
+					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
+					<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
+					</c:if>
+				</sec:authorize>
+				<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">시간</h7>
+				<div class="${revo.r_no}_btn"></div>
+				<div class="${revo.r_no}_btn_X"></div>
+				<textarea class="form-control ${revo.r_no}" cols="30" rows="3" name="r_content" style="resize: none" readonly>${revo.r_content}</textarea>
+				</div>
+					
+		}
+		replyUl.html(str);
+		showReplyPage(total);
+			
+		})
+	
+	}
+	
+	//페이지 나누기
+	
+	//댓글 페이지 영역 가져오기
+	var replyPageFooter = $(".panel-footer");
+	var pageNum = 1;
+	
+	function showReplyPage(total){
+		
+		//마지막 페이지 계산
+		var endPage = Math.ceil(pageNum/10.0)*10;
+		
+		//시작 페이지 계산
+		var startPage = endPage - 9;
+		
+		//이전 버튼
+		var prev = startPage != 1;
+		
+		//다음 버튼
+		var next = false;
+		
+		if(endPage * 10 >= total){
+			endPage = Math.ceil(total/10.0);
+		}
+		
+		if(endPage * 10 < total){
+			next = true;
+		}
+		
+		var str="<ul class = 'pagination pull-right'>";
+		if(prev){
+			//str += "<li class='page-item'><a class='page-link' href='"+(startPage-1)+"'>Prev</a></li>";
+			str += '<li class="mypage-item prev"><a class="page-link" href="'+(startPage-1)+'" class="mypage-link" /></li>'
+		}
+		for(var i=startPage;i<=endPage;i++){
+			var active = pageNum == i?"active":"";
+			str += "<li class='page-item "+active+"'>";
+			str += "<a class='page-link' href='"+i+"'>"+i;
+			str += "</a></li>";
+		}
+		if(next){
+			str += "<li class='page-item'><a class='page-link' href='"+(endPage+1)+"'>Next</a></li>";
+		}
+		
+		str+="</ul>";
+		replyPageFooter.html(str);
+		
+	}
+	
+	//댓글 페이지 번호 클릭시
+	replyPageFooter.on("click","li a",function(e){
+		e.preventDefault(); // a 태그의 동작 막기
+		
+		pageNum = $(this).attr("href");
+		showList(pageNum);
+		
+	})
+	
 	
 })
 

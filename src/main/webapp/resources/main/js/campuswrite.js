@@ -10,13 +10,15 @@ $(function(){
 		var pnumber = $("#campusboard-pnumber").val();
 
 		$.ajax({
-			url: "/board/checkpnumber",
+			url: "/board/replyadd",
 			type: "POST",
 			beforeSend:function(xhr){
 				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 			},
 			data: {
-				 p_number : pnumber
+				b_no : bno,
+				b_views: bviews,
+				
 			},
 			success: function(result){
 				if(result=='not'){
