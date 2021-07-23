@@ -87,7 +87,17 @@ $(function(){
       actionForm.submit();
 	})
 	
-	
+	//카테고리 클릭시
+	$(".cate").click(function(e){
+		e.preventDefault(); //타이틀 a 속성 막기
+		
+		//pc_code값 추가해서 보내기
+		actionForm.append("<input type='hidden' name='pc_code' value='"+$(this).attr('href')+"'>");
+		actionForm.attr("action","c");
+     	 actionForm.submit();
+		
+		
+	})
 	
 })
 

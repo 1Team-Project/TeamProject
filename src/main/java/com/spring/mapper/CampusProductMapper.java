@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
+import com.spring.domain.CampusProductCategoryVO;
 import com.spring.domain.CampusProductVO;
 
 public interface CampusProductMapper {
@@ -17,7 +18,8 @@ public interface CampusProductMapper {
 	public CampusProductVO viewProduct(@Param("p_number") int p_number);
 	public int totalPro(CampusCriteria cri);
 	
-	
+	//카테고리뿌리기용
+	public  List<CampusProductCategoryVO> category(CampusCriteria cri);
 	
 	
 	//관리자용

@@ -28,36 +28,34 @@ $(function(){
 	
 
 	//검색
-	$(".searchbutton").click(function(e){
+		$(".searchbutton").click(function(e){
 		
 		e.preventDefault();
 		
-		let searchProduct = $("#searchProduct");
+		let searchForm = $("#searchForm");
 		
 		var sort = $("select[name='sort']").val();
 		
 		var keyword = $("input[name='keyword']").val();
 		
+		
 		if(sort === ''){
-			alert("검색 기준을 다시 한번 확인해 주세요");
+			alert("검색 기준을 다시 한번 확인해 주세요!");
 			$("select[name='sort']").focus();
 			return false;
 		}
-		else if(keyword === ''){
-			alert("검색어를 확인해 주세요");
+		if(keyword === ''){
+			alert("검색어를 확인해 주세요!");
 			$("input[name='keyword']").focus();
 			return false;
 		}	
 		
-		searchProduct.find("input[name='page']").val("1");
-		//searchProduct.find("input[name='sort']").val(sort);
-		//searchProduct.find("input[name='keyword']").val(keyword);
+		searchForm.find("input[name='page']").val("1");
 		
-		searchProduct.attr("action","productlist");
-		searchProduct.submit();
-
+		searchForm.submit();
 		
-	})	
+	})
+	
 		
 		
 		//상품 클릭시
@@ -67,6 +65,7 @@ $(function(){
       //actionForm에 pnum값을 추가하여 actionForm 보내기
       actionForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
       actionForm.attr("action","productdetail");
+
       actionForm.submit();
 	})
 		

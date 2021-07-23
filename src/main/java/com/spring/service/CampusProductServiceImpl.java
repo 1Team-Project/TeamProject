@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
+import com.spring.domain.CampusProductCategoryVO;
 import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
 import com.spring.mapper.CampusBoardAttachMapper;
@@ -129,12 +130,28 @@ public class CampusProductServiceImpl implements CampusProductService {
 
 
 
+<<<<<<< HEAD
 //	@Override
 //	public CampusProductVO detailproduct(int p_number) {
 //		// TODO Auto-generated method stub
 //		return productmapper.productdetail(p_number);
 //	}
 //	
+=======
+	@Override
+	public CampusProductVO detailproduct(int p_number) {
+		// TODO Auto-generated method stub
+		return productmapper.productdetail(p_number);
+	}
+
+	
+	@Override
+	public List<CampusProductCategoryVO> category(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return productmapper.category(cri);
+	}
+	
+>>>>>>> refs/remotes/origin/nahyun
 
 
 }
