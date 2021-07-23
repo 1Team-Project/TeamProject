@@ -30,6 +30,7 @@ public class ProductController {
 
 	@Autowired
 	private CampusProductService service;
+<<<<<<< HEAD
 
 
 	//상품 리스트 전체 나열 + best3까지
@@ -117,6 +118,58 @@ public class ProductController {
 		model.addAttribute("bestlist",bestlist);
 		log.info("bestlist 확인하기  "+bestlist);
 	}
+=======
+	
+	@Autowired
+	private CampusBoardService board;
+	
+//	@Autowired
+//	private CampusAttachFileDTO attach;
+//	
+//	//상품 리스트 전체 나열 + best3까지
+//	@GetMapping("/productlist")
+//	public void getList(Model model,CampusCriteria cri) {
+//		log.info("전체 리스트 조회");
+//		//전체 리스트, CampusPageVO vo
+//		
+//		//상품사진
+//		
+//		String imgurl="";
+//		
+//		List<CampusAttachFileDTO> dto = service.getImg();
+//		for(CampusAttachFileDTO img:dto) {
+//			
+//			if (dto == null || dto.isEmpty()) {
+//				imgurl = "/resources/main/images/default-img.jpg";
+//			}else {
+//				for(CampusAttachFileDTO ddto:dto) {
+//					String path = ddto.getA_path().replace("\\", "%5C");
+//					log.info("url 테스트중 : "+path);
+//					imgurl = "/display?fileName="+path+"%2F"+ddto.getA_uuid()+"_"+ddto.getA_name();
+//					break;
+//					}
+//				}
+//			
+//		CampusProductVO pvo=new CampusProductVO();
+//		pvo.setUrllink(imgurl);
+//		
+//		}
+//		List<CampusProductVO> prolist=service.prolist(cri);
+//		
+//		
+//		
+//		int total = service.total(cri);
+//		
+//		//베스트3
+//		List<CampusProductVO> bestlist=service.bestlist();
+//		log.info("best리스트" +bestlist);
+//		
+//		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
+//		model.addAttribute("CampusPageVO", campusPageVO);
+//		model.addAttribute("prolist",prolist);
+//		model.addAttribute("bestlist",bestlist);
+//	}
+>>>>>>> refs/remotes/origin/youngkwon
 	
 	
 	//카테고리별 조회

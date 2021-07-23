@@ -128,6 +128,7 @@
     </div>
     <form id="modifyForm" name="modifyForm" action="/mypageModify" method="post" target="_self" enctype="multipart/form-data">
         <div id="main" class="ec-base-table typeWrite gClearBorderTop ">
+        <sec:authentication property="principal" var="user"/>
             <table border="1">
                 <caption>회원 기본정보</caption>
                 <colgroup>
@@ -140,7 +141,7 @@
                         <td>
                             <input id="u_userid" name="u_userid"
                                 fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="아이디"
-                                fw-msg="" class="inputTypeText" placeholder="" value="${login.u_userid}" type="text" readonly="readonly">
+                                fw-msg="" class="inputTypeText" placeholder="" value="${user.campusUser.u_userid}" type="text" readonly="readonly">
                         </td>
                     </tr>
                     <tr>
@@ -164,7 +165,7 @@
                         <th scope="row" id="">이름</th>
                         <td><input id="u_username" name="u_username" fw-filter="isFill&amp;isMax[30]" fw-label="이름"
                                 fw-msg="" class="ec-member-name" placeholder="" maxlength="30"
-                                value="${login.u_username}" type="text" readonly></td>
+                                value="${user.campusUser.u_username}" type="text" readonly></td>
                     </tr>
 
                     <tr class="">
@@ -178,7 +179,7 @@
                             <input id="u_address" name="u_address" fw-filter="isFill" fw-label="주소" fw-msg=""
                                 class="inputTypeText" placeholder="" readonly="readonly" value="${vo.u_address}" type="text"><br>
                             <input id="u_address" name="u_address" fw-filter="" fw-label="주소" fw-msg="" class="inputTypeText"
-                                placeholder="" value="${login.u_address}" type="text"> <span class="ec-base-help typeDash"></span>
+                                placeholder="" value="${user.campusUser.u_address}" type="text"> <span class="ec-base-help typeDash"></span>
                         </td>
                     </tr>
                     <tr>
@@ -186,7 +187,7 @@
                         <td>
                             <input id="u_email" name="u_email"
                                 fw-filter="isFill&amp;isFill&amp;isMin[4]&amp;isMax[16]&amp;isIdentity" fw-label="이메일"
-                                fw-msg="" class="inputTypeText" placeholder="" value="${login.u_email}" type="text">
+                                fw-msg="" class="inputTypeText" placeholder="" value="${user.campusUser.u_email}" type="text">
                         </td>
                     </tr>
                     <tr class="">
@@ -202,10 +203,10 @@
                                 <option value="019">019</option>
                             </select>
                             -<input id="mobile2" name="mobile[]" maxlength="4" fw-filter="isNumber&amp;isFill"
-                                fw-label="휴대전화" fw-alone="N" fw-msg="" value="${vo.u_phone}" type="text">
+                                fw-label="휴대전화" fw-alone="N" fw-msg="" value="${user.campusUser.u_phone}" type="text">
                             -<input id="mobile3"
                                 name="mobile[]" maxlength="4" fw-filter="isNumber&amp;isFill" fw-label="휴대전화"
-                                fw-alone="N" fw-msg="" value="${login.u_phone}" type="text">
+                                fw-alone="N" fw-msg="" value="${user.campusUser.u_phone}" type="text">
                         </td>
                     </tr>
                 </tbody>
@@ -213,12 +214,26 @@
         </div>
         <br>
         <div id="b-button" class="ec-base-button gColumn">
-            <a href="mypage.html" class="btnSubmit" onclick="memberEditAction()">회원정보수정</a>
-            <a href="mypage.html" class="btnEm">취소</a>
-            <a href="mypage.html" class="btnEm">회원탈퇴</a>
+            <button type="submit" id="mo_update"class="btn btn-info">회원정보수정</button>
+            <button type="button" id="mo_cancel" class="btn btn-warning">취 소</button>
+            <button type="button" id="mo_leave"class="btn btn-secondary">회원탈퇴</button>
         </div>
+        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 <!--<input type="hidden"  name="u_userid" value="${vo.u_userid}"/>
 <input type="hidden" name="u_username" value="${vo.u_username}"/>  -->
 
     </form>
+    <script>
+    $(function(){
+    	$("#mo_cancel").click(function(){
+    		alert("정보 수정을 취소합니다.");
+    		location.href="/loginMypage";
+    	});
+     	$("#mo_leave").click(function(){
+    		/* $("#modifyForm").attr("action", "leave"); */
+    		location.href="/leave";
+    	});
+    	
+    })
+	</script>
 <%@include file="../design/footer.jsp" %>
