@@ -41,7 +41,7 @@
 		      from campus_product
 		      where
 		       ]]>
-		  <include refid="criteria"></include>
+		  <include refid="criteria2"></include>
 		   <![CDATA[
 					rownum <= (#{cri.page}*25)) p, simple_attach a
 			where rn > ((#{cri.page}-1)*25) and a.p_number=p.p_number and p.pc_code=#{pc_code}
@@ -72,10 +72,23 @@
 	</select>
 	
 
-	
-	
-	<!-- 동적 SQL -->
+	<!-- 동적 SQL  : 전체리스트용-->
 	<sql id = "criteria">
+		<if test="sort != null || sort == ''">
+			<if test="sort=='제목'.toString()">
+				b_title like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='내용'.toString()">
+				b_content like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='작성자'.toString()">
+				b_writer like '%'||#{keyword}||'%' and
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 동적 SQL : 카테고리리스트용-->
+	<sql id = "criteria2">
 		<if test= "cri.sort.toString()!=''">
 			<if test="sort=='상품명'.toString()">
 				p_name like '%'||#{keyword}||'%' and

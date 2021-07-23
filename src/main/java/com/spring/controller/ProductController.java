@@ -170,6 +170,10 @@ public class ProductController {
 		//카테고리코드별 상품리스트 추출
 		model.addAttribute("catelist", catelist);
 		
+		//헤더부분 - 카테고리값넘기기
+		List<CampusProductCategoryVO> category = service.category(cri);
+		model.addAttribute("category",category);
+		
 		log.info("카테고리별 상품리스트"+catelist);
 	}
 	
