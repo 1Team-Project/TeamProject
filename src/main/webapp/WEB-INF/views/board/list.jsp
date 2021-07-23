@@ -152,7 +152,6 @@
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
 		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		<input type="hidden" name="r_page" value="1"/>
 	</form>            
 	
 	

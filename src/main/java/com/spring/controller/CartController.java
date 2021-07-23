@@ -20,7 +20,7 @@ public class CartController {
 	@Autowired
 	private CartService service;
 //	
-	@GetMapping("/cart")
+	@GetMapping("/gocart") // 이거 그냥 cart로 하니까 나 오류난다...
 	public void cart() {	
 		log.info("장바구니로");
 	}

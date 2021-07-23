@@ -240,10 +240,12 @@ $(function(){
 				}
 			}
 		}
-		if(ratingpoint == 0){
-			alert("별점을 확인해 주세요!");
-			$("#campusboard-title").focus();
-			return;
+		if(sort == '후기'){			
+			if(ratingpoint == 0){
+				alert("별점을 확인해 주세요!");
+				$("#campusboard-title").focus();
+				return;
+			}
 		}
 		str+="<input type='hidden' name='b_rating' value='"+ratingpoint+"'>";
 		console.log("별점 : "+ratingpoint)

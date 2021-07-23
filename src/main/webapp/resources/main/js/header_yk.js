@@ -1,14 +1,14 @@
 /* header.jsp */
 $(function() {
 	$("#logoutDo").click(function(){
-		var logout = confirm("濡�洹몄���� ����寃��듬��源�?");
+		var logout = confirm("정말 로그아웃 하시겠습니까?");
 		if(logout==true){
 
 			alert("안녕히가세요")
 			$("#logoutForm").submit();
 
 		} else {
-			alert("濡�洹몄�몄�� ��吏��⑸����.")
+			alert("로그아웃이 취소되었습니다.")
 			return false;
 		}
 	});
