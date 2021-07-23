@@ -1,14 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<%@include file="../../design/header.jsp"%>
+<%@include file="../../design/header.jsp" %>
 <link rel="stylesheet" href="/resources/main/css/product.css">
 
-<div id="wrap">
-	<div id="container">
-		<div id="contents_main">
-			<!--카테고리,,,뭐지,,,,-->
-			<!-- <div class="xans-element- xans-product xans-product-menupackage ">
+
+    <div id="wrap">
+        <div id="container">
+            <div id="contents_main">
+                <!--카테고리,,,뭐지,,,,-->
+                <!-- <div class="xans-element- xans-product xans-product-menupackage ">
                     <div class="xans-element- xans-product xans-product-headcategory banner ">
                         <p>
                         
@@ -16,23 +17,23 @@
                     </div>
                 </div> -->
 
-			<!-- 중앙영역 시작 -->
-			<div id="titleArea" class="campus product headcategory ">
-				<h2>
-					<a href="/product/productlist">PRODUCT</a>
-				</h2>
+                <!-- 중앙영역 시작 -->
+                <div id="titleArea" class="campus product headcategory ">
+                    <h2>
+                        <a href="/product/productlist">PRODUCT</a>
+                    </h2>
 
 
-				<!--best 상품 영역-->
+                    <!--best 상품 영역-->
 
-				<div id="bestsellerArea" class="">
-					<h3>Best Seller</h3>
-				</div>
+                    <div id="bestsellerArea" class="">
+                        <h3>Best Seller</h3>
+                    </div>
 
-				<!-- 이름바꾸기,,,ing~ -->
-				<div id="campus product bestproduct">
-					<div class="campus product product-bestlist listproduct">
-						<ul class="prdList grid3">
+                    <!-- 이름바꾸기,,,ing~ -->
+                    <div id="campus product bestproduct">
+                        <div class="campus product product-bestlist listproduct">
+                            <ul class="prdList grid3">
 
                                 <!--@@@list id에 추후 db적용@@@   -->
                                 <c:forEach var="best" items="${bestlist}" >
@@ -43,7 +44,7 @@
                                             <a href="${best.p_number}" name="boxname" class="viewpro">
                                             	
                                                 <img src="${best.urllink}" id="bestprod1" alt="상품1">
-   		
+                                         		
                                                 </a>
                                         </div>
                                     </div>
@@ -88,19 +89,18 @@
 								<button class="btn btn-primary searchbutton" id="searchBtn" type="submit">검색</button>
 								
 							</div>
-<<<<<<< HEAD
-						</div>
-					</div>
-=======
 						</div> 
 					</form>
->>>>>>> refs/remotes/origin/nahyun
 
 
-				</form>
+                    <div id="center_sec">
 
+						
+                        <!-- 상품 -->
+                        <div class="campus product allproduct">
 
-				<div id="center_sec">
+                            <div class="campus product product-normallist listproduct">
+
                                 <ul class="prdList grid3">
 									<c:forEach var="pro" items="${prolist}">
                                     <li id="boxid" class="prolist">
@@ -130,69 +130,53 @@
 									<input type="hidden" name="p_stock" value="${CampusProductVO.p_stock}" />
 									<input type="hidden" name="pc_code " value="${CampusProductVO.pc_code }" />
 								</form>-->
-								</c:forEach>
+									</c:forEach>
+									
+                                    <!--상품 반복 ~~ -->
+                                     
+                                </ul>
+                            </div>
+                        </div>
 
-								<!--상품 반복 ~~ -->
-
-							</ul>
-						</div>
-					</div>
 
 
-<<<<<<< HEAD
-
-					<!-- 하단 페이지 넘기기 부분-->
-					<div class="row">
-						<div class="col-md-12">
-							<ul class="mypagination justify-content-center">
-
+                        <!-- 하단 페이지 넘기기 부분-->
+                        <div class="row">
+							<div class="col-md-12">
+								<ul class="mypagination justify-content-center">
+								
 								<c:if test="${CampusPageVO.prev}">
-									<li class="mypage-item prev"><a
-										href="${CampusPageVO.startPage-1}" class="mypage-link"> <<
-									</a></li>
-								</c:if>
-
-								<c:forEach var="i" begin="${CampusPageVO.startPage}"
-									end="${CampusPageVO.endPage}">
-									<li class="mypage-item"><a href="${i}"
-										class="mypage-link ${CampusPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
+									<li class="mypage-item prev"><a href="${CampusPageVO.startPage-1}" class="mypage-link"> << </a></li>
+								</c:if>	
+								
+								<c:forEach var="i" begin="${CampusPageVO.startPage}" end="${CampusPageVO.endPage}">
+									<li class="mypage-item"><a href="${i}" class="mypage-link ${CampusPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
 								</c:forEach>
-
+								
 								<c:if test="${CampusPageVO.next}">
-									<li class="mypage-item next"><a
-										href="${CampusPageVO.endPage+1}" class="mypage-link"> >> </a></li>
-								</c:if>
-
-							</ul>
+									<li class="mypage-item next"><a href="${CampusPageVO.endPage+1}" class="mypage-link"> >> </a></li>
+								</c:if>	
+								
+								</ul>
+							</div>
 						</div>
-					</div>
 
-				</div>
+                    </div>
 
-			</div>
-		</div>
-=======
                 </div>
             </div>
 	
->>>>>>> refs/remotes/origin/nahyun
 		<form action="list" method="get" id="actionForm">
 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-<<<<<<< HEAD
-		</form> 
-=======
 		</form>
->>>>>>> refs/remotes/origin/nahyun
         </div>
 
 <script>
-
 	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
-
 </script>
-	<script src="/resources/main/js/productlist.js"></script>
-	<%@include file="../../design/footer.jsp"%>
+<script src="/resources/main/js/productlist.js"></script>
+<%@include file="../../design/footer.jsp" %>

@@ -130,14 +130,6 @@ public class CampusProductServiceImpl implements CampusProductService {
 
 
 
-<<<<<<< HEAD
-//	@Override
-//	public CampusProductVO detailproduct(int p_number) {
-//		// TODO Auto-generated method stub
-//		return productmapper.productdetail(p_number);
-//	}
-//	
-=======
 	@Override
 	public CampusProductVO detailproduct(int p_number) {
 		// TODO Auto-generated method stub
@@ -150,8 +142,6 @@ public class CampusProductServiceImpl implements CampusProductService {
 		// TODO Auto-generated method stub
 		return productmapper.category(cri);
 	}
-	
->>>>>>> refs/remotes/origin/nahyun
 
 
 }

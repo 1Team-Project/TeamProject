@@ -236,22 +236,11 @@
 
 
 </form>
-<<<<<<< HEAD
 
+		<form action="/logoutForm" method="post" id="logoutForm">
+			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</form>
 
-	<form action="/logoutForm" method="post" id="logoutForm">
-		 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-	</form>
-
-	<form action="list" method="get" id="actionForm">	
-		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
-		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
-		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		<input type="hidden" name="r_page" value="1"/>
-	</form> 
-=======
->>>>>>> refs/remotes/origin/nahyun
-	
 		<form action="" method="get" id="actionForm">
 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 

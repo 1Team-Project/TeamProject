@@ -10,11 +10,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-<<<<<<< HEAD
-import org.springframework.web.servlet.ModelAndView;
-=======
+
 import org.springframework.web.bind.annotation.RequestParam;
->>>>>>> refs/remotes/origin/nahyun
 
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
@@ -35,14 +32,8 @@ public class ProductController {
 
 	@Autowired
 	private CampusProductService service;
-<<<<<<< HEAD
-=======
-	
-	//카테고리값넘기기
-		
-	
 
->>>>>>> refs/remotes/origin/nahyun
+	//카테고리값넘기기
 
 	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
@@ -55,22 +46,7 @@ public class ProductController {
 
 		List<CampusProductVO> prolist=service.prolist(cri);
 		
-<<<<<<< HEAD
 
-//		for(CampusProductVO img:prolist) {
-//			if(img.getA_uuid()==null) {
-//				imgurl="/resources/main/images/default-img.jpg";
-//			}else {
-//				String path=img.getA_path().replace("\\", "%5C");
-//			log.info("url 테스트중 : "+path);
-//			imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-//			img.setUrllink(imgurl);
-//			}
-//			break;
-//		}
-		
-=======
->>>>>>> refs/remotes/origin/nahyun
 		 for(CampusProductVO img:prolist) {
 	         String test = img.getUrllink();
 
@@ -93,24 +69,6 @@ public class ProductController {
 		log.info("best리스트" +bestlist);
 		
 
-<<<<<<< HEAD
-//			for(CampusProductVO img:bestlist) {
-//					
-//					if(img.getA_uuid()==null) {
-//						imgurl="/resources/main/images/default-img.jpg";
-//					}else {
-//						String path=img.getA_path().replace("\\", "%5C");
-//					log.info("url 테스트중 : "+path);
-//					imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-//					img.setUrllink(imgurl);
-//					}
-//					
-//				}
-//		
-//		
-//		
-=======
->>>>>>> refs/remotes/origin/nahyun
 		 for(CampusProductVO img:bestlist) {
 	         String test = img.getUrllink();
 
@@ -133,16 +91,11 @@ public class ProductController {
 		log.info("prolist 확인하기  "+prolist);
 
 		model.addAttribute("bestlist",bestlist);
-<<<<<<< HEAD
-		log.info("bestlist 확인하기  "+bestlist);
-=======
 		
 		//카테고리값넘기기
 		List<CampusProductCategoryVO> category = service.category(cri);
 		model.addAttribute("category",category);
 		
-
->>>>>>> refs/remotes/origin/nahyun
 	}
 	
 //	@GetMapping({"/read", "/modify"}) //cri 안에 pageNum과 amount
@@ -194,21 +147,11 @@ public class ProductController {
 	//게시판 글번호 읽어서 보는것처럼
 	//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp
 	@GetMapping("/productdetail")
-<<<<<<< HEAD
-
-	public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {
-		log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
-
-		CampusProductVO product=service.viewProduct(p_number);
-			
-		model.addAttribute("product", product);
-
-=======
+	
 	public void productdetails(int p_number,@ModelAttribute("cri") CampusCriteria cri, Model model) {
 		CampusProductVO vo=service.viewProduct(p_number);
 		model.addAttribute("vo",vo); 
 		log.info("상품 상세"+vo);
 	//상품 상세CampusProductVO(p_number=15151, p_name=테스트55, p_price=10000, p_option=-, p_stock=10, pc_code=ASD123123444, p_manufact=null, p_rank=0, a_uuid=null, a_path=null, a_name=null, urllink=null, path=null
->>>>>>> refs/remotes/origin/nahyun
 	}
 }
