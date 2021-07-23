@@ -32,7 +32,8 @@
 	<!-- 상품 조회 : 카테고리별 분류 -->
 	
 	<select id="catelist" resultType="com.spring.domain.CampusProductVO">
-	<![CDATA[
+	
+		<![CDATA[
 	
 		select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact, a.a_uuid , a.a_path,a.a_name
 		 from (select /*+INDEX_DESC(campus_product pk_campus_product)*/
@@ -42,13 +43,12 @@
 		       ]]>
 		  <include refid="criteria"></include>
 		   <![CDATA[
-					rownum <= (#{page}*25)) p, simple_attach a
-			where rn > ((#{page}-1)*25) and a.p_number=p.p_number and p.pc_code=${pc_code}
+					rownum <= (#{cri.page}*25)) p, simple_attach a
+			where rn > ((#{cri.page}-1)*25) and a.p_number=p.p_number and p.pc_code=#{pc_code}
 			
 			]]>
-			
 	</select>	
-
+	<!-- 카테고리코드를 받아서 네임 출력하고,,,, 아니다~ -->
 	
 	<!-- 상품 조회 : 상품 한개 클릭 후 조회 -->
 		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
@@ -76,7 +76,7 @@
 	
 	<!-- 동적 SQL -->
 	<sql id = "criteria">
-		<if test="sort != null || sort == ''">
+		<if test= "cri.sort.toString()!=''">
 			<if test="sort=='상품명'.toString()">
 				p_name like '%'||#{keyword}||'%' and
 			</if>

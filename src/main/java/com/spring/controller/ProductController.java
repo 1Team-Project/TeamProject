@@ -104,7 +104,7 @@ public class ProductController {
 //		
 //		BoardVO vo=service.read(bno);
 //		model.addAttribute("vo",vo); //board/read or board/modify
-//	
+//	$$$$$$$참고용$$#########인데모르겟
 //	}
 	
 	//카테고리별 조회
@@ -135,50 +135,48 @@ public class ProductController {
 //	}
 	
 	@GetMapping("/catelist")
-	public void catelist(String pc_code,@ModelAttribute("cri") CampusCriteria cri,Model model) {
+	public void catelist(String pc_code,String sort,Model model) {
+		log.info("상품 카테고리 넘어가기"+pc_code+" sort "+sort);
+		//카테고리코드 리스트를 뽑아서 해당 코드값을 누르면 그게 넘어가서 카테고리별 상품리스트가 나오는거
+		//카테고리값넘기기
+//		List<CampusProductCategoryVO> category = service.category(cri);
+//		model.addAttribute("category",category);
+//		log.info("캍텍ㄱ고리"+category);
+		String imgurl="";
+		CampusCriteria cri=new CampusCriteria();
+		cri.setPage(1);
+		cri.setSort(sort);
+		
 		List<CampusProductVO> catelist=service.catelist(cri, pc_code);
-		List<CampusProductCategoryVO> category = service.category(cri);
-		model.addAttribute("category",category);
+		 for(CampusProductVO img:catelist) {
+	         String test = img.getUrllink();
+
+	         if(test == null || test.isEmpty()) {
+	            String path=img.getA_path().replace("\\", "%5C");
+	            log.info("url 테스트중 : "+path);
+	            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+	            img.setUrllink(imgurl);
+	         }else {
+	            imgurl="/resources/main/images/default-img.jpg";
+	            img.setUrllink(imgurl);
+	         }
+	      }
+		log.info(catelist);
+		
+		//int total = service.total(cri);
+		
+//		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
+//		model.addAttribute("CampusPageVO", campusPageVO);
+		//카테고리코드별 상품리스트 추출
+		model.addAttribute("catelist", catelist);
 		
 		log.info("카테고리별 상품리스트"+catelist);
 	}
 	
 	
-	//게시판 글번호 읽어서 보는것처럼
-	//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp//@ModelAttribute("cri") 
-//	@GetMapping("/productdetail")
-//	public void productdetails(int p_number,CampusCriteria cri, Model model) {
-//		
-//		List<CampusProductVO> vo=(List<CampusProductVO>) service.viewProduct(p_number);
-//		
-////		model.addAttribute("vo",vo); 
-////		log.info("상품 상세"+vo);
-////		
-////		if(vo.getA_uuid().lastIndexOf(p_number)>)
-//		String imgurl="";	
-//		for(CampusProductVO detail:vo) {
-//
-//			
-////			if (detail == null || detail.isEmpty()) {
-////				imgurl = "/resources/main/images/default-img.jpg";
-////			}else {
-//			
-//					String path = detail.getA_path().replace("\\", "%5C");
-//					log.info("url 테스트중 : "+path);
-//					imgurl = "/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name();
-//					break;
-//				
-////			}
-//			
-////				CampusPageVO campusPageVO = new CampusPageVO(cri,total);
-////				model.addAttribute("CampusPageVO", campusPageVO);
-////				model.addAttribute("detail",detail);
-//	//상품 상세CampusProductVO(p_number=15151, p_name=테스트55, p_price=10000, p_option=-, p_stock=10, pc_code=ASD123123444, p_manufact=null, p_rank=0, a_uuid=null, a_path=null, a_name=null, urllink=null, path=null
-//	}
-//		
-//}
 	
-	//게시판 글번호 읽어서 보는것처럼
+	
+		//게시판 글번호 읽어서 보는것처럼
 		//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp
 		@GetMapping("/productdetail")
 		public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {

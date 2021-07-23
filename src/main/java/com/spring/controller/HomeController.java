@@ -39,6 +39,7 @@ public class HomeController {
 		log.info("main 페이지");
 		log.info("전체 리스트 요청");
 		
+	
 		List<CampusBoardVO> mainList = service.mainList(cri);
 		
 		model.addAttribute("mainList", mainList);
@@ -57,5 +58,7 @@ public class HomeController {
 		log.info("error 발생");
 		return "AccessDenied";
 	}
+	
+	
 
 }
