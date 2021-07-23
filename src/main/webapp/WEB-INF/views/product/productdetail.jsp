@@ -17,20 +17,20 @@
 				<img class="photo" src="/resources/main/images/lamp.jpg" alt="상품 대표 사진"/>
 				<ul>
 				
-					<li class="small_img">
-					<a href="/resources/main/images/lamp.jpg"> 
-					<img src="/resources/main/images/lamp.jpg" alt="손전등 상세 사진1"></a></li>
-					<li><a href="/resources/main/images/lamp5.png"> <img
-							src="/resources/main/images/lamp5.png" alt="손전등 상세 사진2"></a></li>
-					<li><a href="/resources/main/images/lamp2.jpg"> <img
-							src="/resources/main/images/lamp2.jpg" alt="손전등 상세 사진3"></a></li>
-					<li><a href="/resources/main/images/lamp3.jpg"><img
-							src="/resources/main/images/lamp3.jpg" alt="손전등 상세 사진4"></a></li>
+					
+					<c:forEach var="vo" items="vo">
+						<li class="small_img">
+							<a href=""> 
+							<img src="" alt=""></a>
+						</li>
+					</c:forEach>
+						
+					
 				</ul>
 			</div>
 
 			<p class="p_name">
-				<strong class="name">${product.p_name}</strong> 
+				<strong class="name">${vo.p_name}</strong> 
 				<span class="name_detail">배터리가
 					잘 닳지 않는 강력 손전등</span>
 			</p>
@@ -44,18 +44,16 @@
 
 					<tbody>
 						<tr>
-							<td class="price"><fmt:formatNumber value="${product.p_price}"
+							<td class="price"><fmt:formatNumber value="${vo.p_price}"
 									pattern="###,###,###"></fmt:formatNumber></td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
-							<td>${product.p_number}</td>
+							<td>${vo.p_number}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
-							<td>${product.manufact}</td>
-							<td class="price"><fmt:formatNumber value="${product.p_price}"
-									pattern="###,###,###"></fmt:formatNumber>원</td>
+							<td>${vo.p_manufact}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
@@ -63,7 +61,7 @@
 								<div class="option">
 									<span class="opt">
 										<button type="button" class="minus">+</button> <input
-										type="number" readonly="readonly" min="1" max="${product.p_stock}"
+										type="number" readonly="readonly" min="1" max="${vo.p_stock}"
 										onfocus="this.blur()" class="inp">
 										<button type="button" class="plus">-</button>
 									</span>
@@ -71,15 +69,12 @@
 							</td>
 						</tr>
 						<tr>
-							<th><img src="/resources/main/images/choices.png">&nbsp;옵션선택</th>
+							<th><img src="/resources/main/images/choices.png">&nbsp;${vo.p_option}선택</th>
 							<td>
 							<select>
-							<c:forEach begin="" end="" var="i">
-									<option value="${i}">${i}</option>
-									<option value="${i}">${i}</option>
-									<option value="${i}">${i}</option>
-									<option value="${i}">${i}</option>
-						     </c:forEach>
+								
+									<option value="">${vo.p_option}</option>
+						     	
 							
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
@@ -99,17 +94,15 @@
 							<strong class="tot">총 상품금액 : </strong>
 							 <span class="sum">
 								<span class="num">
-								<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span> 
+								<fmt:formatNumber value="${vo.p_price}" pattern="###,###,###"></fmt:formatNumber></span> 
 								<span class="unit">원</span>
 							</span>
 						</div>
 						
 						<div class="option_btn">
-						<input type="hidden" name="p_number" value="${product.p_number}">
+						<input type="hidden" name="p_number" value="${vo.p_number}">
 							<button type="button" class="btn btn-primary btn-lg" id="">장바구니</button>
 							<button type="button" class="btn btn-secondary btn-lg">구매하기</button>
-								<span class="num"><fmt:formatNumber value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span>
-								<span class="unit">원</span>
 						</div>
 						
 						<div class="p_detail_info">

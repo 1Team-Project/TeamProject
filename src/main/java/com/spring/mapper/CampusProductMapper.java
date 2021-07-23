@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
 import com.spring.domain.CampusProductCategoryVO;
+import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
 
 public interface CampusProductMapper {
@@ -20,7 +22,8 @@ public interface CampusProductMapper {
 	
 	//카테고리뿌리기용
 	public  List<CampusProductCategoryVO> category(CampusCriteria cri);
-	
+	//옵션뿌리기용
+	public List<CampusProductOptionVO> optionlist(String op_optiontitle);
 	
 	//관리자용
 	public int insertProduct(CampusProductVO vo);

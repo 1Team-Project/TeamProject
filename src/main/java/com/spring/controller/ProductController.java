@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
@@ -16,6 +17,7 @@ import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
 import com.spring.domain.CampusProductCategoryVO;
+import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
 import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
@@ -143,14 +145,79 @@ public class ProductController {
 	
 	
 	//게시판 글번호 읽어서 보는것처럼
-	//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp
-	@GetMapping("/productdetail")
-	public void productdetails(int p_number,@ModelAttribute("cri") CampusCriteria cri, Model model) {
-		CampusProductVO vo=service.viewProduct(p_number);
-		model.addAttribute("vo",vo); 
-		log.info("상품 상세"+vo);
-	//상품 상세CampusProductVO(p_number=15151, p_name=테스트55, p_price=10000, p_option=-, p_stock=10, pc_code=ASD123123444, p_manufact=null, p_rank=0, a_uuid=null, a_path=null, a_name=null, urllink=null, path=null
-	}
+	//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp//@ModelAttribute("cri") 
+//	@GetMapping("/productdetail")
+//	public void productdetails(int p_number,CampusCriteria cri, Model model) {
+//		
+//		List<CampusProductVO> vo=(List<CampusProductVO>) service.viewProduct(p_number);
+//		
+////		model.addAttribute("vo",vo); 
+////		log.info("상품 상세"+vo);
+////		
+////		if(vo.getA_uuid().lastIndexOf(p_number)>)
+//		String imgurl="";	
+//		for(CampusProductVO detail:vo) {
+//
+//			
+////			if (detail == null || detail.isEmpty()) {
+////				imgurl = "/resources/main/images/default-img.jpg";
+////			}else {
+//			
+//					String path = detail.getA_path().replace("\\", "%5C");
+//					log.info("url 테스트중 : "+path);
+//					imgurl = "/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name();
+//					break;
+//				
+////			}
+//			
+////				CampusPageVO campusPageVO = new CampusPageVO(cri,total);
+////				model.addAttribute("CampusPageVO", campusPageVO);
+////				model.addAttribute("detail",detail);
+//	//상품 상세CampusProductVO(p_number=15151, p_name=테스트55, p_price=10000, p_option=-, p_stock=10, pc_code=ASD123123444, p_manufact=null, p_rank=0, a_uuid=null, a_path=null, a_name=null, urllink=null, path=null
+//	}
+//		
+//}
+	
+	//게시판 글번호 읽어서 보는것처럼
+		//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp
+		@GetMapping("/productdetail")
+		public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {
+			log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
+			
+			CampusProductVO vo=service.viewProduct(p_number); // 어태치랑 조인해서 xml하면 vo가 두개넘어감 사진첨부2개하면
+			
+//			String p_option=vo.getP_option();
+//			List<CampusProductOptionVO> option=service.optionlist(p_option);
+//			for(CampusProductOptionVO op:option) {
+//				op.getPo_option1();
+//				op.getPo_option2();
+//				op.getPo_option3();
+//			}
+			//ㄴ리스트배열해서,,?
+			
+			
+			List<CampusAttachFileDTO> attachList = service.getAttachList(p_number);
+			
+//			List<CampusProductVO> product=service.viewProduct(p_number);
+//			String imgurl="";
+//			for(CampusProductVO detail:product) {
+//				String test = detail.getUrllink();
+//
+//		            String path=detail.getA_path().replace("\\", "%5C");
+//		            log.info("url 테스트중 : "+path);
+//		            imgurl = "/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name();
+//		            detail.setUrllink(imgurl);
+//		            
+//			}
+//			model.addAttribute(cri)
+			
+//			model.addAttribute("option", option);
+//			log.info("옵셔언"+option);
+			model.addAttribute("vo", vo);
+			log.info("븨이오"+vo);
+			model.addAttribute("attach",attachList);
+			log.info("어태치"+ attachList);
+		}
 }
 	
 	

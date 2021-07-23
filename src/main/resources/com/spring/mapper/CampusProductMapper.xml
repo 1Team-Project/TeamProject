@@ -50,9 +50,11 @@
 	</select>	
 
 	
-	<!-- 상품 조회 : 상품 클릭 후 조회 -->
+	<!-- 상품 조회 : 상품 한개 클릭 후 조회 -->
 		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
-			select * from campus_product where p_number=#{p_number}
+			select *
+			from campus_product p
+			where p.p_number=${p_number}
 		</select>
 	
 	
@@ -68,6 +70,8 @@
 	<select id="category" resultType="com.spring.domain.CampusProductCategoryVO">
 		select * from CAMPUS_PRODUCT_CATEGORY
 	</select>
+	
+
 	
 	
 	<!-- 동적 SQL -->

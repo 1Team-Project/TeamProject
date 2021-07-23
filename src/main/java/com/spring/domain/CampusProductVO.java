@@ -1,5 +1,7 @@
 package com.spring.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,4 +29,8 @@ public class CampusProductVO {
 	private String a_name;
 	private String urllink;
 	private String path;
+	private String thumbimg;
+	
+	//첨부파일 리스트
+		private List<CampusAttachFileDTO> attachList;
 }
