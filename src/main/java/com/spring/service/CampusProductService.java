@@ -30,6 +30,13 @@ public interface CampusProductService {
 
 	public CampusProductVO detailproduct(int p_number);
 	
+	//카테고리목록뿌리기
 	public  List<CampusProductCategoryVO> category(CampusCriteria cri);
+
+	//옵션목록뿌리기
+	public List<CampusProductOptionVO> optionlist(String op_optiontitle);
+	
+	
+	public List<CampusAttachFileDTO> getAttachList(int p_number);
 
 }

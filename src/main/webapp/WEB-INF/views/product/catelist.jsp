@@ -59,7 +59,7 @@
                                     <li id="boxid" class="prolist">
                                         <div class="thumbnail">
                                             <div class="prdImg">
-                                                <a href="${cate.b_no}" name="boxname" class="viewpro">
+                                                <a href="${cate.p_number}" class="viewpro">
                                                     <img src="${cate.urllink}" id="prod1" alt="${cate.p_number}"></a>
                                             </div>
                                         </div>
@@ -109,11 +109,11 @@
 
                 </div>
             </div>
-		<form action="list" method="get" id="actionForm">	
+	<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
-		<input type="hidden" name="page" valuFe="${CampusPageVO.cri.page}" />
-		<input type="hidden" name="pc_code" value="${catelist.pc_code}" />
+		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
+	
 	</form>
         </div>
 

@@ -144,4 +144,17 @@ public class CampusProductServiceImpl implements CampusProductService {
 	}
 
 
+	@Override
+	public List<CampusAttachFileDTO> getAttachList(int p_number) {
+		return attachMapper.findByBno(p_number);
+	}
+
+	@Override
+	public List<CampusProductOptionVO> optionlist(String op_optiontitle) {
+		return productmapper.optionlist(op_optiontitle);
+	}
+	
+
+
+
 }

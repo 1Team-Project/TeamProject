@@ -18,6 +18,16 @@
 					alt="상품 대표 사진" />
 				<ul>
 
+					
+					<c:forEach var="vo" items="vo">
+						<li class="small_img">
+							<a href=""> 
+							<img src="" alt=""></a>
+						</li>
+					</c:forEach>
+						
+					
+
 					<li class="small_img"><a
 						href="/resources/main/images/lamp.jpg"> <img
 							src="/resources/main/images/lamp.jpg" alt="손전등 상세 사진1"></a></li>
@@ -27,12 +37,19 @@
 							src="/resources/main/images/lamp2.jpg" alt="손전등 상세 사진3"></a></li>
 					<li><a href="/resources/main/images/lamp3.jpg"><img
 							src="/resources/main/images/lamp3.jpg" alt="손전등 상세 사진4"></a></li>
+
 				</ul>
 			</div>
 
 			<p class="p_name">
+
+				<strong class="name">${vo.p_name}</strong> 
+				<span class="name_detail">배터리가
+					잘 닳지 않는 강력 손전등</span>
+
 				<strong class="name">${product.p_name}</strong> <span
 					class="name_detail">배터리가 잘 닳지 않는 강력 손전등</span>
+
 			</p>
 
 			<div class="p_info">
@@ -44,17 +61,26 @@
 
 					<tbody>
 						<tr>
+
+							<td class="price"><fmt:formatNumber value="${vo.p_price}"
+									pattern="###,###,###"></fmt:formatNumber></td>
+
 							<td class="price"><fmt:formatNumber
 									value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber>
 								<span class="unit">원</span></td>
+
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
-							<td>${product.p_number}</td>
+							<td>${vo.p_number}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
+
+							<td>${vo.p_manufact}</td>
+
 							<td>${product.p_manufact}</td>
+
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
@@ -62,14 +88,36 @@
 								<div class="option">
 									<span class="opt">
 										<button type="button" class="minus">+</button> <input
+										type="number" readonly="readonly" min="1" max="${vo.p_stock}"
+										onfocus="this.blur()" class="inp">
+
 										type="number" readonly="readonly" min="1"
 										max="${product.p_stock}" onfocus="this.blur()" class="inp">
+
 										<button type="button" class="plus">-</button>
 									</span>
 								</div>
 							</td>
 						</tr>
 						<tr>
+
+							<th><img src="/resources/main/images/choices.png">&nbsp;${vo.p_option}선택</th>
+							<td>
+							<select>
+								
+									<option value="">${vo.p_option}</option>
+						     	
+							
+						<tr>
+							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
+							<td>무료배송</td>
+						</tr>
+						<tr>
+							<th><img src="/resources/main/images/payment-method.png">&nbsp;배송
+								안내</th>
+							<td>본 상품은 국내 배송만 가능합니다.</td>
+						</tr>
+
 							<th><img src="/resources/main/images/choices.png">&nbsp;옵션선택</th>
 							<td><select>
 									<c:forEach begin="" end="" var="i">
@@ -88,20 +136,33 @@
 											안내</th>
 										<td>본 상품은 국내 배송만 가능합니다.</td>
 									</tr>
+
 					</tbody>
 				</table>
 
 				<div id="cartput">
 					<div class="total">
 						<div class="price">
+
+							<strong class="tot">총 상품금액 : </strong>
+							 <span class="sum">
+								<span class="num">
+								<fmt:formatNumber value="${vo.p_price}" pattern="###,###,###"></fmt:formatNumber></span> 
+
 							<strong class="tot">총 상품금액 : </strong> <span class="sum">
 								<span class="num"> <fmt:formatNumber
 										value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span>
+
 								<span class="unit">원</span>
 							</span>
 						</div>
 
 						<div class="option_btn">
+
+						<input type="hidden" name="p_number" value="${vo.p_number}">
+							<button type="button" class="btn btn-primary btn-lg" id="">장바구니</button>
+							<button type="button" class="btn btn-secondary btn-lg">구매하기</button>
+=======
 							<form role="form" method="post">
 								<input type="hidden" id="p_number" value="${product.p_number}">
 <%-- 								<input type="hidden" id="p_name" value="${product.p_number}"> --%>
@@ -133,6 +194,7 @@
 <!-- 									</div> -->
 								</div>
 							</div>
+
 						</div>
 						<div class="p_detail_info">
 							<div class="p_detail_bar">
