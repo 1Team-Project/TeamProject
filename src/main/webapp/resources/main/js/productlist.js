@@ -58,17 +58,5 @@ $(function(){
 
 		
 	})	
-		
-		
-		//상품 클릭시
-	$(".viewpro").click(function(e){
-		e.preventDefault(); //타이틀 a 속성 막기
-			  
-      //actionForm에 pnum값을 추가하여 actionForm 보내기
-      actionForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
-      actionForm.attr("action","productdetail");
-      actionForm.submit();
-	})
-		
 })
 

@@ -17,7 +17,6 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public boolean addCart(CartVO vo) {
 		return mapper.addCart(vo) > 0 ? true:false;
-		
 	}
 
 	@Override

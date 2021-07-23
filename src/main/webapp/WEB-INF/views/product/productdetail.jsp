@@ -1,13 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@include file="../../design/header.jsp"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
-<!DOCTYPE html>
-<%@include file="../../design/header.jsp"%>
-<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
-<link href="/resources/main/css/common.css" rel="stylesheet"
-	type="text/css" />
-
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link href="/resources/main/css/common.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
 <div class="product_view">
 
 	<div id="productview">
@@ -33,6 +35,8 @@
 			<p class="p_name">
 				<strong class="name">${product.p_name}</strong> <span
 					class="name_detail">배터리가 잘 닳지 않는 강력 손전등</span>
+					<input type="hidden" value="${product.p_number}" id="p_number">
+					
 			</p>
 
 			<div class="p_info">
@@ -61,9 +65,9 @@
 							<td>
 								<div class="option">
 									<span class="opt">
-										<button type="button" class="minus">+</button> <input
-										type="number" readonly="readonly" min="1"
-										max="${product.p_stock}" onfocus="this.blur()" class="inp">
+										<button type="button" class="minus">+</button> 
+										<input type="number" readonly="readonly" min="1"
+										max="${product.p_stock}" class="inp">
 										<button type="button" class="plus">-</button>
 									</span>
 								</div>
@@ -102,38 +106,10 @@
 						</div>
 
 						<div class="option_btn">
-							<form role="form" method="post">
-								<input type="hidden" id="p_number" value="${product.p_number}">
-<%-- 								<input type="hidden" id="p_name" value="${product.p_number}"> --%>
-<%-- 								<input type="hidden" id="p_price" value="${product.p_number}"> --%>
-<%-- 								<input type="hidden" id="p_number" value="${product.p_number}"> --%>
-							</form>
 							<button type="button" class="btn btn-primary btn-lg" id="btn_cart">장바구니</button>
 							<button type="button" class="btn btn-secondary btn-lg" id="btn_order">구매하기</button>
 						</div>
-
-						<!-- 모달창 -->
-						<div class="modal" tabindex="-1">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title">장바구니 담기</h5>
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<p>상품을 담았습니다!</p>
-									</div>
-<!-- 									<div class="modal-footer"> -->
-<!-- <!-- 										<button type="button" class="btn btn-secondary" id="btnmodal" --> 
-<!-- 											data-dismiss="modal">장바구니로</button> -->
-<!-- <!-- 										<button type="button" class="btn btn-primary" id="btnmodal2"></button> --> 
-<!-- 									</div> -->
-								</div>
-							</div>
-						</div>
+						
 						<div class="p_detail_info">
 							<div class="p_detail_bar">
 								<ul class="menu">
@@ -447,4 +423,31 @@
 	crossorigin="anonymous"></script>
 <!-- <script type= text/javascript> -->
 <script src="/resources/main/js/pdetail.js"></script>
+<script>
+
+$("#btn_cart").click(function(e) {
+	e.preventDefault();
+	
+	var p_number = $("#p_number").val();
+// 	var c_count = $(".inp").val();	
+	var data ={
+		p_number : p_number
+// 		c_count : c_count
+	};
+	
+	$.ajax({
+		url: "/cart",
+		type: "post",
+		data: data,
+		success: function() {
+			alert("장바구니에 담았습니다.");
+			},
+			error:function(){
+				alert("카트 담기 실패");
+			}
+		});
+	});
+</script>
+</body>
+</html>
 <%@include file="../../design/footer.jsp"%>

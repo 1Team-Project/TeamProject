@@ -54,46 +54,41 @@ $(function(){
 //	var samllpicAttribute = this.getAttribute("src");
 //	bicpic.setAttribute("src",smallpicAttribute);
 
+//
+//$(function() {
+//	$('a').click(function() {
+//		$('.photo').attr('src', $(this).attr('href'));
+//		return false;
+//	})
+//});
+//
+
 
 $(function() {
-	$('a').click(function() {
-		$('.photo').attr('src', $(this).attr('href'));
-		return false;
-	})
-});
-
-
-
-$(function() {
-<<<<<<< HEAD
 //	$("#btn_cart").click(function() {
 //		$(".modal").fadeIn();
 //	});
 //	$(".close").click(function() {
 //		$(".modal").fadeOut();
 //	});
-//	
-	$("#btn_order").click(function() {
-=======
-	//	$(".btn-primary").click(function() {
-	//		var cart = confirm("장바구니로 바로 이동하시겠습니까?");
-	//		if (cart) {
-	//			$(location).attr("href", "cart")
-	//		} else {
-	//
-	//		}
-	$(".btn-secondary").click(function(e) {
+////	
+
+//$("#btn_cart").click(function(e) {
+//	e.preventDefault();
+//	var cart = confirm("장바구니로 바로 이동하시겠습니까?");
+//	if (cart) {
+//		$(location).attr("href", "/cart")
+//		}
+//});	
+$(".btn-secondary").click(function(e) {
 		e.preventDefault();
->>>>>>> 930bc1e5b350884ff98b5d9f04011d1642380894
 		var order = confirm("상품을 바로 구매하시겠습니까?");
 		if (order) {
 			$(location).attr("href", "buy")
 
-		} else {
-
 		}
-	})
-})
+});
+});
 $(".menu1").click(function(e) {
 	e.preventDefault(e);
 	//선택한 위치 태그 
@@ -149,60 +144,8 @@ $(".minus").click(function() {
 		$(".inp").val(minusNum);
 	}
 });
-	var price = $('.price').val();
-	var quantity = $('.inp').val();
-
-	$(".num").text(price * quantity);
 
 
 
 
-$("#btn_cart").click(function() {
-	if(confirm("선택한 제품을 장바구니에 추가하겠습니까?")){
-		var pnum = $("#p_number").val();
-		var stock = $(".inp").val();
-		var data = {
-			pnum : pnum,
-			stock : stock
-		};
-		
-		$.ajax({
-			type : "post",
-			url : "/addcart",
-			data: "data",
-			success:function(){
-				alert("장바구니에 추가되었습니다!")
-			},
-			error:function(){
-				alert("Error!!!")
-			}
-		})
-	}
-})
-
-
-
-$("#btn1").click(function(e) {
-	e.preventDefault();
-	var pnum = $(".p_number").val();
-	var cartStock = $(".inp").val();
 	
-	
-	var data = {
-		pnum: pnum,
-		cartStock: cartStock
-	};
-
-	$.ajax({
-		url: "/cart",
-		type: "post",
-		data: data,
-		success: function() {
-			alert("장바구니에 담았습니다.");
-				$(".inp").val("1");
-			},
-			error:function(){
-				alert("카트 담기 실패");
-			}
-			});
-		});

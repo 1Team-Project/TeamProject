@@ -3,8 +3,10 @@
 <mapper namespace="com.spring.mapper.CartMapper">
 <!-- 장바구니 추가 -->
 	<insert id="addCart">
+	<![CDATA[
 		insert into campus_cart(c_cartnumber, u_userid, p_number, c_count)
 		values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count})
+	]]>
 	</insert>
 	
 	<!--  장바구니에 기존 상품이 있는지  -->

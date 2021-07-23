@@ -6,8 +6,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.spring.domain.CampusProductVO;
+import com.spring.domain.CampusUserVO;
 import com.spring.domain.CartVO;
 import com.spring.service.CartService;
 
@@ -20,10 +26,11 @@ public class CartController {
 	@Autowired
 	private CartService service;
 //	
-	@GetMapping("/cart")
-	public void cart() {	
-		log.info("장바구니로");
-	}
+//	@GetMapping("/cart")
+//	public void cart() {	
+//		log.info("장바구니로");
+//	}
+//}
 
 	//장바구니 목록
 	
@@ -58,21 +65,21 @@ public class CartController {
 //	}
 //
 //	//장바구니 담기
-//	@ResponseBody
-//	@RequestMapping("/addcart")
-//	public String insert(HttpSession session, @ModelAttribute CartVO cart){
-//
-//		log.info("장바구니 추가");
-//		
-//		CampusUserVO user = (CampusUserVO)session.getAttribute("user");
-//		cart.setU_userid(user.getU_userid());
-//		
-//		service.addCart(cart);
-//		
-//		return "redirect:/cart"; //장바구니 목록으로 이동
-//	}
+	@ResponseBody
+	@PostMapping("/cart")
+	   public void addCart(CartVO cart, HttpSession session){
+	      
+	      log.info("장바구니 추가");
+	      
+	      CampusUserVO user = (CampusUserVO)session.getAttribute("user");
+	      cart.setU_userid(user.getU_userid());
+	      
+	      service.addCart(cart);
+	     
+	   }
+	}
+
 //}
-//=======
 ////	@RequestMapping("/cart")
 ////	public ModelAndView list(HttpSession session, ModelAndView view){
 ////		
@@ -121,7 +128,6 @@ public class CartController {
 ////		return "redirect:/cart"; //장바구니 목록으로 이동
 ////	}
 ////}
-//>>>>>>> 930bc1e5b350884ff98b5d9f04011d1642380894
 //	
 ////	@RequestMapping("/delete")
 ////	public String delete(@RequestParam int c_cartnumber) {
@@ -152,7 +158,6 @@ public class CartController {
 ////		return "redirect:/cart";
 ////		
 ////	}
-}
 	
 	
 	
