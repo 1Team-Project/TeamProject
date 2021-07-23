@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
-	<form class="container" id="formId" action="loginForm" method="post">
+	<form class="container" id="formId" action="/loginForm" method="post">
 		<div class="login-Form">
 			<h1 class="h1" style="font-family: naBrush">로그인</h1>
 			<div class="login-margin">
@@ -21,9 +21,9 @@
 			<div class="error-message" style="color: red; margin-bottom: 10px;">
 				<span>${loginError}</span>
 			</div>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>
 			<button class="btn btn-lg btn-primary btn-block" id="regist">회원가입</button>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</div>
 	</form>
 <script src="/resources/main/js/register_yk.js"></script>

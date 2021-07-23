@@ -24,11 +24,9 @@ $(function(){
       actionForm.attr("action","productdetail");
       actionForm.submit();
 	})
+
 	
-	
-	
-		
-	
+
 	//검색
 		$(".searchbutton").click(function(e){
 		
@@ -71,5 +69,5 @@ $(function(){
       actionForm.submit();
 	})
 		
-	})
+})
 

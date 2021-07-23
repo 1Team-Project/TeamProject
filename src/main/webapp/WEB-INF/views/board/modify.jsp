@@ -25,8 +25,8 @@
 					<select name="b_sort" id="sort"
 						class="form-control width15 inlinetest">
 						<option value="">분류</option>
-						<option value="후기">후기</option>
-						<option value="질문">질문</option>
+						<option value="후기" <c:if test="${campusVO.b_sort eq '후기'}">selected</c:if> >후기</option>
+						<option value="질문" <c:if test="${campusVO.b_sort eq '질문'}">selected</c:if> >질문</option>
 					</select><input type="text"
 						class="form-control width70 inlinetest mll10" name="b_title"
 						id="campusboard-title" placeholder="제목을 입력해 주세요" value="${campusVO.b_title}"/>
@@ -37,6 +37,12 @@
 					<textarea class="form-control" cols="30" rows="15" id="campusboard-content" name="b_content" 
 						style="resize: none" placeholder="내용을 입력해 주세요">${campusVO.b_content}</textarea>
 				</div>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				<input type="hidden" name ="b_writer" value="${campusVO.b_writer}"/>
+				<input type="hidden" name="keyword" value="${cri.keyword}" />
+				<input type="hidden" name="page" value="${cri.page}" />
+				<input type="hidden" name="sort" value="${cri.sort}" />
+				<input type="hidden" name ="b_no" value="${campusVO.b_no}"/>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
 					<div class="blacktext">파일 첨부 (jpg/png, 최대 20MB, 최대 3장)</div>
@@ -52,9 +58,10 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-8 mll20">
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				
 	  				<sec:authorize access="isAuthenticated()">
-	  					<c:if test="${info.username == campusVO.b_writer}">
+	  				<sec:authentication property="principal" var="user"/>
+	  					<c:if test="${user.username == campusVO.b_writer}">
 						<button class="btn btn-primary" type="button" data-oper="modify" type="submit">글 수정</button>
 						<button class="btn btn-green1" type="button" data-oper="remove" type="submit">삭제</button>
 	                	</c:if>
@@ -74,6 +81,7 @@
 		<input type="hidden" name ="b_no" value="${campusVO.b_no}"/>
 		<input type="hidden" name ="b_writer" value="${campusVO.b_writer}"/>
 		<%-- spring security csrf값 추가 --%>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 	</form>
 	

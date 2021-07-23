@@ -16,6 +16,8 @@ import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
+import org.springframework.security.web.csrf.CsrfFilter;
+import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.spring.handler.CustomAccessDeniedHandler;
 import com.spring.handler.CustomLoginSuccessHandler;
@@ -43,7 +45,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	}
 	
 	/*
-	<!-- æœ»£»≠ -->
+	<!-- ÏïîÌò∏Ìôî -->
 	<bean id="bCryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 	*/
 	@Bean
@@ -54,7 +56,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	/*
 	<security:authentication-manager>
 		<security:authentication-provider user-service-ref="customUserDetailService">
-			<!-- jdbc ¿Œ¡ı πÊΩƒ -->
+			<!-- jdbc Ïù∏Ï¶ù Î∞©Ïãù -->
 			<security:password-encoder ref="bCryptPasswordEncoder"/>
 		</security:authentication-provider>
 	</security:authentication-manager>
@@ -77,19 +79,23 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	// <security:http>
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		// ∏µÁ ªÁ∂˜¿Ã ¡¢±Ÿ«“ ºˆ ¿÷¥¬ url ¡ˆ¡§
-//		http.authorizeRequests()
-//			.antMatchers("/login")
-//			.permitAll();
+		// Î™®Îì† ÏÇ¨ÎûåÏù¥ Ï†ëÍ∑ºÌï† Ïàò ÏûàÎäî url ÏßÄÏ†ï
+		http.authorizeRequests()
+			.antMatchers("/logoutForm").permitAll();
+		
+		CharacterEncodingFilter filter = new CharacterEncodingFilter();
+		filter.setEncoding("UTF-8");
+		filter.setForceEncoding(true);
+		http.addFilterBefore(filter, CsrfFilter.class);
 		
 		/*
-		<!-- ¡¢±Ÿ ¡¶«— Ω√ handler∏¶ ∞≈√ƒ ƒ¡∆Æ∑—∑Ø∑Œ ¿Ãµø«œ¥¬ «¸≈¬ -->
+		<!-- Ï†ëÍ∑º Ï†úÌïú Ïãú handlerÎ•º Í±∞Ï≥ê Ïª®Ìä∏Î°§Îü¨Î°ú Ïù¥ÎèôÌïòÎäî ÌòïÌÉú -->
 		<security:access-denied-handler ref="customAccessDeniedHandler"/>
 		 */
 		http.exceptionHandling(exception -> exception.accessDeniedHandler(accessDeniedHandler()));
 
 		/*
-		<!-- ∑Œ±◊¿Œ ¥„¥Á : ±‚∫ª « ≈Õ -->
+		<!-- Î°úÍ∑∏Ïù∏ Îã¥Îãπ : Í∏∞Î≥∏ ÌïÑÌÑ∞ -->
 		<security:form-login login-page="/login" authentication-failure-url="/login-error" 
 		authentication-success-handler-ref="customLoginSuccessHandler"/>
 		 */
@@ -102,14 +108,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.successHandler(loginSuccessHandler());
 		
 		/*
-		<!-- ∑Œ±◊ æ∆øÙ ¥„¥Á -->
+		<!-- Î°úÍ∑∏ ÏïÑÏõÉ Îã¥Îãπ -->
 		<security:logout invalidate-session="true" logout-success-url="/"/>
 		*/
 		http.logout()
+			.logoutUrl("/logoutForm")
+			.logoutSuccessUrl("/")
 			.invalidateHttpSession(true)
-			.logoutSuccessUrl("/");
+			.deleteCookies("JSESSIONID", "SOME", "OTHER", "COOKIES");
 		/*
-		<!-- remember-me »∞º∫»≠ -->
+		<!-- remember-me ÌôúÏÑ±Ìôî -->
 		<security:remember-me data-source-ref="ds" token-validity-seconds="604800"/>
 		*/
 		http.rememberMe()

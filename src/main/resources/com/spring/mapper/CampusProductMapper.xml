@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.CampusProductMapper">
-		
+
 	 <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 +상품 이미지 불러오기  -->
 	<select id="prolist" resultType="com.spring.domain.CampusProductVO">
 		 <![CDATA[
@@ -17,19 +17,16 @@
 			where rn > ((#{page}-1)*25) and a.p_number=p.p_number 
 			]]>
 	</select>	
-	
-		
+
 	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
 		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
-
 			 select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,
 			 		first_value(a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,first_value(a_name)over(PARTITION BY p.p_number)as  a_name
 			from b_product p, campus_attach a
 			where a.p_number=p.p_number)order by p_rank
 		</select>
-		
-		
-	<!-- 상품 조회 : 카테고리별 분류 -->
+      
+<!-- 상품 조회 : 카테고리별 분류 -->
 	
 	<select id="catelist" resultType="com.spring.domain.CampusProductVO">
 	
@@ -98,5 +95,23 @@
 			</if>
 		</if>
 	</sql>
+
+   	<!-- 관리자 권한 -->
+	<!-- 상품 추가 -->
+		<insert id="insertProduct">
+			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code)
+			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code})
+		</insert>
+	<!-- 상품 삭제 -->
+		<delete id="deleteProduct">
+			delete from campus_product where p_number=#{p_number}
+		</delete>
+	
+	<!-- 상품 수정 : 가격, 재고 수정 -->
+		<update id="updateProduct">
+			update campus_product
+			set p_price=#{p_price}, p_stock=#{p_stock}
+			where p_number=#{p_number}
+		</update>
 
 </mapper>

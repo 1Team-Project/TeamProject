@@ -13,9 +13,12 @@ import lombok.ToString;
 @ToString
 
 public class CartVO {
-	public int c_cartnumber;
-	public String u_userid;
-	public int p_number;
-	public int c_count;
+	private int c_cartnumber;
+	private String u_userid;
+	private int p_number;
+	private String p_name;
+	private int c_count;
+	private int price;
+	private int money;
 
 }

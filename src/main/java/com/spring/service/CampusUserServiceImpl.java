@@ -3,9 +3,11 @@ package com.spring.service;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.ChangeVO;
 import com.spring.domain.CampusUserVO;
+import com.spring.mapper.CampusUserAuthMapper;
 import com.spring.mapper.CampusUserMapper;
 
 @Service
@@ -14,27 +16,44 @@ public class CampusUserServiceImpl implements CampusUserService {
 	@Autowired
 	private CampusUserMapper mapper;
 	
+	@Autowired
+	private CampusUserAuthMapper authmapper;
+	
 	@Override
+	@Transactional
 	public boolean insert(CampusUserVO vo) {
-		return mapper.insert(vo)>0? true:false;
+		boolean result = false;
+		if(mapper.insert(vo)>0) {
+			result = authmapper.insertAuth(vo.getU_userid())>0?true:false;
+		}
+		return result;
 	}
 
 	@Override
 	public CampusUserVO dupId(String u_userid) {
 		return mapper.dupId(u_userid);
 	}
-
+	
 	@Override
 	public CampusUserVO login(CampusUserVO vo) {
 		return mapper.login(vo);
 	}
-
-
+	
 	@Override
-	public boolean leave(String u_userid, String u_password) {
-		return mapper.leave(u_userid, u_password)>0? true:false;
+	public boolean leaveAuth(CampusUserVO vo) {
+		return mapper.leaveAuth(vo)>0? true:false;
 	}
-
+	
+	@Override
+	public boolean leaveCamp(CampusUserVO vo) {
+		return mapper.leaveCamp(vo)>0? true:false;
+	}
+	
+	@Override
+	public int pwdCheck(CampusUserVO vo) {
+		return mapper.pwdCheck(vo);
+	}
+	
 	@Override
 	public boolean update(ChangeVO change) {
 		return mapper.update(change)>0? true:false;
@@ -44,6 +63,5 @@ public class CampusUserServiceImpl implements CampusUserService {
 	public boolean userUpdate(CampusUserVO vo) {
 		return mapper.userUpdate(vo)>0? true:false;
 	}
-
 	
 }

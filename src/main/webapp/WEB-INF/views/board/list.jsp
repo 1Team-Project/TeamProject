@@ -63,9 +63,10 @@
 					<tr class="textcenter colorthema">
 						<th class="width10">번호</th>
 						<th class="width10">분류</th>
-						<th class="width40">제목</th>
+						<th class="width20">상품명</th>
+						<th class="width30">제목</th>
 						<th class="width10">글쓴이</th>
-						<th class="width20">작성일</th>
+						<th class="width10">작성일</th>
 						<th class="width10">조회수</th>
 					</tr>
 				</thead>
@@ -79,6 +80,7 @@
 						<tr>
 							<td>${vo.b_no}</td>
 							<td>${vo.b_sort}</td>
+							<td>${vo.p_name}</td>
 							<td><a href="${vo.b_no}" class="blacktext hoverthema clickview">${vo.b_title}<strong class="badgecount">[${vo.replycnt}]</strong></a>
 							<td>${vo.b_writer}</td>
 							<td>
@@ -112,8 +114,9 @@
 						<option value="제목"<c:out value="${pageVO.cri.sort=='제목'?'selected':''}"/>>제목</option>
 						<option value="내용"<c:out value="${pageVO.cri.sort=='내용'?'selected':''}"/>>내용</option>
 						<option value="작성자"<c:out value="${pageVO.cri.sort=='작성자'?'selected':''}"/>>작성자</option>
+						<option value="상품명"<c:out value="${pageVO.cri.sort=='상품명'?'selected':''}"/>>상품명</option>
 					</select>
-					<input type="text" name="keyword" class="width40 boldergreen padding5px blacktext" value="${pageVO.cri.keyword}"/>
+					<input type="text" name="keyword" class="width40 boldergreen padding5px blacktext"/>
 					<input type="hidden" name="page" value="${pageVO.cri.page}"/>
 					<button class="btn btn-primary searchbutton" type="submit">검색</button>
                </form>
@@ -149,7 +152,6 @@
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
 		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		<input type="hidden" name="r_page" value="1"/>
 	</form>            
 	
 	

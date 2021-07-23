@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file="../design/header.jsp"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <html>
 <head>
 <meta charset="UTF-8">
@@ -8,34 +10,36 @@
 <link href="/resources/main/css/cart2.css" rel="stylesheet">
 </head>
 <body>
+<form action ="/order" id="orderform" method="post">
 	<div class="cart_page">
 		<h2 class="cart">장바구니</h2>
 	</div>
-	<form>
 		<div id="cartItemList" class="cartlist" style="min-height: 561px;">
 			<div class="">
 				<div class="c_item ">
 					<div class="c_select">
 						<div class="innerselect">
 							<label class="check">
-							<input type="checkbox" name="checkAll" checked="">
+							<input type="checkbox" id="checkall" checked="">
 								<span class="icon"></span>
-								전체선택(1/1)
+								전체선택
 								</label>
-								<a href="#none" class="btn_delete">선택삭제</a>
+								<a href="" class="btn_delete" onclick="delete">선택삭제</a>
+<!-- 								<button type="button" class="selectDelete_btn">선택삭제</button> -->
 						</div>
 					</div>
 					<div class="box">
 						<ul class="list">
+<%-- 						<c:forEach items="${cartlist}" var="carlist"> --%>
 							<li>
 							   <div class="item">
 									<label class="check" for="">
-										<input type="checkbox" id="" name="" checked="">
+										<input type="checkbox" id="checkone" checked="">
 										<span class="icon"></span>
 										</label>
 									<div class="c_name">
 										<div class="innername">
-											<a href="#" class="package ">강력 손전등</a>
+											<a href="#" class="package ">${cartlist.p_name}</a>
 											<div class="info">닳지 않는 손전등</div>
 										</div>
 									</div>
@@ -43,7 +47,7 @@
 										<a href="#" class="c_img ">상품이미지</a>
 										<div class="price">
 											<div class="in_price">
-												<span class="selling">15,000<span class="unit">원</span></span>
+												<span class="selling"><fmt:formatNumber value="${cartlist.p_price}"/><span class="unit">원</span></span>
 												<p class="noti"></p>
 											</div>
 											<div class="stamper count">
@@ -53,16 +57,18 @@
 											</div>
 										</div>
 									</div>
-									<button type="button" class="btn_delete" data-type="cold">상품 삭제</button>
-								</div></li>
+<%-- 									<button type="button" class="btn_delete" data-c_cartnumber ="${$cartlist.c_cartnumber}">상품 삭제</button> --%>
+								</div>
+								</li>
+<%-- 							</c:forEach> --%>
 						</ul>
 					</div>
 					<div class="c_select">
 						<div class="inner_select">
 							<label class="check">
-							<input type="checkbox" name="checkAll" checked="">
-							<span class="ico"></span>전체선택 (1/1)</label>
-							<a href="#none" class="btn_delete">선택삭제</a>
+<!-- 							<input type="checkbox" name="checkAll" checked=""> -->
+<!-- 							<span class="ico"></span>전체선택 (1/1)</label> -->
+<!-- 							<a href="#none" class="btn_delete">선택삭제</a> -->
 						</div>
 					</div>
 				</div>
@@ -80,12 +86,17 @@
 							<dl class="amount">
 								<dt class="tit">결제예정금액</dt>
 								<dd class="price">
-									<span class="num">15,000</span><span class="unit">원</span>
+									<span class="num">
+									<fmt:formatNumber value="${cart.p_price}" pattern="###,###,###"></fmt:formatNumber></span><span class="unit">원</span>
 								</dd>
 							</dl>
 						</div>
 						<div class="btn_submit">
 							<button type="submit" class="btn btn-primary">구매하기</button>
+							<button type="button" class="btn btn-secondary" onclick="location.href='/product/productlist'">상품 목록보기</button>
+							<script>
+							
+							</script>
 						</div>
 						<div class="notice">
 						구매하는 물품이 맞는 지 꼭 확인해 주세요!

@@ -93,6 +93,7 @@ $(function(){
 			})
 			console.log(str);
 			operForm.append(str);
+			operForm.attr('action', '/board/modify');
 			
 		}else if(oper === "remove"){
 			operForm.attr('action', '/board/remove');
@@ -104,8 +105,8 @@ $(function(){
 		}
 		
 		console.log(operForm);
-		
 		operForm.submit();
+
 	})
 	
 		$("input[type='file']").change(function() {

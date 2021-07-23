@@ -119,10 +119,13 @@
 
 <script>
 	let result='${result}';
+<<<<<<< HEAD
+=======
 	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 		
+>>>>>>> refs/remotes/origin/nahyun
 </script>
 <script src="/resources/main/js/catelist.js"></script>
 <%@include file="../../design/footer.jsp" %>

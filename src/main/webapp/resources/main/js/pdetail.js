@@ -65,18 +65,14 @@ $(function() {
 
 
 $(function() {
-	//	$(".btn-primary").click(function() {
-	//		var cart = confirm("장바구니로 바로 이동하시겠습니까?");
-	//		if (cart) {
-	//			$(location).attr("href", "cart")
-	//		} else {
-	//
-	//		}
+
 	$(".btn-secondary").click(function(e) {
 		e.preventDefault();
+
 		var order = confirm("상품을 바로 구매하시겠습니까?");
 		if (order) {
 			$(location).attr("href", "buy")
+
 		} else {
 
 		}
@@ -137,6 +133,37 @@ $(".minus").click(function() {
 		$(".inp").val(minusNum);
 	}
 });
+	var price = $('.price').val();
+	var quantity = $('.inp').val();
+
+	$(".num").text(price * quantity);
+
+
+
+
+$("#btn_cart").click(function() {
+	if(confirm("선택한 제품을 장바구니에 추가하겠습니까?")){
+		var pnum = $("#p_number").val();
+		var stock = $(".inp").val();
+		var data = {
+			pnum : pnum,
+			stock : stock
+		};
+		
+		$.ajax({
+			type : "post",
+			url : "/addcart",
+			data: "data",
+			success:function(){
+				alert("장바구니에 추가되었습니다!")
+			},
+			error:function(){
+				alert("Error!!!")
+			}
+		})
+	}
+})
+
 
 
 $("#btn1").click(function(e) {

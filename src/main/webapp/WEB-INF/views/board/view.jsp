@@ -6,8 +6,36 @@
 <%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <%@taglib uri="http://www.springframework.org/security/tags" prefix="sec"  %>
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
-
-
+<style>
+.rating .rate_radio {
+    position: relative;
+    display: inline-block;
+    z-index: 20;
+    opacity: 0.001;
+    width: 60px;
+    height: 60px;
+    background-color: #fff;
+    cursor: pointer;
+    vertical-align: top;
+    display: none;
+}
+.rating .rate_radio + label {
+    position: relative;
+    display: inline-block;
+    margin-left: -4px;
+    z-index: 10;
+    width: 60px;
+    height: 60px;
+    background-image: url('/resources/main/images/starrate.png');
+    background-repeat: no-repeat;
+    background-size: 60px 60px;
+    cursor: pointer;
+    background-color: #f0f0f0;
+}
+.rating .yellow + label {
+    background-color: #ff8;
+}
+</style>
 <section>
 	<div class="row topmargin30">
 		<div class="col-md-1"></div>
@@ -23,6 +51,18 @@
 			</div>
 			<form action="">
 				<div class="col-md-8 mll20">
+				
+				<c:if test="${campusVO.b_sort eq '후기'}">
+				<div class="rating">
+				<div class="warning_msg">해당 상품의 별점</div>
+					<input name="b_rating1" id="rating1" value="1" class="rate_radio <c:if test="${campusVO.b_rating >= 1}">yellow</c:if>" title="1점"/><label for="rating1"></label>
+					<input name="b_rating2" id="rating2" value="2" class="rate_radio <c:if test="${campusVO.b_rating >= 2}">yellow</c:if>" title="2점"/><label for="rating2"></label>
+					<input name="b_rating3" id="rating3" value="3" class="rate_radio <c:if test="${campusVO.b_rating >= 3}">yellow</c:if>" title="3점"/><label for="rating3"></label>
+					<input name="b_rating4" id="rating4" value="4" class="rate_radio <c:if test="${campusVO.b_rating >= 4}">yellow</c:if>" title="4점"/><label for="rating4"></label>
+					<input name="b_rating5" id="rating5" value="5" class="rate_radio <c:if test="${campusVO.b_rating == 5}">yellow</c:if>" title="5점"/><label for="rating5"></label>
+	            </div>
+	            </c:if>
+	            
 					<span class="hh4">[${campusVO.b_sort}]</span>
 					<input type="text"
 						class="form-control width70 inlinetest readonlycolor hh4"  
@@ -59,7 +99,9 @@
 				<hr class="one" />
 				<div class="col-md-8 mll20">
 	  			<sec:authorize access="isAuthenticated()">
-	  				<c:if test="${info.username == campusVO.b_writer}">
+	  			<sec:authentication property="principal" var="user"/>
+	  				<c:if test="${user.username == campusVO.b_writer}">
+	  				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 					<button class="btn btn-primary modifybutton" type="button">수정하기</button>
 	                </c:if>
 	            </sec:authorize>
@@ -75,14 +117,15 @@
 			<form action="/board/replyadd" method="post">
 				<div class="col-md-8 mll20">
 								
-					<input type="hidden" name = "r_replyer" value="김기기동"/>
-					
 					<input type="hidden" name="sort" value="${cri.sort}" />
 					<input type="hidden" name="keyword" value="${cri.keyword}" />
 					<input type="hidden" name="page" value="${cri.page}" />
 					<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 					<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
-					
+					<sec:authentication property="principal" var="user"/>
+					<input type="hidden" name="r_replyer" value="${user.username}"/>
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
 					<sec:authorize access="isAuthenticated()">
 						<h5>댓글 작성</h5>
 						<textarea class="form-control lineview" cols="30" rows="3" name="r_content"
@@ -117,7 +160,10 @@
 				<h6 class="float-start">${revo.r_replyer}</h6>
 				
 				<sec:authorize access="isAuthenticated()">
-					<c:if test="${info.username == revo.r_replyer}">
+
+				<sec:authentication property="principal" var="user"/>
+					<c:if test="${user.username == revo.r_replyer}">
+
 					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
 					<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
 					</c:if>
@@ -199,6 +245,7 @@
 	<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 	<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
 	<input type="hidden" name="r_page" value="${r_page}"/>
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 
 

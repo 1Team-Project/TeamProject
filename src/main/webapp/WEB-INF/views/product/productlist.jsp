@@ -174,11 +174,9 @@
         </div>
 
 <script>
-
 	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
-
 </script>
 <script src="/resources/main/js/productlist.js"></script>
 <%@include file="../../design/footer.jsp" %>

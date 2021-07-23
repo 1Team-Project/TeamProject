@@ -18,6 +18,7 @@
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 	<%@taglib uri = "http://java.sun.com/jsp/jstl/core" prefix="c" %>
 	<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 	<sec:csrfMetaTags/>
 	<!-- 영권 추가 문장 끝 -->
 	</head>
@@ -155,32 +156,27 @@
 					<div class="social-media">
 		    		<p class="d-md-flex justify-content-end m-2">
 						<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
-						
-						
-						
-						<c:choose>
-							<c:when test="${sessionScope.login != null}">
+	
+
+							<sec:authorize access="isAuthenticated()">
 								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
 			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 			    					<img src="/resources/main/images/icon_login.png">
 			    				</a>
-			    			</c:otherwise>
-		    			</c:choose>
+			    			</sec:authorize>
 		    			
 		    			
-		    			<c:choose>
-		    				<c:when test="${sessionScope.login != null}">
+							<sec:authorize access="isAuthenticated()">
 								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
 		    					<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png">
 		    					</a>
-		    				</c:otherwise>
-		    			</c:choose>
+			    			</sec:authorize>
 		    			
 		    			
 		    			<a href="#" class="d-flex align-items-center justify-content-center m-1">
@@ -214,7 +210,7 @@
 					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑장 정보</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown02">
 					<!-- 각 카테고리별 이동하는 링크 -->
-					<a class="dropdown-item" href="#">캠핑장 목록</a>
+					<a class="dropdown-item" href="campingjang">캠핑장 목록</a>
 				</div>
 				   </li>
 
@@ -240,7 +236,11 @@
 
 
 </form>
-	
+
+		<form action="/logoutForm" method="post" id="logoutForm">
+			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</form>
+
 		<form action="" method="get" id="actionForm">
 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 

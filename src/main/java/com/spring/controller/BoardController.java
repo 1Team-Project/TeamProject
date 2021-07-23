@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -29,6 +30,7 @@ import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
 import com.spring.domain.CampusReplyPageVO;
 import com.spring.domain.CampusReplyVO;
+import com.spring.domain.CampusUserVO;
 import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
 import com.spring.service.CampusReplyService;
@@ -79,12 +81,12 @@ public class BoardController {
 			//오늘의 화제글 제목/내용이 길면 각각 10/15자 만큼 자르기
 			CampusBoardTopVO tovo = new CampusBoardTopVO();
 			if (vo.getB_content().length() >= 15) {						
-				tovo.setB_content_15(vo.getB_content().substring(0, 14));					
+				tovo.setB_content_15(vo.getB_content().substring(0, 14)+"...");					
 			}else {
 				tovo.setB_content_15(vo.getB_content());											
 			}
 			if (vo.getB_title().length() >= 10) {
-				tovo.setB_title_10(vo.getB_title().substring(0, 9));						
+				tovo.setB_title_10(vo.getB_title().substring(0, 9)+"...");						
 			}else {
 			
 				tovo.setB_title_10(vo.getB_title());
@@ -107,6 +109,7 @@ public class BoardController {
 			}
 		}
 		
+		
 		//전체 리스트 조회 및 모델에 등록
 		List<CampusBoardVO> list = service.list(cri);
 		int total = service.total(cri);
@@ -120,7 +123,6 @@ public class BoardController {
 		model.addAttribute("CampusPageVO", campusPageVO);
 	}
 	
-
 	@PostMapping("/viewadd")
 	@ResponseBody
 	public String read2(@RequestBody String bnoval) {
@@ -139,7 +141,7 @@ public class BoardController {
 		String viewsS = Integer.toString(views);
 		return viewsS;
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/view")
 	public void read(int b_no,int b_views, int r_page,@ModelAttribute("cri") CampusCriteria cri,Model model) {
 		log.info("※※※※※ view ※※※※※");  
@@ -198,24 +200,30 @@ public class BoardController {
 			return "redirect:list";
 		//글 수정 실패시
 		}else {
-			return "redirect:modify?b_no="+vo.getB_no()+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
+			return "redirect:view?b_no="+vo.getB_no()+"&page="+cri.getPage()+"&keyword="+cri.getKeyword()+"&sort="+cri.getSort();
 		}
 	}
 
 	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/write")
 	public void write() {
-		log.info("※※※※※ get write ※※※※※");  
+		log.info("※※※※※ get write ※※※※※");
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/write")
 	public String writePost(CampusBoardVO vo, RedirectAttributes rttr) {
 		
-		log.info("※※※※※ post write ※※※※※");  
+		log.info("※※※※※ post write ※※※※※");
 		
 		//글 작성 요청 및 성공/실패시
 		if(service.insert(vo)) {
+			
+			// 등록된 p_number 의 p_name 을 추가
+			String pfb = service.productfindboard(vo.getP_number());
+			vo.setP_name(pfb);
+			service.productinsertboard(vo.getB_no(), vo.getP_name());
+			
 			rttr.addFlashAttribute("result",vo.getB_no());
 			return "redirect:list";
 		}else {
@@ -306,13 +314,13 @@ public class BoardController {
 		
 	}
 	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
 		log.info("※※※※※ get sellwrite ※※※※※");
 	}
 	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellwrite")
 	public String sellwritePost(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob,RedirectAttributes rttr) {
 		log.info("※※※※※ post sellwrite ※※※※※");  
@@ -360,7 +368,7 @@ public class BoardController {
 		}
 
 	}
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellmodify")
 	public void sellmodify(int p_number, int b_no, Model model) {
 		log.info("※※※※※ get sellmodify ※※※※※");
@@ -371,7 +379,7 @@ public class BoardController {
 		model.addAttribute("campusBoardVO", campusBoardVO);
 		model.addAttribute("campusProductVO", campusProductVO);
 	}
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellmodify")
 	public String sellmodifyPost(CampusProductVO vo) {
 		log.info("※※※※※ post sellmodify ※※※※※");
@@ -406,6 +414,27 @@ public class BoardController {
 		
 		
 	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@RequestMapping(value="/checkpnumber", produces="application/text;charset=utf8", method = RequestMethod.POST)
+	@ResponseBody
+	public String checkpnumber(int p_number) {
+		
+		log.info("※※※※※ post checkpnumber ※※※※※");  
+		
+		CampusProductVO vo = product.viewProduct(p_number);
+		
+		String proName = "not";
+		log.info("체크넘버 : "+vo);
+		if(vo!=null) {
+			proName = vo.getP_name();
+		}
+		log.info("체크넘버스트링 : "+proName);
+		
+		return proName;
+	}
+	
+	
 	
 	
 	//첨부물 가져오기
