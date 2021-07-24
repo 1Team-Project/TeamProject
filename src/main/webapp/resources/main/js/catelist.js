@@ -83,6 +83,7 @@ $(function(){
 			  
       //actionForm에 pnum값을 추가하여 actionForm 보내기
       actionForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
+	//페이지 값도 추가해야함
       actionForm.attr("action","productdetail");
       actionForm.submit();
 	})
@@ -99,6 +100,17 @@ $(function(){
 		
 	})
 	
+	//header 꺼
+	//카테고리 클릭시
+	$(".clickview").click(function(e){
+		e.preventDefault(); //타이틀 속성 a 막기
+		
+		
+		goForm.append("<input type='hidden' name='pc_code' value='"+$(this).attr('href')+"'>");
+		goForm.attr("action","/product/catelist");
+		//console.log(catelist);
+		goForm.submit();
+	})
 })
 
 	

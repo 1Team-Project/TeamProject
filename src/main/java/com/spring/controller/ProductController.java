@@ -64,9 +64,11 @@ public class ProductController {
 	      }
 		log.info(prolist);
 		
-		int total = service.total(cri);
+		
 
-//		//베스트3 사진 
+		model.addAttribute("prolist",prolist);
+
+		//베스트3 사진 
 		List<CampusProductVO> bestlist=service.bestlist();
 		log.info("best리스트" +bestlist);
 		
@@ -84,55 +86,23 @@ public class ProductController {
 	            img.setUrllink(imgurl);
 	         }
 	      }
-		 
-		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
-		model.addAttribute("CampusPageVO", campusPageVO);
-		model.addAttribute("prolist",prolist);
+		
 		
 		model.addAttribute("bestlist",bestlist);
 		
+		
+		//페이지 나누기 값 모델에 등록 
+		int total = service.total(cri);
+		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
+		model.addAttribute("CampusPageVO", campusPageVO);
+		log.info("CampusPageVO"+campusPageVO);
+
 		//카테고리값넘기기
 		List<CampusProductCategoryVO> category = service.category(cri);
 		model.addAttribute("category",category);
-		
-
 	}
 	
-//	@GetMapping({"/read", "/modify"}) //cri 안에 pageNum과 amount
-//	public void read(int bno,@ModelAttribute("cri") Criteria cri, Model model) {
-//		log.info("글 하나 가져오기"+bno+" cri : "+cri);
-//		
-//		BoardVO vo=service.read(bno);
-//		model.addAttribute("vo",vo); //board/read or board/modify
-//	$$$$$$$참고용$$#########인데모르겟
-//	}
-	
-	//카테고리별 조회
-//	@GetMapping({"/catelist"})
-//	public String catelist(String pc_code,Model model,CampusCriteria cri) {
-//		log.info("카테고리 조회");
-//		String imgurl="";	
-//		
-//		List<CampusProductVO> catelist=service.catelist(cri,pc_code);
-//		
-//		for(CampusProductVO img:catelist) {
-//	         String test = img.getUrllink();
-//
-//	         if(test == null || test.isEmpty()) {
-//	            String path=img.getA_path().replace("\\", "%5C");
-//	            log.info("url 테스트중 : "+path);
-//	            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-//	            img.setUrllink(imgurl);
-//	         }else {
-//	            imgurl="/resources/main/images/default-img.jpg";
-//	            img.setUrllink(imgurl);
-//	         }
-//	      }
-//		
-//		model.addAttribute("catelist",catelist);
-//		return "catelist";
-//		
-//	}
+
 	
 	@GetMapping("/catelist")
 	public void catelist(String pc_code,String sort,Model model) {

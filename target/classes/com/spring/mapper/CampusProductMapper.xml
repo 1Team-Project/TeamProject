@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.CampusProductMapper">
 
-		 <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 +상품 이미지 불러오기  -->
+		 <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 + 상품 이미지 불러오기  -->
 	<select id="prolist" resultType="com.spring.domain.CampusProductVO">
 		 <![CDATA[
 		 select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact, a.a_uuid , a.a_path,a.a_name
@@ -67,6 +67,7 @@
 		 p_number > 0
 	</select>
 	
+	<!-- 카테고리 출력 -->
 	<select id="category" resultType="com.spring.domain.CampusProductCategoryVO">
 		select * from CAMPUS_PRODUCT_CATEGORY
 	</select>
@@ -75,14 +76,11 @@
 	<!-- 동적 SQL  : 전체리스트용-->
 	<sql id = "criteria">
 		<if test="sort != null || sort == ''">
-			<if test="sort=='제목'.toString()">
-				b_title like '%'||#{keyword}||'%' and
+			<if test="sort=='상품명'.toString()">
+				p_name like '%'||#{keyword}||'%' and
 			</if>
-			<if test="sort=='내용'.toString()">
-				b_content like '%'||#{keyword}||'%' and
-			</if>
-			<if test="sort=='작성자'.toString()">
-				b_writer like '%'||#{keyword}||'%' and
+			<if test="sort=='제조사'.toString()">
+				p_manufact like '%'||#{keyword}||'%' and
 			</if>
 		</if>
 	</sql>

@@ -28,11 +28,14 @@ $(function(){
 	
 
 	//검색
+	
 		$(".searchbutton").click(function(e){
-		
+		//검색 폼 가져오기
+		var searchForm = $("#searchForm");
+		//a막기
 		e.preventDefault();
 		
-		let searchForm = $("#searchForm");
+		var searchForm = $("#searchForm");
 		
 		var sort = $("select[name='sort']").val();
 		
@@ -43,13 +46,13 @@ $(function(){
 			alert("검색 기준을 다시 한번 확인해 주세요!");
 			$("select[name='sort']").focus();
 			return false;
-		}
-		if(keyword === ''){
+		}else if(keyword===''){
 			alert("검색어를 확인해 주세요!");
 			$("input[name='keyword']").focus();
 			return false;
-		}	
+		}	//@@@@@@@@@@@검색어 넣어도 이게 뜸
 		
+		//검색하면 처음엔 페이지 1
 		searchForm.find("input[name='page']").val("1");
 		
 		searchForm.submit();

@@ -125,6 +125,8 @@
 					</sec:authorize>
 				</div>
 			</div>
+			
+			<!-- 페이지 선택 버튼 -->
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="mypagination justify-content-center">
