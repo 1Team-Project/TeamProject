@@ -5,9 +5,9 @@
 		 <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 + 상품 이미지 불러오기  -->
 	<select id="prolist" resultType="com.spring.domain.CampusProductVO">
 		 <![CDATA[
-		 select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact, a.a_uuid , a.a_path,a.a_name
+		 select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
 		 from(select /*+INDEX_DESC(campus_product pk_campus_product)*/
-		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact
+		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee
 		      from campus_product
 		      where
 		       ]]>
@@ -18,11 +18,25 @@
 			]]>
 	</select>	
 	
+	<!-- 옵션명 보관 
+	<select id="productoption" resultType="String">
+		select distinct p.p_number, po_option1, po_option2,po_option3 
+		from campus_product p, campus_product_option po 
+		where p.p_number=po.p_number;
+	</select>
+	
+	<resultMap type="com.spring.domain.CampusProductOptionVO" id="campusPoMap">
+		<result property="p_number" column="p_number"/>
+		<result property="po_optiontitle" column="po_optiontitle"/>
+		<result property="po_option1" column="po_option1"/>
+		<result property="po_option2" column="po_option2"/>
+		<result property="po_option3" column="po_option3"/>
+	</resultMap>-->
 		
 	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
 		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
 
-			 select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,
+			select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,p.p_shippingfee,
 			 		first_value(a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,first_value(a_name)over(PARTITION BY p.p_number)as  a_name
 			from b_product p, campus_attach a
 			where a.p_number=p.p_number)order by p_rank
@@ -35,9 +49,9 @@
 	
 		<![CDATA[
 	
-		select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact, a.a_uuid , a.a_path,a.a_name
+		select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
 		 from (select /*+INDEX_DESC(campus_product pk_campus_product)*/
-		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact
+		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee
 		      from campus_product
 		      where
 		       ]]>
@@ -52,9 +66,9 @@
 	
 	<!-- 상품 조회 : 상품 한개 클릭 후 조회 -->
 		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
-			select *
-			from campus_product p
-			where p.p_number=${p_number}
+			select distinct p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact,p.p_shippingfee,po.po_option1,po.po_option2,po.po_option3
+			from campus_product p, campus_product_option po
+			where p.p_number=po.p_number and p.p_number=#{p_number}
 		</select>
 	
 	

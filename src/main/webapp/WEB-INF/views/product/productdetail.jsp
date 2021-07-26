@@ -72,13 +72,14 @@
 							<th><img src="/resources/main/images/choices.png">&nbsp;${vo.p_option}선택</th>
 							<td>
 							<select>
-								
-									<option value="">${vo.p_option}</option>
-						     	
+									<option value="">${vo.po_option1}</option>
+									<option value="">${vo.po_option2}</option>
+									<option value="">${vo.po_option3}</option>
+						    </select>
 							
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
-							<td>무료배송</td>
+							<td>${vo.p_shippingfee}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/payment-method.png">&nbsp;배송
