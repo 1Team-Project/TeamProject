@@ -1,7 +1,7 @@
 $(function() {
 	/* login.jsp */
 	/* 회원가입 버튼 누르면 페이지 이동 */
-	$("#regist").click(function(){
+		$("#regist").click(function(){
 		$("#formId").attr("action", "agree");
 	});
 	$("#login").click(function(){
@@ -12,7 +12,26 @@ $(function() {
 			alert("비밀번호를 입력하세요");
 			return false;
 		}
+/*		$.ajax({
+			url: "/checkLogin",
+			type: "POST",
+			dataType: "json",
+			data: {
+				 u_userid : u_userid,
+				 u_password : u_password
+			},
+			success: function(result){
+				if(result== 0){
+					alert("아이디나 비밀번호를 확인하세요");
+					return false;
+				} else {
+					$("#formId").submit();
+					alert("환영합니다.");
+				}
+			}
+		});*/
 	});
+
 	
 	/* register.jsp */
 	$("#chkId").click(function(){
@@ -93,7 +112,7 @@ signup.addEventListener("click", function(event) {
 
 		
 	} else if(confirm_password.value == '') {
-		$('i[id="confirm_password"]').html("비밀번호가 입력하세요.");
+		$('i[id="confirm_password"]').html("비밀번호를 입력하세요.");
 		confirm_password.focus();
 		event.preventDefault();
 	} else if(!regPw.test(confirm_password.value)) {

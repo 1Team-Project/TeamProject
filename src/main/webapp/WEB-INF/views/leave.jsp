@@ -53,13 +53,14 @@
 					   xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 				},
 				success: function(data){
-					alert(data);
+					/* alert(data); */
 					if(data == 0){
 						alert("비밀번호를 확인하세요");
 						return false;
 					} else{
 						if(confirm("회원탈퇴하시겠습니까?")){
 							$("#formleave").submit();
+							alert("탈퇴되었습니다.");
 						}
 					}
 				}

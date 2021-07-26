@@ -19,7 +19,7 @@
 				</label>
 			</div>
 			<div class="error-message" style="color: red; margin-bottom: 10px;">
-				<span>${loginError}</span>
+				<span>${LoginFailMessage}</span>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>

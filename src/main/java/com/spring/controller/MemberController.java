@@ -23,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import com.spring.domain.CampusAuthVO;
 import com.spring.domain.CampusCustomUser;
 import com.spring.domain.CampusUserVO;
 import com.spring.domain.ChangeVO;
@@ -79,7 +80,7 @@ public class MemberController {
 	/* 기본 시스템 종료*/
 	/* security 시작 */
 
-	@GetMapping("/login")
+	@RequestMapping("/login")
 	public String loginGet() {
 		log.info("로그인 폼 요청");
 		
@@ -109,6 +110,43 @@ public class MemberController {
 		// session.invalidate();
 		session.removeAttribute("login");
 		return "redirect:/";
+	}
+	
+	// 로그인 아이디 검사
+	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+	@PostMapping("/checkUser")
+	public String checkUser(CampusUserVO vo) {
+		log.info("회원 아이디, 비밀번호 검사 : " + vo.getU_userid() + " " + vo.getU_password());
+		CampusUserVO vo1 = service.dupId(vo.getU_userid());
+		if(vo1!=null) {
+			log.info("아이디 비밀번호 확인 : " + vo.getU_userid() + " " + vo.getU_password());
+			if(service.login(vo)!=null) {
+				return "true";
+			}
+		}
+		return "false";
+	}
+	
+	// 로그인 가능 검사
+	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+	@PostMapping("/checkLogin")
+	public String checkLogin(CampusUserVO vo, Authentication authentication) {
+		log.info("회원 아이디, 비밀번호 검사 : " + vo.getU_userid() + " " + vo.getU_password());
+		
+		Object authDoc = authentication.getPrincipal();
+		CampusCustomUser userAuth = (CampusCustomUser)authDoc;
+		String chk_pass = userAuth.getCampusUser().getU_password();
+		
+		vo.setU_password(chk_pass);
+		
+		CampusUserVO vo1 = service.login(vo);
+		if(vo1!=null) {
+			log.info("아이디 비밀번호 확인 : " + vo.getU_userid() + " " + vo.getU_password());
+			if(service.login(vo)!=null) {
+				return "true";
+			}
+		}
+		return "false";
 	}
 		
 	// 로그인 정보 가져오기 => post ======> 시큐리티가 자동으로 해줌
@@ -156,37 +194,93 @@ public class MemberController {
 	/*마이페이지 - 회원정보수정*/
 	
 	//회원정보수정 페이지 이동
-	@GetMapping("/mypageModify")
-	public String mypageModify() {
+	@GetMapping("/myModify")
+	public String myModify() {
 		log.info("mypage-modify 페이지 요청");
 		
 		
-		return "mypageModify";
+		return "myModify";
 	}//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
 	
-
+	
 	//회원정보수정  - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야 / 가져오는건 비밀번호 제외 다
-	@PostMapping("/mypageModify")
-	public String mypageModify(ChangeVO vo, HttpSession session,RedirectAttributes rttr) {
-		log.info("회원정보수정");
+	@PostMapping("/myModify")
+	public String myModify(CampusUserVO vo, HttpSession session,RedirectAttributes rttr, Authentication Authentication) {
+//		log.info("회원정보수정");
+//		
+//		Object authDoc = Authentication.getPrincipal();
+//		CampusCustomUser userAuth = (CampusCustomUser)authDoc;
+//		String chk_pass = userAuth.getCampusUser().getU_password();
+//		
+//		vo.setU_password(chk_pass);
+//		
+//		log.info("vo 아이디 확인 : " + vo.getU_userid());
+//		log.info("vo 비밀번호 확인 : " + vo.getU_password());
+//		
+//		if(service.update(vo)) { // 비밀번호 수정 성공
+//			session.invalidate();
+//			return "redirect:/login";
+//		} else { // 현재 비밀번호 오류
+//			rttr.addFlashAttribute("error", "정보 변경 실패");
+//			return "redirect:/myModify";
+//		}
 		
-		if(vo.newPasswordEqualsConfirmPassword()) {
+		try {
+			String pwd = vo.getNew_password();
+			pwd = pwdEncoder.encode(pwd);
+			vo.setU_password(pwd);
+			
+			log.info("vo 아이디 확인 : " + vo.getU_userid());
+			log.info("vo 비밀번호 확인 : " + vo.getU_password());
+			
 			if(service.update(vo)) { // 비밀번호 수정 성공
 				session.invalidate();
-				return "redirect:/login";
+				return "/loginMypage";
 			} else { // 현재 비밀번호 오류
-				rttr.addFlashAttribute("error", "현재 비밀번호를 확인해 주세요");
-				return "redirect:/mypageModify";
+				rttr.addFlashAttribute("error", "정보 변경 실패");
+				return "redirect:/myModify";
 			}
-		} else { // 변경비밀번호와 확정 변경 비밀번호가 다른 경우
-			rttr.addFlashAttribute("error", "변경 비밀번호가 다릅니다.");
-			return "redirect:/mypageModify";
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "AccessDenied";
 		}
-	
+		
 //		service.userUpdate(vo);
 //		session.invalidate();
 		
 	}
+//	//회원정보수정 페이지 이동
+//	@GetMapping("/mypageModify")
+//	public String mypageModify() {
+//		log.info("mypage-modify 페이지 요청");
+//		
+//		
+//		return "mypageModify";
+//	}//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
+//	
+//
+//	//회원정보수정  - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야 / 가져오는건 비밀번호 제외 다
+//	@PostMapping("/mypageModify")
+//	public String mypageModify(ChangeVO vo, HttpSession session,RedirectAttributes rttr) {
+//		log.info("회원정보수정");
+//		
+//		if(vo.newPasswordEqualsConfirmPassword()) {
+//			if(service.update(vo)) { // 비밀번호 수정 성공
+//				session.invalidate();
+//				return "redirect:/login";
+//			} else { // 현재 비밀번호 오류
+//				rttr.addFlashAttribute("error", "현재 비밀번호를 확인해 주세요");
+//				return "redirect:/mypageModify";
+//			}
+//		} else { // 변경비밀번호와 확정 변경 비밀번호가 다른 경우
+//			rttr.addFlashAttribute("error", "변경 비밀번호가 다릅니다.");
+//			return "redirect:/mypageModify";
+//		}
+//	
+////		service.userUpdate(vo);
+////		session.invalidate();
+//		
+//	}
 
 	// leave
 	@GetMapping("/leave")
@@ -249,7 +343,23 @@ public class MemberController {
 		}
 		return "/leave";
 	}
-
+	
+	@GetMapping("/userManagement")
+	public String userManagement(Model model, CampusAuthVO auth, CampusUserVO vo) {
+		log.info("회원관리 페이지");
+		log.info("회원 리스트 요청");
+		
+		List<CampusAuthVO> userAuth = service.userAuth(auth);
+		List<CampusUserVO> userList = service.userList(vo);
+		
+		
+		model.addAttribute("userAuth", userAuth);
+		model.addAttribute("userList", userList);
+		
+		return "userManagement";
+		
+	}
+	
 	
 	/*마이페이지 - 구매내역*/
 	@PostMapping("/order")
