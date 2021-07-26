@@ -10,10 +10,10 @@
 	</insert>
 	
 	<!--  장바구니에 기존 상품이 있는지  -->
-	<select id="countCart" resultType="int">
-	select count(*) from cart
-	where u_userid=#{u_userid} and p_number=#{p_number}
-	</select>
+<!-- 	<select id="countCart" resultType="int"> -->
+<!-- 	select count(*) from cart -->
+<!-- 	where u_userid=#{u_userid} and p_number=#{p_number} -->
+<!-- 	</select> -->
 	
     <!-- 장바구니 목록 --> 
    <select id="listCart" resultType="com.spring.domain.CartListVO">
@@ -23,39 +23,29 @@
       where u.u_userid = c.u_userid
       and p.p_number = c.p_number
       and c.u_userid=#{u_userid}
-      order by c.c_cartnumber     
+      order by c_cartnumber desc
    </select>
 
    <!-- 장바구니 전체 금액 -->  
    <select id="sum" resultType="int">
-      select NVL(SUM(p_price * c_count),0) money
-      from campus_cart c, campus_product p
-      where c.p_number = p.p_number and c.u_userid = #{u_userid}
+<!--       select NVL(SUM(p_price * c_count),0) money -->
+<!--       from campus_cart c, campus_product p -->
+<!--       where c.p_number = p.p_number and c.u_userid = #{u_userid} -->
    </select>
 
-    <!-- 장바구니 수정 --> 
-   <update id="modifyCart">
-      update campus_cart
-      set c_count = #{c_count}
-      where u_userid = #{u_userid}
-      and p_name = #{p_name}
-   </update>
-   <update id="update">
-   update campus_cart
-   set c_count = #{c_count}
-   where u_userid = #{u_userid}
-   and c_cartnumber = #{c_cartnumber}
-   </update>
 
     <!-- 장바구니 삭제 --> 
-   <delete id="delete">
+<!--    <delete id="delete"> -->
+<!--       delete from campus_cart -->
+<!--       where c_cartnumber = #{c_cartnumber} -->
+<!--    </delete> -->
+  
+  <delete id="delete" parameterType="java.util.List">
       delete from campus_cart
-      where c_cartnumber = #{c_cartnumber}
+         where
+         <foreach collection="list" item="item" separator="or" open="" close="">
+            (c_cartnumber=#{item})
+         </foreach>
    </delete>
-   
-   <delete id="deleteAll">
-   delete from campus_cart
-   where u_userid=#{u_userid}
-   </delete>
-
+  
 </mapper>

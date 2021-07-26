@@ -63,58 +63,6 @@ $(function(){
 //});
 //
 
-//
-//$(function() {
-//		$("#btn_cart").click(function() {
-//			$(".modal").fadeIn();
-//
-//			$("#move").click(function(){		
-//			
-//			var p_number = $("#p_number").val();
-//			var c_count = $(".inp").val();
-//			var userid   $("#userid").val();
-//			
-//			var data =  {
-//			p_number: p_number,
-//			c_count: c_count,
-//			u_userid: userid
-//		};
-//		$.ajax({
-//			url: "/cart",
-//			type: "post",
-//			data: data,
-//			beforeSend: function(xhr) {
-//				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
-//			},
-//			success: function() {
-//				alert("장바구니에 담았습니다.");
-//			},
-//			error: function() {
-//				alert("카트 담기 실패");
-//			}
-//		});
-//	});
-//	var cart = confirm("장바구니로 바로 이동하시겠습니까?");
-//	if (cart) {
-//		$(location).attr("href", "/cart")
-//	}
-//});
-//		});
-//		$(".close").click(function() {
-//			$(".modal").fadeOut();
-//		});
-//	
-//	
-//$(".btn-secondary").click(function(e) {
-//	e.preventDefault();
-//	var order = confirm("상품을 바로 구매하시겠습니까?");
-//	if (order) {
-//		$(location).attr("href", "buy")
-//
-//	}
-//});
-//});
-
 
 $(".menu1").click(function(e) {
 	e.preventDefault(e);
@@ -150,25 +98,35 @@ $(".menu4").click(function(e) {
 	},
 		400);
 })
+
+
+
+
+
 $(".plus").click(function() {
 	var num = $(".inp").val();
 	var plusNum = Number(num) + 1;
+    var sum = plusNum * $("input[name='price']").val();
 
 	if (plusNum >= 100) {
 		$(".inp").val(num);
+		
 	} else {
 		$(".inp").val(plusNum);
+		$(".subtotal").val(sum);
 	}
 });
 
 $(".minus").click(function() {
 	var num = $(".inp").val();
 	var minusNum = Number(num) - 1;
-
+	var sum = minusNum * $("input[name='price']").val();
+	
 	if (minusNum <= 0) {
 		$(".inp").val(num);
 	} else {
 		$(".inp").val(minusNum);
+		$(".subtotal").val(sum);
 	}
 });
 

@@ -20,10 +20,51 @@
 				<div class="c_select">
 					<div class="innerselect">
 						<label class="check"> <input type="checkbox" id="checkall"
-							checked=""> <span class="icon"></span> 전체선택
+							checked="">전체선택
 						</label> 
 						<a href="" class="btn_delete" id="deleteall">전체삭제</a>
-						<a href="" class="btn_delete" id="delete">선택삭제</a>
+						<button type="submit" class="btn_delete" id="delete">선택삭제</button>
+						<script>
+						$("#delete").click(function () {
+							var confirm_val = confirm("정말 삭제하시겠습니까?");
+
+							if (confirm_val) {
+								var checkArr = new Array();
+								
+								console.log($("input[class='checkone']:checked"));
+
+								$("input[class='checkone']:checked").each(function (idx,item) {
+									//item.data("cartnum");
+									
+									var cartNum=$(this).data("cartnum");
+									checkArr.push(cartNum);
+								});
+								
+								console.log(checkArr);
+								
+								$.ajax({
+									url: "/delete",
+									type: "post",
+									data: {
+										cartNum:checkArr,
+									},
+									beforeSend: function (xhr) {   
+										xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+									},
+									success: function (data) {
+										console.log(data);
+										alert("장바구니 삭제 성공");
+										//.href = "/cart?u_userid="+u_userid;
+										//location.href ="/";
+										location.reload();
+									},
+									error: function(){
+										alert("장바구니 삭제 실패");
+									}
+								});
+							}
+						});
+					</script>
 					</div>
 				</div>
 				<div class="box">
@@ -31,8 +72,8 @@
 						<c:forEach items="${cartlist}" var="CartListVO">
 							<li>
 								<div class="item">
-									<label class="check" for=""> <input type="checkbox"
-										id="checkone" checked=""> <span class="icon"></span>
+									<label class="check" for=""> 
+									<input type="checkbox" class="checkone"  data-cartnum="${CartListVO.c_cartnumber}"> 
 									</label>
 									<div class="c_name">
 										<div class="innername">
@@ -45,18 +86,14 @@
 										<div class="price">
 											<div class="in_price">
 												<span class="selling">
-												 <fmt:formatNumber
-											value="${CartListVO.p_price}" pattern="###,###,###"></fmt:formatNumber>
-												
-												
+												 <fmt:formatNumber value="${CartListVO.p_price * CartListVO.c_count}" pattern="###,###,###"></fmt:formatNumber>
 												</span>
 												<span class="unit">원</span>
-												<p class="noti"></p>
 											</div>
 											<div class="stamper count">
 												<button type="button" class="btn minus off">감소</button>
 												<input type="number" id="stepperCounter" class="num"
-													readonly="" value="1">
+													readonly="" value="${CartListVO.c_count}">
 												<button type="button" class="btn plus">추가</button>
 											</div>
 										</div>
@@ -66,14 +103,12 @@
 						</c:forEach>
 					</ul>
 				</div>
-				<div class="c_select">
-					<div class="inner_select">
-						<label class="check"> <!-- 							<input type="checkbox" name="checkAll" checked=""> -->
-							<!-- 							<span class="ico"></span>전체선택 (1/1)</label> --> <!-- 							<a href="#none" class="btn_delete">선택삭제</a> -->
-						</label>
-					</div>
-				</div>
 			</div>
+<!-- 				<div class="c_select"> -->
+<!-- 					<div class="inner_select"> -->
+					
+<!-- 					</div> -->
+<!-- 				</div> -->
 			<div class="cart_result">
 				<div class="innerresult" style="top: 60px;">
 					<div class="amount_view">
@@ -81,7 +116,7 @@
 							<dt class="tit">결제예정금액</dt>
 							<dd class="price">
 								<span class="num">
-									<fmt:formatNumber value="${CartListVO.p_price}" pattern="###,###,###"></fmt:formatNumber>
+									<fmt:formatNumber value="" pattern="###,###,###"></fmt:formatNumber>
 									</span>
 									<span class="unit">원</span>
 							</dd>
@@ -108,10 +143,9 @@
 		crossorigin="anonymous"></script>
 	<script src="/resources/main/js/cart.js"></script>
 	<script>
-	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 </script>
 </body>
 </html>
-<%@include file="../design/footer.jsp"%>
+<%-- <%@include file="../design/footer.jsp"%> --%>

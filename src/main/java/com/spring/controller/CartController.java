@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.CampusProductVO;
@@ -58,40 +59,17 @@ public class CartController {
 	}
 
     //장바구니 삭제	
-	@RequestMapping("/cart")
-	public String delete(int c_cartnumber) {
+	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
+	@ResponseBody
+	@PostMapping("/delete")
+	public boolean delete(@RequestParam(value="cartNum[]") List<Integer> checkArr, HttpSession session) {
 		
-		log.info("장바구니 삭제");
+		log.info("장바구니 삭제" +checkArr);
 		
-		service.delete(c_cartnumber);
-
-		return "redirect:/cart";
-
+	    return  service.delete(checkArr);
 	}
 }
-////	
-////	//장바구니 수정
-////	@RequestMapping("/update")
-////	public String update(int [] c_count, int[] c_cartnumber, HttpSession session) {
-////		
-////	String u_userid = (String)session.getAttribute("u_userid");
-////	for(int i=0; i<c_cartnumber.length; i++) {
-////		if(c_count[i]==0) {
-////			service.delete(c_cartnumber[i]);
-////		}else {
-////			CartVO cart = new CartVO();
-////			cart.setU_userid(u_userid);
-////			cart.setC_cartnumber(c_cartnumber[i]);
-////			cart.setC_count(c_count[i]);
-////			service.modifyCart(cart);
-////		}
-////	}
-////		return "redirect:/cart";
-////		
-////	}
-	
-	
-	
+
 
 
 

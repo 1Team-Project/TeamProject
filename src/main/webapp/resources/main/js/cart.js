@@ -22,41 +22,34 @@ $(".minus").click(function() {
 });
 
 //
-//$("#checkall").click(function(){
-//	if ($("input:checkbox[id='checkall']").prop("checked")){
-//		$("input[type=checkbox]").prop("checked",true);
-//	} else{
-//		$("input[type=checkbox]").prop("checked",false);
-//	}
-//});
-//
-
-//$(function(){
-	$("#checkall").click(function(){
-		if ($("input:checkbox[id='checkall']").prop("checked")){
+$("#checkall").click(function(){
+	if ($("input:checkbox[id='checkall']").prop("checked")){
 		$("input[type=checkbox]").prop("checked",true);
 	} else{
 		$("input[type=checkbox]").prop("checked",false);
 	}
-  });
-
-$("#deleteall").click(function(){
-	
-	var result = confirm("정말 전체를 삭제하시겠습니까?");
-		
-	if(result){
-		location.replace('main');
-	}
-
 });
 
-$("#delete").click(function(){
-	
-	var result = confirm("해당 항목을 삭제하시겠습니까?");
-		
-	if(result){
-		location.replace('main');
-	}
 
+//$(function(){
+$("#checkall").click(function() {
+	if ($("input:checkbox[id='checkall']").prop("checked")) {
+		$("input[type=checkbox]").prop("checked", true);
+	} else {
+		$("input[type=checkbox]").prop("checked", false);
+	}
 });
+
+//$("#deleteall").click(function(){
+//	
+//	var result = confirm("정말 전체를 삭제하시겠습니까?");
+//		
+//	if(result){
+//		location.replace('main');
+//	}
+//
+//});
+
+
+
 

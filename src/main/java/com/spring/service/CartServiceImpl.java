@@ -31,9 +31,11 @@ public class CartServiceImpl implements CartService {
 	}
 
 	@Override
-	public boolean delete(int c_cartnumber) {
+	public boolean delete(List<Integer> checkArr) {
 		// TODO Auto-generated method stub
-		return mapper.delete(c_cartnumber)>0? true:false;
+		//int result = mapper.delete(checkArr);
+		
+		return mapper.delete(checkArr) > 0? true:false;
 	}
 
 	@Override
@@ -54,11 +56,7 @@ public class CartServiceImpl implements CartService {
 //		return null;
 //	}
 
-	@Override
-	public boolean deleteAll(String u_userid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
 	public int countCart(String u_userid, int p_number) {

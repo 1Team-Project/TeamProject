@@ -49,8 +49,9 @@
 
 						<tbody>
 							<tr>
-								<td class="price"><fmt:formatNumber
-										value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber>
+								<td class="price">
+								<input type="hidden" value="${product.p_price}" name="price">
+								<fmt:formatNumber value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber>
 									<span class="unit">원</span></td>
 							</tr>
 							<tr>
@@ -99,9 +100,12 @@
 					<div id="cartput">
 						<div class="total">
 							<div class="price">
-								<strong class="tot">총 상품금액 : </strong> <span class="sum">
-									<span class="num"> <fmt:formatNumber
-											value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span>
+								<strong class="tot">총 상품금액 : </strong> 
+								<span class="sum">
+									<span class="num"> 
+<%-- 									<fmt:formatNumber value="" pattern="###,###,###"></fmt:formatNumber> --%>
+									 <input type="text" name="sum" class="subtotal" readonly>
+									</span>
 									<span class="unit">원</span>
 								</span>
 							</div>
@@ -464,10 +468,11 @@
 		   var p_number = $("#p_number").val();
 		   var c_count = $(".inp").val();   
 		   var userid= $("#userid").val();
+		  
 		   var data ={
 		      p_number : p_number,
 		      c_count : c_count,
-		      u_userid : userid
+		      u_userid : userid,
 		   };
 
 		   $.ajax({

@@ -9,7 +9,7 @@ public interface CartMapper {
 	
 	public int addCart(CartVO vo);
 	public List<CartListVO> listCart(String u_userid);
-	public int delete(int c_cartnumber);
+	public int delete(List<Integer> checkArr);
 	public int modifyCart(CartVO vo);
 	public int sum(String u_userid);	
 }
