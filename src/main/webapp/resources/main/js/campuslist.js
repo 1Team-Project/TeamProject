@@ -36,6 +36,7 @@ $(function(){
 				console.log("아작스성공"+result);
 				actionForm.append("<input type='hidden' name='b_views' value='"+result+"'>");
 				actionForm.append("<input type='hidden' name='b_no' value='"+bnoval+"'>");
+				actionForm.append("<input type='hidden' name='r_page' value='1'>");
 				actionForm.attr('action','view');
 				actionForm.submit();
 			},

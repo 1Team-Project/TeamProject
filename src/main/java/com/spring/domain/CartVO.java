@@ -1,5 +1,7 @@
 package com.spring.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,15 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class CartVO {
+	
+	//결제용
+	private List<CartVO> cartVO;
+	private String po_option_vo;
+	
+	//사진경로
+	private String cartimg;
+	private int p_shippingfee;
+	
 	private int c_cartnumber;
 	private String u_userid;
 	private int p_number;

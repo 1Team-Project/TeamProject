@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
+import com.spring.domain.CampusProductCategoryVO;
 import com.spring.domain.CampusProductVO;
 import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
@@ -28,6 +29,9 @@ public class HomeController {
 	
 	@Autowired
 	private CampusBoardService service;
+	@Autowired
+	private CampusProductService product;
+	
 
 	
 	@GetMapping("/")
@@ -38,7 +42,11 @@ public class HomeController {
 		List<CampusBoardVO> mainList = service.mainList(cri);
 		
 		model.addAttribute("mainList", mainList);
-
+		
+		//카테고리값넘기기
+		List<CampusProductCategoryVO> category = product.category(cri);
+		model.addAttribute("category",category);
+		
 		return "main";
 		
 	}

@@ -24,10 +24,19 @@
 		select u_userid from CAMPUS_USER where u_userid = #{u_userid}
 	</select>
 	
-	<!-- 탈퇴 : leave -->
-	<delete id="leave">
+	<!-- 탈퇴1 - 권한 제거 : leave -->
+	<delete id="leaveAuth">
+		delete from CAMPUS_USER_AUTH where u_userid = #{u_userid}
+	</delete>
+	<!-- 탈퇴2 - 정보 제거: leave -->
+	<delete id="leaveCamp">
 		delete from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
 	</delete>
+	
+	<!-- 비밀번호 확인 : pwdCheck -->
+	<select id="pwdCheck" resultType="int">
+		select count(*) from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password} 
+	</select>
 	
 	<!-- 비밀번호 변경 : update -->
 	<update id="update">

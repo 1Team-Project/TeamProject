@@ -112,8 +112,8 @@
 		<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
-		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		
+		<input type="hidden" name="page" valuFe="${CampusPageVO.cri.page}" />
+		<input type="hidden" name="pc_code" value="${catelist.pc_code}" />
 	</form>
         </div>
 

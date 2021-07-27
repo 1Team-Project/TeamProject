@@ -64,6 +64,21 @@ $(function(){
 //
 
 
+$(function() {
+
+	$(".btn-secondary").click(function(e) {
+		e.preventDefault();
+
+		var order = confirm("상품을 바로 구매하시겠습니까?");
+		if (order) {
+			$(location).attr("href", "buy")
+
+		} else {
+
+		}
+	})
+})
+
 $(".menu1").click(function(e) {
 	e.preventDefault(e);
 	//선택한 위치 태그 

@@ -15,7 +15,7 @@
 	
 		<div class="col-md-1"></div>
 		<div class="col-md-10">
-					<div class="col-md-12">
+				<div class="col-md-12">
 				<hr class="one" />
 				<h3 class="heading-section hoverthema" style="font-family: naBrush;" onclick="location.href='list'">통합 게시판</h3>
 				<hr class="one" />
@@ -152,7 +152,6 @@
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
 		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		<input type="hidden" name="r_page" value="1"/>
 	</form>            
 	
 	

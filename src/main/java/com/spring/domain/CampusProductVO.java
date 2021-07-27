@@ -1,5 +1,7 @@
 package com.spring.domain;
 
+import java.util.List;
+
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,6 +14,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class CampusProductVO {
+	
+	private List<CampusProductVO> campusProductVO;
+	private String po_option_vo;
+	
+	
 	private int p_number;
 	private String p_name;
 	private int p_price;
@@ -20,6 +27,7 @@ public class CampusProductVO {
 	private String pc_code;
 	private String p_manufact;
 	private int p_rank;
+	private int p_shippingfee;
 
 	//상품사진
 	private String a_uuid;
