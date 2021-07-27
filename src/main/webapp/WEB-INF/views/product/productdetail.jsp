@@ -104,7 +104,8 @@
 								<span class="sum">
 									<span class="num"> 
 <%-- 									<fmt:formatNumber value="" pattern="###,###,###"></fmt:formatNumber> --%>
-									 <input type="text" name="sum" class="subtotal" readonly>
+									 <input type="text" name="sum" class="subtotal" readonly 
+									 style="border:none;">
 									</span>
 									<span class="unit">원</span>
 								</span>

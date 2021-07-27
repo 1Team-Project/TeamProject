@@ -22,8 +22,7 @@
 						<label class="check"> <input type="checkbox" id="checkall"
 							checked="">전체선택
 						</label> 
-						<a href="" class="btn_delete" id="deleteall">전체삭제</a>
-						<button type="submit" class="btn_delete" id="delete">선택삭제</button>
+						<button type="button" class="btn_delete" id="delete">장바구니 삭제</button>
 						<script>
 						$("#delete").click(function () {
 							var confirm_val = confirm("정말 삭제하시겠습니까?");
@@ -67,9 +66,10 @@
 					</script>
 					</div>
 				</div>
+				<c:set var="sum" value="0" />
+				<c:forEach items="${cartlist}" var="CartListVO">
 				<div class="box">
 					<ul class="list">
-						<c:forEach items="${cartlist}" var="CartListVO">
 							<li>
 								<div class="item">
 									<label class="check" for=""> 
@@ -86,29 +86,27 @@
 										<div class="price">
 											<div class="in_price">
 												<span class="selling">
-												 <fmt:formatNumber value="${CartListVO.p_price * CartListVO.c_count}" pattern="###,###,###"></fmt:formatNumber>
+<%-- 												 <fmt:formatNumber value="${CartListVO.p_price * CartListVO.c_count}" pattern="###,###,###"></fmt:formatNumber> --%>
+												 <input type="hidden" value="${CartListVO.p_price}" name="price">
+												 <input type="text" readonly value="${CartListVO.p_price * CartListVO.c_count}" class="subtotal">
 												</span>
 												<span class="unit">원</span>
 											</div>
 											<div class="stamper count">
-												<button type="button" class="btn minus off">감소</button>
+												<button type="button" class="btn minus off" onclick = "minus($(this).next())">감소</button>
 												<input type="number" id="stepperCounter" class="num"
 													readonly="" value="${CartListVO.c_count}">
-												<button type="button" class="btn plus">추가</button>
+												<button type="button" class="btn plus" onclick="plus($(this).prev())">추가</button>
 											</div>
 										</div>
 									</div>
 								</div>
 							</li>
-						</c:forEach>
 					</ul>
 				</div>
+			<c:set var="sum" value="${sum + (cartListVO.p_price * cartListVO.c_count)}" />
+			</c:forEach>
 			</div>
-<!-- 				<div class="c_select"> -->
-<!-- 					<div class="inner_select"> -->
-					
-<!-- 					</div> -->
-<!-- 				</div> -->
 			<div class="cart_result">
 				<div class="innerresult" style="top: 60px;">
 					<div class="amount_view">
@@ -116,7 +114,7 @@
 							<dt class="tit">결제예정금액</dt>
 							<dd class="price">
 								<span class="num">
-									<fmt:formatNumber value="" pattern="###,###,###"></fmt:formatNumber>
+									<fmt:formatNumber value="${sum}" pattern="###,###,###"></fmt:formatNumber>
 									</span>
 									<span class="unit">원</span>
 							</dd>
@@ -137,7 +135,6 @@
 			</div>
 		</div>
 	</div>
-
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous"></script>

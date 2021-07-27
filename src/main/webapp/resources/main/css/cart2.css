@@ -95,9 +95,12 @@ input {
 
 
 .cartlist .c_select .btn_delete {
-    padding: 18px 0 17px 20px;
+/*     padding: 18px 0 17px 20px; */
     font-weight: 700;
-    line-height: 25px;
+/*     line-height: 25px; */
+    background-color:transparent;
+    border : 0;
+    margin-left:10px;
 }
 .c_select .btn_delete {
     padding: 11px 0 10px;
