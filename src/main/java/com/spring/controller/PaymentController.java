@@ -44,100 +44,100 @@ public class PaymentController {
 	@Autowired
 	private CampusBoardAttachMapper attach;
 	
-	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/paymentpage")
-	public void list(Model model) {
-		log.info("※※※※※ get payment page ※※※※※"); 
-		
-		List<CartVO> list = cart.listCart("user11");
-		
-		int total_pay = 0;
-		int total_parcel = 0;
-		
-		for(CartVO vo:list) {
-			
-			String imgurl = "";
-			
-			if(attach.findByPnumber(vo.getP_number()).isEmpty() || attach.findByPnumber(vo.getP_number()) == null) {
-				imgurl = "/resources/main/images/default-img.jpg";
-			}else {
-				List<CampusAttachFileDTO> check = attach.findByPnumber(vo.getP_number());
-				String path = "";
-				for(CampusAttachFileDTO topath:check) {
-					path = topath.getA_path().replace("\\", "%5C");
-					imgurl = "/display?fileName="+path+"%2F"+topath.getA_uuid()+"_"+topath.getA_name();
-					break;
-				}
-			}
-			total_pay += vo.getMoney();
-			total_pay += vo.getP_shippingfee();
-			total_parcel += vo.getP_shippingfee();
-			vo.setCartimg(imgurl);
-		}
-		
-		model.addAttribute("campusCartVO",list);
-		model.addAttribute("total_pay",total_pay);
-		model.addAttribute("total_parcel",total_parcel);
-		
-	}
+//	@PreAuthorize("isAuthenticated()")
+//	@GetMapping("/paymentpage")
+//	public void list(Model model) {
+//		log.info("※※※※※ get payment page ※※※※※"); 
+//		
+//		List<CartVO> list = cart.listCart("user11");
+//		
+//		int total_pay = 0;
+//		int total_parcel = 0;
+//		
+//		for(CartVO vo:list) {
+//			
+//			String imgurl = "";
+//			
+//			if(attach.findByPnumber(vo.getP_number()).isEmpty() || attach.findByPnumber(vo.getP_number()) == null) {
+//				imgurl = "/resources/main/images/default-img.jpg";
+//			}else {
+//				List<CampusAttachFileDTO> check = attach.findByPnumber(vo.getP_number());
+//				String path = "";
+//				for(CampusAttachFileDTO topath:check) {
+//					path = topath.getA_path().replace("\\", "%5C");
+//					imgurl = "/display?fileName="+path+"%2F"+topath.getA_uuid()+"_"+topath.getA_name();
+//					break;
+//				}
+//			}
+//			total_pay += vo.getMoney();
+//			total_pay += vo.getP_shippingfee();
+//			total_parcel += vo.getP_shippingfee();
+//			vo.setCartimg(imgurl);
+//		}
+//		
+//		model.addAttribute("campusCartVO",list);
+//		model.addAttribute("total_pay",total_pay);
+//		model.addAttribute("total_parcel",total_parcel);
+//		
+//	}
 	
-	@GetMapping("/kakaoPay")
-	public void kakaoPayGet() {
-		log.info("※※※※※ get kakao page ※※※※※");  
-	}
-	
-	@PostMapping("/formtest")
-	public String kakaoPayPost(CartDummyVO cartVO ,CampusOrderVO voo, String total_pay, Model model) {
-		
-		log.info("teetetstsetsete+++ ",cartVO);
-		
-		List<CartVO> list = new ArrayList<CartVO>();
-		
-		int count = 0;
-		
-		String name="";
-		
-		
-		for(CartDummyVO check : cartVO.getCartVO()) {
-			
-			CartVO vo = new CartVO();
-			int pnum = Integer.parseInt(check.getP_number());
-			int pmon = Integer.parseInt(check.getMoney());
-			int ccou = Integer.parseInt(check.getC_count());
-			int pric = Integer.parseInt(check.getPrice());
-			vo.setP_number(pnum);
-			vo.setP_name(check.getP_name());
-			vo.setMoney(pmon);
-			vo.setPrice(pric);
-			vo.setC_count(ccou);
-			vo.setPo_option_vo(check.getPo_option_vo());
-			
-			count ++;
-			
-			if (count == 1) {
-				name = vo.getP_name();
-			}
-			
-		}
-		
-		if (count > 1) {
-			name = name+"외 "+(count-1)+"종";
-		}
-		
-		//전체 이름
-		model.addAttribute("total_name",name);
-		//전체 금액
-		model.addAttribute("total_pay",total_pay);
-		//카운트 횟수
-		model.addAttribute("total_count",count);
-		
-		model.addAttribute("list",list);
-		
-		
-		return "/payment/kakaoPay";
-	}
-	
-	
+//	@GetMapping("/kakaoPay")
+//	public void kakaoPayGet() {
+//		log.info("※※※※※ get kakao page ※※※※※");  
+//	}
+//	
+//	@PostMapping("/formtest")
+//	public String kakaoPayPost(CartDummyVO cartVO ,CampusOrderVO voo, String total_pay, Model model) {
+//		
+//		log.info("teetetstsetsete+++ ",cartVO);
+//		
+//		List<CartVO> list = new ArrayList<CartVO>();
+//		
+//		int count = 0;
+//		
+//		String name="";
+//		
+//		
+//		for(CartDummyVO check : cartVO.getCartVO()) {
+//			
+//			CartVO vo = new CartVO();
+//			int pnum = Integer.parseInt(check.getP_number());
+//			int pmon = Integer.parseInt(check.getMoney());
+//			int ccou = Integer.parseInt(check.getC_count());
+//			int pric = Integer.parseInt(check.getPrice());
+//			vo.setP_number(pnum);
+//			vo.setP_name(check.getP_name());
+//			vo.setMoney(pmon);
+//			vo.setPrice(pric);
+//			vo.setC_count(ccou);
+//			vo.setPo_option_vo(check.getPo_option_vo());
+//			
+//			count ++;
+//			
+//			if (count == 1) {
+//				name = vo.getP_name();
+//			}
+//			
+//		}
+//		
+//		if (count > 1) {
+//			name = name+"외 "+(count-1)+"종";
+//		}
+//		
+//		//전체 이름
+//		model.addAttribute("total_name",name);
+//		//전체 금액
+//		model.addAttribute("total_pay",total_pay);
+//		//카운트 횟수
+//		model.addAttribute("total_count",count);
+//		
+//		model.addAttribute("list",list);
+//		
+//		
+//		return "/payment/kakaoPay";
+//	}
+//	
+//	
 //	@RequestMapping("/kakaopay.cls")
 //	@ResponseBody
 //	public String kakaopay() {

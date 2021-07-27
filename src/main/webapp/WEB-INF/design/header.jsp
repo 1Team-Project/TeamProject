@@ -206,7 +206,7 @@
 				<!-- 각 카테고리별 이동하는 링크 -->
               	<a class="dropdown-item" href="/product/productlist">전체 상품</a>
               		<c:forEach var="cate" items="${category}">
-	           			<a class="dropdown-item clickview" href="${cate.pc_code}" class="cate">${cate.pc_name} </a>
+	           			<a class="dropdown-item clickview" href="${cate.pc_code}">${cate.pc_name} </a>
              		 </c:forEach>
               </div>
            	  </li>
@@ -251,6 +251,10 @@
 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
+		</form>
+		
+		<form action="" method="get" id="goForm">
+			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		</form>
 
 	<form action="list" method="get" id="actionForm">	

@@ -36,4 +36,11 @@ public class CampusProductVO {
 	private String urllink;
 
 	private String path;
+
+	private String thumbimg;
+	
+	//첨부파일 리스트
+		private List<CampusAttachFileDTO> attachList;
 }
+
+

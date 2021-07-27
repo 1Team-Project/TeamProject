@@ -16,7 +16,6 @@
 <!-- 	</select> -->
 	
     <!-- 장바구니 목록 --> 
-<<<<<<< HEAD
    <select id="listCart" resultType="com.spring.domain.CartListVO">
       select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
       p.p_name, c.c_count, p.p_price
@@ -25,31 +24,17 @@
       and p.p_number = c.p_number
       and c.u_userid=#{u_userid}
       order by c_cartnumber desc
-=======
-   <select id="listCart" resultType="com.spring.domain.CartVO">
-      select p.p_number, m.u_userid, c.c_cartnumber, m.u_username, m.u_username,
-      p.p_name,c.c_count, p.p_price, p.p_shippingfee, (p_price * c_count) money
-      from campus_cart c, campus_user m , campus_product p
-      where m.u_userid = c.u_userid
-      and p.p_number = c.p_number
-      and c.u_userid=#{u_userid}
-      order by c.c_cartnumber
->>>>>>> 5f4da484eb4205f47b7e8b9254d161f14f79c44f
-   </select>
+      </select>
 
-   <!-- 장바구니 전체 금액 -->  
-   <select id="sum" resultType="int">
-<!--       select NVL(SUM(p_price * c_count),0) money -->
-<!--       from campus_cart c, campus_product p -->
-<!--       where c.p_number = p.p_number and c.u_userid = #{u_userid} -->
-   </select>
-
-
-    <!-- 장바구니 삭제 --> 
-<!--    <delete id="delete"> -->
-<!--       delete from campus_cart -->
-<!--       where c_cartnumber = #{c_cartnumber} -->
-<!--    </delete> -->
+<!--    <select id="listCart" resultType="com.spring.domain.CartVO"> -->
+<!--       select p.p_number, m.u_userid, c.c_cartnumber, m.u_username, m.u_username, -->
+<!--       p.p_name,c.c_count, p.p_price, p.p_shippingfee, (p_price * c_count) money -->
+<!--       from campus_cart c, campus_user m , campus_product p -->
+<!--       where m.u_userid = c.u_userid -->
+<!--       and p.p_number = c.p_number -->
+<!--       and c.u_userid=#{u_userid} -->
+<!--       order by c.c_cartnumber -->
+<!--    </select> -->
   
   <delete id="delete" parameterType="java.util.List">
       delete from campus_cart
@@ -58,5 +43,4 @@
             (c_cartnumber=#{item})
          </foreach>
    </delete>
-  
 </mapper>

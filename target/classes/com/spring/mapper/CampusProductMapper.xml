@@ -29,7 +29,8 @@
 <!-- 상품 조회 : 카테고리별 분류 -->
 	
 	<select id="catelist" resultType="com.spring.domain.CampusProductVO">
-	<![CDATA[
+	
+		<![CDATA[
 	
 		select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact, a.a_uuid , a.a_path,a.a_name
 		 from (select /*+INDEX_DESC(campus_product pk_campus_product)*/
@@ -37,19 +38,20 @@
 		      from campus_product
 		      where
 		       ]]>
-		  <include refid="criteria"></include>
+		  <include refid="criteria2"></include>
 		   <![CDATA[
-					rownum <= (#{page}*25)) p, simple_attach a
-			where rn > ((#{page}-1)*25) and a.p_number=p.p_number and p.pc_code=${pc_code}
+					rownum <= (#{cri.page}*25)) p, simple_attach a
+			where rn > ((#{cri.page}-1)*25) and a.p_number=p.p_number and p.pc_code=#{pc_code}
 			
 			]]>
-			
 	</select>	
-
+	<!-- 카테고리코드를 받아서 네임 출력하고,,,, 아니다~ -->
 	
-	<!-- 상품 조회 : 상품 클릭 후 조회 -->
+	<!-- 상품 조회 : 상품 한개 클릭 후 조회 -->
 		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
-			select * from campus_product where p_number=#{p_number}
+			select *
+			from campus_product p
+			where p.p_number=${p_number}
 		</select>
 	
 	
@@ -66,10 +68,25 @@
 		select * from CAMPUS_PRODUCT_CATEGORY
 	</select>
 	
-	
-	<!-- 동적 SQL -->
+
+	<!-- 동적 SQL  : 전체리스트용-->
 	<sql id = "criteria">
 		<if test="sort != null || sort == ''">
+			<if test="sort=='제목'.toString()">
+				b_title like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='내용'.toString()">
+				b_content like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='작성자'.toString()">
+				b_writer like '%'||#{keyword}||'%' and
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 동적 SQL : 카테고리리스트용-->
+	<sql id = "criteria2">
+		<if test= "cri.sort.toString()!=''">
 			<if test="sort=='상품명'.toString()">
 				p_name like '%'||#{keyword}||'%' and
 			</if>
