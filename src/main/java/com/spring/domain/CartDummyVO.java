@@ -30,7 +30,7 @@ public class CartDummyVO {
 	private String p_number;
 	private String p_name;
 	private String c_count;
-	private String price;
+	private String p_price;
 	private String money;
 
 }

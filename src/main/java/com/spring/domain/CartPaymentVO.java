@@ -13,14 +13,24 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CartVO {
+
+public class CartPaymentVO {
+
+	//결제용
+	private List<CartPaymentVO> cartVO;
+	private String po_option_vo;
+	private String c_privateCode;
+	
+	//사진경로
+	private String cartimg;
+	private int p_shippingfee;
 	
 	private int c_cartnumber;
 	private String u_userid;
 	private int p_number;
-//	private String p_name;
+	private String p_name;
 	private int c_count;
-//	private int price;
-//	private int money;
+	private int p_price;
+	private int money;
 
 }

@@ -17,14 +17,15 @@
 
 	<c:set var="i" value="0" />
 	<c:forEach var="vo" items="${list}">
-		<script>
-			var item_name_+"${i}" = "${vo.p_name}"
-			var item_count_+"${i}" = "${vo.c_count}"
-			var item_number_+"${i}" = "${vo.p_number}"
-			var item_price_+"${i}" = "${vo.price}"
-			var item_option_+"${i}" = "${vo.c_count}"
-		</script>
-		<c:set var="i" value="${i+1}" />
+	
+<%-- 		<c:set var="item_name_${i}" value="${vo.p_name}"/>
+		<c:set var="item_count_${i}" value="${vo.c_count}"/>
+		<c:set var="item_number_${i}" value="${vo.p_number}"/>
+		<c:set var="item_price_${i}" value="${vo.price}"/>
+		<c:set var="item_option_${i}" value="${vo.c_count}"/>
+		 --%>
+		<c:set var="i" value="${i+1}"/>
+
 	</c:forEach>
 	
 	
@@ -40,22 +41,12 @@
     	method: 'easy', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
     	show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
     	items: [
-		for(i=0; i>=${total_count}; i++){
-			
-    		var name = item_name;
-    		name += i;
-    		console.log(item_name_0);
-    		console.log(item_name_1);
-    		console.log(name);
-    		
     		{
-    			
-    			
-    			item_name: item_name_1, //상품명
-    			qty: item_count_""+i+"", //수량
-    			unique: name, //해당 상품을 구분짓는 primary key
-    			price: item_price_""+i+"", //상품 단가
-    			cat1: item_option_""+i+"", // 대표 상품의 카테고리 상, 50글자 이내
+    			item_name: "214124", //상품명
+    			qty: "12312", //수량
+    			unique: "1234", //해당 상품을 구분짓는 primary key
+    			price: "2134", //상품 단가
+    			cat1: "12312", // 대표 상품의 카테고리 상, 50글자 이내
     			cat2: '-',
     			cat3: '-', // 대표상품의 카테고리 하, 50글자 이내
     		}

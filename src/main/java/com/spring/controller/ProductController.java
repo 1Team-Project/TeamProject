@@ -190,13 +190,13 @@ public class ProductController {
 
 	//게시판 글번호 읽어서 보는것처럼
 	//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp
-	@GetMapping("/productdetail")
-	
-	public void productdetails(int p_number,@ModelAttribute("cri") CampusCriteria cri, Model model) {
-		CampusProductVO vo=service.viewProduct(p_number);
-		model.addAttribute("vo",vo); 
-		log.info("상품 상세"+vo);
-	//상품 상세CampusProductVO(p_number=15151, p_name=테스트55, p_price=10000, p_option=-, p_stock=10, pc_code=ASD123123444, p_manufact=null, p_rank=0, a_uuid=null, a_path=null, a_name=null, urllink=null, path=null
-	}
+//	@GetMapping("/productdetail")
+//	
+//	public void productdetails(int p_number,@ModelAttribute("cri") CampusCriteria cri, Model model) {
+//		CampusProductVO vo=service.viewProduct(p_number);
+//		model.addAttribute("vo",vo); 
+//		log.info("상품 상세"+vo);
+//	//상품 상세CampusProductVO(p_number=15151, p_name=테스트55, p_price=10000, p_option=-, p_stock=10, pc_code=ASD123123444, p_manufact=null, p_rank=0, a_uuid=null, a_path=null, a_name=null, urllink=null, path=null
+//	}
 
 }

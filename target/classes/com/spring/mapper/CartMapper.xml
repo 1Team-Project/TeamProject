@@ -17,6 +17,7 @@
 	
     <!-- 장바구니 목록 --> 
    <select id="listCart" resultType="com.spring.domain.CartListVO">
+<!--    <select id="listCart" resultType="com.spring.domain.CartVO"> -->
       select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
       p.p_name, c.c_count, p.p_price
       from campus_cart c, campus_user u , campus_product p
@@ -24,7 +25,20 @@
       and p.p_number = c.p_number
       and c.u_userid=#{u_userid}
       order by c_cartnumber desc
-      </select>
+<!--       </select> -->
+   </select>
+   
+   <!-- 결제용 -->
+   <select id="listPayment" resultType="com.spring.domain.CartPaymentVO">
+      select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
+      p.p_name, c.c_count, p.p_price, p.p_shippingfee
+      from campus_cart c, campus_user u , campus_product p
+      where u.u_userid = c.u_userid
+      and p.p_number = c.p_number
+      and c.u_userid=#{u_userid}
+      order by c_cartnumber desc
+   </select>
+   
 
 <!--    <select id="listCart" resultType="com.spring.domain.CartVO"> -->
 <!--       select p.p_number, m.u_userid, c.c_cartnumber, m.u_username, m.u_username, -->
