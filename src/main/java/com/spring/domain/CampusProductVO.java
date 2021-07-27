@@ -35,7 +35,12 @@ public class CampusProductVO {
 	private String urllink;
 	private String path;
 	private String thumbimg;
-	
+	//상품 내용
+	private int b_no;
+	private String b_content;
+	private String b_sort;
 	//첨부파일 리스트
-	private List<CampusAttachFileDTO> attachList;
+	
+private List<CampusAttachFileDTO> attachList;
+private List<CampusBoardVO> pboardlist;
 }

@@ -150,6 +150,22 @@ public class CampusProductServiceImpl implements CampusProductService {
 	public List<CampusProductOptionVO> optionlist(String op_optiontitle) {
 		return productmapper.optionlist(op_optiontitle);
 	}
+
+	//상품상세 읽어오기
+	@Override
+	public CampusBoardVO viewProductcontent(int p_number) {
+		return productmapper.viewProductcontent(p_number);
+	}
+
+	@Override
+	public List<CampusBoardVO> selectReview(int p_number) {
+		return productmapper.selectReview(p_number);
+	}
+
+	@Override
+	public List<CampusBoardVO> selectq(int p_number) {
+		return productmapper.selectq(p_number);
+	}
 	
 
 

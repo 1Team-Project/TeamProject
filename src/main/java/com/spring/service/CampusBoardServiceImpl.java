@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
+import com.spring.domain.CampusProductVO;
 import com.spring.mapper.CampusBoardAttachMapper;
 import com.spring.mapper.CampusBoardMapper;
 import com.spring.mapper.CampusReplyMapper;
@@ -151,5 +152,7 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		// TODO Auto-generated method stub
 		return mapper.productinsertboard(b_no,p_name)>0?true:false;
 	}
+
+	
 	
 }

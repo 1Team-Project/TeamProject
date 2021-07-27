@@ -18,20 +18,6 @@
 			]]>
 	</select>	
 	
-	<!-- 옵션명 보관 
-	<select id="productoption" resultType="String">
-		select distinct p.p_number, po_option1, po_option2,po_option3 
-		from campus_product p, campus_product_option po 
-		where p.p_number=po.p_number;
-	</select>
-	
-	<resultMap type="com.spring.domain.CampusProductOptionVO" id="campusPoMap">
-		<result property="p_number" column="p_number"/>
-		<result property="po_optiontitle" column="po_optiontitle"/>
-		<result property="po_option1" column="po_option1"/>
-		<result property="po_option2" column="po_option2"/>
-		<result property="po_option3" column="po_option3"/>
-	</resultMap>-->
 		
 	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
 		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
@@ -64,12 +50,21 @@
 	</select>	
 	<!-- 카테고리코드를 받아서 네임 출력하고,,,, 아니다~ -->
 	
-	<!-- 상품 조회 : 상품 한개 클릭 후 조회 -->
+	<!-- 상품 조회 : 상품 한개 클릭 후 조회 : 사진, 상품 설명 제외 -->
 		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
 			select distinct p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact,p.p_shippingfee,po.po_option1,po.po_option2,po.po_option3
 			from campus_product p, campus_product_option po
 			where p.p_number=po.p_number and p.p_number=#{p_number}
 		</select>
+		
+	<!-- 상품 조회 :  상품 한개 클릭 후 상품 사진, 설명 보여주기  
+	<select id="viewProductcontent" resultType="com.spring.domain.CampusProductVO">
+		select p.p_number, pro.b_no, pro.b_content, pro.b_sort, pro.a_uuid, pro.a_path
+		from(select  distinct  a.b_no, b.b_content, b.b_sort, a.a_uuid, a.a_path, a.a_name, a.p_number
+			from campus_attach a , campus_board b
+			where a.b_no=b.b_no and b.b_sort='상품' order by p_number ) pro, campus_product p
+		where pro.p_number=p.p_number
+	</select>-->
 	
 	
 	<!-- 전체 상품 수 -->
@@ -110,5 +105,70 @@
 			</if>
 		</if>
 	</sql>
+	<!--  -->
 
+	
+	<resultMap type="com.spring.domain.CampusBoardVO" id="boardMap">
+		<id property="b_no" column="b_no"/>
+		<result property="b_content" column="b_content"/>
+		<result property="b_sort" column="b_sort"/>
+		<result property="p_number" column="p_number"/>
+		<result property="p_name" column="p_name"/>
+		<collection property="attachList" resultMap="attachlist"/>
+	</resultMap>
+	
+	<resultMap type="com.spring.domain.CampusAttachFileDTO" id="attachlist">
+		<result property="a_uuid" column="a_uuid"/>
+		<result property="a_path" column="a_path"/>
+		<result property="a_name" column="a_name"/>
+		<result property="a_type" column="a_type"/>
+		<result property="b_no" column="b_no"/>
+	</resultMap>
+
+	<!-- 상품 조회  :  상품 한개 클릭 후 상품 사진, 설명 보여주기-->
+	<select id="viewProductcontent" resultMap="boardMap">
+		select b.p_number, b.p_name, b.b_no, b.b_sort, b.b_content, a.a_uuid, a.a_path, a.a_name
+		from campus_board b, campus_attach a
+		where a.b_no=b.b_no and b.b_sort='상품' and b.p_number=#{p_number}
+	</select>
+	
+	<!-- 상품조회시 후기 연결 -->
+		<select id="selectReview" resultType="com.spring.domain.CampusBoardVO">
+			select * 
+			from (select rownum rn,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+					from campus_board 
+					where b_sort='후기')pb 
+			where pb.p_number=#{p_number}
+		</select>
+		
+	<!-- 상품조회시 질문 연결 -->
+		<select id="selectq" resultType="com.spring.domain.CampusBoardVO">
+			select * 
+			from (select rownum rn,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+					from campus_board 
+					where b_sort='질문')pb 
+			where pb.p_number=#{p_number}
+		</select>	
+	
+	
+	
+	
+	<!-- 관리자 권한 -->
+	<!-- 상품 추가 -->
+		<insert id="insertProduct">
+			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code)
+			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code})
+		</insert>
+	<!-- 상품 삭제 -->
+		<delete id="deleteProduct">
+			delete from campus_product where p_number=#{p_number}
+		</delete>
+	
+	<!-- 상품 수정 : 가격, 재고 수정 -->
+		<update id="updateProduct">
+			update campus_product
+			set p_price=#{p_price}, p_stock=#{p_stock}
+			where p_number=#{p_number}
+		</update>
+	
 </mapper>

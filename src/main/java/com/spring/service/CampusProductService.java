@@ -18,7 +18,14 @@ public interface CampusProductService {
 	public List<CampusProductVO> catelist(CampusCriteria cri,String pc_code);
 	
 	public CampusProductVO viewProduct(int p_number);
-	public int total(CampusCriteria cri);
+	//상품 상세 읽어오기
+	public CampusBoardVO viewProductcontent(int p_number);
+	//상품 상세 내 후기
+	public List<CampusBoardVO> selectReview(int p_number);
+	//상품 상세 내 질문
+	public List<CampusBoardVO> selectq(int p_number);
+	
+;	public int total(CampusCriteria cri);
 	
 	public List<CampusAttachFileDTO> getImg();
 

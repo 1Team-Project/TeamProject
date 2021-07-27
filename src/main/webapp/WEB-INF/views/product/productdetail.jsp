@@ -14,14 +14,14 @@
 		<div class="innerview">
 		
 			<div class="product">
-				<img class="photo" src="/resources/main/images/lamp.jpg" alt="상품 대표 사진"/>
+				<img class="photo" src="${pro.urllink} alt="상품 대표 사진"/>
 				<ul>
 				
 					
 					<c:forEach var="vo" items="vo">
 						<li class="small_img">
 							<a href=""> 
-							<img src="" alt=""></a>
+							<img src="${pro.urllink}" alt=""></a>
 						</li>
 					</c:forEach>
 						
@@ -37,12 +37,18 @@
 
 			<div class="p_info">
 				<table>
-					<colgroup>
-						<col style="width: 173px;">
-						<col>
-					</colgroup>
+				<colgroup>
+						<col style="width: 173px;">	<col>
+					</colgroup> 
 
 					<tbody>
+				
+						
+						
+						<tr>
+							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
+							<td>${vo.p_number}</td>
+						</tr>
 						<tr>
 							<td class="price"><fmt:formatNumber value="${vo.p_price}"
 									pattern="###,###,###"></fmt:formatNumber></td>
@@ -123,39 +129,19 @@
 							</p>
 							<div class="description">
 								<div class="d_wrapper">
-									<strong class="d_title"> <span>다시 돌아온 강력 손전등!!</span>
-										<span class="d_subtitle">[오랜 시간 지속 가능]</span>
+									<strong class="d_title"> <span>${vo.p_name}</span>
+										<span class="d_subtitle">[디테일설명같은거 추가?!@!]</span>
 									</strong>
-									<p class="descript">Lorem ipsum dolor sit amet consectetur,
-										adipisicing elit. Molestiae deserunt illo quaerat officia quia
-										est consequatur dolores corrupti nihil at eligendi ipsam
-										numquam quasi architecto praesentium, dolorum labore quas a.
-										Sapiente tenetur molestiae commodi nobis earum nesciunt.
-										Mollitia, autem molestiae nostrum aut explicabo asperiores
-										aperiam omnis, iusto pariatur veritatis magni quibusdam minus
-										nemo necessitatibus debitis iste accusamus repudiandae atque.
-										Dolores! Pariatur possimus molestias, consequatur eius ullam
-										soluta ut sint eum minima id labore voluptatem. Ducimus cum
-										error, temporibus cumque voluptates nihil? Ipsum optio sed
-										veritatis repellendus sunt aspernatur in explicabo. Facere,
-										eligendi aliquam fuga nemo eos consequatur, provident rerum
-										officia beatae inventore et porro minima aliquid. Placeat
-										beatae facilis voluptatem illo voluptates saepe rem, optio,
-										architecto facere tempore nihil aut! Incidunt, molestias
-										quaerat. Assumenda architecto facere debitis, obcaecati quod
-										distinctio. Dolor, doloremque. Necessitatibus vero voluptatem
-										sit, dolorem fugiat molestiae accusantium cumque illum?
-										Consequatur sit autem perferendis. Voluptate laboriosam quae
-										quas!</p>
-									<p class="descript_img1">
-										<img src="/resources/main/images/lamp2.jpg">
+									<p class="descript">
+										${con.b_content}
 									</p>
-									<p class="descript_img2">
-										<img src="/resources/main/images/lamp3.jpg">
-									</p>
-									<p class="descript_img3">
-										<img src="/resources/main/images/tent.png">
-									</p>
+								<%-- 첨부파일 목록 보여주기 --%>
+								<%--/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name() --%>
+								<c:forEach var="con" items="${con.CampusAttachFileDTO}">
+									<img src="/display?fileName="+${con.a_path}+"%2F"+${con.a_uuid}+"_"+${con.a_name}>
+								
+								</c:forEach>
+									
 									<div class="when_use">
 										<h1>
 											<span class="campustip"> Camp Us's Tip!</span><br> <span
@@ -190,7 +176,7 @@
 										<div class="p_reviewbar">
 											<h1>
 												<span class="rivew">Product's Review</span><br> <span
-													class="star">해당 상품의 별점을 알려드립니다!</span>
+													class="star">평균 별점 : @계싼하기@</span>
 											</h1>
 											<div class="row">
 												<div class="col-md-10"></div>
@@ -209,54 +195,15 @@
 												</thead>
 												<tbody class="textcenter">
 													<tr>
-														<td>5</td>
-														<td>후기</td>
-														<td><a href="#" class="blacktext hoverthema">안녕하세요
-																후기입니다<strong class="badgecount">[1]</strong>
+													<c:forEach var="r" items="${review}">
+														<td>${r.rownum+1}</td>
+														<td>${r.b_sort}</td>
+														<td><a href="#" class="blacktext hoverthema">${r.b_title}<strong class="badgecount">[1]이건뭐지?</strong>
 														</a></td>
-														<td>홍길동</td>
-														<td>2021/07/07</td>
-														<td>0</td>
-													</tr>
-													<tr>
-														<td>4</td>
-														<td>후기</td>
-														<td><a href="#" class="blacktext hoverthema">안녕하세요
-																후기입니다<strong class="badgecount">[1]</strong>
-														</a></td>
-														<td>홍길동</td>
-														<td>2021/07/07</td>
-														<td>0</td>
-													</tr>
-													<tr>
-														<td>3</td>
-														<td>질문</td>
-														<td><a href="#" class="blacktext hoverthema">안녕하세요
-																질문입니다<strong class="badgecount">[1]</strong>
-														</a></td>
-														<td>홍길동</td>
-														<td>2021/07/07</td>
-														<td>0</td>
-													</tr>
-													<tr>
-														<td>2</td>
-														<td>후기</td>
-														<td><a href="#" class="blacktext hoverthema">안녕하세요
-																후기입니다<strong class="badgecount">[1]</strong>
-														</a></td>
-														<td>홍길동</td>
-														<td>2021/07/07</td>
-														<td>0</td>
-													</tr>
-													<tr>
-														<td>1</td>
-														<td>질문</td>
-														<td><a href="#" class="blacktext hoverthema">안녕하세요
-																질문입니다<strong class="badgecount">[1]</strong>
-														</a></td>
-														<td>홍길동</td>
-														<td>2021/07/07</td>
-														<td>0</td>
+														<td>${r.b_writer}</td>
+														<td>${r.b_sysdate}</td>
+														<td>${r.b_rating }</td>
+													</c:forEach>
 													</tr>
 												</tbody>
 											</table>
@@ -305,54 +252,14 @@
 													</thead>
 													<tbody class="textcenter">
 														<tr>
-															<td>5</td>
-															<td>후기</td>
-															<td><a href="#" class="blacktext hoverthema">안녕하세요
-																	후기입니다<strong class="badgecount">[1]</strong>
+														<c:forEach var="q" items="${question}">
+															<td>${q.rownum+1}</td>
+															<td>${q.b_sort}</td>
+															<td><a href="#" class="blacktext hoverthema">${q.b_title}<strong class="badgecount">[1]이건또뭘까</strong>
 															</a></td>
-															<td>홍길동</td>
-															<td>2021/07/07</td>
-															<td>0</td>
-														</tr>
-														<tr>
-															<td>4</td>
-															<td>후기</td>
-															<td><a href="#" class="blacktext hoverthema">안녕하세요
-																	후기입니다<strong class="badgecount">[1]</strong>
-															</a></td>
-															<td>홍길동</td>
-															<td>2021/07/07</td>
-															<td>0</td>
-														</tr>
-														<tr>
-															<td>3</td>
-															<td>질문</td>
-															<td><a href="#" class="blacktext hoverthema">안녕하세요
-																	질문입니다<strong class="badgecount">[1]</strong>
-															</a></td>
-															<td>홍길동</td>
-															<td>2021/07/07</td>
-															<td>0</td>
-														</tr>
-														<tr>
-															<td>2</td>
-															<td>후기</td>
-															<td><a href="#" class="blacktext hoverthema">안녕하세요
-																	후기입니다<strong class="badgecount">[1]</strong>
-															</a></td>
-															<td>홍길동</td>
-															<td>2021/07/07</td>
-															<td>0</td>
-														</tr>
-														<tr>
-															<td>1</td>
-															<td>질문</td>
-															<td><a href="#" class="blacktext hoverthema">안녕하세요
-																	질문입니다<strong class="badgecount">[1]</strong>
-															</a></td>
-															<td>홍길동</td>
-															<td>2021/07/07</td>
-															<td>0</td>
+															<td>${q.b_writer}</td>
+															<td>${q.b_sysdate}</td>
+														</c:forEach>
 														</tr>
 													</tbody>
 												</table>
@@ -379,28 +286,7 @@
 														</ul>
 													</div>
 												</div>
-												<div class="change_info">adipisicing elit. Molestiae
-													deserunt illo quaerat officia quia est consequatur dolores
-													corrupti nihil at eligendi ipsam numquam quasi architecto
-													praesentium, dolorum labore quas a. Sapiente tenetur
-													molestiae commodi nobis earum nesciunt. Mollitia, autem
-													molestiae nostrum aut explicabo asperiores aperiam omnis,
-													iusto pariatur veritatis magni quibusdam minus nemo
-													necessitatibus debitis iste accusamus repudiandae atque.
-													Dolores! Pariatur possimus molestias, consequatur eius
-													ullam soluta ut sint eum minima id labore voluptatem.
-													Ducimus cum error, temporibus cumque voluptates nihil?
-													Ipsum optio sed veritatis repellendus sunt aspernatur in
-													explicabo. Facere, eligendi aliquam fuga nemo eos
-													consequatur, provident rerum officia beatae inventore et
-													porro minima aliquid. Placeat beatae facilis voluptatem
-													illo voluptates saepe rem, optio, architecto facere tempore
-													nihil aut! Incidunt, molestias quaerat. Assumenda
-													architecto facere debitis, obcaecati quod distinctio.
-													Dolor, doloremque. Necessitatibus vero voluptatem sit,
-													dolorem fugiat molestiae accusantium cumque illum?
-													Consequatur sit autem perferendis. Voluptate laboriosam
-													quae</div>
+												<div class="change_info">교환반품규정이미지</div>
 											</div>
 										</div>
 									</div>

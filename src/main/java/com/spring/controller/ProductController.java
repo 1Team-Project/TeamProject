@@ -5,6 +5,8 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -33,10 +35,7 @@ public class ProductController {
 	@Autowired
 	private CampusProductService service;
 	
-	//카테고리값넘기기
-		
-	
-
+	private CampusBoardService board;
 
 	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
@@ -157,39 +156,46 @@ public class ProductController {
 			log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
 			
 			CampusProductVO vo=service.viewProduct(p_number); // 어태치랑 조인해서 xml하면 vo가 두개넘어감 사진첨부2개하면
-			
-//			String p_option=vo.getP_option();
-//			List<CampusProductOptionVO> option=service.optionlist(p_option);
-//			for(CampusProductOptionVO op:option) {
-//				op.getPo_option1();
-//				op.getPo_option2();
-//				op.getPo_option3();
-//			}
-			//ㄴ리스트배열해서,,?
-			
-			
-			List<CampusAttachFileDTO> attachList = service.getAttachList(p_number);
-			
-//			List<CampusProductVO> product=service.viewProduct(p_number);
+
+			CampusBoardVO con=service.viewProductcontent(p_number);
+			//List<CampusAttachFileDTO> attachList = service.getAttachList(p_number);
+
+			//상품 후기(+별점)와 질문
+			List<CampusBoardVO> review=service.selectReview(p_number);
+			List<CampusBoardVO> question=service.selectq(p_number);
+//			List<CampusAttachFileDTO> list =con.getAttachList();
+			log.info("뤼스트 :"+con);
 //			String imgurl="";
-//			for(CampusProductVO detail:product) {
-//				String test = detail.getUrllink();
+//			for(CampusAttachFileDTO detail:list) {
 //
 //		            String path=detail.getA_path().replace("\\", "%5C");
 //		            log.info("url 테스트중 : "+path);
 //		            imgurl = "/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name();
-//		            detail.setUrllink(imgurl);
+//		            
+//		            con.setUrllink(imgurl);
 //		            
 //			}
-//			model.addAttribute(cri)
+//			log.info("사진릿스트"+imgurl);
+			//model.addAttribute(cri);
 			
-//			model.addAttribute("option", option);
-//			log.info("옵셔언"+option);
 			model.addAttribute("vo", vo);
+			
 			log.info("븨이오"+vo);
-			model.addAttribute("attach",attachList);
-			log.info("어태치"+ attachList);
+			//model.addAttribute("attach",attachList);
+			//log.info("어태치"+ attachList);
+			model.addAttribute("con",con);
+			log.info("내용"+con);
+			model.addAttribute("review",review);
+			model.addAttribute("question",question);
+			
 		}
+		
+//		@GetMapping("/getAttachList")
+//		public ResponseEntity<List<CampusAttachFileDTO>> getAttachList(int p_number){
+//			log.info("※※※※※ getAttachList ※※※※※");
+//			
+//			return new ResponseEntity<List<CampusAttachFileDTO>>(service.getAttachList(p_number),HttpStatus.OK);
+//		}
 }
 	
 	
