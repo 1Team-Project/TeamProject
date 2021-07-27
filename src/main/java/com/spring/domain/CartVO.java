@@ -16,20 +16,12 @@ import lombok.ToString;
 
 public class CartVO {
 	
-	//결제용
-	private List<CartVO> cartVO;
-	private String po_option_vo;
-	
-	//사진경로
-	private String cartimg;
-	private int p_shippingfee;
-	
 	private int c_cartnumber;
 	private String u_userid;
 	private int p_number;
-	private String p_name;
+//	private String p_name;
 	private int c_count;
-	private int price;
-	private int money;
+//	private int price;
+//	private int money;
 
 }
