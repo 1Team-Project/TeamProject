@@ -157,14 +157,14 @@ public class BoardController {
 		}
 		
 		//댓글 관련
-		List<CampusReplyVO> replyVO = reply.list(r_page, b_no);
+//		List<CampusReplyVO> replyVO = reply.list(r_page, b_no);
 
 //		int countreply = reply.getCountByBno(b_no);
 //		CampusReplyPageVO campusReplyPageVO = new CampusReplyPageVO(r_page, countreply);
 		
 		//모델에 값 등록
 		model.addAttribute("campusVO", campusVO);
-		model.addAttribute("replyVO", replyVO);
+//		model.addAttribute("replyVO", replyVO);
 //		model.addAttribute("campusReplyPageVO", campusReplyPageVO);
 		model.addAttribute("r_page",r_page);
 		
@@ -284,38 +284,30 @@ public class BoardController {
 	}
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replymodify")
-	public String replymodify(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
+	@ResponseBody
+	public String replymodify(CampusReplyVO vo) {
 		
 		log.info("※※※※※ post replymodify ※※※※※");  
 		
 		//댓글 수정 요청
 		if(reply.update(vo)) {
-
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
-		}else {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+			return "OK";
 		}
-		
+		return "NO";
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replyremove")
-	public String replyremove(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
+	@ResponseBody
+	public String replyremove(CampusReplyVO vo) {
 		
 		log.info("※※※※※ post replyremove ※※※※※");  
 		
 		//댓글 삭제 요청
 		if(reply.delete(vo.getR_no())) {
-			
-			int replycnt = reply.getCountByBno(b_no);
-			
-			service.replyadd(b_no, replycnt);
-
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
-		}else {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+			return "OK";
 		}
-		
+		return "NO";
 	}
 	
 	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")

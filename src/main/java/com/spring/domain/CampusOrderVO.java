@@ -1,0 +1,21 @@
+package com.spring.domain;
+
+import lombok.Getter;
+import lombok.Setter;
+import lombok.ToString;
+
+@Getter
+@Setter
+@ToString
+public class CampusOrderVO {
+	
+	private int o_number;
+	private String u_userid;
+	private String o_address1;
+	private String o_address2;
+	private String o_address3;
+	private String o_name;
+	private String o_phone;
+	private String o_sysdate;
+	
+}

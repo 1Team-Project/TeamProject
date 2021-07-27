@@ -33,7 +33,7 @@
     background-color: #f0f0f0;
 }
 .rating .yellow + label {
-    background-color: #ff8;
+    background-color: #ffc937;
 }
 </style>
 <section>
@@ -105,7 +105,7 @@
 					<button class="btn btn-primary modifybutton" type="button">수정하기</button>
 	                </c:if>
 	            </sec:authorize>
-					<button class="btn btn-green2 listbutton" type="button">리스트</button>
+					<button class="btn btn-green2 listbutton" type="button">목록</button>
 				</div>
 				</form>
 				<hr class="one" />
@@ -142,68 +142,22 @@
 		<!-- 댓글 리스트 -->
 		<h5 class="mll20">댓글 목록</h5>
 		<hr class="one" />
-		<c:set var="now" value="<%=new java.util.Date()%>" />
-		<c:set var="systest"><fmt:formatDate pattern="yyyy-MM-dd" value="${now}"/></c:set>
-		<c:forEach var="revo" items="${replyVO}">
 
-			<div class="col-md-8 mll20 margintb20 divreply">
-				<h6 class="float-start">${revo.r_replyer}</h6>
-				
-				<sec:authorize access="isAuthenticated()">
+		<div class="col-md-12 replyzone">
 
-					<c:if test="${user.username == revo.r_replyer}">
-
-					<a href="${revo.r_no}" class="float-end blacktext hoverthema replymodify">[수정]</a>
-					<a href="${revo.r_no}" class="float-end blacktext hoverthema replyremove">[삭제]</a>
-					</c:if>
-				</sec:authorize>
-				
-				<c:set var="bsys"><fmt:formatDate pattern="yyyy-MM-dd" value="${revo.r_sysdate}"/></c:set>
-				<h7 class="float-end m-1 mr-2 mt-0 md-0 ml-0">
-				<c:choose>
-				
-					<c:when test="${systest eq bsys}">
-						<fmt:formatDate pattern="HH:mm" value="${revo.r_sysdate}" timeZone="Asia/Seoul"/>
-					</c:when>
-					
-					<c:otherwise>
-						<fmt:formatDate pattern="yyyy-MM-dd" value="${revo.r_sysdate}"/>
-					</c:otherwise>
-					
-				</c:choose>
-				</h7>
-
-				
-				<div class="${revo.r_no}_btn"></div>
-				<div class="${revo.r_no}_btn_X"></div>
-				<textarea class="form-control ${revo.r_no}" cols="30" rows="3" name="r_content"
-					style="resize: none" readonly>${revo.r_content}</textarea>
-			</div>
-
-		</c:forEach>
-
+		</div>
+		
+		
 		<div class="row">
 			<div class="col-md-12">
 				<ul class="mypagination justify-content-center">
-				
-					<c:if test="${campusReplyPageVO.prev}">
-						<li class="mypage-item prev"><a href="${campusReplyPageVO.startPage-1}" class="mypage-link"> << </a></li>
-					</c:if>	
-					
-					<c:forEach var="i" begin="${campusReplyPageVO.startPage}" end="${campusReplyPageVO.endPage}">
-						<li class="mypage-item"><a href="${i}" class="mypage-link ${r_page==i?'activecolor':''}">${i}</a></li>
-					</c:forEach>
-					
-					<c:if test="${campusReplyPageVO.next}">
-						<li class="mypage-item next"><a href="${campusReplyPageVO.endPage+1}" class="mypage-link"> >> </a></li>
-					</c:if>	
-					
+
 				</ul>
 			</div>
 		</div>
 
 
-		<button class="btn btn-green2 mll20 listbutton" type="button">리스트</button>
+		<button class="btn btn-green2 mll20 listbutton" type="button">목록</button>
 
 	</div>
 	<div class="col-md-1"></div>
@@ -216,46 +170,15 @@
 	<input type="hidden" name="page" value="${cri.page}" />
 	<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 </form>
-		
-<form action="" id="replyForm" method="get">
-	<input type="hidden" name="sort" value="${cri.sort}" />
-	<input type="hidden" name="keyword" value="${cri.keyword}" />
-	<input type="hidden" name="page" value="${cri.page}" />
-	<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
-	<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
-	<input type="hidden" name="r_page" value="1"/>
-</form>     
-
-					
-<form action="" id="replyselfform" method="post">
-	<input type="hidden" name="sort" value="${cri.sort}" />
-	<input type="hidden" name="keyword" value="${cri.keyword}" />
-	<input type="hidden" name="page" value="${cri.page}" />
-	<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
-	<input type="hidden" name="b_views" value="${campusVO.b_views}"/>
-	<input type="hidden" name="r_page" value="${r_page}"/>
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-</form>
-
 
 </section>
 <script>
 	let b_no = ${campusVO.b_no};
 	
-/* 	$(document).ready(function(){
-		if(r_page > 1){
-			
-			var offset = $(".lineview").offset();
-			$('html, body').animate({scrollTop : offset.top}, 0);
-		}		
-	}); */
-	
-	
-	
-	
 	var replyername = "${user.username}";
 	var bno = "${campusVO.b_no}";
-
+	var rpaget = "${campusVO.b_no}";
+	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 	

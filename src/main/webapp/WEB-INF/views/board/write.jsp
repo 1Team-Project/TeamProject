@@ -31,7 +31,7 @@
     background-color: #f0f0f0;
 }
 .rating .rate_radio:checked + label {
-    background-color: #ff8;
+    background-color: #ffc937;
 }
 </style>
 <section>
@@ -104,7 +104,7 @@
 					
 					<button class="btn btn-primary" type="submit">글 작성</button>
 					<button class="btn btn-green1" type="reset">초기화</button>
-					<button class="btn btn-green2" type="button" onClick="location.href='/board/list'">리스트</button>
+					<button class="btn btn-green2" type="button" onClick="location.href='/board/list'">목록</button>
 				</div>
 		</form>
 		</div>

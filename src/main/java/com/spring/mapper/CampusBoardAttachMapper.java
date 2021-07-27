@@ -15,6 +15,8 @@ public interface CampusBoardAttachMapper {
 	public int delete(int b_no);
 	
 	public List<CampusAttachFileDTO> findByBno(int b_no);
+	
+	public List<CampusAttachFileDTO> findByPnumber(int p_number);
 
 	public List<CampusAttachFileDTO> getOldFiles();
 	
