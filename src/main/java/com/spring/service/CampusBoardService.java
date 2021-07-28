@@ -5,6 +5,7 @@ import java.util.List;
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
+import com.spring.domain.CampusProductVO;
 
 public interface CampusBoardService {
 
@@ -26,4 +27,6 @@ public interface CampusBoardService {
 	
 	// 영권 메인 게시판 10개 보여주기용
 	public List<CampusBoardVO> mainList(CampusCriteria cri);
+	
+	
 }

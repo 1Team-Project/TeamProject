@@ -1,14 +1,12 @@
 /* header.jsp */
 $(function() {
 	$("#logoutDo").click(function(){
-		var logout = confirm("정말 로그아웃 하시겠습니까?");
+		var logout = confirm("濡�洹몄���� ����寃��듬��源�?");
 		if(logout==true){
-
-			alert("안녕히가세요")
-			$("#logoutForm").submit();
-
+			alert("������媛��몄��")
+			location.href="/logout";
 		} else {
-			alert("로그아웃이 취소되었습니다.")
+			alert("濡�洹몄�몄�� ��吏��⑸����.")
 			return false;
 		}
 	});
@@ -19,16 +17,16 @@ $(function() {
 		location.href='loginMypage';
 	
 })
+	//상품전체
+		var productForm = $("#productForm")
+		$(".product-item").click(function(e){
+				e.preventDefault(); //타이틀 a 속성 막기
+				
+				productForm.attr("action","/product/productlist");
+				productForm.submit();
+			})
 
-
-
-				 //var furuitSrc= "";
-
-				// $(document).on("click","#furuit",function(){
-
-		 			// var furuitSrc= $("#furuit").attr('value');
-
-			 			//alert(furuitSrc); 
+				
 
 	var goForm = $("#goForm");		 		
 
@@ -36,15 +34,15 @@ $(function() {
 	$(".clickview").click(function(e){
 		e.preventDefault(); //타이틀 속성 a 막기
 		
-		//var value=$(".cate").attr('value');
-		//console.log(value);
-		//actionForm에 bno값을 추가하여 actionForm 보내기
-		//actionForm.append("<input type='hidden' name='pc_code' value='"+value+"'>");
+		
 		goForm.append("<input type='hidden' name='pc_code' value='"+$(this).attr('href')+"'>");
 		goForm.attr("action","/product/catelist");
 		//console.log(catelist);
 		goForm.submit();
 	})
+	
+	
+	
 	
 
 });

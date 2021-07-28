@@ -148,3 +148,30 @@ $(".minus").click(function() {
 
 
 
+$("#btn1").click(function(e) {
+	e.preventDefault();
+	var pnum = $(".p_number").val();
+	var cartStock = $(".inp").val();
+	
+	
+	var data = {
+		pnum: pnum,
+		cartStock: cartStock
+	};
+
+	$.ajax({
+		url: "/cart",
+		type: "post",
+		data: data,
+		success: function() {
+			alert("장바구니에 담았습니다.");
+				$(".inp").val("1");
+			},
+			error:function(){
+				alert("카트 담기 실패");
+			}
+			});
+		});
+	
+	
+

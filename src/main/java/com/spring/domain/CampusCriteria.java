@@ -15,6 +15,8 @@ public class CampusCriteria {
 	//페이지 나누기
 	private String sort;
 	private String keyword;
+	//상품조회에서 쓰는거
+	//private String cri;
 	
 	public CampusCriteria() {
 		this(1);

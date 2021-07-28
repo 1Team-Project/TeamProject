@@ -29,18 +29,24 @@ public class CampusProductVO {
 	private int p_rank;
 	private int p_shippingfee;
 
+	 private String po_option1;
+	 private String po_option2;
+	 private String po_option3;
+	
+	
 	//상품사진
 	private String a_uuid;
 	private String a_path;
 	private String a_name;
 	private String urllink;
-
 	private String path;
-
 	private String thumbimg;
-	
+	//상품 내용
+	private int b_no;
+	private String b_content;
+	private String b_sort;
 	//첨부파일 리스트
-		private List<CampusAttachFileDTO> attachList;
+	
+private List<CampusAttachFileDTO> attachList;
+private List<CampusBoardVO> pboardlist;
 }
-
-
