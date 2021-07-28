@@ -3,7 +3,6 @@
 <!DOCTYPE html>
     <section class="m-3">
     <div class="row">
-
     <footer id="footer">
       <div class="f_info">
         <div class="layout">
@@ -35,10 +34,6 @@
           </ul>
         </div>
       </div>
-
-      <!--//하단개인정보 링크영역-->
-      <!--하단주소영역&바로가기 링크-->
-
       <div class="f_link">
         <div class="layout">
           <!--하단주소-->
@@ -56,11 +51,10 @@
                ALL RIGHTS RESERVED.
             </p>
           </div>
-          <!--//f_addr-->
-          <!--//하단주소-->
-      <!--//하단주소영역&바로가기 링크-->
+          </div>
+         </div>
     </footer>
+ </body>
     </div>
 </section>
-  </body>
 </html>

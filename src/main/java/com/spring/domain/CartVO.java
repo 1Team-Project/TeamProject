@@ -20,6 +20,8 @@ public class CartVO {
 	private int p_number;
 //	private String p_name;
 	private int c_count;
+	private String c_option;
+	
 //	private int price;
 //	private int money;
 

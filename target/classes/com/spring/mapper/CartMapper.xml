@@ -4,8 +4,8 @@
 <!-- 장바구니 추가 -->
 	<insert id="addCart">
 	<![CDATA[
-		insert into campus_cart(c_cartnumber, u_userid, p_number, c_count)
-		values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count})
+		insert into campus_cart(c_cartnumber, u_userid, p_number, c_count, c_option)
+		values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count}, #{c_option})
 	]]>
 	</insert>
 	

@@ -17,7 +17,8 @@ public class CartListVO {
 	private String u_userid;
 	private int p_number;
 	private int c_count;
-
+	private String c_option;
+	
 	private String p_name;
 	private int p_price;
 

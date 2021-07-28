@@ -121,20 +121,20 @@ public class ProductController {
 		cri.setSort(sort);
 		
 		List<CampusProductVO> catelist=service.catelist(cri, pc_code);
-//		 for(CampusProductVO img:catelist) {
-//	         String test = img.getUrllink();
-//
-//	         if(test == null || test.isEmpty()) {
-//	            String path=img.getA_path().replace("\\", "%5C");
-//	            log.info("url 테스트중 : "+path);
-//	            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-//	            img.setUrllink(imgurl);
-//	         }else {
-//	            imgurl="/resources/main/images/default-img.jpg";
-//	            img.setUrllink(imgurl);
-//	         }
-//	      }
-//		log.info(catelist);
+		 for(CampusProductVO img:catelist) {
+	         String test = img.getUrllink();
+
+	         if(test == null || test.isEmpty()) {
+	            String path=img.getA_path().replace("\\", "%5C");
+	            log.info("url 테스트중 : "+path);
+	            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+	            img.setUrllink(imgurl);
+	         }else {
+	            imgurl="/resources/main/images/default-img.jpg";
+	            img.setUrllink(imgurl);
+	         }
+	      }
+		log.info(catelist);
 		
 		//int total = service.total(cri);
 		
@@ -162,46 +162,46 @@ public class ProductController {
 			//상단의 상품 정보만 가져옴
 			CampusProductVO vo=service.viewProduct(p_number); // 어태치랑 조인해서 xml하면 vo가 두개넘어감 사진첨부2개하면
 			//이미지 1개 링크
-//			String url="";
-//		         if(vo.getUrllink() == null ||(vo.getUrllink().isEmpty())) {
-//		            String path=vo.getA_path().replace("\\", "%5C");
-//		            log.info("url 테스트중 : "+path);
-//		            url = "/display?fileName="+path+"%2F"+vo.getA_uuid()+"_"+vo.getA_name();
-//		            vo.setUrllink(url);
-//		         }else {
-//		            url="/resources/main/images/default-img.jpg";
-//		            vo.setUrllink(url);
-//		         }
-//		      
+			String url="";
+		         if(vo.getUrllink() == null ||(vo.getUrllink().isEmpty())) {
+		            String path=vo.getA_path().replace("\\", "%5C");
+		            log.info("url 테스트중 : "+path);
+		            url = "/display?fileName="+path+"%2F"+vo.getA_uuid()+"_"+vo.getA_name();
+		            vo.setUrllink(url);
+		         }else {
+		            url="/resources/main/images/default-img.jpg";
+		            vo.setUrllink(url);
+		         }
+		      
 			
 			//상품상세 중간의 사진 등 가져옴
-//			CampusBoardVO con =service.viewProductcontent(p_number);
+			CampusBoardVO con=service.viewProductcontent(p_number);
 			
-//			//경로 설정
-//			for(CampusAttachFileDTO dto:con.getAttachList()) {
-//				log.info(dto.getA_path());
-//				dto.setA_path(dto.getA_path().replaceAll("\\\\", "\\\\\\\\"));
-//			}
+			//경로 설정
+			for(CampusAttachFileDTO dto:con.getAttachList()) {
+				log.info(dto.getA_path());
+				dto.setA_path(dto.getA_path().replaceAll("\\\\", "\\\\\\\\"));
+			}
 			
 			
 			
 			//List<CampusAttachFileDTO> attachList = service.getAttachList(p_number);
 
 			//상품 후기(+별점)와 질문
-//			List<CampusBoardVO> review=service.selectReview(p_number);
-//			List<CampusBoardVO> question=service.selectq(p_number);
-//
-//			log.info("뤼스트 :"+con);
-//
-//			
+			List<CampusBoardVO> review=service.selectReview(p_number);
+			List<CampusBoardVO> question=service.selectq(p_number);
+
+			log.info("뤼스트 :"+con);
+
+			
 			model.addAttribute("vo", vo);
 			
 			log.info("븨이오"+vo);
 
-//			model.addAttribute("con",con);
-//			log.info("내용"+con);
-//			model.addAttribute("review",review);
-//			model.addAttribute("question",question);
+			model.addAttribute("con",con);
+			log.info("내용"+con);
+			model.addAttribute("review",review);
+			model.addAttribute("question",question);
 			
 		}
 		

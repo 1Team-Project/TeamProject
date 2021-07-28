@@ -1,10 +1,5 @@
 @charset "UTF-8";
-/* body { */
-/*     padding:50px; */
-/* } */
-/* div { */
-/*     display: block; */
-/* } */
+
 
 .product_view {
     width: 1050px;
@@ -22,27 +17,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-/*
-.product_view .product li :after {
-    content: "";
-    display: block;
-    clear: both;
-}
-.product_view .product li{
-    float: left;
-    padding: 20px 20px 0 0;
-    list-style: none;
-}
 
-.product_view .product li img {
-    width:68px;
-    height: 68px;
-}
-.product_view .product li img:hover {
-    border:1px solid #5ea7ec;
-  
-}
-*/
 .product_view * {
     font-family: noto sans;
     color: #333;
@@ -193,7 +168,7 @@ p {
 .option_btn {
     float: right;
     margin-top: 20px;
-    margin-right: 15px;
+    margin-left: 300px;
     margin-bottom: 100px;
 }
 .p_detail_info {
@@ -311,7 +286,9 @@ p {
 .p_qna h1 span {
 	margin-left: 450px;
 }
-
+.row .btn-primary {
+	margin-right:20px;
+}
 
 .d_wrapper h1 .tipkor , .p_reviewbar .star , .p_qna .qna_subtit{
     position: relative;
@@ -325,7 +302,8 @@ p {
 }
 
 .p_qna .qna_subtit{
-	margin-left:300px;
+	margin-left:380px;
+	font-size:20px;
 }
 
 .tip_info {
