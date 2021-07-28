@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
@@ -320,10 +321,28 @@ public class BoardController {
 		log.info("※※※※※ get sellwrite ※※※※※");
 	}
 	
-	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-	@PostMapping("/sellwrite")
-	public String sellwritePost(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob,RedirectAttributes rttr) {
-		log.info("※※※※※ post sellwrite ※※※※※");  
+	   //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	   @PostMapping("/sellwrite")
+	   public String sellwritePost(
+	         
+	         @RequestParam("p_name") String p_name, 
+	         @RequestParam("p_number") int p_number, 
+	         @RequestParam("p_price") int p_price, 
+	         @RequestParam("pc_code") String pc_code, 
+	         @RequestParam("p_stock") int p_stock, 
+	         @RequestParam("p_manufact") String p_manufact, 
+	         
+	         CampusProductOptionVO voo, CampusBoardVO vob, RedirectAttributes rttr) {
+	      
+	      CampusProductVO vo = new CampusProductVO();
+	      vo.setP_name(p_name);
+	      vo.setP_number(p_number);
+	      vo.setP_price(p_price);
+	      vo.setPc_code(pc_code);
+	      vo.setP_stock(p_stock);
+	      vo.setP_manufact(p_manufact);
+	      
+	      log.info("※※※※※ post sellwrite ※※※※※"); 
 		
 		//po_optiontitle 에 값이 들어왔을때 (productoption 테이블의 optiontitle)
 		//product 의 option에는 값이 안들어오기 때문에, 강제로 값을 집어넣어줌.

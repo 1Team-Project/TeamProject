@@ -242,11 +242,12 @@ background-image: url("/resources/main/images/plus.png");
 .p_detail_img img {
     display: block;
     width: 1010px;
-    height: 670px;
+    
     margin-bottom: 100px;
     font-family: noto sans;
     font-weight: 200;
     letter-spacing: 0;
+    object-fit:none;
     
 }
 .p_detail_img .main_img {
@@ -271,7 +272,6 @@ background-image: url("/resources/main/images/plus.png");
   display: block;
   font-size: 30px; 
   text-align: center;
-  border-bottom: 1px solid #c1c1c1;
   color: #666;
   padding-bottom: 30px;
 } 
@@ -281,6 +281,8 @@ background-image: url("/resources/main/images/plus.png");
     text-align: center;
     margin-top: 30px;
     margin-bottom: 30px;
+    border-bottom: 1px solid #c1c1c1;
+    padding-bottom: 30px;
 }
 
 .description .d_wrapper .when_use h1, .size_info h1{

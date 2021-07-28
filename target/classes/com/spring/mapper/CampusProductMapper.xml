@@ -43,8 +43,8 @@
 		       ]]>
 		  <include refid="criteria2"></include>
 		   <![CDATA[
-					rownum <= (#{cri.page}*25)) p, simple_attach a
-			where rn > ((#{cri.page}-1)*25) and a.p_number=p.p_number and p.pc_code=#{pc_code}
+					rownum <= (#{cri.page}*20)) p, simple_attach a
+			where rn > ((#{cri.page}-1)*20) and a.p_number=p.p_number and p.pc_code=#{pc_code}
 			
 			]]>
 	</select>	
@@ -55,18 +55,11 @@
 			select distinct po.p_number,po.p_name,po.p_price,po.p_option,po.p_stock,po.pc_code,po.p_manufact,po.p_shippingfee,po.po_option1,po.po_option2,po.po_option3,a.a_uuid,a.a_path,a.a_name
 			from (select distinct p.p_number,p.p_name,p.p_price,p.p_option, o.po_option1,o.po_option2,o.po_option3, p.p_stock,p.pc_code ,p.p_manufact,p.p_shippingfee
        			  from campus_product_option o,campus_product p 
-         		  where o.po_optiontitle=p.p_option) po, (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
+         		  where o.po_optiontitle=p.p_option and o.p_number=p.p_number) po, (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
          	where po.p_number=a.p_number and po.p_number=#{p_number}
 		</select>
 		
-	<!-- 상품 조회 :  상품 한개 클릭 후 상품 사진, 설명 보여주기 
-	<select id="viewProductcontent" resultType="com.spring.domain.CampusProductVO">
-		select p.p_number, pro.b_no, pro.b_content, pro.b_sort, pro.a_uuid, pro.a_path
-		from(select  distinct  a.b_no, b.b_content, b.b_sort, a.a_uuid, a.a_path, a.a_name, a.p_number
-			from campus_attach a , campus_board b
-			where a.b_no=b.b_no and b.b_sort='상품' order by p_number ) pro, campus_product p
-		where pro.p_number=p.p_number
-	</select> -->
+
 	
 	
 	<!-- 전체 상품 수 -->

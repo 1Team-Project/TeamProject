@@ -36,7 +36,7 @@ $(function(){
 			alert("검색 기준을 확인하세요");
 			$("select[name='type']").focus();
 			return false;
-		}else if(keyword===''){
+		}else if(keyword==''){
 			alert("검색어를 확인하세요");
 			$("input[name='keyword']").focus();
 			return false;
@@ -91,28 +91,28 @@ $(function(){
 	})
 	
 	//카테고리 클릭시
-	$(".cate").click(function(e){
-		e.preventDefault(); //타이틀 a 속성 막기
+	//$(".cate").click(function(e){
+	//	e.preventDefault(); //타이틀 a 속성 막기
+	//	
+	//	//pc_code값 추가해서 보내기
+	//	actionForm.append("<input type='hidden' name='pc_code' value='"+$(this).attr('href')+"'>");
+	//	actionForm.attr("action","c");
+    // 	actionForm.submit();
 		
-		//pc_code값 추가해서 보내기
-		actionForm.append("<input type='hidden' name='pc_code' value='"+$(this).attr('href')+"'>");
-		actionForm.attr("action","c");
-     	actionForm.submit();
 		
-		
-	})
+	//})
 	
 	//header 꺼
 	//카테고리 클릭시
-	$(".clickview").click(function(e){
-		e.preventDefault(); //타이틀 속성 a 막기
+	//$(".clickview").click(function(e){
+	//	e.preventDefault(); //타이틀 속성 a 막기
 		
 		
-		goForm.append("<input type='hidden' name='pc_code' value='"+$(this).attr('href')+"'>");
-		goForm.attr("action","/product/catelist");
-		//console.log(catelist);
-		goForm.submit();
-	})
+	//	goForm.append("<input type='hidden' name='pc_code' value='"+$(this).attr('href')+"'>");
+	//	goForm.attr("action","/product/catelist");
+	//	//console.log(catelist);
+	//	goForm.submit();
+	//})
 })
 
 	

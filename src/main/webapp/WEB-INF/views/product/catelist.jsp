@@ -66,7 +66,9 @@
                                         <div class="description">
                                             <div class="product_name">
                                                 <strong class="name"><a href="${cate.p_number}" class="viewpro">
-                                                        <span>상품명 :</span>
+                                                        <span>[</span>
+                                                        <span>${cate.p_manufact}</span>
+                                                        <span>]</span>
                                                         <span>${cate.p_name}</span>
                                                 </a></strong>
                                             </div>        

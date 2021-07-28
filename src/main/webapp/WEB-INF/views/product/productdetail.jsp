@@ -13,7 +13,8 @@
 	<div id="productview">
 		<div class="innerview">
 			<div class="product">
-				<img class="photo" src="${vo.urllink}" alt="대표사진"/>
+			<img class="photo" src="${vo.urllink}" alt="대표사진"/>
+
 				
 			</div>
 			
@@ -147,7 +148,7 @@
 							<div class="description">
 								<div class="d_wrapper">
 									<strong class="d_title"> <span>${vo.p_name}</span>
-										<span class="d_subtitle">[디테일설명같은거 추가?!@!]</span>
+										<span class="d_subtitle">[${vo.p_manufact}]</span>
 									</strong>
 									<p class="descript">
 										${con.b_content}

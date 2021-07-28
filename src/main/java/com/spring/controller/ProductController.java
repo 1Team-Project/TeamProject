@@ -65,7 +65,7 @@ public class ProductController {
 	            img.setUrllink(imgurl);
 	         }
 	      }
-		log.info(prolist);
+		log.info(prolist+"리스트확인");
 		
 		
 
@@ -169,11 +169,9 @@ public class ProductController {
 		            url = "/display?fileName="+path+"%2F"+vo.getA_uuid()+"_"+vo.getA_name();
 		            vo.setUrllink(url);
 		         }else {
-		            url="/resources/main/images/default-img.jpg";
-		            vo.setUrllink(url);
-		         }
-		      
-			
+			            url="/resources/main/images/default-img.jpg";
+			            vo.setUrllink(url);
+			         }
 			//상품상세 중간의 사진 등 가져옴
 			CampusBoardVO con=service.viewProductcontent(p_number);
 			
