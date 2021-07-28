@@ -63,21 +63,21 @@ $(function(){
 //});
 //
 
-
-$(function() {
-
-	$(".btn-secondary").click(function(e) {
-		e.preventDefault();
-
-		var order = confirm("상품을 바로 구매하시겠습니까?");
-		if (order) {
-			$(location).attr("href", "/payment/paymentpage")
-
-		} else {
-
-		}
-	})
-})
+//
+//$(function() {
+//
+//	$(".btn-secondary").click(function(e) {
+//		e.preventDefault();
+//
+//		var order = confirm("상품을 바로 구매하시겠습니까?");
+//		if (order) {
+//			$(location).attr("href", "/payment/paymentpage")
+//
+//		} else {
+//
+//		}
+//	})
+//})
 
 $(".menu1").click(function(e) {
 	e.preventDefault(e);
@@ -115,9 +115,6 @@ $(".menu4").click(function(e) {
 })
 
 
-
-
-
 $(".plus").click(function() {
 	var num = $(".inp").val();
 	var plusNum = Number(num) + 1;
@@ -132,6 +129,7 @@ $(".plus").click(function() {
 	}
 });
 
+
 $(".minus").click(function() {
 	var num = $(".inp").val();
 	var minusNum = Number(num) - 1;
@@ -145,33 +143,4 @@ $(".minus").click(function() {
 	}
 });
 
-
-
-
-$("#btn1").click(function(e) {
-	e.preventDefault();
-	var pnum = $(".p_number").val();
-	var cartStock = $(".inp").val();
-	
-	
-	var data = {
-		pnum: pnum,
-		cartStock: cartStock
-	};
-
-	$.ajax({
-		url: "/cart",
-		type: "post",
-		data: data,
-		success: function() {
-			alert("장바구니에 담았습니다.");
-				$(".inp").val("1");
-			},
-			error:function(){
-				alert("카트 담기 실패");
-			}
-			});
-		});
-	
-	
 

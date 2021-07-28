@@ -13,6 +13,8 @@ import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -120,63 +122,63 @@ public class PaymentController {
 		model.addAttribute("total_parcel",total_parcel);
 		
 	}
-	
-	@GetMapping("/kakaoPay")
-	public void kakaoPayGet() {
-		log.info("※※※※※ get kakao page ※※※※※");  
-	}
-	
-	@PostMapping("/formtest")
-	public String kakaoPayPost(CartDummyVO cartVO ,CampusOrderVO voo, String total_pay, Model model) {
-		
-		log.info("teetetstsetsete+++ ",cartVO);
-		
-		List<CartVO> list = new ArrayList<CartVO>();
-		
-		int count = 0;
-		
-		String name="";
-		
-		
-		for(CartDummyVO check : cartVO.getCartVO()) {
-			
-			CartPaymentVO vo = new CartPaymentVO();
-			int pnum = Integer.parseInt(check.getP_number());
-			int pmon = Integer.parseInt(check.getMoney());
-			int ccou = Integer.parseInt(check.getC_count());
-			int pric = Integer.parseInt(check.getP_price());
-			vo.setP_number(pnum);
-			vo.setP_name(check.getP_name());
-			vo.setMoney(pmon);
-			vo.setP_price(pric);
-			vo.setC_count(ccou);
-			vo.setPo_option_vo(check.getPo_option_vo());
-			
-			count ++;
-			
-			if (count == 1) {
-				name = vo.getP_name();
-			}
-			
-		}
-		
-		if (count > 1) {
-			name = name+"외 "+(count-1)+"종";
-		}
-		
-		//전체 이름
-		model.addAttribute("total_name",name);
-		//전체 금액
-		model.addAttribute("total_pay",total_pay);
-		//카운트 횟수
-		model.addAttribute("total_count",count);
-		
-		model.addAttribute("list",list);
-		
-		
-		return "/payment/kakaoPay";
-	}
-	
+//	
+//	@GetMapping("/kakaoPay")
+//	public void kakaoPayGet() {
+//		log.info("※※※※※ get kakao page ※※※※※");  
+//	}
+//	
+//	@PostMapping("/formtest")
+//	public String kakaoPayPost(CartDummyVO cartVO ,CampusOrderVO voo, String total_pay, Model model) {
+//		
+//		log.info("teetetstsetsete+++ ",cartVO);
+//		
+//		List<CartVO> list = new ArrayList<CartVO>();
+//		
+//		int count = 0;
+//		
+//		String name="";
+//		
+//		
+//		for(CartDummyVO check : cartVO.getCartVO()) {
+//			
+//			CartPaymentVO vo = new CartPaymentVO();
+//			int pnum = Integer.parseInt(check.getP_number());
+//			int pmon = Integer.parseInt(check.getMoney());
+//			int ccou = Integer.parseInt(check.getC_count());
+//			int pric = Integer.parseInt(check.getP_price());
+//			vo.setP_number(pnum);
+//			vo.setP_name(check.getP_name());
+//			vo.setMoney(pmon);
+//			vo.setP_price(pric);
+//			vo.setC_count(ccou);
+//			vo.setPo_option_vo(check.getPo_option_vo());
+//			
+//			count ++;
+//			
+//			if (count == 1) {
+//				name = vo.getP_name();
+//			}
+//			
+//		}
+//		
+//		if (count > 1) {
+//			name = name+"외 "+(count-1)+"종";
+//		}
+//		
+//		//전체 이름
+//		model.addAttribute("total_name",name);
+//		//전체 금액
+//		model.addAttribute("total_pay",total_pay);
+//		//카운트 횟수
+//		model.addAttribute("total_count",count);
+//		
+//		model.addAttribute("list",list);
+//		
+//		
+//		return "/payment/kakaoPay";
+//	}
+//	
 	
 //	@GetMapping("/kakaoPay")
 //	public void kakaoPayGet() {
@@ -343,4 +345,14 @@ public class PaymentController {
 //		
 //		return "{\"result\":\"NO\"}";
 //	}
+//	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
+//	@ResponseBody
+//	@PostMapping("/paymentpage")
+//	   public boolean addCart(CampusOrderVO order, HttpSession session){
+//	      
+//	      log.info("payment" +o);
+//
+//	     return service.addCart(cart);
+//	}
+
 }
