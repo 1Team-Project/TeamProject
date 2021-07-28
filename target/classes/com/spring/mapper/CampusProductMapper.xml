@@ -13,8 +13,8 @@
 		       ]]>
 		  <include refid="criteria"></include>
 		   <![CDATA[
-		  		rownum <= (#{page}*2)) p,  (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
-			where rn > ((#{page}-1)*2) and a.p_number=p.p_number 
+		  		rownum <= (#{page}*20)) p,  (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
+			where rn > ((#{page}-1)*20) and a.p_number=p.p_number 
 			]]>
 	</select>	
 	

@@ -37,16 +37,16 @@ $(function(){
 		
 		
 		
-		var sort = $("select[name='sort']").val();
+		var sort = $(searchForm).find($("select[name='sort']")).val();
 		
-		var keyword = $("input[name='keyword']").val();
+		var keyword = $(searchForm).find($("input[name='keyword']")).val();
 		
 		
 		if(sort === ''){
 			alert("검색 기준을 다시 한번 확인해 주세요!");
 			$("select[name='sort']").focus();
 			return false;
-		}else if(keyword === ''){
+		}else if(keyword == ''){
 			alert("검색어를 확인해 주세요!");
 			$("input[name='keyword']").focus();
 			return false;
