@@ -42,7 +42,7 @@
 		<input type="hidden" id="product_price" name="cartVO[${i}].p_price" value="${vo.p_price}"/>
 		<input type="hidden" id="product_count" name="cartVO[${i}].c_count" value="${vo.c_count}"/>
 		
-		<input type="hidden" id="product_option_name" name="cartVO[${i}].po_option_vo" value="test"/>
+		<input type="hidden" id="product_option_name" name="cartVO[${i}].c_option" value="${vo.c_option}"/>
 	
 		<c:set var="i" value="${i+1}"/>
 	

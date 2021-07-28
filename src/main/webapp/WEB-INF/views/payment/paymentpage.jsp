@@ -47,7 +47,7 @@
 								<img src="${p_vo.cartimg}" alt="" class="size200"/>
 							</td>
 							<td class="textmiddle"><b>${p_vo.p_name}</b>
-								<div>${p_vo.po_option_vo}</div>
+								<div>옵션 : ${p_vo.c_option}</div>
 							</td>
 							<td class="textmiddle">${p_vo.c_count}개</td>
 							<td class="textmiddle">${p_vo.money}원</td>
@@ -59,7 +59,7 @@
 							<input type="hidden" id="product_money" name="cartVO[${i}].money" value="${p_vo.money}"/>
 							<input type="hidden" id="product_price" name="cartVO[${i}].p_price" value="${p_vo.p_price}"/>
 							<input type="hidden" id="product_count" name="cartVO[${i}].c_count" value="${p_vo.c_count}"/>
-							<input type="hidden" id="product_option_name" name="cartVO[${i}].po_option_vo" value="test"/>
+							<input type="hidden" id="product_option_name" name="cartVO[${i}].c_option" value="${p_vo.c_option}"/>
 							<c:set var = "i" value="${i+1}"/>
 							
 					</c:forEach>

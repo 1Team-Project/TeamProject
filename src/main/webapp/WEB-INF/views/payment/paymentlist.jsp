@@ -47,7 +47,7 @@
 								<img src="${vo.cartimg}" alt="" class="size200"/>
 							</td>
 							<td class="textmiddle"><b>${vo.p_name}</b>
-								<!--  <div>${vo.po_option_vo}</div> -->
+								<div>${option}</div>
 							</td>
 							<td class="textmiddle">총 ${total_count}개</td>
 							<td class="textmiddle">총 ${total_pay}원</td>

@@ -108,7 +108,7 @@ public class PaymentController {
 			vo.setMoney(pmon);
 			vo.setP_price(pric);
 			vo.setC_count(ccou);
-			vo.setPo_option_vo(check.getPo_option_vo());
+			vo.setC_option(check.getC_option());
 			
 			count ++;
 			
@@ -172,6 +172,9 @@ public class PaymentController {
 		int total_count = 0;
 		int total_money = 0;
 		
+		String imgurl = "";
+		String mainoption = "";
+		
 		for(CartDummyVO check : cartVO.getCartVO()) {
 		
 			CampusOrderDetailVO vo = new CampusOrderDetailVO();
@@ -183,6 +186,7 @@ public class PaymentController {
 			vo.setP_number(pnum);
 			vo.setD_price(pric);
 			vo.setD_count(ccou);
+			vo.setD_option(check.getC_option());
 			
 			int money = Integer.parseInt(check.getMoney());
 			pvo.setP_number(pnum);
@@ -194,20 +198,25 @@ public class PaymentController {
 			total_count += pvo.getC_count();
 			total_money += pvo.getMoney();
 			
-			String imgurl = "";
-			
-			if(attach.findByPnumber(vo.getP_number()).isEmpty() || attach.findByPnumber(vo.getP_number()) == null) {
-				imgurl = "/resources/main/images/default-img.jpg";
-			}else {
-				List<CampusAttachFileDTO> test = attach.findByPnumber(vo.getP_number());
-				String path = "";
-				for(CampusAttachFileDTO topath:test) {
-					path = topath.getA_path().replace("\\", "%5C");
-					imgurl = "/display?fileName="+path+"%2F"+topath.getA_uuid()+"_"+topath.getA_name();
-					break;
+			if(imgurl.isEmpty() && mainoption.isEmpty()) {
+				
+				if(attach.findByPnumber(vo.getP_number()).isEmpty() || attach.findByPnumber(vo.getP_number()) == null) {
+					imgurl = "/resources/main/images/default-img.jpg";
+				}else {
+					List<CampusAttachFileDTO> test = attach.findByPnumber(vo.getP_number());
+					String path = "";
+					for(CampusAttachFileDTO topath:test) {
+						path = topath.getA_path().replace("\\", "%5C");
+						imgurl = "/display?fileName="+path+"%2F"+topath.getA_uuid()+"_"+topath.getA_name();
+						break;
+					}
 				}
+				
+				mainoption = vo.getD_option();
+				pvo.setCartimg(imgurl);
+				
 			}
-			pvo.setCartimg(imgurl);
+			
 			
 //			vo.setPo_option_vo(check.getPo_option_vo());
 			list.add(vo);
@@ -227,6 +236,7 @@ public class PaymentController {
 			
 			model.addAttribute("detail",list);
 			model.addAttribute("list",paylist);
+			model.addAttribute("option",mainoption);
 			model.addAttribute("total_count",total_count);
 			model.addAttribute("total_pay",total_money);
 			
@@ -243,6 +253,7 @@ public class PaymentController {
 		
 		
 		String imgurl = "";
+		String mainoption = "";
 		
 		List<CampusOrderVO> list =  payment.listpaymentselect("user11");
 		
@@ -254,12 +265,14 @@ public class PaymentController {
 
 				if(attach.findByPnumber(vovo.getP_number()).isEmpty() || attach.findByPnumber(vovo.getP_number()) == null) {
 					imgurl = "/resources/main/images/default-img.jpg";
+					mainoption = vovo.getD_option();
 				}else {
 					List<CampusAttachFileDTO> test = attach.findByPnumber(vovo.getP_number());
 					String path = "";
 					for(CampusAttachFileDTO topath:test) {
 						path = topath.getA_path().replace("\\", "%5C");
 						imgurl = "/display?fileName="+path+"%2F"+topath.getA_uuid()+"_"+topath.getA_name();
+						mainoption = vovo.getD_option();
 						break;
 					}
 					
@@ -270,6 +283,7 @@ public class PaymentController {
 		}
 		
 		model.addAttribute("list",list);
+		model.addAttribute("option",mainoption);
 		
 	}
 	

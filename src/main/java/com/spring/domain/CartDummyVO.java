@@ -18,7 +18,7 @@ public class CartDummyVO {
 
 	//결제용
 	private List<CartDummyVO> cartVO;
-	private String po_option_vo;
+	private String c_option;
 	private String c_privateCode;
 	
 	//사진경로
