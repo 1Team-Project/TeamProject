@@ -159,7 +159,7 @@
 										<div class="p_reviewbar">
 											<h1>
 												<span class="rivew">Product's Review</span><br> <span
-													class="star">평균 별점 : @계싼하기@</span>
+													class="star">평균 별점 : @계산하기@</span>
 											</h1>
 											<div class="row">
 												<div class="col-md-10"></div>
@@ -232,8 +232,8 @@
 											<div class="col-md-1"></div>
 											<div class="p_qna">
 												<h1>
-													<span class="qna_tit"> Q&A </span><br> <span
-														class="qna_subtit"> 상품 문의를 남겨주세요!</span>
+													<span class="qna_tit"> Q&A </span><br>
+													 <span class="qna_subtit"> 상품 문의를 남겨주세요!</span>
 												</h1>
 												<div class="row">
 													<div class="col-md-10"></div>

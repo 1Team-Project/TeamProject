@@ -13,7 +13,7 @@
 		       ]]>
 		  <include refid="criteria"></include>
 		   <![CDATA[
-		  		rownum <= (#{page}*20)) p,  (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
+		  		rownum <= (#{page}*20)) p,  (select distinct p_number, last_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,last_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
 			where rn > ((#{page}-1)*20) and a.p_number=p.p_number 
 			]]>
 	</select>	
@@ -23,7 +23,7 @@
 		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
 
 			select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,p.p_shippingfee,
-			 		first_value(a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,first_value(a_name)over(PARTITION BY p.p_number)as  a_name
+			 		last_value(a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,last_value(a_name)over(PARTITION BY p.p_number)as  a_name
 			from b_product p, campus_attach a
 			where a.p_number=p.p_number)order by p_rank
 		</select>
@@ -130,7 +130,8 @@
 	<!-- 상품조회시 후기 연결 -->
 		<select id="selectReview" resultType="com.spring.domain.CampusBoardVO">
 			select * 
-			from (select rownum rn,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+			from (select /*+INDEX_DESC(campus_board campus_board)*/ 
+					rownum rn,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
 					from campus_board 
 					where b_sort='후기')pb 
 			where pb.p_number=#{p_number}
