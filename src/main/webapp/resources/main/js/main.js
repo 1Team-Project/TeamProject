@@ -14,6 +14,7 @@
 			$this.find('.dropdown-menu').removeClass('show');
 	});
 
+	
 
 	$(".move").click(function(e){
 		e.preventDefault(); //타이틀 a 속성 막기

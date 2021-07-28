@@ -90,7 +90,7 @@ public class BoardUploadController {
 	//썸네일 보여주기
 	@GetMapping("/display")
 	public ResponseEntity<byte[]> getFile(String fileName){
-		log.info("※※※※※ view thumbnail ※※※※※");
+		log.info("※※※※※ view thumbnail ※※※※※"+fileName);
 		
 		File file = new File("c:\\CampusIMG\\"+fileName);
 		

@@ -22,7 +22,7 @@
     background-repeat: no-repeat;
     background-size: cover;
 }
-
+/*
 .product_view .product li :after {
     content: "";
     display: block;
@@ -42,7 +42,7 @@
     border:1px solid #5ea7ec;
   
 }
-
+*/
 .product_view * {
     font-family: noto sans;
     color: #333;
@@ -160,7 +160,7 @@ p {
 }
 
 #productview .option .opt .plus {
-/* 	background-image: url("/resources/main/images/plus.png"); */
+background-image: url("/resources/main/images/plus.png");
 	float:right;
 	margin-left: -1px;
 /* 	background-size: 29px 30px; */

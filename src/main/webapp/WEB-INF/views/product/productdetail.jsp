@@ -12,27 +12,15 @@
 
 	<div id="productview">
 		<div class="innerview">
-		
 			<div class="product">
-				<img class="photo" src="${pro.urllink} alt="상품 대표 사진"/>
-				<ul>
+				<img class="photo" src="${vo.urllink}" alt="대표사진"/>
 				
-					
-					<c:forEach var="vo" items="vo">
-						<li class="small_img">
-							<a href=""> 
-							<img src="${pro.urllink}" alt=""></a>
-						</li>
-					</c:forEach>
-						
-					
-				</ul>
 			</div>
+			
 
 			<p class="p_name">
 				<strong class="name">${vo.p_name}</strong> 
-				<span class="name_detail">배터리가
-					잘 닳지 않는 강력 손전등</span>
+				<span class="name_detail">상세설며어어쩌구저쩌구</span>
 			</p>
 
 			<div class="p_info">
@@ -44,15 +32,11 @@
 					<tbody>
 				
 						
-						
-						<tr>
-							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
-							<td>${vo.p_number}</td>
-						</tr>
 						<tr>
 							<td class="price"><fmt:formatNumber value="${vo.p_price}"
 									pattern="###,###,###"></fmt:formatNumber></td>
 						</tr>
+						
 						<tr>
 							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
 							<td>${vo.p_number}</td>
@@ -122,11 +106,44 @@
 								</ul>
 							</div>
 						</div>
-						
+						<ul class="cbcontent justfiy-content-center nav" >
+				
+							</ul>
+						<div class="panel-body">
+							<div class="uploadResult">
+								<ul></ul>
+							</div>
+						</div>
 						<div class="p_detail_img">
-							<p class="main_img">
-								<img src="/resources/main/images/lamp.jpg">
-							</p>
+								<p id="mainImg">
+									
+								</p>
+								<script>
+									var str="";
+								</script>
+								<c:forEach var="product" items="${con.attachList}">
+								<script>
+								
+									var uuid = '${product.a_uuid}';
+									var path = '${product.a_path}';
+									var name = '${product.a_name}';
+								
+									var imgPath = encodeURIComponent(path+"/"+uuid+"_"+name);									
+									
+									str+="<p><img src='/display?fileName="+imgPath+"' alt='' class='product_img'/></p>";	
+									
+								</script>									
+								</c:forEach>
+								<script>
+									console.log(str);
+									/*  $(".test").html(str);	*/
+									
+									var imgArea=document.querySelector("#mainImg");
+									imgArea.innerHTML = str;
+									
+								</script>
+								
+							
 							<div class="description">
 								<div class="d_wrapper">
 									<strong class="d_title"> <span>${vo.p_name}</span>
@@ -135,44 +152,9 @@
 									<p class="descript">
 										${con.b_content}
 									</p>
-								<%-- 첨부파일 목록 보여주기 --%>
-								<%--/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name() --%>
-								<c:forEach var="con" items="${con.CampusAttachFileDTO}">
-									<img src="/display?fileName="+${con.a_path}+"%2F"+${con.a_uuid}+"_"+${con.a_name}>
 								
-								</c:forEach>
 									
-									<div class="when_use">
-										<h1>
-											<span class="campustip"> Camp Us's Tip!</span><br> <span
-												class="tipkor"> 상품 활용 팁!</span>
-										</h1>
-										<div class="tip_info">
-											<span class="tip_icon"> <img
-												src="/resources/main/images/camp.png">
-											</span> <span class="tip_icon"> <img
-												src="/resources/main/images/moon.png">
-											</span> <span class="tip_icon"> <img
-												src="/resources/main/images/thumb.png">
-											</span>
-										</div>
-										<div class="tip_detail">
-											<span class="detail1">텐트 안에 손전등 걸기 가능 &nbsp;</span> <span
-												class="detail2">어두운 실외에서 사용 가능 &nbsp;</span> <span
-												class="detail3">많은 사람들의 추천템!</span>
-										</div>
-										<div class="tip_detail2">
-											<span class="">손전등 뒤에 고리가 달려있어 달아두기 가능</span> <span class="">발광력
-												좋음</span> <span class="">가장 인기가 좋은 제품</span>
-										</div>
-										<div class="size_info">
-											<h1 class="size">
-												<span class="size_title">상품 사이즈</span> <span class="p_size"><img
-													src="/resources/main/images/lamp5.png"></span> <span
-													class="p_size"><img
-													src="/resources/main/images/lamp5.png"></span>
-											</h1>
-										</div>
+								
 										<div class="p_reviewbar">
 											<h1>
 												<span class="rivew">Product's Review</span><br> <span
@@ -193,19 +175,36 @@
 														<th class="width10">평점</th>
 													</tr>
 												</thead>
+												<c:forEach var="r" items="${review}">
 												<tbody class="textcenter">
 													<tr>
-													<c:forEach var="r" items="${review}">
-														<td>${r.rownum+1}</td>
+													
+														<td>${r.rownum}</td>
 														<td>${r.b_sort}</td>
-														<td><a href="#" class="blacktext hoverthema">${r.b_title}<strong class="badgecount">[1]이건뭐지?</strong>
-														</a></td>
+														<td><a href="#" class="blacktext hoverthema">${r.b_title}</a></td>
 														<td>${r.b_writer}</td>
-														<td>${r.b_sysdate}</td>
+														<td>
+														
+														<c:set var="bsys"><fmt:formatDate pattern="yyyy-MM-dd" value="${r.b_sysdate}"/></c:set>
+														<c:choose>
+														
+															<c:when test="${systest eq bsys}">
+																<fmt:formatDate pattern="HH:mm" value="${r.b_sysdate}" timeZone="Asia/Seoul"/>
+															</c:when>
+															
+															<c:otherwise>
+																<fmt:formatDate pattern="yyyy-MM-dd" value="${r.b_sysdate}"/>
+															</c:otherwise>
+															
+														</c:choose>
+														
+														
+														</td>
 														<td>${r.b_rating }</td>
-													</c:forEach>
+													
 													</tr>
 												</tbody>
+												</c:forEach>
 											</table>
 											<div class="row">
 												<div class="col-md-12 mb-3">
@@ -255,18 +254,33 @@
 														<c:forEach var="q" items="${question}">
 															<td>${q.rownum+1}</td>
 															<td>${q.b_sort}</td>
-															<td><a href="#" class="blacktext hoverthema">${q.b_title}<strong class="badgecount">[1]이건또뭘까</strong>
-															</a></td>
+															<td><a href="#" class="blacktext hoverthema">${q.b_title}</a></td>
 															<td>${q.b_writer}</td>
-															<td>${q.b_sysdate}</td>
+															<td>
+														
+																<c:set var="bsys"><fmt:formatDate pattern="yyyy-MM-dd" value="${q.b_sysdate}"/></c:set>
+																<c:choose>
+																
+																	<c:when test="${systest eq bsys}">
+																		<fmt:formatDate pattern="HH:mm" value="${q.b_sysdate}" timeZone="Asia/Seoul"/>
+																	</c:when>
+																	
+																	<c:otherwise>
+																		<fmt:formatDate pattern="yyyy-MM-dd" value="${q.b_sysdate}"/>
+																	</c:otherwise>
+																	
+																</c:choose>
+																
+														
+														</td>
 														</c:forEach>
 														</tr>
 													</tbody>
 												</table>
 												<div class="row">
 													<div class="col-md-12 mb-3">
-														<button class="btn btn-primary float-end">글 쓰기</button>
-														<button class="btn btn-primary float-end" id="btn3">전체 후기
+														<button class="btn btn-primary float-end" >글 쓰기</button>
+														<button class="btn btn-primary float-end" id="btn3" >전체 후기
 															보기</button>
 													</div>
 												</div>
@@ -286,7 +300,31 @@
 														</ul>
 													</div>
 												</div>
-												<div class="change_info">교환반품규정이미지</div>
+												<div class="change_info">
+
+												<div><strong>교환 및 반품정보</strong></div>
+												<div>교환/반품 기준</div>
+												<ul>
+													<li>상품 출고 이후 취소 요청 시 상품 회수 후 처리됩니다.</li>	
+													<li>교환/반품은 상품 수령일로부터 7일 이내 가능합니다.</li>
+													<li>교환/반품 신청 시 CJ대한통운 택배로 회수됩니다.</li>
+													<li>단순 변심에 인한 교환/반품 택배비 고객 부담으로 왕복 택배비가 발생합니다. (전자상거래 등에서의 소비자보호에 관한 법률 제18조(청약 철회 등) 9항에 의거 소비자의 사정에 의한 청약 철회 시 택배비 소비자 부담)</li>
+													<li>상품 불량인 경우는 배송비를 포함한 전액이 환불됩니다.</li>
+													<li>불량/오배송 상품의 경우 Q&A 게시판 또는 고객센터로 문의 부탁드립니다.</li>
+													<li>교환/환불/기타 문의는 Q&A 게시판 또는 고객센터로 문의 부탁드립니다.</li>
+												</ul>
+												</div>
+												
+												<div>교환/반품이 불가한 경우</div>
+												<ul>
+													<li>단순 변심으로 인한 교환/반품 신청이 상품 수령한 날로부터 7일이 경과한 경우 (상품 불량 제외)</li>
+													<li>상품 불량 및 부작용으로 인한 교환/반품 신청은 3개월 이내까지 가능합니다.</li>
+													<li>소비자의 사용 또는 과실/부주의로 인하여 상품의 가치가 훼손된 경우 (단, 내용 확인을 위한 포장 훼손은 예외)</li>
+													<li>구매한 상품의 구성품이 누락/분실된 경우(세트 상품, 사은품 등)</li>
+													<li>기타,"전자상거래 등에서의 소비자 보호에 관한 법률"이 정하는 청약 철회 제한 사유에 해당되는 경우</li>
+												</ul>
+												
+												</div>
 											</div>
 										</div>
 									</div>
@@ -298,7 +336,8 @@
 			</div>
 		</div>
 	</div>
-</div>
+
+
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>

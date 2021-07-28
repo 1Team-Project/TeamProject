@@ -20,9 +20,9 @@ $(function(){
 		e.preventDefault(); //타이틀 a 속성 막기
 			  
       //actionForm에 pnum값을 추가하여 actionForm 보내기
-      actionForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
-      actionForm.attr("action","productdetail");
-      actionForm.submit();
+      detailForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
+      detailForm.attr("action","productdetail");
+      detailForm.submit();
 	})
 
 	
@@ -35,7 +35,7 @@ $(function(){
 		//a막기
 		e.preventDefault();
 		
-		var searchForm = $("#searchForm");
+		
 		
 		var sort = $("select[name='sort']").val();
 		
@@ -46,7 +46,7 @@ $(function(){
 			alert("검색 기준을 다시 한번 확인해 주세요!");
 			$("select[name='sort']").focus();
 			return false;
-		}else if(keyword===''){
+		}else if(keyword === ''){
 			alert("검색어를 확인해 주세요!");
 			$("input[name='keyword']").focus();
 			return false;
@@ -60,17 +60,7 @@ $(function(){
 	})
 	
 		
-		
-		//상품 클릭시
-	$(".viewpro").click(function(e){
-		e.preventDefault(); //타이틀 a 속성 막기
-			  
-      //actionForm에 pnum값을 추가하여 actionForm 보내기
-      actionForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
-      actionForm.attr("action","productdetail");
-
-      actionForm.submit();
-	})
+	
 		
 })
 

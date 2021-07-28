@@ -202,7 +202,7 @@
              	 <a class="nav-link dropdown-toggle " href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑 상품</a>
              	 <div class="dropdown-menu" aria-labelledby="dropdown01">
 				<!-- 각 카테고리별 이동하는 링크 -->
-              	<a class="dropdown-item" href="/product/productlist">전체 상품</a>
+              	<a class="dropdown-item product-item" href="/product/productlist">전체 상품</a>
               		<c:forEach var="cate" items="${category}">
 	           			<a class="dropdown-item clickview" href="${cate.pc_code}">${cate.pc_name} </a>
              		 </c:forEach>
@@ -248,8 +248,15 @@
 		</form>
 		
 		<form action="" method="get" id="goForm">
-			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
+			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
+			<input type="hidden" name="page" value="1" />
 		</form>
+		
+		<form action="" method="get" id="productForm">
+			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
+			<input type="hidden" name="keyword"value="${CampusProductPageVO.cri.keyword}" /> 
+			<input type="hidden" name="page" value="1" />
+		</form>  
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

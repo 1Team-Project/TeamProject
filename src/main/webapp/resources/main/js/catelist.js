@@ -5,6 +5,8 @@ $(function(){
 	
 	//하단의 페이지 나누기 번호 클릭시 !!
 	var actionForm = $("#actionForm");
+	
+	var goForm = $("#goForm");
 	$(".mypage-item a").click(function(e){
 		e.preventDefault();  //a 속성 중지
 		
@@ -82,10 +84,10 @@ $(function(){
 		e.preventDefault(); //타이틀 a 속성 막기
 			  
       //actionForm에 pnum값을 추가하여 actionForm 보내기
-      actionForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
+      goForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
 	//페이지 값도 추가해야함
-      actionForm.attr("action","productdetail");
-      actionForm.submit();
+      goForm.attr("action","productdetail");
+      goForm.submit();
 	})
 	
 	//카테고리 클릭시
@@ -95,7 +97,7 @@ $(function(){
 		//pc_code값 추가해서 보내기
 		actionForm.append("<input type='hidden' name='pc_code' value='"+$(this).attr('href')+"'>");
 		actionForm.attr("action","c");
-     	 actionForm.submit();
+     	actionForm.submit();
 		
 		
 	})

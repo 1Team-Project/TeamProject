@@ -1,5 +1,6 @@
 package com.spring.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,6 +21,7 @@ import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
 import com.spring.domain.CampusProductCategoryVO;
 import com.spring.domain.CampusProductOptionVO;
+import com.spring.domain.CampusProductPageVO;
 import com.spring.domain.CampusProductVO;
 import com.spring.service.CampusBoardService;
 import com.spring.service.CampusProductService;
@@ -39,10 +41,12 @@ public class ProductController {
 
 	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
-	public void getList(Model model,CampusCriteria cri) {
+	public void getList(Model model,String sort) {
 		log.info("전체 리스트 조회");
 		//전체 리스트, CampusPageVO vo
-		
+		CampusCriteria cri=new CampusCriteria();
+		cri.setPage(1);
+		cri.setSort(sort);
 		//상품사진
 		
 		String imgurl="";	
@@ -92,9 +96,9 @@ public class ProductController {
 		
 		//페이지 나누기 값 모델에 등록 
 		int total = service.total(cri);
-		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
-		model.addAttribute("CampusPageVO", campusPageVO);
-		log.info("CampusPageVO"+campusPageVO);
+		CampusProductPageVO productPageVO = new CampusProductPageVO(cri,total);
+		model.addAttribute("CampusProductPageVO", productPageVO);
+		log.info("CampusProductPageVO"+productPageVO);
 
 		//카테고리값넘기기
 		List<CampusProductCategoryVO> category = service.category(cri);
@@ -138,6 +142,7 @@ public class ProductController {
 //		model.addAttribute("CampusPageVO", campusPageVO);
 		//카테고리코드별 상품리스트 추출
 		model.addAttribute("catelist", catelist);
+		model.addAttribute("cri", cri);
 		
 		//헤더부분 - 카테고리값넘기기
 		List<CampusProductCategoryVO> category = service.category(cri);
@@ -154,35 +159,45 @@ public class ProductController {
 		@GetMapping("/productdetail")
 		public void viewproduct(int p_number, @ModelAttribute("cri") CampusCriteria cri,Model model) {
 			log.info("상품 상세 넘어가기"+p_number+"cri"+cri);
-			
+			//상단의 상품 정보만 가져옴
 			CampusProductVO vo=service.viewProduct(p_number); // 어태치랑 조인해서 xml하면 vo가 두개넘어감 사진첨부2개하면
-
+			//이미지 1개 링크
+			String url="";
+		         if(vo.getUrllink() == null ||(vo.getUrllink().isEmpty())) {
+		            String path=vo.getA_path().replace("\\", "%5C");
+		            log.info("url 테스트중 : "+path);
+		            url = "/display?fileName="+path+"%2F"+vo.getA_uuid()+"_"+vo.getA_name();
+		            vo.setUrllink(url);
+		         }else {
+		            url="/resources/main/images/default-img.jpg";
+		            vo.setUrllink(url);
+		         }
+		      
+			
+			//상품상세 중간의 사진 등 가져옴
 			CampusBoardVO con=service.viewProductcontent(p_number);
+			
+			//경로 설정
+			for(CampusAttachFileDTO dto:con.getAttachList()) {
+				log.info(dto.getA_path());
+				dto.setA_path(dto.getA_path().replaceAll("\\\\", "\\\\\\\\"));
+			}
+			
+			
+			
 			//List<CampusAttachFileDTO> attachList = service.getAttachList(p_number);
 
 			//상품 후기(+별점)와 질문
 			List<CampusBoardVO> review=service.selectReview(p_number);
 			List<CampusBoardVO> question=service.selectq(p_number);
-//			List<CampusAttachFileDTO> list =con.getAttachList();
+
 			log.info("뤼스트 :"+con);
-//			String imgurl="";
-//			for(CampusAttachFileDTO detail:list) {
-//
-//		            String path=detail.getA_path().replace("\\", "%5C");
-//		            log.info("url 테스트중 : "+path);
-//		            imgurl = "/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name();
-//		            
-//		            con.setUrllink(imgurl);
-//		            
-//			}
-//			log.info("사진릿스트"+imgurl);
-			//model.addAttribute(cri);
+
 			
 			model.addAttribute("vo", vo);
 			
 			log.info("븨이오"+vo);
-			//model.addAttribute("attach",attachList);
-			//log.info("어태치"+ attachList);
+
 			model.addAttribute("con",con);
 			log.info("내용"+con);
 			model.addAttribute("review",review);
@@ -190,12 +205,12 @@ public class ProductController {
 			
 		}
 		
-//		@GetMapping("/getAttachList")
-//		public ResponseEntity<List<CampusAttachFileDTO>> getAttachList(int p_number){
-//			log.info("※※※※※ getAttachList ※※※※※");
-//			
-//			return new ResponseEntity<List<CampusAttachFileDTO>>(service.getAttachList(p_number),HttpStatus.OK);
-//		}
+		@GetMapping("/getAttachList")
+		public ResponseEntity<List<CampusAttachFileDTO>> getAttachList(int p_number){
+			log.info("※※※※※ getAttachList ※※※※※");
+			
+			return new ResponseEntity<List<CampusAttachFileDTO>>(service.getAttachList(p_number),HttpStatus.OK);
+		}
 }
 	
 	
