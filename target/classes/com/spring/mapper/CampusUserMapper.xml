@@ -32,6 +32,10 @@
 	<delete id="leaveCamp">
 		delete from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
 	</delete>
+	<!-- 탈퇴3 - admin 강제 탈퇴: leave -->
+	<delete id="leaveCampAdmin">
+		delete from CAMPUS_USER where u_userid = #{u_userid}
+	</delete>
 	
 	<!-- 비밀번호 확인 : pwdCheck -->
 	<select id="pwdCheck" resultType="int">
@@ -48,6 +52,11 @@
 	<select id="userAuth" resultType="com.spring.domain.CampusAuthVO">
 		select u_userid, u_auth from campus_user_auth 
 	</select>
+	
+	<select id="userAuthOne" resultType="com.spring.domain.CampusAuthVO">
+		select u_userid, u_auth from campus_user_auth where u_userid = #{u_userid}
+	</select>
+	
 	
 	<resultMap type="com.spring.domain.CampusUserVO" id="campusUserMap">
 		<id property="u_userid" column="u_userid"/>

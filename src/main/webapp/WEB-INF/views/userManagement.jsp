@@ -111,58 +111,65 @@
 	}
 </style>
    	<!-- 게시판 추가중 시작 부분 -->
-   	<div class="row">
-   		<div class="col-md-1"></div>
-   		<div class="col-md-10">
-			<div style=" float: right; margin-top: 20px;">
-    		</div>
-    		<table class="table">
-    			<thead>
-    				<tr class="textcenter colorthema" >
-    					<th class="width_list" style="width=5%;">회원 ID</th>
-    					<th class="width_list" style="width=5%;">등   급</th>					
-    				</tr>
-    			</thead>
-    			<tbody class="textcenter">
-    				<c:forEach var="vo" items="${userAuth}">
-    					<tr>
-    						<td><a href>${vo.u_userid}</a></td>
-    						<td><a href>${vo.u_auth}</a></td>
-    					</tr>
-   					</c:forEach>
-    			</tbody>
-    		</table>
-   		</div>
-		<div class="col-md-1"></div>
-	</div>
-	<!-- 게시판 추가중 끝 부분 -->
-	<form action="list" method="get" id="mainActionForm">	
-		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
-		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
-		<input type="hidden" name="page" value="1" />
-		<input type="hidden" name="r_page" value="1"/>
-	</form>            
-	<script>
-	var csrfHeaderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
-	
-	$(function() {
-		// 조회 버튼 클릭 시
-		$(".btn-primary").click(function(e) {
-			e.preventDefault();
-			// 검색 폼 가져오기
-			var main_searchForm = $("#main_searchForm");
-			// sort 가져오기
-			var sort=$("select[name='sort']").val();
-			// 검색 처음에는 1page 보여주기
-			main_searchForm.find("input[name='page']").val("1");
-			main_searchForm.submit();
-			
+   	<sec:authentication property="principal" var="user"/>
+   	<form id="userManage" action="/userInfo" method="post">
+	   	<div class="row">
+	   		<div class="col-md-1"></div>
+	   		<div class="col-md-10">
+				<div style=" float: right; margin-top: 20px;"></div>
+	    		<table class="table">
+	    			<thead>
+	    				<tr class="textcenter colorthema" >
+	    					<th class="width_list" style="width=5%;">회원 ID</th>
+	    					<th class="width_list" style="width=5%;">등   급</th>							
+	    				</tr>
+	    			</thead>
+	    			<tbody class="textcenter">
+						<c:forEach var="vo" items="${userAuth}">
+		   					<tr>
+		   						<td><a class="userInfo" style="text-decoration: none; color: black;" value="${vo.u_userid}">${vo.u_userid}</a></td>
+		   						<td>${vo.u_auth}</td>
+	   						</tr>
+						</c:forEach>
+	    			</tbody>
+	    		</table>
+	   		</div>
+			<div class="col-md-1"></div>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<input type="hidden" name="u_userid" id="u_userid" value="${vo.u_userid}" />
+		</div>
+	</form>
+<script>
+	$(function(){
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+		
+		$(".userInfo").click(function(){
+			var u_userid = $(this).attr('value');
+			alert(u_userid);
+	 		$.ajax({
+				url: "/userCheck",
+				type: "POST",
+				dataType: "json",
+ 				data: {
+					u_userid : u_userid
+				},
+				beforeSend:function(xhr){
+					   xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+				},
+				success: function(data){
+					if(data == 0){
+						alert("조회 실패");
+						return false;
+					} else{
+						alert("조회 성공");
+						$('input[name=u_userid]').attr('value', u_userid);
+						$("#userManage").submit();
+					}
+				}
+			});
 		});
-
+			
 	})
-	
-	
-	</script>
-<script src="/resources/main/js/main.js"></script>
+</script>
 <%@include file="../design/footer.jsp" %>

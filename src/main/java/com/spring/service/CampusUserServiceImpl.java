@@ -78,5 +78,21 @@ public class CampusUserServiceImpl implements CampusUserService {
 	public List<CampusAuthVO> userAuth(CampusAuthVO auth) {
 		return mapper.userAuth(auth);
 	}
+
+	@Override
+	public CampusUserVO read(CampusUserVO vo) {
+		return mapper.read(vo.getU_userid());
+	}
+
+	@Override
+	public CampusAuthVO userAuthOne(CampusAuthVO auth) {
+		return mapper.userAuthOne(auth);
+	}
+
+	@Override
+	public boolean leaveCampAdmin(CampusUserVO vo) {
+		return mapper.leaveCampAdmin(vo)>0? true:false;
+	}
+
 	
 }

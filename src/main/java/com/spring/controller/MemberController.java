@@ -1,9 +1,13 @@
 package com.spring.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import java.util.ArrayList;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.RequestDispatcher;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,22 +89,6 @@ public class MemberController {
 		log.info("로그인 폼 요청");
 		
 		return "/login";
-	}
-	
-	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-	@GetMapping("/admin-page")
-	public String adminPage() {
-		log.info("admin");
-		
-		return "/AdminPage";
-	}
-	
-	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
-	@GetMapping("/user-page")
-	public String user() {
-		log.info("user");
-		
-		return "/UserPage";
 	}
 	
 	// logout => session 해제 후 index 보여주기
@@ -283,9 +271,58 @@ public class MemberController {
 //	}
 
 	// leave
-	@GetMapping("/leave")
-	public String leaveGet() {
+//	@GetMapping("/leave")
+//	public String leaveGet() {
+//		log.info("회원탈퇴 폼 요청");
+//		return "/leave";
+//	}
+	@RequestMapping("/leave")
+	public String leaveGet(CampusUserVO vo, HttpSession session, Model model) {
 		log.info("회원탈퇴 폼 요청");
+		
+		CampusUserVO userS = service.read(vo); 
+		model.addAttribute("userS", userS);
+		
+		return "/leave";
+	}
+	
+	
+	
+	@ResponseBody
+	@PostMapping("/idCheck")
+	public int idCheck(CampusUserVO vo, HttpSession session, Authentication authentication) {
+		log.info("회원 확인 : " + vo);
+		int result;
+		if(service.dupId(vo.getU_userid())!=null) {
+			result = 1;
+		} else {
+			result = 0;
+		}
+		return result;
+	}
+	
+	@PostMapping("/leaveCo")
+	public String leaveCoPost(Model model, HttpSession session, CampusUserVO vo, CampusAuthVO auth) {
+		log.info("회원 강제 탈퇴 요청 : " + vo.getU_userid());
+		log.info("회원 강제 탈퇴 요청 : " + auth.getU_userid());
+		
+		if(service.dupId(vo.getU_userid())!=null) {
+			boolean flag = false;
+			if(service.leaveAuth(vo)) {
+				session.invalidate();
+				log.info("권한 삭제 확인 true 1, false 0 : " + service.leaveAuth(vo));
+				flag = true;
+			} else {
+				return "/leave";
+			}
+			if(flag) {
+				service.leaveCampAdmin(vo);
+				log.info("정보 삭제 확인 true 1, false 0 : " + service.leaveCampAdmin(vo));
+				return "/main";
+			} else {
+				return "/leave";
+			}
+		}
 		return "/leave";
 	}
 	
@@ -348,16 +385,47 @@ public class MemberController {
 	public String userManagement(Model model, CampusAuthVO auth, CampusUserVO vo) {
 		log.info("회원관리 페이지");
 		log.info("회원 리스트 요청");
-		
+
 		List<CampusAuthVO> userAuth = service.userAuth(auth);
-		List<CampusUserVO> userList = service.userList(vo);
-		
-		
 		model.addAttribute("userAuth", userAuth);
-		model.addAttribute("userList", userList);
-		
+
 		return "userManagement";
+	}
+	
+	@PostMapping("/userInfo")
+	public String userListPost(Model model, HttpSession session, CampusUserVO vo, CampusAuthVO auth) {
+		log.info("회원 정보 요청 userList");
+		log.info("회원 아이디 : " + vo.getU_userid());
 		
+		auth.setU_userid(vo.getU_userid());
+		
+		CampusUserVO userS = service.read(vo);
+		
+		CampusAuthVO userA = service.userAuthOne(auth);
+		
+
+		model.addAttribute("userS", userS);
+		model.addAttribute("userA", userA);
+		
+		log.info("userS 확인 : " + userS);
+		log.info("userA 확인 : " + userA);
+		
+		return "userInfo";
+	}
+
+	
+	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+	@PostMapping("/userCheck")
+	public String userCheck(CampusUserVO vo, HttpSession session) {
+		log.info("회원 아이디 검사 : " + vo.getU_userid());
+		CampusUserVO vo1 = service.dupId(vo.getU_userid());
+		if(vo1!=null) {
+			log.info("아이디 확인 : " + vo.getU_userid());
+			if(service.read(vo)!=null) {
+				return "true";
+			}
+		}
+		return "false";
 	}
 	
 	
