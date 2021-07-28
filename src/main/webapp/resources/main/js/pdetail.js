@@ -71,7 +71,7 @@ $(function() {
 
 		var order = confirm("상품을 바로 구매하시겠습니까?");
 		if (order) {
-			$(location).attr("href", "buy")
+			$(location).attr("href", "/payment/paymentpage")
 
 		} else {
 

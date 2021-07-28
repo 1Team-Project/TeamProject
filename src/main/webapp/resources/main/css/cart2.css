@@ -241,24 +241,7 @@ input {
     font-size: 16px;
     text-align: right;
 }
-/* .box .list li .goods .price .selling { */
-/*     font-weight: 700; */
-/*     font-size: 16px; */
-/*     color: #333; */
-/*     line-height: 24px; */
-/*     word-break: break-all; */
-/* } */
-/* .cartlist .box .list li .goods .price .in_price .noti { */
-/*     height: auto; */
-/* } */
-/* .box .list li .goods .price .noti { */
-/*     height: 19px; */
-/*     padding-top: 1px; */
-/*     font-weight: 600; */
-/*     font-size: 12px; */
-/*     color: #b3130b; */
-/*     line-height: 18px; */
-/* } */
+
 .cartlist .box .list li .goods .price .count {
     position: absolute;
     left: 473px;
@@ -284,27 +267,26 @@ input {
 .btn.minus.off {
     background-image: url("/resources/main/images/remove.png");
 }
-.cartlist .stamper .btn.minus, .only_pc .stamper .btn.plus {
+.cartlist .stamper .btn.minus, .cartlist .stamper .btn.minus,.btn.plus {
     background-color: transparent;
     background-repeat: no-repeat;
-    background-size: 30px 30px;
+    background-size: 18px, 18px;
     background-position: 50% 50%;
 }
-/* .cartlist .stamper .btn.minus { */
-/*     background-image: url("/resources/main/images/remove.png"); */
-/* } */
+
 .stamper .btn.minus{
     background-image: url("/resources/main/images/remove.png");
 }
+
 .stamper .btn.minus, .stamper .btn.plus {
     background-color: transparent;
     background-repeat: no-repeat;
-    background-size: 28px 28px;
+    background-size: 18px 18px;
     background-position: 50% 50%;
 }
 .cartlist .stamper .btn {
-    width: 25px;
-    height: 25px;
+    width: 26px;
+    height: 27px;
 }
 .stamper .btn.plus {
     background-image: url("/resources/main/images/plus.png");
@@ -340,7 +322,7 @@ body, input, select, textarea, button {
     letter-spacing: -.05;
 }
 .cartlist .stamper .num {
-    width: 26px;
+    width: 35px;
     height: 30px;
     padding-bottom: 4px;
     font-weight: 400;
@@ -348,7 +330,6 @@ body, input, select, textarea, button {
 }
 .stamper .num {
     float: left;
-    width: 29px;
     height: 36px;
     margin-right: -1px;
     padding: 0;
@@ -560,10 +541,11 @@ ol, ul {
 .cartlist .btn_submit .btn {
     height: 56px;
     padding-bottom: 2px;
-    line-height: 54px;
+    margin-bottom:20px;
 }
 .cartlist .cart_result .notice {
     padding-top: 34px;
+    margin-left:20px;
 }
 .cartlist .cart_result .notice .txt {
     display: block;

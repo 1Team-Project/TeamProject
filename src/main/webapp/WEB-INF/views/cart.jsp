@@ -66,7 +66,7 @@
 					</script>
 					</div>
 				</div>
-				<c:set var="sum" value="0" />
+<%-- 				<c:set var="sum" value="0" /> --%>
 				<c:forEach items="${cartlist}" var="CartListVO">
 				<div class="box">
 					<ul class="list">
@@ -88,15 +88,14 @@
 												<span class="selling">
 <%-- 												 <fmt:formatNumber value="${CartListVO.p_price * CartListVO.c_count}" pattern="###,###,###"></fmt:formatNumber> --%>
 												 <input type="hidden" value="${CartListVO.p_price}" name="price">
-												 <input type="text" readonly value="${CartListVO.p_price * CartListVO.c_count}" class="subtotal">
+												 <input type="text" readonly value="${CartListVO.p_price * CartListVO.c_count}" class="total" style="border:none; width:50px; height:50px;'">
 												</span>
 												<span class="unit">원</span>
 											</div>
 											<div class="stamper count">
-												<button type="button" class="btn minus off" onclick = "minus($(this).next())">감소</button>
-												<input type="number" id="stepperCounter" class="num"
-													readonly="" value="${CartListVO.c_count}">
-												<button type="button" class="btn plus" onclick="plus($(this).prev())">추가</button>
+												<button type="button" class="btn minus off" onclick = "plus_minus($(this).next(),'minus')">감소</button>
+												<input type="number" id="stepperCounter" class="num" readonly="" value="${CartListVO.c_count}">
+												<button type="button" class="btn plus" onclick="plus_minus($(this).prev(),'plus')">추가</button>
 											</div>
 										</div>
 									</div>
@@ -104,7 +103,7 @@
 							</li>
 					</ul>
 				</div>
-			<c:set var="sum" value="${sum + (cartListVO.p_price * cartListVO.c_count)}" />
+<%-- 			<c:set var="sum" value="${sum + (cartListVO.p_price * cartListVO.c_count)}" /> --%>
 			</c:forEach>
 			</div>
 			<div class="cart_result">
@@ -114,7 +113,6 @@
 							<dt class="tit">결제예정금액</dt>
 							<dd class="price">
 								<span class="num">
-									<fmt:formatNumber value="${sum}" pattern="###,###,###"></fmt:formatNumber>
 									</span>
 									<span class="unit">원</span>
 							</dd>
@@ -145,4 +143,4 @@
 </script>
 </body>
 </html>
-<%-- <%@include file="../design/footer.jsp"%> --%>
+<%@include file="../design/footer.jsp"%>

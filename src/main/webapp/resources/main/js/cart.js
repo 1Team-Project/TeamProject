@@ -1,32 +1,75 @@
-function plus(obj){
-//	console.log("dffd"+obj);	
+//function plus(obj){
+////	console.log("dffd"+obj);	
+//	var num = $(obj).val();
+//	
+//	var plusNum = Number(num) + 1;
+//
+//    var sum = plusNum * $("input[name='price']").val();
+//
+//    var in_price = $(obj).closest("div").prev().find("input[class='total']");
+//
+//
+//	
+////	console.log($(in_price).find("input[class='total']").val());
+//
+//	
+////	console.log(plusNum);
+//	
+//	if (plusNum >= 100) {
+//		$(obj).val(num);
+//	} else {
+//		$(obj).val(plusNum);
+//		$(in_price).val(sum);
+//	}
+//}
+// 
+//function minus(obj){
+//	var num = $(obj).val();
+//	var minusNum = Number(num) -1 ;
+//	
+//	var sum = minusNum * $("input[name='price']").val();
+//	
+//	if(minusNum <=0) {
+//		$(obj).val(num);
+//	}else {
+//		$(obj).val(minusNum);
+//		$(".total").val(sum);
+//	}
+//}
+
+
+var total_amount = 0;
+$(".total").each(function(idx,item){
+			total_amount += Number($(this).val());
+			$("span.num").html(total_amount);
+		});
+
+function plus_minus(obj,op){
 	var num = $(obj).val();
 	
-	var plusNum = Number(num) + 1;
+	var amount=0;
+	var sum=0;
+    var total_amount = 0;
 	
-    var sum = plusNum * $("input[name='price']").val();
+	if(op=='plus'){	
+		amount = Number(num) + 1;		
+	}else{
+		amount = Number(num) -1 ;
+	}
 	
-//	console.log(plusNum);
+	sum= amount * $("input[name='price']").val();
+	var in_price = $(obj).closest("div").prev().find("input[class='total']");
 	
-	if (plusNum >= 100) {
+	if (amount >= 100 || amount <=0) {
 		$(obj).val(num);
 	} else {
-		$(obj).val(plusNum);
-		$(".subtotal").val(sum);
-	}
-}
- 
-function minus(obj){
-	var num = $(obj).val();
-	var minusNum = Number(num) -1 ;
-	
-	var sum = minusNum * $("input[name='price']").val();
-	
-	if(minusNum <=0) {
-		$(obj).val(num);
-	}else {
-		$(obj).val(minusNum);
-		$(".subtotal").val(sum);
+		$(obj).val(amount);
+		$(in_price).val(sum);
+		$(".total").each(function(idx,item){
+			total_amount += Number($(this).val());
+			$("span.num").html(total_amount);
+		});
+		/*#cartItemList > div > div.cart_result > div > div.amount_view > dl > dd > span.num*/		
 	}
 }
 

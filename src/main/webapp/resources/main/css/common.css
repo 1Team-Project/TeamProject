@@ -131,12 +131,12 @@ p {
 #productview .option .opt .minus {
 /*     background-image: url("/resources/main/images/remove.png") no-repeat 50% 50%; */
     margin-left: -1px;
-/*     background-size: 29px 30px; */
+    background-size: 18px 18px;
 }
 #productview .option .opt .minus, .plus{
     overflow: hidden;
     float: left;
-    width: 28px;
+    width: 26px;
     height: 28px;
     border: none;
     font-size: 0;
@@ -160,10 +160,10 @@ p {
 }
 
 #productview .option .opt .plus {
-/* 	background-image: url("/resources/main/images/plus.png"); */
+/*  	background-image: url("/resources/main/images/plus.png");  */
 	float:right;
 	margin-left: -1px;
-/* 	background-size: 29px 30px; */
+ 	background-size: 18px 18px; 
 }
 
 .product_view table td.price{

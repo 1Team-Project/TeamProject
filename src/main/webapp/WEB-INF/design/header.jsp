@@ -179,7 +179,7 @@
 			    			</sec:authorize>
 		    			
 							<sec:authorize access="isAuthenticated()">
-								<a href="#" class="d-flex align-items-center justify-content-center m-1">
+								<a href="/cart?userid=" class="d-flex align-items-center justify-content-center m-1">
 								<img src="/resources/main/images/icon_login.png"></a>
 			    			</sec:authorize>
 			    			<sec:authorize access="isAnonymous()">
@@ -219,7 +219,6 @@
 					<a class="dropdown-item" href="campingjang">캠핑장 목록</a>
 				</div>
 				   </li>
-
 
 				   <li class="nav-item dropdown m-6 mb-0 mt-0">
 					<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
