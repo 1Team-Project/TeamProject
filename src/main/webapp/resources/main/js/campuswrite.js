@@ -29,6 +29,7 @@ $(function(){
 					$('.checkpnumbermsg').html("<p>상품명 : "+result+"</p>");
 					checkistrue = true;
 					return false;
+					
 				}
 			}
 		})

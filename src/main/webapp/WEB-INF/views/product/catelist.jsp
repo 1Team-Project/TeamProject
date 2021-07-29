@@ -90,16 +90,16 @@
                         <div class="row" id="row">
                             <div class="col-md-12">
                                 <ul class="mypagination justify-content-center">
-                                   <c:if test="${CampusPageVO.prev}">
-										<li class="mypage-item prev"><a href="${CampusPageVO.startPage-1}" class="mypage-link"> << </a></li>
+                                   <c:if test="${CampusProductPageVO.prev}">
+										<li class="mypage-item prev"><a href="${CampusProductPageVO.startPage-1}" class="mypage-link"> << </a></li>
 									</c:if>	
 									
-									<c:forEach var="i" begin="${CampusPageVO.startPage}" end="${CampusPageVO.endPage}">
-										<li class="mypage-item"><a href="${i}" class="mypage-link ${CampusPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
+									<c:forEach var="i" begin="${CampusProductPageVO.startPage}" end="${CampusProductPageVO.endPage}">
+										<li class="mypage-item"><a href="${i}" class="mypage-link ${CampusProductPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
 									</c:forEach>
 									
-									<c:if test="${CampusPageVO.next}">
-										<li class="mypage-item next"><a href="${CampusPageVO.endPage+1}" class="mypage-link"> >> </a></li>
+									<c:if test="${CampusProductPageVO.next}">
+										<li class="mypage-item next"><a href="${CampusProductPageVO.endPage+1}" class="mypage-link"> >> </a></li>
 									</c:if>	
                                 </ul>
                             </div>
@@ -109,23 +109,28 @@
 
                 </div>
             </div>
+<<<<<<< HEAD
 		<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
 		<input type="hidden" name="page" valuFe="${CampusPageVO.cri.page}" />
 		<input type="hidden" name="pc_code" value="${catelist.pc_code}" />
 	</form>
+=======
+<%-- 	<form action="list" method="get" id="actionForm">	
+		<input type="hidden" name="sort" value="${cri.sort}" />		
+		<input type="hidden" name="page" value="${cri.page}" />
+	
+	</form> --%>
+>>>>>>> refs/remotes/origin/seunghyun
         </div>
 
 <script>
 	let result='${result}';
-<<<<<<< HEAD
-=======
 	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
 		
->>>>>>> refs/remotes/origin/nahyun
 </script>
 <script src="/resources/main/js/catelist.js"></script>
 <%@include file="../../design/footer.jsp" %>

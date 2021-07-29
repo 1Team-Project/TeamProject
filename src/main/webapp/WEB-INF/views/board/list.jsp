@@ -125,6 +125,8 @@
 					</sec:authorize>
 				</div>
 			</div>
+			
+			<!-- 페이지 선택 버튼 -->
 			<div class="row">
 				<div class="col-md-12">
 					<ul class="mypagination justify-content-center">
@@ -148,6 +150,7 @@
 		<div class="col-md-1"></div>
 	</div>
 </div>
+	
 	<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />

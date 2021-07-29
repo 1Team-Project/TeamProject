@@ -18,7 +18,11 @@ public class CartPaymentVO {
 
 	//결제용
 	private List<CartPaymentVO> cartVO;
+<<<<<<< HEAD
 	private String c_option;
+=======
+	private String po_option_vo;
+>>>>>>> refs/remotes/origin/seunghyun
 	private String c_privateCode;
 	
 	//사진경로

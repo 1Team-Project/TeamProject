@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
+import com.spring.domain.CampusProductVO;
 
 public interface CampusBoardMapper {
 
@@ -40,5 +41,7 @@ public interface CampusBoardMapper {
 	
 	// 영권 main 게시판 10개 보기용 추가
 	public List<CampusBoardVO> mainList(CampusCriteria cri);
+	
+	
 	
 }

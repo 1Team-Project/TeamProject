@@ -3,29 +3,42 @@
 <mapper namespace="com.spring.mapper.CartMapper">
 <!-- 장바구니 추가 -->
 	<insert id="addCart">
-		insert into campus_cart(c_cartnumber, u_userid, p_number, c_count)
-		values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count})
+	<![CDATA[
+		insert into campus_cart(c_cartnumber, u_userid, p_number, c_count, c_option)
+		values(campus_cart_seq.nextval, #{u_userid} , #{p_number} ,#{c_count}, #{c_option})
+	]]>
 	</insert>
 	
 	<!--  장바구니에 기존 상품이 있는지  -->
-	<select id="countCart" resultType="int">
-	select count(*) from cart
-	where u_userid=#{u_userid} and p_number=#{p_number}
-	</select>
+<!-- 	<select id="countCart" resultType="int"> -->
+<!-- 	select count(*) from cart -->
+<!-- 	where u_userid=#{u_userid} and p_number=#{p_number} -->
+<!-- 	</select> -->
 	
     <!-- 장바구니 목록 --> 
+<<<<<<< HEAD
    <select id="listCart" resultType="com.spring.domain.CartVO">
       select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, c.c_option,
+=======
+   <select id="listCart" resultType="com.spring.domain.CartListVO">
+<!--    <select id="listCart" resultType="com.spring.domain.CartVO"> -->
+      select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
+>>>>>>> refs/remotes/origin/seunghyun
       p.p_name, c.c_count, p.p_price
       from campus_cart c, campus_user u , campus_product p
       where u.u_userid = c.u_userid
       and p.p_number = c.p_number
       and c.u_userid=#{u_userid}
       order by c_cartnumber desc
+<<<<<<< HEAD
+=======
+<!--       </select> -->
+>>>>>>> refs/remotes/origin/seunghyun
    </select>
    
    <!-- 결제용 -->
    <select id="listPayment" resultType="com.spring.domain.CartPaymentVO">
+<<<<<<< HEAD
       select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, c.c_option,
       p.p_name, c.c_count, p.p_price, p.p_shippingfee
       from campus_cart c, campus_user u , campus_product p
@@ -41,30 +54,33 @@
       select NVL(SUM(p_price * c_count),0) money
       from campus_cart c, campus_product p
       where c.p_number = p.p_number and c.u_userid = #{u_userid}
+=======
+      select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
+      p.p_name, c.c_count, p.p_price, p.p_shippingfee
+      from campus_cart c, campus_user u , campus_product p
+      where u.u_userid = c.u_userid
+      and p.p_number = c.p_number
+      and c.u_userid=#{u_userid}
+      order by c_cartnumber desc
+>>>>>>> refs/remotes/origin/seunghyun
    </select>
+   
 
-    <!-- 장바구니 수정 --> 
-   <update id="modifyCart">
-      update campus_cart
-      set c_count = #{c_count}
-      where u_userid = #{u_userid}
-      and p_name = #{p_name}
-   </update>
-   <update id="update">
-   update campus_cart
-   set c_count = #{c_count}
-   where u_userid = #{u_userid}
-   and c_cartnumber = #{c_cartnumber}
-   </update>
-
-    <!-- 장바구니 삭제 --> 
-   <delete id="delete">
+<!--    <select id="listCart" resultType="com.spring.domain.CartVO"> -->
+<!--       select p.p_number, m.u_userid, c.c_cartnumber, m.u_username, m.u_username, -->
+<!--       p.p_name,c.c_count, p.p_price, p.p_shippingfee, (p_price * c_count) money -->
+<!--       from campus_cart c, campus_user m , campus_product p -->
+<!--       where m.u_userid = c.u_userid -->
+<!--       and p.p_number = c.p_number -->
+<!--       and c.u_userid=#{u_userid} -->
+<!--       order by c.c_cartnumber -->
+<!--    </select> -->
+  
+  <delete id="delete" parameterType="java.util.List">
       delete from campus_cart
-      where c_cartnumber = #{c_cartnumber}
+         where
+         <foreach collection="list" item="item" separator="or" open="" close="">
+            (c_cartnumber=#{item})
+         </foreach>
    </delete>
-   <delete id="deleteAll">
-   delete from campus_cart
-   where u_userid=#{u_userid}
-   </delete>
-
 </mapper>

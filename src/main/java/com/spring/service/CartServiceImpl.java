@@ -5,9 +5,13 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.spring.domain.CartListVO;
 import com.spring.domain.CartVO;
 import com.spring.mapper.CartMapper;
 
+import lombok.extern.log4j.Log4j2;
+
+@Log4j2
 @Service
 public class CartServiceImpl implements CartService {
 
@@ -16,20 +20,22 @@ public class CartServiceImpl implements CartService {
 	
 	@Override
 	public boolean addCart(CartVO vo) {
+		log.info("카트" +vo);
 		return mapper.addCart(vo) > 0 ? true:false;
-		
 	}
 
 	@Override
-	public List<CartVO> listCart(String u_userid) {
+	public List<CartListVO> listCart(String u_userid) {
 		// TODO Auto-generated method stub
 		return mapper.listCart(u_userid);
 	}
 
 	@Override
-	public boolean delete(int c_cartnumber) {
+	public boolean delete(List<Integer> checkArr) {
 		// TODO Auto-generated method stub
-		return mapper.delete(c_cartnumber)>0? true:false;
+		//int result = mapper.delete(checkArr);
+		
+		return mapper.delete(checkArr) > 0? true:false;
 	}
 
 	@Override
@@ -44,17 +50,13 @@ public class CartServiceImpl implements CartService {
 		return mapper.sum(u_userid);
 	}
 
-	@Override
-	public List<CartVO> cartMoney() {
-		// TODO Auto-generated method stub
-		return null;
-	}
+//	@Override
+//	public List<CartVO> cartMoney() {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
 
-	@Override
-	public boolean deleteAll(String u_userid) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 
 	@Override
 	public int countCart(String u_userid, int p_number) {

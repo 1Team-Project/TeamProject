@@ -30,7 +30,16 @@ public class CampusBoardVO {
 	private int p_number;
 	
 	private String p_name;
+	private int rownum;
 	
 	//첨부파일 리스트
 	private List<CampusAttachFileDTO> attachList;
+	
+	//상품사진
+	private String a_uuid;
+	private String a_path;
+	private String a_name;
+	private String urllink;
+	private String path;
+	private String thumbimg;
 }

@@ -54,8 +54,7 @@
 	            </div>
 
 				<div class="col-md-8 mll20">
-					<select name="b_sort" id="sort"
-						class="form-control width15 inlinetest">
+					<select name="b_sort" id="sort" class="form-control width15 inlinetest">
 						<option value="">선택</option>
 						<option value="후기">후기</option>
 						<option value="질문">질문</option>

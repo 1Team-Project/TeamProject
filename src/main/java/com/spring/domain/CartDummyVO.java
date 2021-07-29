@@ -18,7 +18,11 @@ public class CartDummyVO {
 
 	//결제용
 	private List<CartDummyVO> cartVO;
+<<<<<<< HEAD
 	private String c_option;
+=======
+	private String po_option_vo;
+>>>>>>> refs/remotes/origin/seunghyun
 	private String c_privateCode;
 	
 	//사진경로

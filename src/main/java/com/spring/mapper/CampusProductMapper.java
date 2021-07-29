@@ -16,6 +16,13 @@ public interface CampusProductMapper {
 	public List<CampusProductVO> bestlist();
 	public List<CampusProductVO> catelist(CampusCriteria cri,@Param("pc_code") String pc_code);
 	public CampusProductVO viewProduct(@Param("p_number") int p_number);
+	//상품 상세 읽기
+	public CampusBoardVO viewProductcontent(@Param("p_number") int p_number);
+	//상품 상세 페이지 내 후기
+	public List<CampusBoardVO> selectReview(@Param("p_number") int p_number);
+	//상품 상세 내 질문
+	public List<CampusBoardVO> selectq(@Param("p_number") int p_number);
+	
 	public int totalPro(CampusCriteria cri);
 	
 	//카테고리뿌리기용

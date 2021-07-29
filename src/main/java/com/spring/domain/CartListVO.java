@@ -1,7 +1,5 @@
 package com.spring.domain;
 
-import java.util.List;
-
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,19 +11,15 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 @ToString
-public class CartVO {
-	
+
+public class CartListVO {
 	private int c_cartnumber;
 	private String u_userid;
 	private int p_number;
-//	private String p_name;
 	private int c_count;
-<<<<<<< HEAD
-=======
 	private String c_option;
 	
->>>>>>> refs/remotes/origin/seunghyun
-//	private int price;
-//	private int money;
+	private String p_name;
+	private int p_price;
 
 }
