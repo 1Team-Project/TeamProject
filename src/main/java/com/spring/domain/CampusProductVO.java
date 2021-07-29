@@ -14,6 +14,11 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class CampusProductVO {
+	
+	private List<CampusProductVO> campusProductVO;
+	private String po_option_vo;
+	
+	
 	private int p_number;
 	private String p_name;
 	private int p_price;
@@ -23,6 +28,7 @@ public class CampusProductVO {
 	private String p_manufact;
 	private int p_rank;
 	private int p_shippingfee;
+
 	 private String po_option1;
 	 private String po_option2;
 	 private String po_option3;

@@ -19,7 +19,11 @@
 			
 			<div class="col-md-10">
 			
+<<<<<<< HEAD
 				<form action="/payment/kakaoPay" method="post">
+=======
+				<form action="/payment/formtest" method="post">
+>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 			
 				<hr class="one" />
 				<div class="col-md-12"><h3 class="heading-section" style="font-family: naBrush;">상품 결제 페이지</h3></div>
@@ -47,7 +51,11 @@
 								<img src="${p_vo.cartimg}" alt="" class="size200"/>
 							</td>
 							<td class="textmiddle"><b>${p_vo.p_name}</b>
+<<<<<<< HEAD
 								<div>옵션 : ${p_vo.c_option}</div>
+=======
+								<div>${p_vo.po_option_vo}</div>
+>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 							</td>
 							<td class="textmiddle">${p_vo.c_count}개</td>
 							<td class="textmiddle">${p_vo.money}원</td>
@@ -59,7 +67,11 @@
 							<input type="hidden" id="product_money" name="cartVO[${i}].money" value="${p_vo.money}"/>
 							<input type="hidden" id="product_price" name="cartVO[${i}].p_price" value="${p_vo.p_price}"/>
 							<input type="hidden" id="product_count" name="cartVO[${i}].c_count" value="${p_vo.c_count}"/>
+<<<<<<< HEAD
 							<input type="hidden" id="product_option_name" name="cartVO[${i}].c_option" value="${p_vo.c_option}"/>
+=======
+							<input type="hidden" id="product_option_name" name="cartVO[${i}].po_option_vo" value="test"/>
+>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 							<c:set var = "i" value="${i+1}"/>
 							
 					</c:forEach>
@@ -108,6 +120,7 @@
 				<div class="col-md-12 colorthema hh4 padding6px margintb20">주문자 정보</div>
 
 				<div class="col-md-12 bottommargin10 mll10">
+<<<<<<< HEAD
 					<input name="o_name" type="text" class="form-control width60" placeholder="받는 분 이름을 입력해 주세요" required <c:if test = "${campusCartVO == null}">readonly</c:if> />
 				</div>
 				<div class="col-md-12 bottommargin10 mll10">
@@ -116,17 +129,35 @@
 				<div class="col-md-12 row bottommargin10 mll10 topmmargin30">
 
 					<input name="o_address1" type="text" class="form-control width40" id="sample6_postcode" placeholder="우편번호" required <c:if test = "${campusCartVO == null}">readonly</c:if> />
+=======
+					<input name="o_name" type="text" class="form-control width60" placeholder="받는 분 이름을 입력해 주세요" <c:if test = "${campusCartVO == null}">readonly</c:if> />
+				</div>
+				<div class="col-md-12 bottommargin10 mll10">
+					<input name="o_phone" type="text" class="form-control width60" placeholder="받는 분 연락처를 입력해 주세요" <c:if test = "${campusCartVO == null}">readonly</c:if> />
+				</div>
+				<div class="col-md-12 row bottommargin10 mll10 topmmargin30">
+
+					<input name="o_address1" type="text" class="form-control width40" id="sample6_postcode" placeholder="우편번호" <c:if test = "${campusCartVO == null}">readonly</c:if> />
+>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 					<button type="button" class="btn btn-primary inlinetest mll5 width14" onclick="sample6_execDaumPostcode()">주소 찾기</button>
 
 				</div>
 				<div class="col-md-12 bottommargin10 mll10">
+<<<<<<< HEAD
 					<input name="o_address2" type="text" class="form-control width60" placeholder="주소" id="sample6_address" required <c:if test = "${campusCartVO == null}">readonly</c:if> />
+=======
+					<input name="o_address2" type="text" class="form-control width60" placeholder="주소" id="sample6_address" <c:if test = "${campusCartVO == null}">readonly</c:if> />
+>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 				</div>
 				<div class="col-md-12 bottommargin10 mll10">
 					<input name="o_address3" type="text" class="form-control width60" placeholder="참고항목" id="sample6_extraAddress" <c:if test = "${campusCartVO == null}">readonly</c:if> />
 				</div>
 				<div class="col-md-12 bottommargin30 mll10">
+<<<<<<< HEAD
 					<input name="o_address4" type="text" class="form-control width60 inlinetest" placeholder="상세주소" id="sample6_detailAddress" required <c:if test = "${campusCartVO == null}">readonly</c:if> />
+=======
+					<input name="o_address4" type="text" class="form-control width60 inlinetest" placeholder="상세주소" id="sample6_detailAddress" <c:if test = "${campusCartVO == null}">readonly</c:if> />
+>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 				</div>
 				
 				<hr class="one"  />
@@ -149,7 +180,11 @@
 				<hr class="one margintb40" />
 				
 				<div class="margintb20"><h4>결제 방법 선택</h4></div>
+<<<<<<< HEAD
 				카카오페이<button class="btn kakao-btn" type="submit"><img src="/resources/main/images/payment_icon_yellow_medium.png" alt="" /></button>
+=======
+				카카오페이<button class="btn kakao-btn"><img src="/resources/main/images/payment_icon_yellow_medium.png" alt="" /></button>
+>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 				
 				<hr class="one margintb40" />
 				
@@ -160,12 +195,20 @@
 				<button class="btn btn-primary float-end">메인으로 돌아가기</button>
 				
 				<!-- 유저정보 : 아이디, 주소, 전화번호, 이메일 -->
+<<<<<<< HEAD
 				<sec:authentication property="principal" var="user"/>
 				<input type="hidden" id="id" name="u_userid" value="${user.username}"/>
 				<input type="hidden" id="total_pay" name="total_pay" value="${total_pay}"/>
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				
 				<!-- <button type = "submit" class="btn btn-primary">submit</button> -->
+=======
+				<input type="hidden" id="user_id" name="u_userid" value="${principal.username}"/>
+				<input type="hidden" id="total_pay" name="total_pay" value="${total_pay}"/>
+				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				
+				<button type = "submit" class="btn btn-primary">submit</button>
+>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 				
 			</form>
 			</div>

@@ -182,9 +182,15 @@
 		    				</c:otherwise>
 		    			</c:choose>
 		    			
-		    			
-		    			<a href="#" class="d-flex align-items-center justify-content-center m-1">
-		    				<img src="/resources/main/images/icon_cart.png"></a>
+							<sec:authorize access="isAuthenticated()">
+								<a href="/cart?userid=" class="d-flex align-items-center justify-content-center m-1">
+								<img src="/resources/main/images/icon_login.png"></a>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
+			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
+			    					<img src="/resources/main/images/icon_login.png">
+			    				</a>
+			    			</sec:authorize>
 		    		</p>
 	      		</div>
 				</div>
@@ -218,7 +224,6 @@
 				</div>
 				   </li>
 
-
 				   <li class="nav-item dropdown m-6 mb-0 mt-0">
 					<!-- 카테고리(상품 정보)에 마우스 올리지 않고, 클릭할 때 갈 링크 설정하는 a태그 -->
 					<a class="nav-link dropdown-toggle " href="#" id="dropdown03" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">게시판</a>
@@ -241,6 +246,7 @@
 
 </form>
 	
+
 		<form action="" method="get" id="actionForm">
 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 
@@ -248,6 +254,15 @@
 			<input type="hidden" name="pc_code" value="${pc_code}" />
 			
 		</form>
+
+	<!-- 한중 폼 -->
+<!-- 		<form action="" method="get" id="actionForm"> -->
+<%-- 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" /> --%>
+<%-- 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" />  --%>
+<%-- 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" /> --%>
+<!-- 		</form> -->
+		
+
 		<form action="" method="get" id="goForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
 			<input type="hidden" name="page" value="1" />
@@ -258,6 +273,15 @@
 			<input type="hidden" name="keyword"value="${CampusProductPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="1" />
 		</form>  
+
+
+	
+	<script>
+		let result='${result}';
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+	</script>
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
