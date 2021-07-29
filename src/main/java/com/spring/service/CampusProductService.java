@@ -38,17 +38,11 @@ public interface CampusProductService {
 	
 	//카테고리목록뿌리기
 	public  List<CampusProductCategoryVO> category(CampusCriteria cri);
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/nahyun
 	//옵션목록뿌리기
 	public List<CampusProductOptionVO> optionlist(String op_optiontitle);
 	
 	
 	public List<CampusAttachFileDTO> getAttachList(int p_number);
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/nahyun
 }

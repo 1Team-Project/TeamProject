@@ -5,10 +5,7 @@
 $(function(){
 	//하단의 페이지 나누기 번호 클릭시 
 	var detailForm = $("#detailForm");
-<<<<<<< HEAD
-	
-=======
->>>>>>> refs/remotes/origin/nahyun
+
 	$(".mypage-item a").click(function(e){
 		e.preventDefault();  //a 속성 중지
 		

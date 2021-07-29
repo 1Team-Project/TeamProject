@@ -1,9 +1,6 @@
 package com.spring.controller;
 
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/nahyun
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
@@ -24,10 +21,7 @@ import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
 import com.spring.domain.CampusProductCategoryVO;
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/nahyun
 import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductPageVO;
 import com.spring.domain.CampusProductVO;
@@ -113,15 +107,7 @@ public class ProductController {
 		List<CampusProductCategoryVO> category = service.category(cri);
 		model.addAttribute("category",category);
 	}
-<<<<<<< HEAD
-	
-	@GetMapping("/catelist")
-	public void catelist(String pc_code,@ModelAttribute("cri") CampusCriteria cri,Model model) {
-		List<CampusProductVO> catelist=service.catelist(cri, pc_code);
-		String imgurl="";
-		 for(CampusProductVO img:catelist) {
-	         String test = img.getUrllink();
-=======
+
 
 	
 @GetMapping("/catelist")
@@ -140,37 +126,7 @@ public void catelist(String pc_code,String sort,Model model) {
 	List<CampusProductVO> catelist=service.catelist(cri, pc_code);
 	 for(CampusProductVO img:catelist) {
          String test = img.getUrllink();
->>>>>>> refs/remotes/origin/nahyun
 
-<<<<<<< HEAD
-	         if(test == null || test.isEmpty()) {
-	            String path=img.getA_path().replace("\\", "%5C");
-	            log.info("url 테스트중 : "+path);
-	            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-	            img.setUrllink(imgurl);
-	         }else {
-	            imgurl="/resources/main/images/default-img.jpg";
-	            img.setUrllink(imgurl);
-	         }
-	      }
-		log.info(catelist);
-		
-		//int total = service.total(cri);
-		
-//		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
-//		model.addAttribute("CampusPageVO", campusPageVO);
-		//카테고리코드별 상품리스트 추출
-		model.addAttribute("catelist", catelist);
-		model.addAttribute("cri", cri);
-		
-		//헤더부분 - 카테고리값넘기기
-
-		List<CampusProductCategoryVO> category = service.category(cri);
-		model.addAttribute("category",category);
-		
-		log.info("카테고리별 상품리스트"+catelist);
-	}
-=======
          if(test == null || test.isEmpty()) {
             String path=img.getA_path().replace("\\", "%5C");
             log.info("url 테스트중 : "+path);
@@ -182,30 +138,25 @@ public void catelist(String pc_code,String sort,Model model) {
          }
       }
 	log.info(catelist);
->>>>>>> refs/remotes/origin/nahyun
+
 	
 	//int total = service.total(cri);
 	
-<<<<<<< HEAD
-=======
-//	CampusPageVO campusPageVO = new CampusPageVO(cri,total);
-//	model.addAttribute("CampusPageVO", campusPageVO);
-	//카테고리코드별 상품리스트 추출
-	model.addAttribute("catelist", catelist);
-	model.addAttribute("cri", cri);
 	
-	//헤더부분 - 카테고리값넘기기
-	List<CampusProductCategoryVO> category = service.category(cri);
-	model.addAttribute("category",category);
+	//	CampusPageVO campusPageVO = new CampusPageVO(cri,total);
+	//	model.addAttribute("CampusPageVO", campusPageVO);
+		//카테고리코드별 상품리스트 추출
+		model.addAttribute("catelist", catelist);
+		model.addAttribute("cri", cri);
+		
+		//헤더부분 - 카테고리값넘기기
+		List<CampusProductCategoryVO> category = service.category(cri);
+		model.addAttribute("category",category);
+		
+		log.info("카테고리별 상품리스트"+catelist);
+	}
 	
-	log.info("카테고리별 상품리스트"+catelist);
-}
 
-
-
-	
-	
->>>>>>> refs/remotes/origin/nahyun
 		//게시판 글번호 읽어서 보는것처럼
 		//상품 1개 조회, 보기 => 데이터 읽어온 후 productdetail.jsp
 		@GetMapping("/productdetail")

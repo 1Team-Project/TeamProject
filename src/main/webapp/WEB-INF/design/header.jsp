@@ -245,29 +245,11 @@
 
 
 </form>
-<<<<<<< HEAD
 
 		<form action="/logoutForm" method="post" id="logoutForm">
 			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 
-		<form action="" method="get" id="actionForm">
-			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
-			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 
-			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		</form>
-<<<<<<< HEAD
-=======
-	
-	<!-- 한중 폼 -->
-<!-- 		<form action="" method="get" id="actionForm"> -->
-<%-- 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" /> --%>
-<%-- 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" />  --%>
-<%-- 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" /> --%>
-<!-- 		</form> -->
-=======
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/nahyun
 		
 		<form action="" method="get" id="goForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
@@ -279,21 +261,7 @@
 			<input type="hidden" name="keyword"value="${CampusProductPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="1" />
 		</form>  
-<<<<<<< HEAD
 
-
-	
-	<script>
-		let result='${result}';
-		
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
-	</script>
->>>>>>> refs/remotes/origin/seunghyun
-=======
-=======
->>>>>>> 251ba6988bf9bda865caa039f07095754037d93f
->>>>>>> refs/remotes/origin/nahyun
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

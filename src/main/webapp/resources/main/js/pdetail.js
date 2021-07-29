@@ -190,33 +190,7 @@ $(function(){
 			error:function(xhr,status,error){
 				console.log("아작스에러");
 			}
-<<<<<<< HEAD
-		})
-		
-	})
-	
-$(document).ready(function(){
-    var rows = document.getElementById("tbody1").getElementsByTagName("tr");
-    console.log(rows.length);	// tbody tr 개수 = 2
-	
-    // tr만큼 루프돌면서 컬럼값 접근
-    for( var r=0; r<rows.length; r++ ){
-      var cells = rows[r].getElementsByTagName("td");
 
-      var cell_1 = cells[0].data;		// 이름
-      var cell_2 = cells[1].data;		// 나이
-      var cell_3 = cells[2].data;
-      var cell_3 = cells[3].data;	
-      var cell_3 = cells[4].data;			// 성별
-
-      console.log(cell_1);	// 홍길동, 김영희
-      console.log(cell_2);	// 23, 25
-      console.log(cell_3);  // 남자,여자
-      console.log(cell_4);
-      console.log(cell_5);
-    }
-  });
-=======
 			});
 		});
 		
@@ -252,7 +226,7 @@ $(document).ready(function(){
 		})
 		
 	})
->>>>>>> refs/remotes/origin/nahyun
+
 	
 	
 

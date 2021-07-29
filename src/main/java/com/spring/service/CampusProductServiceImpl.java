@@ -167,9 +167,5 @@ public class CampusProductServiceImpl implements CampusProductService {
 		return productmapper.selectq(p_number);
 	}
 
-<<<<<<< HEAD
-=======
-
->>>>>>> refs/remotes/origin/nahyun
 
 }

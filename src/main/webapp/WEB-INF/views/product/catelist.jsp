@@ -116,10 +116,7 @@
 		<input type="hidden" name="page" value="${cri.page}" />
 	
 	</form> --%>
-<<<<<<< HEAD
->>>>>>> refs/remotes/origin/seunghyun
-=======
->>>>>>> refs/remotes/origin/nahyun
+
         </div>
 
 <script>

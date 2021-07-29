@@ -42,10 +42,7 @@ $(function() {
 		goForm.attr("action","/product/catelist");
 		//console.log(catelist);
 		goForm.submit();
-<<<<<<< HEAD
 
-=======
->>>>>>> refs/remotes/origin/nahyun
 	})
 	
 	

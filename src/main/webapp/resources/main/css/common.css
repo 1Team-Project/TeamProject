@@ -255,20 +255,9 @@ p {
     font-size: 18px;
     text-align: center;
     margin-top: 30px;
-<<<<<<< HEAD
-    margin-bottom: 100px;
-}
-.p_rivewbar h1 {
-   display: inline-block;
-    position: relative;
-    font-size: 50px;
-    font-family: noto sans;
-    color: #666;	
-=======
     margin-bottom: 30px;
     border-bottom: 1px solid #c1c1c1;
     padding-bottom: 30px;
->>>>>>> refs/remotes/origin/nahyun
 }
 
 

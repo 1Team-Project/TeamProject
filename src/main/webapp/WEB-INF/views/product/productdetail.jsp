@@ -15,26 +15,13 @@
 	<div id="productview">
 		<div class="innerview">
 			<div class="product">
-<<<<<<< HEAD
 				<img class="photo" src="${vo.urllink}" alt="대표사진" />
-=======
-			<img class="photo" src="${vo.urllink}" alt="대표사진"/>
->>>>>>> refs/remotes/origin/nahyun
 
-<<<<<<< HEAD
-=======
-				
->>>>>>> refs/remotes/origin/nahyun
 			</div>
 
 
 			<p class="p_name">
-<<<<<<< HEAD
 				<strong class="name">${vo.p_name}</strong> <span class="name_detail">상세설며어어쩌구저쩌구</span>
-=======
-				<strong class="name">${vo.p_name}</strong> 
-				<span class="name_detail">상세설며어어쩌구저쩌구</span>
->>>>>>> refs/remotes/origin/nahyun
 			</p>
 
 			<div class="p_info">
@@ -49,12 +36,8 @@
 
 						<tr>
 							<td class="price"><fmt:formatNumber value="${vo.p_price}"
-<<<<<<< HEAD
 									pattern="###,###,###"></fmt:formatNumber> <input type="hidden"
 								value="${vo.p_price}" name="price"></td>
-=======
-									pattern="###,###,###"></fmt:formatNumber></td>
->>>>>>> refs/remotes/origin/nahyun
 						</tr>
 
 						<tr>
@@ -100,21 +83,12 @@
 				<div id="cartput">
 					<div class="total">
 						<div class="price">
-<<<<<<< HEAD
 							<strong class="tot">총 상품금액 : </strong> <span class="sum">
 								<span class="num"> <%--                         <fmt:formatNumber value="${vo.p_price}" pattern="###,###,###"></fmt:formatNumber></span>  --%>
 									<input type="text" name="sum" class="subtotal" readonly
 									style="border: none;">+배송비 <span class="unit">원</span>
-=======
-							<strong class="tot">총 상품금액 : </strong>
-							 <span class="sum">
-								<span class="num">
-								<fmt:formatNumber value="${vo.p_price}" pattern="###,###,###"></fmt:formatNumber></span> 
-								<span class="unit">원</span>
->>>>>>> refs/remotes/origin/nahyun
 							</span>
 						</div>
-<<<<<<< HEAD
 
 						<div class="option_btn">
 							<input type="hidden" id="p_number" value="${vo.p_number}">
@@ -128,15 +102,6 @@
 								onclick="location.href='/payment/paymentpage'">구매하기</button>
 						</div>
 
-=======
-						
-						<div class="option_btn">
-						<input type="hidden" name="p_number" value="${vo.p_number}">
-							<button type="button" class="btn btn-primary btn-lg" id="">장바구니</button>
-							<button type="button" class="btn btn-secondary btn-lg">구매하기</button>
-						</div>
-						
->>>>>>> refs/remotes/origin/nahyun
 						<div class="p_detail_info">
 							<div class="p_detail_bar">
 								<ul class="menu">
@@ -183,13 +148,8 @@
 
 							<div class="description">
 								<div class="d_wrapper">
-<<<<<<< HEAD
 									<strong class="d_title"> <span>${vo.p_name}</span> <span
 										class="d_subtitle">[디테일설명같은거 추가?!@!]</span>
-=======
-									<strong class="d_title"> <span>${vo.p_name}</span>
-										<span class="d_subtitle">[${vo.p_manufact}]</span>
->>>>>>> refs/remotes/origin/nahyun
 									</strong>
 									<p class="descript">${con.b_content}</p>
 
@@ -285,13 +245,8 @@
 										<div class="col-md-1"></div>
 										<div class="p_qna">
 											<h1>
-<<<<<<< HEAD
 												<span class="qna_tit"> Q&A </span><br> <span
 													class="qna_subtit"> 상품 문의를 남겨주세요!</span>
-=======
-												<span class="rivew">Product's Review</span><br> <span
-													class="star">평균 별점 : @계산하기@</span>
->>>>>>> refs/remotes/origin/nahyun
 											</h1>
 											<div class="row">
 												<div class="col-md-10"></div>
@@ -307,7 +262,6 @@
 														<th class="width20">작성일</th>
 													</tr>
 												</thead>
-<<<<<<< HEAD
 												<tbody class="textcenter" id="tbody">
 													<c:forEach var="q" items="${question}">
 														<tr>
@@ -334,48 +288,13 @@
 																</c:choose></td>
 														</tr>
 													</c:forEach>
-=======
-												<c:forEach var="r" items="${review}">
-												<tbody class="textcenter">
-													<tr>
-													
-														<td>${r.rownum}</td>
-														<td>${r.b_sort}</td>
-														<td><a href="${r.b_no}" class="blacktext hoverthema clickview">${r.b_title}</a></td>
-														<td>${r.b_writer}</td>
-														<td>
-														
-														<c:set var="bsys"><fmt:formatDate pattern="yyyy-MM-dd" value="${r.b_sysdate}"/></c:set>
-														<c:choose>
-														
-															<c:when test="${systest eq bsys}">
-																<fmt:formatDate pattern="HH:mm" value="${r.b_sysdate}" timeZone="Asia/Seoul"/>
-															</c:when>
-															
-															<c:otherwise>
-																<fmt:formatDate pattern="yyyy-MM-dd" value="${r.b_sysdate}"/>
-															</c:otherwise>
-															
-														</c:choose>
-														
-														
-														</td>
-														<td>${r.b_rating }</td>
-													
-													</tr>
->>>>>>> refs/remotes/origin/nahyun
 												</tbody>
 											</table>
 											<div class="row">
 												<div class="col-md-12 mb-3">
-<<<<<<< HEAD
 													<button class="btn btn-primary float-end">글 쓰기</button>
 													<button class="btn btn-primary float-end" id="btn3">전체
 														후기 보기</button>
-=======
-													<button class="btn btn-primary float-end" onclick="location.href='/board/write'">글 쓰기</button>
-													<button class="btn btn-primary float-end" onclick="location.href='/board/list'">전체 후기 보기</button>
->>>>>>> refs/remotes/origin/nahyun
 												</div>
 											</div>
 											<!-- 페이지 선택 버튼 -->
@@ -404,83 +323,7 @@
 													</ul>
 												</div>
 											</div>
-<<<<<<< HEAD
 											<div class="change_info">
-=======
-											<div class="col-md-1"></div>
-											<div class="p_qna">
-												<h1>
-													<span class="qna_tit"> Q&A </span><br>
-													 <span class="qna_subtit"> 상품 문의를 남겨주세요!</span>
-												</h1>
-												<div class="row">
-													<div class="col-md-10"></div>
-													<div class="col-md-2 margintb20"></div>
-												</div>
-												<table class="table">
-													<thead>
-														<tr class="textcenter colorthema">
-															<th class="width10">번호</th>
-															<th class="width10">분류</th>
-															<th class="width40">제목</th>
-															<th class="width10">글쓴이</th>
-															<th class="width20">작성일</th>
-															<th class="width10">조회수</th>
-														</tr>
-													</thead>
-													<tbody class="textcenter">
-														<tr>
-														<c:forEach var="q" items="${question}">
-															<td>${q.rownum+1}</td>
-															<td>${q.b_sort}</td>
-															<td><a href="${q.b_no}" class="blacktext clickview">${q.b_title}</a></td>
-															<td>${q.b_writer}</td>
-															<td>
-														
-																<c:set var="bsys"><fmt:formatDate pattern="yyyy-MM-dd" value="${q.b_sysdate}"/></c:set>
-																<c:choose>
-																
-																	<c:when test="${systest eq bsys}">
-																		<fmt:formatDate pattern="HH:mm" value="${q.b_sysdate}" timeZone="Asia/Seoul"/>
-																	</c:when>
-																	
-																	<c:otherwise>
-																		<fmt:formatDate pattern="yyyy-MM-dd" value="${q.b_sysdate}"/>
-																	</c:otherwise>
-																	
-																</c:choose>
-																
-														
-														</td>
-														</c:forEach>
-														</tr>
-													</tbody>
-												</table>
-												<div class="row">
-													<div class="col-md-12 mb-3">
-														<button class="btn btn-primary float-end" onclick="location.href='/board/write'">글 쓰기</button>
-														<button class="btn btn-primary float-end" id="btn3" onclick="location.href='/board/list'" >전체 후기
-															보기</button>
-													</div>
-												</div>
-												<div class="row">
-													<div class="col-md-12">
-														<ul class="mypagination justify-content-center">
-															<li class="mypage-item"><a href="#"
-																class="mypage-link"> << </a></li>
-															<li class="mypage-item"><a href="#"
-																class="mypage-link activecolor">1</a></li>
-															<li class="mypage-item"><a href="#"
-																class="mypage-link">2</a></li>
-															<li class="mypage-item"><a href="#"
-																class="mypage-link">3</a></li>
-															<li class="mypage-item"><a href="#"
-																class="mypage-link"> >> </a></li>
-														</ul>
-													</div>
-												</div>
-												<div class="change_info">
->>>>>>> refs/remotes/origin/nahyun
 
 												<div>
 													<strong>교환 및 반품정보</strong>
@@ -522,7 +365,6 @@
 		</div>
 		<div class="col-md-1"></div>
 	</div>
-<<<<<<< HEAD
 </div>
 
 <form action="list" method="get" id="actionForm1">
@@ -534,16 +376,6 @@
 
 </div>
 
-=======
-<form action="list" method="get" id="actionForm">	
-		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
-		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
-		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-	</form>   
-<script>
-let result='${result}';
-</script>
->>>>>>> refs/remotes/origin/nahyun
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>
