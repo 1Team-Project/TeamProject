@@ -204,7 +204,7 @@
 				<!-- 각 카테고리별 이동하는 링크 -->
               	<a class="dropdown-item product-item" href="/product/productlist">전체 상품</a>
               		<c:forEach var="cate" items="${category}">
-	           			<a class="dropdown-item clickview" href="${cate.pc_code}">${cate.pc_name} </a>
+	           			<a class="dropdown-item clickview" href="${cate.pc_code}" class="cate">${cate.pc_name} </a>
              		 </c:forEach>
               </div>
            	  </li>
@@ -246,6 +246,7 @@
 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
 		</form>
+<<<<<<< HEAD
 		
 		<form action="" method="get" id="goForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
@@ -257,6 +258,8 @@
 			<input type="hidden" name="keyword"value="${CampusProductPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="1" />
 		</form>  
+=======
+>>>>>>> 251ba6988bf9bda865caa039f07095754037d93f
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

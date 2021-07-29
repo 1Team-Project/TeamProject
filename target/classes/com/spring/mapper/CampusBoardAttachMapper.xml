@@ -21,6 +21,11 @@
 		select * from campus_attach where b_no = #{b_no}
 	</select>
 	
+	<select id="findByPnumber" resultType="com.spring.domain.CampusAttachFileDTO">
+		select * from campus_attach where p_number = #{p_number}
+	</select>	
+	
+	
 	<!-- 전일자 첨부파일 리스트 -->
 	<select id="getOldFiles" resultType="com.spring.domain.CampusAttachFileDTO">
 		select * from campus_attach where a_path = to_char(sysdate-1,'yyyy\mm\dd')

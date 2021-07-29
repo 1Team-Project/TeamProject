@@ -84,7 +84,21 @@
 		    <version>19.11.0.0</version>
 		</dependency>
 		
-		
+		<!-- 부트페이 -->
+		<dependency>
+	   	 	<groupId>org.apache.httpcomponents</groupId>
+	   	 	<artifactId>httpclient</artifactId>
+	    	<version>LATEST</version>
+		</dependency>
+		<dependency>
+		    <groupId>com.google.code.gson</groupId>
+		    <artifactId>gson</artifactId>
+		    <version>LATEST</version>
+		</dependency>
+	
+	
+	
+	
 		<!-- 오라클 클라우드 database설정 -->
 		<!-- https://mvnrepository.com/artifact/com.oracle.database.jdbc/ucp -->
 	<dependency>

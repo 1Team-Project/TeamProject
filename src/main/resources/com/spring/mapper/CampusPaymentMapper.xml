@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.CampusPaymentMapper">
+
+	<delete id="cart_delete">
+		delete from campus_cart where u_userid = #{u_userid}
+	</delete>
+
+	<delete id="payment_delete">
+		delete from campus_order_detail where o_number = #{o_number}
+	</delete>
+	
+	<delete id="payment_delete2">
+		delete from campus_order where o_number = #{o_number}
+	</delete>
+
+	<insert id="payment_add">
+		insert into campus_order(o_number, u_userid, o_address1, o_address2, o_address3, o_address4, o_name, o_phone, o_sysdate, o_ordercode, total_pay, total_count) 
+		values(CAMPUS_ORDER_SEQUENCE.nextval, #{u_userid}, #{o_address1}, #{o_address2}, #{o_address3}, #{o_address4}, #{o_name}, #{o_phone}, sysdate, #{o_ordercode}, #{total_pay}, #{total_count})
+	</insert>
+	
+	<select id="o_number" resultType="com.spring.domain.CampusOrderVO">
+		select o_number from campus_order where o_ordercode = #{o_ordercode}
+	</select>
+
+	<insert id="payment_detail_add">
+		insert into campus_order_detail(d_number, p_number, o_number, d_count, d_price, d_option)
+		values(CAMPUS_DETAIL_SEQUENCE.nextval,#{p_number}, #{o_number}, #{d_count}, #{d_price}, #{d_option})
+	</insert>
+	
+	<select id="listpaymentselect" resultType="com.spring.domain.CampusOrderVO">
+		select * from campus_order where o_ordercode = #{o_ordercode}
+	</select>
+	
+	<select id="listpaymentselectdetail" resultType="com.spring.domain.CampusOrderDetailVO">
+		select * from campus_order_detail where o_number = #{o_number}
+	</select>
+	
+	
+</mapper>

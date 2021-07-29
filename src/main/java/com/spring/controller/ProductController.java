@@ -105,54 +105,54 @@ public class ProductController {
 		List<CampusProductCategoryVO> category = service.category(cri);
 		model.addAttribute("category",category);
 	}
-	
 
 	
-	@GetMapping("/catelist")
-	public void catelist(String pc_code,String sort,Model model) {
-		log.info("상품 카테고리 넘어가기"+pc_code+" sort "+sort);
-		//카테고리코드 리스트를 뽑아서 해당 코드값을 누르면 그게 넘어가서 카테고리별 상품리스트가 나오는거
-		//카테고리값넘기기
-//		List<CampusProductCategoryVO> category = service.category(cri);
-//		model.addAttribute("category",category);
-//		log.info("캍텍ㄱ고리"+category);
-		String imgurl="";
-		CampusCriteria cri=new CampusCriteria();
-		cri.setPage(1);
-		cri.setSort(sort);
-		
-		List<CampusProductVO> catelist=service.catelist(cri, pc_code);
-		 for(CampusProductVO img:catelist) {
-	         String test = img.getUrllink();
+@GetMapping("/catelist")
+public void catelist(String pc_code,String sort,Model model) {
+	log.info("상품 카테고리 넘어가기"+pc_code+" sort "+sort);
+	//카테고리코드 리스트를 뽑아서 해당 코드값을 누르면 그게 넘어가서 카테고리별 상품리스트가 나오는거
+	//카테고리값넘기기
+//	List<CampusProductCategoryVO> category = service.category(cri);
+//	model.addAttribute("category",category);
+//	log.info("캍텍ㄱ고리"+category);
+	String imgurl="";
+	CampusCriteria cri=new CampusCriteria();
+	cri.setPage(1);
+	cri.setSort(sort);
+	
+	List<CampusProductVO> catelist=service.catelist(cri, pc_code);
+	 for(CampusProductVO img:catelist) {
+         String test = img.getUrllink();
 
-	         if(test == null || test.isEmpty()) {
-	            String path=img.getA_path().replace("\\", "%5C");
-	            log.info("url 테스트중 : "+path);
-	            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-	            img.setUrllink(imgurl);
-	         }else {
-	            imgurl="/resources/main/images/default-img.jpg";
-	            img.setUrllink(imgurl);
-	         }
-	      }
-		log.info(catelist);
-		
-		//int total = service.total(cri);
-		
-//		CampusPageVO campusPageVO = new CampusPageVO(cri,total);
-//		model.addAttribute("CampusPageVO", campusPageVO);
-		//카테고리코드별 상품리스트 추출
-		model.addAttribute("catelist", catelist);
-		model.addAttribute("cri", cri);
-		
-		//헤더부분 - 카테고리값넘기기
-		List<CampusProductCategoryVO> category = service.category(cri);
-		model.addAttribute("category",category);
-		
-		log.info("카테고리별 상품리스트"+catelist);
-	}
+         if(test == null || test.isEmpty()) {
+            String path=img.getA_path().replace("\\", "%5C");
+            log.info("url 테스트중 : "+path);
+            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+            img.setUrllink(imgurl);
+         }else {
+            imgurl="/resources/main/images/default-img.jpg";
+            img.setUrllink(imgurl);
+         }
+      }
+	log.info(catelist);
 	
+	//int total = service.total(cri);
 	
+//	CampusPageVO campusPageVO = new CampusPageVO(cri,total);
+//	model.addAttribute("CampusPageVO", campusPageVO);
+	//카테고리코드별 상품리스트 추출
+	model.addAttribute("catelist", catelist);
+	model.addAttribute("cri", cri);
+	
+	//헤더부분 - 카테고리값넘기기
+	List<CampusProductCategoryVO> category = service.category(cri);
+	model.addAttribute("category",category);
+	
+	log.info("카테고리별 상품리스트"+catelist);
+}
+
+
+
 	
 	
 		//게시판 글번호 읽어서 보는것처럼
@@ -210,6 +210,7 @@ public class ProductController {
 			
 			return new ResponseEntity<List<CampusAttachFileDTO>>(service.getAttachList(p_number),HttpStatus.OK);
 		}
+
 }
 	
 	

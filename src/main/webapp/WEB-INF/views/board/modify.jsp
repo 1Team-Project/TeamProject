@@ -66,7 +66,7 @@
 						<button class="btn btn-green1" type="button" data-oper="remove" type="submit">삭제</button>
 	                	</c:if>
 	                </sec:authorize>
-					<button class="btn btn-green2" type="button" data-oper="list" type="submit">리스트</button>
+					<button class="btn btn-green2" type="button" data-oper="list" type="submit">목록</button>
 				</div>
 		</form>
 		</div>
