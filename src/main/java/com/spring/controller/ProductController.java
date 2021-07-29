@@ -107,6 +107,26 @@ public class ProductController {
 		model.addAttribute("category",category);
 	}
 
+<<<<<<< HEAD
+=======
+	//카테고리별 조회
+	@GetMapping("/catelist")
+	public void catelist(String pc_code,String sort,Model model) {
+		log.info("상품 카테고리 넘어가기"+pc_code+" sort "+sort);
+		//카테고리코드 리스트를 뽑아서 해당 코드값을 누르면 그게 넘어가서 카테고리별 상품리스트가 나오는거
+		//카테고리값넘기기
+//		List<CampusProductCategoryVO> category = service.category(cri);
+//		model.addAttribute("category",category);
+//		log.info("카테고리"+category);
+		String imgurl="";
+		CampusCriteria cri=new CampusCriteria();
+		cri.setPage(1);
+		cri.setSort(sort);
+		
+		List<CampusProductVO> catelist=service.catelist(cri, pc_code);
+		 for(CampusProductVO img:catelist) {
+	         String test = img.getUrllink();
+>>>>>>> refs/remotes/origin/del
 
 	
 @GetMapping("/catelist")
@@ -177,14 +197,26 @@ public void catelist(String pc_code,String sort,Model model) {
 			//상품상세 중간의 사진 등 가져옴
 			CampusBoardVO con=service.viewProductcontent(p_number);
 			
+<<<<<<< HEAD
 			//경로 설정
 			for(CampusAttachFileDTO dto:con.getAttachList()) {
 				log.info(dto.getA_path());
 				dto.setA_path(dto.getA_path().replaceAll("\\\\", "\\\\\\\\"));
 			}
+=======
+			String p_option=vo.getP_option();
+			List<CampusProductOptionVO> option=service.optionlist(p_option);
+			for(CampusProductOptionVO op:option) {
+				op.getPo_option1();
+				op.getPo_option2();
+				op.getPo_option3();
+			}
+			//ㄴ리스트배열해서,,?
+>>>>>>> refs/remotes/origin/del
 			
 			
 			
+<<<<<<< HEAD
 			//List<CampusAttachFileDTO> attachList = service.getAttachList(p_number);
 
 			//상품 후기(+별점)와 질문
@@ -193,6 +225,20 @@ public void catelist(String pc_code,String sort,Model model) {
 
 			log.info("뤼스트 :"+con);
 
+=======
+			List<CampusProductVO> product=service.viewProduct(p_number);
+			String imgurl="";
+			for(CampusProductVO detail:product) {
+				String test = detail.getUrllink();
+
+		            String path=detail.getA_path().replace("\\", "%5C");
+		            log.info("url 테스트중 : "+path);
+		            imgurl = "/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name();
+		            detail.setUrllink(imgurl);
+		            
+			}
+			model.addAttribute(cri);
+>>>>>>> refs/remotes/origin/del
 			
 			model.addAttribute("vo", vo);
 			
