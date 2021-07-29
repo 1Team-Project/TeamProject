@@ -86,9 +86,9 @@
 										<div class="price">
 											<div class="in_price">
 												<span class="selling">
-<%-- 												 <fmt:formatNumber value="${CartListVO.p_price * CartListVO.c_count}" pattern="###,###,###"></fmt:formatNumber> --%>
 												 <input type="hidden" value="${CartListVO.p_price}" name="price">
-												 <input type="text" readonly value="${CartListVO.p_price * CartListVO.c_count}" class="total" style="border:none; width:50px; height:50px;'">
+<%-- 												 <input type="hidden" value="${CartListVO.p_option}" name="option"> --%>
+												 <input type="text" readonly value="${CartListVO.p_price * CartListVO.c_count}" class="total" style="border:none; width:50px; height:50px; text-align:center; font-weight : 700;">
 												</span>
 												<span class="unit">원</span>
 											</div>
@@ -119,11 +119,10 @@
 						</dl>
 					</div>
 					<div class="btn_submit">
-						
 						<input type="hidden" name="userid" id="userid" value="<sec:authentication property="principal.campusUser.u_userid"/>">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						
-						<button type="submit" class="btn btn-primary">구매하기</button>
+						<button type="submit" class="btn btn-primary" onclick="location.href='/payment/paymentpage'">구매하기</button>
 						<button type="button" class="btn btn-secondary"
 							onclick="location.href='/product/productlist'">상품 목록보기</button>
 

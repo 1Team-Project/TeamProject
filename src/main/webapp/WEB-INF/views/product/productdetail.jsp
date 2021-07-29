@@ -62,10 +62,10 @@
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/choices.png">&nbsp;${vo.p_option}선택</th>
-							<td><select>
+							<td><select name="option">
 									<option value="${vo.po_option1}" class="option">${vo.po_option1}</option>
-									<option value="${vo.po_option1}" class="option">${vo.po_option2}</option>
-									<option value="${vo.po_option1}" class="option">${vo.po_option3}</option>
+									<option value="${vo.po_option2}" class="option">${vo.po_option2}</option>
+									<option value="${vo.po_option3}" class="option">${vo.po_option3}</option>
 							</select>
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
@@ -394,7 +394,7 @@
 		var p_number = $("#p_number").val();
 		var c_count = $(".inp").val();
 		var userid = $("#userid").val();
-		var option = $(".option").val();
+		var option = $("select[name='option']").val();
 
 		var data = {
 			p_number : p_number,

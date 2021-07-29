@@ -198,16 +198,19 @@ $(function(){
 //    var rows = $(".textcenter1").val("td:eq(5)");
 //    console.log(rows);	
 
-$(".textcenter1 tr").each(function(){
 	var sum = 0;
+	var count = $(".textcenter1 tr").length;
+$(".textcenter1 tr").each(function(){
 	var data= $("td:eq(5)",this).text();
 	
 	sum += Number(data);
 	
+	
 	console.log(sum);
+	console.log(count);
 	
 })
-
+$(".avg").val(sum/count);
 
     // tr만큼 루프돌면서 컬럼값 접근
 //    for( var r=0; r<rows.length; r++ ){
