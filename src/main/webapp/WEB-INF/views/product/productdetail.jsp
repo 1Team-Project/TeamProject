@@ -182,7 +182,7 @@
 													
 														<td>${r.rownum}</td>
 														<td>${r.b_sort}</td>
-														<td><a href="#" class="blacktext hoverthema">${r.b_title}</a></td>
+														<td><a href="${r.b_no}" class="blacktext hoverthema clickview">${r.b_title}</a></td>
 														<td>${r.b_writer}</td>
 														<td>
 														
@@ -209,7 +209,7 @@
 											</table>
 											<div class="row">
 												<div class="col-md-12 mb-3">
-													<button class="btn btn-primary float-end">글 쓰기</button>
+													<button class="btn btn-primary float-end" onclick="location.href='/board/write'">글 쓰기</button>
 													<button class="btn btn-primary float-end" onclick="location.href='/board/list'">전체 후기 보기</button>
 												</div>
 											</div>
@@ -255,7 +255,7 @@
 														<c:forEach var="q" items="${question}">
 															<td>${q.rownum+1}</td>
 															<td>${q.b_sort}</td>
-															<td><a href="#" class="blacktext hoverthema">${q.b_title}</a></td>
+															<td><a href="${q.b_no}" class="blacktext clickview">${q.b_title}</a></td>
 															<td>${q.b_writer}</td>
 															<td>
 														
@@ -280,8 +280,8 @@
 												</table>
 												<div class="row">
 													<div class="col-md-12 mb-3">
-														<button class="btn btn-primary float-end" >글 쓰기</button>
-														<button class="btn btn-primary float-end" id="btn3" >전체 후기
+														<button class="btn btn-primary float-end" onclick="location.href='/board/write'">글 쓰기</button>
+														<button class="btn btn-primary float-end" id="btn3" onclick="location.href='/board/list'" >전체 후기
 															보기</button>
 													</div>
 												</div>
@@ -337,8 +337,14 @@
 			</div>
 		</div>
 	</div>
-
-
+<form action="list" method="get" id="actionForm">	
+		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
+		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
+		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
+	</form>   
+<script>
+let result='${result}';
+</script>
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"
 	integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 	crossorigin="anonymous"></script>

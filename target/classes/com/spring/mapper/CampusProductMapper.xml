@@ -131,7 +131,7 @@
 		<select id="selectReview" resultType="com.spring.domain.CampusBoardVO">
 			select * 
 			from (select /*+INDEX_DESC(campus_board campus_board)*/ 
-					rownum rn,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+					rownum rn,b_no,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
 					from campus_board 
 					where b_sort='후기')pb 
 			where pb.p_number=#{p_number}
@@ -140,7 +140,8 @@
 	<!-- 상품조회시 질문 연결 -->
 		<select id="selectq" resultType="com.spring.domain.CampusBoardVO">
 			select * 
-			from (select rownum rn,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+			from (select /*+INDEX_DESC(campus_board campus_board)*/ 
+				 rownum rn,b_no,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
 					from campus_board 
 					where b_sort='질문')pb 
 			where pb.p_number=#{p_number}
@@ -152,8 +153,8 @@
 	<!-- 관리자 권한 -->
 	<!-- 상품 추가 -->
 		<insert id="insertProduct">
-			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code)
-			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code})
+			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code,p_shippingfee)
+			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code},3000)
 		</insert>
 	<!-- 상품 삭제 -->
 		<delete id="deleteProduct">

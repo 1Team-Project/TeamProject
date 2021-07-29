@@ -37,6 +37,7 @@ public class ProductController {
 	@Autowired
 	private CampusProductService service;
 	
+	@Autowired
 	private CampusBoardService board;
 
 	//상품 리스트 전체 나열 + best3까지

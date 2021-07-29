@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -157,15 +158,15 @@ public class BoardController {
 		}
 		
 		//댓글 관련
-		List<CampusReplyVO> replyVO = reply.list(r_page, b_no);
+//		List<CampusReplyVO> replyVO = reply.list(r_page, b_no);
 
-		int countreply = reply.getCountByBno(b_no);
-		CampusReplyPageVO campusReplyPageVO = new CampusReplyPageVO(r_page, countreply);
+//		int countreply = reply.getCountByBno(b_no);
+//		CampusReplyPageVO campusReplyPageVO = new CampusReplyPageVO(r_page, countreply);
 		
 		//모델에 값 등록
 		model.addAttribute("campusVO", campusVO);
-		model.addAttribute("replyVO", replyVO);
-		model.addAttribute("campusReplyPageVO", campusReplyPageVO);
+//		model.addAttribute("replyVO", replyVO);
+//		model.addAttribute("campusReplyPageVO", campusReplyPageVO);
 		model.addAttribute("r_page",r_page);
 		
 	}
@@ -262,57 +263,52 @@ public class BoardController {
 	}
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replyadd")
-	public String replyadd(int b_no, int b_views, CampusReplyVO vo, CampusCriteria cri) {
+	@ResponseBody
+	public String replyadd(CampusReplyVO vo) {
 		
 		log.info("※※※※※ post replyadd ※※※※※");  
+
+		log.info("댓글 추가 테스트 : "+vo);
 		
 		//댓글 등록 성공시
 		if(reply.insert(vo)) {
 			
-			int replycnt = reply.getCountByBno(b_no);
+			int replycnt = reply.getCountByBno(vo.getB_no());
 			
-			service.replyadd(b_no, replycnt);
-	
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&r_page=1&b_views="+b_views+"&b_no="+b_no;
-		}else {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&r_page=1&b_views="+b_views+"&b_no="+b_no;
+			if(service.replyadd(vo.getB_no(), replycnt)) {
+				return "OK";
+			}else {
+				return "NO";				
+			}
 		}
-		
+		return "NO";
 	}
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replymodify")
-	public String replymodify(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
+	@ResponseBody
+	public String replymodify(CampusReplyVO vo) {
 		
 		log.info("※※※※※ post replymodify ※※※※※");  
 		
 		//댓글 수정 요청
 		if(reply.update(vo)) {
-
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
-		}else {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+			return "OK";
 		}
-		
+		return "NO";
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/replyremove")
-	public String replyremove(int b_no, int b_views, int r_page, CampusReplyVO vo, CampusCriteria cri) {
+	@ResponseBody
+	public String replyremove(CampusReplyVO vo) {
 		
 		log.info("※※※※※ post replyremove ※※※※※");  
 		
 		//댓글 삭제 요청
 		if(reply.delete(vo.getR_no())) {
-			
-			int replycnt = reply.getCountByBno(b_no);
-			
-			service.replyadd(b_no, replycnt);
-
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
-		}else {
-			return "redirect:view?sort="+cri.getSort()+"&keyword="+cri.getKeyword()+"&page="+cri.getPage()+"&b_views="+b_views+"&b_no="+b_no+"&r_page="+r_page;
+			return "OK";
 		}
-		
+		return "NO";
 	}
 	
 	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
@@ -322,52 +318,69 @@ public class BoardController {
 	}
 	
 	   //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-	   @PostMapping("/sellwrite")
-	   public String sellwritePost(
+	@PostMapping("/sellwrite")
+	public String sellwritePost(
 	         
+			@RequestParam("p_numbers") int p_numbers,
+			
 	         @RequestParam("p_name") String p_name, 
-	         @RequestParam("p_number") int p_number, 
 	         @RequestParam("p_price") int p_price, 
 	         @RequestParam("pc_code") String pc_code, 
 	         @RequestParam("p_stock") int p_stock, 
-	         @RequestParam("p_manufact") String p_manufact, 
+	         @RequestParam("p_manufact") String p_manufact,
 	         
-	         CampusProductOptionVO voo, CampusBoardVO vob, RedirectAttributes rttr) {
+	         @RequestParam("po_optiontitle") String po_optiontitle,
+	         @RequestParam("po_option1") String po_option1,
+	         @RequestParam("po_option2") String po_option2,
+	         @RequestParam("po_option3") String po_option3,
+	         	         
+	         CampusBoardVO vob,
+	         
+	         RedirectAttributes rttr) {
 	      
 	      CampusProductVO vo = new CampusProductVO();
 	      vo.setP_name(p_name);
-	      vo.setP_number(p_number);
+	      vo.setP_number(p_numbers);
 	      vo.setP_price(p_price);
 	      vo.setPc_code(pc_code);
 	      vo.setP_stock(p_stock);
 	      vo.setP_manufact(p_manufact);
 	      
-	      log.info("※※※※※ post sellwrite ※※※※※"); 
+	      vob.setP_number(p_numbers);
+
+	      log.info("※※※※※ post sellwrite ※※※※※");
 		
 		//po_optiontitle 에 값이 들어왔을때 (productoption 테이블의 optiontitle)
 		//product 의 option에는 값이 안들어오기 때문에, 강제로 값을 집어넣어줌.
-		if (voo.getPo_optiontitle() != null && voo.getPo_optiontitle() != "") {
-			vo.setP_option(voo.getPo_optiontitle());
+		if (po_optiontitle != null && !po_optiontitle.isEmpty()) {
+			vo.setP_option(po_optiontitle);
 		//보험처리 (이상하게 적었을 경우)
-		}else if(voo.getPo_option1() != null || voo.getPo_option2() != null || voo.getPo_option3() != null){
-			voo.setPo_option1("-");
-			voo.setPo_option2("-");
-			voo.setPo_option3("-");
+		}else if(po_option1 != null || po_option2 != null || po_option3 != null){
+			po_option1 = "-----";
+			po_option2 = "-----";
+			po_option3 = "-----";
 		}
-		if (voo.getPo_optiontitle() == null || voo.getPo_optiontitle() == "") {
-			vo.setP_option("-");
-			voo.setPo_optiontitle("-");
+		if (po_optiontitle == null || po_optiontitle.isEmpty()) {
+			vo.setP_option("-----");
+			po_optiontitle = "-----";
 		}
 		//보험처리 (null 못받아올 경우 대비)
-		if (voo.getPo_option1() == null && voo.getPo_option1() == "") {
-			voo.setPo_option1("-");
+		if (po_option1 == null || po_option1 == "") {
+			po_option1 = "-----";
 		}
-		if (voo.getPo_option2() == null && voo.getPo_option2() == "") {
-			voo.setPo_option2("-");
+		if (po_option2 == null || po_option2 == "") {
+			po_option2 = "-----";
 		}
-		if (voo.getPo_option3() == null && voo.getPo_option3() == "") {
-			voo.setPo_option3("-");
+		if (po_option3 == null || po_option3 == "") {
+			po_option3 = "-----";
 		}
+		
+	      CampusProductOptionVO voo = new CampusProductOptionVO();
+	      voo.setP_number(p_numbers);	      
+	      voo.setPo_optiontitle(po_optiontitle);
+	      voo.setPo_option1(po_option1);
+	      voo.setPo_option2(po_option2);
+	      voo.setPo_option3(po_option3);
 		
 		//값들이 정상적으로 들어왔나 확인용
 		log.info("productVO 테스트 : "+vo);
@@ -433,6 +446,22 @@ public class BoardController {
 		
 		
 	}
+	
+	
+	@GetMapping("/pages/{b_no}/{r_page}")
+	public ResponseEntity<CampusReplyPageVO> getList(@PathVariable("b_no")int b_no,@PathVariable("r_page")int r_page){
+		log.info("댓글 가져오기 "+b_no+" page "+r_page);
+		
+		int total = reply.getCountByBno(b_no);
+		List<CampusReplyVO> list = reply.list(r_page, b_no);
+		
+		CampusReplyPageVO vo = new CampusReplyPageVO(total,list);
+		
+		return new ResponseEntity<CampusReplyPageVO>(vo,HttpStatus.OK);
+	
+	}
+
+	
 	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value="/checkpnumber", produces="application/text;charset=utf8", method = RequestMethod.POST)

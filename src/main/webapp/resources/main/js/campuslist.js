@@ -15,7 +15,7 @@ $(function(){
 		actionForm.submit();
 	})
 
-	//게시글 제목 클릭시
+	//후기나 질문 게시글 제목 클릭시 해당 글로 이동
 	$(".clickview").click(function(e){
 		e.preventDefault(); //타이틀 a 속성 막기
 		
