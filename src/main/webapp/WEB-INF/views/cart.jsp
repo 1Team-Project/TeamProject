@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@include file="../design/header.jsp"%>
@@ -26,12 +27,10 @@
 						<script>
 						$("#delete").click(function () {
 							var confirm_val = confirm("정말 삭제하시겠습니까?");
-
 							if (confirm_val) {
 								var checkArr = new Array();
 								
 								console.log($("input[class='checkone']:checked"));
-
 								$("input[class='checkone']:checked").each(function (idx,item) {
 									//item.data("cartnum");
 									

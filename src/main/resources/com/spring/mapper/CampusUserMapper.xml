@@ -24,10 +24,6 @@
 		select u_userid from CAMPUS_USER where u_userid = #{u_userid}
 	</select>
 	
-	<!-- 탈퇴1 - 권한 제거 : leave -->
-	<delete id="leaveAuth">
-		delete from CAMPUS_USER_AUTH where u_userid = #{u_userid}
-	</delete>
 	<!-- 탈퇴2 - 정보 제거: leave -->
 	<delete id="leaveCamp">
 		delete from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
@@ -38,18 +34,13 @@
 		select count(*) from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password} 
 	</select>
 	
-	<!-- 비밀번호 변경 : update -->
+	<!-- 정보 변경 : update -->
 	<update id="update">
-		update CAMPUS_USER set u_password = #{new_password} where u_userid = #{u_userid} and u_password = #{u_password}  
+		<!-- update CAMPUS_USER set u_password = #{new_password} where u_userid = #{u_userid} and u_password = #{u_password} -->
+		<!-- update CAMPUS_USER set u_email = #{u_email}, u_phone = #{u_phone}, u_address = #{u_address} where u_userid = #{u_userid} and u_password = #{u_password} -->
+		update CAMPUS_USER set u_password = #{u_password}, u_email = #{u_email}, u_phone = #{u_phone}, u_address = #{u_address} where u_userid = #{u_userid}
 	</update>
 	
-	<!-- 회원정보 수정 -->
-	<update id="userUpdate">
-		UPDATE CAMPUS_USER
-		u_password = #{new_password},
-		u_username = #{u_username}
-		WHERE u_userid = #{u_userid}
-	</update>
 	
 	<resultMap type="com.spring.domain.CampusUserVO" id="campusUserMap">
 		<id property="u_userid" column="u_userid"/>
@@ -72,5 +63,11 @@
 		from campus_user camp left outer join campus_user_auth auth on camp.u_userid = auth.u_userid
 		where camp.u_userid = #{u_userid}
 	</select>
+	
+	<select id="userList" resultMap="campusUserMap">
+		select camp.u_userid, u_username, u_email, u_phone, u_address, u_auth
+		from campus_user camp left outer join campus_user_auth auth on camp.u_userid = auth.u_userid 
+	</select>
+	
 
 </mapper>

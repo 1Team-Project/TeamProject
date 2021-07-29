@@ -25,6 +25,14 @@ public class RegisterController {
 	@Inject
 	BCryptPasswordEncoder pwdEncoder;
 	
+	
+	@GetMapping("/login2")
+	public String login2Get() {
+		log.info("아이디 비밀번호 찾기 페이지");
+		return "login2";
+	}
+	
+	
 	// 회원가입 버튼 누를 시 이동
 	@PostMapping("/agree")
 	public void agreeGet() {

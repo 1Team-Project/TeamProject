@@ -151,7 +151,7 @@
 							<div class="description">
 								<div class="d_wrapper">
 									<strong class="d_title"> <span>${vo.p_name}</span> <span
-										class="d_subtitle">[디테일설명같은거 추가?!@!]</span>
+										class="d_subtitle">[${vo.p_manufact}]</span>
 									</strong>
 									<p class="descript">${con.b_content}</p>
 
@@ -390,7 +390,11 @@
 		var p_number = $("#p_number").val();
 		var c_count = $(".inp").val();
 		var userid = $("#userid").val();
+<<<<<<< HEAD
 		var option = $("select[name='option']").val();
+=======
+		var option = $(".option").val();
+>>>>>>> b1afeac01614d6eeba44b90b0ffecd1b7576c409
 		var data = {
 			p_number : p_number,
 			c_count : c_count,

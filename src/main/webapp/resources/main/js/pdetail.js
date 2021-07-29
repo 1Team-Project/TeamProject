@@ -205,11 +205,65 @@ $(".textcenter1 tr").each(function(){
 	
 	sum += Number(data);
 	
+////<<<<<<< HEAD
+	var data = {
+		pnum: pnum,
+		cartStock: cartStock
+	};
+
+	$.ajax({
+		url: "/cart",
+		type: "post",
+		data: data,
+		success: function() {
+			alert("장바구니에 담았습니다.");
+				$(".inp").val("1");
+			},
+			error:function(){
+				alert("카트 담기 실패");
+			}
+			});
+		});
+		
+		
+		//게시글 제목 클릭시
+	$(".clickview").click(function(e){
+		e.preventDefault(); //타이틀 a 속성 막기
+		
+		//actionForm에 bno 값을 추가하여 actionForm 보내기
+		let bnoval = $(this).attr('href');
+		console.log(bnoval)
+		
+		$.ajax({
+			url:'/board/viewadd', //도착지
+			type:'post',
+			processData:false,
+			contentType:false,
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
+			data:bnoval,
+			success:function(result){
+				console.log("아작스성공"+result);
+				actionForm.append("<input type='hidden' name='b_views' value='"+result+"'>");
+				actionForm.append("<input type='hidden' name='b_no' value='"+bnoval+"'>");
+				actionForm.append("<input type='hidden' name='r_page' value='1'>");
+				actionForm.attr('action','view');
+				actionForm.submit();
+			},
+			error:function(xhr,status,error){
+				console.log("아작스에러");
+			}
+		})
+		
+	})
+//=======
+//>>>>>>> 6b7d008aa558c87c3ab6d8c775043c44c9240c10
 	
 	console.log(sum);
 	console.log(count);
 	
-})
+//})
 $(".avg").val(sum/count);
 
     // tr만큼 루프돌면서 컬럼값 접근

@@ -10,6 +10,12 @@
 				<label for="u_userid" class="sr-only">로그인</label>
 				<input type="text" id="u_userid" name="u_userid" class="form-control-login" value="${user.campusUser.u_userid}" readonly/>
 			</div> 
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+				<div class="login-margin">
+					<label for="u_userid" class="sr-only">로그인</label>
+					<input type="text" id="u_userid_A" name="u_userid_A" class="form-control-login" value="${userS.u_userid}" readonly/>
+				</div> 
+			</sec:authorize>
 			<div class="login-margin">
 				<label for="u_password" class="sr-only">비밀번호</label>
 				<input type="password" id="u_password" name="u_password" class="form-control-login" placeholder="비밀번호를 입력해 주세요" />
@@ -19,7 +25,10 @@
 					회원탈퇴시 어쩌구저쩌구
 				</label>
 			</div>
-			<button class="btn btn-lg btn-danger btn-block" id="leave" type="button">회원탈퇴</button>
+			<sec:authorize access="hasRole('ROLE_ADMIN')">
+            	<button class="btn btn-lg btn-danger btn-block" id="leaveCo" type="button">회원 강제 탈퇴</button>
+            </sec:authorize>
+           	<button class="btn btn-lg btn-danger btn-block" id="leave" type="button">회원탈퇴</button>
 			<button class="btn btn-lg btn-primary btn-block" id="le_cancel"type="button" >취소</button>
 			
 			<div class="error-message">
@@ -53,18 +62,51 @@
 					   xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 				},
 				success: function(data){
-					alert(data);
+					/* alert(data); */
 					if(data == 0){
 						alert("비밀번호를 확인하세요");
 						return false;
 					} else{
 						if(confirm("회원탈퇴하시겠습니까?")){
 							$("#formleave").submit();
+							alert("탈퇴되었습니다.");
 						}
 					}
 				}
 			});
-		})
+		});
+		
+		$("#leaveCo").click(function(){
+			if($("#u_userid_A").val()==""){
+				alert("아이디를 확인하세요");
+				return false;
+			}
+			var u_userid = $("#u_userid_A").attr('value');
+			$.ajax({
+				url: "/idCheck",
+				type: "POST",
+				dataType: "json",
+				data:{
+					u_userid : u_userid
+				},
+ 				beforeSend:function(xhr){
+					   xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+				},
+				success: function(data){
+					if(data == 0){
+						alert("오류 발생");
+						return false;
+					} else{
+						if(confirm("회원을 강제로 삭제하시겠습니까?")){
+							$('input[name=u_userid]').attr('value', u_userid);
+							$("#formleave").attr("action", "leaveCo").submit();
+							alert("탈퇴되었습니다.");
+							
+						}
+					}
+				}
+			});
+		});
 	})
 	</script>
 <%@include file="../design/footer.jsp" %>

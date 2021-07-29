@@ -18,7 +18,7 @@ public class CartPaymentVO {
 
 	//결제용
 	private List<CartPaymentVO> cartVO;
-	private String po_option_vo;
+	private String c_option;
 	private String c_privateCode;
 	
 	//사진경로

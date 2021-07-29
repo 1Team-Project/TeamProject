@@ -42,6 +42,7 @@ $(function() {
 		goForm.attr("action","/product/catelist");
 		//console.log(catelist);
 		goForm.submit();
+
 	})
 	
 	

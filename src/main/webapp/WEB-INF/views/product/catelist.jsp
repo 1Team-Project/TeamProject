@@ -118,6 +118,7 @@
 		<input type="hidden" name="page" value="${cri.page}" />
 	
 	</form> --%>
+
         </div>
 
 <script>

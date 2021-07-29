@@ -184,12 +184,13 @@
 		    			</c:choose>
 		    			
 							<sec:authorize access="isAuthenticated()">
-								<a href="/cart?userid=" class="d-flex align-items-center justify-content-center m-1">
-								<img src="/resources/main/images/icon_login.png"></a>
+							<sec:authentication property="principal" var="user"/>
+								<a href="/cart?u_userid=${user.username}" class="d-flex align-items-center justify-content-center m-1">
+								<img src="/resources/main/images/icon_cart.png"></a>
 			    			</sec:authorize>
 			    			<sec:authorize access="isAnonymous()">
 			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
-			    					<img src="/resources/main/images/icon_login.png">
+			    					<img src="/resources/main/images/icon_cart.png">
 			    				</a>
 			    			</sec:authorize>
 		    		</p>
@@ -246,6 +247,7 @@
 
 
 </form>
+<<<<<<< HEAD
 	
 
 		<form action="" method="get" id="actionForm">
@@ -262,7 +264,12 @@
 <%-- 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" />  --%>
 <%-- 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" /> --%>
 <!-- 		</form> -->
-		
+
+		<form action="/logoutForm" method="post" id="logoutForm">
+			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</form>
+
+
 
 		<form action="" method="get" id="goForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
@@ -275,14 +282,6 @@
 			<input type="hidden" name="page" value="1" />
 		</form>  
 
-
-	
-	<script>
-		let result='${result}';
-		
-		var csrfHeaderName = "${_csrf.headerName}";
-		var csrfTokenValue = "${_csrf.token}";
-	</script>
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

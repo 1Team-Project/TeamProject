@@ -3,7 +3,7 @@
 <mapper namespace="com.spring.mapper.CampusPaymentMapper">
 
 	<delete id="cart_delete">
-		delete from campus_cart where u_userid = #{u_userid}
+		delete from campus_cart where u_userid = #{u_userid} and c_cartnumber = #{c_cartnumber}
 	</delete>
 
 	<delete id="payment_delete">
@@ -13,10 +13,23 @@
 	<delete id="payment_delete2">
 		delete from campus_order where o_number = #{o_number}
 	</delete>
+	
+	
+	<select id="cancel_number" resultType="com.spring.domain.CampusOrderVO">
+		select o_number from campus_order where success_code = #{success_code}
+	</select>
+	
+	<delete id="pay_cancel">
+		delete from campus_order where o_number = #{o_number}
+	</delete>
+	
+	<delete id="pay_cancel_detail">
+		delete from campus_order_detail where o_number = #{o_number}
+	</delete>
 
 	<insert id="payment_add">
-		insert into campus_order(o_number, u_userid, o_address1, o_address2, o_address3, o_address4, o_name, o_phone, o_sysdate, o_ordercode, total_pay, total_count) 
-		values(CAMPUS_ORDER_SEQUENCE.nextval, #{u_userid}, #{o_address1}, #{o_address2}, #{o_address3}, #{o_address4}, #{o_name}, #{o_phone}, sysdate, #{o_ordercode}, #{total_pay}, #{total_count})
+		insert into campus_order(o_number, u_userid, o_address1, o_address2, o_address3, o_address4, o_name, o_phone, o_sysdate, o_ordercode, total_pay, total_count, success_code) 
+		values(CAMPUS_ORDER_SEQUENCE.nextval, #{u_userid}, #{o_address1}, #{o_address2}, #{o_address3}, #{o_address4}, #{o_name}, #{o_phone}, sysdate, #{o_ordercode}, #{total_pay}, #{total_count}, #{success_code})
 	</insert>
 	
 	<select id="o_number" resultType="com.spring.domain.CampusOrderVO">
@@ -29,12 +42,13 @@
 	</insert>
 	
 	<select id="listpaymentselect" resultType="com.spring.domain.CampusOrderVO">
-		select * from campus_order where o_ordercode = #{o_ordercode}
+		select * from campus_order where u_userid = #{u_userid}
 	</select>
 	
 	<select id="listpaymentselectdetail" resultType="com.spring.domain.CampusOrderDetailVO">
 		select * from campus_order_detail where o_number = #{o_number}
 	</select>
+	
 	
 	
 </mapper>

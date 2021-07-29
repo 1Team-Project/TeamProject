@@ -55,7 +55,7 @@
 		
 		<include refid="criteria"></include>
 		
-		b_no > 0
+		b_no > 0 and b_sort != '상품'
 	</select>
 
 	

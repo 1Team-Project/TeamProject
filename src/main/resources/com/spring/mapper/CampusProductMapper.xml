@@ -159,8 +159,6 @@
 		</select>	
 	
 	
-	
-	
 	<!-- 관리자 권한 -->
 	<!-- 상품 추가 -->
 		<insert id="insertProduct">
@@ -178,5 +176,5 @@
 			set p_price=#{p_price}, p_stock=#{p_stock}
 			where p_number=#{p_number}
 		</update>
-	
+
 </mapper>

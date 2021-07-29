@@ -26,7 +26,9 @@ public interface CampusProductService {
 	public List<CampusBoardVO> selectq(int p_number);
 	
 	public int total(CampusCriteria cri);
+
 	public int total2(CampusCriteria cri);
+
 	
 	public List<CampusAttachFileDTO> getImg();
 
@@ -39,9 +41,11 @@ public interface CampusProductService {
 	
 	//카테고리목록뿌리기
 	public  List<CampusProductCategoryVO> category(CampusCriteria cri);
+
 	//옵션목록뿌리기
 	public List<CampusProductOptionVO> optionlist(String op_optiontitle);
 	
 	
 	public List<CampusAttachFileDTO> getAttachList(int p_number);
+
 }
