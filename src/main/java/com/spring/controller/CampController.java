@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusCampingjangVO;
 import com.spring.service.CampusBoardService;
-import com.spring.service.CampusCampingjangService;
+//import com.spring.service.CampusCampingjangService;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

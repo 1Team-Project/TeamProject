@@ -108,7 +108,7 @@ public class ProductController {
 		//카테고리값넘기기
 //		List<CampusProductCategoryVO> category = service.category(cri);
 //		model.addAttribute("category",category);
-//		log.info("캍텍ㄱ고리"+category);
+//		log.info("카테고리"+category);
 		String imgurl="";
 		CampusCriteria cri=new CampusCriteria();
 		cri.setPage(1);
@@ -155,30 +155,30 @@ public class ProductController {
 			
 			CampusProductVO vo=service.viewProduct(p_number); // 어태치랑 조인해서 xml하면 vo가 두개넘어감 사진첨부2개하면
 			
-//			String p_option=vo.getP_option();
-//			List<CampusProductOptionVO> option=service.optionlist(p_option);
-//			for(CampusProductOptionVO op:option) {
-//				op.getPo_option1();
-//				op.getPo_option2();
-//				op.getPo_option3();
-//			}
+			String p_option=vo.getP_option();
+			List<CampusProductOptionVO> option=service.optionlist(p_option);
+			for(CampusProductOptionVO op:option) {
+				op.getPo_option1();
+				op.getPo_option2();
+				op.getPo_option3();
+			}
 			//ㄴ리스트배열해서,,?
 			
 			
 			List<CampusAttachFileDTO> attachList = service.getAttachList(p_number);
 			
-//			List<CampusProductVO> product=service.viewProduct(p_number);
-//			String imgurl="";
-//			for(CampusProductVO detail:product) {
-//				String test = detail.getUrllink();
-//
-//		            String path=detail.getA_path().replace("\\", "%5C");
-//		            log.info("url 테스트중 : "+path);
-//		            imgurl = "/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name();
-//		            detail.setUrllink(imgurl);
-//		            
-//			}
-//			model.addAttribute(cri)
+			List<CampusProductVO> product=service.viewProduct(p_number);
+			String imgurl="";
+			for(CampusProductVO detail:product) {
+				String test = detail.getUrllink();
+
+		            String path=detail.getA_path().replace("\\", "%5C");
+		            log.info("url 테스트중 : "+path);
+		            imgurl = "/display?fileName="+path+"%2F"+detail.getA_uuid()+"_"+detail.getA_name();
+		            detail.setUrllink(imgurl);
+		            
+			}
+			model.addAttribute(cri);
 			
 //			model.addAttribute("option", option);
 //			log.info("옵셔언"+option);
