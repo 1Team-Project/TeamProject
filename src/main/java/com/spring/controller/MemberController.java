@@ -115,6 +115,71 @@ public class MemberController {
 		return "false";
 	}
 	
+	// 아이디 찾기
+	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+	@PostMapping("/findUser")
+	public String findUser(CampusUserVO vo) {
+		log.info("회원 이름 검사 : " + vo.getU_username());
+		log.info("회원 번호 검사 : " + vo.getU_phone());
+		
+		CampusUserVO vo1 = service.findId(vo);
+
+		log.info("값 확인 : " + vo1);
+		if(vo1!=null) {
+			return "true";
+		}
+		return "false";
+	}
+	
+	@PostMapping("/printId")
+	public String printId(CampusUserVO vo, Model model) {
+		log.info("printId 확인");
+		log.info("회원 이름 검사 : " + vo.getU_username());
+		log.info("회원 번호 검사 : " + vo.getU_phone());
+		
+		CampusUserVO vo1 = service.findId(vo);
+		
+		model.addAttribute("findId", vo1);
+		
+		return "login2";
+		
+	}
+	
+	// 비밀번호 찾기
+	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+	@PostMapping("/findUserPw")
+	public String findUserPw(CampusUserVO vo) {
+		log.info("회원 아이디 검사 : " + vo.getU_userid());
+		log.info("회원 이름 검사 : " + vo.getU_username());
+		log.info("회원 번호 검사 : " + vo.getU_phone());
+		
+		CampusUserVO vo1 = service.findPw(vo);
+
+		log.info("값 확인 : " + vo1);
+		if(vo1!=null) {
+			return "true";
+		}
+		return "false";
+	}
+	
+	@PostMapping("/changePw")
+	public String printPw(CampusUserVO vo, HttpSession session, Model model) {
+		log.info("printPw 확인");
+		
+		log.info("회원 아이디 검사 : " + vo.getU_userid());
+		log.info("회원 이름 검사 : " + vo.getU_username());
+		log.info("회원 번호 검사 : " + vo.getU_phone());
+		
+		CampusUserVO vo1 = service.findId(vo);
+		
+		model.addAttribute("findId", vo1);
+		
+		return "/changePw";
+		
+	}
+	
+	
+	
 	// 로그인 가능 검사
 	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
 	@PostMapping("/checkLogin")
@@ -191,6 +256,29 @@ public class MemberController {
 	}//로그인 정보의 로그인, 비밀번호는 가져옴ㅇ
 	
 	
+	// 회원정보수정  - 비밀번호만 변경
+	@PostMapping("/updatePw")
+	public String updatePw(CampusUserVO vo, HttpSession session, RedirectAttributes rttr) {
+		log.info("값 확인 : " + vo);
+		try {
+			String pwd = vo.getU_password();
+			pwd = pwdEncoder.encode(pwd);
+			vo.setU_password(pwd);
+			
+			CampusUserVO vo1 = service.updatePw(vo);
+			
+			if(vo1 != null) {
+				return "redirect:login";
+			} else {
+				return "login2";
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+			return "AccessDenied";
+		}
+
+	}
+		
 	//회원정보수정  - 비밀번호, 주소, 번호, 이메일 수정할 수 있어야 / 가져오는건 비밀번호 제외 다
 	@PostMapping("/myModify")
 	public String myModify(CampusUserVO vo, HttpSession session,RedirectAttributes rttr, Authentication Authentication) {
@@ -287,7 +375,6 @@ public class MemberController {
 	}
 	
 	
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@ResponseBody
 	@PostMapping("/idCheck")
 	public int idCheck(CampusUserVO vo, HttpSession session, Authentication authentication) {

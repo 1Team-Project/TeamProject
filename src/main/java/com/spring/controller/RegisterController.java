@@ -8,6 +8,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.CampusUserVO;
@@ -34,7 +35,7 @@ public class RegisterController {
 	
 	
 	// 회원가입 버튼 누를 시 이동
-	@PostMapping("/agree")
+	@RequestMapping("/agree")
 	public void agreeGet() {
 		log.info("약관 동의 페이지 요청");
 	}

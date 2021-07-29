@@ -8,11 +8,14 @@ import com.spring.domain.CampusUserVO;
 public interface CampusUserService {
 	public boolean insert(CampusUserVO vo);
 	public CampusUserVO dupId(String u_userid);
+	public CampusUserVO findId(CampusUserVO vo);
+	public CampusUserVO findPw(CampusUserVO vo);
 	public CampusUserVO login(CampusUserVO vo);
 	public boolean leaveAuth(CampusUserVO vo);
 	public boolean leaveCamp(CampusUserVO vo);
 	public boolean leaveCampAdmin(CampusUserVO vo);
 	public boolean update(CampusUserVO vo);
+	public CampusUserVO updatePw(CampusUserVO vo);
 	public boolean userUpdate(CampusUserVO vo);
 	
 	public int pwdCheck(CampusUserVO vo);
