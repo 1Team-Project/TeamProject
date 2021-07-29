@@ -311,13 +311,13 @@ public class BoardController {
 		return "NO";
 	}
 	
-	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellwrite")
 	public void sellwrite() {
 		log.info("※※※※※ get sellwrite ※※※※※");
 	}
 	
-	   //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellwrite")
 	public String sellwritePost(
 	         
@@ -400,7 +400,7 @@ public class BoardController {
 		}
 
 	}
-	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellmodify")
 	public void sellmodify(int p_number, int b_no, Model model) {
 		log.info("※※※※※ get sellmodify ※※※※※");
@@ -411,7 +411,7 @@ public class BoardController {
 		model.addAttribute("campusBoardVO", campusBoardVO);
 		model.addAttribute("campusProductVO", campusProductVO);
 	}
-	//@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@PostMapping("/sellmodify")
 	public String sellmodifyPost(CampusProductVO vo) {
 		log.info("※※※※※ post sellmodify ※※※※※");

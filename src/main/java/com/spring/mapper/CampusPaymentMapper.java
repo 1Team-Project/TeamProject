@@ -18,4 +18,9 @@ public interface CampusPaymentMapper {
 	public int payment_add(CampusOrderVO vo);
 	public int payment_detail_add(CampusOrderDetailVO vo);
 
+	
+	public CampusOrderVO cancel_number(String success_code);
+	public int pay_cancel(int o_number);
+	public int pay_cancel_detail(int o_number);
+	
 }

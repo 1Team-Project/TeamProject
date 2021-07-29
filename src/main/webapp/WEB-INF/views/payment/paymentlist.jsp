@@ -18,9 +18,7 @@
 			
 			
 			<div class="col-md-10">
-			
-				<form action="/" method="post">
-			
+
 				<hr class="one" />
 				<div class="col-md-12"><h3 class="heading-section" style="font-family: naBrush;">결제 현황 페이지</h3></div>
 				<hr class="one" />
@@ -44,17 +42,16 @@
 					<!-- 상품 리스트 반복되는 부분 -->
 						<tr>
 							<td>
-								<img src="${vo.cartimg}" alt="" class="size200"/>
+								<img src="${vo.imgsrc}" alt="" class="size200"/>
 							</td>
-							<td class="textmiddle"><b>${vo.p_name}</b>
+							<td class="textmiddle"><b>${vo.o_name}</b>
 								<div>${option}</div>
 							</td>
-							<td class="textmiddle">총 ${total_count}개</td>
-							<td class="textmiddle">총 ${total_pay}원</td>
-							<td class="textmiddle"><button class="btn btn-primary cancel_btn">취소</button></td>
-							
+							<td class="textmiddle">총 ${vo.total_count}개</td>
+							<td class="textmiddle ${vo.success_code}">총 ${vo.total_pay}원</td>
+							<td class="textmiddle"><a class="btn btn-primary cancel_btn" href="${vo.success_code}">취소</a></td>
+	
 						</tr>
-
 					</c:forEach>
 
 					</tbody>
@@ -65,14 +62,19 @@
 				<button class="btn btn-primary float-end">메인으로 돌아가기</button>
 				
 				<!-- 유저정보 : 아이디, 주소, 전화번호, 이메일 -->
+				
 				<sec:authentication property="principal" var="user"/>
-				<input type="hidden" id="id" name="u_userid" value="${user.username}"/>
+				
+				<form action="/payment/paycancel" id ="cancel_form" method="post">
+					<input type="hidden" id="id" name="u_userid" value="${user.username}"/>				
+					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+				</form>
+				
 				<input type="hidden" id="total_pay" name="total_pay" value="${total_pay}"/>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				
 				<!-- <button type = "submit" class="btn btn-primary">submit</button> -->
 				
-			</form>
+
 			</div>
 			<div class="col-md-1"></div>
 
@@ -81,7 +83,10 @@
 	
 </div>
 </body>
-
+<script src="/resources/main/js/paymentlist.js"></script>
+<script>
+	var userid = ${user.username};
+</script>
 <!-- <script src="/resources/main/js/campuslist.js"></script> -->
 
 <%@include file="../../design/footer.jsp"%>

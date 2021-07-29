@@ -19,6 +19,7 @@ public class CampusOrderVO {
 	private String o_phone;
 	private String o_sysdate;
 	private String o_ordercode;
+	private String success_code;
 
 	private int total_pay;
 	private int total_count;

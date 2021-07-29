@@ -138,7 +138,9 @@ $(function(){
 	    	
 	    	alert("결제에 성공하셨습니다.");
 	    	var success_form = $("#success_form")
-	    	
+	    	var da = data.receipt_id;
+	    	var str = "<input type='hidden' name='success_code' value='"+da+"'>"
+	    	success_form.append(str);
 	    	success_form.submit();
 	    });
 	})

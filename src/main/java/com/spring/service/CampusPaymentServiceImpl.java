@@ -88,4 +88,30 @@ public class CampusPaymentServiceImpl implements CampusPaymentService {
 		return mapper.listpaymentselectdetail(o_number);
 	}
 
+	@Override
+	public CampusOrderVO cancel_number(String success_code) {
+
+		return mapper.cancel_number(success_code);
+	}
+
+	@Override
+	@Transactional
+	public boolean pay_cancel(int o_number) {
+
+		boolean result = false;
+		
+		if(mapper.pay_cancel_detail(o_number)>0?true:false) {
+			
+			result = mapper.pay_cancel(o_number)>0?true:false;
+		}
+		
+		return result;
+	}
+
+	@Override
+	public boolean pay_cancel_detail(int o_number) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
 }

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
+import org.apache.commons.io.IOUtils;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -12,11 +14,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.spring.domain.BootpayApi;
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusOrderDetailVO;
 import com.spring.domain.CampusOrderVO;
 import com.spring.domain.CartDummyVO;
 import com.spring.domain.CartPaymentVO;
+import com.spring.domain.bootpay.request.Cancel;
 import com.spring.mapper.CampusBoardAttachMapper;
 import com.spring.mapper.CartMapper;
 import com.spring.service.CampusPaymentService;
@@ -45,7 +49,7 @@ public class PaymentController {
 		log.info("※※※※※ get payment page ※※※※※"); 
 		
 		//아이디 넘겨와서 집어넣기
-		List<CartPaymentVO> list = cart.listPayment("user11");
+		List<CartPaymentVO> list = cart.listPayment("user12");
 		
 		int total_pay = 0;
 		int total_parcel = 0;
@@ -188,6 +192,7 @@ public class PaymentController {
 			vo.setD_count(ccou);
 			vo.setD_option(check.getC_option());
 			
+			
 			int money = Integer.parseInt(check.getMoney());
 			pvo.setP_number(pnum);
 			pvo.setP_price(pric);
@@ -227,12 +232,13 @@ public class PaymentController {
 		log.info("paylist 들어감?"+paylist);
 		log.info("order 들어옴?"+voo);
 		
-		boolean check1 = payment.cart_delete(voo.getU_userid(), voo.getO_number());
+		//boolean check1 = payment.cart_delete(voo.getU_userid(), voo.getO_number());
 		boolean check2 = payment.payment_add(voo, list);
 		
-		log.info("check 왜 성공안함?"+check1+" /// "+check2);
+		log.info("check 왜 성공안함? /// "+check2);
 		
-		if (check1 == true && check2 == true) {
+//		if (check1 == true && check2 == true) {
+		if (check2 == true) {
 			
 			model.addAttribute("detail",list);
 			model.addAttribute("list",paylist);
@@ -240,10 +246,10 @@ public class PaymentController {
 			model.addAttribute("total_count",total_count);
 			model.addAttribute("total_pay",total_money);
 			
-			return "/payment/paymentlist";
+			return "redirect:/";
 		}
 		
-		return "/";
+		return "redirect:/";
 	}
 	
 	
@@ -254,8 +260,9 @@ public class PaymentController {
 		
 		String imgurl = "";
 		String mainoption = "";
+		int total_pay = 0;
 		
-		List<CampusOrderVO> list =  payment.listpaymentselect("user11");
+		List<CampusOrderVO> list =  payment.listpaymentselect("user12");
 		
 		for(CampusOrderVO vo:list) {
 			
@@ -274,19 +281,53 @@ public class PaymentController {
 						imgurl = "/display?fileName="+path+"%2F"+topath.getA_uuid()+"_"+topath.getA_name();
 						mainoption = vovo.getD_option();
 						break;
+
 					}
 					
 				}
 				vo.setImgsrc(imgurl);
 				break;
 			}
+			total_pay += vo.getTotal_pay();
 		}
+		
+		log.info("결제 완료 리스트 왜 안뜸?"+list);
 		
 		model.addAttribute("list",list);
 		model.addAttribute("option",mainoption);
-		
+		model.addAttribute("total_pay",total_pay);
 	}
-	
+
+
+	@PostMapping("/paycancel")
+	public String paycancel(String u_userid, String success_code) throws Exception {
+		log.info("※※※※※ get paycancel page ※※※※※"); 
+		
+		BootpayApi api = new BootpayApi(
+		        "60fb7e1f238684001d0e5288",
+		        "TeEd0ouXs4qhxcW9Roh4amny7W56jScNHRnES2s96AE="
+		);
+		api.getAccessToken();
+
+		CampusOrderVO vo = payment.cancel_number(success_code);
+		payment.pay_cancel(vo.getO_number());
+		
+		
+		Cancel cancel = new Cancel();
+		cancel.receipt_id = success_code;
+		cancel.name = "관리자";
+		cancel.reason = "택배 지연에 의한 구매자 취소요청";
+
+		try {
+		    HttpResponse res = api.cancel(cancel);
+		    String str = IOUtils.toString(res.getEntity().getContent(), "UTF-8");
+		    System.out.println(str);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+		return "redirect:/payment/paymentlist?u_userid="+u_userid;
+	}
 
 //	@RequestMapping("/kakaopay.cls")
 //	@ResponseBody

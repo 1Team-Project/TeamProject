@@ -78,7 +78,9 @@
                
                 <div id="mp" class="table">
                     <ul>
-                        <button type="submit" class="btn btn-info" onclick="location.href='order'"><a href="/order">구매내역</a></button>
+                    <sec:authentication property="principal" var="user"/>
+
+                        <button type="button" class="btn btn-info" onclick="location.href='/payment/paymentlist?u_userid=${user.username}'">구매내역</button>
                        	<p></p>
                         <button type="submit" class="btn btn-secondary"><a href="/reservation">예약내역</a></button>
                         <p></p>
