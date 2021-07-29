@@ -46,7 +46,7 @@ public class CampusUserServiceImpl implements CampusUserService {
 	
 	@Override
 	public boolean leaveAuth(CampusUserVO vo) {
-		return mapper.leaveAuth(vo)>0? true:false;
+		return authmapper.leaveAuth(vo)>0? true:false;
 	}
 	
 	@Override
@@ -76,7 +76,7 @@ public class CampusUserServiceImpl implements CampusUserService {
 
 	@Override
 	public List<CampusAuthVO> userAuth(CampusAuthVO auth) {
-		return mapper.userAuth(auth);
+		return authmapper.userAuth(auth);
 	}
 
 	@Override
@@ -86,12 +86,17 @@ public class CampusUserServiceImpl implements CampusUserService {
 
 	@Override
 	public CampusAuthVO userAuthOne(CampusAuthVO auth) {
-		return mapper.userAuthOne(auth);
+		return authmapper.userAuthOne(auth);
 	}
 
 	@Override
 	public boolean leaveCampAdmin(CampusUserVO vo) {
-		return mapper.leaveCampAdmin(vo)>0? true:false;
+		return authmapper.leaveCampAdmin(vo)>0? true:false;
+	}
+
+	@Override
+	public CampusAuthVO authModify(CampusAuthVO auth) {
+		return authmapper.authModify(auth);
 	}
 
 	

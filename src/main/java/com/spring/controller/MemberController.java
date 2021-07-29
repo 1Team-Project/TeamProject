@@ -287,7 +287,7 @@ public class MemberController {
 	}
 	
 	
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@ResponseBody
 	@PostMapping("/idCheck")
 	public int idCheck(CampusUserVO vo, HttpSession session, Authentication authentication) {
@@ -301,6 +301,7 @@ public class MemberController {
 		return result;
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/leaveCo")
 	public String leaveCoPost(Model model, HttpSession session, CampusUserVO vo, CampusAuthVO auth) {
 		log.info("회원 강제 탈퇴 요청 : " + vo.getU_userid());
@@ -381,8 +382,9 @@ public class MemberController {
 		return "/leave";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@GetMapping("/userManagement")
-	public String userManagement(Model model, CampusAuthVO auth, CampusUserVO vo) {
+	public String userManagement(Model model, CampusAuthVO auth, CampusUserVO vo, HttpSession session) {
 		log.info("회원관리 페이지");
 		log.info("회원 리스트 요청");
 
@@ -392,6 +394,7 @@ public class MemberController {
 		return "userManagement";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@PostMapping("/userInfo")
 	public String userListPost(Model model, HttpSession session, CampusUserVO vo, CampusAuthVO auth) {
 		log.info("회원 정보 요청 userList");
@@ -413,7 +416,7 @@ public class MemberController {
 		return "userInfo";
 	}
 
-	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
 	@PostMapping("/userCheck")
 	public String userCheck(CampusUserVO vo, HttpSession session) {
@@ -428,6 +431,30 @@ public class MemberController {
 		return "false";
 	}
 	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+	@PostMapping("/authCheck")
+	public String authCheck(CampusAuthVO auth, HttpSession session) {
+		log.info("회원 아이디 검사 : " + auth.getU_userid());
+		CampusAuthVO temp = service.userAuthOne(auth);
+		if(temp!=null) {
+			log.info("아이디 확인 : " + temp.getU_userid());
+			log.info("권한 확인 : " + temp.getU_auth());
+			return "true";
+		}
+		return "false";
+	}
+	
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
+	@PostMapping("/authUpdate")
+	public String authUpdatePost(CampusAuthVO auth, HttpSession session) {
+		log.info("회원 아이디 및 권한 검사 : " + auth.getU_userid() + " " + auth.getU_auth());
+		log.info("권한 넣기 확인 : " + service.authModify(auth));
+		service.authModify(auth);
+		log.info("권한 변경 확인 : " + service.userAuthOne(auth));
+		
+		return "redirect:userManagement";
+	}
 	
 	/*마이페이지 - 구매내역*/
 	@PostMapping("/order")

@@ -22,6 +22,10 @@
 				<span>${LoginFailMessage}</span>
 			</div>
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			<div class="find">
+				<a href="login2" style="text-decoration: none; color: #888;">아이디 / 비밀번호 찾기</a>
+				<p></p>
+			</div>
 			<button class="btn btn-lg btn-primary btn-block" id="login" type="submit">로그인</button>
 			<button class="btn btn-lg btn-primary btn-block" id="regist">회원가입</button>
 		</div>

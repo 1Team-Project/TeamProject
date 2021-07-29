@@ -21,4 +21,5 @@ public interface CampusUserService {
 	public List<CampusUserVO> userList(CampusUserVO vo);
 	public List<CampusAuthVO> userAuth(CampusAuthVO auth);
 	public CampusAuthVO userAuthOne(CampusAuthVO auth);
+	public CampusAuthVO authModify(CampusAuthVO auth);
 }

@@ -57,6 +57,12 @@ public class HomeController {
 		return "AccessDenied";
 	}
 	
+	@GetMapping("/AccessDenide")
+	public String AccessDenide() {
+		log.info("error 발생");
+		return "AccessDenied";
+	}
+	
 	
 
 }

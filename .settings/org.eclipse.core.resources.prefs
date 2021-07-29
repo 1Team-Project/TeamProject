@@ -4,6 +4,5 @@
 eclipse.preferences.version=1
 encoding//src/main/java/com/spring/config/SecurityConfig.java=UTF-8
 encoding//src/main/java/com/spring/controller/HomeController.java=UTF-8
-encoding//src/main/webapp/WEB-INF/views/campmain.jsp=UTF-8
 encoding//src/main/webapp/WEB-INF/views/product/productlist.jsp=UTF-8
 encoding/<project>=UTF-8
