@@ -110,7 +110,7 @@ public class CampusUserServiceImpl implements CampusUserService {
 	}
 
 	@Override
-	public CampusUserVO updatePw(CampusUserVO vo) {
+	public int updatePw(CampusUserVO vo) {
 		return mapper.updatePw(vo);
 	}
 

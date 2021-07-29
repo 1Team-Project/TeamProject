@@ -45,9 +45,9 @@
 	</select>
 	
 	<!-- 정보변경 : 비밀번호만 변경 -->
-	<select id="updatePw" resultType="com.spring.domain.CampusUserVO">
+	<update id="updatePw">
 		update CAMPUS_USER set u_password = #{u_password} where u_userid = #{u_userid}
-	</select>
+	</update>
 	
 	<!-- 정보 변경 : update -->
 	<update id="update">

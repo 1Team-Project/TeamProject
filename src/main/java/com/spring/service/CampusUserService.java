@@ -15,7 +15,7 @@ public interface CampusUserService {
 	public boolean leaveCamp(CampusUserVO vo);
 	public boolean leaveCampAdmin(CampusUserVO vo);
 	public boolean update(CampusUserVO vo);
-	public CampusUserVO updatePw(CampusUserVO vo);
+	public int updatePw(CampusUserVO vo);
 	public boolean userUpdate(CampusUserVO vo);
 	
 	public int pwdCheck(CampusUserVO vo);

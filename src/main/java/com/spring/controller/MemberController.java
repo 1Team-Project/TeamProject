@@ -265,9 +265,9 @@ public class MemberController {
 			pwd = pwdEncoder.encode(pwd);
 			vo.setU_password(pwd);
 			
-			CampusUserVO vo1 = service.updatePw(vo);
-			
-			if(vo1 != null) {
+			int vo1 = service.updatePw(vo);
+			log.info("비번 교체 확인 : " + vo1);
+			if(vo1==1) {
 				return "redirect:login";
 			} else {
 				return "login2";
