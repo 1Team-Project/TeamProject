@@ -212,20 +212,9 @@ $(".textcenter1 tr").each(function(){
 })
 $(".avg").val(sum/count);
 
-    // tr만큼 루프돌면서 컬럼값 접근
-//    for( var r=0; r<rows.length; r++ ){
-//      var cells = rows[r].getElementsByTagName("td");
-//
-//      var cell_1 = cells[0].data;		
-//      var cell_2 = cells[1].data;		
-//      var cell_3 = cells[2].data;
-//      var cell_3 = cells[3].data;	
-//      var cell_3 = cells[4].data;			
-//
-//      console.log(cell_1);	
-//      console.log(cell_2);	
-//      console.log(cell_3);  
-//      console.log(cell_4);
-//      console.log(cell_5);
-//    }
+function numberWithCommas(x) {
+  x = x.replace(/[^0-9]/g,'');   // 입력값이 숫자가 아니면 공백
+  x = x.replace(/,/g,'');          // ,값 공백처리
+  $("#money").val(x.replace(/\B(?=(\d{3})+(?!\d))/g, ",")); // 정규식을 이용해서 3자리 마다 , 추가 
+}
  

@@ -32,12 +32,10 @@
 					</colgroup>
 
 					<tbody>
-
-
 						<tr>
 							<td class="price"><fmt:formatNumber value="${vo.p_price}"
 									pattern="###,###,###"></fmt:formatNumber> <input type="hidden"
-								value="${vo.p_price}" name="price"></td>
+								value="${vo.p_price}" name="price">원</td>
 						</tr>
 
 						<tr>
@@ -70,7 +68,7 @@
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
 							<td>${vo.p_shippingfee}
-							<input type="hidden" value="${vo.p_shippingfee}" name="shipping">
+							<input type="hidden" value="${vo.p_shippingfee} " name="shipping">
 							</td>
 						</tr>
 						<tr>
@@ -86,8 +84,8 @@
 						<div class="price">
 							<strong class="tot">총 상품금액 : </strong> <span class="sum">
 								<span class="num"> <%--                         <fmt:formatNumber value="${vo.p_price}" pattern="###,###,###"></fmt:formatNumber></span>  --%>
-									<input type="text" value="${vo.p_price}"name="sum" class="subtotal" readonly 
-									style="border: none; text-align:center; font-weight : 700;">+배송비(${vo.p_shippingfee})<span class="unit">원</span>
+									<input type="text" value="${vo.p_price + vo.p_shippingfee}" name="sum" class="subtotal" readonly 
+									style="border: none; text-align:center; font-weight : 700;" onkeyup="numberWithCommas(this.vale)">+배송비(${vo.p_shippingfee})<span class="unit">원</span>
 							</span>
 						</div>
 
@@ -161,7 +159,7 @@
 										<h1>
 											<span class="rivew">Product's Review</span><br> <span
 												class="star">평균 별점 : <input type="text" class="avg"
-												readonly style="border: none; width: 30; height: 30;"></span>
+												readonly style="border: none; width: 30; height: 30; text-align : center;"></span>
 										</h1>
 										<div class="row">
 											<div class="col-md-10"></div>
