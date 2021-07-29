@@ -82,8 +82,8 @@
    	<!-- 관리자 권한 -->
 	<!-- 상품 추가 -->
 		<insert id="insertProduct">
-			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code)
-			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code})
+			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code,p_shippingfee)
+			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code},3000)
 		</insert>
 	<!-- 상품 삭제 -->
 		<delete id="deleteProduct">

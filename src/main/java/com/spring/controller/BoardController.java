@@ -318,52 +318,69 @@ public class BoardController {
 	}
 	
 	   //@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
-	   @PostMapping("/sellwrite")
-	   public String sellwritePost(
+	@PostMapping("/sellwrite")
+	public String sellwritePost(
 	         
+			@RequestParam("p_numbers") int p_numbers,
+			
 	         @RequestParam("p_name") String p_name, 
-	         @RequestParam("p_number") int p_number, 
 	         @RequestParam("p_price") int p_price, 
 	         @RequestParam("pc_code") String pc_code, 
 	         @RequestParam("p_stock") int p_stock, 
-	         @RequestParam("p_manufact") String p_manufact, 
+	         @RequestParam("p_manufact") String p_manufact,
 	         
-	         CampusProductOptionVO voo, CampusBoardVO vob, RedirectAttributes rttr) {
+	         @RequestParam("po_optiontitle") String po_optiontitle,
+	         @RequestParam("po_option1") String po_option1,
+	         @RequestParam("po_option2") String po_option2,
+	         @RequestParam("po_option3") String po_option3,
+	         	         
+	         CampusBoardVO vob,
+	         
+	         RedirectAttributes rttr) {
 	      
 	      CampusProductVO vo = new CampusProductVO();
 	      vo.setP_name(p_name);
-	      vo.setP_number(p_number);
+	      vo.setP_number(p_numbers);
 	      vo.setP_price(p_price);
 	      vo.setPc_code(pc_code);
 	      vo.setP_stock(p_stock);
 	      vo.setP_manufact(p_manufact);
 	      
+	      vob.setP_number(p_numbers);
+
 	      log.info("※※※※※ post sellwrite ※※※※※");
 		
 		//po_optiontitle 에 값이 들어왔을때 (productoption 테이블의 optiontitle)
 		//product 의 option에는 값이 안들어오기 때문에, 강제로 값을 집어넣어줌.
-		if (voo.getPo_optiontitle() != null && voo.getPo_optiontitle() != "") {
-			vo.setP_option(voo.getPo_optiontitle());
+		if (po_optiontitle != null && !po_optiontitle.isEmpty()) {
+			vo.setP_option(po_optiontitle);
 		//보험처리 (이상하게 적었을 경우)
-		}else if(voo.getPo_option1() != null || voo.getPo_option2() != null || voo.getPo_option3() != null){
-			voo.setPo_option1("-");
-			voo.setPo_option2("-");
-			voo.setPo_option3("-");
+		}else if(po_option1 != null || po_option2 != null || po_option3 != null){
+			po_option1 = "-----";
+			po_option2 = "-----";
+			po_option3 = "-----";
 		}
-		if (voo.getPo_optiontitle() == null || voo.getPo_optiontitle() == "") {
-			vo.setP_option("-");
-			voo.setPo_optiontitle("-");
+		if (po_optiontitle == null || po_optiontitle.isEmpty()) {
+			vo.setP_option("-----");
+			po_optiontitle = "-----";
 		}
 		//보험처리 (null 못받아올 경우 대비)
-		if (voo.getPo_option1() == null && voo.getPo_option1() == "") {
-			voo.setPo_option1("-");
+		if (po_option1 == null || po_option1 == "") {
+			po_option1 = "-----";
 		}
-		if (voo.getPo_option2() == null && voo.getPo_option2() == "") {
-			voo.setPo_option2("-");
+		if (po_option2 == null || po_option2 == "") {
+			po_option2 = "-----";
 		}
-		if (voo.getPo_option3() == null && voo.getPo_option3() == "") {
-			voo.setPo_option3("-");
+		if (po_option3 == null || po_option3 == "") {
+			po_option3 = "-----";
 		}
+		
+	      CampusProductOptionVO voo = new CampusProductOptionVO();
+	      voo.setP_number(p_numbers);	      
+	      voo.setPo_optiontitle(po_optiontitle);
+	      voo.setPo_option1(po_option1);
+	      voo.setPo_option2(po_option2);
+	      voo.setPo_option3(po_option3);
 		
 		//값들이 정상적으로 들어왔나 확인용
 		log.info("productVO 테스트 : "+vo);
