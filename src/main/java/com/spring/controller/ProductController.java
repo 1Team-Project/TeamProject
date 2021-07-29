@@ -42,12 +42,10 @@ public class ProductController {
 
 	//상품 리스트 전체 나열 + best3까지
 	@GetMapping("/productlist")
-	public void getList(Model model,String sort) {
+	public void getList(Model model,CampusCriteria cri) {
 		log.info("전체 리스트 조회");
 		//전체 리스트, CampusPageVO vo
-		CampusCriteria cri=new CampusCriteria();
-		cri.setPage(1);
-		cri.setSort(sort);
+
 		//상품사진
 		
 		String imgurl="";	
@@ -66,7 +64,7 @@ public class ProductController {
 	            img.setUrllink(imgurl);
 	         }
 	      }
-		log.info(prolist+"리스트확인");
+		//log.info(prolist+"리스트확인");
 		
 		
 
@@ -74,7 +72,7 @@ public class ProductController {
 
 		//베스트3 사진 
 		List<CampusProductVO> bestlist=service.bestlist();
-		log.info("best리스트" +bestlist);
+		//log.info("best리스트" +bestlist);
 		
 
 		 for(CampusProductVO img:bestlist) {
@@ -97,9 +95,11 @@ public class ProductController {
 		
 		//페이지 나누기 값 모델에 등록 
 		int total = service.total(cri);
+		
 		CampusProductPageVO productPageVO = new CampusProductPageVO(cri,total);
-		model.addAttribute("CampusProductPageVO", productPageVO);
 		log.info("CampusProductPageVO"+productPageVO);
+		log.info("total"+total);
+		model.addAttribute("CampusProductPageVO", productPageVO);
 
 		//카테고리값넘기기
 		List<CampusProductCategoryVO> category = service.category(cri);
@@ -107,49 +107,47 @@ public class ProductController {
 	}
 
 	
-@GetMapping("/catelist")
-public void catelist(String pc_code,String sort,Model model) {
-	log.info("상품 카테고리 넘어가기"+pc_code+" sort "+sort);
-	//카테고리코드 리스트를 뽑아서 해당 코드값을 누르면 그게 넘어가서 카테고리별 상품리스트가 나오는거
-	//카테고리값넘기기
-//	List<CampusProductCategoryVO> category = service.category(cri);
-//	model.addAttribute("category",category);
-//	log.info("캍텍ㄱ고리"+category);
-	String imgurl="";
-	CampusCriteria cri=new CampusCriteria();
-	cri.setPage(1);
-	cri.setSort(sort);
 	
-	List<CampusProductVO> catelist=service.catelist(cri, pc_code);
-	 for(CampusProductVO img:catelist) {
-         String test = img.getUrllink();
+		@GetMapping("/catelist")
+		public void catelist(String pc_code,@ModelAttribute("cri") CampusCriteria cri,Model model) {
+			log.info("상품 카테고리 넘어가기"+pc_code);
+			//카테고리코드 리스트를 뽑아서 해당 코드값을 누르면 그게 넘어가서 카테고리별 상품리스트가 나오는거
+			//카테고리값넘기기
+		
+			String imgurl="";
+		
+			List<CampusProductVO> catelist=service.catelist(cri, pc_code);
+			
+			 for(CampusProductVO img:catelist) {
+		         String test = img.getUrllink();
+		
+		         if(test == null || test.isEmpty()) {
+		            String path=img.getA_path().replace("\\", "%5C");		           
+		            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+		            img.setUrllink(imgurl);
+		         }else {
+		            imgurl="/resources/main/images/default-img.jpg";
+		            img.setUrllink(imgurl);
+		         }
+		      }
+			log.info(catelist);
+			
+			int total = service.total2(cri);
+			
+			CampusProductPageVO CampusProductPageVO = new CampusProductPageVO(cri,total);
+			model.addAttribute("CampusProductPageVO", CampusProductPageVO);
+			//카테고리코드별 상품리스트 추출
+			model.addAttribute("catelist", catelist);
 
-         if(test == null || test.isEmpty()) {
-            String path=img.getA_path().replace("\\", "%5C");
-            log.info("url 테스트중 : "+path);
-            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
-            img.setUrllink(imgurl);
-         }else {
-            imgurl="/resources/main/images/default-img.jpg";
-            img.setUrllink(imgurl);
-         }
-      }
-	log.info(catelist);
-	
-	//int total = service.total(cri);
-	
-//	CampusPageVO campusPageVO = new CampusPageVO(cri,total);
-//	model.addAttribute("CampusPageVO", campusPageVO);
-	//카테고리코드별 상품리스트 추출
-	model.addAttribute("catelist", catelist);
-	model.addAttribute("cri", cri);
-	
-	//헤더부분 - 카테고리값넘기기
-	List<CampusProductCategoryVO> category = service.category(cri);
-	model.addAttribute("category",category);
-	
-	log.info("카테고리별 상품리스트"+catelist);
-}
+			
+			//헤더부분 - 카테고리값넘기기
+			List<CampusProductCategoryVO> category = service.category(cri);
+			model.addAttribute("category",category);
+			
+			model.addAttribute("pc_code", pc_code);
+			log.info("카테고리별 상품리스트"+catelist);
+		}
+
 
 
 

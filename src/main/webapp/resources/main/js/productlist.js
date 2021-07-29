@@ -8,10 +8,10 @@ $(function(){
 	$(".mypage-item a").click(function(e){
 		e.preventDefault();  //a 속성 중지
 		
-		//actionForm의 안의 pageNum의 값을 사용자가 선택한 번호로 변경
+		//detailForm의 안의 pageNum의 값을 사용자가 선택한 번호로 변경
 		detailForm.find("input[name='page']").val($(this).attr("href"));
 		
-		//actionForm 보내기
+		//detailForm 보내기
 		detailForm.submit();
 	})
 
@@ -30,10 +30,10 @@ $(function(){
 	//검색
 	
 		$(".searchbutton").click(function(e){
-		//검색 폼 가져오기
-		var searchForm = $("#searchForm");
 		//a막기
 		e.preventDefault();
+		//검색 폼 가져오기
+		var searchForm = $("#searchForm");
 		
 		
 		

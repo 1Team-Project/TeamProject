@@ -251,8 +251,8 @@
 														</tr>
 													</thead>
 													<tbody class="textcenter">
-														<tr>
 														<c:forEach var="q" items="${question}">
+														<tr>
 															<td>${q.rownum+1}</td>
 															<td>${q.b_sort}</td>
 															<td><a href="${q.b_no}" class="blacktext clickview">${q.b_title}</a></td>
@@ -274,8 +274,8 @@
 																
 														
 														</td>
-														</c:forEach>
 														</tr>
+														</c:forEach>
 													</tbody>
 												</table>
 												<div class="row">

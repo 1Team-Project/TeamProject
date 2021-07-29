@@ -32,7 +32,8 @@
 	<!-- 상품 조회 : 카테고리별 분류 -->
 	
 	<select id="catelist" resultType="com.spring.domain.CampusProductVO">
-	<![CDATA[
+	
+		<![CDATA[
 	
 		select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
 		 from (select /*+INDEX_DESC(campus_product pk_campus_product)*/
@@ -40,19 +41,14 @@
 		      from campus_product
 		      where
 		       ]]>
-		  <include refid="criteria"></include>
+		  <include refid="criteria2"></include>
 		   <![CDATA[
-<<<<<<< HEAD
 					rownum <= (#{cri.page}*20)) p, simple_attach a
 			where rn > ((#{cri.page}-1)*20) and a.p_number=p.p_number and p.pc_code=#{pc_code}
-=======
-					rownum <= (#{page}*25)) p, simple_attach a
-			where rn > ((#{page}-1)*25) and a.p_number=p.p_number and p.pc_code=${pc_code}
->>>>>>> 251ba6988bf9bda865caa039f07095754037d93f
 			
 			]]>
-			
 	</select>	
+	<!-- 카테고리코드를 받아서 네임 출력하고,,,, 아니다~ -->
 
 
 	<!-- 상품 조회 : 상품 한개 클릭 후 조회 : 사진, 상품 설명 제외 -->
@@ -68,12 +64,21 @@
 
 	
 	
-	<!-- 전체 상품 수 -->
+	<!-- 전체 상품 수 : 전체리스트용 -->
 	<select id="totalPro" resultType="int">
 		select count(*) from campus_product
 		
 		where 
 		<include refid="criteria"></include>
+		 p_number > 0
+	</select>
+	
+		<!-- 전체 상품 수 : 카테용-->
+	<select id="totalPro2" resultType="int">
+		select count(*) from campus_product
+		
+		where 
+		<include refid="criteria2"></include>
 		 p_number > 0
 	</select>
 	
@@ -85,7 +90,7 @@
 	
 	<!-- 동적 SQL  : 전체리스트용-->
 	<sql id = "criteria">
-		<if test="sort != null || sort == ''">
+		<if test="sort != null || sort != ''">
 			<if test="sort=='상품명'.toString()">
 				p_name like '%'||#{keyword}||'%' and
 			</if>
@@ -98,12 +103,12 @@
 	<!-- 동적 SQL : 카테고리리스트용-->
 	<sql id = "criteria2">
 		<if test= "cri.sort.toString()!=''">
-			<if test="sort=='상품명'.toString()">
-				p_name like '%'||#{keyword}||'%' and
+			<if test="cri.sort.toString() == '상품명'">
+				p_name like '%'||#{cri.keyword}||'%' and pc_code=#{pc_code} and
 			</if>
-			<if test="sort=='제조사'.toString()">
-				p_manufact like '%'||#{keyword}||'%' and
-			</if>
+			<if test="cri.sort=='제조사'.toString()">
+				p_manufact like '%'||#{cri.keyword}||'%' and pc_code=#{pc_code} and
+			</if> 
 		</if>
 	</sql>
 	<!--  -->
