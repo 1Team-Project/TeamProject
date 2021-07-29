@@ -1,6 +1,8 @@
   
 @charset "UTF-8";
-
+#cartItemList > div > div.c_item > div > ul > li > div > div.c_name > div > a{
+	text-decoration:none;
+}
 .cart_page {
     overflow: hidden;
     width: 1100px;
@@ -193,13 +195,13 @@ input {
     overflow: hidden;
     padding-top: 14px;
 }
-.cartlist .box .list li .goods .c_img {
+.cartlist .box .list li .goods .c_img img{
     position: absolute;
     left: 56px;
     top: 50%;
     margin-top: -39px;
 }
-.box .list li .goods .c_img {
+.box .list li .goods .c_img img{
     overflow: hidden;
     float: left;
     width: 60px;

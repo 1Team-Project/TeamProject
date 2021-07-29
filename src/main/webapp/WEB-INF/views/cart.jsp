@@ -78,11 +78,11 @@
 									<div class="c_name">
 										<div class="innername">
 											<a href="#" class="package ">${CartListVO.p_name}</a>
-											<div class="info">닳지 않는 손전등</div>
+											<div class="info">${CartListVO.p_manufact}</div>
 										</div>
 									</div>
 									<div class="goods">
-										<a href="#" class="c_img ">상품이미지</a>
+										<a href="#" class="c_img "><img src="${CartListVO.urllink}"/></a>
 										<div class="price">
 											<div class="in_price">
 												<span class="selling">

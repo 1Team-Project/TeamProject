@@ -42,6 +42,24 @@ public class CartController {
 	
 		List<CartListVO> cartlist = service.listCart(u_userid);
 		
+		String imgurl="";	
+		
+		
+		 for(CartListVO img:cartlist) {
+	         String test = img.getUrllink();
+
+	         if(test == null || test.isEmpty()) {
+	            String path=img.getA_path().replace("\\", "%5C");
+	            log.info("url 테스트중 : "+path);
+	            imgurl = "/display?fileName="+path+"%2F"+img.getA_uuid()+"_"+img.getA_name();
+	            img.setUrllink(imgurl);
+	         }else {
+	            imgurl="/resources/main/images/default-img.jpg";
+	            img.setUrllink(imgurl);
+	         }
+	      }
+		
+		
 		model.addAttribute("cartlist",cartlist);			
 	}
 

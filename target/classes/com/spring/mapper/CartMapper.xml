@@ -18,11 +18,12 @@
     <!-- 장바구니 목록 --> 
    <select id="listCart" resultType="com.spring.domain.CartListVO">
 <!--    <select id="listCart" resultType="com.spring.domain.CartVO"> -->
-      select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
-      p.p_name, c.c_count, p.p_price
-      from campus_cart c, campus_user u , campus_product p
+      select p.p_number, u.u_userid, c.c_cartnumber, u.u_username,
+      p.p_name,p.p_manufact, c.c_count, p.p_price, a.a_uuid, a.a_path, a.a_name
+      from campus_cart c, campus_user u , campus_product p, simple_attach a
       where u.u_userid = c.u_userid
       and p.p_number = c.p_number
+      and p.p_number=a.p_number
       and c.u_userid=#{u_userid}
       order by c_cartnumber desc
 <!--       </select> -->
