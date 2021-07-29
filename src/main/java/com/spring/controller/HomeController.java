@@ -55,16 +55,12 @@ public class HomeController {
 		log.info("error 발생");
 		return "AccessDenied";
 	}
-<<<<<<< HEAD
-=======
+
 	
 	@GetMapping("/AccessDenide")
 	public String AccessDenide() {
 		log.info("error 발생");
 		return "AccessDenied";
 	}
-	
-	
->>>>>>> refs/remotes/origin/youngkwon
 
 }
