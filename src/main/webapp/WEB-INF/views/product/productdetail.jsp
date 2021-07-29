@@ -21,7 +21,7 @@
 
 
 			<p class="p_name">
-				<strong class="name">${vo.p_name}</strong> <span class="name_detail">상세설며어어쩌구저쩌구</span>
+				<strong class="name">${vo.p_name}</strong> <span class="name_detail">상세 설명</span>
 			</p>
 
 			<div class="p_info">
@@ -52,12 +52,11 @@
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
 							<td>
 								<div class="option">
-									<span class="opt">
-										<button type="button" class="minus">+</button> <input
-										type="number" readonly="readonly" min="1" max="${vo.p_stock}"
-										onfocus="this.blur()" class="inp">
-										<button type="button" class="plus">-</button>
-									</span>
+<!-- 									<span class="opt"> -->
+										<button type="button" class="btn minus off">-</button> 
+										<input type="number" readonly="readonly" value="1" max="${vo.p_stock}" class="inp" style="border: none; width:30px; height:30px; text-align:center;">
+										<button type="button" class="btn plus">+</button>
+<!-- 									</span> -->
 								</div>
 							</td>
 						</tr>
@@ -70,7 +69,9 @@
 							</select>
 						<tr>
 							<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
-							<td>${vo.p_shippingfee}</td>
+							<td>${vo.p_shippingfee}
+							<input type="hidden" value="${vo.p_shippingfee}" name="shipping">
+							</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/payment-method.png">&nbsp;배송
@@ -85,8 +86,8 @@
 						<div class="price">
 							<strong class="tot">총 상품금액 : </strong> <span class="sum">
 								<span class="num"> <%--                         <fmt:formatNumber value="${vo.p_price}" pattern="###,###,###"></fmt:formatNumber></span>  --%>
-									<input type="text" name="sum" class="subtotal" readonly
-									style="border: none;">+배송비 <span class="unit">원</span>
+									<input type="text" value="${vo.p_price}"name="sum" class="subtotal" readonly 
+									style="border: none; text-align:center; font-weight : 700;">+배송비(${vo.p_shippingfee})<span class="unit">원</span>
 							</span>
 						</div>
 
@@ -178,11 +179,10 @@
 												</tr>
 											</thead>
 <%-- 											<c:set var="total" value="0" /> --%>
-											<c:forEach var="r" items="${review}">
-												<tbody class="textcenter">
+											<c:forEach var="r" items="${review}" varStatus="status">
+												<tbody class="textcenter1">
 													<tr>
-
-														<td>${r.rownum}</td>
+														<td>${status.count}</td>
 														<td>${r.b_sort}</td>
 														<td><a href="${r.b_no}"
 															class="blacktext hoverthema clickview">${r.b_title}</a></td>
@@ -266,9 +266,9 @@
 													</tr>
 												</thead>
 												<tbody class="textcenter" id="tbody">
-													<c:forEach var="q" items="${question}">
+													<c:forEach var="q" items="${question}" varStatus="status">
 														<tr>
-															<td>${q.rownum+1}</td>
+															<td>${status.count}</td>
 															<td>${q.b_sort}</td>
 															<td><a href="${q.b_no}"
 																class="blacktext hoverthema clickview">${q.b_title}</a></td>

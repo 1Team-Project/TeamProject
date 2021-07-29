@@ -103,11 +103,32 @@ p {
     border: 1px solid #dddfe1;
     border-radius: 3px;
 }
-#productview .option .opt .minus {
-/*     background-image: url("/resources/main/images/remove.png") no-repeat 50% 50%; */
-    margin-left: -1px;
-    background-size: 18px 18px;
+
+.btn.minus.off {
+    background-image: url("/resources/main/images/remove.png");	
 }
+
+#productview .opt .btn.minus, .option .opt .btn.minus, .btn.plus {
+    background-color: transparent;
+    background-repeat: no-repeat;
+    background-size: 18px, 18px;
+    background-position: 50% 50%;
+}
+
+.opt .btn.minus {
+	background-image: url("/resources/main/images/remove.png");	
+}
+
+#productview .opt .btn {
+	width : 26px;
+	height: 27px;
+}
+
+/* #productview .option .opt .minus { */
+/* /*     background-image: url("/resources/main/images/remove.png") no-repeat 50% 50%; */ */
+/*     margin-left: -1px; */
+/*     background-size: 18px 18px; */
+/* } */
 #productview .option .opt .minus, .plus{
     overflow: hidden;
     float: left;
