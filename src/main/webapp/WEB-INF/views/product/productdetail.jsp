@@ -17,29 +17,11 @@
 			<div class="product">
 				<img class="photo" src="${vo.urllink}" alt="대표사진" />
 
-<<<<<<< HEAD
-					<li class="small_img"><a
-						href="/resources/main/images/lamp.jpg"> <img
-							src="/resources/main/images/lamp.jpg" alt="손전등 상세 사진1"></a></li>
-					<li><a href="/resources/main/images/lamp5.png"> <img
-							src="/resources/main/images/lamp5.png" alt="손전등 상세 사진2"></a></li>
-					<li><a href="/resources/main/images/lamp2.jpg"> <img
-							src="/resources/main/images/lamp2.jpg" alt="손전등 상세 사진3"></a></li>
-					<li><a href="/resources/main/images/lamp3.jpg"><img
-							src="/resources/main/images/lamp3.jpg" alt="손전등 상세 사진4"></a></li>
-				</ul>
-=======
->>>>>>> refs/remotes/origin/seunghyun
 			</div>
 
 
 			<p class="p_name">
-<<<<<<< HEAD
-				<strong class="name">${product.p_name}</strong> <span
-					class="name_detail">배터리가 잘 닳지 않는 강력 손전등</span>
-=======
 				<strong class="name">${vo.p_name}</strong> <span class="name_detail">상세설며어어쩌구저쩌구</span>
->>>>>>> refs/remotes/origin/seunghyun
 			</p>
 
 			<div class="p_info">
@@ -53,28 +35,18 @@
 
 
 						<tr>
-<<<<<<< HEAD
-							<td class="price"><fmt:formatNumber
-									value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber>
-								<span class="unit">원</span></td>
-=======
 							<td class="price"><fmt:formatNumber value="${vo.p_price}"
 									pattern="###,###,###"></fmt:formatNumber> <input type="hidden"
 								value="${vo.p_price}" name="price"></td>
->>>>>>> refs/remotes/origin/seunghyun
 						</tr>
 
 						<tr>
 							<th><img src="/resources/main/images/gift.png">&nbsp;상품코드</th>
-							<td>${product.p_number}</td>
+							<td>${vo.p_number}</td>
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/manufacture.png">&nbsp;제조사/공급사</th>
-<<<<<<< HEAD
-							<td>${product.p_manufact}</td>
-=======
 							<td>${vo.p_manufact}</td>
->>>>>>> refs/remotes/origin/seunghyun
 						</tr>
 						<tr>
 							<th><img src="/resources/main/images/money-bag.png">&nbsp;구매수량</th>
@@ -82,39 +54,14 @@
 								<div class="option">
 									<span class="opt">
 										<button type="button" class="minus">+</button> <input
-<<<<<<< HEAD
-										type="number" readonly="readonly" min="1"
-										max="${product.p_stock}" onfocus="this.blur()" class="inp">
-=======
 										type="number" readonly="readonly" min="1" max="${vo.p_stock}"
 										onfocus="this.blur()" class="inp">
->>>>>>> refs/remotes/origin/seunghyun
 										<button type="button" class="plus">-</button>
 									</span>
 								</div>
 							</td>
 						</tr>
 						<tr>
-<<<<<<< HEAD
-							<th><img src="/resources/main/images/choices.png">&nbsp;옵션선택</th>
-							<td><select>
-									<c:forEach begin="" end="" var="i">
-										<option value="${i}">${i}</option>
-										<option value="${i}">${i}</option>
-										<option value="${i}">${i}</option>
-										<option value="${i}">${i}</option>
-									</c:forEach>
-
-									<tr>
-										<th><img src="/resources/main/images/shipped.png">&nbsp;배송비</th>
-										<td>무료배송</td>
-									</tr>
-									<tr>
-										<th><img src="/resources/main/images/payment-method.png">&nbsp;배송
-											안내</th>
-										<td>본 상품은 국내 배송만 가능합니다.</td>
-									</tr>
-=======
 							<th><img src="/resources/main/images/choices.png">&nbsp;${vo.p_option}선택</th>
 							<td><select>
 									<option value="${vo.po_option1}" class="option">${vo.po_option1}</option>
@@ -130,7 +77,6 @@
 								안내</th>
 							<td>본 상품은 국내 배송만 가능합니다.</td>
 						</tr>
->>>>>>> refs/remotes/origin/seunghyun
 					</tbody>
 				</table>
 
@@ -138,29 +84,13 @@
 					<div class="total">
 						<div class="price">
 							<strong class="tot">총 상품금액 : </strong> <span class="sum">
-<<<<<<< HEAD
-								<span class="num"> <fmt:formatNumber
-										value="${product.p_price}" pattern="###,###,###"></fmt:formatNumber></span>
-								<span class="unit">원</span>
-=======
 								<span class="num"> <%--                         <fmt:formatNumber value="${vo.p_price}" pattern="###,###,###"></fmt:formatNumber></span>  --%>
 									<input type="text" name="sum" class="subtotal" readonly
 									style="border: none;">+배송비 <span class="unit">원</span>
->>>>>>> refs/remotes/origin/seunghyun
 							</span>
 						</div>
 
 						<div class="option_btn">
-<<<<<<< HEAD
-							<form role="form" method="post">
-								<input type="hidden" id="p_number" value="${product.p_number}">
-<%-- 								<input type="hidden" id="p_name" value="${product.p_number}"> --%>
-<%-- 								<input type="hidden" id="p_price" value="${product.p_number}"> --%>
-<%-- 								<input type="hidden" id="p_number" value="${product.p_number}"> --%>
-							</form>
-							<button type="button" class="btn btn-primary btn-lg" id="btn_cart">장바구니</button>
-							<button type="button" class="btn btn-secondary btn-lg" id="btn_order">구매하기</button>
-=======
 							<input type="hidden" id="p_number" value="${vo.p_number}">
 							<input type="hidden" name="userid" id="userid"
 								value="<sec:authentication property="principal.campusUser.u_userid"/>">
@@ -170,34 +100,8 @@
 								id="btn_cart">장바구니</button>
 							<button type="button" class="btn btn-secondary btn-lg"
 								onclick="location.href='/payment/paymentpage'">구매하기</button>
->>>>>>> refs/remotes/origin/seunghyun
 						</div>
 
-<<<<<<< HEAD
-						<!-- 모달창 -->
-						<div class="modal" tabindex="-1">
-							<div class="modal-dialog">
-								<div class="modal-content">
-									<div class="modal-header">
-										<h5 class="modal-title">장바구니 담기</h5>
-										<button type="button" class="close" data-dismiss="modal"
-											aria-label="Close">
-											<span aria-hidden="true">&times;</span>
-										</button>
-									</div>
-									<div class="modal-body">
-										<p>상품을 담았습니다!</p>
-									</div>
-<!-- 									<div class="modal-footer"> -->
-<!-- <!-- 										<button type="button" class="btn btn-secondary" id="btnmodal" --> 
-<!-- 											data-dismiss="modal">장바구니로</button> -->
-<!-- <!-- 										<button type="button" class="btn btn-primary" id="btnmodal2"></button> --> 
-<!-- 									</div> -->
-								</div>
-							</div>
-						</div>
-=======
->>>>>>> refs/remotes/origin/seunghyun
 						<div class="p_detail_info">
 							<div class="p_detail_bar">
 								<ul class="menu">
@@ -226,10 +130,8 @@
 									var uuid = '${product.a_uuid}';
 									var path = '${product.a_path}';
 									var name = '${product.a_name}';
-
 									var imgPath = encodeURIComponent(path + "/"
 											+ uuid + "_" + name);
-
 									str += "<p><img src='/display?fileName="
 											+ imgPath
 											+ "' alt='' class='product_img'/></p>";
@@ -238,7 +140,6 @@
 							<script>
 								console.log(str);
 								/*  $(".test").html(str);   */
-
 								var imgArea = document
 										.querySelector("#mainImg");
 								imgArea.innerHTML = str;
@@ -483,22 +384,18 @@
 <script>
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
-
 	$("#btn_cart").click(function(e) {
 		e.preventDefault();
-
 		var p_number = $("#p_number").val();
 		var c_count = $(".inp").val();
 		var userid = $("#userid").val();
 		var option = $(".option").val();
-
 		var data = {
 			p_number : p_number,
 			c_count : c_count,
 			u_userid : userid,
 			c_option : option
 		};
-
 		$.ajax({
 			url : "/cart",
 			type : "post",

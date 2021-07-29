@@ -25,7 +25,7 @@ public interface CampusProductService {
 	//상품 상세 내 질문
 	public List<CampusBoardVO> selectq(int p_number);
 	
-;	public int total(CampusCriteria cri);
+	public int total(CampusCriteria cri);
 	
 	public List<CampusAttachFileDTO> getImg();
 
@@ -37,13 +37,11 @@ public interface CampusProductService {
 	public CampusProductVO detailproduct(int p_number);
 	
 	public  List<CampusProductCategoryVO> category(CampusCriteria cri);
-<<<<<<< HEAD
 
-=======
 	//옵션목록뿌리기
 	public List<CampusProductOptionVO> optionlist(String op_optiontitle);
 	
 	
 	public List<CampusAttachFileDTO> getAttachList(int p_number);
->>>>>>> refs/remotes/origin/seunghyun
+
 }

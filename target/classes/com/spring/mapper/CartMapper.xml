@@ -16,29 +16,22 @@
 <!-- 	</select> -->
 	
     <!-- 장바구니 목록 --> 
-<<<<<<< HEAD
-   <select id="listCart" resultType="com.spring.domain.CartVO">
-      select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, c.c_option,
-=======
+
    <select id="listCart" resultType="com.spring.domain.CartListVO">
 <!--    <select id="listCart" resultType="com.spring.domain.CartVO"> -->
       select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
->>>>>>> refs/remotes/origin/seunghyun
+
       p.p_name, c.c_count, p.p_price
       from campus_cart c, campus_user u , campus_product p
       where u.u_userid = c.u_userid
       and p.p_number = c.p_number
       and c.u_userid=#{u_userid}
       order by c_cartnumber desc
-<<<<<<< HEAD
-=======
-<!--       </select> -->
->>>>>>> refs/remotes/origin/seunghyun
+
    </select>
    
    <!-- 결제용 -->
    <select id="listPayment" resultType="com.spring.domain.CartPaymentVO">
-<<<<<<< HEAD
       select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, c.c_option,
       p.p_name, c.c_count, p.p_price, p.p_shippingfee
       from campus_cart c, campus_user u , campus_product p
@@ -54,7 +47,6 @@
       select NVL(SUM(p_price * c_count),0) money
       from campus_cart c, campus_product p
       where c.p_number = p.p_number and c.u_userid = #{u_userid}
-=======
       select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
       p.p_name, c.c_count, p.p_price, p.p_shippingfee
       from campus_cart c, campus_user u , campus_product p
@@ -62,7 +54,6 @@
       and p.p_number = c.p_number
       and c.u_userid=#{u_userid}
       order by c_cartnumber desc
->>>>>>> refs/remotes/origin/seunghyun
    </select>
    
 

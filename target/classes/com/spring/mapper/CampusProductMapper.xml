@@ -18,61 +18,7 @@
          ]]>
    </select>   
    
-      
-<<<<<<< HEAD
-<!-- 상품 조회 : 카테고리별 분류 -->
-	
-	<select id="catelist" resultType="com.spring.domain.CampusProductVO">
-	<![CDATA[
-	
-		select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact, a.a_uuid , a.a_path,a.a_name
-		 from (select /*+INDEX_DESC(campus_product pk_campus_product)*/
-		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact
-		      from campus_product
-		      where
-		       ]]>
-		  <include refid="criteria"></include>
-		   <![CDATA[
-					rownum <= (#{page}*25)) p, simple_attach a
-			where rn > ((#{page}-1)*25) and a.p_number=p.p_number and p.pc_code=${pc_code}
-			
-			]]>
-			
-	</select>	
 
-	
-	<!-- 상품 조회 : 상품 클릭 후 조회 -->
-		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
-			select * from campus_product where p_number=#{p_number}
-		</select>
-	
-	
-	<!-- 전체 상품 수 -->
-	<select id="totalPro" resultType="int">
-		select count(*) from campus_product
-		
-		where 
-		<include refid="criteria"></include>
-		 p_number > 0
-	</select>
-	
-	<select id="category" resultType="com.spring.domain.CampusProductCategoryVO">
-		select * from CAMPUS_PRODUCT_CATEGORY
-	</select>
-	
-	
-	<!-- 동적 SQL -->
-	<sql id = "criteria">
-		<if test="sort != null || sort == ''">
-			<if test="sort=='상품명'.toString()">
-				p_name like '%'||#{keyword}||'%' and
-			</if>
-			<if test="sort=='제조사'.toString()">
-				p_manufact like '%'||#{keyword}||'%' and
-			</if>
-		</if>
-	</sql>
-=======
    <!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
       <select id="bestlist" resultType="com.spring.domain.CampusProductVO">
 
@@ -112,29 +58,7 @@
                  where o.po_optiontitle=p.p_option and o.p_number=p.p_number) po, (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
             where po.p_number=a.p_number and po.p_number=#{p_number}
       </select>
-      
->>>>>>> refs/remotes/origin/seunghyun
 
-<<<<<<< HEAD
-   	<!-- 관리자 권한 -->
-	<!-- 상품 추가 -->
-		<insert id="insertProduct">
-			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code,p_shippingfee)
-			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code},3000)
-		</insert>
-	<!-- 상품 삭제 -->
-		<delete id="deleteProduct">
-			delete from campus_product where p_number=#{p_number}
-		</delete>
-	
-	<!-- 상품 수정 : 가격, 재고 수정 -->
-		<update id="updateProduct">
-			update campus_product
-			set p_price=#{p_price}, p_stock=#{p_stock}
-			where p_number=#{p_number}
-		</update>
-=======
-   
    
    <!-- 전체 상품 수 -->
    <select id="totalPro" resultType="int">
@@ -149,8 +73,6 @@
    <select id="category" resultType="com.spring.domain.CampusProductCategoryVO">
       select * from CAMPUS_PRODUCT_CATEGORY
    </select>
-   
->>>>>>> refs/remotes/origin/seunghyun
 
    <!-- 동적 SQL  : 전체리스트용-->
    <sql id = "criteria">
@@ -223,22 +145,22 @@
    
    
    
-   <!-- 관리자 권한 -->
-   <!-- 상품 추가 -->
-      <insert id="insertProduct">
-         insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code)
-         values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code})
-      </insert>
-   <!-- 상품 삭제 -->
-      <delete id="deleteProduct">
-         delete from campus_product where p_number=#{p_number}
-      </delete>
-   
-   <!-- 상품 수정 : 가격, 재고 수정 -->
-      <update id="updateProduct">
-         update campus_product
-         set p_price=#{p_price}, p_stock=#{p_stock}
-         where p_number=#{p_number}
-      </update>
+   	<!-- 관리자 권한 -->
+	<!-- 상품 추가 -->
+		<insert id="insertProduct">
+			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code,p_shippingfee)
+			values(#{p_number},#{p_name},#{p_price},#{p_option},#{p_stock},#{p_manufact},#{pc_code},3000)
+		</insert>
+	<!-- 상품 삭제 -->
+		<delete id="deleteProduct">
+			delete from campus_product where p_number=#{p_number}
+		</delete>
+	
+	<!-- 상품 수정 : 가격, 재고 수정 -->
+		<update id="updateProduct">
+			update campus_product
+			set p_price=#{p_price}, p_stock=#{p_stock}
+			where p_number=#{p_number}
+		</update>
    
 </mapper>

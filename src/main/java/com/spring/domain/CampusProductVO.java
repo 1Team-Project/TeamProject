@@ -40,9 +40,7 @@ public class CampusProductVO {
 	private String a_name;
 	private String urllink;
 	private String path;
-<<<<<<< HEAD
-}
-=======
+
 	private String thumbimg;
 	//상품 내용
 	private int b_no;
@@ -53,4 +51,4 @@ public class CampusProductVO {
 private List<CampusAttachFileDTO> attachList;
 private List<CampusBoardVO> pboardlist;
 }
->>>>>>> refs/remotes/origin/seunghyun
+

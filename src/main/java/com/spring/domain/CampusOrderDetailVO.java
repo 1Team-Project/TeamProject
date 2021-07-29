@@ -15,10 +15,8 @@ public class CampusOrderDetailVO {
 	private int o_number;
 	private int d_count;
 	private int d_price;
-<<<<<<< HEAD
-	private String d_option;
-=======
 
->>>>>>> refs/remotes/origin/seunghyun
+	private String d_option;
+
 	
 }

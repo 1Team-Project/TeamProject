@@ -20,11 +20,8 @@ public class CartVO {
 	private int p_number;
 //	private String p_name;
 	private int c_count;
-<<<<<<< HEAD
-=======
 	private String c_option;
 	
->>>>>>> refs/remotes/origin/seunghyun
 //	private int price;
 //	private int money;
 

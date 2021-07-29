@@ -141,8 +141,6 @@ public class CampusProductServiceImpl implements CampusProductService {
 		return productmapper.category(cri);
 	}
 
-<<<<<<< HEAD
-=======
 	@Override
 	public List<CampusAttachFileDTO> getAttachList(int p_number) {
 		return attachMapper.findByBno(p_number);
@@ -168,8 +166,6 @@ public class CampusProductServiceImpl implements CampusProductService {
 	public List<CampusBoardVO> selectq(int p_number) {
 		return productmapper.selectq(p_number);
 	}
-	
 
->>>>>>> refs/remotes/origin/seunghyun
 
 }
