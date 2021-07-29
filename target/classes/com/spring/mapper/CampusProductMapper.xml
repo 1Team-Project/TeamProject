@@ -130,16 +130,16 @@
    <!-- 상품조회시 후기 연결 -->
       <select id="selectReview" resultType="com.spring.domain.CampusBoardVO">
          select * 
-         from (select rownum rn,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+         from (select rownum rn,b_no,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
                from campus_board 
-               where b_sort='후기')pb 
+               where b_sort='후기') pb 
          where pb.p_number=#{p_number}
       </select>
       
    <!-- 상품조회시 질문 연결 -->
       <select id="selectq" resultType="com.spring.domain.CampusBoardVO">
          select * 
-         from (select rownum rn,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+         from (select rownum rn, b_no,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
                from campus_board 
                where b_sort='질문')pb 
          where pb.p_number=#{p_number}

@@ -246,11 +246,12 @@
 
 </form>
 	
-		<form action="" method="get" id="actionForm">
-			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
-			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 
-			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		</form>
+	<!-- 한중 폼 -->
+<!-- 		<form action="" method="get" id="actionForm"> -->
+<%-- 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" /> --%>
+<%-- 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" />  --%>
+<%-- 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" /> --%>
+<!-- 		</form> -->
 		
 		<form action="" method="get" id="goForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
@@ -263,13 +264,7 @@
 			<input type="hidden" name="page" value="1" />
 		</form>  
 
-	<form action="list" method="get" id="actionForm">	
-		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
-		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
-		<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
-		<input type="hidden" name="r_page" value="1"/>
-	</form> 
-	
+
 	
 	<script>
 		let result='${result}';

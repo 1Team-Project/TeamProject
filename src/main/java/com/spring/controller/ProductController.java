@@ -199,7 +199,7 @@ public class ProductController {
 			log.info("븨이오"+vo);
 
 			model.addAttribute("con",con);
-			log.info("내용"+con);
+		
 			model.addAttribute("review",review);
 			model.addAttribute("question",question);
 			

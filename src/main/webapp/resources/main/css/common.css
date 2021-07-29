@@ -255,10 +255,19 @@ p {
     font-size: 18px;
     text-align: center;
     margin-top: 30px;
-    margin-bottom: 30px;
+    margin-bottom: 100px;
+}
+.p_rivewbar h1 {
+   display: inline-block;
+    position: relative;
+    font-size: 50px;
+    font-family: noto sans;
+    color: #666;	
 }
 
-.description .d_wrapper .when_use h1, .size_info h1{
+
+
+.description .d_wrapper .p_qna h1{
     display: inline-block;
     position: relative;
     font-size: 50px;
@@ -266,21 +275,34 @@ p {
     color: #666;
 }
 
-.d_wrapper .when_use h1:before , .size_info h1:before {
-    content: " ";
-    position: absolute;
+.d_wrapper .p_reviewbar h1:before {
+	content: " ";
+    position:absolute;
     top: 28px;
     width: 1050px;
     height: 1px;
     background: #b9b9b9;
 }
-.d_wrapper h1 .campustip, .size_info h1 span, .p_reviewbar h1 span {
+
+.d_wrapper .p_qna h1:before {
+    content: " ";
+    position:absolute;
+    top: 28px;
+    width: 1050px;
+    height: 1px;
+    background: #b9b9b9;
+}
+.d_wrapper h1 .campustip, .p_reviewbar h1 span {
     position: relative;
     display: inline-block;
     margin-left: 350px;
     padding: 0 15px;
     background: #fff;
     font-weight: 700;
+}
+
+.p_qna {
+	margin-top:50px;
 }
 
 .p_qna h1 span {

@@ -26,10 +26,10 @@
               <a href="https://www.instagram.com/" target="_blank" title="CampUs 공식 인스타그램 바로가기"><img src="/resources/main/images/insta.png" width="20" height="20">CampUs 공식 인스타</a>
             </li>
             <li class="m-2 md-0 mt-0 mr-0">
-              <a href="" target="_blank" title="CampUs 공식 페이스북 바로가기"><img src="/resources/main/images/facebook.png" width="20" height="20">CampUs 공식 페이스북</a>
+              <a href="https://ko-kr.facebook.com/" target="_blank" title="CampUs 공식 페이스북 바로가기"><img src="/resources/main/images/facebook.png" width="20" height="20">CampUs 공식 페이스북</a>
             </li>
             <li class="m-2 md-0 mt-0 mr-0">
-              <a href="" target="_blank" title="CampUs 공식 블로그 바로가기"><img src="/resources/main/images/blog.png" width="20" height="20">CampUs 공식 블로그</a>
+              <a href="https://section.blog.naver.com/BlogHome.naver?directoryNo=0&currentPage=1&groupId=0" target="_blank" title="CampUs 공식 블로그 바로가기"><img src="/resources/main/images/blog.png" width="20" height="20">CampUs 공식 블로그</a>
             </li>
           </ul>
         </div>
