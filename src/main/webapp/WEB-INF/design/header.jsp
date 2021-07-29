@@ -33,6 +33,7 @@
        width:100%; 
        height:auto; }
 	/* 1.하단정보 */
+
     .campus{
       color: white;
     }

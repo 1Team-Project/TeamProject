@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
+    
     <section class="m-3">
     <div class="row">
     <footer id="footer">
@@ -54,7 +55,8 @@
           </div>
          </div>
     </footer>
- </body>
+ 
     </div>
 </section>
+</body>
 </html>
