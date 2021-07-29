@@ -183,12 +183,13 @@
 		    			</c:choose>
 		    			
 							<sec:authorize access="isAuthenticated()">
-								<a href="/cart?userid=" class="d-flex align-items-center justify-content-center m-1">
-								<img src="/resources/main/images/icon_login.png"></a>
+							<sec:authentication property="principal" var="user"/>
+								<a href="/cart?u_userid=${user.username}" class="d-flex align-items-center justify-content-center m-1">
+								<img src="/resources/main/images/icon_cart.png"></a>
 			    			</sec:authorize>
 			    			<sec:authorize access="isAnonymous()">
 			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
-			    					<img src="/resources/main/images/icon_login.png">
+			    					<img src="/resources/main/images/icon_cart.png">
 			    				</a>
 			    			</sec:authorize>
 		    		</p>

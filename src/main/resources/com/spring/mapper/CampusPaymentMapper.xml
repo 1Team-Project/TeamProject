@@ -3,7 +3,7 @@
 <mapper namespace="com.spring.mapper.CampusPaymentMapper">
 
 	<delete id="cart_delete">
-		delete from campus_cart where u_userid = #{u_userid}
+		delete from campus_cart where u_userid = #{u_userid} and c_cartnumber = #{c_cartnumber}
 	</delete>
 
 	<delete id="payment_delete">

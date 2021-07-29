@@ -19,13 +19,20 @@ public class CampusPaymentServiceImpl implements CampusPaymentService {
 	
 	@Override
 	@Transactional
-	public boolean cart_delete(String u_userid, int o_number) {
+	public boolean cart_delete(String u_userid, int o_number, List<CampusOrderDetailVO> list) {
 
 		boolean result = false;
 		
-		//if(mapper.payment_delete(o_number)>0?true:false) {			
+		//if(mapper.payment_delete(o_number)>0?true:false) {
 			//boolean check2 = mapper.payment_delete2(o_number)>0?true:false;
-			result = mapper.cart_delete(u_userid)>0?true:false;
+		
+			for(CampusOrderDetailVO vo:list) {
+				mapper.cart_delete(u_userid,vo.getC_cartnumber());
+				
+				result = true;
+			}
+		
+		
 			
 			//if(check1 == true && check2 == true) {
 				//result = true;

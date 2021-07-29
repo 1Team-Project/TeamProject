@@ -19,7 +19,6 @@
 			
 			<div class="col-md-10">
 			
-<<<<<<< HEAD
 				<form action="/payment/kakaoPay" method="post">
 			
 				<hr class="one" />
@@ -60,6 +59,7 @@
 							<input type="hidden" id="product_money" name="cartVO[${i}].money" value="${p_vo.money}"/>
 							<input type="hidden" id="product_price" name="cartVO[${i}].p_price" value="${p_vo.p_price}"/>
 							<input type="hidden" id="product_count" name="cartVO[${i}].c_count" value="${p_vo.c_count}"/>
+							<input type="hidden" id="product_count" name="cartVO[${i}].c_cartnumber" value="${p_vo.c_cartnumber}"/>
 							<input type="hidden" id="product_option_name" name="cartVO[${i}].c_option" value="${p_vo.c_option}"/>
 							<c:set var = "i" value="${i+1}"/>
 							
@@ -167,154 +167,6 @@
 				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				
 				<!-- <button type = "submit" class="btn btn-primary">submit</button> -->
-=======
-				<form action="/payment/formtest" method="post">
-			
-				<hr class="one" />
-				<div class="col-md-12"><h3 class="heading-section" style="font-family: naBrush;">상품 결제 페이지</h3></div>
-				<hr class="one" />
-				
-				<div class="col-md-12 colorthema hh4 padding6px margintb20">주문 정보</div>
-				
-				
-				<table class="table product">
-					<thead>
-						<tr class="textcenter colorthema">
-							<th class="width20">주문 상품 0개</th>
-							<th class="width30">상품 설명</th>
-							<th class="width10">수량</th>
-							<th class="width20">상품 금액</th>
-							<th class="width20">배송비</th>
-						</tr>
-					</thead>
-					<tbody class="textcenter">
-					<c:set var ="i" value="0"/>
-					<c:forEach var="p_vo" items="${campusCartVO}">
-					<!-- 상품 리스트 반복되는 부분 -->
-						<tr>
-							<td>
-								<img src="${p_vo.cartimg}" alt="" class="size200"/>
-							</td>
-							<td class="textmiddle"><b>${p_vo.p_name}</b>
-								<div>${p_vo.po_option_vo}</div>
-							</td>
-							<td class="textmiddle">${p_vo.c_count}개</td>
-							<td class="textmiddle">${p_vo.money}원</td>
-							<td class="textmiddle">${p_vo.p_shippingfee}</td>
-							
-						</tr>
-							<input type="hidden" id="product_code" name="cartVO[${i}].p_number" value="${p_vo.p_number}"/>
-							<input type="hidden" id="product_name" name="cartVO[${i}].p_name" value="${p_vo.p_name}"/>
-							<input type="hidden" id="product_money" name="cartVO[${i}].money" value="${p_vo.money}"/>
-							<input type="hidden" id="product_price" name="cartVO[${i}].p_price" value="${p_vo.p_price}"/>
-							<input type="hidden" id="product_count" name="cartVO[${i}].c_count" value="${p_vo.c_count}"/>
-							<input type="hidden" id="product_option_name" name="cartVO[${i}].po_option_vo" value="test"/>
-							<c:set var = "i" value="${i+1}"/>
-							
-					</c:forEach>
-
-					</tbody>
-				</table>
-				
-				<div class="col-md-12 colorthema hh4 padding6px margintb20">예약 정보</div>
-				
-				<table class="table camping">
-					<thead>
-						<tr class="textcenter colorthema">
-							<th class="width20">예약 정보 0개</th>
-							<th class="width30">캠핑장 이름</th>
-							<th class="width10">장소</th>
-							<th class="width20">예약 날짜</th>
-							<th class="width20">예약 비용</th>
-						</tr>
-					</thead>
-					<tbody class="textcenter">
-					
-						<c:forEach var="c_vo" items="${campusCampingjangVO}">
-						<tr>
-							<td>
-								<img src="${c_vo.campingimg}" alt="" class="size200"/>
-							</td>
-							<td class="textmiddle"><b>${c_vo.c_name}</b>
-								<div>${c_vo.c_content}</div>
-							</td>
-							<td class="textmiddle">${c_vo.c_area}번 자리</td>
-							<td class="textmiddle">${c_vo.c_rsysdate}</td>
-							<td class="textmiddle">${c_vo.c_price}원</td>
-						</tr>
-						
-							<input type="hidden" id="camping_code" name="c_number" value=""/>
-							<input type="hidden" id="camping_name" name="c_name" value=""/>
-							<input type="hidden" id="camping_price" name="c_price" value=""/>
-						
-						</c:forEach>
-						
-					</tbody>
-				</table>
-
-				<div class="col-md-12 textright margintb20"><h3>총 결제 금액 : ${total_pay}원</h3><h5>(택배비 : ${total_parcel})</h5></div>
-
-				<div class="col-md-12 colorthema hh4 padding6px margintb20">주문자 정보</div>
-
-				<div class="col-md-12 bottommargin10 mll10">
-					<input name="o_name" type="text" class="form-control width60" placeholder="받는 분 이름을 입력해 주세요" <c:if test = "${campusCartVO == null}">readonly</c:if> />
-				</div>
-				<div class="col-md-12 bottommargin10 mll10">
-					<input name="o_phone" type="text" class="form-control width60" placeholder="받는 분 연락처를 입력해 주세요" <c:if test = "${campusCartVO == null}">readonly</c:if> />
-				</div>
-				<div class="col-md-12 row bottommargin10 mll10 topmmargin30">
-
-					<input name="o_address1" type="text" class="form-control width40" id="sample6_postcode" placeholder="우편번호" <c:if test = "${campusCartVO == null}">readonly</c:if> />
-					<button type="button" class="btn btn-primary inlinetest mll5 width14" onclick="sample6_execDaumPostcode()">주소 찾기</button>
-
-				</div>
-				<div class="col-md-12 bottommargin10 mll10">
-					<input name="o_address2" type="text" class="form-control width60" placeholder="주소" id="sample6_address" <c:if test = "${campusCartVO == null}">readonly</c:if> />
-				</div>
-				<div class="col-md-12 bottommargin10 mll10">
-					<input name="o_address3" type="text" class="form-control width60" placeholder="참고항목" id="sample6_extraAddress" <c:if test = "${campusCartVO == null}">readonly</c:if> />
-				</div>
-				<div class="col-md-12 bottommargin30 mll10">
-					<input name="o_address4" type="text" class="form-control width60 inlinetest" placeholder="상세주소" id="sample6_detailAddress" <c:if test = "${campusCartVO == null}">readonly</c:if> />
-				</div>
-				
-				<hr class="one"  />
-				
-				
-				<div class="col-md-12 colorthema hh4 padding6px margintb20">예약자 정보</div>
-				
-				<div class="col-md-12 bottommargin10 mll10">
-					<input type="text" class="form-control width60" placeholder="예약자 이름을 입력해 주세요" <c:if test = "${campusCampingjangVO == null}">readonly</c:if> />
-				</div>
-				<div class="col-md-12 bottommargin10 mll10">
-					<input type="text" class="form-control width60" placeholder="예약자 연락처를 입력해 주세요" <c:if test = "${campusCampingjangVO == null}">readonly</c:if> />
-				</div>
-				
-				
-				<hr class="one margintb40" />
-				
-				<div class="col-md-12 textright margintb20"><h3>총 결제 금액 : ${total_pay}원</h3><h5>(택배비 : ${total_parcel})</h5></div>
-								
-				<hr class="one margintb40" />
-				
-				<div class="margintb20"><h4>결제 방법 선택</h4></div>
-				카카오페이<button class="btn kakao-btn"><img src="/resources/main/images/payment_icon_yellow_medium.png" alt="" /></button>
-				
-				<hr class="one margintb40" />
-				
-<!-- 				<div class="margintb20"><h4>결제 방법 선택</h4></div>
-				카카오페이<button class="btn kakaobtn"><img src="/resources/main/images/payment_icon_yellow_medium.png" alt="" /></button>
-				 -->
-				 
-				<button class="btn btn-primary float-end">메인으로 돌아가기</button>
-				
-				<!-- 유저정보 : 아이디, 주소, 전화번호, 이메일 -->
-				<input type="hidden" id="user_id" name="u_userid" value="${principal.username}"/>
-				<input type="hidden" id="total_pay" name="total_pay" value="${total_pay}"/>
-				<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
-				
-				<button type = "submit" class="btn btn-primary">submit</button>
->>>>>>> refs/remotes/origin/seunghyun
 				
 			</form>
 			</div>

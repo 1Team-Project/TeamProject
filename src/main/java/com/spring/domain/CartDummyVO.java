@@ -25,7 +25,7 @@ public class CartDummyVO {
 	private String cartimg;
 	private int p_shippingfee;
 	
-	private int c_cartnumber;
+	private String c_cartnumber;
 	private String u_userid;
 	private String p_number;
 	private String p_name;

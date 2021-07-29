@@ -2,12 +2,14 @@ package com.spring.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.spring.domain.CampusOrderDetailVO;
 import com.spring.domain.CampusOrderVO;
 
 public interface CampusPaymentMapper {
 	
-	public int cart_delete(String u_userid);
+	public int cart_delete(@Param("u_userid") String u_userid,@Param("c_cartnumber") int c_cartnumber);
 	public int payment_delete(int o_number);
 	public int payment_delete2(int o_number);
 	

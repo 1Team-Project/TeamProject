@@ -7,7 +7,7 @@ import com.spring.domain.CampusOrderVO;
 
 public interface CampusPaymentService {
 
-	public boolean cart_delete(String u_userid, int o_number);
+	public boolean cart_delete(String u_userid, int o_number, List<CampusOrderDetailVO> list);
 	public boolean payment_delete(int o_number);
 	public boolean payment_delete2(int o_number);
 	

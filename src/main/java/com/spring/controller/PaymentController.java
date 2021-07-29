@@ -44,12 +44,42 @@ public class PaymentController {
 	
 	
 	@PreAuthorize("isAuthenticated()")
-	@GetMapping("/paymentpage")
-	public void list(Model model) {
+	@PostMapping("/paymentpage")
+	public void list(String u_userid, CartDummyVO cartVO, Model model) {
 		log.info("※※※※※ get payment page ※※※※※"); 
 		
+		log.info("아이디 "+u_userid);
+		log.info("븨오 "+cartVO);
+		
+		
 		//아이디 넘겨와서 집어넣기
-		List<CartPaymentVO> list = cart.listPayment("user12");
+		List<CartPaymentVO> list = new ArrayList<CartPaymentVO>();
+		
+		for(CartDummyVO check : cartVO.getCartVO()) {
+			
+			check.setC_cartnumber("c"+check.getC_cartnumber());
+			
+			log.info("c 더하면 무슨일이"+check.getC_cartnumber());
+			
+			if(check.getC_cartnumber().equals("cnull")) {
+				
+			}else {
+
+				String cartStr = check.getC_cartnumber();
+				
+				cartStr = cartStr.replace("c", "");
+				
+				int cartInt = Integer.parseInt(cartStr);
+
+				log.info("카트인트 : "+cartInt);
+				
+				list.add(cart.getPayment(u_userid, cartInt));
+				
+				log.info("리스트 확인용 "+list);
+			}
+			
+		}
+		
 		
 		int total_pay = 0;
 		int total_parcel = 0;
@@ -76,6 +106,7 @@ public class PaymentController {
 			total_parcel += vo.getP_shippingfee();
 			vo.setCartimg(imgurl);
 		}
+		log.info("list 안에 뭐있지?"+list);
 		
 		model.addAttribute("campusCartVO",list);
 		model.addAttribute("total_pay",total_pay);
@@ -107,12 +138,14 @@ public class PaymentController {
 			int pmon = Integer.parseInt(check.getMoney());
 			int ccou = Integer.parseInt(check.getC_count());
 			int pric = Integer.parseInt(check.getP_price());
+			int cart = Integer.parseInt(check.getC_cartnumber());
 			vo.setP_number(pnum);
 			vo.setP_name(check.getP_name());
 			vo.setMoney(pmon);
 			vo.setP_price(pric);
 			vo.setC_count(ccou);
 			vo.setC_option(check.getC_option());
+			vo.setC_cartnumber(cart);
 			
 			count ++;
 			
@@ -187,10 +220,12 @@ public class PaymentController {
 			int pnum = Integer.parseInt(check.getP_number());
 			int ccou = Integer.parseInt(check.getC_count());
 			int pric = Integer.parseInt(check.getP_price());
+			int cart = Integer.parseInt(check.getC_cartnumber());
 			vo.setP_number(pnum);
 			vo.setD_price(pric);
 			vo.setD_count(ccou);
 			vo.setD_option(check.getC_option());
+			vo.setC_cartnumber(cart);
 			
 			
 			int money = Integer.parseInt(check.getMoney());
@@ -232,13 +267,12 @@ public class PaymentController {
 		log.info("paylist 들어감?"+paylist);
 		log.info("order 들어옴?"+voo);
 		
-		//boolean check1 = payment.cart_delete(voo.getU_userid(), voo.getO_number());
+		boolean check1 = payment.cart_delete(voo.getU_userid(), voo.getO_number(), list);
 		boolean check2 = payment.payment_add(voo, list);
 		
-		log.info("check 왜 성공안함? /// "+check2);
+		log.info("check 왜 성공안함? "+check1+"///"+check2);
 		
-//		if (check1 == true && check2 == true) {
-		if (check2 == true) {
+		if (check1 == true && check2 == true) {
 			
 			model.addAttribute("detail",list);
 			model.addAttribute("list",paylist);

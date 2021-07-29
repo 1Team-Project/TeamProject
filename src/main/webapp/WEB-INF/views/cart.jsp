@@ -16,6 +16,7 @@
 	</div>
 	<div id="cartItemList" class="cartlist" style="min-height: 561px;">
 		<div class="">
+		<form action="/payment/paymentpage" method="post">
 			<div class="c_item ">
 				<div class="c_select">
 					<div class="innerselect">
@@ -67,13 +68,16 @@
 					</div>
 				</div>
 <%-- 				<c:set var="sum" value="0" /> --%>
+
+				<c:set var ="i" value="0"/>
 				<c:forEach items="${cartlist}" var="CartListVO">
 				<div class="box">
 					<ul class="list">
 							<li>
 								<div class="item">
 									<label class="check" for=""> 
-									<input type="checkbox" class="checkone"  data-cartnum="${CartListVO.c_cartnumber}"> 
+									<input type="checkbox" class="checkone" name="cartVO[${i}].c_cartnumber" value="${CartListVO.c_cartnumber}"> 
+									<c:set var = "i" value="${i+1}"/>
 									</label>
 									<div class="c_name">
 										<div class="innername">
@@ -87,7 +91,7 @@
 											<div class="in_price">
 												<span class="selling">
 <%-- 												 <fmt:formatNumber value="${CartListVO.p_price * CartListVO.c_count}" pattern="###,###,###"></fmt:formatNumber> --%>
-												 <input type="hidden" value="${CartListVO.p_price}" name="price">
+												 <input type="hidden" value="${CartListVO.p_price}">
 												 <input type="text" readonly value="${CartListVO.p_price * CartListVO.c_count}" class="total" style="border:none; width:50px; height:50px;'">
 												</span>
 												<span class="unit">원</span>
@@ -120,17 +124,17 @@
 					</div>
 					<div class="btn_submit">
 						
-						<input type="hidden" name="userid" id="userid" value="<sec:authentication property="principal.campusUser.u_userid"/>">
+						<input type="hidden" name="u_userid" id="u_userid" value="<sec:authentication property="principal.campusUser.u_userid"/>">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						
 						<button type="submit" class="btn btn-primary">구매하기</button>
 						<button type="button" class="btn btn-secondary"
 							onclick="location.href='/product/productlist'">상품 목록보기</button>
-
 					</div>
 					<div class="notice">구매하는 물품이 맞는 지 꼭 확인해 주세요!</div>
 				</div>
 			</div>
+		</form>
 		</div>
 	</div>
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
