@@ -190,6 +190,7 @@ $(function(){
 			error:function(xhr,status,error){
 				console.log("아작스에러");
 			}
+<<<<<<< HEAD
 		})
 		
 	})
@@ -215,6 +216,43 @@ $(document).ready(function(){
       console.log(cell_5);
     }
   });
+=======
+			});
+		});
+		
+		
+		//게시글 제목 클릭시
+	$(".clickview").click(function(e){
+		e.preventDefault(); //타이틀 a 속성 막기
+		
+		//actionForm에 bno 값을 추가하여 actionForm 보내기
+		let bnoval = $(this).attr('href');
+		console.log(bnoval)
+		
+		$.ajax({
+			url:'/board/viewadd', //도착지
+			type:'post',
+			processData:false,
+			contentType:false,
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
+			data:bnoval,
+			success:function(result){
+				console.log("아작스성공"+result);
+				actionForm.append("<input type='hidden' name='b_views' value='"+result+"'>");
+				actionForm.append("<input type='hidden' name='b_no' value='"+bnoval+"'>");
+				actionForm.append("<input type='hidden' name='r_page' value='1'>");
+				actionForm.attr('action','view');
+				actionForm.submit();
+			},
+			error:function(xhr,status,error){
+				console.log("아작스에러");
+			}
+		})
+		
+	})
+>>>>>>> refs/remotes/origin/nahyun
 	
 	
 

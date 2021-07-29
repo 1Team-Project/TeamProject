@@ -256,6 +256,7 @@
 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" />
 		</form>
+<<<<<<< HEAD
 =======
 	
 	<!-- 한중 폼 -->
@@ -264,6 +265,9 @@
 <%-- 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" />  --%>
 <%-- 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" /> --%>
 <!-- 		</form> -->
+=======
+<<<<<<< HEAD
+>>>>>>> refs/remotes/origin/nahyun
 		
 		<form action="" method="get" id="goForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
@@ -275,6 +279,7 @@
 			<input type="hidden" name="keyword"value="${CampusProductPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="1" />
 		</form>  
+<<<<<<< HEAD
 
 
 	
@@ -285,6 +290,10 @@
 		var csrfTokenValue = "${_csrf.token}";
 	</script>
 >>>>>>> refs/remotes/origin/seunghyun
+=======
+=======
+>>>>>>> 251ba6988bf9bda865caa039f07095754037d93f
+>>>>>>> refs/remotes/origin/nahyun
 
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>

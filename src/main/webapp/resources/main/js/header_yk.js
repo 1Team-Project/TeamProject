@@ -19,7 +19,8 @@ $(function() {
 		location.href='loginMypage';
 	
 })
-	//상품전체
+
+		//상품전체
 		var productForm = $("#productForm")
 		$(".product-item").click(function(e){
 				e.preventDefault(); //타이틀 a 속성 막기
@@ -30,10 +31,10 @@ $(function() {
 
 				
 
-		 		
+	var goForm = $("#goForm");		 		
 
 	//카테고리 클릭시
-	$(".cate").click(function(e){
+	$(".clickview").click(function(e){
 		e.preventDefault(); //타이틀 속성 a 막기
 		
 		
@@ -41,7 +42,10 @@ $(function() {
 		goForm.attr("action","/product/catelist");
 		//console.log(catelist);
 		goForm.submit();
+<<<<<<< HEAD
 
+=======
+>>>>>>> refs/remotes/origin/nahyun
 	})
 	
 	
@@ -49,3 +53,4 @@ $(function() {
 	
 
 });
+	

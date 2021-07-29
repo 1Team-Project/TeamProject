@@ -217,11 +217,12 @@ p {
 .p_detail_img img {
     display: block;
     width: 1010px;
-    height: 670px;
+    
     margin-bottom: 100px;
     font-family: noto sans;
     font-weight: 200;
     letter-spacing: 0;
+    object-fit:none;
     
 }
 .p_detail_img .main_img {
@@ -246,7 +247,6 @@ p {
   display: block;
   font-size: 30px; 
   text-align: center;
-  border-bottom: 1px solid #c1c1c1;
   color: #666;
   padding-bottom: 30px;
 } 
@@ -255,6 +255,7 @@ p {
     font-size: 18px;
     text-align: center;
     margin-top: 30px;
+<<<<<<< HEAD
     margin-bottom: 100px;
 }
 .p_rivewbar h1 {
@@ -263,6 +264,11 @@ p {
     font-size: 50px;
     font-family: noto sans;
     color: #666;	
+=======
+    margin-bottom: 30px;
+    border-bottom: 1px solid #c1c1c1;
+    padding-bottom: 30px;
+>>>>>>> refs/remotes/origin/nahyun
 }
 
 

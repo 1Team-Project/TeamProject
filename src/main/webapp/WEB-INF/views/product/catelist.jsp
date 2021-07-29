@@ -59,14 +59,16 @@
                                     <li id="boxid" class="prolist">
                                         <div class="thumbnail">
                                             <div class="prdImg">
-                                                <a href="${cate.b_no}" name="boxname" class="viewpro">
+                                                <a href="${cate.p_number}" class="viewpro">
                                                     <img src="${cate.urllink}" id="prod1" alt="${cate.p_number}"></a>
                                             </div>
                                         </div>
                                         <div class="description">
                                             <div class="product_name">
                                                 <strong class="name"><a href="${cate.p_number}" class="viewpro">
-                                                        <span>상품명 :</span>
+                                                        <span>[</span>
+                                                        <span>${cate.p_manufact}</span>
+                                                        <span>]</span>
                                                         <span>${cate.p_name}</span>
                                                 </a></strong>
                                             </div>        
@@ -109,20 +111,15 @@
 
                 </div>
             </div>
-<<<<<<< HEAD
-		<form action="list" method="get" id="actionForm">	
-		<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" />
-		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
-		<input type="hidden" name="page" valuFe="${CampusPageVO.cri.page}" />
-		<input type="hidden" name="pc_code" value="${catelist.pc_code}" />
-	</form>
-=======
 <%-- 	<form action="list" method="get" id="actionForm">	
 		<input type="hidden" name="sort" value="${cri.sort}" />		
 		<input type="hidden" name="page" value="${cri.page}" />
 	
 	</form> --%>
+<<<<<<< HEAD
 >>>>>>> refs/remotes/origin/seunghyun
+=======
+>>>>>>> refs/remotes/origin/nahyun
         </div>
 
 <script>

@@ -5,7 +5,10 @@
 $(function(){
 	//하단의 페이지 나누기 번호 클릭시 
 	var detailForm = $("#detailForm");
+<<<<<<< HEAD
 	
+=======
+>>>>>>> refs/remotes/origin/nahyun
 	$(".mypage-item a").click(function(e){
 		e.preventDefault();  //a 속성 중지
 		
@@ -51,7 +54,7 @@ $(function(){
 			alert("검색어를 확인해 주세요!");
 			$("input[name='keyword']").focus();
 			return false;
-		}	//@@@@@@@@@@@검색어 넣어도 이게 뜸
+		}	
 		
 		//검색하면 처음엔 페이지 1
 		searchForm.find("input[name='page']").val("1");

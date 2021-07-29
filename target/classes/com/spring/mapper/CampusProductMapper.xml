@@ -2,6 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.CampusProductMapper">
 
+<<<<<<< HEAD
        <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 + 상품 이미지 불러오기  -->
    <select id="prolist" resultType="com.spring.domain.CampusProductVO">
       <![CDATA[ 
@@ -18,10 +19,66 @@
          ]]>
    </select>   
    
+=======
+		 <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 + 상품 이미지 불러오기  -->
+	<select id="prolist" resultType="com.spring.domain.CampusProductVO">
+		<![CDATA[ 
+		 select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
+		 from(select /*+INDEX_DESC(campus_product pk_campus_product)*/
+		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee
+		      from campus_product
+		      where
+		       ]]>
+		  <include refid="criteria"></include>
+		   <![CDATA[
+		  		rownum <= (#{page}*20)) p,  (select distinct p_number, last_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,last_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
+			where rn > ((#{page}-1)*20) and a.p_number=p.p_number 
+			]]>
+	</select>	
+	
+		
+	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
+		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
+>>>>>>> refs/remotes/origin/nahyun
 
+<<<<<<< HEAD
    <!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
       <select id="bestlist" resultType="com.spring.domain.CampusProductVO">
+=======
+			select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,p.p_shippingfee,
+			 		last_value(a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,last_value(a_name)over(PARTITION BY p.p_number)as  a_name
+			from b_product p, campus_attach a
+			where a.p_number=p.p_number)order by p_rank
+		</select>
+		
+		
+	<!-- 상품 조회 : 카테고리별 분류 -->
+	
+	<select id="catelist" resultType="com.spring.domain.CampusProductVO">
+	<![CDATA[
+	
+		select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
+		 from (select /*+INDEX_DESC(campus_product pk_campus_product)*/
+		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee
+		      from campus_product
+		      where
+		       ]]>
+		  <include refid="criteria"></include>
+		   <![CDATA[
+<<<<<<< HEAD
+					rownum <= (#{cri.page}*20)) p, simple_attach a
+			where rn > ((#{cri.page}-1)*20) and a.p_number=p.p_number and p.pc_code=#{pc_code}
+=======
+					rownum <= (#{page}*25)) p, simple_attach a
+			where rn > ((#{page}-1)*25) and a.p_number=p.p_number and p.pc_code=${pc_code}
+>>>>>>> 251ba6988bf9bda865caa039f07095754037d93f
+			
+			]]>
+			
+	</select>	
+>>>>>>> refs/remotes/origin/nahyun
 
+<<<<<<< HEAD
          select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,p.p_shippingfee,
                 first_value(a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,first_value(a_name)over(PARTITION BY p.p_number)as  a_name
          from b_product p, campus_attach a
@@ -58,6 +115,61 @@
                  where o.po_optiontitle=p.p_option and o.p_number=p.p_number) po, (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
             where po.p_number=a.p_number and po.p_number=#{p_number}
       </select>
+=======
+
+	<!-- 상품 조회 : 상품 한개 클릭 후 조회 : 사진, 상품 설명 제외 -->
+		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
+			select distinct po.p_number,po.p_name,po.p_price,po.p_option,po.p_stock,po.pc_code,po.p_manufact,po.p_shippingfee,po.po_option1,po.po_option2,po.po_option3,a.a_uuid,a.a_path,a.a_name
+			from (select distinct p.p_number,p.p_name,p.p_price,p.p_option, o.po_option1,o.po_option2,o.po_option3, p.p_stock,p.pc_code ,p.p_manufact,p.p_shippingfee
+       			  from campus_product_option o,campus_product p 
+         		  where o.po_optiontitle=p.p_option and o.p_number=p.p_number) po, (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
+         	where po.p_number=a.p_number and po.p_number=#{p_number}
+
+		</select>
+		
+
+	
+	
+	<!-- 전체 상품 수 -->
+	<select id="totalPro" resultType="int">
+		select count(*) from campus_product
+		
+		where 
+		<include refid="criteria"></include>
+		 p_number > 0
+	</select>
+	
+	<!-- 카테고리 출력 -->
+	<select id="category" resultType="com.spring.domain.CampusProductCategoryVO">
+		select * from CAMPUS_PRODUCT_CATEGORY
+	</select>
+	
+	
+	<!-- 동적 SQL  : 전체리스트용-->
+	<sql id = "criteria">
+		<if test="sort != null || sort == ''">
+			<if test="sort=='상품명'.toString()">
+				p_name like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='제조사'.toString()">
+				p_manufact like '%'||#{keyword}||'%' and
+			</if>
+		</if>
+	</sql>
+	
+	<!-- 동적 SQL : 카테고리리스트용-->
+	<sql id = "criteria2">
+		<if test= "cri.sort.toString()!=''">
+			<if test="sort=='상품명'.toString()">
+				p_name like '%'||#{keyword}||'%' and
+			</if>
+			<if test="sort=='제조사'.toString()">
+				p_manufact like '%'||#{keyword}||'%' and
+			</if>
+		</if>
+	</sql>
+	<!--  -->
+>>>>>>> refs/remotes/origin/nahyun
 
    
    <!-- 전체 상품 수 -->
@@ -74,6 +186,7 @@
       select * from CAMPUS_PRODUCT_CATEGORY
    </select>
 
+<<<<<<< HEAD
    <!-- 동적 SQL  : 전체리스트용-->
    <sql id = "criteria">
       <if test="sort != null || sort == ''">
@@ -146,6 +259,39 @@
    
    
    	<!-- 관리자 권한 -->
+=======
+	<!-- 상품 조회  :  상품 한개 클릭 후 상품 사진, 설명 보여주기-->
+	<select id="viewProductcontent" resultMap="boardMap">
+		select b.p_number, b.p_name, b.b_no, b.b_sort, b.b_content, a.a_uuid, a.a_path, a.a_name
+		from campus_board b, campus_attach a
+		where a.b_no=b.b_no and b.b_sort='상품' and b.p_number=#{p_number}
+	</select>
+	
+	<!-- 상품조회시 후기 연결 -->
+		<select id="selectReview" resultType="com.spring.domain.CampusBoardVO">
+			select * 
+			from (select /*+INDEX_DESC(campus_board campus_board)*/ 
+					rownum rn,b_no,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+					from campus_board 
+					where b_sort='후기')pb 
+			where pb.p_number=#{p_number}
+		</select>
+		
+	<!-- 상품조회시 질문 연결 -->
+		<select id="selectq" resultType="com.spring.domain.CampusBoardVO">
+			select * 
+			from (select /*+INDEX_DESC(campus_board campus_board)*/ 
+				 rownum rn,b_no,b_sort,b_title,b_content,b_writer,b_sysdate,b_rating ,p_number
+					from campus_board 
+					where b_sort='질문')pb 
+			where pb.p_number=#{p_number}
+		</select>	
+	
+	
+	
+	
+	<!-- 관리자 권한 -->
+>>>>>>> refs/remotes/origin/nahyun
 	<!-- 상품 추가 -->
 		<insert id="insertProduct">
 			insert into campus_product(p_number,p_name,p_price,p_option,p_stock,p_manufact,pc_code,p_shippingfee)
