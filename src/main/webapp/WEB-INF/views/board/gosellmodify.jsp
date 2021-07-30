@@ -21,7 +21,7 @@
 				<h3 class="colorthema margintb20 padding6px">상품 수정</h3>
 			</div>
       
-      <form action="/board/sellmodify" method="post" id="operForm">
+      <form action="/board/sellmodify" method="get" id="operForm">
 				<div class="col-md-8 mll20">
 					<input type="text" class="form-control width70 inlinetest"
 					id="campusboard-pnumber" required placeholder="수정하실 상품의 코드를 입력해 주세요" name="p_number"/>
