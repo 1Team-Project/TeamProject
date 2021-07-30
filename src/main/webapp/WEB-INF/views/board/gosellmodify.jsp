@@ -4,36 +4,7 @@
 <%@include file="../../design/header.jsp"%>
 
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
-<style>
-.rating .rate_radio {
-    position: relative;
-    display: inline-block;
-    z-index: 20;
-    opacity: 0.001;
-    width: 60px;
-    height: 60px;
-    background-color: #fff;
-    cursor: pointer;
-    vertical-align: top;
-    display: none;
-}
-.rating .rate_radio + label {
-    position: relative;
-    display: inline-block;
-    margin-left: -4px;
-    z-index: 10;
-    width: 60px;
-    height: 60px;
-    background-image: url('/resources/main/images/starrate.png');
-    background-repeat: no-repeat;
-    background-size: 60px 60px;
-    cursor: pointer;
-    background-color: #f0f0f0;
-}
-.rating .rate_radio:checked + label {
-    background-color: #ffc937;
-}
-</style>
+
 <section>
 	<div class="row topmargin30">
 		<div class="col-md-1"></div>
@@ -47,7 +18,7 @@
 			</div>
       
 			<div class="col-md-12">
-				<h3 class="colorthema margintb20 padding6px">새 글 작성</h3>
+				<h3 class="colorthema margintb20 padding6px">상품 수정</h3>
 			</div>
       
       <form action="/board/sellmodify" method="post" id="operForm">
