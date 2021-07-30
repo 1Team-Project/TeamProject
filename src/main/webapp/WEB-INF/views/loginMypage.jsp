@@ -82,6 +82,8 @@
                     	<sec:authorize access="hasRole('ROLE_ADMIN')">
                     		<button type="submit" id="modify" class="btn btn-primary"><a href="/userManagement">회원관리</a></button>
 							<p></p>
+							<button type="submit" id="modify" class="btn btn-danger"><a href="/board/sellwrite">상품등록</a></button>
+							<p></p>
                     	</sec:authorize>
                     	<sec:authentication property="principal" var="user"/>
 						<button type="button" class="btn btn-info" onclick="location.href='/payment/paymentlist?u_userid=${user.username}'">구매내역</button>

@@ -28,20 +28,24 @@ import lombok.extern.log4j.Log4j2;
 @Controller
 @Log4j2
 public class CartController {
-	
-	@Autowired
-	private CartService service;
+   
+   @Autowired
+   private CartService service;
 
-	
-	//장바구니 목록
-	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
-	@RequestMapping("/cart")
-	public void list(Model model, String u_userid){
-		
-		log.info("장바구니 목록보여주기");
-	
+   
+   //장바구니 목록
+   @PreAuthorize("hasAnyAuthority('ROLE_USER')")
+   @RequestMapping("/cart")
+   public void list(Model model, String u_userid){
+      
+  
+      
+       
+      
+      log.info("장바구니 목록보여주기");
+  	
 		List<CartListVO> cartlist = service.listCart(u_userid);
-		
+		log.info("테스트 "+cartlist);
 		String imgurl="";	
 		
 		
@@ -58,36 +62,33 @@ public class CartController {
 	            img.setUrllink(imgurl);
 	         }
 	      }
-		
-		
-		model.addAttribute("cartlist",cartlist);			
-	}
+		 model.addAttribute("cartlist",cartlist);    
+   }
 
 
-	
-//	//장바구니 담기
-	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
-	@ResponseBody
-	@PostMapping("/cart")
-	   public boolean addCart(CartVO cart, HttpSession session){
-	      
-	      log.info("장바구니 추가" +cart);
+   
+//   //장바구니 담기
+   @PreAuthorize("hasAnyAuthority('ROLE_USER')")
+   @ResponseBody
+   @PostMapping("/cart")
+      public boolean addCart(CartVO cart, HttpSession session){
+         
+         log.info("장바구니 추가" +cart);
 
-	     return service.addCart(cart);
-	}
+        return service.addCart(cart);
+   }
 
-    //장바구니 삭제	
-	@PreAuthorize("hasAnyAuthority('ROLE_USER')")
-	@ResponseBody
-	@PostMapping("/delete")
-	public boolean delete(@RequestParam(value="cartNum[]") List<Integer> checkArr, HttpSession session) {
-		
-		log.info("장바구니 삭제" +checkArr);
-		
-	    return  service.delete(checkArr);
-	}
+    //장바구니 삭제   
+   @PreAuthorize("hasAnyAuthority('ROLE_USER')")
+   @ResponseBody
+   @PostMapping("/delete")
+   public boolean delete(@RequestParam(value="cartNum[]") List<Integer> checkArr, HttpSession session) {
+      
+      log.info("장바구니 삭제" +checkArr);
+      
+       return  service.delete(checkArr);
+   }
 }
-
 
 
 

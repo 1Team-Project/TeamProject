@@ -15,6 +15,7 @@
 		   <![CDATA[
 		  		rownum <= (#{page}*20)) p,  (select distinct p_number, last_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,last_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
 			where rn > ((#{page}-1)*20) and a.p_number=p.p_number 
+			
 			]]>
 	</select>	
 	
@@ -176,5 +177,7 @@
 			set p_price=#{p_price}, p_stock=#{p_stock}
 			where p_number=#{p_number}
 		</update>
+		
+		       
 
 </mapper>

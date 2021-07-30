@@ -317,13 +317,10 @@ $(function(){
 		$.ajax({
 			url:'/deleteFile',
 			beforeSend:function(xhr){
-<<<<<<< HEAD
-	            xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
-	         },
-=======
+
 				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 			},
->>>>>>> b1afeac01614d6eeba44b90b0ffecd1b7576c409
+
 			data:{
 				a_name:targetFile,
 			},

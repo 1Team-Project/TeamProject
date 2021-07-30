@@ -401,14 +401,20 @@ public class BoardController {
 
 	}
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+	@GetMapping("/gosellmodify")
+	public void gosellmodify() {
+		log.info("※※※※※ gosellmodify ※※※※※");
+	}	
+	
+	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
 	@GetMapping("/sellmodify")
-	public void sellmodify(int p_number, int b_no, Model model) {
+	public void sellmodify(int p_number, Model model) {
 		log.info("※※※※※ get sellmodify ※※※※※");
 		
 		//상품 정보, 게시글(상품) 정보 가져오기
 		CampusProductVO campusProductVO = product.viewProduct(p_number);
-		CampusBoardVO campusBoardVO = service.view(b_no);
-		model.addAttribute("campusBoardVO", campusBoardVO);
+		//CampusBoardVO campusBoardVO = service.view(b_no);
+		//model.addAttribute("campusBoardVO", campusBoardVO);
 		model.addAttribute("campusProductVO", campusProductVO);
 	}
 	@PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")

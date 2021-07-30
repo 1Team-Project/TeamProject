@@ -27,13 +27,19 @@
 			font-family: 'naBrush';
 			src:url("/resources/main/fonts/BMDOHYEON_ttf.ttf");
 		}
-		    #footer { 
+		/* #footer { 
        clear:both;
        position:relative; 
        width:100%; 
-       height:auto; }
+       height:auto; }*/
 	/* 1.하단정보 */
-
+  footer{
+   
+   height:42px;
+   position:relative;
+   width:100%;
+   transform:translateY(1000%);
+}
     .campus{
       color: white;
     }
@@ -159,29 +165,26 @@
 						
 						
 						
-						<c:choose>
-							<c:when test="${sessionScope.login != null}">
+							<sec:authorize access="isAuthenticated()">
 								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
 			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 			    					<img src="/resources/main/images/icon_login.png">
 			    				</a>
-			    			</c:otherwise>
-		    			</c:choose>
+			    			</sec:authorize>
 		    			
-		    			
-		    			<c:choose>
-		    				<c:when test="${sessionScope.login != null}">
+		    				<c:if test="true">dtd </c:if>
+		    				<c:if test="false">false</c:if>
+							<sec:authorize access="isAuthenticated()">
 								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
 		    					<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png">
 		    					</a>
-		    				</c:otherwise>
-		    			</c:choose>
+			    			</sec:authorize>
 		    			
 							<sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal" var="user"/>
@@ -247,7 +250,7 @@
 
 
 </form>
-<<<<<<< HEAD
+
 	
 
 		<form action="" method="get" id="actionForm">
@@ -291,3 +294,4 @@
  	<!-- 영권 추가 문장 시작 -->
  	<script src="/resources/main/js/header_yk.js"></script>
  	<!-- 영권 추가 문장 끝 -->
+ 	

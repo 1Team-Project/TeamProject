@@ -3,7 +3,7 @@
 <!DOCTYPE html>
     
     <section class="m-3">
-    <div class="row">
+    <div class="row2">
     <footer id="footer">
       <div class="f_info">
         <div class="layout">

@@ -1,4 +1,3 @@
-  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -60,10 +59,7 @@
 							<input type="hidden" id="product_money" name="cartVO[${i}].money" value="${p_vo.money}"/>
 							<input type="hidden" id="product_price" name="cartVO[${i}].p_price" value="${p_vo.p_price}"/>
 							<input type="hidden" id="product_count" name="cartVO[${i}].c_count" value="${p_vo.c_count}"/>
-<<<<<<< HEAD
-=======
 							<input type="hidden" id="product_count" name="cartVO[${i}].c_cartnumber" value="${p_vo.c_cartnumber}"/>
->>>>>>> b1afeac01614d6eeba44b90b0ffecd1b7576c409
 							<input type="hidden" id="product_option_name" name="cartVO[${i}].c_option" value="${p_vo.c_option}"/>
 							<c:set var = "i" value="${i+1}"/>
 							
