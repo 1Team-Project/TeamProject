@@ -27,6 +27,7 @@
 /* left-img */
 
 .slide_opt{
+	max-width: 100%;
 	width: 480px;
 	height: 320px;
 	position: relative;
@@ -112,6 +113,7 @@ ul.slide_img li{
 
 
 .slide_opt2{
+	max-width: 100%;
 	width: 480px;
 	height: 320px;
 	position: relative;
