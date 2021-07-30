@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,14 +52,12 @@ public class PaymentController {
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/paymentpage")
-	public void list(String u_userid, CartDummyVO cartVO, Model model) {
+	public String list(String u_userid, CartDummyVO cartVO, Model model) {
 		log.info("※※※※※ get payment page ※※※※※"); 
 		
 		log.info("아이디 "+u_userid);
 		log.info("븨오 "+cartVO);
-		
-		
-		//아이디 넘겨와서 집어넣기
+
 		List<CartPaymentVO> list = new ArrayList<CartPaymentVO>();
 		
 		for(CartDummyVO check : cartVO.getCartVO()) {
@@ -83,7 +82,7 @@ public class PaymentController {
 				
 				log.info("리스트 확인용 "+list);
 			}
-			
+
 		}
 		
 		
@@ -117,7 +116,7 @@ public class PaymentController {
 		model.addAttribute("campusCartVO",list);
 		model.addAttribute("total_pay",total_pay);
 		model.addAttribute("total_parcel",total_parcel);
-		
+		return "/payment/paymentpage";
 	}
 	
 	@GetMapping("/kakaoPay")
@@ -233,7 +232,7 @@ public class PaymentController {
 			vo.setD_option(check.getC_option());
 			vo.setC_cartnumber(cart);
 			
-			payment.stock_change(vo.getP_number(), vo.getD_count());
+			payment.stock_change(vo.getD_count(), vo.getP_number());
 			
 			int money = Integer.parseInt(check.getMoney());
 			pvo.setP_number(pnum);
@@ -293,14 +292,23 @@ public class PaymentController {
 		return "redirect:/";
 	}
 	
-	@ResponseBody
 	@PostMapping("/check_data")
-	public String check_data(CartDummyVO cartVO, Model model) {
+	@ResponseBody
+	public String check_data(CartDummyVO cartVO, CampusOrderVO voo, Model model) {
 		
-		log.info("***** success ******");
+		String result = "";
+		String isCheck = "";
+		
+		log.info("***** check data ******");
+		log.info("카트뷔오 "+cartVO);
+		log.info("오더뷔오 "+voo);
 		
 		for(CartDummyVO check : cartVO.getCartVO()) {
 		
+			if(isCheck.equals("fail")) {
+				result = "fail";
+			}
+			
 			CampusOrderDetailVO vo = new CampusOrderDetailVO();
 			
 			vo.setP_number(Integer.parseInt(check.getP_number()));
@@ -311,14 +319,22 @@ public class PaymentController {
 			int minus = vo.getD_count();
 			
 			if(stock - minus < 0) {
-				return "fail";
+				isCheck = "fail";
+			}else {
+				isCheck = "success";				
 			}
 			
 			
 		}
 		
-		return "success";
+		if(!isCheck.equals("fail")) {
+			result = "success";
+		}
 		
+		
+		log.info("result 테스트 "+result);
+		
+		return result;
 	}
 	
 	
@@ -337,7 +353,7 @@ public class PaymentController {
 		for(CampusOrderVO vo:list) {
 			
 			List<CampusOrderDetailVO> delist = payment.listpaymentselectdetail(vo.getO_number());
-
+			log.info("dellist ===== "+delist);
 			for(CampusOrderDetailVO vovo:delist) {
 
 				if(attach.findByPnumber(vovo.getP_number()).isEmpty() || attach.findByPnumber(vovo.getP_number()) == null) {
@@ -380,12 +396,18 @@ public class PaymentController {
 		api.getAccessToken();
 
 		CampusOrderVO vo = payment.cancel_number(success_code);
-		payment.pay_cancel(vo.getO_number());
+		List<CampusOrderDetailVO> ordelist = payment.listpaymentselectdetail(vo.getO_number());
 		
-		List<CampusOrderDetailVO> list = payment.listpaymentselectdetail(vo.getO_number());
-		for(CampusOrderDetailVO voo:list) {
-			payment.stock_change_plus(voo.getP_number(), voo.getD_count());
+		log.info("제바ㅣㄹ잠좀자자"+ordelist);
+		
+		for(CampusOrderDetailVO voo:ordelist) {
+			payment.stock_change_plus(voo.getD_count(),voo.getP_number());
+			log.info("get테스트트트트"+voo.getP_number(),voo.getD_count());
 		}
+		
+		payment.pay_cancel(vo.getO_number());
+		log.info("테에스트으"+vo.getO_number());
+		
 		
 		Cancel cancel = new Cancel();
 		cancel.receipt_id = success_code;

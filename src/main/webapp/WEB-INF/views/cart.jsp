@@ -127,7 +127,7 @@
 						<input type="hidden" name="u_userid" id="u_userid" value="<sec:authentication property="principal.campusUser.u_userid"/>">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						
-						<button type="submit" class="btn btn-primary">구매하기</button>
+						<button type="submit" class="btn btn-primary subu">구매하기</button>
 						<button type="button" class="btn btn-secondary"
 							onclick="location.href='/product/productlist'">상품 목록보기</button>
 					</div>
@@ -144,6 +144,31 @@
 	<script>
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
+	
+	$(function(){
+		$(".subu").click(function(e){
+			e.preventDefault();
+			
+			console.log($(".checkone:checked").length);
+			
+			var check_count_is_not_null = $(".checkone:checked").length;
+			
+			if(check_count_is_not_null == 0){
+				Swal.fire({
+					  title: '<strong>체크된 상품이 없습니다</strong>',
+					  icon: 'info',
+					  html:
+					    '구매 전, 구매하실 상품을 선택해 주세요',
+
+					  focusConfirm: false,
+					  confirmButtonText:
+					    '확인'
+					})
+			}
+
+		})
+	})
+	
 </script>
 </body>
 </html>
