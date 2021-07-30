@@ -13,17 +13,20 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.BootpayApi;
 import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusOrderDetailVO;
 import com.spring.domain.CampusOrderVO;
+import com.spring.domain.CampusProductVO;
 import com.spring.domain.CartDummyVO;
 import com.spring.domain.CartPaymentVO;
 import com.spring.domain.bootpay.request.Cancel;
 import com.spring.mapper.CampusBoardAttachMapper;
 import com.spring.mapper.CartMapper;
 import com.spring.service.CampusPaymentService;
+import com.spring.service.CampusProductService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -41,6 +44,9 @@ public class PaymentController {
 	
 	@Autowired
 	private CampusPaymentService payment;
+	
+	@Autowired
+	private CampusProductService product;
 	
 	
 	@PreAuthorize("isAuthenticated()")
@@ -227,6 +233,7 @@ public class PaymentController {
 			vo.setD_option(check.getC_option());
 			vo.setC_cartnumber(cart);
 			
+			payment.stock_change(vo.getP_number(), vo.getD_count());
 			
 			int money = Integer.parseInt(check.getMoney());
 			pvo.setP_number(pnum);
@@ -286,6 +293,35 @@ public class PaymentController {
 		return "redirect:/";
 	}
 	
+	@ResponseBody
+	@PostMapping("/check_data")
+	public String check_data(CartDummyVO cartVO, Model model) {
+		
+		log.info("***** success ******");
+		
+		for(CartDummyVO check : cartVO.getCartVO()) {
+		
+			CampusOrderDetailVO vo = new CampusOrderDetailVO();
+			
+			vo.setP_number(Integer.parseInt(check.getP_number()));
+			vo.setD_count(Integer.parseInt(check.getC_count()));
+			
+			CampusProductVO pro = product.viewProduct(vo.getP_number());
+			int stock = pro.getP_stock();
+			int minus = vo.getD_count();
+			
+			if(stock - minus < 0) {
+				return "fail";
+			}
+			
+			
+		}
+		
+		return "success";
+		
+	}
+	
+	
 	
 	@GetMapping("/paymentlist")
 	public void paymentlist(String u_userid, Model model) {
@@ -296,7 +332,7 @@ public class PaymentController {
 		String mainoption = "";
 		int total_pay = 0;
 		
-		List<CampusOrderVO> list =  payment.listpaymentselect("user12");
+		List<CampusOrderVO> list =  payment.listpaymentselect(u_userid);
 		
 		for(CampusOrderVO vo:list) {
 			
@@ -346,6 +382,10 @@ public class PaymentController {
 		CampusOrderVO vo = payment.cancel_number(success_code);
 		payment.pay_cancel(vo.getO_number());
 		
+		List<CampusOrderDetailVO> list = payment.listpaymentselectdetail(vo.getO_number());
+		for(CampusOrderDetailVO voo:list) {
+			payment.stock_change_plus(voo.getP_number(), voo.getD_count());
+		}
 		
 		Cancel cancel = new Cancel();
 		cancel.receipt_id = success_code;

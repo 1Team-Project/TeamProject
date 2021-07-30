@@ -77,7 +77,7 @@
 	
 <!-- 결제만 해주는 페이지 -->
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.2.min.js" type="application/javascript"></script>
-    <script>
+<script>
 $(function(){
 	$(document).ready(function() {
 	    BootPay.request({
@@ -122,13 +122,41 @@ $(function(){
 	    	//결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
 	    	//주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
 	    	console.log(data);
-	    	var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
+	    	
+ 	    	var check_form = $("form[name=success_form]").serialize();
+	    	
+	 	   	var csrfHeaderName = "${_csrf.headerName}";
+	 		var csrfTokenValue = "${_csrf.token}";
+	 	    	
+ 	    	$.ajax({
+				url:'/board/check_data', //도착지
+				type:'post',
+				processData:false,
+				contentType:false,
+				beforeSend:function(xhr){
+					xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+				},
+				data:check_form,
+				dataType : 'json',
+				success:function(result){
+					if (result == 'success'){
+						console.log("유효성 검사 통과");						
+						BootPay.transactionConfirm(data);
+					}else{
+						console.log("유효성 검사 실패")
+						BootPay.removePaymentWindow();
+					}
+					
+				}
+
+			});
+			
+/* 	    	var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
 	    	if (enable) {
 	    		BootPay.transactionConfirm(data); // 조건이 맞으면 승인 처리를 한다.
 	    	} else {
 	    		BootPay.removePaymentWindow(); // 조건이 맞지 않으면 결제 창을 닫고 결제를 승인하지 않는다.
-	    	}
-	    	
+	    	} */
 	    }).close(function (data) {
 	        // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
 	        console.log(data);

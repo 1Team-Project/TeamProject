@@ -14,6 +14,14 @@
 		delete from campus_order where o_number = #{o_number}
 	</delete>
 	
+	<update id="stock_change">
+		update campus_product set p_stock = (p_stock-#{p_stock}) where p_number = #{p_number}
+	</update>
+	
+	<update id="stock_change_plus">
+		update campus_product set p_stock = (p_stock+#{p_stock}) where p_number = #{p_number}
+	</update>
+	
 	
 	<select id="cancel_number" resultType="com.spring.domain.CampusOrderVO">
 		select o_number from campus_order where success_code = #{success_code}

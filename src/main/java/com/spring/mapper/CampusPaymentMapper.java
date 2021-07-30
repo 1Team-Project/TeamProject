@@ -20,6 +20,8 @@ public interface CampusPaymentMapper {
 	public int payment_add(CampusOrderVO vo);
 	public int payment_detail_add(CampusOrderDetailVO vo);
 
+	public int stock_change(@Param("p_stock")int p_stock, @Param("p_number")int p_number);
+	public int stock_change_plus(@Param("p_stock")int p_stock, @Param("p_number")int p_number);
 	
 	public CampusOrderVO cancel_number(String success_code);
 	public int pay_cancel(int o_number);
