@@ -16,7 +16,7 @@
 	</div>
 	<div id="cartItemList" class="cartlist" style="min-height: 561px;">
 		<div class="">
-		<form action="/payment/paymentpage" method="post">
+		<form action="/payment/paymentpage" method="post" id="gogokakao">
 			<div class="c_item ">
 				<div class="c_select">
 					<div class="innerselect">
@@ -161,9 +161,12 @@
 					    '구매 전, 구매하실 상품을 선택해 주세요',
 
 					  focusConfirm: false,
+					  confirmButtonColor: '#78c2ad',
 					  confirmButtonText:
 					    '확인'
 					})
+			}else{
+				$("#gogokakao").submit();
 			}
 
 		})

@@ -8,7 +8,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css">
+	
 <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -99,22 +102,48 @@ $(function(){
 	    	//결제 진행시 에러가 발생하면 수행됩니다.
 	    	console.log(data);
 	    	
-	    	alert("결제 도중 오류가 발생하였습니다. error : "+data);
-	    	
-	    	var fail_form = $("#fail_form")
-	    	
-	    	fail_form.submit();
-	    	
+			Swal.fire({
+				  title: '<strong>결제가 취소되었습니다.</strong>',
+				  icon: 'error',
+				  allowOutsideClick: false,
+				  html:
+				    'error : '+data,
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				}).then((result) => {
+					  if (result.isConfirmed) {
+					    	var fail_form = $("#fail_form")
+					    	
+					    	fail_form.submit();
+						  }
+				})
+
 	    }).cancel(function (data) {
 	    	//결제가 취소되면 수행됩니다.
 	    	console.log(data);
 	    	
-	    	alert("결제가 취소되었습니다. error : "+data);
-	    	
-	    	var fail_form = $("#fail_form")
-	    	
-	    	fail_form.submit();
-	    	
+			Swal.fire({
+				  title: '<strong>결제가 취소되었습니다.</strong>',
+				  icon: 'error',
+				  allowOutsideClick: false,
+				  html:
+				    'error : '+data,
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				}).then((result) => {
+					  if (result.isConfirmed) {
+					    	var fail_form = $("#fail_form")
+					    	
+					    	fail_form.submit();
+						  }
+				})
+
 	    }).ready(function (data) {
 	    	// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
 	    	console.log(data);
@@ -151,11 +180,24 @@ $(function(){
 						console.log("유효성 검사 실패")
 						BootPay.removePaymentWindow();
 						
-				    	alert("결제가 취소되었습니다. error : 재고를 확인해 주세요");
-				    	
-				    	var fail_form = $("#fail_form")
-				    	
-				    	fail_form.submit();
+						Swal.fire({
+							  title: '<strong>결제가 취소되었습니다.</strong>',
+							  icon: 'error',
+							  allowOutsideClick: false,
+							  html:
+							    'error : 재고 부족',
+
+							  focusConfirm: false,
+							  confirmButtonColor: '#78c2ad',
+							  confirmButtonText:
+							    '확인'
+							}).then((result) => {
+								  if (result.isConfirmed) {
+								    	var fail_form = $("#fail_form")
+								    	
+								    	fail_form.submit();
+									  }
+							})
 					}
 					
 				}
@@ -177,12 +219,24 @@ $(function(){
 	    	//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
 	    	console.log(data);
 	    	
-	    	alert("결제에 성공하셨습니다.");
-	    	var success_form = $("#success_form")
-	    	var da = data.receipt_id;
-	    	var str = "<input type='hidden' name='success_code' value='"+da+"'>"
-	    	success_form.append(str);
-	    	success_form.submit();
+			Swal.fire({
+				  title: '<strong>결제가 완료되었습니다.</strong>',
+				  icon: 'success',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				}).then((result) => {
+					  if (result.isConfirmed) {
+					    	var success_form = $("#success_form")
+					    	var da = data.receipt_id;
+					    	var str = "<input type='hidden' name='success_code' value='"+da+"'>"
+					    	success_form.append(str);
+					    	success_form.submit();
+						  }
+				})
+				
+
 	    });
 	})
 })
