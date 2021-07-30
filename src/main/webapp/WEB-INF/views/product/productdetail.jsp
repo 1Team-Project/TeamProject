@@ -91,8 +91,10 @@
 
                   <div class="option_btn">
 							<input type="hidden" id="p_number" value="${vo.p_number}">
+							<sec:authorize access="isAuthenticated()">
 							<input type="hidden" name="userid" id="userid"
 								value="<sec:authentication property="principal.campusUser.u_userid"/>">
+							</sec:authorize>
 							<input type="hidden" name="${_csrf.parameterName}"
 								value="${_csrf.token}" />
 							<button type="button" class="btn btn-primary btn-lg"
