@@ -155,32 +155,25 @@
 					<div class="social-media">
 		    		<p class="d-md-flex justify-content-end m-2">
 						<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
-						
-						
-						
-						<c:choose>
-							<c:when test="${sessionScope.login != null}">
+
+						<sec:authorize access="isAuthenticated()">
 								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
 			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 			    					<img src="/resources/main/images/icon_login.png">
 			    				</a>
-			    			</c:otherwise>
-		    			</c:choose>
-		    			
-		    			
-		    			<c:choose>
-		    				<c:when test="${sessionScope.login != null}">
+			    			</sec:authorize>
+		    			    			
+							<sec:authorize access="isAuthenticated()">
 								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
 		    					<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png">
 		    					</a>
-		    				</c:otherwise>
-		    			</c:choose>
+			    			</sec:authorize>
 		    			
 							<sec:authorize access="isAuthenticated()">
 							<sec:authentication property="principal" var="user"/>
