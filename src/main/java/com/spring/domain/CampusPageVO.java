@@ -1,5 +1,7 @@
 package com.spring.domain;
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -8,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class CampusPageVO {
-
+	
 	//페이지 나누기와 관련된 정보를 담고 있는 객체
 	private int startPage;	
 	private int endPage;  

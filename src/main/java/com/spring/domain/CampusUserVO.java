@@ -14,6 +14,9 @@ import lombok.ToString;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CampusUserVO {
+	
+	private List<CampusUserVO> campusUserVO;
+	
 	private String u_userid;
 	private String u_password;
 	private String u_username;

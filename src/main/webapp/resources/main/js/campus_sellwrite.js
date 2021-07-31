@@ -316,6 +316,9 @@ $(function(){
 		
 		$.ajax({
 			url:'/deleteFile',
+			beforeSend:function(xhr){
+				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+			},
 			data:{
 				a_name:targetFile,
 			},

@@ -224,7 +224,9 @@
 		<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}" />
 		<input type="hidden" name="page" value="1" />
 		<input type="hidden" name="r_page" value="1"/>
-	</form>            
+	</form>  
+	
+	        
 	<script>
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";

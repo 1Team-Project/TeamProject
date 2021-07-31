@@ -10,6 +10,7 @@
   	<Logger name = "com.spring.mapper" level="debug"/>
   	<Logger name = "com.spring.task" level="debug"/>
   	<Logger name = "com.spring.handler" level="info"/>
+  	<Logger name = "com.spring.service" level="info"/>
   	
 	<Logger name = "org.springframework.core" level="info"/>
   	<Logger name = "org.springframework.beans" level="info"/>

@@ -1,8 +1,9 @@
 =\=\=\=\=\=\=
 <<<<<<<=HEAD
->>>>>>>=refs/remotes/origin/youngkwon
+>>>>>>>=5f4da484eb4205f47b7e8b9254d161f14f79c44f
 eclipse.preferences.version=1
 encoding//src/main/java/com/spring/config/SecurityConfig.java=UTF-8
 encoding//src/main/java/com/spring/controller/HomeController.java=UTF-8
 encoding//src/main/webapp/WEB-INF/views/product/productlist.jsp=UTF-8
+encoding//src/main/webapp/resources/main/js/register_yk.js=euc-kr
 encoding/<project>=UTF-8
