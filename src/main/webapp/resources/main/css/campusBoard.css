@@ -197,6 +197,20 @@
 	display: inline-block;
 }
 
+.paddinglr {
+	padding-left: 35%;
+	padding-right: 35%;
+}
+
+.btncenter {
+	display: block;
+  	margin: auto;
+}
+
+.btnclick {
+	background-color: #66a593;
+}
+
 /* 여기부터 결제 */
 
 .size200{

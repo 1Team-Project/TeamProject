@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.CampusAttachFileDTO;
+import com.spring.domain.CampusBoardCheckOrderVO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusProductVO;
@@ -151,6 +152,36 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 	public boolean productinsertboard(int b_no, String p_name) {
 		// TODO Auto-generated method stub
 		return mapper.productinsertboard(b_no,p_name)>0?true:false;
+	}
+
+	@Override
+	public int totalReview(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.totalReview(cri);
+	}
+
+	@Override
+	public int totalQNA(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.totalQNA(cri);
+	}
+
+	@Override
+	public List<CampusBoardVO> listReview(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.listReview(cri);
+	}
+
+	@Override
+	public List<CampusBoardVO> listQNA(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.listQNA(cri);
+	}
+
+	@Override
+	public List<CampusBoardCheckOrderVO> orderCheck(String u_userid) {
+		// TODO Auto-generated method stub
+		return mapper.orderCheck(u_userid);
 	}
 
 	

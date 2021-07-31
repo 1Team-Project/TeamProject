@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.apache.ibatis.annotations.Param;
 
+import com.spring.domain.CampusBoardCheckOrderVO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusProductVO;
@@ -31,6 +32,11 @@ public interface CampusBoardMapper {
 	
 	public List<CampusBoardVO> list(CampusCriteria cri);
 	
+	public List<CampusBoardVO> listReview(CampusCriteria cri);
+	public List<CampusBoardVO> listQNA(CampusCriteria cri);
+	
+	public List<CampusBoardCheckOrderVO> orderCheck(String u_userid);
+	
 	public CampusBoardVO view(int bno);
 
 	public int totalCnt(CampusCriteria cri);
@@ -38,6 +44,12 @@ public interface CampusBoardMapper {
 	public int replyCntUpdate(@Param("b_no")int bno, @Param("replycnt")int replycnt);
 	
 	public int addview(@Param("b_views")int views, @Param("b_no")int bno);
+	
+	public int totalReview(CampusCriteria cri);
+	
+	public int totalQNA(CampusCriteria cri);
+	
+	
 	
 	// 영권 main 게시판 10개 보기용 추가
 	public List<CampusBoardVO> mainList(CampusCriteria cri);

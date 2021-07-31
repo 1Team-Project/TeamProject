@@ -19,6 +19,38 @@
 		]]>
 	</select>
 	
+	<select id="listReview" resultType="com.spring.domain.CampusBoardVO">
+		<![CDATA[
+			select * 
+				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate, replycnt, b_content, b_rating, p_number, p_name, b_private
+					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate,replycnt,b_content,b_rating,p_number,p_name,b_private from campus_board where b_no>0 order by b_no desc) 
+					where b_sort = '후기' and
+		]]>
+	
+		<include refid="criteria"></include>
+		
+		<![CDATA[
+				 rownum <= (#{page}*15)) 
+			where rn > ((#{page}-1)*15)
+		]]>
+	</select>
+	
+	<select id="listQNA" resultType="com.spring.domain.CampusBoardVO">
+		<![CDATA[
+			select * 
+				from (select rownum rn, b_no, b_title, b_writer, b_views, b_sort, b_sysdate, replycnt, b_content, b_rating, p_number, p_name, b_private
+					from(select b_no,b_title,b_writer,b_views,b_sort,b_sysdate,replycnt,b_content,b_rating,p_number,p_name,b_private from campus_board where b_no>0 order by b_no desc) 
+					where b_sort = '질문' and
+		]]>
+	
+		<include refid="criteria"></include>
+		
+		<![CDATA[
+				 rownum <= (#{page}*15)) 
+			where rn > ((#{page}-1)*15)
+		]]>
+	</select>
+	
 	<select id="topdate" resultType="com.spring.domain.CampusBoardVO">
 		<![CDATA[
 		select * from (
@@ -58,6 +90,27 @@
 		b_no > 0 and b_sort != '상품'
 	</select>
 
+	<select id="totalReview" resultType="int">
+		select count(*) from campus_board
+		
+		where
+		
+		<include refid="criteria"></include>
+		
+		b_no > 0 and b_sort = '후기'
+		
+	</select>
+
+		<select id="totalQNA" resultType="int">
+		select count(*) from campus_board
+		
+		where
+		
+		<include refid="criteria"></include>
+		
+		b_no > 0 and b_sort = '질문'
+	</select>
+
 	
 	<select id="view" resultType="com.spring.domain.CampusBoardVO">
 		select * from campus_board where b_no = #{b_no}
@@ -77,7 +130,7 @@
 		<selectKey keyProperty="b_no" order="BEFORE" resultType="int">
 			select CAMPUS_BOARD_SEQUENCE.nextval from dual
 		</selectKey>
-		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort, b_rating, p_number) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort}, #{b_rating}, #{p_number})
+		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort, b_rating, p_number, b_private) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort}, #{b_rating}, #{p_number}, #{b_private})
 	</insert>
 	
 	<insert id="insert_p">
@@ -126,7 +179,12 @@
 		]]>
 	</select>
 	
-	
+	<select id="orderCheck" resultType="com.spring.domain.CampusBoardCheckOrderVO">
+		select distinct p_number from(
+    		select u.u_userid, u.o_number ,d.d_number, d.p_number
+   			from campus_order u, campus_order_detail d
+      		where u.u_userid = #{u_userid})
+	</select>
 
 	
 	

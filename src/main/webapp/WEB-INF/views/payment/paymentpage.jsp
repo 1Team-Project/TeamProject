@@ -93,10 +93,7 @@
 				<div class="col-md-12 bottommargin30 mll10">
 					<input name="o_address4" type="text" class="form-control width60 inlinetest" placeholder="상세주소" id="sample6_detailAddress" required <c:if test = "${campusCartVO == null}">readonly</c:if> />
 				</div>
-				
-				<hr class="one"  />
 
-				
 				
 				<hr class="one margintb40" />
 				

@@ -24,6 +24,8 @@ public class CampusBoardVO {
 	private Date b_sysdate;
 	private int replycnt;
 	
+	private String b_private;
+	
 	private int b_views;
 	private String b_sort;
 	private int b_rating;

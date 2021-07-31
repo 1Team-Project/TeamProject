@@ -11,12 +11,32 @@ $(function(){
 		var maxSize = 40971520; //20MB
 		
 		if(fileSize>maxSize){
-			alert("파일 사이즈 초과 ( 최대 20MB )");
+			Swal.fire({
+				  title: '<strong>파일의 크기가 초과되었습니다.</strong>',
+				  icon: 'info',
+				  html:
+				    '파일당 최대 20MB 까지 업로드가 가능합니다.',
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			return false;
 		}
 		
 		if(!regex.test(fileName)){
-			alert("해당 종류의 파일은 업로드 할 수 없습니다 (.jpg, .png)");
+			Swal.fire({
+				  title: '<strong>해당 종류의 파일은 업로드 할 수 없습니다.</strong>',
+				  icon: 'info',
+				  html:
+				    '.jpg .png 파일만 업로드가 가능합니다.',
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			return false;
 		}
 
@@ -37,7 +57,17 @@ $(function(){
 				return false;
 			}
 			if(i>=4){
-				alert("사진은 최대 4개까지 업로드가 가능합니다.");
+				Swal.fire({
+				  title: '<strong>업로드 가능 사진이 초과되었습니다.</strong>',
+				  icon: 'info',
+				  html:
+				    '사진은 최대 4장 까지만 업로드가 가능합니다.',
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 				$("input[name='campusFile']").val("");
 				return false;
 			}
@@ -76,7 +106,17 @@ $(function(){
 
 			catchnum += 1;
 			if(catchnum > 4){
-				alert("사진은 최대 4개까지 업로드가 가능합니다.");
+				Swal.fire({
+				  title: '<strong>업로드 가능 사진이 초과되었습니다.</strong>',
+				  icon: 'info',
+				  html:
+				    '사진은 최대 4장 까지만 업로드가 가능합니다.',
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 				catchnum -= 1;
 				return false;
 			}
@@ -119,37 +159,86 @@ $(function(){
 		console.log(name)
 
 		if(title == ""){
-			alert("제목을 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>제목을 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			$("#campusboard-product-title").focus();
 			return;
 		}
 		if(name == ""){
-			alert("이름을 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>이름을 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			$("#campusboard-product-name").focus();
 			return;
 		}
 		if(code == ""){
-			alert("코드를 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>코드를 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			$("#campusboard-product-title").focus();
 			return;
 		}
 		if(price == ""){
-			alert("가격을 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>가격을 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			$("#campusboard-product-price").focus();
 			return;
 		}
 		if(content == ""){
-			alert("내용을 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>내용을 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			$("#campusboard-product-content").focus();
 			return;
 		}
 		if(content == ""){
-			alert("재고를 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>재고를 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			$("#campusboard-product-stock").focus();
 			return;
 		}
 		if(content == ""){
-			alert("카테고리 번호를 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>카테고리 번호를 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 			$("#campusboard-product-pccode").focus();
 			return;
 		}
@@ -238,7 +327,17 @@ $(function(){
 				return false;
 			}
 			if(i>=4){
-				alert("사진은 최대 4개까지 업로드가 가능합니다.");
+				Swal.fire({
+				  title: '<strong>업로드 가능 사진이 초과되었습니다.</strong>',
+				  icon: 'info',
+				  html:
+				    '사진은 최대 4장 까지만 업로드가 가능합니다.',
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 				$("input[name='uploadFile']").val("");
 				return false;
 			}
@@ -277,7 +376,17 @@ $(function(){
 
 			catchnum2 += 1;
 			if(catchnum2 > 4){
-				alert("사진은 최대 4개까지 업로드가 가능합니다.");
+				Swal.fire({
+				  title: '<strong>업로드 가능 사진이 초과되었습니다.</strong>',
+				  icon: 'info',
+				  html:
+				    '사진은 최대 4장 까지만 업로드가 가능합니다.',
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 				catchnum2 -= 1;
 				return false;
 			}
