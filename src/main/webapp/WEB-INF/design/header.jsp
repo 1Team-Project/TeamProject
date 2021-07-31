@@ -153,10 +153,10 @@
 				<!-- 아이콘 관련 -->
 				<div class="col-md-12 order-md-last fixed-top">
 					<div class="social-media">
-		    		<p class="d-md-flex justify-content-end m-2">
-						<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
+		    			<p class="d-md-flex justify-content-end m-2">
+							<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
 
-						<sec:authorize access="isAuthenticated()">
+							<sec:authorize access="isAuthenticated()">
 								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
 			    			</sec:authorize>
 			    			<sec:authorize access="isAnonymous()">
@@ -185,8 +185,8 @@
 			    					<img src="/resources/main/images/icon_cart.png">
 			    				</a>
 			    			</sec:authorize>
-		    		</p>
-	      		</div>
+		    			</p>
+		      		</div>
 				</div>
 			</div>
 		</div>
