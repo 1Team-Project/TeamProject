@@ -225,7 +225,7 @@
 					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑장 정보</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown02">
 					<!-- 각 카테고리별 이동하는 링크 -->
-					<a class="dropdown-item" href="#">캠핑장 목록</a>
+					<a class="dropdown-item" href="/camp/campinglist">캠핑장 목록</a>
 				</div>
 				   </li>
 

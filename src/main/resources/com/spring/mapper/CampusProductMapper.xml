@@ -44,8 +44,8 @@
 		       ]]>
 		  <include refid="criteria2"></include>
 		   <![CDATA[
-					rownum <= (#{cri.page}*20)) p, simple_attach a
-			where rn > ((#{cri.page}-1)*20) and a.p_number=p.p_number and p.pc_code=#{pc_code}
+					rownum <= (#{cri.page}*20)and pc_code=#{pc_code}) p, simple_attach a
+			where rn > ((#{cri.page}-1)*20) and a.p_number=p.p_number 
 			
 			]]>
 	</select>	
