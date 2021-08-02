@@ -1,87 +1,3 @@
-<<<<<<< HEAD
-=======
-/**
- * pdetail.jsp에서 사용할 스크립트
- */
-
-/*function showImage(fileCallPath){
-   $(".bigPictureWrapper").css("display","flex").show();
-   $(".bigPicture").html("<img src='/display?fileName="+fileCallPath+"'>")
-            .animate({width:'100%', height:'100%'},1000);
-   }
-   
-$(function(){
-   
-   //첨부파일 가져오기
-   $.getJSON({
-     url:'getAttachList',
-     data:{
-       bno:bno
-     },
-     success:function(data){
-       console.log(data);
-       
-       var str="";
-       $(data).each(function(i,obj){
-         if(obj.fileType){//image
-             var fileCallPath = encodeURIComponent(obj.uploadPath+"\\s_"+obj.uuid+"_"+obj.fileName);
-          
-             str+="<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'";
-             str+=" data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'>";
-             str+="<img src='/display?fileName="+fileCallPath+"'>";
-             str+="</li>";
-         }else{
-            str+="<li data-path='"+obj.uploadPath+"' data-uuid='"+obj.uuid+"'";
-            str+=" data-filename='"+obj.fileName+"' data-type='"+obj.fileType+"'>";
-            str+="<span>"+obj.fileName+"</span><br>"
-            str+="<img src='/resources/img/attach.png'>";
-            str+="</li>";
-         }
-       })
-       $(".uploadResult ul").html(str);
-       
-     }
-   })//getJSON 종료
-   */
-
-
-//var bigpic = document.querySelector(".photo");
-//var smallpic = document.querySelector(".small_img");
-//
-//for(var i = 0; i<smallpic.length; i++){
-//   smallpic[i].addEventListener("click",changepic);
-//}
-//
-//function changepic() {
-//   var samllpicAttribute = this.getAttribute("src");
-//   bicpic.setAttribute("src",smallpicAttribute);
-
-//
-//$(function() {
-//   $('a').click(function() {
-//      $('.photo').attr('src', $(this).attr('href'));
-//      return false;
-//   })
-//});
-//
-
-//
-//$(function() {
-//
-//   $(".btn-secondary").click(function(e) {
-//      e.preventDefault();
-//
-//      var order = confirm("상품을 바로 구매하시겠습니까?");
-//      if (order) {
-//         $(location).attr("href", "/payment/paymentpage")
-//
-//      } else {
-//
-//      }
-//   })
-//})
->>>>>>> b95f8238fbd2702e5029d9b7886e6671b0d0914f
-
 $(".menu1").click(function(e) {
    e.preventDefault(e);
    //선택한 위치 태그 
@@ -149,19 +65,6 @@ $(".minus").click(function() {
 
 
 $(function(){
-<<<<<<< HEAD
-	//하단의 페이지 나누기 번호 클릭시 !!
-	var actionForm = $("#actionForm");
-	$(".mypage-item a").click(function(e){
-		e.preventDefault();  //a 속성 중지
-		
-		//actionForm의 안의 pageNum의 값을 사용자가 선택한 번호로 변경
-		actionForm.find("input[name='page']").val($(this).attr("href"));
-		
-		//actionForm 보내기
-		actionForm.submit();
-	})
-=======
    
    //하단의 페이지 나누기 번호 클릭시 !!
    var actionForm = $("#actionForm");
@@ -174,7 +77,6 @@ $(function(){
       //actionForm 보내기
       actionForm.submit();
    })
->>>>>>> b95f8238fbd2702e5029d9b7886e6671b0d0914f
 
 })
 
@@ -228,9 +130,3 @@ $(".textcenter1 tr").each(function(){
    
 })
 $(".avg").val((sum/count).toFixed(2));
-
-<<<<<<< HEAD
- 
-=======
- 
->>>>>>> b95f8238fbd2702e5029d9b7886e6671b0d0914f

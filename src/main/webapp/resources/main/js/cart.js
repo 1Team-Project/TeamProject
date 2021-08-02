@@ -40,7 +40,6 @@ function plus_minus(obj,op){
 $("input:checkbox[id='checkall']").prop("checked",false);
 
 $("#checkall").click(function(){
-<<<<<<< HEAD
 	
 	if ($("input:checkbox[id='checkall']").prop("checked")){
 		$("input[type=checkbox]").prop("checked",true);
@@ -48,12 +47,4 @@ $("#checkall").click(function(){
 		$("input[type=checkbox]").prop("checked",false);
 	}
 });
-=======
-   
-   if ($("input:checkbox[id='checkall']").prop("checked")){
-      $("input[type=checkbox]").prop("checked",true);
-   } else{
-      $("input[type=checkbox]").prop("checked",false);
-   }
-});
->>>>>>> b95f8238fbd2702e5029d9b7886e6671b0d0914f
+

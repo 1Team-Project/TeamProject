@@ -1,45 +1,80 @@
 @charset "UTF-8";
 
-	#titleArea h3 {
-		margin-top: 50px;
-		padding: 0 40px 0;
-		line-height: 43px;
-		font-size: 30px;
-		text-align: center;
-	}
-	
-	.gong {
-		margin-top: 100px;
-		margin-bottom: 100px;
-	}
-	
-	.gong2 {
-		margin-top: 150px;
-		margin-bottom: 150px;
-	}
-	
-	#calendar {
-		float: left;
-		width: 33%;
-		height: 450px;
-		margin: 1rem !important;
-	}
-	
-	.camping img{
-		/*float: right;*/
-		width: 50px;;
-		height:500px;
-	}
-	.camp reservation{
-		float:right;
-	}
-	.change_info strong{
-		padding:10px;
-	}
-	.change_info ul li {
-		text-align: left;
-		font-size:12px;
-		font-family: noto sans;
-   		color: #333;
-    	letter-spacing: -.5px;
-	}
+#titleArea h3 {
+	margin-top: 50px;
+	padding: 0 40px 0;
+	line-height: 43px;
+	font-size: 30px;
+	text-align: center;
+	font-weight: 700;
+}
+
+.camping .camping, .reservation, .select p section {
+	float: left;
+	width: 33%;
+	padding: 10px;
+}
+
+.select .title {
+	font-weight: 600;
+}
+
+.select {
+	padding-bottom: 100px;
+}
+
+.camping .camping {
+	margin-left: 50px;
+}
+
+#titleArea .info {
+	display:block;
+}
+.camping span {
+/* 	display: block; */
+	font-weight: 600;
+	font-size: 20px;
+	margin-left: 60px;
+}
+
+.camping img .detail {
+	display: block;
+	font-size: 10px;
+	margin-left: 50px;
+}
+
+.reservation img {
+	width: 300px;
+	/*       height:100%; */
+	/*       padding-bottom:45px; */
+	margin-left: 50px;
+}
+
+.calendar {
+	margin-left: 1000px;
+}
+
+.change_info {
+	margin-left: 50px;
+}
+
+.change_info strong {
+	padding: 10px;
+}
+
+.change_info ul li {
+	text-align: left;
+	font-size: 12px;
+	font-family: noto sans;
+	color: #333;
+	letter-spacing: -.5px;
+}
+
+.people .form-group {
+	margin-left: 1000px;
+}
+
+.reserv {
+	margin-top: 10px;
+	margin-left: 1200px;
+}
