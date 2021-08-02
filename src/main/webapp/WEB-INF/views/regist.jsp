@@ -44,7 +44,14 @@
 		  		<div class="regist-margin">
 		    		<input type="text" name="u_email" id="u_email" class="form-control-regist" placeholder="example@gmail.com" />
 		  		</div>
-	    		<i id="u_email" class="text-info"></i>
+		  		<div class="regist-margin">
+		    		<input type="text" name="u_email_check" id="u_email_check" class="form-control-regist" placeholder="인증번호 입력" />
+		  		</div>
+	    		<i id="u_email" class="text-info" name="chk_text"></i>
+	    		<div class="regist-margin">
+			  		<button type="button" id="chkEmail" class="btn btn-primary" style="font-size:20px">메일인증</button>
+			  		<button type="button" id="chkNum" class="btn btn-primary" style="font-size:20px">인증번호 확인</button>
+		  		</div>
 			</div>
 			
 			<div class="form-group">

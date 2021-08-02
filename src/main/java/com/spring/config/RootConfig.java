@@ -3,6 +3,7 @@ package com.spring.config;
 import java.nio.charset.Charset;
 import java.sql.SQLException;
 import java.util.Arrays;
+import java.util.Properties;
 
 import javax.sql.DataSource;
 
@@ -17,6 +18,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.StringHttpMessageConverter;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.JavaMailSenderImpl;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import com.zaxxer.hikari.HikariConfig;
@@ -81,4 +84,26 @@ public class RootConfig {
 	    converter.setSupportedMediaTypes(Arrays.asList(new MediaType("text", "plain", Charset.forName("UTF-8"))));
 	    return converter;
 	}
+	
+	@Bean(name="mailSender")
+	public JavaMailSender getJavaMailSender() {
+		Properties properties = new Properties(); 
+		properties.put("mail.smtp.auth", true);
+		properties.put("mail.transport.protocol", "smtp");
+		properties.put("mail.smtp.starttls.enable", true);
+		properties.put("mail.smtp.starttls.required", true);
+		properties.put("mail.debug", true);
+		
+		JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
+		mailSender.setHost("smtp.gmail.com");
+		mailSender.setPort(587);
+		mailSender.setUsername("본인 메일주소(gmail)");
+		mailSender.setPassword("비밀번호");
+		mailSender.setDefaultEncoding("utf-8");
+		mailSender.setJavaMailProperties(properties);
+		
+		return mailSender;
+		
+	}
+		
 }

@@ -120,7 +120,7 @@ public class MemberController {
 	@PostMapping("/findUser")
 	public String findUser(CampusUserVO vo) {
 		log.info("회원 이름 검사 : " + vo.getU_username());
-		log.info("회원 번호 검사 : " + vo.getU_phone());
+		log.info("회원 번호 검사 : " + vo.getU_email());
 		
 		CampusUserVO vo1 = service.findId(vo);
 
@@ -151,7 +151,7 @@ public class MemberController {
 	public String findUserPw(CampusUserVO vo) {
 		log.info("회원 아이디 검사 : " + vo.getU_userid());
 		log.info("회원 이름 검사 : " + vo.getU_username());
-		log.info("회원 번호 검사 : " + vo.getU_phone());
+		log.info("회원 번호 검사 : " + vo.getU_email());
 		
 		CampusUserVO vo1 = service.findPw(vo);
 
@@ -368,10 +368,15 @@ public class MemberController {
 	public String leaveGet(CampusUserVO vo, HttpSession session, Model model) {
 		log.info("회원탈퇴 폼 요청");
 		
-		CampusUserVO userS = service.read(vo); 
-		model.addAttribute("userS", userS);
+		log.info("세션 값 확인 : " + vo.getU_userid());
 		
-		return "/leave";
+		if(vo.getU_userid()==null) {
+			return "/leave";
+		} else {
+			CampusUserVO userS = service.read(vo); 
+			model.addAttribute("userS", userS);
+			return "/leave";
+		}
 	}
 	
 	

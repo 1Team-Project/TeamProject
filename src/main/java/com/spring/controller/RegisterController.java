@@ -1,9 +1,15 @@
 package com.spring.controller;
 
 
+import java.util.Random;
+
 import javax.inject.Inject;
+import javax.mail.internet.MimeMessage;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -25,6 +31,9 @@ public class RegisterController {
 	
 	@Inject
 	BCryptPasswordEncoder pwdEncoder;
+	
+	@Autowired
+	private JavaMailSender mailSender;
 	
 	
 	@GetMapping("/login2")
@@ -85,6 +94,41 @@ public class RegisterController {
 			return "false";
 		}
 		return "true";
+	}
+	
+	// 이메일 인증
+	@ResponseBody // 리턴값의 의미가 jsp를 찾으라는 의미가 아니고 결과값의 의미
+	@PostMapping("/chkEmail")
+	public String chkEmailPost(CampusUserVO vo) {
+		log.info("이메일 인증 : " + vo.getU_email());
+		Random random = new Random();
+		int chkNum = random.nextInt(888888) + 111111;
+		log.info("인증번호 확인 : " + chkNum);
+		
+		// 이메일 보내기
+		String setFrom = "보낼사람 주소";
+		String toMail = vo.getU_email();
+		// 이메일 제목
+		String title = "CampUs 이메일 인증입니다.";
+		// 이메일 내용
+		String content = "회원가입을 위한 이메일 인증입니다." + "<br><br>" + "인증번호는 " + chkNum + "입니다." + "<br>" + "인증번호를 입력하세요"; 
+		
+		try {
+			MimeMessage message = mailSender.createMimeMessage();
+			MimeMessageHelper helper = new MimeMessageHelper(message, true, "utf-8");
+			helper.setFrom(setFrom);
+			helper.setTo(toMail);
+			helper.setSubject(title);
+			helper.setText(content, true);
+			mailSender.send(message);
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+		String authKey = Integer.toString(chkNum);
+		return authKey;
+		
+		
 	}
 	
 	 // /register 직접 눌러서 접근하는 경우 - 405에러
