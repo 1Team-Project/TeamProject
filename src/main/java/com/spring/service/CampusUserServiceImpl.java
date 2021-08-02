@@ -1,11 +1,16 @@
 package com.spring.service;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.spring.domain.ChangeVO;
+import com.spring.domain.CampusAuthVO;
+import com.spring.domain.CampusBoardVO;
+import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusUserVO;
 import com.spring.mapper.CampusUserAuthMapper;
 import com.spring.mapper.CampusUserMapper;
@@ -41,7 +46,7 @@ public class CampusUserServiceImpl implements CampusUserService {
 	
 	@Override
 	public boolean leaveAuth(CampusUserVO vo) {
-		return mapper.leaveAuth(vo)>0? true:false;
+		return authmapper.leaveAuth(vo)>0? true:false;
 	}
 	
 	@Override
@@ -55,13 +60,44 @@ public class CampusUserServiceImpl implements CampusUserService {
 	}
 	
 	@Override
-	public boolean update(ChangeVO change) {
-		return mapper.update(change)>0? true:false;
+	public boolean update(CampusUserVO vo) {
+		return mapper.update(vo)>0? true:false;
 	}
 
 	@Override
 	public boolean userUpdate(CampusUserVO vo) {
 		return mapper.userUpdate(vo)>0? true:false;
 	}
+
+	@Override
+	public List<CampusUserVO> userList(CampusUserVO vo) {
+		return mapper.userList(vo);
+	}
+
+	@Override
+	public List<CampusAuthVO> userAuth(CampusAuthVO auth) {
+		return authmapper.userAuth(auth);
+	}
+
+	@Override
+	public CampusUserVO read(CampusUserVO vo) {
+		return mapper.read(vo.getU_userid());
+	}
+
+	@Override
+	public CampusAuthVO userAuthOne(CampusAuthVO auth) {
+		return authmapper.userAuthOne(auth);
+	}
+
+	@Override
+	public boolean leaveCampAdmin(CampusUserVO vo) {
+		return authmapper.leaveCampAdmin(vo)>0? true:false;
+	}
+
+	@Override
+	public CampusAuthVO authModify(CampusAuthVO auth) {
+		return authmapper.authModify(auth);
+	}
+
 	
 }

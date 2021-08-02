@@ -69,36 +69,38 @@ public class CampusProductServiceImpl implements CampusProductService {
 	}
 	
 	//관리자용
-	@Override
-	@Transactional
-	public boolean insertProduct(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob) {
-		
-		boolean test1 = productmapper.insertProduct(vo)>0;
-		boolean test2 = boardmapper.insert_p(vob)>0;
-		boolean test3 = optionmapper.insertProductOption(voo)>0;
-		boolean result = false;
-
-		
-		//첨부파일 여부 확인
-		if(vob.getAttachList()==null || vob.getAttachList().size()<=0) {
+		@Override
+		@Transactional
+		public boolean insertProduct(CampusProductVO vo, CampusProductOptionVO voo, CampusBoardVO vob) {
 			
-			if (test1 == test2 == test3) {
-				result = true;
+			boolean test1 = productmapper.insertProduct(vo)>0;
+			boolean test2 = boardmapper.insert_p(vob)>0;
+			boolean test3 = optionmapper.insertProductOption(voo)>0;
+			boolean result = false;
+
+			
+			//첨부파일 여부 확인
+			if(vob.getAttachList()==null || vob.getAttachList().size()<=0) {
+				
+				if (test1 == test2 == test3) {
+					result = true;
+				}
+				
+				return result;
 			}
 			
-			return result;
-		}
-		
-		// 첨부파일 등록
-		vob.getAttachList().forEach(attach -> {
-			attach.setB_no(vob.getB_no());
-			attachMapper.insert(attach);
-		});
+			// 첨부파일 등록
+			vob.getAttachList().forEach(attach -> {
+				attach.setB_no(vob.getB_no());
+				
+				attachMapper.insert_p(attach.getA_uuid(),attach.getA_path(),attach.getA_name(),1,attach.getB_no(),vo.getP_number());
+				
+			});
 
-		return result;
-		
-		
-	}
+			return result;
+			
+			
+		}
 
 	@Override
 	@Transactional
@@ -163,6 +165,11 @@ public class CampusProductServiceImpl implements CampusProductService {
 	@Override
 	public List<CampusBoardVO> selectq(int p_number) {
 		return productmapper.selectq(p_number);
+	}
+
+	@Override
+	public int total2(CampusCriteria cri) {
+		return productmapper.totalPro2(cri);
 	}
 	
 

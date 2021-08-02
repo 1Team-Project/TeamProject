@@ -86,7 +86,8 @@
 		<selectKey keyProperty="b_no" order="BEFORE" resultType="int">
 			select CAMPUS_BOARD_SEQUENCE.nextval from dual
 		</selectKey>
-		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort, p_number) values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort}, #{p_number})
+		insert into campus_board(b_no, b_title, b_content, b_writer, b_sysdate, b_sort, p_number) 
+		values(#{b_no}, #{b_title}, #{b_content}, #{b_writer}, sysdate, #{b_sort}, #{p_number})
 	</insert>
 	
 	<select id="productfindboard" resultType="string">

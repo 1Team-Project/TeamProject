@@ -6,5 +6,28 @@
 		insert into CAMPUS_USER_AUTH(u_userid, u_auth)
 		values(#{u_userid}, 'ROLE_USER')
 	</insert>
+	
+	<!-- 탈퇴1 - 권한 제거 : leave -->
+	<delete id="leaveAuth">
+		delete from CAMPUS_USER_AUTH where u_userid = #{u_userid}
+	</delete>
 
+	<!-- 탈퇴3 - admin 강제 탈퇴: leave -->
+	<delete id="leaveCampAdmin">
+		delete from CAMPUS_USER where u_userid = #{u_userid}
+	</delete>
+	
+	<select id="userAuth" resultType="com.spring.domain.CampusAuthVO">
+		select u_userid, u_auth from campus_user_auth 
+	</select>
+	
+	<select id="userAuthOne" resultType="com.spring.domain.CampusAuthVO">
+		select u_userid, u_auth from campus_user_auth where u_userid = #{u_userid}
+	</select>
+	
+	<!-- 권한 변경 -->
+	<select id="authModify" resultType="com.spring.domain.CampusAuthVO">
+		update campus_user_auth set u_auth = #{u_auth} where u_userid = #{u_userid}
+	</select>
+	
 </mapper>

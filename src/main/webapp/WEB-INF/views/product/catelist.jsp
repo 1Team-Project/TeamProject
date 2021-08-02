@@ -31,12 +31,14 @@
 						<div class="row">
 							<div class="col-md-12 mb-3">
 							<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
-									<option value="">분류</option>
+									<option value="">----</option>
 									<option value="상품명"<c:out value="${pageVO.cri.sort=='상품명'?'selected':''}"/>>상품명</option>
 									<option value="제조사"<c:out value="${pageVO.cri.sort=='제조사'?'selected':''}"/>>제조사</option>
 							</select> 
 								<input type="text" name="keyword" class="width30 boldergreen padding5px blacktext">
 								<input type="hidden" name="page" value="${pageVO.cri.page}"/>
+								<input type="hidden" name="pc_code" value="${pc_code}"/>
+								 
 								<button class="btn btn-primary searchbutton" id="searchBtn" type="submit">검색</button>
 								
 							</div>
@@ -66,7 +68,9 @@
                                         <div class="description">
                                             <div class="product_name">
                                                 <strong class="name"><a href="${cate.p_number}" class="viewpro">
-                                                        <span>상품명 :</span>
+                                                        <span>[</span>
+                                                        <span>${cate.p_manufact}</span>
+                                                        <span>]</span>
                                                         <span>${cate.p_name}</span>
                                                 </a></strong>
                                             </div>        
@@ -114,6 +118,7 @@
 		<input type="hidden" name="page" value="${cri.page}" />
 	
 	</form> --%>
+
         </div>
 
 <script>

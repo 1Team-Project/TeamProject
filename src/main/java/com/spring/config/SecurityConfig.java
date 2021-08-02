@@ -13,6 +13,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.access.AccessDeniedHandler;
+import org.springframework.security.web.authentication.AuthenticationFailureHandler;
 import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 import org.springframework.security.web.authentication.rememberme.JdbcTokenRepositoryImpl;
 import org.springframework.security.web.authentication.rememberme.PersistentTokenRepository;
@@ -20,6 +21,7 @@ import org.springframework.security.web.csrf.CsrfFilter;
 import org.springframework.web.filter.CharacterEncodingFilter;
 
 import com.spring.handler.CustomAccessDeniedHandler;
+import com.spring.handler.CustomLoginFailHandler;
 import com.spring.handler.CustomLoginSuccessHandler;
 import com.spring.service.CustomUserDetailService;
 
@@ -36,6 +38,11 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AuthenticationSuccessHandler loginSuccessHandler() {
 		return new CustomLoginSuccessHandler();
+	}
+	
+	@Bean
+	public AuthenticationFailureHandler loginFailHandler() {
+		return new CustomLoginFailHandler();
 	}
 	
 	// <bean id="customAccessDeniedHandler" class="com.spring.handler.CustomAccessDeniedHandler" />
@@ -104,7 +111,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.passwordParameter("u_password")
 			.loginPage("/login")
 			.loginProcessingUrl("/loginForm")
-			.failureUrl("/access-denied")
+			.failureHandler(loginFailHandler())
 			.successHandler(loginSuccessHandler());
 		
 		/*

@@ -5,36 +5,36 @@
 $(function(){
 	//하단의 페이지 나누기 번호 클릭시 
 	var detailForm = $("#detailForm");
-	
+
 	$(".mypage-item a").click(function(e){
 		e.preventDefault();  //a 속성 중지
 		
-		//actionForm의 안의 pageNum의 값을 사용자가 선택한 번호로 변경
+		//detailForm의 안의 pageNum의 값을 사용자가 선택한 번호로 변경
 		detailForm.find("input[name='page']").val($(this).attr("href"));
 		
-		//actionForm 보내기
+		//detailForm 보내기
 		detailForm.submit();
 	})
 
 	//상품 클릭시
 	$(".viewpro").click(function(e){
 		e.preventDefault(); //타이틀 a 속성 막기
-		
-					  
+			  
       //actionForm에 pnum값을 추가하여 actionForm 보내기
       detailForm.append("<input type='hidden' name='p_number' value='"+$(this).attr('href')+"'>");
       detailForm.attr("action","productdetail");
-
       detailForm.submit();
 	})
+
+	
 
 	//검색
 	
 		$(".searchbutton").click(function(e){
-		//검색 폼 가져오기
-		var searchForm = $("#searchForm");
 		//a막기
 		e.preventDefault();
+		//검색 폼 가져오기
+		var searchForm = $("#searchForm");
 		
 		
 		
@@ -51,15 +51,16 @@ $(function(){
 			alert("검색어를 확인해 주세요!");
 			$("input[name='keyword']").focus();
 			return false;
-		}	//@@@@@@@@@@@검색어 넣어도 이게 뜸
+		}	
 		
 		//검색하면 처음엔 페이지 1
 		searchForm.find("input[name='page']").val("1");
 		
 		searchForm.submit();
 		
-	})	
-
 	})
 	
-
+		
+	
+		
+})

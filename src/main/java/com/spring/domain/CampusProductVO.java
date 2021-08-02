@@ -14,11 +14,6 @@ import lombok.ToString;
 @AllArgsConstructor
 @ToString
 public class CampusProductVO {
-	
-	private List<CampusProductVO> campusProductVO;
-	private String po_option_vo;
-	
-	
 	private int p_number;
 	private String p_name;
 	private int p_price;
@@ -40,6 +35,8 @@ public class CampusProductVO {
 	private String a_name;
 	private String urllink;
 	private String path;
+
+	
 	private String thumbimg;
 	//상품 내용
 	private int b_no;
@@ -47,6 +44,7 @@ public class CampusProductVO {
 	private String b_sort;
 	//첨부파일 리스트
 	
-private List<CampusAttachFileDTO> attachList;
-private List<CampusBoardVO> pboardlist;
+	private List<CampusAttachFileDTO> attachList;
+	private List<CampusBoardVO> pboardlist;
+
 }

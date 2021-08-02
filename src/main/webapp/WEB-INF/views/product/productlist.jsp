@@ -79,12 +79,12 @@
 							<div class="col-md-12 mb-3">
 			                     <form action="" id="searchForm" class="">
 									<select name="sort" id="" class="form-control width10 inlinetest boldergreen">
-											<option value="">분류</option>
-											<option value="상품명"<c:out value="${productPageVO.cri.sort=='상품명'?'selected':''}"/>>상품명</option>
-											<option value="제조사"<c:out value="${productPageVO.cri.sort=='제조사'?'selected':''}"/>>제조사</option>
+											<option value="">----</option>
+											<option value="상품명"<c:out value="${pageVO.cri.sort=='상품명'?'selected':''}"/>>상품명</option>
+											<option value="제조사"<c:out value="${pageVO.cri.sort=='제조사'?'selected':''}"/>>제조사</option>
 									</select> 
 										<input type="text" name="keyword" class="width30 boldergreen padding5px blacktext">
-		                            	<input type="hidden" name="page" value="${productPageVO.cri.page}" />
+		                            	<input type="hidden" name="page" value="${pageVO.cri.page}" />
 										<button class="btn btn-primary searchbutton" id="searchBtn" type="submit">검색</button>
 								</form>
 							</div>
@@ -162,7 +162,7 @@
 		<div class="col-md-1"></div>
 	</div>
 </div>
-		<form action="list" method="get" id="detailForm">
+		<form action="" method="get" id="detailForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
 			<input type="hidden" name="keyword"value="${CampusProductPageVO.cri.keyword}" /> 
 			<input type="hidden" name="page" value="${CampusProductPageVO.cri.page}" />

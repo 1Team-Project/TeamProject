@@ -184,7 +184,6 @@
 							<option value="">--------</option>
 							<option value="Q">질문</option>
 							<option value="R">후기</option>
-
 						</select>
 						<!-- 검색시에도 페이지당 게시물 수와 현재 페이지에 대한 정보가 따라가야 한다. -->
 						<input type="hidden" name="keyword" value="${CampusPageVO.cri.keyword}"/>

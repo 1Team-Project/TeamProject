@@ -24,7 +24,7 @@
 				</div>
 				<hr class="one" />
 				<div class="col-md-10"> <input type="text"
-						class="form-control width70 inlinetest " name="p_number"
+						class="form-control width70 inlinetest " name="p_numbers"
 						id="campusboard-product-code" placeholder="상품 번호 입력" />
 				</div>
 				<hr class="one" />

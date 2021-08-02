@@ -59,37 +59,35 @@
 						
 						
 						
-						<c:choose>
-							<c:when test="${sessionScope.login != null}">
-								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
-			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
-			    					<img src="/resources/main/images/icon_login.png">
-			    				</a>
-			    			</c:otherwise>
-		    			</c:choose>
-		    			
-		    			
-		    			<c:choose>
-		    				<c:when test="${sessionScope.login != null}">
-								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
-		    						<img src="/resources/main/images/icon_mypage.png"></a>
-			    			</c:when>
-			    			<c:otherwise>
-		    					<a href="/login" class="d-flex align-items-center justify-content-center m-1">
-		    						<img src="/resources/main/images/icon_mypage.png">
-		    					</a>
-		    				</c:otherwise>
-		    			</c:choose>
-		    			
 							<sec:authorize access="isAuthenticated()">
-								<a href="/cart?userid=" class="d-flex align-items-center justify-content-center m-1">
-								<img src="/resources/main/images/icon_login.png"></a>
+								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
 			    			</sec:authorize>
 			    			<sec:authorize access="isAnonymous()">
 			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
 			    					<img src="/resources/main/images/icon_login.png">
+			    				</a>
+			    			</sec:authorize>
+		    			
+		    				<c:if test="true">dtd </c:if>
+		    				<c:if test="false">false</c:if>
+							<sec:authorize access="isAuthenticated()">
+								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
+		    						<img src="/resources/main/images/icon_mypage.png"></a>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
+		    					<a href="/login" class="d-flex align-items-center justify-content-center m-1">
+		    						<img src="/resources/main/images/icon_mypage.png">
+		    					</a>
+			    			</sec:authorize>
+		    			
+							<sec:authorize access="isAuthenticated()">
+							<sec:authentication property="principal" var="user"/>
+								<a href="/cart?u_userid=${user.username}" class="d-flex align-items-center justify-content-center m-1">
+								<img src="/resources/main/images/icon_cart.png"></a>
+			    			</sec:authorize>
+			    			<sec:authorize access="isAnonymous()">
+			    				<a href="/login" class="d-flex align-items-center justify-content-center m-1">
+			    					<img src="/resources/main/images/icon_cart.png">
 			    				</a>
 			    			</sec:authorize>
 		    		</p>
@@ -111,7 +109,7 @@
 				<!-- 각 카테고리별 이동하는 링크 -->
               	<a class="dropdown-item product-item" href="/product/productlist">전체 상품</a>
               		<c:forEach var="cate" items="${category}">
-	           			<a class="dropdown-item clickview" href="${cate.pc_code}">${cate.pc_name} </a>
+	           			<a class="dropdown-item clickview" href="${cate.pc_code}" class="cate">${cate.pc_name} </a>
              		 </c:forEach>
               </div>
            	  </li>
@@ -121,7 +119,7 @@
 					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑장 정보</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown02">
 					<!-- 각 카테고리별 이동하는 링크 -->
-					<a class="dropdown-item" href="#">캠핑장 목록</a>
+					<a class="dropdown-item" href="/camp/campinglist">캠핑장 목록</a>
 				</div>
 				   </li>
 
@@ -146,14 +144,20 @@
 
 
 </form>
-	
+
 	<!-- 한중 폼 -->
 <!-- 		<form action="" method="get" id="actionForm"> -->
 <%-- 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" /> --%>
 <%-- 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" />  --%>
 <%-- 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" /> --%>
 <!-- 		</form> -->
-		
+
+		<form action="/logoutForm" method="post" id="logoutForm">
+			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		</form>
+
+
+
 		<form action="" method="get" id="goForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
 			<input type="hidden" name="page" value="1" />
@@ -174,6 +178,7 @@
 		var csrfTokenValue = "${_csrf.token}";
 	</script>
 
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  	<script src="/resources/main/js/popper.js"></script>
   	<script src="/resources/main/js/bootstrap.min.js"></script>
@@ -181,3 +186,4 @@
  	<!-- 영권 추가 문장 시작 -->
  	<script src="/resources/main/js/header_yk.js"></script>
  	<!-- 영권 추가 문장 끝 -->
+ 	

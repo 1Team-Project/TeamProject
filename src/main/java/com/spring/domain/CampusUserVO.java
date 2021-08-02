@@ -24,5 +24,8 @@ public class CampusUserVO {
 	private String u_phone;
 	private String u_address;
 	
+	private String new_password;
+	
 	private List<CampusAuthVO> authList;
+	
 }

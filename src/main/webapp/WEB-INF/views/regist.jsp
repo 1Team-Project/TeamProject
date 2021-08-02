@@ -5,8 +5,10 @@
 	<form id="formId" action="regist2" method="post">
 		<div class="regist-Form">
 			<div class="form-group">
+				<h2>회원가입 정보 입력</h2>
+				<p></p>
 		  		<label for="u_userid" style="font-family: naBrush">아이디</label>
-		  		<button type="button" id="chkId" class="btn btn-primary" style="font-size:20px">입 력</button>
+		  		<button type="button" id="chkId" class="btn btn-primary" style="font-size:20px">중 복</button>
 		  		<div class="regist-margin">
 		    		<input type="text" name="u_userid" id="u_userid" class="form-control-regist" placeholder="영문, 숫자 4 ~12자리" />
 		  		</div>

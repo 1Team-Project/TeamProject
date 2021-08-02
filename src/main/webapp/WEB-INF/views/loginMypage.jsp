@@ -78,11 +78,20 @@
                
                 <div id="mp" class="table">
                     <ul>
-                        <button type="submit" class="btn btn-info" onclick="location.href='order'"><a href="/order">구매내역</a></button>
-                       	<p></p>
-                        <button type="submit" class="btn btn-secondary"><a href="/reservation">예약내역</a></button>
-                        <p></p>
-                        <button type="submit" id="modify" class="btn btn-warning"><a href="/mypageModify">회원정보수정</a></button>
+
+                    	<sec:authorize access="hasRole('ROLE_ADMIN')">
+                    		<button type="submit" id="modify" class="btn btn-primary"><a href="/userManagement">회원관리</a></button>
+							<p></p>
+							<button type="submit" id="modify" class="btn btn-danger"><a href="/board/sellwrite">상품등록</a></button>
+							<p></p>
+                    	</sec:authorize>
+                    	<sec:authentication property="principal" var="user"/>
+						<button type="button" class="btn btn-info" onclick="location.href='/payment/paymentlist?u_userid=${user.username}'">구매내역</button>
+						<p></p>
+						<button type="submit" class="btn btn-secondary"><a href="/reservation">예약내역</a></button>
+						<p></p>
+						<button type="submit" id="modify" class="btn btn-warning"><a href="/myModify">회원정보수정</a></button>
+
                    	
                     </ul>
                 </div>

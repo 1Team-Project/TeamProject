@@ -53,7 +53,7 @@
       <p><input type="submit" value="Submit"></p>
     </form>
 </div>
-   <script src="../../resources/main/js/camp.js"></script>
+<script src="../../resources/main/js/camp.js"></script>
 
 
 </body>
