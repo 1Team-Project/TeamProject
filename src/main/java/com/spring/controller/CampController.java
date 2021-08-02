@@ -27,6 +27,12 @@ public class CampController {
 		
 		
 	}
+	@GetMapping("/detail")
+	public void cal() {
+		log.info("달력테스트");
+		
+		
+	}
 
 }
 	

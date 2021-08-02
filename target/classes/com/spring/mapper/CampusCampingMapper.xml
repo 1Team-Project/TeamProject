@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.spring.mapper.CampusCampingMapper">
+
+	<!-- 캠핑장 전체 조회 -->
+	<select id="campinglist" resultType="com.spring.domain.CampusCampingVO">
+		select * from campus_camping
+	</select>
+
+	<!-- 한 캠핑장 내 자리 조회 -->
+	<select id="campingArea" resultType="com.spring.domain.CampusCampingVO">
+		select c_area from campus_camping where c_number=#{c_number}
+	</select>
+	
+	<!-- 자리 예약 -->
+	<insert id="reserveCamp">	
+		insert into CAMPUS_RESERVATION(c_number,u_userid) 
+		values(#{c_number}, #{u_userid})
+	</insert>
+
+	<!-- 예약 취소 -->
+	<delete id="cancelCamp">
+		delete from CAMPUS_RESERVATION 
+		where u_userid=#{u_userid} and c_number=#{c_number}
+	</delete>
+
+
+
+
+
+</mapper>
