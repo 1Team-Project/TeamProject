@@ -31,12 +31,12 @@
 											lang : "ko",
 											editable : true,
 											eventLimit : true,
-											googleCalendarApiKey : "AIzaSyCg0PD8H71-0PruOX_43yU0-Xxdn_whFFM" // Google API KEY
+											googleCalendarApiKey : "" // Google API KEY
 											,
 											eventSources : [
 											// 대한민국의 공휴일
 											{
-												googleCalendarId : "ko.south_korea#holiday@group.v.calendar.google.com",
+												googleCalendarId : ".google.com",
 												className : "koHolidays",
 												color : "#FF0000",
 												textColor : "#FFFFFF"
