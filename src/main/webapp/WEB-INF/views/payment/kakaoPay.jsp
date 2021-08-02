@@ -32,7 +32,6 @@
 		<c:set var="item_option_${i}" value="${vo.c_count}"/>
 		
 		<c:set var="i" value="${i+1}"/>
-
 	</c:forEach> --%>
 	
 <form action="/payment/success" id="success_form" method="post">

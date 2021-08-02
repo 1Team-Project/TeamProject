@@ -3,8 +3,8 @@
 <!DOCTYPE html>
 <%@include file="../design/header.jsp" %>
 	<form class="container" id="formId" action="/loginForm" method="post">
-		<div class="login-Form">
-			<h1 class="h1" style="font-family: naBrush">로그인</h1>
+		<div class="login-Form" >
+			<h1 class="h1" style="font-family: naBrush; margin-top:100px;">로그인</h1>
 			<div class="login-margin">
 				<label for="u_userid" class="sr-only">로그인 아이디</label>
 				<input type="text" id="u_userid" name="u_userid" class="form-control-login" placeholder="아이디를 입력해 주세요" />
@@ -30,5 +30,10 @@
 			<button class="btn btn-lg btn-primary btn-block" id="regist">회원가입</button>
 		</div>
 	</form>
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 	<script>
+ 	
+ 	swal("Here's the title!", "...and here's the text!");
+ 	</script>
 <script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>

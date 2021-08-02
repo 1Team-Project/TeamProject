@@ -21,10 +21,10 @@ public class CampusProductPageVO {
 		this.total = total;
 		this.cri = cri;
 	
-		this.endPage = (int)(Math.ceil(cri.getPage()/10.0))*10;
+		this.endPage = (int)(Math.ceil(cri.getPage()/20.0))*10;
 		this.startPage = this.endPage-9;
 		
-		int realEnd = (int)(Math.ceil((total/1.0)/10));
+		int realEnd = (int)(Math.ceil((total/1.0)/20));
 		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}

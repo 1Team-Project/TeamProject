@@ -24,13 +24,18 @@ public interface CampusProductMapper {
 	public List<CampusBoardVO> selectReview(@Param("p_number") int p_number);
 	//상품 상세 내 질문
 	public List<CampusBoardVO> selectq(@Param("p_number") int p_number);
-	
+	//전체용
 	public int totalPro(CampusCriteria cri);
+
+	//카테용
+	public int totalPro2(@Param("cri")CampusCriteria cri);
 	
 	//카테고리뿌리기용
 	public  List<CampusProductCategoryVO> category(CampusCriteria cri);
 	//옵션뿌리기용
 	public List<CampusProductOptionVO> optionlist(String op_optiontitle);
+	
+	public int totalCnt(CampusCriteria cri);
 	
 	//관리자용
 	public int insertProduct(CampusProductVO vo);

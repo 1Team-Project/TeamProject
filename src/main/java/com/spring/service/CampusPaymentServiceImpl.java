@@ -121,6 +121,7 @@ public class CampusPaymentServiceImpl implements CampusPaymentService {
 		return false;
 	}
 
+<<<<<<< HEAD
 	@Override
 	public boolean stock_change(int p_stock, int p_number) {
 		// TODO Auto-generated method stub
@@ -134,3 +135,6 @@ public class CampusPaymentServiceImpl implements CampusPaymentService {
 	}
 
 }
+=======
+}
+>>>>>>> refs/remotes/origin/seunghyun

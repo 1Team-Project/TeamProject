@@ -31,112 +31,13 @@
 			font-family: 'naBrush';
 			src:url("/resources/main/fonts/BMDOHYEON_ttf.ttf");
 		}
-		    #footer { 
-       clear:both;
-       position:relative; 
-       width:100%; 
-       height:auto; }
-	/* 1.하단정보 */
-    .campus{
-      color: white;
-    }
-    .hoverbold:hover{
-      font-weight: bold;
-    }
-		.optr_link{
-      display:none;
-      }
-		.f_info {
-      position:relative;
-      width:100%;
-      float:left; 
-      background:#78c2ad; 
-      border-bottom: 1px solid; 
-      min-height:90px; 
-      z-index:10; 
-      }
-		.f_info .f_png{
-      position:absolute; 
-      left:0; 
-      width:209px; 
-      height:42px; 
-      }
-		.f_menu {
-      padding:35px 0 12px 220px; 
-      }
-		.f_menu li { 
-      display:inline-block; 
-    }		
-		.f_menu li:first-child{
-      background:none;
-      }
-		.f_menu li a {
-       display:inline-block; 
-       font-size:15px; 
-       color:white; 
-       text-decoration:none;
-       } 
-		.f_menu li.privacy a{
-      color:white !important;
-      }
-		.f_info .f_sns{
-      position:absolute; 
-      right:0; 
-      top:36px;
-      list-style: none;
-      }
-		.f_info .f_sns li{
-      float:left; 
-      height:21px; 
-      text-decoration: none;
-      }
-		.f_info .f_sns li a{
-      font-size:0; 
-      line-height:0; 
-      float:left;
-      }
-		.f_info .f_sns li.sns1 a{
-      width:22px; 
-      height:21px; 
-      }
-		.f_info .f_sns li.sns2 a{
-      width:10px; 
-      height:21px; 
-      }
-		.f_info .f_sns li.sns3 a{
-      width:13px; 
-      height:21px; 
-    }
- 
-	/* 2.주소 및 사이트링크 */
-		.f_link{
-      position:relative; 
-      width:100%; 
-      float:left; 
-      background:#78c2ad;  
-      padding:30px 0;      
-      }
-		.f_addr{
-      font-size:13px; 
-      line-height:22px; 
-      color:white; 
-      text-align: center;
-      }
-		.f_addr .f_mail{
-      font-size:13px; 
-      line-height:22px; 
-      color:white !important; 
-      text-decoration:none; 
-      letter-spacing:0;}
-		.f_addr div{
-      display:inline-block;
-      }
-		.copyright{
-      clear:both; 
-      letter-spacing:0px;
-      }
-		
-	</style>
+/* 		    #footer {  */
+/*        clear:both; */
+/*        position:relative;  */
+/*        width:100%;  */
+/*        height:auto; } */
+	
+</style>
 	<body>
 	<section class="m-3">
 		<!-- 맨 위 관련 (그림, 글씨) -->
@@ -171,7 +72,12 @@
 			    				</a>
 			    			</sec:authorize>
 		    			
+<<<<<<< HEAD
 		    			
+=======
+		    				<c:if test="true">dtd </c:if>
+		    				<c:if test="false">false</c:if>
+>>>>>>> refs/remotes/origin/seunghyun
 							<sec:authorize access="isAuthenticated()">
 								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>
@@ -221,7 +127,7 @@
 					<a class="nav-link dropdown-toggle " href="#" id="dropdown02" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">캠핑장 정보</a>
 					<div class="dropdown-menu" aria-labelledby="dropdown02">
 					<!-- 각 카테고리별 이동하는 링크 -->
-					<a class="dropdown-item" href="#">캠핑장 목록</a>
+					<a class="dropdown-item" href="/camp/campinglist">캠핑장 목록</a>
 				</div>
 				   </li>
 
@@ -247,11 +153,19 @@
 
 </form>
 
+	<!-- 한중 폼 -->
+<!-- 		<form action="" method="get" id="actionForm"> -->
+<%-- 			<input type="hidden" name="sort" value="${CampusPageVO.cri.sort}" /> --%>
+<%-- 			<input type="hidden" name="keyword"value="${CampusPageVO.cri.keyword}" />  --%>
+<%-- 			<input type="hidden" name="page" value="${CampusPageVO.cri.page}" /> --%>
+<!-- 		</form> -->
+
 		<form action="/logoutForm" method="post" id="logoutForm">
 			 <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 		</form>
 
-		
+
+
 		<form action="" method="get" id="goForm">
 			<input type="hidden" name="sort" value="${CampusProductPageVO.cri.sort}" />
 			<input type="hidden" name="page" value="1" />
@@ -264,6 +178,14 @@
 		</form>  
 
 
+	
+	<script>
+		let result='${result}';
+		
+		var csrfHeaderName = "${_csrf.headerName}";
+		var csrfTokenValue = "${_csrf.token}";
+	</script>
+
 
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
  	<script src="/resources/main/js/popper.js"></script>
@@ -272,3 +194,4 @@
  	<!-- 영권 추가 문장 시작 -->
  	<script src="/resources/main/js/header_yk.js"></script>
  	<!-- 영권 추가 문장 끝 -->
+ 	
