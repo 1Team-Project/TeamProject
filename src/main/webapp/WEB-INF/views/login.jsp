@@ -4,7 +4,7 @@
 <%@include file="../design/header.jsp" %>
 	<form class="container" id="formId" action="/loginForm" method="post">
 		<div class="login-Form">
-			<h1 class="h1" style="font-family: naBrush">로그인</h1>
+			<h1 class="loginmain" style="font-family: naBrush; margin-top:100px;">로그인</h1>
 			<div class="login-margin">
 				<label for="u_userid" class="sr-only">로그인 아이디</label>
 				<input type="text" id="u_userid" name="u_userid" class="form-control-login" placeholder="아이디를 입력해 주세요" />

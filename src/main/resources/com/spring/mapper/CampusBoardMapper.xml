@@ -47,6 +47,7 @@
 		update campus_board set b_views = #{b_views} where b_no = #{b_no}
 	</update>
 	
+		
 	<!-- 전체 게시물 수 -->
 	<select id="totalCnt" resultType="int">
 		select count(*) from campus_board
@@ -55,9 +56,9 @@
 		
 		<include refid="criteria"></include>
 		
-		b_no > 0
+		b_no > 0 and b_sort != '상품'
 	</select>
-
+	
 	
 	<select id="view" resultType="com.spring.domain.CampusBoardVO">
 		select * from campus_board where b_no = #{b_no}

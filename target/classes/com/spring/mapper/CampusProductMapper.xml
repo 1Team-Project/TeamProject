@@ -145,7 +145,18 @@
          where pb.p_number=#{p_number}
       </select>   
    
-   
+   		
+	<!-- 전체 게시물 수 -->
+	<select id="totalCnt" resultType="int">
+		select count(*) from campus_board
+		
+		where
+		
+		<include refid="criteria"></include>
+		
+		b_no > 0 and b_sort = '상품'
+	</select>
+	
    
    
    <!-- 관리자 권한 -->

@@ -158,8 +158,9 @@
 									<div class="p_reviewbar">
 										<h1>
 											<span class="rivew">Product's Review</span><br> <span
-												class="star">평균 별점 : <input type="text" class="avg"
-												readonly style="border: none; width: 30; height: 30; text-align : center;"></span>
+												class="star">평균 별점 : 
+												<input type="text" class="avg"
+												readonly style="border: none; width: 30; height: 30; text-align : center; color:red;"></span>
 										</h1>
 										<div class="row">
 											<div class="col-md-10"></div>
@@ -293,8 +294,8 @@
 											</table>
 											<div class="row">
 												<div class="col-md-12 mb-3">
-													<button class="btn btn-primary float-end">글 쓰기</button>
-													<button class="btn btn-primary float-end" id="btn3">전체
+													<button class="btn btn-primary float-end" onclick="location.href='/board/write'">글 쓰기</button>
+													<button class="btn btn-primary float-end" id="btn3" onclick="location.href='/board/list'">전체
 														후기 보기</button>
 												</div>
 											</div>
@@ -400,6 +401,17 @@
 			u_userid : userid,
 			c_option : option
 		};
+		
+		
+		$.ajax({
+			url:"checkSameProduct",
+			type:"post",
+			data:"p_number",
+			sucess : function(){
+				
+			}
+		})
+		
 
 		$.ajax({
 			url : "/cart",
@@ -409,6 +421,7 @@
 				xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
 			},
 			success : function() {
+				
 				var cart = confirm("장바구니에 담았습니다. 장바구니로 이동하시겠습니까?");
 				if (cart) {
 					location.href = "/cart?u_userid=" + userid;

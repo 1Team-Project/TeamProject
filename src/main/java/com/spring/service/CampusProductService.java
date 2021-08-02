@@ -25,7 +25,7 @@ public interface CampusProductService {
 	//상품 상세 내 질문
 	public List<CampusBoardVO> selectq(int p_number);
 	
-;	public int total(CampusCriteria cri);
+	public int total(CampusCriteria cri);
 	
 	public List<CampusAttachFileDTO> getImg();
 

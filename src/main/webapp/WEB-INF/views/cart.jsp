@@ -87,7 +87,6 @@
 											<div class="in_price">
 												<span class="selling">
 												 <input type="hidden" value="${CartListVO.p_price}" name="price">
-<%-- 												 <input type="hidden" value="${CartListVO.p_option}" name="option"> --%>
 												 <input type="text" readonly value="${CartListVO.p_price * CartListVO.c_count}" class="total" style="border:none; width:50px; height:50px; text-align:center; font-weight : 700;">
 												</span>
 												<span class="unit">원</span>
@@ -103,7 +102,6 @@
 							</li>
 					</ul>
 				</div>
-<%-- 			<c:set var="sum" value="${sum + (cartListVO.p_price * cartListVO.c_count)}" /> --%>
 			</c:forEach>
 			</div>
 			<div class="cart_result">

@@ -7,17 +7,15 @@
 <title>Insert title here</title>
 </head>
 <style>
-	/* 1.하단정보 */
 	
-	
-    footer{
-	
+/* 1.하단정보 */
+    #footer{
 	height:42px;
 	position:relative;
 	width:100%;
 	transform:translateY(1000%);
 }
-    .campus{
+  .campus{
       color: white;
     }
     .hoverbold:hover{
@@ -115,11 +113,11 @@
       clear:both; 
       letter-spacing:0px;
       }
-		
+      
 	</style>
 <body>
 <section class="m-3">
-    <div class="row2">
+    <div class="row">
     <footer id="footer">
       <div class="f_info">
         <div class="layout">
