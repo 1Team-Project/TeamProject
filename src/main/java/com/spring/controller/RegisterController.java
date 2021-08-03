@@ -56,7 +56,7 @@ public class RegisterController {
 	}
 	
 	// 약관 동의 시 이동
-	@PostMapping("/regist")
+	@RequestMapping("/regist")
 	public void registerPost() {
 		log.info("회원가입 페이지 요청");
 	}
@@ -106,12 +106,12 @@ public class RegisterController {
 		log.info("인증번호 확인 : " + chkNum);
 		
 		// 이메일 보내기
-		String setFrom = "보낼사람 주소";
+		String setFrom = "보낼사람 메일 주소";
 		String toMail = vo.getU_email();
 		// 이메일 제목
 		String title = "CampUs 이메일 인증입니다.";
 		// 이메일 내용
-		String content = "회원가입을 위한 이메일 인증입니다." + "<br><br>" + "인증번호는 " + chkNum + "입니다." + "<br>" + "인증번호를 입력하세요"; 
+		String content = "회원가입을 위한 이메일 인증입니다." + "<br><br>" + "인증번호는 " + chkNum + "입니다." + "<br>" + "인증번호를 입력하세요";
 		
 		try {
 			MimeMessage message = mailSender.createMimeMessage();
@@ -131,9 +131,9 @@ public class RegisterController {
 		
 	}
 	
-	 // /register 직접 눌러서 접근하는 경우 - 405에러
-	@GetMapping(value={"/regist"})
-	public String handleStep() {
-		return "redirect:agree";
-	}
+//	 // /register 직접 눌러서 접근하는 경우 - 405에러
+//	@GetMapping(value={"/regist"})
+//	public String handleStep() {
+//		return "redirect:agree";
+//	}
 }

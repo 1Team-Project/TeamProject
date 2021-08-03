@@ -67,7 +67,7 @@
 	</form>
 <script>
 	$(function(){
-		var code = "";
+		var code = null;
 		var csrfHeaderName = "${_csrf.headerName}";
 		var csrfTokenValue = "${_csrf.token}";
 		
@@ -237,8 +237,6 @@
 						$('i[id="u_email1"]').html("이메일 미확인");
 						return false;
 					} else {
-						u_email_check.attr("disabled", false);
-						chkNum.attr("id", "chkNum_true");
 						code = result;
 						$('i[id="u_email1"]').html("이메일 확인");
 						return false;
@@ -276,8 +274,6 @@
 						$('i[id="u_email2"]').html("이메일 미확인");
 						return false;
 					} else {
-						u_email_check.attr("disabled", false);
-						chkNum.attr("id", "chkNum_true");
 						code = result;
 						$('i[id="u_email2"]').html("이메일 확인");
 						return false;
@@ -287,7 +283,18 @@
 			
 		});
 		
-		$("#u_email_check2").blur(function(){
+		$("#chkNum1").click(function(){
+			var inputCode = $("#u_email_check1").val();
+			
+			if(inputCode == code){
+				$('i[id="u_email1"]').html("인증번호 일치");
+				checkResult.html("");
+			} else {
+				$('i[id="u_email1"]').html("인증번호를 확인해 주세요");
+			}
+		});
+		
+		$("#chkNum2").click(function(){
 			var inputCode = $("#u_email_check2").val();
 			
 			if(inputCode == code){
@@ -295,17 +302,6 @@
 				checkResult.html("");
 			} else {
 				$('i[id="u_email2"]').html("인증번호를 확인해 주세요");
-			}
-		});
-		
-		$("#u_email_check2").blur(function(){
-			var inputCode = $("#u_email_check2").val();
-			
-			if(inputCode == code){
-				$('i[id="u_email"]').html("인증번호 일치");
-				checkResult.html("");
-			} else {
-				$('i[id="u_email"]').html("인증번호를 확인해 주세요");
 			}
 		});
 	})

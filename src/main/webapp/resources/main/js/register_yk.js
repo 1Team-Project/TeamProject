@@ -45,7 +45,7 @@ $(function() {
 		});
 	});
 	
-	var code = "";
+	var code = null;
 	$("#chkEmail").click(function(){
 		var u_email = $("#u_email").val();
 		var regEmail = /[a-z0-9]{2,}@[a-z0-9]{2,}\.[a-z0-9]{2,}/i;
@@ -74,8 +74,6 @@ $(function() {
 					$('i[id="u_email"]').html("이메일 미확인");
 					return false;
 				} else {
-					u_email_check.attr("disabled", false);
-					chkNum.attr("id", "chkNum_true");
 					code = result;
 					$('i[id="u_email"]').html("이메일 확인");
 					return false;
@@ -84,7 +82,7 @@ $(function() {
 		});
 		
 	});
-	$("#u_email_check").blur(function(){
+	$("#chkNum").click(function(){
 		var inputCode = $("#u_email_check").val();
 		
 		if(inputCode == code){
@@ -97,14 +95,14 @@ $(function() {
 	
 	
 	// ajax에서 csrf 사용을 위한 부분
-    var token = $("meta[name='_csrf']").attr("content");
-    var header = $("meta[name='_csrf_header']").attr("content");
-    $(document).ajaxSend(function(e, xhr, options) {
-        if(token && header) {
-            xhr.setRequestHeader(header, token);
-        }
-    });
-
+	var token = $("meta[name='_csrf']").attr("content");
+	var header = $("meta[name='_csrf_header']").attr("content");
+	$(document).ajaxSend(function(e, xhr, options) {
+	    if(token && header) {
+	        xhr.setRequestHeader(header, token);
+	    }
+	});
+	
 	$("#signup").click(function(event){
 		var u_userid = $("#u_userid").val();
 		var u_password = $("#u_password").val();
@@ -130,7 +128,7 @@ $(function() {
 			$('i[id="u_userid"]').html("아이디를 형식을 확인하세요");
 			$("#u_userid").focus();
 			event.preventDefault();
-
+	
 		} else if(u_password == '') {
 			$('i[id="u_password"]').html("비밀번호를 입력하세요");
 			$("#u_password").focus();
