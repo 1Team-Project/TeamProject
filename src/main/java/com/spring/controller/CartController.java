@@ -74,7 +74,34 @@ public class CartController {
       public boolean addCart(CartVO cart, HttpSession session){
          
          log.info("장바구니 추가" +cart);
-
+         
+//         String u_userid =(String)session.getAttribute("u_userid");
+         
+//         int p_number = 0;
+//		//기존 상품이 있는지 검사
+//         cart.setP_number(p_number);
+//         cart.setU_userid(u_userid);
+//         
+//         boolean isAlreadyExisted = service.findCartProduct(cart);
+//         
+//         if(isAlreadyExisted==true) {
+//        	 return "already_existed";
+//         }else {
+//        	 service.addCart(cart);
+//        	 return "add_success";
+//         }
+//         
+//         
+//         
+//         int count = service.countCart(u_userid, cart.getP_number());
+////         count == 0 ?service.updateCart(cart) : service.addCart(cart);
+//         if(count == 0) {
+//        	 service.addCart(cart);
+//         }else {
+//        	 service.modifyCart(cart);
+//         }
+//         
+//         return "redirect:/update";
         return service.addCart(cart);
    }
 
@@ -87,6 +114,17 @@ public class CartController {
       log.info("장바구니 삭제" +checkArr);
       
        return  service.delete(checkArr);
+   }
+   
+   
+   @PreAuthorize("hasAnyAuthority('ROLE_USER')")
+   @ResponseBody
+   @PostMapping("/update")
+   public boolean modify(CartVO cart, HttpSession session) {
+	   
+	   log.info("장바구니 수정" +cart);
+	   
+	   return service.modifyCart(cart);
    }
 }
 

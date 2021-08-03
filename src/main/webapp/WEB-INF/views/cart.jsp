@@ -65,60 +65,6 @@
 					</script>
 					</div>
 				</div>
-<%-- 				<c:set var="sum" value="0" /> --%>
-				<c:forEach items="${cartlist}" var="CartListVO">
-				<div class="box">
-					<ul class="list">
-							<li>
-								<div class="item">
-									<label class="check" for=""> 
-									<input type="checkbox" class="checkone"  data-cartnum="${CartListVO.c_cartnumber}"> 
-									</label>
-									<div class="c_name">
-										<div class="innername">
-											<a href="#" class="package ">${CartListVO.p_name}</a>
-											<div class="info">닳지 않는 손전등</div>
-										</div>
-									</div>
-									<div class="goods">
-										<a href="#" class="c_img ">상품이미지</a>
-										<div class="price">
-											<div class="in_price">
-												<span class="selling">
-												 <input type="hidden" value="${CartListVO.p_price}" name="price">
-												 <input type="text" readonly value="${CartListVO.p_price * CartListVO.c_count}" class="total" style="border:none; width:50px; height:50px; text-align:center; font-weight : 700;">
-												</span>
-												<span class="unit">원</span>
-											</div>
-											<div class="stamper count">
-												<button type="button" class="btn minus off" onclick = "plus_minus($(this).next(),'minus')">감소</button>
-												<input type="number" id="stepperCounter" class="num" readonly="" value="${CartListVO.c_count}">
-												<button type="button" class="btn plus" onclick="plus_minus($(this).prev(),'plus')">추가</button>
-											</div>
-										</div>
-									</div>
-								</div>
-							</li>
-					</ul>
-				</div>
-			</c:forEach>
-			</div>
-			<div class="cart_result">
-				<div class="innerresult" style="top: 60px;">
-					<div class="amount_view">
-						<dl class="amount">
-							<dt class="tit">결제예정금액</dt>
-							<dd class="price">
-								<span class="num">
-									</span>
-									<span class="unit">원</span>
-							</dd>
-						</dl>
-					</div>
-					<div class="btn_submit">
-						<input type="hidden" name="userid" id="userid" value="<sec:authentication property="principal.campusUser.u_userid"/>">
-               </div>
-            </div>
 <%--             <c:set var="sum" value="0" /> --%>
 				<c:set var ="i" value="0"/>
             <c:forEach items="${cartlist}" var="CartListVO">
@@ -186,6 +132,7 @@
 		</form>
 		</div>
 	</div>
+
 	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
 		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
 		crossorigin="anonymous"></script>

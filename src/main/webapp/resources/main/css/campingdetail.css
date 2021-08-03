@@ -28,17 +28,18 @@
 }
 
 #titleArea .info {
-	display:block;
+/* 	display:block; */
+/* 	clear:both; */
+	margin-left:50px;
 }
-.camping span {
-/* 	display: block; */
+.info  .name {
 	font-weight: 600;
 	font-size: 20px;
 	margin-left: 60px;
 }
 
-.camping img .detail {
-	display: block;
+.info  .detail {
+	display:block;
 	font-size: 10px;
 	margin-left: 50px;
 }

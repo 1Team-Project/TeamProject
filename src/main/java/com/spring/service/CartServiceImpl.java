@@ -76,4 +76,10 @@ public class CartServiceImpl implements CartService {
 		return false;
 	}
 
+	@Override
+	public boolean findCartProduct(CartVO vo) {
+		// TODO Auto-generated method stub
+		return mapper.selectCountInCart(vo) > 0 ? true : false;
+	}
+
 }

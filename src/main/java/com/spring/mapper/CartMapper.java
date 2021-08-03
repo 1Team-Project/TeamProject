@@ -17,6 +17,9 @@ public interface CartMapper {
 
 	public CartPaymentVO getPayment(@Param("u_userid") String u_userid,@Param("c_cartnumber") int c_cartnumber);
 	
+	
+	public int selectCountInCart(CartVO vo);
+	
 	public List<CartPaymentVO> listPayment(String u_userid);
 	public int delete(int c_cartnumber);
 	public int modifyCart(CartVO vo);

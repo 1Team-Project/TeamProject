@@ -14,6 +14,10 @@ public interface CartService {
 	public boolean delete(List<Integer> checkArr);
 	//장바구니에 이미 상품 담겨져 있는지 확인
 	public int countCart(String u_userid, int p_number);
+	
+	public boolean findCartProduct(CartVO vo);
+	
+	
 	//장바구니 수량 변경
 	public int sum(String u_userid);
 	public void update(int c_cartnumber);

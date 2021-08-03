@@ -382,11 +382,13 @@
    crossorigin="anonymous"></script>
 <!-- <script type= text/javascript> -->
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script>
    var csrfHeaderName = "${_csrf.headerName}";
    var csrfTokenValue = "${_csrf.token}";
    $("#btn_cart").click(function(e) {
-      e.preventDefault();
+     
+	   e.preventDefault();
       var p_number = $("#p_number").val();
       var c_count = $(".inp").val();
       var userid = $("#userid").val();
@@ -405,13 +407,34 @@
             xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
          },
          success : function() {
-            var cart = confirm("장바구니에 담았습니다. 장바구니로 이동하시겠습니까?");
-            if (cart) {
-               location.href = "/cart?u_userid=" + userid;
-            }
-         },
+        	 if(data == 1){
+        		 alert("중복된 상품이 존재합니다.");
+        	 }else if{
+        		  var cart = swal("장바구니에 담았습니다!", {
+            	  buttons: {
+            		    catch: {
+            		      text: "상품 더 보기",
+//             		      value: ""
+            		    },
+            		    이동 :true
+            		  },
+            		})
+            		.then((value) => {
+            		  switch (value) {
+            		    case "이동":
+            		    	location.href = "/cart?u_userid=" + userid;
+            		      break;
+            		 
+            		    case "상품 더 보기":
+            		      break;
+            		  }
+            		});
+        	}else{
+        		swal("회원만 사용가능합니다!", "로그인해주세요", "info");
+        	}
+        },
          error : function() {
-            alert("카트 담기 실패");
+        	 swal("카드 담기 실패!", "다시 확인해 주세요", "error");
          }
       });
    });

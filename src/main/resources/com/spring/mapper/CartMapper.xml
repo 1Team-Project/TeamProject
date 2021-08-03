@@ -29,6 +29,21 @@
 <!--       </select> -->
    </select>
    
+<!--    <select id="selectCountInCart" resultType="String" parameterType="com.spring.domain.CartVO"> -->
+<!--    <![CDATA[ -->
+<!--       select decode(count(*), 0, 'false','true') from campus_cart -->
+<!--       where p_number=#{p_number} -->
+<!--       and u_userid = #{u_userid} -->
+<!--    ]]> -->
+<!--    </select> -->
+   
+   <update id="modifyCart">
+   update campus_cart
+   set c_count = #{c_count}
+   where u_userid=#{u_userid}
+   and p_number = #{p_number}
+   </update>
+   
    <!-- 결제용 -->
    <select id="listPayment" resultType="com.spring.domain.CartPaymentVO">
       select p.p_number, u.u_userid, c.c_cartnumber, u.u_username, 
