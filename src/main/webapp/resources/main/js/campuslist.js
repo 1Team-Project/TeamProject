@@ -197,6 +197,9 @@ $(function(){
 		//댓글이 있는 경우
 		var str="";
 		
+		var isAdmin = $("#isAdmin").val();
+		var userid = $("#userid").val();
+		
 		for(var i=0,len=data.length||0;i<len;i++){
 
 					str += '<tr>'
@@ -208,6 +211,7 @@ $(function(){
 					if(data[i].b_private == "no"){
 						str += '<td><a href="'+data[i].b_no+'" class="blacktext hoverthema clickview">'+data[i].b_title+'<strong class="badgecount">['+data[i].replycnt+']</strong></a></td>'				
 					}else if(data[i].b_private == "yes"){
+						
 						
 						if(data[i].b_writer == userid || isAdmin == "true"){
 							str += '<td><a href="'+data[i].b_no+'" class="blacktext hoverthema clickview">'+data[i].b_title+'<strong class="badgecount">['+data[i].replycnt+']</strong></a></td>'

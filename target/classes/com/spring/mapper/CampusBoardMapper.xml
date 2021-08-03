@@ -90,7 +90,7 @@
 		
 		b_no > 0 and b_sort != '상품'
 	</select>
-<<<<<<< HEAD
+
 
 	<select id="totalReview" resultType="int">
 		select count(*) from campus_board
@@ -113,9 +113,6 @@
 		b_no > 0 and b_sort = '질문'
 	</select>
 
-=======
-	
->>>>>>> refs/remotes/origin/seunghyun
 	
 	<select id="view" resultType="com.spring.domain.CampusBoardVO">
 		select * from campus_board where b_no = #{b_no}

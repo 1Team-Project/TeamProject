@@ -71,13 +71,7 @@
 			    					<img src="/resources/main/images/icon_login.png">
 			    				</a>
 			    			</sec:authorize>
-		    			
-<<<<<<< HEAD
-		    			
-=======
-		    				<c:if test="true">dtd </c:if>
-		    				<c:if test="false">false</c:if>
->>>>>>> refs/remotes/origin/seunghyun
+			    			
 							<sec:authorize access="isAuthenticated()">
 								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>

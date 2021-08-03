@@ -32,8 +32,6 @@
 	</form>
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  	<script>
- 	
- 	swal("Here's the title!", "...and here's the text!");
  	</script>
 <script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>

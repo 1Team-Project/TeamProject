@@ -173,10 +173,10 @@
 	
 </div>
 <script>
-	let result='${result}';
+	var result='${result}';
 	
-	let isAdmin = $("#isAdmin").val();
-	let userid = $("#userid").val();
+	var isAdmin = $("#isAdmin").val();
+	var userid = $("#userid").val();
 	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";

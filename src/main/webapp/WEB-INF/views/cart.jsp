@@ -11,7 +11,7 @@
 <link rel="stylesheet" href="/resources/main/css/campusBoard.css">
 </head>
 <body>
-<<<<<<< HEAD
+
 	<div class="cart_page">
 		<h2 class="cart">장바구니</h2>
 	</div>
@@ -28,24 +28,23 @@
 						<script>
 						$("#delete").click(function () {
 							var confirm_val = confirm("정말 삭제하시겠습니까?");
-=======
-   <div class="cart_page">
-      <h2 class="cart">장바구니</h2>
-   </div>
-   <div id="cartItemList" class="cartlist" style="min-height: 561px;">
-      <div class="">
-      <form action="/payment/paymentpage" method="post">
-         <div class="c_item ">
-            <div class="c_select">
-               <div class="innerselect">
-                  <label class="check"> <input type="checkbox" id="checkall"
-                     checked="">전체선택
-                  </label> 
-                  <button type="button" class="btn_delete" id="delete">장바구니 삭제</button>
-                  <script>
-                  $("#delete").click(function () {
-                     var confirm_val = confirm("정말 삭제하시겠습니까?");
->>>>>>> refs/remotes/origin/seunghyun
+
+		   <div class="cart_page">
+		      <h2 class="cart">장바구니</h2>
+		   </div>
+		   <div id="cartItemList" class="cartlist" style="min-height: 561px;">
+		      <div class="">
+		      <form action="/payment/paymentpage" method="post">
+		         <div class="c_item ">
+		            <div class="c_select">
+		               <div class="innerselect">
+		                  <label class="check"> <input type="checkbox" id="checkall"
+		                     checked="">전체선택
+		                  </label> 
+		                  <button type="button" class="btn_delete" id="delete">장바구니 삭제</button>
+		                  <script>
+		                  $("#delete").click(function () {
+		                     var confirm_val = confirm("정말 삭제하시겠습니까?");
 
                      if (confirm_val) {
                         var checkArr = new Array();
