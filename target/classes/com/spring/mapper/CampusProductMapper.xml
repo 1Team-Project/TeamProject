@@ -13,7 +13,7 @@
 		       ]]>
 		  <include refid="criteria"></include>
 		   <![CDATA[
-		  		rownum <= (#{page}*20)) p,  (select distinct p_number, last_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,last_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
+		  		rownum <= (#{page}*20)) p,  (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number ORDER BY a_name) as a_uuid, first_value(a_path)over(PARTITION BY p_number ORDER BY a_name)as a_path,first_value(a_name)over(PARTITION BY p_number ORDER BY a_name)as  a_name from campus_attach) a
 			where rn > ((#{page}-1)*20) and a.p_number=p.p_number 
 			
 			]]>
@@ -22,11 +22,16 @@
 		
 	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
 		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
-
+		<![CDATA[
 			select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,p.p_shippingfee,
-			 		last_value(a_uuid)over(PARTITION BY p.p_number) as a_uuid , a.a_path,last_value(a_name)over(PARTITION BY p.p_number)as  a_name
-			from b_product p, campus_attach a
-			where a.p_number=p.p_number)order by p_rank
+			first_value(a_uuid)over(PARTITION BY a.p_number ORDER BY a_name) as a_uuid,
+			first_value(a_path)over(PARTITION BY a.p_number ORDER BY a_name)as a_path,
+			first_value(a_name)over(PARTITION BY a.p_number ORDER BY a_name)as  a_name    
+			from b_product p, campus_attach a    where a.p_number=p.p_number)
+		]]>
+		<![CDATA[
+			 where p_rank<=3 order by p_rank
+		]]>
 		</select>
 		
 		
@@ -52,12 +57,18 @@
 	<!-- 카테고리코드를 받아서 네임 출력하고,,,, 아니다~ -->
 
 
-	<!-- 상품 조회 : 상품 한개 클릭 후 조회 : 사진, 상품 설명 제외 -->
+	<!-- 상품 조회 : 상품 한개 클릭 후 조회 : 상세 사진, 상품 설명 제외 -->
 		<select id="viewProduct" resultType="com.spring.domain.CampusProductVO">
-			select distinct po.p_number,po.p_name,po.p_price,po.p_option,po.p_stock,po.pc_code,po.p_manufact,po.p_shippingfee,po.po_option1,po.po_option2,po.po_option3,a.a_uuid,a.a_path,a.a_name
+		select distinct po.p_number,po.p_name,po.p_price,po.p_option,po.p_stock,po.pc_code,po.p_manufact,po.p_shippingfee,po.po_option1,po.po_option2,po.po_option3,a.a_uuid,a.a_path,a.a_name
 			from (select distinct p.p_number,p.p_name,p.p_price,p.p_option, o.po_option1,o.po_option2,o.po_option3, p.p_stock,p.pc_code ,p.p_manufact,p.p_shippingfee
        			  from campus_product_option o,campus_product p 
-         		  where o.po_optiontitle=p.p_option and o.p_number=p.p_number) po, (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number) as a_uuid , a_path,first_value(a_name)over(PARTITION BY p_number)as  a_name from campus_attach) a
+         		  where o.po_optiontitle=p.p_option and o.p_number=p.p_number) po,
+         		  
+         		  (select distinct p_number,
+	         		  first_value(a_uuid)over(PARTITION BY p_number ORDER BY a_name)as a_uuid,
+	         		  first_value(a_path)over(PARTITION BY p_number ORDER BY a_name)as a_path,
+	         		  first_value(a_name)over(PARTITION BY p_number ORDER BY a_name)as a_name 
+         		  from campus_attach) a
          	where po.p_number=a.p_number and po.p_number=#{p_number}
 
 		</select>
