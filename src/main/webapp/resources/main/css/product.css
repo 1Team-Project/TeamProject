@@ -25,20 +25,29 @@
             text-align: center;
             padding: 40px 40px 0px;
         }
-
+		#bestproduct{
+			display: flex;
+		}
+		
+		
         /* .listproduct ul {
             margin: -14px 0 0;
             padding: 14px 0 30px;
             text-align: center;
         } */
-        
+
+ 
         .listproduct {
+       
+
+       		order: 1;
             padding: 0;
             background-color: #fff;
         }
 
         .listproduct [class*="grid"] {
-            display: table;
+  
+           
             table-layout: fixed;
             width: 100%;
             box-sizing: border-box;
@@ -47,12 +56,13 @@
             line-height: 1.4;
         }
 
-        /* .prdList grid3 {
-            text-align: center;
-        } */
+       .prdList grid3 {
+             display: table;
+        } 
 
         .listproduct .prdList grid3 > li {
-            display: inline-block;
+        display: table-cell;
+           
             width: 50%;
         }
 
@@ -61,7 +71,7 @@
                 white-space:normal; 
                 word-break:normal;
                 width:193px;
-                height:53px;
+                height:123px;
             margin: 0 7px;
             text-align: left;
         }
@@ -79,6 +89,9 @@
         #boxid > div.description > div.product_name > strong > a > span{
        white-space:normal; 
                 word-break:normal;
+        }
+        #boxid > div.description > div.product_price{
+      		margin:0px 0px 20px 0px;
         }
 
         /*상품-리스트*/
@@ -122,13 +135,16 @@
             margin-right: auto;
         }
 
-        /* .prolist {
+        .prolist {
             text-align: center;
-        } */
+            margin:0px 30px 20px 30px;
+           
+        } 
 
-        /* img {
+        img {
             border: none;
-        } */
+          
+        } 
 
          /* 상품 이미지 */
         .prdImg{
@@ -146,8 +162,13 @@
 
         /* 상품명 */
         .description .product_name .name a{
-            font-size:14px;
-            color:#222222;
+            
+            display: block;
+    width: 210px;
+    height: 30px;
+    padding-top: 11px;
+    line-height: 16px;
+    
         }
         span{
         	color:black;

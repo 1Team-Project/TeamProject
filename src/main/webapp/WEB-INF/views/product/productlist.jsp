@@ -35,7 +35,7 @@
                         <div class="campus product product-bestlist listproduct">
                             <ul class="prdList grid3">
 
-                                <!--@@@list id에 추후 db적용@@@   -->
+                                <!--베스트셀러3까지   -->
                                 <c:forEach var="best" items="${bestlist}" >
                                 <li id="boxid" class="prolist">
                                     <span>${best.p_rank}위</span>
