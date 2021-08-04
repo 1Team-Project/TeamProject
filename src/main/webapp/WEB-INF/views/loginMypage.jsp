@@ -84,8 +84,10 @@
 							<p></p>
                     	</sec:authorize>
                     	<sec:authentication property="principal" var="user"/>
-						<button type="button" class="btn btn-info" onclick="location.href='/payment/paymentlist?u_userid=${user.username}'">구매내역</button>
-						<p></p>
+                    	<sec:authorize access="hasRole('ROLE_USER')">
+							<button type="button" class="btn btn-info" onclick="location.href='/payment/paymentlist?u_userid=${user.username}'">구매내역</button>
+							<p></p>
+						</sec:authorize>
 						<button type="submit" class="btn btn-secondary"><a href="/reservation">예약내역</a></button>
 						<p></p>
 						<button type="submit" id="modify" class="btn btn-warning"><a href="/myModify">회원정보수정</a></button>
