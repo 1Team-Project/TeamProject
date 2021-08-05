@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 #titleArea h3 {
 	margin-top: 50px;
 	padding: 0 40px 0;
@@ -8,6 +9,11 @@
 	text-align: center;
 	font-weight: 700;
 }
+
+#container{
+	display:flex;
+}
+
 
 .camping .camping, .reservation, .select p section {
 	float: left;
@@ -23,22 +29,20 @@
 	padding-bottom: 100px;
 }
 
-.camping .camping {
+#titleArea .container .camping {
+	display:block;
 	margin-left: 50px;
 }
 
-#titleArea .info {
-/* 	display:block; */
-/* 	clear:both; */
+ p {
 	margin-left:50px;
 }
-.info  .name {
+.name {
 	font-weight: 600;
 	font-size: 20px;
 	margin-left: 60px;
 }
-
-.info  .detail {
+.detail {
 	display:block;
 	font-size: 10px;
 	margin-left: 50px;

@@ -1,5 +1,3 @@
-
-
 var total_amount = 0;
 $(".total").each(function(idx,item){
          total_amount += Number($(this).val());
@@ -11,7 +9,7 @@ function plus_minus(obj,op){
    
    var amount=0;
    var sum=0;
-    var total_amount = 0;
+   var total_amount = 0;
    
    if(op=='plus'){   
       amount = Number(num) + 1;      
@@ -19,7 +17,7 @@ function plus_minus(obj,op){
       amount = Number(num) -1 ;
    }
    
-   sum= amount * $("input[name='price']").val();
+   sum= amount * $(obj).closest("div").prev().find("input[name='price']").val();
    var in_price = $(obj).closest("div").prev().find("input[class='total']");
    
    if (amount >= 100 || amount <=0) {
@@ -31,7 +29,6 @@ function plus_minus(obj,op){
          total_amount += Number($(this).val());
          $("span.num").html(total_amount);
       });
-      /*#cartItemList > div > div.cart_result > div > div.amount_view > dl > dd > span.num*/      
    }
 }
 
@@ -47,4 +44,3 @@ $("#checkall").click(function(){
 		$("input[type=checkbox]").prop("checked",false);
 	}
 });
-

@@ -451,11 +451,6 @@ ol, ul {
     background-color: #fff;
     color: #78c2ad;
 }
-.cartlist .amount_view {
-    padding: 9px 18px 18px 20px;
-    border: 1px solid #f2f2f2;
-    background-color: #fafafa;
-}
 .cartlist .btn_submit {
     position: static;
     padding: 20px 0 0;
@@ -475,17 +470,18 @@ ol, ul {
     font-size: 16px;
     text-align: right;
 }
-.cartlist .amount_view .amount.lst .tit {
-    padding-top: 2px;
+
+.cartlist .amount_view {
+    padding: 30px 10px 30px 10px;
+    border: 1px solid #f2f2f2;
+    background-color: #fafafa;
 }
+
 .cartlist .amount_view .amount .tit {
     float: left;
     width: 80px;
     font-weight: 400;
     letter-spacing: -.5px;
-}
-.amount_view .amount.lst .tit {
-    padding-top: 2px;
 }
 .amount_view .amount .tit {
     float: left;
@@ -494,26 +490,40 @@ ol, ul {
     line-height: 24px;
     white-space: nowrap;
 }
-.cartlist .amount_view .amount .price {
+
+.cartlist .amount_view .amount .shipping, .amount .price {
     float: right;
 }
-.amount_view .amount .price {
+.amount_view .amount .shipping, .amount .price {
     float: right;
     line-height: 24px;
     text-align: right;
 }
-.cartlist .amount_view .amount .price .num {
-    font-weight: 700;
-}
-.cartlist .amount_view .amount .price .num {
-    letter-spacing: -.5px;
+.cartlist .amount_view .amount.lst {
+    margin: 30px 0 0;
+    padding-top: 17px;
+    border-top: 1px solid #eee;
 }
 
-.amount_view .amount .price .num {
-    font-weight: 700;
-    font-size: 22px;
-    line-height: 28px;
+.cartlist .amount_view .amount .shipping .delivery, .amount .price .num {
+    letter-spacing: -.5px;
 }
+.amount_view .amount .shipping .delivery, .amount .price .num {
+    font-size: 18px;
+}
+.amount_view .amount  .unit {
+    padding-left: 2px;
+    font-size: 16px;
+    vertical-align: 1px;
+}
+.cartlist .amount .shipping .delivery, .amount_view .amount .price .num {
+    letter-spacing: -.5px;
+}
+.cartlist .amount .price .num{
+    font-size: 18px;
+    font-weight : 700;
+}
+
  .cartlist .btn_submit {
     position: static;
     padding: 20px 0 0;

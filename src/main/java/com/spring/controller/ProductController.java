@@ -19,6 +19,7 @@ import com.spring.domain.CampusAttachFileDTO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusPageVO;
+import com.spring.domain.CampusPdetailPageVO;
 import com.spring.domain.CampusProductCategoryVO;
 import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductPageVO;
@@ -205,9 +206,8 @@ public class ProductController {
 			int total = service.total(cri);
 			
 			//페이지 나누기 값 모델에 등록
-			CampusPageVO campusPageVO = new CampusPageVO(cri, total);
-			model.addAttribute("CampusPageVO", campusPageVO);
-			
+			CampusPdetailPageVO campusPdetailPageVO = new CampusPdetailPageVO();
+			model.addAttribute("CampusPageVO", campusPdetailPageVO);
 		}
 		
 		@GetMapping("/getAttachList")

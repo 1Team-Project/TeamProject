@@ -21,6 +21,12 @@ public class CartServiceImpl implements CartService {
 	@Override
 	public boolean addCart(CartVO vo) {
 		log.info("카트" +vo);
+		
+		int count = mapper.countCart(vo.getU_userid(), vo.getP_number());
+		if(count >0 ) {
+			return mapper.modifyCart(vo) > 0 ? true:false;
+		}
+		
 		return mapper.addCart(vo) > 0 ? true:false;
 	}
 
@@ -44,11 +50,11 @@ public class CartServiceImpl implements CartService {
 		return mapper.modifyCart(vo) > 0 ? true:false;
 	}
 
-	@Override
-	public int sum(String u_userid) {
-		// TODO Auto-generated method stub
-		return mapper.sum(u_userid);
-	}
+//	@Override
+//	public int sum(String u_userid) {
+//		// TODO Auto-generated method stub
+//		return mapper.sum(u_userid);
+//	}
 
 //	@Override
 //	public List<CartVO> cartMoney() {
@@ -56,30 +62,40 @@ public class CartServiceImpl implements CartService {
 //		return null;
 //	}
 
-
-
 	@Override
 	public int countCart(String u_userid, int p_number) {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
-	public void update(int c_cartnumber) {
-		// TODO Auto-generated method stub
-		
-	}
+//	@Override
+//	public void update(int c_cartnumber) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+//
+//	@Override
+//	public boolean updateCart(CartVO vo) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
-	@Override
-	public boolean updateCart(CartVO vo) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+//	@Override
+//	public void update(int c_cartnumber) {
+//		// TODO Auto-generated method stub
+//		
+//	}
+////
+//	@Override
+//	public boolean updateCart(CartVO vo) {
+//		// TODO Auto-generated method stub
+//		return false;
+//	}
 
-	@Override
-	public boolean findCartProduct(CartVO vo) {
-		// TODO Auto-generated method stub
-		return mapper.selectCountInCart(vo) > 0 ? true : false;
-	}
+//	@Override
+//	public boolean findCartProduct(CartVO vo) {
+//		// TODO Auto-generated method stub
+//		return mapper.selectCountInCart(vo) > 0 ? true : false;
+//	}
 
 }

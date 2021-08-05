@@ -61,10 +61,7 @@
          	where po.p_number=a.p_number and po.p_number=#{p_number}
 
 		</select>
-		
-
-	
-	
+			
 	<!-- 전체 상품 수 : 전체리스트용 -->
 	<select id="totalPro" resultType="int">
 		select count(*) from campus_product
@@ -178,6 +175,17 @@
 			where p_number=#{p_number}
 		</update>
 		
+		
+		<!-- 전체 게시물 수 -->
+	<select id="totalCnt" resultType="int">
+		select count(*) from campus_board
+		
+		where
+		
+		<include refid="criteria"></include>
+		
+		b_no > 0 and b_sort = '상품'
+	</select>
 		       
 
 </mapper>

@@ -29,6 +29,8 @@ public interface CampusProductService {
 
 
 	public int total2(CampusCriteria cri);
+	
+	public int total3(CampusCriteria cri);
 
 	
 	public List<CampusAttachFileDTO> getImg();

@@ -171,4 +171,10 @@ public class CampusProductServiceImpl implements CampusProductService {
 	public int total2(CampusCriteria cri) {
 		return productmapper.totalPro2(cri);
 	}
+
+	@Override
+	public int total3(CampusCriteria cri) {
+		// TODO Auto-generated method stub
+		return productmapper.totalCnt(cri);
+	}
 }
