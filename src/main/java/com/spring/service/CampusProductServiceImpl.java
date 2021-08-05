@@ -68,8 +68,6 @@ public class CampusProductServiceImpl implements CampusProductService {
 		return productmapper.totalPro(cri);
 	}
 	
-	
-	
 	//관리자용
 		@Override
 		@Transactional
@@ -173,7 +171,4 @@ public class CampusProductServiceImpl implements CampusProductService {
 	public int total2(CampusCriteria cri) {
 		return productmapper.totalPro2(cri);
 	}
-	
-
-
 }

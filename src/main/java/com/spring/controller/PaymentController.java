@@ -1,6 +1,7 @@
 package com.spring.controller;
 
 import java.util.ArrayList;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -10,20 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.spring.domain.BootpayApi;
 import com.spring.domain.CampusAttachFileDTO;
+import com.spring.domain.CampusCampingjangVO;
 import com.spring.domain.CampusOrderDetailVO;
 import com.spring.domain.CampusOrderVO;
+import com.spring.domain.CampusProductVO;
 import com.spring.domain.CartDummyVO;
 import com.spring.domain.CartPaymentVO;
 import com.spring.domain.bootpay.request.Cancel;
 import com.spring.mapper.CampusBoardAttachMapper;
+import com.spring.mapper.CampusPaymentMapper;
 import com.spring.mapper.CartMapper;
 import com.spring.service.CampusPaymentService;
+import com.spring.service.CampusProductService;
 
 import lombok.extern.log4j.Log4j2;
 
@@ -42,17 +49,20 @@ public class PaymentController {
 	@Autowired
 	private CampusPaymentService payment;
 	
+	@Autowired
+	private CampusProductService product;
+	
+	@Autowired
+	private CampusPaymentMapper paymapper;
 	
 	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/paymentpage")
-	public void list(String u_userid, CartDummyVO cartVO, Model model) {
+	public String list(String u_userid, CartDummyVO cartVO, Model model) {
 		log.info("※※※※※ get payment page ※※※※※"); 
 		
 		log.info("아이디 "+u_userid);
 		log.info("븨오 "+cartVO);
-		
-		
-		//아이디 넘겨와서 집어넣기
+
 		List<CartPaymentVO> list = new ArrayList<CartPaymentVO>();
 		
 		for(CartDummyVO check : cartVO.getCartVO()) {
@@ -77,7 +87,7 @@ public class PaymentController {
 				
 				log.info("리스트 확인용 "+list);
 			}
-			
+
 		}
 		
 		
@@ -111,14 +121,14 @@ public class PaymentController {
 		model.addAttribute("campusCartVO",list);
 		model.addAttribute("total_pay",total_pay);
 		model.addAttribute("total_parcel",total_parcel);
-		
+		return "/payment/paymentpage";
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/kakaoPay")
 	public void kakaoPayGet() {
 		log.info("※※※※※ get kakao page ※※※※※");  
 	}
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/kakaoPay")
 	public String kakaoPayPost(CartDummyVO cartVO ,CampusOrderVO voo, String total_pay, String u_userid, Model model) {
 		
@@ -194,7 +204,7 @@ public class PaymentController {
 	}
 	
 	
-	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/success")
 	public String success(CartDummyVO cartVO ,CampusOrderVO voo, Model model) {
 		
@@ -227,6 +237,7 @@ public class PaymentController {
 			vo.setD_option(check.getC_option());
 			vo.setC_cartnumber(cart);
 			
+			payment.stock_change(vo.getD_count(), vo.getP_number());
 			
 			int money = Integer.parseInt(check.getMoney());
 			pvo.setP_number(pnum);
@@ -285,8 +296,54 @@ public class PaymentController {
 		
 		return "redirect:/";
 	}
+
+	@PostMapping("/check_data")
+	@ResponseBody
+	public String check_data(CartDummyVO cartVO, CampusOrderVO voo, Model model) {
+		
+		String result = "";
+		String isCheck = "";
+		
+		log.info("***** check data ******");
+		log.info("카트뷔오 "+cartVO);
+		log.info("오더뷔오 "+voo);
+		
+		for(CartDummyVO check : cartVO.getCartVO()) {
+		
+			if(isCheck.equals("fail")) {
+				result = "fail";
+			}
+			
+			CampusOrderDetailVO vo = new CampusOrderDetailVO();
+			
+			vo.setP_number(Integer.parseInt(check.getP_number()));
+			vo.setD_count(Integer.parseInt(check.getC_count()));
+			
+			CampusProductVO pro = product.viewProduct(vo.getP_number());
+			int stock = pro.getP_stock();
+			int minus = vo.getD_count();
+			
+			if(stock - minus < 0) {
+				isCheck = "fail";
+			}else {
+				isCheck = "success";				
+			}
+			
+			
+		}
+		
+		if(!isCheck.equals("fail")) {
+			result = "success";
+		}
+		
+		
+		log.info("result 테스트 "+result);
+		
+		return result;
+	}
 	
 	
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/paymentlist")
 	public void paymentlist(String u_userid, Model model) {
 		log.info("※※※※※ get paylist page ※※※※※"); 
@@ -296,12 +353,12 @@ public class PaymentController {
 		String mainoption = "";
 		int total_pay = 0;
 		
-		List<CampusOrderVO> list =  payment.listpaymentselect("user12");
+		List<CampusOrderVO> list =  payment.listpaymentselect(u_userid);
 		
 		for(CampusOrderVO vo:list) {
 			
 			List<CampusOrderDetailVO> delist = payment.listpaymentselectdetail(vo.getO_number());
-
+			log.info("dellist ===== "+delist);
 			for(CampusOrderDetailVO vovo:delist) {
 
 				if(attach.findByPnumber(vovo.getP_number()).isEmpty() || attach.findByPnumber(vovo.getP_number()) == null) {
@@ -332,7 +389,7 @@ public class PaymentController {
 		model.addAttribute("total_pay",total_pay);
 	}
 
-
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping("/paycancel")
 	public String paycancel(String u_userid, String success_code) throws Exception {
 		log.info("※※※※※ get paycancel page ※※※※※"); 
@@ -344,7 +401,17 @@ public class PaymentController {
 		api.getAccessToken();
 
 		CampusOrderVO vo = payment.cancel_number(success_code);
+		List<CampusOrderDetailVO> ordelist = payment.listpaymentselectdetail(vo.getO_number());
+		
+		log.info("제바ㅣㄹ잠좀자자"+ordelist);
+		
+		for(CampusOrderDetailVO voo:ordelist) {
+			payment.stock_change_plus(voo.getD_count(),voo.getP_number());
+			log.info("get테스트트트트"+voo.getP_number(),voo.getD_count());
+		}
+		
 		payment.pay_cancel(vo.getO_number());
+		log.info("테에스트으"+vo.getO_number());
 		
 		
 		Cancel cancel = new Cancel();
@@ -471,4 +538,167 @@ public class PaymentController {
 //		
 //		return "{\"result\":\"NO\"}";
 //	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/campingpayment")
+	public String campingpayment(CampusCampingjangVO vo, Model model) {
+		log.info("※※※※※ get payment page ※※※※※"); 
+		
+		CampusCampingjangVO campVO = new CampusCampingjangVO();
+		campVO.setC_area(vo.getC_area());
+		campVO.setC_rsysdate(vo.getC_rsysdate());
+		
+		log.info("테스트 : +"+campVO);
+		
+		model.addAttribute("campVO",campVO);
+
+		return "/payment/paymentpageCamping";
+	}
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/kakaoPay2")
+	public String kakaoPay2Post(CampusCampingjangVO vo, Model model) {
+		
+		log.info("teetetstsetsete+++ ",vo);
+		
+		CampusCampingjangVO campVO = new CampusCampingjangVO();
+		campVO.setC_area(vo.getC_area());
+		campVO.setC_name(vo.getC_name());
+		campVO.setC_nname(vo.getC_nname());
+		campVO.setC_pay(vo.getC_pay());
+		campVO.setC_phone(vo.getC_phone());
+		campVO.setC_rsysdate(vo.getC_rsysdate());
+		campVO.setU_userid(vo.getU_userid());
+		
+		UUID uuid = UUID.randomUUID();			
+		String success_code = uuid.toString()+"_"+campVO.getC_name();
+		
+		model.addAttribute("campVO",campVO);
+		model.addAttribute("success_code",success_code);
+		
+		return "/payment/kakaoPay2";
+	}
+	
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/success2")
+	public String success2(CampusCampingjangVO vo, Model model) {
+		
+		log.info("***** success2 ******");
+		
+		CampusCampingjangVO campVO = new CampusCampingjangVO();
+		campVO.setC_area(vo.getC_area());
+		campVO.setC_name(vo.getC_name());
+		campVO.setC_nname(vo.getC_nname());
+		campVO.setC_pay(vo.getC_pay());
+		campVO.setC_phone(vo.getC_phone());
+		campVO.setC_rsysdate(vo.getC_rsysdate());
+		campVO.setU_userid(vo.getU_userid());
+		campVO.setC_content(vo.getC_content());
+
+		log.info("두번째 결제창 테스트 "+campVO);
+		
+		paymapper.payment_camping_add(campVO);
+		
+		return "redirect:/";
+	}
+
+	
+	
+	
+	@PreAuthorize("isAuthenticated()")
+	@GetMapping("/paymentlistCamping")
+	public void paymentlist2(String u_userid, Model model) {
+		log.info("※※※※※ get paylist page ※※※※※"); 
+
+		log.info("*****"+u_userid);
+		List<CampusCampingjangVO> list = paymapper.payment_camping_view(u_userid);
+		
+		int total_pay = 0;
+		
+		for(CampusCampingjangVO vo:list) {
+			
+			total_pay += vo.getC_pay();
+			
+		}
+		
+		model.addAttribute("list",list);
+		model.addAttribute("total_pay",total_pay);
+
+	}
+	
+
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/paycancel2")
+	public String paycancel2(String u_userid, String c_content) throws Exception {
+		log.info("※※※※※ get paycancel page ※※※※※"); 
+		
+		BootpayApi api = new BootpayApi(
+		        "60fb7e1f238684001d0e5288",
+		        "TeEd0ouXs4qhxcW9Roh4amny7W56jScNHRnES2s96AE="
+		);
+		api.getAccessToken();
+
+		
+		paymapper.payment_camping_delete(c_content);
+		
+		
+		Cancel cancel = new Cancel();
+		cancel.receipt_id = c_content;
+		cancel.name = "관리자";
+		cancel.reason = "단순 변심에 의한 예약 취소요청";
+
+		try {
+		    HttpResponse res = api.cancel(cancel);
+		    String str = IOUtils.toString(res.getEntity().getContent(), "UTF-8");
+		    System.out.println(str);
+		} catch (Exception e) {
+		    e.printStackTrace();
+		}
+		
+		return "redirect:/payment/paymentlistCamping?u_userid="+u_userid;
+	}
+	
+	
+	
+	@PreAuthorize("isAuthenticated()")
+	@PostMapping("/checkarea")
+	@ResponseBody
+	public String checkarea(String c_rsysdate, int c_area, Model model) {
+		log.info("※※※※※ check area ※※※※※"); 
+
+		log.info("값 확인 area : "+c_area);
+		log.info("값 확인 sys : "+c_rsysdate);
+		
+		CampusCampingjangVO vo = new CampusCampingjangVO();
+				
+		vo = paymapper.payment_camping_view_one(c_rsysdate, c_area);
+		
+		String result = "no";
+		
+		try {
+
+			
+			if(vo.getC_area() >= 0) {
+				result = "yes";
+			}
+
+			log.info("값 확인 vo : "+vo.getC_area());
+			log.info("값 확인 result : "+result);
+			
+			return result;
+			
+		} catch (Exception e) {
+			
+
+			return result;
+			
+		} 
+
+		
+	}
+	
+	
+	
+	
 }

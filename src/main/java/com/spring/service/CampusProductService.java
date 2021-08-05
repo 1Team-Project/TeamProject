@@ -27,6 +27,7 @@ public interface CampusProductService {
 	
 	public int total(CampusCriteria cri);
 
+
 	public int total2(CampusCriteria cri);
 
 	

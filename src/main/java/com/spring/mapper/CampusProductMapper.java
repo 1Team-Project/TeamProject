@@ -35,6 +35,8 @@ public interface CampusProductMapper {
 	//옵션뿌리기용
 	public List<CampusProductOptionVO> optionlist(String op_optiontitle);
 	
+	public int totalCnt(CampusCriteria cri);
+	
 	//관리자용
 	public int insertProduct(CampusProductVO vo);
 	public int deleteProduct(int p_number);

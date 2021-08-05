@@ -40,10 +40,11 @@ function plus_minus(obj,op){
 $("input:checkbox[id='checkall']").prop("checked",false);
 
 $("#checkall").click(function(){
-   
-   if ($("input:checkbox[id='checkall']").prop("checked")){
-      $("input[type=checkbox]").prop("checked",true);
-   } else{
-      $("input[type=checkbox]").prop("checked",false);
-   }
+	
+	if ($("input:checkbox[id='checkall']").prop("checked")){
+		$("input[type=checkbox]").prop("checked",true);
+	} else{
+		$("input[type=checkbox]").prop("checked",false);
+	}
 });
+

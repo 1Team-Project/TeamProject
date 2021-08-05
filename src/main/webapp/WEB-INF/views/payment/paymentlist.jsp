@@ -29,7 +29,7 @@
 				<table class="table product">
 					<thead>
 						<tr class="textcenter colorthema">
-							<th class="width20">결제 완료 상품 0개</th>
+							<th class="width20">결제 완료 상품</th>
 							<th class="width30">상품 설명</th>
 							<th class="width10">총 수량</th>
 							<th class="width20">결제 금액</th>
@@ -59,7 +59,7 @@
 
 				<div class="col-md-12 textright margintb20"><h3>총 결제된 금액 : ${total_pay}원</h3></div>
 
-				<button class="btn btn-primary float-end">메인으로 돌아가기</button>
+				<button class="btn btn-primary float-end"  onclick="location.href='/'">메인으로 돌아가기</button>
 				
 				<!-- 유저정보 : 아이디, 주소, 전화번호, 이메일 -->
 				

@@ -164,11 +164,11 @@
         .description .product_name .name a{
             
             display: block;
-    width: 210px;
-    height: 30px;
-    padding-top: 11px;
-    line-height: 16px;
-    
+		    width: 210px;
+		    height: 30px;
+		    padding-top: 11px;
+		    line-height: 16px;
+		    
         }
         span{
         	color:black;

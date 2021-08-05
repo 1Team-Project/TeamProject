@@ -202,6 +202,12 @@ public class ProductController {
 		
 		         
 			
+			int total = service.total(cri);
+			
+			//페이지 나누기 값 모델에 등록
+			CampusPageVO campusPageVO = new CampusPageVO(cri, total);
+			model.addAttribute("CampusPageVO", campusPageVO);
+			
 		}
 		
 		@GetMapping("/getAttachList")

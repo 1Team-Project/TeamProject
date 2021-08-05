@@ -105,6 +105,11 @@
 					<button class="btn btn-primary modifybutton" type="button">수정하기</button>
 	                </c:if>
 	            </sec:authorize>
+	            
+				<sec:authorize access="hasRole('ROLE_ADMIN')">
+					<button class="btn btn-danger deletebtn" type="button">글 삭제</button>
+				</sec:authorize>
+					
 					<button class="btn btn-green2 listbutton" type="button">목록</button>
 				</div>
 				</form>
@@ -171,6 +176,17 @@
 	<input type="hidden" name="b_no" value="${campusVO.b_no}"/>
 </form>
 
+	<form action="/board/removeAdmin" id="deleteForm" method="POST">
+		<input type="hidden" name="keyword" value="${cri.keyword}" />
+		<input type="hidden" name="page" value="${cri.page}" />
+		<input type="hidden" name="sort" value="${cri.sort}" />
+		<input type="hidden" name ="b_no" value="${campusVO.b_no}"/>
+		<input type="hidden" name ="b_writer" value="${campusVO.b_writer}"/>
+		<%-- spring security csrf값 추가 --%>
+		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+
+	</form>
+
 </section>
 <script>
 	let b_no = ${campusVO.b_no};
@@ -181,6 +197,30 @@
 	
 	var csrfHeaderName = "${_csrf.headerName}";
 	var csrfTokenValue = "${_csrf.token}";
+	
+	$(".deletebtn").click(function(){
+		
+		Swal.fire({
+			  title: '<strong>정말 삭제 하시겠습니까?</strong>',
+			  icon: 'warning',
+			  focusConfirm: false,
+			  html:
+				    '삭제시 해당 게시글의 모든 정보가 사리지며'+
+					'더이상 복구 할 수 없게 됩니다.',
+			  showCancelButton: true,
+			  confirmButtonColor: '#f89b00',
+			  cancelButtonColor: '#78c2ad',
+			  cancelButtonText: '창 닫기',
+			  confirmButtonText:
+			    '삭제'
+			}).then((result) => {
+				  if (result.isConfirmed) {
+
+						$("#deleteForm").submit();
+				  }
+			})
+		
+	})
 	
 </script>
 <script src="/resources/main/js/campusview.js"></script>

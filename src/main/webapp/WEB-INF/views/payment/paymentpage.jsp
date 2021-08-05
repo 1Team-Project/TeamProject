@@ -31,7 +31,7 @@
 				<table class="table product">
 					<thead>
 						<tr class="textcenter colorthema">
-							<th class="width20">주문 상품 0개</th>
+							<th class="width20">주문 상품</th>
 							<th class="width30">상품 설명</th>
 							<th class="width10">수량</th>
 							<th class="width20">상품 금액</th>
@@ -67,42 +67,6 @@
 
 					</tbody>
 				</table>
-				
-				<div class="col-md-12 colorthema hh4 padding6px margintb20">예약 정보</div>
-				
-				<table class="table camping">
-					<thead>
-						<tr class="textcenter colorthema">
-							<th class="width20">예약 정보 0개</th>
-							<th class="width30">캠핑장 이름</th>
-							<th class="width10">장소</th>
-							<th class="width20">예약 날짜</th>
-							<th class="width20">예약 비용</th>
-						</tr>
-					</thead>
-					<tbody class="textcenter">
-					
-						<c:forEach var="c_vo" items="${campusCampingjangVO}">
-						<tr>
-							<td>
-								<img src="${c_vo.campingimg}" alt="" class="size200"/>
-							</td>
-							<td class="textmiddle"><b>${c_vo.c_name}</b>
-								<div>${c_vo.c_content}</div>
-							</td>
-							<td class="textmiddle">${c_vo.c_area}번 자리</td>
-							<td class="textmiddle">${c_vo.c_rsysdate}</td>
-							<td class="textmiddle">${c_vo.c_price}원</td>
-						</tr>
-						
-							<input type="hidden" id="camping_code" name="c_number" value=""/>
-							<input type="hidden" id="camping_name" name="c_name" value=""/>
-							<input type="hidden" id="camping_price" name="c_price" value=""/>
-						
-						</c:forEach>
-						
-					</tbody>
-				</table>
 
 				<div class="col-md-12 textright margintb20"><h3>총 결제 금액 : ${total_pay}원</h3><h5>(택배비 : ${total_parcel})</h5></div>
 
@@ -129,19 +93,7 @@
 				<div class="col-md-12 bottommargin30 mll10">
 					<input name="o_address4" type="text" class="form-control width60 inlinetest" placeholder="상세주소" id="sample6_detailAddress" required <c:if test = "${campusCartVO == null}">readonly</c:if> />
 				</div>
-				
-				<hr class="one"  />
-				
-				
-				<div class="col-md-12 colorthema hh4 padding6px margintb20">예약자 정보</div>
-				
-				<div class="col-md-12 bottommargin10 mll10">
-					<input type="text" class="form-control width60" placeholder="예약자 이름을 입력해 주세요" <c:if test = "${campusCampingjangVO == null}">readonly</c:if> />
-				</div>
-				<div class="col-md-12 bottommargin10 mll10">
-					<input type="text" class="form-control width60" placeholder="예약자 연락처를 입력해 주세요" <c:if test = "${campusCampingjangVO == null}">readonly</c:if> />
-				</div>
-				
+
 				
 				<hr class="one margintb40" />
 				
@@ -158,7 +110,7 @@
 				카카오페이<button class="btn kakaobtn"><img src="/resources/main/images/payment_icon_yellow_medium.png" alt="" /></button>
 				 -->
 				 
-				<button class="btn btn-primary float-end">메인으로 돌아가기</button>
+				<button class="btn btn-primary float-end"  onclick="location.href='/'">메인으로 돌아가기</button>
 				
 				<!-- 유저정보 : 아이디, 주소, 전화번호, 이메일 -->
 				<sec:authentication property="principal" var="user"/>

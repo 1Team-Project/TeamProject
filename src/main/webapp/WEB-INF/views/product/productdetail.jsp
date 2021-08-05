@@ -131,10 +131,8 @@
                            var uuid = '${product.a_uuid}';
                            var path = '${product.a_path}';
                            var name = '${product.a_name}';
-
                            var imgPath = encodeURIComponent(path + "/"
                                  + uuid + "_" + name);
-
                            str += "<p><img src='/display?fileName="
                                  + imgPath
                                  + "' alt='' class='product_img'/></p>";
@@ -143,7 +141,6 @@
                      <script>
                         console.log(str);
                         /*  $(".test").html(str);   */
-
                         var imgArea = document
                               .querySelector("#mainImg");
                         imgArea.innerHTML = str;
@@ -388,22 +385,18 @@
 <script>
    var csrfHeaderName = "${_csrf.headerName}";
    var csrfTokenValue = "${_csrf.token}";
-
    $("#btn_cart").click(function(e) {
       e.preventDefault();
-
       var p_number = $("#p_number").val();
       var c_count = $(".inp").val();
       var userid = $("#userid").val();
       var option = $("select[name='option']").val();
-
       var data = {
          p_number : p_number,
          c_count : c_count,
          u_userid : userid,
          c_option : option
       };
-
       $.ajax({
          url : "/cart",
          type : "post",

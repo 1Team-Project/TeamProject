@@ -8,7 +8,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css">
+	
 <link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
 <meta charset="UTF-8">
 <title>Insert title here</title>
@@ -65,10 +68,10 @@
 
 </form>
 
-<form action="/payment/paymentpage" id="fail_form" method="get">
+<form action="/cart" id="fail_form" method="get">
 
 	<input type="hidden" name="u_userid" value="${u_userid}"/>
-	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->
 
 </form>
 
@@ -76,7 +79,7 @@
 	
 <!-- 결제만 해주는 페이지 -->
 <script src="https://cdn.bootpay.co.kr/js/bootpay-3.3.2.min.js" type="application/javascript"></script>
-    <script>
+<script>
 $(function(){
 	$(document).ready(function() {
 	    BootPay.request({
@@ -98,22 +101,48 @@ $(function(){
 	    	//결제 진행시 에러가 발생하면 수행됩니다.
 	    	console.log(data);
 	    	
-	    	alert("결제 도중 오류가 발생하였습니다. error : "+data);
-	    	
-	    	var fail_form = $("#fail_form")
-	    	
-	    	fail_form.submit();
-	    	
+			Swal.fire({
+				  title: '<strong>결제가 취소되었습니다.</strong>',
+				  icon: 'error',
+				  allowOutsideClick: false,
+				  html:
+				    'error : '+data,
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				}).then((result) => {
+					  if (result.isConfirmed) {
+					    	var fail_form = $("#fail_form")
+					    	
+					    	fail_form.submit();
+						  }
+				})
+
 	    }).cancel(function (data) {
 	    	//결제가 취소되면 수행됩니다.
 	    	console.log(data);
 	    	
-	    	alert("결제가 취소되었습니다. error : "+data);
-	    	
-	    	var fail_form = $("#fail_form")
-	    	
-	    	fail_form.submit();
-	    	
+			Swal.fire({
+				  title: '<strong>결제가 취소되었습니다.</strong>',
+				  icon: 'error',
+				  allowOutsideClick: false,
+				  html:
+				    'error : '+data,
+
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				}).then((result) => {
+					  if (result.isConfirmed) {
+					    	var fail_form = $("#fail_form")
+					    	
+					    	fail_form.submit();
+						  }
+				})
+
 	    }).ready(function (data) {
 	    	// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
 	    	console.log(data);
@@ -121,13 +150,65 @@ $(function(){
 	    	//결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
 	    	//주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
 	    	console.log(data);
-	    	var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
+	    	
+	    	var checkForm = $("#success_form").serialize();
+	    	console.log("체크폼"+checkForm);
+	    	
+	 	   	var csrfHeaderName = "${_csrf.headerName}";
+	 		var csrfTokenValue = "${_csrf.token}";
+	 	    	
+ 	    	$.ajax({
+				url:'/payment/check_data', //도착지
+				type:'post',
+
+				beforeSend:function(xhr){
+					xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
+				},
+				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+
+				data:checkForm,
+				
+				success:function(result){
+					
+					console.log(result);
+					
+					if (result == 'success'){
+						console.log("유효성 검사 통과");						
+						BootPay.transactionConfirm(data);
+					}else{
+						console.log("유효성 검사 실패")
+						BootPay.removePaymentWindow();
+						
+						Swal.fire({
+							  title: '<strong>결제가 취소되었습니다.</strong>',
+							  icon: 'error',
+							  allowOutsideClick: false,
+							  html:
+							    'error : 재고 부족',
+
+							  focusConfirm: false,
+							  confirmButtonColor: '#78c2ad',
+							  confirmButtonText:
+							    '확인'
+							}).then((result) => {
+								  if (result.isConfirmed) {
+								    	var fail_form = $("#fail_form")
+								    	
+								    	fail_form.submit();
+									  }
+							})
+					}
+					
+				}
+
+			});
+			
+/* 	    	var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
 	    	if (enable) {
 	    		BootPay.transactionConfirm(data); // 조건이 맞으면 승인 처리를 한다.
 	    	} else {
 	    		BootPay.removePaymentWindow(); // 조건이 맞지 않으면 결제 창을 닫고 결제를 승인하지 않는다.
-	    	}
-	    	
+	    	} */
 	    }).close(function (data) {
 	        // 결제창이 닫힐때 수행됩니다. (성공,실패,취소에 상관없이 모두 수행됨)
 	        console.log(data);
@@ -137,12 +218,24 @@ $(function(){
 	    	//비즈니스 로직을 수행하기 전에 결제 유효성 검증을 하시길 추천합니다.
 	    	console.log(data);
 	    	
-	    	alert("결제에 성공하셨습니다.");
-	    	var success_form = $("#success_form")
-	    	var da = data.receipt_id;
-	    	var str = "<input type='hidden' name='success_code' value='"+da+"'>"
-	    	success_form.append(str);
-	    	success_form.submit();
+			Swal.fire({
+				  title: '<strong>결제가 완료되었습니다.</strong>',
+				  icon: 'success',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				}).then((result) => {
+					  if (result.isConfirmed) {
+					    	var success_form = $("#success_form")
+					    	var da = data.receipt_id;
+					    	var str = "<input type='hidden' name='success_code' value='"+da+"'>"
+					    	success_form.append(str);
+					    	success_form.submit();
+						  }
+				})
+				
+
 	    });
 	})
 })
