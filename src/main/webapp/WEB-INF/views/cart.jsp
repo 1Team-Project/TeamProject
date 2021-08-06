@@ -139,7 +139,7 @@
 							<dl class="amount">
 								<dt class="tit">배송비</dt>
 								<dd class="shipping">
-									<span class="delivery"></span><span class="unit">원</span>
+									<span class="delivery">3,000</span><span class="unit">원</span>
 								</dd>
 							</dl>
 							<dl class="amount lst">

@@ -104,7 +104,7 @@
 					</tbody>
 				</table>
 
-				<div class="col-md-12 textright margintb20"><h3>총 결제 금액 : ${total_pay}원</h3><h5>(택배비 : ${total_parcel})</h5></div>
+				<div class="col-md-12 textright margintb20"><h3>총 결제 금액 : ${total_pay}원</h3><h5>(택배비 : ${p_shippingfee})</h5></div>
 
 				<div class="col-md-12 colorthema hh4 padding6px margintb20">주문자 정보</div>
 

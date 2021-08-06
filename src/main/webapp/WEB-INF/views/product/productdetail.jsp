@@ -228,23 +228,23 @@
 											<div class="col-md-12">
 												<ul class="mypagination justify-content-center">
 
-													<c:if test="${CampusPdetailPageVO.prev}">
-														<li class="mypage-item prev"><a
-															href="${CampusPdetailPageVO.startPage-1}" class="mypage-link">
-																<< </a></li>
-													</c:if>
+<%-- 													<c:if test="${CampusPdetailPageVO.prev}"> --%>
+<!-- 														<li class="mypage-item prev"><a -->
+<%-- 															href="${CampusPdetailPageVO.startPage-1}" class="mypage-link"> --%>
+<!-- 																<< </a></li> -->
+<%-- 													</c:if> --%>
 
-													<c:forEach var="i" begin="${CampusPdetailPageVO.startPage}"
-														end="${CampusPdetailPageVO.endPage}">
-														<li class="mypage-item"><a href="${i}"
-															class="mypage-link ${CampusPdetailPageVO.cri.page==i?'activecolor':''}">${i}</a></li>
-													</c:forEach>
+<%-- 													<c:forEach var="i" begin="${CampusPdetailPageVO.startPage}" --%>
+<%-- 														end="${CampusPdetailPageVO.endPage}"> --%>
+<%-- 														<li class="mypage-item"><a href="${i}" --%>
+<%-- 															class="mypage-link ${CampusPdetailPageVO.cri.page==i?'activecolor':''}">${i}</a></li> --%>
+<%-- 													</c:forEach> --%>
 
-													<c:if test="${CampusPdetailPageVO.next}">
-														<li class="mypage-item next"><a
-															href="${CampusPdetailPageVO.endPage+1}" class="mypage-link">
-																>> </a></li>
-													</c:if>
+<%-- 													<c:if test="${CampusPdetailPageVO.next}"> --%>
+<!-- 														<li class="mypage-item next"><a -->
+<%-- 															href="${CampusPdetailPageVO.endPage+1}" class="mypage-link"> --%>
+<!-- 																>> </a></li> -->
+<%-- 													</c:if> --%>
 												</ul>
 											</div>
 										</div>
@@ -438,8 +438,6 @@
             		      break;
             		  }
             		});
-//         	 }else{
-//         		swal("회원만 사용가능합니다!", "로그인해주세요", "info");
         },
          error : function(data,textStatus) {
         	 swal("카드 담기 실패!", "다시 확인해 주세요", "error");
