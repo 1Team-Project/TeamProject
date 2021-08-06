@@ -58,17 +58,12 @@
 				<!-- 아이콘 관련 -->
 				<div class="col-md-12 order-md-last fixed-top">
 					<div class="social-media">
-<<<<<<< HEAD
+
 		    		<p class="d-md-flex justify-content-end m-2">
 						<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
 						
 						
-						
-=======
-		    			<p class="d-md-flex justify-content-end m-2">
-							<!-- 각 아이콘 클릭시 이동되는 링크 (login , mypage , cart) -->
-
->>>>>>> 8b28142eab0cb171d3d8c8a45a49652e35f4a2c6
+					
 							<sec:authorize access="isAuthenticated()">
 								<a href="#" id="logoutDo" class="d-flex align-items-center justify-content-center m-1"><img src="/resources/main/images/icon_login.png"></a>
 			    			</sec:authorize>
@@ -77,11 +72,7 @@
 			    					<img src="/resources/main/images/icon_login.png">
 			    				</a>
 			    			</sec:authorize>
-<<<<<<< HEAD
-			    			
-=======
-		    			    			
->>>>>>> 8b28142eab0cb171d3d8c8a45a49652e35f4a2c6
+
 							<sec:authorize access="isAuthenticated()">
 								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>

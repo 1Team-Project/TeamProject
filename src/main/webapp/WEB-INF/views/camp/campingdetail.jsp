@@ -1,3 +1,4 @@
+  
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,8 +20,7 @@
 		<img src="/resources/main/images/camp.jpg" class="camping">
    </div>
    <div class="info">		
-		<span class="name">캠퍼스 캠핑장</span>
-		<span class="detail">바로 앞에 계곡이 있고 접근이 쉬운 캠핑장 입니다!</span>
+
     </div>
 	<div class="camp reservation">
 		<img src="/resources/main/images/campinglist.jpg" class="loc">

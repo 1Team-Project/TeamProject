@@ -21,4 +21,7 @@ public interface CartMapper {
 	public int delete(int c_cartnumber);
 	public int modifyCart(CartVO vo);
 	public int sum(String u_userid);	
+	
+	public int countCart(@Param("u_userid") String u_userid, @Param("p_number") int p_number);
+	
 }

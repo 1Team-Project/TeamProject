@@ -106,7 +106,7 @@ p {
 }
 
 .btn.minus.off {
-    background-image: url("/resources/main/images/remove.png");	
+    background-image: url("/resources/main/images/remove.png");   
 }
 
 #productview .opt .btn.minus, .option .opt .btn.minus, .btn.plus {
@@ -117,12 +117,12 @@ p {
 }
 
 .opt .btn.minus {
-	background-image: url("/resources/main/images/remove.png");	
+   background-image: url("/resources/main/images/remove.png");   
 }
 
 #productview .opt .btn {
-	width : 26px;
-	height: 27px;
+   width : 26px;
+   height: 27px;
 }
 
 /* #productview .option .opt .minus { */
@@ -158,9 +158,9 @@ p {
 
 #productview .option .opt .plus {
 /* background-image: url("/resources/main/images/plus.png"); */
-	float:right;
-	margin-left: -1px;
- 	background-size: 18px 18px; 
+   float:right;
+   margin-left: -1px;
+    background-size: 18px 18px; 
 }
 
 .product_view table td.price{
@@ -234,7 +234,7 @@ p {
     padding: 4px 88px;
 }
 .menu .menu1 {
-	margin-left:10px;
+   margin-left:10px;
 }
 .p_detail_img img {
     display: block;
@@ -279,17 +279,25 @@ p {
     margin-top: 30px;
     margin-bottom: 100px;
 }
-.p_rivewbar h1 {
-   display: inline-block;
+
+.p_reviewbar h1 {
+    display: inline-block;
     position: relative;
     font-size: 50px;
     font-family: noto sans;
-    color: #666;	
+    color: #666;   
 }
 
+.d_wrapper .p_reviewbar h1:before {
+   content: " ";
+    position:absolute;
+    top: 40px;
+    width: 1050px;
+    height: 1px;
+    background: #b9b9b9;
+}
 
-
-.description .d_wrapper .p_qna h1{
+.p_qna h1{
     display: inline-block;
     position: relative;
     font-size: 50px;
@@ -297,23 +305,15 @@ p {
     color: #666;
 }
 
-.d_wrapper .p_reviewbar h1:before {
-	content: " ";
+.d_wrapper .p_qna h1:before {
+    content: " ";
     position:absolute;
-    top: 28px;
+    top: 40px;
     width: 1050px;
     height: 1px;
     background: #b9b9b9;
 }
 
-.d_wrapper .p_qna h1:before {
-    content: " ";
-    position:absolute;
-    top: 28px;
-    width: 1050px;
-    height: 1px;
-    background: #b9b9b9;
-}
 .d_wrapper h1 .campustip, .p_reviewbar h1 span {
     position: relative;
     display: inline-block;
@@ -324,14 +324,14 @@ p {
 }
 
 .p_qna {
-	margin-top:50px;
+   margin-top:50px;
 }
 
 .p_qna h1 span {
-	margin-left: 450px;
+   margin-left: 450px;
 }
 .row .btn-primary {
-	margin-right:20px;
+   margin-right:20px;
 }
 
 .d_wrapper h1 .tipkor , .p_reviewbar .star , .p_qna .qna_subtit{
@@ -342,12 +342,12 @@ p {
     margin-bottom: 40px;
 }
 .p_reivewbar .star {
-	margin-left:350px;
+   margin-left:350px;
 }
 
 .p_qna .qna_subtit{
-	margin-left:380px;
-	font-size:20px;
+   margin-left:380px;
+   font-size:20px;
 }
 
 .tip_info {
@@ -381,15 +381,15 @@ p {
     margin-left: 10px;
 }
 .size_info .size img{
-	
+   
     margin-top:100px;
     width : 400px;
-	height: 400px;
+   height: 400px;
 }
 
 .size_info .size .p_size {
-	
-	margin-left:40px;
+   
+   margin-left:40px;
 }
 
 .p_reviewbar .table {

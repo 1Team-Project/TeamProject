@@ -76,7 +76,6 @@ $(function(){
 				  allowOutsideClick: false,
 				  html:
 				    'error : '+data,
-
 				  focusConfirm: false,
 				  confirmButtonColor: '#78c2ad',
 				  confirmButtonText:
@@ -88,7 +87,6 @@ $(function(){
 					    	fail_form.submit();
 						  }
 				})
-
 	    }).cancel(function (data) {
 	    	//결제가 취소되면 수행됩니다.
 	    	console.log(data);
@@ -99,7 +97,6 @@ $(function(){
 				  allowOutsideClick: false,
 				  html:
 				    'error : '+data,
-
 				  focusConfirm: false,
 				  confirmButtonColor: '#78c2ad',
 				  confirmButtonText:
@@ -111,7 +108,6 @@ $(function(){
 					    	fail_form.submit();
 						  }
 				})
-
 	    }).ready(function (data) {
 	    	// 가상계좌 입금 계좌번호가 발급되면 호출되는 함수입니다.
 	    	console.log(data);
@@ -130,12 +126,10 @@ $(function(){
  	    	$.ajax({
 				url:'/payment/check_data', //도착지
 				type:'post',
-
 				beforeSend:function(xhr){
 					xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 				},
 				contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-
 				data:checkForm,
 				
 				success:function(result){
@@ -155,7 +149,6 @@ $(function(){
 							  allowOutsideClick: false,
 							  html:
 							    'error : 재고 부족',
-
 							  focusConfirm: false,
 							  confirmButtonColor: '#78c2ad',
 							  confirmButtonText:
@@ -205,7 +198,6 @@ $(function(){
 						  }
 				})
 				
-
 	    });
 	})
 })

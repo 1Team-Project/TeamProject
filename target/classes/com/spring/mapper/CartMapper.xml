@@ -9,12 +9,13 @@
 	]]>
 	</insert>
 	
-	<!--  장바구니에 기존 상품이 있는지  -->
-<!-- 	<select id="countCart" resultType="int"> -->
-<!-- 	select count(*) from cart -->
-<!-- 	where u_userid=#{u_userid} and p_number=#{p_number} -->
-<!-- 	</select> -->
+
 	
+	 <!--  장바구니에 기존 상품이 있는지  -->
+   <select id="countCart" resultType="int">
+   select count(*) from campus_cart
+   where u_userid=#{u_userid} and p_number=#{p_number}
+   </select>
     <!-- 장바구니 목록 --> 
   <select id="listCart" resultType="com.spring.domain.CartListVO">
 <!--    <select id="listCart" resultType="com.spring.domain.CartVO"> -->
@@ -68,4 +69,11 @@
             (c_cartnumber=#{item})
          </foreach>
    </delete>
+   
+      <update id="modifyCart">
+   update campus_cart
+   set c_count = #{c_count} + c_count
+   where u_userid=#{u_userid}
+   and p_number = #{p_number}
+   </update>
 </mapper>

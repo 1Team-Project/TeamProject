@@ -18,11 +18,19 @@ public class CartServiceImpl implements CartService {
 	@Autowired
 	private CartMapper mapper;
 	
+	
 	@Override
 	public boolean addCart(CartVO vo) {
 		log.info("카트" +vo);
+		
+		int count = mapper.countCart(vo.getU_userid(), vo.getP_number());
+		if(count >0 ) {
+			return mapper.modifyCart(vo) > 0 ? true:false;
+		}
+		
 		return mapper.addCart(vo) > 0 ? true:false;
 	}
+	
 
 	@Override
 	public List<CartListVO> listCart(String u_userid) {

@@ -98,7 +98,6 @@
 								</c:otherwise>
 								
 							</c:choose>
-
 							</td>
 							<td>${vo.b_views}</td>
 						</tr>
