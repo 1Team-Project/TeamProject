@@ -29,11 +29,12 @@
 				<table class="table product">
 					<thead>
 						<tr class="textcenter colorthema">
-							<th class="width20">결제 완료 상품</th>
-							<th class="width30">상품 설명</th>
-							<th class="width10">총 수량</th>
+							<th class="width20">예약 정보</th>
+							<th class="width20">이름</th>
+							<th class="width10">자리</th>
+							<th class="width20">예약일</th>
 							<th class="width20">결제 금액</th>
-							<th class="width20">결제 취소</th>
+							<th class="width10">결제 취소</th>
 						</tr>
 					</thead>
 					<tbody class="textcenter">
@@ -42,14 +43,14 @@
 					<!-- 상품 리스트 반복되는 부분 -->
 						<tr>
 							<td>
-								<img src="${vo.imgsrc}" alt="" class="size200"/>
+								<img src="/resources/main/images/camp.jpg" alt="" class="size200"/>
 							</td>
-							<td class="textmiddle"><b>${vo.o_name}</b>
-								<div>${option}</div>
+							<td class="textmiddle"><b>${vo.c_name}</b>
 							</td>
-							<td class="textmiddle">총 ${vo.total_count}개</td>
-							<td class="textmiddle ${vo.success_code}">총 ${vo.total_pay}원</td>
-							<td class="textmiddle"><a class="btn btn-primary cancel_btn" href="${vo.success_code}">취소</a></td>
+							<td class="textmiddle">${vo.c_area}번</td>
+							<td class="textmiddle">${vo.c_rsysdate}</td>
+							<td class="textmiddle ${vo.c_content}">총 ${vo.c_pay}원</td>
+							<td class="textmiddle"><a class="btn btn-primary cancel_btn" href="${vo.c_content}">취소</a></td>
 	
 						</tr>
 					</c:forEach>
@@ -65,12 +66,12 @@
 				
 				<sec:authentication property="principal" var="user"/>
 				
-				<form action="/payment/paycancel" id ="cancel_form" method="post">
+				<form action="/payment/paycancel2" id ="cancel_form" method="post">
 					<input type="hidden" id="id" name="u_userid" value="${user.username}"/>				
 					<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 				</form>
 				
-				<input type="hidden" id="total_pay" name="total_pay" value="${total_pay}"/>
+				<input type="hidden" id="total_pay" name="total_pay" value="${vo.c_pay}"/>
 				
 				<!-- <button type = "submit" class="btn btn-primary">submit</button> -->
 				
@@ -83,7 +84,7 @@
 	
 </div>
 </body>
-<script src="/resources/main/js/paymentlist.js"></script>
+<script src="/resources/main/js/paymentlist2.js"></script>
 <script>
 	var userid = ${user.username};
 </script>

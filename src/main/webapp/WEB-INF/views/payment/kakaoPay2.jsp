@@ -20,55 +20,25 @@
 </head>
 <body>
 
-<!-- <button class="btn btn-primary boot_click" type="button">클릭</button>
- -->
-<%-- 	<c:set var="i" value="0" />
-	<c:forEach var="vo" items="${list}">
-	
-		<c:set var="item_name_${i}" value="${vo.p_name}"/>
-		<c:set var="item_count_${i}" value="${vo.c_count}"/>
-		<c:set var="item_number_${i}" value="${vo.p_number}"/>
-		<c:set var="item_price_${i}" value="${vo.price}"/>
-		<c:set var="item_option_${i}" value="${vo.c_count}"/>
-		
-		<c:set var="i" value="${i+1}"/>
-	</c:forEach> --%>
-	
-<form action="/payment/success" id="success_form" method="post">
 
-	<c:set var="i" value="0" />
-	<c:forEach var="vo" items="${list}">
 	
-		<input type="hidden" id="product_code" name="cartVO[${i}].p_number" value="${vo.p_number}"/>
-		<input type="hidden" id="product_name" name="cartVO[${i}].p_name" value="${vo.p_name}"/>
-		<input type="hidden" id="product_money" name="cartVO[${i}].money" value="${vo.money}"/>
-		<input type="hidden" id="product_price" name="cartVO[${i}].p_price" value="${vo.p_price}"/>
-		<input type="hidden" id="product_count" name="cartVO[${i}].c_count" value="${vo.c_count}"/>
-		<input type="hidden" id="product_count" name="cartVO[${i}].c_cartnumber" value="${vo.c_cartnumber}"/>
-		
-		<input type="hidden" id="product_option_name" name="cartVO[${i}].c_option" value="${vo.c_option}"/>
+<form action="/payment/success2" id="success_form" method="post">
+
+
+	<input type="hidden" name="u_userid" value="${campVO.u_userid}"/>
+	<input type="hidden" name="c_name" value="${campVO.c_name}"/>
+	<input type="hidden" name="c_nname" value="${campVO.c_nname}"/>
+	<input type="hidden" name="c_rsysdate" value="${campVO.c_rsysdate}"/>
+	<input type="hidden" name="c_pay" value="${campVO.c_pay}"/>
+	<input type="hidden" name="c_area" value="${campVO.c_area}"/>
 	
-		<c:set var="i" value="${i+1}"/>
-	
-	</c:forEach>
-	
-	<input type="hidden" name="u_userid" value="${u_userid}"/>
-	<input type="hidden" name="o_name" value="${total_name}"/>
-	<input type="hidden" name="o_address1" value="${order.o_address1}"/>
-	<input type="hidden" name="o_address2" value="${order.o_address2}"/>
-	<input type="hidden" name="o_address3" value="${order.o_address3}"/>
-	<input type="hidden" name="o_address4" value="${order.o_address4}"/>
-	<input type="hidden" name="o_phone" value="${order.o_phone}"/>
-	<input type="hidden" name="o_ordercode" value="${success_code}"/>
-	
-	<input type="hidden" name="total_count" value="${total_count}"/>
-	<input type="hidden" name="total_pay" value="${total_pay}"/>
+	<input type="hidden" name="c_phone" value="${campVO.c_phone}"/>
 	
 	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 
 </form>
 
-<form action="/cart" id="fail_form" method="get">
+<form action="/camp/campdetail" id="fail_form" method="get">
 
 	<input type="hidden" name="u_userid" value="${u_userid}"/>
 	<!-- <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/> -->
@@ -83,16 +53,15 @@
 $(function(){
 	$(document).ready(function() {
 	    BootPay.request({
-	    	price: ${total_pay}, //실제 결제되는 가격 [ 총 가격 ]
+	    	price: ${campVO.c_pay}, //실제 결제되는 가격 [ 총 가격 ]
 	    	application_id: "60fb7e1f238684001d0e5285",
-	    	name: '${total_name}', //결제창에서 보여질 이름
+	    	name: '${campVO.c_name}', //결제창에서 보여질 이름
 	    	pg: 'kakao',
 	    	method: 'easy', //결제수단, 입력하지 않으면 결제수단 선택부터 화면이 시작합니다.
 	    	show_agree_window: 0, // 부트페이 정보 동의 창 보이기 여부
 	    	user_info: {
-	    		username: '${order.o_name}',
-	    		addr: '${address}',
-	    		phone: '${order.o_phone}'
+	    		username: '${campVO.c_nname}',
+	    		phone: '${campVO.c_phone}'
 	    	},
 	    	order_id: '${success_code}', //고유 주문번호로, 생성하신 값을 보내주셔야 합니다.
 	    	params: {callback1: '그대로 콜백받을 변수 1', callback2: '그대로 콜백받을 변수 2', customvar1234: '변수명도 마음대로'},
@@ -150,7 +119,8 @@ $(function(){
 	    	//결제가 실행되기 전에 수행되며, 주로 재고를 확인하는 로직이 들어갑니다.
 	    	//주의 - 카드 수기결제일 경우 이 부분이 실행되지 않습니다.
 	    	console.log(data);
-	    	
+	    	BootPay.transactionConfirm(data);
+/* 	    	
 	    	var checkForm = $("#success_form").serialize();
 	    	console.log("체크폼"+checkForm);
 	    	
@@ -200,8 +170,8 @@ $(function(){
 					}
 					
 				}
-
-			});
+ 
+			}); */
 			
 /* 	    	var enable = true; // 재고 수량 관리 로직 혹은 다른 처리
 	    	if (enable) {
@@ -229,7 +199,7 @@ $(function(){
 					  if (result.isConfirmed) {
 					    	var success_form = $("#success_form")
 					    	var da = data.receipt_id;
-					    	var str = "<input type='hidden' name='success_code' value='"+da+"'>"
+					    	var str = "<input type='hidden' name='c_content' value='"+da+"'>"
 					    	success_form.append(str);
 					    	success_form.submit();
 						  }

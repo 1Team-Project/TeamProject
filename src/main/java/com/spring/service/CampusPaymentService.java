@@ -2,6 +2,7 @@ package com.spring.service;
 
 import java.util.List;
 
+
 import com.spring.domain.CampusOrderDetailVO;
 import com.spring.domain.CampusOrderVO;
 
@@ -17,6 +18,9 @@ public interface CampusPaymentService {
 	public boolean payment_add(CampusOrderVO vo, List<CampusOrderDetailVO> list);
 	public boolean payment_detail_add(CampusOrderDetailVO vo);
 
+	public boolean stock_change(int p_stock, int p_number);
+	public boolean stock_change_plus(int p_stock, int p_number);
+	
 	public CampusOrderVO cancel_number(String success_code);
 	public boolean pay_cancel(int o_number);
 	public boolean pay_cancel_detail(int o_number);

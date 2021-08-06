@@ -19,12 +19,26 @@ $(function(){
 			let stock = $("#campusboard-product-stock").val();
 
 			if(price == ""){
-				alert("가격을 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>가격을 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 				$("#campusboard-product-price").focus();
 				return;
 			}
 			if(stock == ""){
-				alert("재고를 작성해 주세요!");
+			Swal.fire({
+				  title: '<strong>재고를 작성해 주세요!</strong>',
+				  icon: 'info',
+				  focusConfirm: false,
+				  confirmButtonColor: '#78c2ad',
+				  confirmButtonText:
+				    '확인'
+				})
 				$("#campusboard-product-stock").focus();
 				return;
 			}

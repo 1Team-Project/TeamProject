@@ -121,4 +121,18 @@ public class CampusPaymentServiceImpl implements CampusPaymentService {
 		return false;
 	}
 
+
+	@Override
+	public boolean stock_change(int p_stock, int p_number) {
+		// TODO Auto-generated method stub
+		return mapper.stock_change(p_stock, p_number)>0?true:false;
+	}
+
+	@Override
+	public boolean stock_change_plus(int p_stock, int p_number) {
+		// TODO Auto-generated method stub
+		return mapper.stock_change_plus(p_stock, p_number)>0?true:false;
+	}
+
 }
+

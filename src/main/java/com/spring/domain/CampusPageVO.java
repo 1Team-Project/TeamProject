@@ -26,7 +26,7 @@ public class CampusPageVO {
 		this.endPage = (int)(Math.ceil(cri.getPage()/10.0))*10;
 		this.startPage = this.endPage-9;
 		
-		int realEnd = (int)(Math.ceil((total/1.0)/20));
+		int realEnd = (int)(Math.ceil((total/1.0)/15));
 		if(realEnd < this.endPage) {
 			this.endPage = realEnd;
 		}

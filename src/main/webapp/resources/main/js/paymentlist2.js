@@ -22,7 +22,7 @@ $(function(){
 							
 							var code = $(this).attr("href");
 							
-							form_c.append("<input type='hidden' name='success_code' value='"+code+"'>");
+							form_c.append("<input type='hidden' name='c_content' value='"+code+"'>");
 							
 							form_c.submit();
 					  }

@@ -14,6 +14,14 @@
 		delete from campus_order where o_number = #{o_number}
 	</delete>
 	
+	<update id="stock_change">
+		update campus_product set p_stock = (p_stock-#{p_stock}) where p_number = #{p_number}
+	</update>
+	
+	<update id="stock_change_plus">
+		update campus_product set p_stock = (p_stock+#{p_stock}) where p_number = #{p_number}
+	</update>
+	
 	
 	<select id="cancel_number" resultType="com.spring.domain.CampusOrderVO">
 		select o_number from campus_order where success_code = #{success_code}
@@ -50,5 +58,24 @@
 	</select>
 	
 	
+	
+	<!-- 캠핑 -->
+	
+	<insert id="payment_camping_add">
+		insert into campus_camping (c_number, c_name, c_area, c_sysdate, c_rsysdate, c_content, c_pay, c_phone, u_userid, c_nname)
+		values(CAMPUS_CAMPING_SEQUENCE.nextval, #{c_name}, #{c_area}, sysdate, #{c_rsysdate}, #{c_content}, #{c_pay}, #{c_phone}, #{u_userid}, #{c_nname})
+	</insert>
+	
+	<select id="payment_camping_view" resultType="com.spring.domain.CampusCampingjangVO">
+		select * from campus_camping where u_userid = #{u_userid}
+	</select>
+	
+	<delete id="payment_camping_delete">
+		delete from campus_camping where c_content = #{success_code}
+	</delete>
+	
+	<select id="payment_camping_view_one" resultType="com.spring.domain.CampusCampingjangVO">
+		select * from campus_camping where c_rsysdate = #{c_rsysdate} and c_area = #{c_area}
+	</select>
 	
 </mapper>

@@ -13,6 +13,10 @@
 	<link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
 	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="/resources/main/css/bootstrap.min.css">
+	<!-- sweet alert -->
+	<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+	<script src="sweetalert2.min.js"></script>
+	<link rel="stylesheet" href="sweetalert2.min.css">
 	<!-- 영권 추가 문장 시작 -->
 	<link rel="stylesheet" href="/resources/main/css/bootstrap2.min.css">
 	<%@taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
@@ -67,9 +71,7 @@
 			    					<img src="/resources/main/images/icon_login.png">
 			    				</a>
 			    			</sec:authorize>
-		    			
-		    				<c:if test="true">dtd </c:if>
-		    				<c:if test="false">false</c:if>
+			    			
 							<sec:authorize access="isAuthenticated()">
 								<a href="/loginMypage" class="d-flex align-items-center justify-content-center m-1">
 		    						<img src="/resources/main/images/icon_mypage.png"></a>

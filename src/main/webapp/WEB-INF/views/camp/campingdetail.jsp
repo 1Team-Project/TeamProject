@@ -1,105 +1,117 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <%@include file="../../design/header.jsp"%>
 <link rel="stylesheet" href="/resources/main/css/campingdetail.css">
-<!--  <script src="./jquery-3.1.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
-<link href="/resources/main/air-datepicker/dist/css/datepicker.min.css"
-	rel="stylesheet" type="text/css" media="all">
-<!-- Air datepicker css -->
-<script src="/resources/main/air-datepicker/dist/js/datepicker.js"></script>
-<!-- Air datepicker js -->
-<script src="/resources/main/air-datepicker/dist/js/datepicker.ko.js"></script>
-<!-- 달력 한글 추가를 위해 커스텀 -->
+ <!--  <script src="./jquery-3.1.1.min.js"></script> <!-- 값 제어를 위해 jquery -->
+    <link href="/resources/main/air-datepicker/dist/css/datepicker.min.css" rel="stylesheet" type="text/css" media="all">
+    <!-- Air datepicker css -->
+    <script src="/resources/main/air-datepicker/dist/js/datepicker.js"></script> <!-- Air datepicker js -->
+    <script src="/resources/main/air-datepicker/dist/js/datepicker.ko.js"></script> <!-- 달력 한글 추가를 위해 커스텀 -->
+
 
 
 <div id="titleArea" class="">
-	<h3>캠핑장 예약</h3>
-	<div class="container">
-		<!-- 캠핑장 사진..? -->
-		<div class="camping">
-			<img src="/resources/main/images/camp.jpg" class="camping">
-					<p class="name">캠퍼스 캠핑장</p>
-					<p class="detail">바로 앞에 계곡이 있고 접근이 쉬운 캠핑장 입니다!</p>
-		</div>
-		<div class="camp reservation">
-			<img src="/resources/main/images/campinglist.jpg" class="loc">
-		</div>
 
-		<div class="camp select">
-			<p class="title">자리를 선택해 주세요!</p>
-			<section>
+	<h3>캠핑장 예약</h3>
+	<!-- 캠핑장 사진..? -->
+	<div class="camping">	
+		<img src="/resources/main/images/camp.jpg" class="camping">
+   </div>
+   <div class="info">		
+		<span class="name">캠퍼스 캠핑장</span>
+		<span class="detail">바로 앞에 계곡이 있고 접근이 쉬운 캠핑장 입니다!</span>
+    </div>
+	<div class="camp reservation">
+		<img src="/resources/main/images/campinglist.jpg" class="loc">
+	</div>
+	
+	<div class="camp select">
+		<p class="title">자리를 선택해 주세요!</p>
+		<section>
+		<form action="" id="camping_form_1">
 				<!-- 캠핑장 자리 이미지,,,가 배경이고 그러면 좋을텐데,,,,, -->
 				<table border="1" cellspacing="0" width="200" height="300">
 					<tr>
-						<td id="s1" width="33%" align="center"><input type="checkbox"
-							id="sNo" value="1"> 1</td>
-						<td id="s2" align="center"><input type="checkbox" id="sNo"
-							value="2"> 2</td>
-						<td id="s3" align="center"><input type="checkbox" id="sNo"
-							value="3"> 3</td>
+						<td id="s1" width="33%" align="center">
+						<input type="checkbox" id="sNo1" value="1"> 1</td>
+						<td id="s2" align="center">
+						<input type="checkbox" id="sNo2" value="2"> 2</td>
+						<td id="s3" align="center">
+						<input type="checkbox" id="sNo3" value="3"> 3</td>
 					</tr>
 					<tr>
-						<td id="s4" width="33%" align="center"><input type="checkbox"
-							id="sNo" value="4"> 4</td>
-						<td id="s5" align="center"><input type="checkbox" id="sNo"
-							value="5"> 5</td>
-						<td id="s6" align="center"><input type="checkbox" id="sNo"
-							value="6"> 6</td>
+						<td id="s4" width="33%" align="center">
+						<input type="checkbox" id="sNo4" value="4"> 4</td>
+						<td id="s5" align="center">
+						<input type="checkbox" id="sNo5" value="5"> 5</td>
+						<td id="s6" align="center">
+						<input type="checkbox" id="sNo6" value="6"> 6</td>
 					</tr>
 				</table>
+			</form>	
 			</section>
 		</div>
 	</div>
 
-	<!-- 	   캘린더 날짜선택 -->
-	<div class="calendar">
-		<span><strong>날짜 선택</strong></span> <input type="text" id="datepicker">
-	</div>
-
-
-	<!-- 	<!-- 캠핑장 자리/구역 예약부분 -->
+<!-- 	   캘린더 날짜선택 -->
+<form action="" id="camping_form_2">
+   <div class="calendar">
+         <span><strong>날짜 선택</strong></span>
+        <input type="text" id="datepicker">  
+   </div>
+</form>   
+   
+<!-- 	<!-- 캠핑장 자리/구역 예약부분 --> 
 	<div class="people">
+	
 		<div class="form-group row mb-1">
 			<div class="col-12">
-				<div
-					class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
+			<form action="" id="camping_form_3">
+				<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
 					<span
 						class="input-group-addon bootstrap-touchspin-prefix input-group-prepend"><span
 						class="input-group-text">성인</span></span> <span
 						class="input-group-btn input-group-prepend"><button
-							type="button" class="btn btn-primary bootstrap-touchspin-down">-</button></span>
-					<input type="text" class=""> <span
+							type="button" class="btn btn-primary bootstrap-touchspin-down oldminus">-</button></span>
+					<input type="text" class="old" value="0"> <span
 						class="input-group-btn input-group-append"><button
-							type="button" class="btn btn-primary bootstrap-touchspin-up">+</button></span>
+							type="button" class="btn btn-primary bootstrap-touchspin-up oldplus">+</button></span>
 				</div>
+			</form>
 			</div>
 		</div>
+		
 		<div class="form-group row mb-1">
 			<div class="col-12">
+			<form action="" id="camping_form_3">
 				<div
 					class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
 					<span
 						class="input-group-addon bootstrap-touchspin-prefix input-group-prepend"><span
 						class="input-group-text">아동</span></span> <span
 						class="input-group-btn input-group-prepend"><button
-							type="button" class="btn btn-primary bootstrap-touchspin-down">-</button></span>
-					<input type="text" class=""> <span
+							type="button" class="btn btn-primary bootstrap-touchspin-down youngminus">-</button></span>
+					<input type="text" class="young" value="0"> <span
 						class="input-group-btn input-group-append"><button
-							type="button" class="btn btn-primary bootstrap-touchspin-up">+</button></span>
+							type="button" class="btn btn-primary bootstrap-touchspin-up youngplus">+</button></span>
 				</div>
+				</form>
 			</div>
 		</div>
+		
 		<div class="reserv">
-			<button type="button" class="btn btn-primary btn-lg">예약하기</button>
+			<button type="button" class="btn btn-primary btn-lg reservation">예약하기</button>
 		</div>
+		
 	</div>
 
-	<!-- 	<!-- 공백,,,2,, -->
-	<!-- 	<div class="gong2"></div> -->
+	
+<!-- 	<!-- 공백,,,2,, --> 
+<!-- 	<div class="gong2"></div> -->
 
-	<!-- 	<!-- 하단에 예약 및 취소정보 -->
-	<div class="change_info">
+<!-- 	<!-- 하단에 예약 및 취소정보 --> 
+   <div class="change_info">
 		<div>
 			<strong>예약 및 취소정보</strong>
 		</div>
@@ -131,10 +143,20 @@
 		</div>
 	</div>
 </div>
+
+
+<form action="/payment/campingpayment" method="post" id="camping_go_payment">
+
+	<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+	
+</form>
+
+
 <script>
-	$("#datepicker").datepicker({
-		language : 'ko'
-	});
+    $("#datepicker").datepicker({
+       language: 'ko'
+    }); 
 </script>
 
+<script src="../../resources/main/js/campdetail.js"></script>
 <%@include file="../../design/footer.jsp"%>

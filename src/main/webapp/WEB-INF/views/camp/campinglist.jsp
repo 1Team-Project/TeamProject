@@ -34,29 +34,29 @@
                                     <li id="boxid" class="prolist">
                                         <div class="thumbnail">
                                             <div class="prdImg">
-                                                <a href="" name="boxname" class="viewpro">
-                                                    <img src="" id="camp1" alt=""></a>
+                                                <a href="/camp/campingdetail" name="boxname" class="viewpro">
+                                                    <img src="/resources/main/images/camp.jpg" id="camp1" alt=""></a>
                                             </div>
                                         </div>
                                      </li> 
                                      <li id="boxid" class="namelist">
                                         <div class="description">
                                             <div class="camping_name">
-                                                <strong class="name"><a href="" class="viewpro">
-                                                        <span>캠핑장이름</span>
+                                                <strong class="name"><a href="/camp/campingdetail" class="viewpro">
+                                                        <span>캠퍼스 캠핑장</span>
                                                 </a></strong>
                                             </div>
                                             <div class="camping_info">
-                                                <span class="">인원수제한?</span>
-                                                <span class="price">명</span>
+                                                <span class="">인원수제한</span>
+                                                <span class="price">성인/아동 포함 4명</span>
                                             </div>        
                                             <div class="camping_price">
                                                 <span class="">가격</span>
-                                                <span class="price">원</span>
+                                                <span class="price">160000원</span>
                                             </div>
-                                            <div class="camping_status">
+<!--                                             <div class="camping_status">
                                             	<span>잔여자리개수 (예약가능개수/총개수)</span>
-                                            </div>
+                                            </div> -->
                                         </div>
                                      </li>
                                  	 <!-- 구분선-->

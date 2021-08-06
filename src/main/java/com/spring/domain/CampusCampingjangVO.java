@@ -30,11 +30,16 @@ public class CampusCampingjangVO {
 	private int c_number;
 	private int c_area;
 	private Date c_sysdate;
-	private Date c_rsysdate;
+	private String c_rsysdate;
 	private String c_name;
-	private String c_content;
-	private int c_price;
 	
+	private int c_pay;
+	
+	private String c_content;
+	
+	private String c_phone;
+	private String u_userid;
+	private String c_nname;
 	
 	
 }
