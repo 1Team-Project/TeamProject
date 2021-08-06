@@ -99,5 +99,20 @@ public class CampusUserServiceImpl implements CampusUserService {
 		return authmapper.authModify(auth);
 	}
 
+	@Override
+	public CampusUserVO findId(CampusUserVO vo) {
+		return mapper.findId(vo);
+	}
+
+	@Override
+	public CampusUserVO findPw(CampusUserVO vo) {
+		return mapper.findPw(vo);
+	}
+
+	@Override
+	public int updatePw(CampusUserVO vo) {
+		return mapper.updatePw(vo);
+	}
+
 	
 }

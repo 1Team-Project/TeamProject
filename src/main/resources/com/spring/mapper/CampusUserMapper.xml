@@ -24,6 +24,16 @@
 		select u_userid from CAMPUS_USER where u_userid = #{u_userid}
 	</select>
 	
+	<!-- 회원 아이디 검사: findId -->
+	<select id="findId" resultType="com.spring.domain.CampusUserVO">
+		select u_userid from CAMPUS_USER where u_username = #{u_username} and u_phone = #{u_phone}
+	</select>
+
+	<!-- 회원 비밀번호 검사: findPw -->
+	<select id="findPw" resultType="com.spring.domain.CampusUserVO">
+		select u_password from CAMPUS_USER where u_userid = #{u_userid} and u_username = #{u_username} and u_phone = #{u_phone}
+	</select>
+	
 	<!-- 탈퇴2 - 정보 제거: leave -->
 	<delete id="leaveCamp">
 		delete from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password}
@@ -34,10 +44,13 @@
 		select count(*) from CAMPUS_USER where u_userid = #{u_userid} and u_password = #{u_password} 
 	</select>
 	
+	<!-- 정보변경 : 비밀번호만 변경 -->
+	<update id="updatePw">
+		update CAMPUS_USER set u_password = #{u_password} where u_userid = #{u_userid}
+	</update>
+	
 	<!-- 정보 변경 : update -->
 	<update id="update">
-		<!-- update CAMPUS_USER set u_password = #{new_password} where u_userid = #{u_userid} and u_password = #{u_password} -->
-		<!-- update CAMPUS_USER set u_email = #{u_email}, u_phone = #{u_phone}, u_address = #{u_address} where u_userid = #{u_userid} and u_password = #{u_password} -->
 		update CAMPUS_USER set u_password = #{u_password}, u_email = #{u_email}, u_phone = #{u_phone}, u_address = #{u_address} where u_userid = #{u_userid}
 	</update>
 	

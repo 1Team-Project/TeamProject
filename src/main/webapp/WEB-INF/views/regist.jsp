@@ -44,7 +44,14 @@
 		  		<div class="regist-margin">
 		    		<input type="text" name="u_email" id="u_email" class="form-control-regist" placeholder="example@gmail.com" />
 		  		</div>
-	    		<i id="u_email" class="text-info"></i>
+		  		<div class="regist-margin">
+		    		<input type="text" name="u_email_check" id="u_email_check" class="form-control-regist" placeholder="인증번호 입력" />
+		  		</div>
+	    		<i id="u_email" class="text-info" name="chk_text"></i>
+	    		<div class="regist-margin">
+			  		<button type="button" id="chkEmail" class="btn btn-primary" style="font-size:20px">메일인증</button>
+			  		<button type="button" id="chkNum" class="btn btn-primary" style="font-size:20px">인증번호 확인</button>
+		  		</div>
 			</div>
 			
 			<div class="form-group">
@@ -69,5 +76,26 @@
 		</div>
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</form>
+<script type="text/javascript" src="https://static.nid.naver.com/js/naverLogin_implicit-1.0.3.js" charset="utf-8"></script>
+<script type="text/javascript" src="http://code.jquery.com/jquery-1.11.3.min.js"></script>
+<script type="text/javascript">
+var naver_id_login = new naver_id_login("네이버 Client ID", "Callback URL");
+var token = naver_id_login.oauthParams.access_token;
+if(token){
+	// 접근 토큰 값 출력
+	/* alert(naver_id_login.oauthParams.access_token); */
+	// 네이버 사용자 프로필 조회
+	naver_id_login.get_naver_userprofile("naverSignInCallback()");
+	// 네이버 사용자 프로필 조회 이후 프로필 정보를 처리할 callback function
+	function naverSignInCallback() {
+		var n_name = naver_id_login.getProfileData('name');
+		var n_email = naver_id_login.getProfileData('email');
+		var n_mobile = naver_id_login.getProfileData('mobile');
+		$("#u_username").val(n_name);
+		$("#u_email").val(n_email);
+		$("#u_phone").val(n_mobile); 
+	}
+}
+</script>
 <script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>

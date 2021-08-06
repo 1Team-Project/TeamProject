@@ -14,7 +14,13 @@
 		<org.slf4j-version>1.7.30</org.slf4j-version>
 	</properties>
 	<dependencies>
-			<!-- spring-security-core -->
+		<!-- 이메일 인증: https://mvnrepository.com/artifact/javax.mail/mail -->
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+			<version>1.4.7</version>
+		</dependency>
+		<!-- spring-security-core -->
 		<dependency>
 		    <groupId>org.springframework.security</groupId>
 		    <artifactId>spring-security-core</artifactId>
@@ -146,6 +152,15 @@
 
 	
 		<!-- Spring -->
+		<!-- 이메일 인증용 -->
+		<!-- https://mvnrepository.com/artifact/org.springframework/spring-context-support -->
+		<dependency>
+		    <groupId>org.springframework</groupId>
+		    <artifactId>spring-context-support</artifactId>
+		    <version>5.3.9</version>
+		</dependency>
+		<!-- 이메일 인증용 -->
+				
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-context</artifactId>
