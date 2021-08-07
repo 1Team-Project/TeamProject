@@ -1,6 +1,21 @@
 /* header.jsp */
 $(function() {
 	$("#logoutDo").click(function(){
+		swal({
+			title: "정말 로그아웃 하시겠습니까?",
+			icon: "info", //"info,success,warning,error" 중 택1
+			buttons: ["YES", "NO"]
+		}).then((NO) => {
+			if (NO) {
+				swal("로그아웃이 취소되었습니다.")
+				return false;
+		    } else {
+				swal("안녕히 가세요");
+				$("#logoutForm").submit();
+
+			}
+		});
+/*	$("#logoutDo").click(function(){
 		var logout = confirm("정말 로그아웃 하시겠습니까?");
 		if(logout==true){
 
@@ -10,7 +25,7 @@ $(function() {
 		} else {
 			alert("로그아웃이 취소되었습니다.")
 			return false;
-		}
+		} */
 	});
 	//버튼 클릭시
 	$("#move-to-mypage").click(function(){

@@ -197,6 +197,7 @@
 		<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	</div>
 </form>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <%@include file="../design/footer.jsp" %>
 <script>
 	$(function(){
@@ -205,12 +206,12 @@
 			let chk2 = $("#chk2").is(":checked");
 			
 			if(chk1!=true){
-				alert('이용약관에 동의해주세요');
+				swal('이용약관에 동의해주세요');
 				$("#chk1").focus();
 				return false;
 
 			} else if(chk2!=true){
-				alert('개인정보 수집 및 이용에 동의해주세요');
+				swal('개인정보 수집 및 이용에 동의해주세요');
 				$("#chk2").focus();
 				return false;
 			}

@@ -263,5 +263,6 @@
   	<script src="/resources/main/js/bootstrap.min.js"></script>
  	<script src="/resources/main/js/main.js"></script>
  	<!-- 영권 추가 문장 시작 -->
+ 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
  	<script src="/resources/main/js/header_yk.js"></script>
  	<!-- 영권 추가 문장 끝 -->
