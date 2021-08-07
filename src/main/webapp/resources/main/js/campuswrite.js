@@ -3,7 +3,8 @@
  */
 $(function(){
 	
-		let checkistrue = false;
+	let pcode = "";
+	let checkistrue = false;
 	
 	$(".checkbtn").click(function(){
 		
@@ -18,16 +19,26 @@ $(function(){
 				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 			},
 			data: {
-				 p_number : pnumber
+				 checkId : pnumber
 			},
 			success: function(result){
-				if(result=='not'){
+				
+				console.log(result);
+				
+				if(result=='no^$^0'){
 
-					$('.checkpnumbermsg').html("<p>해당 상품 번호와 동일한 상품이 존재하지 않습니다.</p>");
+					$('.checkpnumbermsg').html("<p>해당 상품 이름과 연관된 상품이 존재하지 않습니다.</p>");
 					checkistrue = false;
 					return false;
+					
 				} else {
-					$('.checkpnumbermsg').html("<p>상품명 : "+result+"</p>");
+					
+					resultStr = result.split("^$^");
+					
+					var name = resultStr[0];
+					pcode = resultStr[1];
+
+					$('.checkpnumbermsg').html("<p>상품명 : "+name+"</p>");
 					checkistrue = true;
 					return false;
 					
@@ -43,22 +54,23 @@ $(function(){
 			beforeSend:function(xhr){
 				xhr.setRequestHeader(csrfHeaderName,csrfTokenValue);
 			},
-			data: 'p_number='+pnumber+'&u_userid='+userid,
+			data: 'checkId='+pnumber+'&u_userid='+userid,
 
 			success: function(result){
-				if(result=='not'){
+				if(result=='no^$^0'){
 
-					$('.checkpnumbermsg').html("<p>해당 상품 번호와 동일한 상품이 존재하지 않습니다.</p>");
-					checkistrue = false;
-					return false;
-				} else if(result=='nnot'){
-
-					$('.checkpnumbermsg').html("<p>해당 상품에 대한 결제 정보가 없습니다.</p>");
+					$('.checkpnumbermsg').html("<p>해당 상품 이름과 연관된 결제내역이 존재하지 않습니다.</p>");
 					checkistrue = false;
 					return false;
 					
 				} else {
-					$('.checkpnumbermsg').html("<p>상품명 : "+result+"</p>");
+					
+					resultStr = result.split("^$^");
+					
+					var name = resultStr[0];
+					pcode = resultStr[1];
+
+					$('.checkpnumbermsg').html("<p>상품명 : "+name+"</p>");
 					checkistrue = true;
 					return false;
 					
@@ -372,6 +384,8 @@ $(function(){
 		}
 
 		str+="<input type='hidden' name='b_rating' value='"+ratingpoint+"'>";
+		str+="<input type='hidden' name='p_number' value='"+pcode+"'>";
+		
 		console.log("별점 : "+ratingpoint)
 		console.log(str);
 		

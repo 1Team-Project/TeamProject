@@ -134,4 +134,10 @@ public class CampusPaymentServiceImpl implements CampusPaymentService {
 		return mapper.stock_change_plus(p_stock, p_number)>0?true:false;
 	}
 
+	@Override
+	public List<CampusOrderDetailVO> orderdetaillist(String u_userid) {
+		// TODO Auto-generated method stub
+		return mapper.orderdetaillist(u_userid);
+	}
+
 }

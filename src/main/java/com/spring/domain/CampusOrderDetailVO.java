@@ -19,6 +19,7 @@ public class CampusOrderDetailVO {
 	private int c_cartnumber;
 	
 	private String d_option;
+	private String u_userid;
 
 	
 }

@@ -24,4 +24,6 @@ public interface CampusPaymentService {
 	public CampusOrderVO cancel_number(String success_code);
 	public boolean pay_cancel(int o_number);
 	public boolean pay_cancel_detail(int o_number);
+	
+	public List<CampusOrderDetailVO> orderdetaillist(String u_userid);
 }

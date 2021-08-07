@@ -184,6 +184,12 @@ public class CampusBoardServiceImpl implements CampusBoardService {
 		return mapper.orderCheck(u_userid);
 	}
 
+	@Override
+	public List<CampusProductVO> oneCheck(String checkId) {
+		// TODO Auto-generated method stub
+		return mapper.oneCheck(checkId);
+	}
+
 	
 	
 }
