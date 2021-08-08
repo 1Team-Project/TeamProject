@@ -4,19 +4,22 @@
 
 		 <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 + 상품 이미지 불러오기  -->
 	<select id="prolist" resultType="com.spring.domain.CampusProductVO">
-		<![CDATA[ 
-		 select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
-		 from(select /*+INDEX_DESC(campus_product pk_campus_product)*/
-		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee
-		      from campus_product
-		      where
-		       ]]>
+			
+			<![CDATA[
+			select * 
+			from(select rownum rn, p_number,p_name,p_price,p_option,p_stock,pc_code ,p_manufact,p_shippingfee, a_uuid , a_path,a_name
+              from  (select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
+                     from(select p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee
+                         from campus_product ) p, 
+                        (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number ORDER BY a_name) as a_uuid, first_value(a_path)over(PARTITION BY p_number ORDER BY a_name)as a_path,first_value(a_name)over(PARTITION BY p_number ORDER BY a_name)as  a_name from campus_attach) a
+                    where a.p_number=p.p_number 
+                	order by a.a_path desc)
+            where]]>
 		  <include refid="criteria"></include>
 		   <![CDATA[
-		  		rownum <= (#{page}*20)) p, (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number ORDER BY a_name) as a_uuid, first_value(a_path)over(PARTITION BY p_number ORDER BY a_name)as a_path,first_value(a_name)over(PARTITION BY p_number ORDER BY a_name)as  a_name from campus_attach) a
-			where rn > ((#{page}-1)*20) and a.p_number=p.p_number 
-			order by a.a_path desc
-			]]>
+		    rownum <= (#{page}*20))
+		    where rn > ((#{page}-1)*20)
+		    ]]>
 	</select>	
 	
 		
