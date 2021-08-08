@@ -6,10 +6,10 @@ $(function() {
 	});
 	$("#login").click(function(){
 		if($("#u_userid").val() == ""){
-			alert("아이디를 입력하세요");
+			swal("아이디를 입력하세요");
 			return false;
 		} else if($("#u_password").val() == ""){
-			alert("비밀번호를 입력하세요");
+			swal("비밀번호를 입력하세요");
 			return false;
 		}
 	});
@@ -19,7 +19,7 @@ $(function() {
 	$("#chkId").click(function(){
 		var chkId = $('input[id="u_userid"]').val();
 		var regId = /^[a-zA-Z0-9]{4,12}$/;
-		alert("아이디 : " + chkId);
+		swal("아이디 : " + chkId);
 		if(chkId == '') {
 			$('i[id="u_userid"]').html("아이디를 입력하세요");
 			return false;
@@ -55,7 +55,7 @@ $(function() {
 		
 		
 		
-		alert("이메일 인증 : " + u_email);
+		swal("이메일 인증 : " + u_email);
 		if(u_email == '') {
 			$('i[id="u_email"]').html("이메일 입력하세요");
 			return false;

@@ -42,5 +42,6 @@
  	naver_id_login.setState(state);
  	naver_id_login.init_naver_id_login();
 </script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 <script src="/resources/main/js/register_yk.js"></script>
 <%@include file="../design/footer.jsp" %>
