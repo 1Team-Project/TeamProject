@@ -31,6 +31,7 @@ import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
 import com.spring.domain.CampusOrderDetailVO;
 import com.spring.domain.CampusPageVO;
+import com.spring.domain.CampusProductCategoryVO;
 import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
 import com.spring.domain.CampusReplyPageVO;
@@ -130,6 +131,10 @@ public class BoardController {
 		//페이지 나누기 값 모델에 등록
 		CampusPageVO campusPageVO = new CampusPageVO(cri, total);
 		model.addAttribute("CampusPageVO", campusPageVO);
+		
+		//카테고리값넘기기
+		List<CampusProductCategoryVO> category = product.category(cri);
+		model.addAttribute("category",category);
 	}
 	
 	

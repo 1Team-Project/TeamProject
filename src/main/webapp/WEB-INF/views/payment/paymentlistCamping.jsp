@@ -43,7 +43,7 @@
 					<!-- 상품 리스트 반복되는 부분 -->
 						<tr>
 							<td>
-								<img src="/resources/main/images/camp.jpg" alt="" class="size200"/>
+								<img src="/resources/main/images/creser.jpg" alt="" class="size200"/>
 							</td>
 							<td class="textmiddle"><b>${vo.c_name}</b>
 							</td>

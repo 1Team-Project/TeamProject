@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@include file="../design/header.jsp"%>
@@ -27,47 +26,51 @@
                   <button type="button" class="btn_delete" id="delete">장바구니 삭제</button>
                   <script>
                   $("#delete").click(function () {
-                     var confirm_val = confirm("정말 삭제하시겠습니까?");
-                     if (confirm_val) {
-                        var checkArr = new Array();
-                        
-                        console.log($("input[class='checkone']:checked"));
-                        $("input[class='checkone']:checked").each(function (idx,item) {
-                           //item.data("cartnum");
-                           
-                           var cartNum=$(this).data("cartnum");
-                           checkArr.push(cartNum);
-                        });
-                        
-                        console.log(checkArr);
-                        
-                        $.ajax({
-                           url: "/delete",
-                           type: "post",
-                           data: {
-                              cartNum:checkArr,
-                           },
-                           beforeSend: function (xhr) {   
-                              xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
-                           },
-                           success: function (data) {
-                              console.log(data);
-                              alert("장바구니 삭제 성공");
-                              //.href = "/cart?u_userid="+u_userid;
-                              //location.href ="/";
-                              location.reload();
-                           },
-                           error: function(){
-                              alert("장바구니 삭제 실패");
-                           }
-                        });
-                     }
-                  });
+                      swal({
+                         title: "장바구니를 삭제하시겠습니까?",
+                         text: "",
+                         icon: "info",
+                         buttons: ["아니오", "네"]
+                     }).then((네) => {
+                         if (네) {               
+                             var checkArr = new Array();
+                            $("input[class='checkone']:checked").each(function (idx,item) {
+                               //item.data("cartnum");
+                               var cartNum=$(this).data("cartnum");
+                               checkArr.push(cartNum);
+                            });
+//                            console.log(checkArr);                        
+                            $.ajax({
+                               url: "/delete",
+                               type: "post",
+                               data: {
+                                  cartNum:checkArr,
+                               },
+                               beforeSend: function (xhr) {   
+                                  xhr.setRequestHeader("${_csrf.headerName}", "${_csrf.token}");
+                               },
+                               success: function (data) {
+                                  console.log(data);
+                                  swal("장바구니 삭제 성공!", "구매하기를 눌러주세요", "success")
+                                  .then((value) => {
+                                     location.reload();
+                                  });
+                                  }
+                               ,error: function(){
+                                  swal("장바구니 삭제 실패!", "다시 확인해 주세요", "error");
+                               }
+                            });
+                         }else{
+                            confirm_val = false;
+                         }
+                     });
+});
+
                </script>
                </div>
             </div>
 <%--             <c:set var="sum" value="0" /> --%>
-				<c:set var ="i" value="0"/>
+            <c:set var ="i" value="0"/>
             <c:forEach items="${cartlist}" var="CartListVO">
             <div class="box">
                <ul class="list">
@@ -75,7 +78,7 @@
                         <div class="item">
                            <label class="check" for=""> 
                           <input type="checkbox" checked="true"class="checkone" name="cartVO[${i}].c_cartnumber" value="${CartListVO.c_cartnumber}" data-cartnum="${CartListVO.c_cartnumber}"> 
-									<c:set var = "i" value="${i+1}"/>
+                           <c:set var = "i" value="${i+1}"/>
                            </label>
                            <div class="c_name">
                               <div class="innername">
@@ -118,28 +121,29 @@
                      </dd>
                   </dl>
                </div>
-               	<div class="btn_submit">
-						
-						<input type="hidden" name="u_userid" id="u_userid" value="<sec:authentication property="principal.campusUser.u_userid"/>">
-						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
-						
-						<button type="submit" class="btn btn-primary subu">구매하기</button>
-						<button type="button" class="btn btn-secondary"
-							onclick="location.href='/product/productlist'">상품 목록보기</button>
-					</div>
-					<div class="notice">구매하는 물품이 맞는 지 꼭 확인해 주세요!</div>
-				</div>
-			</div>
-		</form>
-		</div>
-	</div>
-	<script src="https://code.jquery.com/jquery-3.6.0.min.js"
-		integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-		crossorigin="anonymous"></script>
-	<script src="/resources/main/js/cart.js"></script>
-	<script>
-	var csrfHeaderName = "${_csrf.headerName}";
-	var csrfTokenValue = "${_csrf.token}";
+                  <div class="btn_submit">
+                  
+                  <input type="hidden" name="u_userid" id="u_userid" value="<sec:authentication property="principal.campusUser.u_userid"/>">
+                  <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+                  
+                  <button type="submit" class="btn btn-primary subu">구매하기</button>
+                  <button type="button" class="btn btn-secondary"
+                     onclick="location.href='/product/productlist'">상품 목록보기</button>
+               </div>
+               <div class="notice">구매하는 물품이 맞는 지 꼭 확인해 주세요!</div>
+            </div>
+         </div>
+      </form>
+      </div>
+   </div>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"
+      integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+      crossorigin="anonymous"></script>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+   <script src="/resources/main/js/cart.js"></script>
+   <script>
+   var csrfHeaderName = "${_csrf.headerName}";
+   var csrfTokenValue = "${_csrf.token}";
 </script>
 </body>
 </html>

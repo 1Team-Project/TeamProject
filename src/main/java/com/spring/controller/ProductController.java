@@ -208,6 +208,10 @@ public class ProductController {
 			CampusPageVO campusPageVO = new CampusPageVO(cri, total);
 			model.addAttribute("CampusPageVO", campusPageVO);
 			
+			//카테고리값넘기기
+			List<CampusProductCategoryVO> category = service.category(cri);
+			model.addAttribute("category",category);
+			
 		}
 		
 		@GetMapping("/getAttachList")

@@ -106,8 +106,8 @@
 								value="${_csrf.token}" />
 							<button type="button" class="btn btn-primary btn-lg"
 								id="btn_cart">장바구니</button>
-							<button type="button" class="btn btn-secondary btn-lg"
-								onclick="location.href='/payment/paymentpage'">구매하기</button>
+							   <button type="button" class="btn btn-secondary btn-lg subu"
+                        >구매하기</button>
 						</div>
 
 						<div class="p_detail_info">

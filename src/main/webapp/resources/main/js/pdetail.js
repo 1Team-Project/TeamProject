@@ -131,3 +131,33 @@ $(".textcenter1 tr").each(function(){
    
 })
 $(".avg").val((sum/count).toFixed(2));
+
+      $(".subu").click(function(e){
+         e.preventDefault();
+     var p_number = $("#p_number").val();
+      var c_count = $(".inp").val();
+      var userid = $("#userid").val();
+      var option = $("select[name='option']").val();
+      var data = {
+         p_number : p_number,
+         c_count : c_count,
+         u_userid : userid,
+         c_option : option
+      };
+      $.ajax({
+         url : "/cart",
+         type : "post",
+         data : data,
+         beforeSend : function(xhr) {
+            xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+         },
+         success : function(data,textstatus) {
+                swal("info","장바구니로 먼저 담아주세요!","info");
+        },
+         error : function(data,textStatus) {
+            swal("error", "다시 확인해 주세요", "error");
+         }
+      });
+   });
+     
+      

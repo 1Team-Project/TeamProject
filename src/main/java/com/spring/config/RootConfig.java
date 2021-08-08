@@ -98,7 +98,7 @@ public class RootConfig {
 		mailSender.setHost("smtp.gmail.com");
 		mailSender.setPort(587);
 		mailSender.setUsername("campusofficial4@gmail.com");
-		mailSender.setPassword("campus123!@#");
+		mailSender.setPassword("");
 		mailSender.setDefaultEncoding("utf-8");
 		mailSender.setJavaMailProperties(properties);
 		
