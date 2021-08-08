@@ -2,6 +2,22 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.spring.mapper.CampusProductMapper">
 
+		
+	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
+		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
+		<![CDATA[
+			select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,p.p_shippingfee,
+			first_value(a_uuid)over(PARTITION BY a.p_number ORDER BY a_name) as a_uuid,
+			first_value(a_path)over(PARTITION BY a.p_number ORDER BY a_name)as a_path,
+			first_value(a_name)over(PARTITION BY a.p_number ORDER BY a_name)as  a_name    
+			from b_product p, campus_attach a    where a.p_number=p.p_number)
+		]]>
+		<![CDATA[
+			 where p_rank<=3 order by p_rank
+		]]>
+		</select>
+		
+		
 		 <!-- 상품 조회 : 목록 보기, 상품번호순, 페이지 적용 + 상품 이미지 불러오기  -->
 	<select id="prolist" resultType="com.spring.domain.CampusProductVO">
 			
@@ -22,37 +38,26 @@
 		    ]]>
 	</select>	
 	
-		
-	<!-- 상품 조회 : 베스트 셀러 주문순위 상위 3 -->
-		<select id="bestlist" resultType="com.spring.domain.CampusProductVO">
-		<![CDATA[
-			select * from (select distinct p.p_rank,p.p_number,p.p_name,p.p_price,p.p_manufact,p.p_shippingfee,
-			first_value(a_uuid)over(PARTITION BY a.p_number ORDER BY a_name) as a_uuid,
-			first_value(a_path)over(PARTITION BY a.p_number ORDER BY a_name)as a_path,
-			first_value(a_name)over(PARTITION BY a.p_number ORDER BY a_name)as  a_name    
-			from b_product p, campus_attach a    where a.p_number=p.p_number)
-		]]>
-		<![CDATA[
-			 where p_rank<=3 order by p_rank
-		]]>
-		</select>
-		
-		
 	<!-- 상품 조회 : 카테고리별 분류 -->
 	
 	<select id="catelist" resultType="com.spring.domain.CampusProductVO">
 	
 		<![CDATA[
-	
-		select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code as pc_code,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
-		 from (select /*+INDEX_DESC(campus_product pk_campus_product)*/
-		            rownum rn,p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee
-		      from campus_product
-		      where
-		       pc_code=#{pc_code}) p, (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number ORDER BY a_name) as a_uuid, first_value(a_path)over(PARTITION BY p_number ORDER BY a_name)as a_path,first_value(a_name)over(PARTITION BY p_number ORDER BY a_name)as  a_name from campus_attach) a
-			where a.p_number=p.p_number 
-			order by a.a_path desc
-			]]>
+			select * 
+			from(select rownum rn, p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee, a_uuid , a_path,a_name
+				 from (select p.p_number,p.p_name,p.p_price,p.p_option,p.p_stock,p.pc_code ,p.p_manufact,p.p_shippingfee, a.a_uuid , a.a_path,a.a_name
+                     from(select p_number,p_name,p_price,p_option,p_stock,pc_code,p_manufact,p_shippingfee
+                         from campus_product 
+                          where pc_code=#{pc_code}) p, 
+		     			 (select distinct p_number, first_value(a_uuid)over(PARTITION BY p_number ORDER BY a_name) as a_uuid, first_value(a_path)over(PARTITION BY p_number ORDER BY a_name)as a_path,first_value(a_name)over(PARTITION BY p_number ORDER BY a_name)as  a_name from campus_attach) a
+					where a.p_number=p.p_number 
+				order by a.a_path desc)
+			 where]]>
+		  <include refid="criteria2"></include>
+		   <![CDATA[
+		    rownum <= (#{cri.page}*20))
+		    where rn > ((#{cri.page}-1)*20)
+		    ]]>
 	</select>	
 	<!-- 카테고리코드를 받아서 네임 출력하고,,,, 아니다~ -->
 

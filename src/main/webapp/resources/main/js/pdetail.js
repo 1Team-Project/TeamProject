@@ -106,6 +106,7 @@ $(function(){
             actionForm.append("<input type='hidden' name='b_no' value='"+bnoval+"'>");
             actionForm.append("<input type='hidden' name='r_page' value='1'>");
             actionForm.attr('action','/board/view');
+            actionForm.attr('method','post');
             actionForm.submit();
          },
          error:function(xhr,status,error){

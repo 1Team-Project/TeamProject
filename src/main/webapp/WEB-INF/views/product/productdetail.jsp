@@ -309,7 +309,7 @@
 													<button class="btn btn-primary float-end"
 														onclick="location.href='/board/write'">글 쓰기</button>
 													<button class="btn btn-primary float-end" id="btn3"
-														onclick="location.href='/board/list'">전체 후기 보기</button>
+														onclick="location.href='/board/list'">전체 질문 보기</button>
 												</div>
 											</div>
 											<!-- 페이지 선택 버튼 -->
@@ -383,9 +383,10 @@
 </div>
 
 <form action="productdetail" method="get" id="actionForm1">
-	<input type="hidden" name="sort" value="${cri.sort}" /> <input
-		type="hidden" name="keyword" value="${cri.keyword}" /> <input
-		type="hidden" name="page" value="${cri.page}" />
+   <input type="hidden" name="sort" value="${cri.sort}" /> <input
+      type="hidden" name="keyword" value="${cri.keyword}" /> <input
+      type="hidden" name="page" value="${cri.page}" />
+   <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 </form>
 
 </div>

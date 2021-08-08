@@ -90,7 +90,7 @@
 
 
 
-                        <!-- 하단 페이지 넘기기 부분
+                        <!-- 하단 페이지 넘기기 부분-->
                         <div class="row" id="row">
                             <div class="col-md-12">
                                 <ul class="mypagination justify-content-center">
@@ -107,7 +107,7 @@
 									</c:if>	
                                 </ul>
                             </div>
-                        </div>-->
+                        </div>
 
                     </div>
 
