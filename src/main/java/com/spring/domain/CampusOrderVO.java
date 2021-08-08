@@ -22,6 +22,8 @@ public class CampusOrderVO {
 	private String o_ordercode;
 	private String success_code;
 
+	private String c_option;
+	
 	private int total_pay;
 	private int total_count;
 	
