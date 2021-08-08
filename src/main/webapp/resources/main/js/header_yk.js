@@ -1,18 +1,20 @@
 /* header.jsp */
 $(function() {
-	$("#logoutDo").click(function(){
+	$("#logoutDo").click(function(event){
 		swal({
 			title: "정말 로그아웃 하시겠습니까?",
-			icon: "info", //"info,success,warning,error" 중 택1
-			buttons: ["YES", "NO"]
+			icon: "info",
+			buttons: ["YES", "NO"],
+            closeOnConfirm: false,
+            closeOnCancel: false,
+			allowOutsideClick: false
 		}).then((NO) => {
 			if (NO) {
 				swal("로그아웃이 취소되었습니다.")
 				return false;
 		    } else {
-				swal("안녕히 가세요");
+				/*swal("안녕히 가세요");*/
 				$("#logoutForm").submit();
-
 			}
 		});
 /*	$("#logoutDo").click(function(){
