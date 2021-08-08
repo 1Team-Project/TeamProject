@@ -13,54 +13,104 @@
 #container{
    display:flex;
 }
+.info{
+	/*height:200px;*/
+	 text-align: center;
+}
+.camping {
+	display: inline-block;
+}
 
 
-.camping .camping, .reservation, .select p section {
+.info .camping .camping {
    float: left;
    width: 33%;
    padding: 10px;
 }
+ .reservation{
+	float: left;
+
+   padding: 0px 10px 10px 10px;
+}
+.camping{
+	padding: 0 0 0 0px ;
+}
+.campingp{
+	width:300px;
+}
 
 .select .title {
    font-weight: 600;
+   font-size:10px;
+ margin-bottom:10px;
+ color:#78c2ad;
 }
 
 .select {
    padding-bottom: 100px;
 }
 
-#titleArea .container .camping {
+#titleArea   {
    display:block;
-   margin-left: 50px;
+   margin: 10px;
 }
 
+
  p {
-   margin-left:50px;
+   margin-bottom:-0px;
+
+}
+.cdetail{
+	margin-top:10px;
+	margin-bottom:10px;
 }
 .name {
    font-weight: 600;
    font-size: 20px;
-   margin-left: 60px;
+   margin-left: 0px;
 }
 .detail {
    display:block;
    font-size: 10px;
-   margin-left: 50px;
+   margin-left: 0px;
+}
+.reservation .select {
+	display: inline-block;
+}
+.campbottom{
+	margin-left:280px;
 }
 
 .reservation img {
-   width: 300px;
+ /*     width: 200px;*/
+   height:330px;
    /*       height:100%; */
    /*       padding-bottom:45px; */
-   margin-left: 50px;
+   margin-left: 0px;
 }
 
 .calendar {
-   margin-left: 800px;
+   /*margin-left: 600px;*/
+   margin-top:10px;
+    color:#78c2ad;
 }
-
+.input-group-text{
+	font-size:10px;
+}
+.bootstrap-touchspin-down{
+	font-size:10px;
+}
+.bootstrap-touchspin-up{
+	font-size:10px;
+}
+.reservationbutton{
+	margin-top:5px;
+	font-size:10px;
+	margin-left:65px;
+}
 .change_info {
    margin-left: 50px;
+   margin-right:50px;
 }
 
 .change_info strong {
@@ -73,13 +123,31 @@
    font-family: noto sans;
    color: #333;
    letter-spacing: -.5px;
+   
+}
+.changetitle{
+	margin-left:15px;
+}
+#camping_form_2{
+	font-size:10px;
+}
+/*.form-group*/
+.people  {
+   /*margin-left: 800px;
+   height:10px;*/
+ 
+   margin-left:280px;
+}
+.peop
+.pcol {
+ 
+    height: 50%;
 }
 
-.people .form-group {
-   margin-left: 800px;
-}
-
-.reserv {
+.reserv .reservation {
    margin-top: 10px;
-   margin-left: 900px;
+   margin-left: 100px;
+   height:40px;
+   width:120px;
+   text-align:center;
 }

@@ -106,7 +106,7 @@ public class RegisterController {
 		log.info("인증번호 확인 : " + chkNum);
 		
 		// 이메일 보내기
-		String setFrom = "보낼사람 메일 주소";
+		String setFrom = "oohnaa@naver.com";
 		String toMail = vo.getU_email();
 		// 이메일 제목
 		String title = "CampUs 이메일 인증입니다.";

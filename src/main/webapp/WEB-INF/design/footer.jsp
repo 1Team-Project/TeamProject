@@ -13,7 +13,7 @@
 	height:42px;
 	position:relative;
 	width:100%;
-	transform:translateY(1000%);
+	transform:translateY(2000%);
 }
   .campus{
       color: white;

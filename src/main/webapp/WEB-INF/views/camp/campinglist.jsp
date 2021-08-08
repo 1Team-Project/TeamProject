@@ -35,7 +35,7 @@
                                         <div class="thumbnail">
                                             <div class="prdImg">
                                                 <a href="/camp/campingdetail" name="boxname" class="viewpro">
-                                                    <img src="/resources/main/images/cresr.jpg" id="camp1" alt=""></a>
+                                                    <img src="/resources/main/images/creser.jpg" id="camp1" alt=""></a>
                                             </div>
                                         </div>
                                      </li> 

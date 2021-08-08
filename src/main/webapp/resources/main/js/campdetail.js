@@ -110,7 +110,7 @@ $(function(){
 	})
 	
 	
-	$(".reservation").click(function(e){
+	$(".reservationbutton").click(function(e){
 		
 		e.preventDefault();
 		

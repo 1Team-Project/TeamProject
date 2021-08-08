@@ -120,6 +120,7 @@
 	</form> --%>
 
         </div>
+        </div>
 
 <script>
 	let result='${result}';

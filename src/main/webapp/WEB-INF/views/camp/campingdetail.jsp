@@ -15,23 +15,30 @@
 <div id="titleArea" class="">
 
 	<h3>캠핑장 예약</h3>
-	<!-- 캠핑장 사진..? -->
+	<!-- 캠핑장 사진..? 
+	<div id="container">-->
+	<div class="info">
 	<div class="camping">	
-		<img src="/resources/main/images/camp.jpg" class="camping">
+		<img src="/resources/main/images/creser.jpg" class="campingp">
+		<div class="cdetail">
+  		<div class="name">캠퍼스 캠핑장</div>
+      	<div class="detail">바로 앞에 강이 있고 접근이 쉬운 캠핑장 입니다!</div>
+      	</div>
    </div>
-   <div class="info">		
-
-    </div>
+   </div>		
+<hr>
+  <div class="campbottom">
+ 
 	<div class="camp reservation">
 		<img src="/resources/main/images/campinglist.jpg" class="loc">
 	</div>
 	
 	<div class="camp select">
-		<p class="title">자리를 선택해 주세요!</p>
+		<p class="title" >자리를 선택해 주세요!</p>
 		<section>
 		<form action="" id="camping_form_1">
 				<!-- 캠핑장 자리 이미지,,,가 배경이고 그러면 좋을텐데,,,,, -->
-				<table border="1" cellspacing="0" width="200" height="300">
+				<table border="1" cellspacing="0" width="200" height="150">
 					<tr>
 						<td id="s1" width="33%" align="center">
 						<input type="checkbox" id="sNo1" value="1"> 1</td>
@@ -51,14 +58,14 @@
 				</table>
 			</form>	
 			</section>
-		</div>
-	</div>
+		
+
 
 <!-- 	   캘린더 날짜선택 -->
 <form action="" id="camping_form_2">
    <div class="calendar">
          <span><strong>날짜 선택</strong></span>
-        <input type="text" id="datepicker">  
+        <input type="text" id="datepicker" size=25>  
    </div>
 </form>   
    
@@ -66,7 +73,7 @@
 	<div class="people">
 	
 		<div class="form-group row mb-1">
-			<div class="col-12">
+			<div class="pcol">
 			<form action="" id="camping_form_3">
 				<div class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
 					<span
@@ -74,7 +81,7 @@
 						class="input-group-text">성인</span></span> <span
 						class="input-group-btn input-group-prepend"><button
 							type="button" class="btn btn-primary bootstrap-touchspin-down oldminus">-</button></span>
-					<input type="text" class="old" value="0"> <span
+					<input type="text" class="old" value="0" size=1 maxlength=1> <span
 						class="input-group-btn input-group-append"><button
 							type="button" class="btn btn-primary bootstrap-touchspin-up oldplus">+</button></span>
 				</div>
@@ -83,7 +90,7 @@
 		</div>
 		
 		<div class="form-group row mb-1">
-			<div class="col-12">
+			<div class="pcol">
 			<form action="" id="camping_form_3">
 				<div
 					class="input-group bootstrap-touchspin bootstrap-touchspin-injected">
@@ -92,7 +99,7 @@
 						class="input-group-text">아동</span></span> <span
 						class="input-group-btn input-group-prepend"><button
 							type="button" class="btn btn-primary bootstrap-touchspin-down youngminus">-</button></span>
-					<input type="text" class="young" value="0"> <span
+					<input type="text" class="young" value="0" size=1 maxlength=1> <span
 						class="input-group-btn input-group-append"><button
 							type="button" class="btn btn-primary bootstrap-touchspin-up youngplus">+</button></span>
 				</div>
@@ -101,18 +108,22 @@
 		</div>
 		
 		<div class="reserv">
-			<button type="button" class="btn btn-primary btn-lg reservation">예약하기</button>
+			<button type="button" class="btn btn-primary btn-lg reservationbutton">예약하기</button>
 		</div>
 		
 	</div>
-
+	
+	</div>
+	
+</div>
+</div>
 	
 <!-- 	<!-- 공백,,,2,, --> 
 <!-- 	<div class="gong2"></div> -->
-
+		
 <!-- 	<!-- 하단에 예약 및 취소정보 --> 
    <div class="change_info">
-		<div>
+		<div class="changetitle">
 			<strong>예약 및 취소정보</strong>
 		</div>
 		<div>

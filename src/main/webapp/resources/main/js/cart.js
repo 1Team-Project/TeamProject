@@ -34,7 +34,7 @@ function plus_minus(obj,op){
 
 
 
-$("input:checkbox[id='checkall']").prop("checked",false);
+$("input:checkbox[id='checkall']").prop("checked",true);
 
 $("#checkall").click(function(){
    
