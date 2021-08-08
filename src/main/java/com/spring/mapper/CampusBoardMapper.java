@@ -50,6 +50,8 @@ public interface CampusBoardMapper {
 	
 	public int totalQNA(CampusCriteria cri);
 	
+	public List<CampusProductVO> oneCheck(String checkId);
+	
 	
 	
 	// 영권 main 게시판 10개 보기용 추가

@@ -57,7 +57,10 @@
 		select * from campus_order_detail where o_number = #{o_number}
 	</select>
 	
-	
+	<select id="orderdetaillist" resultType="com.spring.domain.CampusOrderDetailVO">
+		select o.u_userid, d.p_number from campus_order o, campus_order_detail d
+		where o.o_number = d.o_number and o.u_userid = #{u_userid}
+	</select>
 	
 	<!-- 캠핑 -->
 	

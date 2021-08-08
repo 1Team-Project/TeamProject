@@ -69,7 +69,7 @@
 				
 				<div class="col-md-8 mll20">
 					<input type="text" class="form-control width70 inlinetest"
-					id="campusboard-pnumber" required placeholder="상품 코드를 입력해 주세요" name="p_number"/>
+					id="campusboard-pnumber" required placeholder="상품 이름을 입력해 주세요"/>
 					<button class="btn btn-primary checkbtn" type="button">상품 체크</button>
 				</div>
 				<div class="col-md-8 mll20 checkpnumbermsg"></div>

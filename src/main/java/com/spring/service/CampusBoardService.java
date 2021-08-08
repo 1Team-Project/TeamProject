@@ -34,6 +34,8 @@ public interface CampusBoardService {
 	public List<CampusBoardVO> listReview(CampusCriteria cri);
 	public List<CampusBoardVO> listQNA(CampusCriteria cri);
 	
+	public List<CampusProductVO> oneCheck(String checkId);
+	
 	// 영권 메인 게시판 10개 보여주기용
 	public List<CampusBoardVO> mainList(CampusCriteria cri);
 	

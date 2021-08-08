@@ -188,6 +188,10 @@
       		where u.u_userid = #{u_userid})
 	</select>
 
+	<select id="oneCheck" resultType="com.spring.domain.CampusProductVO">
+		select * from campus_product where p_name like '%'||#{checkId}||'%'
+	</select>
+
 	
 	
 	<!-- 동적 SQL -->

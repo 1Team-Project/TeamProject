@@ -32,4 +32,7 @@ public interface CampusPaymentMapper {
 	public int payment_camping_delete(String success_code);
 	public List<CampusCampingjangVO> payment_camping_view(String u_userid);
 	public CampusCampingjangVO payment_camping_view_one(@Param("c_rsysdate") String c_rsysdate, @Param("c_area") int c_area);
+
+	public List<CampusOrderDetailVO> orderdetaillist(String u_userid);
+
 }

@@ -29,6 +29,7 @@ import com.spring.domain.CampusBoardListPageVO;
 import com.spring.domain.CampusBoardTopVO;
 import com.spring.domain.CampusBoardVO;
 import com.spring.domain.CampusCriteria;
+import com.spring.domain.CampusOrderDetailVO;
 import com.spring.domain.CampusPageVO;
 import com.spring.domain.CampusProductOptionVO;
 import com.spring.domain.CampusProductVO;
@@ -36,6 +37,7 @@ import com.spring.domain.CampusReplyPageVO;
 import com.spring.domain.CampusReplyVO;
 import com.spring.domain.CampusUserVO;
 import com.spring.service.CampusBoardService;
+import com.spring.service.CampusPaymentService;
 import com.spring.service.CampusProductService;
 import com.spring.service.CampusReplyService;
 
@@ -55,6 +57,9 @@ public class BoardController {
 	
 	@Autowired
 	private CampusProductService product;
+	
+	@Autowired
+	private CampusPaymentService payservice;
 
 	@GetMapping("/list")
 	public void list(Model model, CampusCriteria cri) {
@@ -550,59 +555,84 @@ public class BoardController {
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value="/checkpnumber", produces="application/text;charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
-	public String checkpnumber(int p_number) {
+	public String checkpnumber(String checkId) {
 		
 		log.info("※※※※※ post checkpnumber ※※※※※");  
 		
-		CampusProductVO vo = product.viewProduct(p_number);
+		log.info("checkid "+checkId);
 		
-		String proName = "not";
-		log.info("체크넘버 : "+vo);
-		if(vo!=null) {
-			proName = vo.getP_name();
+		List<CampusProductVO> list = service.oneCheck(checkId);
+		
+		String name = "no";
+		int code = 0;
+		
+		try {
+			log.info("하나 잘 들어옴?",list);
+
+			
+			for(CampusProductVO vo:list) {
+				
+					name = vo.getP_name();
+					code = vo.getP_number();
+					
+				}
+
+			
+		} catch (Exception e) {
+			return name+"^$^0";
 		}
-		log.info("체크넘버스트링 : "+proName);
-		
-		return proName;
+
+		return name+"^$^"+code;
 	}
 	
 	@PreAuthorize("isAuthenticated()")
 	@RequestMapping(value="/checkpnumberOrder", produces="application/text;charset=utf8", method = RequestMethod.POST)
 	@ResponseBody
-	public String checkpnumberOrder(int p_number, String u_userid) {
+	public String checkpnumberOrder(String checkId, String u_userid) {
 		
-		log.info("※※※※※ post checkpnumber ※※※※※");  
+		log.info("※※※※※ post order checkpnumber ※※※※※");  
 		
-		CampusProductVO vo = product.viewProduct(p_number);
+		List<CampusProductVO> list = service.oneCheck(checkId);
+		List<CampusOrderDetailVO> dlist = payservice.orderdetaillist(u_userid);
 		
-		String proName = "not";
+		log.info(checkId);
+		log.info(u_userid);
 		
-		log.info("체크넘버 : "+vo);
-		if(vo!=null) {
-			proName = vo.getP_name();
-		}
-		log.info("체크넘버스트링 : "+proName);
+		String name = "no";
+		int code = 0;
 		
-		String isOk = "no";
-		
-		List<CampusBoardCheckOrderVO> list = service.orderCheck(u_userid);
-		
-		for(CampusBoardCheckOrderVO is:list) {
-			int check = is.getP_number();
+		try {
+			log.info("둘다 잘 들어옴?",list);
+			log.info("둘다 잘 들어옴?",dlist);
 			
-			if(vo!=null) {				
-				if(check == vo.getP_number()) {
-					isOk = "yes";
+			for(CampusProductVO vo:list) {
+				
+				for(CampusOrderDetailVO dvo:dlist) {
+					
+					int dtest = dvo.getP_number();
+					int ltest = vo.getP_number();
+					
+					log.info("피넘버테스트 [ "+dtest);
+					log.info("피넘버테스트 [ "+ltest);
+					
+					
+					if (dtest == ltest) {
+						name = vo.getP_name();
+						code = vo.getP_number();
+						break;
+					}
+					
+				}
+				if (!name.equals("no")) {
+					break;
 				}
 			}
+			
+		} catch (Exception e) {
+			return name+"^$^0";
 		}
-		
-		if(!isOk.equals("yes") && !proName.equals("not")) {
-			proName = "nnot";
-			return proName;
-		}
-		log.info("마지막 테스트 : "+proName);
-		return proName;
+
+		return name+"^$^"+code;
 	}
 	
 	//첨부물 가져오기
