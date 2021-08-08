@@ -43,4 +43,32 @@ $("#checkall").click(function(){
    } else{
       $("input[type=checkbox]").prop("checked",false);
    }
+
+
+        $(".subu").click(function(e){
+        e.preventDefault();
+        
+        console.log($(".checkone:checked").length);
+        
+        var check_count_is_not_null = $(".checkone:checked").length;
+        
+        if(check_count_is_not_null == 0){
+           Swal.fire({
+                title: '<strong>체크된 상품이 없습니다</strong>',
+                icon: 'info',
+                html:
+                  '구매 전, 구매하실 상품을 선택해 주세요',
+                focusConfirm: false,
+                confirmButtonColor: '#78c2ad',
+                confirmButtonText:
+                  '확인'
+              })
+        }else{
+           $("#gogokakao").submit();
+        }
+     })
+
+
+
+
 });

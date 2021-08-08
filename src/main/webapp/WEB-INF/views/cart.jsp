@@ -17,7 +17,7 @@
    </div>
    <div id="cartItemList" class="cartlist" style="min-height: 561px;">
       <div class="">
-      <form action="/payment/paymentpage" method="post">
+      <form action="/payment/paymentpage" method="post" id="gogokakao">
          <div class="c_item ">
             <div class="c_select">
                <div class="innerselect">
@@ -123,7 +123,7 @@
 						<input type="hidden" name="u_userid" id="u_userid" value="<sec:authentication property="principal.campusUser.u_userid"/>">
 						<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
 						
-						<button type="submit" class="btn btn-primary">구매하기</button>
+						<button type="submit" class="btn btn-primary subu">구매하기</button>
 						<button type="button" class="btn btn-secondary"
 							onclick="location.href='/product/productlist'">상품 목록보기</button>
 					</div>
