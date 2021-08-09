@@ -224,7 +224,7 @@
 													onclick="location.href='/board/list'">전체 후기 보기</button>
 											</div>
 										</div>
-										<!-- 페이지 선택 버튼 -->
+										<!-- 페이지 선택 버튼
 										<div class="row">
 											<div class="col-md-12">
 												<ul class="mypagination justify-content-center">
@@ -248,7 +248,7 @@
 													</c:if>
 												</ul>
 											</div>
-										</div>
+										</div> -->
 										<div class="col-md-1"></div>
 													<form action="productdetail" method="get" id="pageForm">
 														<input type="hidden" name="sort"
@@ -312,7 +312,7 @@
 														onclick="location.href='/board/list'">전체 질문 보기</button>
 												</div>
 											</div>
-											<!-- 페이지 선택 버튼 -->
+											<!-- 페이지 선택 버튼 
 											<div class="row">
 												<div class="col-md-12">
 													<ul class="mypagination justify-content-center">
@@ -337,7 +337,7 @@
 
 													</ul>
 												</div>
-											</div>
+											</div>-->
 											<div class="change_info">
 
 												<div>

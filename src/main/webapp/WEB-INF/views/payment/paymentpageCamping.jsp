@@ -41,7 +41,7 @@
 					
 						<tr>
 							<td>
-								<img src="/resources/main/images/camp.jpg" alt="" class="size200"/>
+								<img src="/resources/main/images/creser.jpg" alt="" class="size200"/>
 							</td>
 							<td class="textmiddle"><b>캠퍼스 캠핑장</b>
 							</td>

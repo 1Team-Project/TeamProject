@@ -45,7 +45,7 @@
 								<img src="${vo.imgsrc}" alt="" class="size200"/>
 							</td>
 							<td class="textmiddle"><b>${vo.o_name}</b>
-								<div>${option}</div>
+								<div>${vo.c_option}</div>
 							</td>
 							<td class="textmiddle">총 ${vo.total_count}개</td>
 							<td class="textmiddle ${vo.success_code}">총 ${vo.total_pay}원</td>

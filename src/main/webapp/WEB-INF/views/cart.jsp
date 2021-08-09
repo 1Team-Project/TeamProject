@@ -77,7 +77,7 @@
                      <li>
                         <div class="item">
                            <label class="check" for=""> 
-                          <input type="checkbox" checked="true"class="checkone" name="cartVO[${i}].c_cartnumber" value="${CartListVO.c_cartnumber}" data-cartnum="${CartListVO.c_cartnumber}"> 
+                          <input type="checkbox" class="checkone" name="cartVO[${i}].c_cartnumber" value="${CartListVO.c_cartnumber}" data-cartnum="${CartListVO.c_cartnumber}"> 
                            <c:set var = "i" value="${i+1}"/>
                            </label>
                            <div class="c_name">

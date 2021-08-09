@@ -70,7 +70,7 @@
 
 				<div class="col-md-12 textright margintb20"><h3>총 결제 금액 : ${total_pay}원</h3><h5>(택배비 : ${total_parcel})</h5></div>
 
-				<div class="col-md-12 colorthema hh4 padding6px margintb20">주문자 정보</div>
+				<div class="col-md-12 colorthema hh4 padding6px margintb20">배송지 정보</div>
 
 				<div class="col-md-12 bottommargin10 mll10">
 					<input name="o_name" type="text" class="form-control width60" placeholder="받는 분 이름을 입력해 주세요" required <c:if test = "${campusCartVO == null}">readonly</c:if> />

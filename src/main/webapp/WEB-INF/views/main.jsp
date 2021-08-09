@@ -130,7 +130,7 @@
        						<input type="radio" name="img" id="img4"/>
        						<input type="radio" name="img" id="img5"/>
        						<ul class="slide_img">
-	        					<li><img src="../../resources/main/images/tent1.jpg"/></li>
+	        					<li><img src="../../resources/main/images/machu.jpg"/></li>
 	        					<li><img src="../../resources/main/images/tent2.jpg"/></li>
 	        					<li><img src="../../resources/main/images/car1.jpg"/></li>
 	        					<li><img src="../../resources/main/images/car2.jpg"/></li>

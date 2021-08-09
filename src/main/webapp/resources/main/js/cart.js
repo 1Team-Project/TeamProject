@@ -34,7 +34,7 @@ function plus_minus(obj,op){
 
 
 
-$("input:checkbox[id='checkall']").prop("checked",true);
+$("input:checkbox[id='checkall']").prop("checked",false);
 
 $("#checkall").click(function(){
    
@@ -43,9 +43,9 @@ $("#checkall").click(function(){
    } else{
       $("input[type=checkbox]").prop("checked",false);
    }
-
-
-        $(".subu").click(function(e){
+});
+//        
+  $(".subu").click(function(e){
         e.preventDefault();
         
         console.log($(".checkone:checked").length);
@@ -66,9 +66,4 @@ $("#checkall").click(function(){
         }else{
            $("#gogokakao").submit();
         }
-     })
-
-
-
-
-});
+     });
